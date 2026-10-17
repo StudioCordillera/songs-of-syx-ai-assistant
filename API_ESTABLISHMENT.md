@@ -1,23 +1,23 @@
-# API establishment report — 0.6.0, game 0.71.44
+# API establishment report — 0.7.0, game 0.71.44
 
 This report establishes what can be verified within the user's required in-process public-API boundary. It does not create an official guarantee on behalf of the game developer.
 
 ## Evidence levels
 
 1. **Documented script contract:** the shipped semi-official script guide and SCRIPT interface describe script creation, updates and persistence callbacks. They do not document every game statistic or menu.
-2. **Source-verified public API:** Java compiler attribution resolves each game member referenced by production mod code. The current inventory contains 173 members, all public. Of these, 172 match declaring type, name, arity and simple parameter types in shipped source; the remaining member is the compiler-generated enum `values()` method. Only one referenced member has its own Javadoc block; Javadoc presence does not establish semantics or stability. Script override contracts are reviewed separately from the member-reference inventory.
+2. **Source-verified public API:** Java compiler attribution resolves each game member referenced by production mod code. The current inventory contains 174 members, all public. Of these, 173 match declaring type, name, arity and simple parameter types in shipped source; the remaining member is the compiler-generated enum `values()` method. Only one referenced member has its own Javadoc block; Javadoc presence does not establish semantics or stability. Script override contracts are reviewed separately from the member-reference inventory.
 3. **Runtime evidence:** the isolated fixture exercises supported contexts using public game methods and a copied save. The production mod only observes. Test mutations and engine bootstrap code are never packaged into the mod.
 4. **Unavailable/unvalidated:** missing public accessors and untested transitions stay explicit. No reflection, screenshot, native-input or package-access workaround is added.
 
 The [official documentation project](https://github.com/songsofsyx/documentation) links the published guide. Its [getting-started page](https://songs-of-syx.readthedocs.io/en/latest/modding_getting_started.html), checked 2026-10-17, contains a heading but no API details. This does not supply the missing member-level contracts.
 
-Runtime evidence spans the 0.5.0 scene fixture and 0.6.0 context/individual-stat fixture. Exact run scopes are recorded in VALIDATION.md and validation-evidence.json.
+Runtime evidence spans the 0.7.0 scene/entity fixtures and 0.6.0 context fixture. Exact run scopes are recorded in VALIDATION.md and validation-evidence.json.
 
 ## Current coverage matrix
 
 | Capability | Established access | Runtime scope / limits |
 | --- | --- | --- |
-| Exported state variables | 18 partial typed public-API domains; 173 referenced members in the audit | Existing copied save; not every variable or every entity attribute |
+| Exported state variables | 18 partial typed public-API domains; 174 referenced members in the audit | Existing copied save; not every variable or every entity attribute |
 | Active view | `VIEW.current`, subview `isActive` | Settlement, world, settlement tactical HUD, generated battle deployment and initial/terrain world generation exercised; editor views compiled only |
 | Selected subject | `UISubjects.current`, individual class/type and named `STAT.hasIndu` / `STAT.indu` getters | 58 individual statistics observed in the copied-save subject; values/min/max and installed-help reference IDs. Panel may remain behind a modal overlay |
 | Room context | `UIRooms.openIs` and room-list membership | Room blueprint/table/detail presence exercised; exact selected instance unavailable |
@@ -65,8 +65,16 @@ An official complete state schema, a stable contract for individual getters, sel
 
 A concrete unsent proposal for these missing public contracts is recorded in UPSTREAM_API_REQUEST.md. It is not an implementation or official support promise.
 
-## Selected individual data — 0.6.0
+## Selected individual data — 0.7.0
 
 The entities domain includes a dedicated `selected_subject` object with identity, race, class, type and named statistics whose public `hasIndu()` advertises an individual getter. This path does not depend on the first-1,000 `/items` export. Each statistic provides raw integer value, getter bounds, coverage and a `reference_id`. Missing getters fail individually; unknown semantic units stay unknown. A selected person is not inferred from population statistics. A null selection remains null.
 
-The installed-help search accepts an exact reference ID such as the returned `stat:N`, so an advisor can retrieve the matching in-game description rather than guessing the meaning from a numeric value. These descriptions are installed game/mod data, not an official stability promise. The copied save has 295 entities; behavior in a city beyond the 1,000-row list cap has not been separately exercised. Dedicated selection is collected independently in code.
+The installed-help search accepts an exact reference ID such as the returned `stat:N`, so an advisor can retrieve the matching in-game description rather than guessing the meaning from a numeric value. These descriptions are installed game/mod data, not an official stability promise. The original copied save has 295 entities. The 0.7.0 isolated fixture raises this to 1,395 temporary entities and verifies that a target beyond the prefix is available through both dedicated selection and on-demand requests.
+
+## On-demand entity access — 0.7.0
+
+Fixed public getters now serve bounded entity requests across the instantiated scene. Explicit IDs use `ENTETIES.getByID(int)`; broader filters use bounded read-only array traversal. The production compiler inventory includes this lookup's source declaration. Installed stat references advertise whether a named individual getter exists.
+
+The isolated fixture adds temporary citizens to a copied game without saving it. It verifies 1,395 live entities, a selected target absent from the 1,000-row snapshot prefix, direct attribute/stat reads, combined class/race/type/tile/stat predicates, 18-page complete paused-scene traversal, unknown-stat rejection, concurrent MCP reads and same-response UI context. Fixture mutations are never part of production. No arbitrary-field or method-call interface was introduced.
+
+This is more complete entity access, not a complete game-variable schema. Every page is a separate observation; generic entity histories/private AI and stable whole-scene snapshot paging remain unavailable. See QUERY_GUIDE.md and validation-evidence.json for exact scope.

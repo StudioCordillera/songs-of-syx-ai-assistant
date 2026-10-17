@@ -135,7 +135,7 @@ def test_mcp_transport(setup):
                 listing = await session.list_tools()
                 assert {t.name for t in listing.tools} == {
                     'game_query_help', 'game_status', 'query_game_state', 'search_guidance',
-                    'describe_game_fields', 'select_game_state', 'search_game_references', 'get_game_ui_context', 'get_game_api_support'}
+                    'describe_game_fields', 'select_game_state', 'search_game_references', 'get_game_ui_context', 'get_game_api_support', 'query_live_entities'}
                 assert all(t.annotations.read_only_hint for t in listing.tools)
                 result = await session.call_tool('game_status', {})
                 assert not result.is_error
@@ -155,6 +155,8 @@ def test_mcp_transport(setup):
                 assert not exact_reference.is_error and 'Fixture food' in str(exact_reference)
                 context = await session.call_tool('get_game_ui_context', {})
                 assert not context.is_error and 'settlement' in str(context)
+                live_read = await session.call_tool('query_live_entities', {'spec':{}})
+                assert live_read.is_error and 'non-demo' in str(live_read)
                 support = await session.call_tool('get_game_api_support', {'query':'selected_room_instance'})
                 assert not support.is_error and 'unavailable' in str(support)
                 state['demo']=False

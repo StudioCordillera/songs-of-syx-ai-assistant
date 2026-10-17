@@ -74,3 +74,19 @@ The entities domain's `/selected_subject/stats` path contains the selected perso
 ```
 
 Pass a returned reference ID directly to `search_game_references` to retrieve the installed description. Raw values and getter bounds do not establish semantic units, satisfaction effects or complete personal history. A null selected subject makes this query invalid; inspect context first. Selection may remain behind an overlay.
+
+## On-demand entities across the instantiated scene — 0.7.0
+
+Call `game_query_help` for the complete `on_demand_entities` schema. `query_live_entities` asks the mod to read chosen values on the update thread. It can reach entities outside the prefix snapshot.
+
+```json
+{"entity_ids":[12345],"fields":["id","race_id","class_id","humanoid_type_id","tile_x","tile_y","stats"],"stat_ids":[0],"limit":1}
+```
+
+Replace these example IDs with observed values. Installed stat search results advertise `stat_id` and `individual_getter_available`; use named individual getters only. Projected stat values provide bounds and a reference ID. Raw integer units are not established merely by reading these values.
+
+Filters combine with AND: `entity_ids`, `race_id`, `class_id`, `humanoid_type_id`, `tile_bounds: [x1,y1,x2,y2]` (upper bounds excluded), and up to four `stat_filters: [{stat_id,op,value}]` using `eq/ne/lt/lte/gt/gte`. Missing individual getters or unknown stat IDs fail explicitly. `predicate_errors` counts entities whose predicate getter failed; nonzero errors mean matching absence/count is unknown.
+
+Explicit IDs use the game's public ID lookup. Without IDs, each request scans up to `scan_limit` scene-array slots, starting at `cursor`, and returns at most `limit` matches. Follow `next_cursor` until null, including after an empty page. With IDs, cursor refers to the ordered requested-ID list; `cursor_kind` distinguishes it from scene slots. Do not substitute the number of matching rows as the next cursor.
+
+Use `expected_session_id` to reject a game replacement. Each response has its own request ID, capture time, tick, scene and UI context; it is not the cached snapshot and cannot be joined as though captured at that snapshot's tick. Cursor pages are separate observations over a changing scene. Large-city performance and stable multi-page reads during active simulation remain unvalidated. The tested client transport requires POSIX.

@@ -1,4 +1,4 @@
-# Game API boundary — 0.6.0
+# Game API boundary — 0.7.0
 
 The game-facing plugin runs inside Songs of Syx using `script.SCRIPT` and `SCRIPT_INSTANCE`. All gameplay observations originate from direct public game API calls on the script update thread. The Python MCP reads detached local exports; it does not inspect or control the game process itself.
 
@@ -29,7 +29,7 @@ All following collectors use direct public members from the shipped game. These 
 | Resources and flows | `RESOURCES.ALL()`, `RESOURCE.owned()`, `SETT.ROOMS().STOCKPILE.tally()`, `GAME.player().res()` |
 | Workforce | `SETT.ROOMS().ins()`, blueprint/room employment getters |
 | Research | `TECHS.ALL()`, `GAME.player().tech().level()` |
-| Entities | `SETT.ENTITIES().getAllEnts()`, IDs, positions, race; first 1,000, explicit truncation |
+| Entities | Snapshot: first 1,000 IDs/types/positions, explicit truncation. On-demand: `SETT.ENTITIES().getAllEnts()` bounded slot pages and `getByID(int)` for explicit IDs, plus fixed public class/type/position/stat getters |
 | Selected individual stats | `Humanoid.indu()`, `Induvidual.clas()/hType()`, named `STAT.hasIndu()/indu()` and `INT_O.get/min/max`; raw units, partial schema |
 | Aggregate stats | `STATS.COLLECTIONS()`, stat data/info/divider accessors |
 | Trade / diplomacy | `GAME.player().trade`, `FACTIONS.active()`, `DIP.get()` |
@@ -47,10 +47,16 @@ Cleanup occurs at next game initialization and JVM shutdown. Without an official
 
 ## MCP and references
 
-Nine read-only tools are available: UI context and API support/evidence, plus status, field schema discovery, bounded subtree reads, structured selection, query help, installed-reference search and reviewed external-source search. Filters, projections, joins and aggregates operate on exported public-API data. There is no raw Java field query or control mailbox.
+Ten read-only tools are available: UI context and API support/evidence, plus status, field schema discovery, bounded subtree reads, structured selection, query help, installed-reference search and reviewed external-source search. Filters, projections, joins and aggregates operate on exported public-API data. There is no raw Java field query or control mailbox. A bounded read-request transport asks the script update thread for fixed entity observations; it accepts no gameplay action, arbitrary method or object-member path.
 
 Local JSON export and stdio MCP are the transport between the in-process plugin and the assistant. The assistant client handles OpenAI authentication/inference. External guide summaries are reference evidence, not a source of live game state or executable instructions.
 
 ## Compiler inventory
 
-The production references resolve to 173 public game API members. The metadata inventory includes source anchors and hashes; it does not enumerate every game variable or establish official stability. See API_ESTABLISHMENT.md for exact evidence levels and runtime checks.
+The production references resolve to 174 public game API members. The metadata inventory includes source anchors and hashes; it does not enumerate every game variable or establish official stability. See API_ESTABLISHMENT.md for exact evidence levels and runtime checks.
+
+## On-demand read transport — 0.7.0
+
+`query_live_entities` writes a bounded request to the local private runtime directory. The file daemon parses a strict fixed-key protocol and hands an immutable request to the script update thread. Only that thread reads game APIs. It returns detached data; the daemon performs response serialization and atomic file replacement. The MCP client verifies request/session/version/time identity and bounds. Concurrent POSIX clients serialize requests with an OS-managed file lock. No network listener or process-inspection adapter is used.
+
+Supported selection is finite: IDs, race/class/humanoid type, exclusive-upper tile bounds, up to four raw stat comparisons, and fixed projected fields. Explicit IDs use public `ENTETIES.getByID`; other selections scan at most 10,000 array slots per response. No writable game API is added. These new members are compiler/source audited; public accessibility is not an official stability contract. The shipped `getAllEnts` Javadoc explicitly describes its returned array as read-only; the adapter never changes its entries.

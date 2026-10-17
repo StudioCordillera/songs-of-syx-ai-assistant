@@ -1,17 +1,98 @@
 {
-  "version": "0.6.0",
+  "version": "0.7.0",
   "game_version": "0.71.44",
   "python_tests": {
-    "passed": 37
+    "passed": 56
   },
-  "production_public_member_references": 173,
+  "codec_checks": {
+    "valid_request": true,
+    "rejections_passed": 11,
+    "game_initialized": false
+  },
+  "production_public_member_references": 174,
   "production_source_sha256": {
-    "syx/assistant/AssistantScript.java": "aac3d851cd3dc1981269cf2e6fefa19ca313f7839a11627021a2ba29addb3fed",
+    "syx/assistant/AssistantScript.java": "40ee882b3305cbc78f35013a87ce9167c6d32d749ebf6109c828416ec0ee412a",
+    "syx/assistant/EntityReadRequest.java": "3aa2f3bd4d8000abe7ff5247d2a24b28df31d72c088f0c164313497ecedab945",
     "syx/assistant/JsonWriter.java": "c525eb60d3224cab83ed3fd6b8594ec8652211f00bd947e873e1482f919e81dc",
-    "syx/assistant/StateCollector.java": "d1982c5022b6f33dc43780f5e235f399290ad80e3eb7224491dec866640ad5ba",
+    "syx/assistant/StateCollector.java": "96f441ec7210c6f5e080cf9225c8c99321a35e243321c9bc9317aa1181cae743",
     "syx/assistant/UiContextCollector.java": "49d1c49f79800145f10ad62c633dbf93b3ffeaa6faed1e0737a3b2eadae24607"
   },
-  "context_checks": {
+  "on_demand_entities": {
+    "passed": true,
+    "game_version": "0.71.44",
+    "live_entities": 1395,
+    "prefix_limit": 1000,
+    "target_beyond_prefix": true,
+    "pages": 18,
+    "combined_filters": true,
+    "concurrent_mcp_requests": true,
+    "unknown_stat_rejected": true,
+    "same_response_context": true,
+    "limits": [
+      "Paused isolated copied game; not a performance benchmark.",
+      "Cursor pages are separate observations, not a stable multi-page snapshot.",
+      "No private attributes or arbitrary field/method invocation."
+    ]
+  },
+  "scene_checks": {
+    "passed": true,
+    "checks": {
+      "city": {
+        "passed": true,
+        "view": "settlement",
+        "scene_kind": "city",
+        "on_demand_read_available": true
+      },
+      "settlement_battle": {
+        "passed": true,
+        "view": "settlement_battle",
+        "scene_kind": "city",
+        "on_demand_read_available": true
+      },
+      "city_restored": {
+        "passed": true,
+        "view": "settlement",
+        "scene_kind": "city",
+        "on_demand_read_available": true
+      },
+      "battle_deployment": {
+        "passed": true,
+        "view": "battle",
+        "scene_kind": "battlefield",
+        "on_demand_read_available": true
+      },
+      "battle_menu": {
+        "passed": true,
+        "view": "battle",
+        "scene_kind": "battlefield",
+        "on_demand_read_available": true
+      },
+      "city_reloaded": {
+        "passed": true,
+        "view": "settlement",
+        "scene_kind": "city",
+        "on_demand_read_available": true
+      },
+      "world_generation": {
+        "passed": true,
+        "view": "world_generation",
+        "scene_kind": "unavailable",
+        "on_demand_read_available": false
+      },
+      "terrain_generated": {
+        "passed": true,
+        "view": "world_generation",
+        "scene_kind": "unavailable",
+        "on_demand_read_available": false
+      }
+    },
+    "missing": [],
+    "limits": [
+      "Battle is a generated deployment scene, not active fighting or a battle conclusion.",
+      "Generation checks initial setup and public terrain generation; exact private wizard step and full political-world completion remain unvalidated."
+    ]
+  },
+  "context_checks_previous_version": {
     "version": "0.6.0",
     "passed": true,
     "checks": {
@@ -78,64 +159,6 @@
       "Battle, world generation and other menu subpages remain untested."
     ]
   },
-  "selected_individual": {
-    "named_stats_observed": 58,
-    "copied_save_entity_total": 295,
-    "same_snapshot_selection_verified": true,
-    "exact_description_mcp_lookup_verified": true,
-    "over_1000_entity_city_tested": false
-  },
-  "scene_checks_previous_version": {
-    "version": "0.5.0",
-    "passed": true,
-    "checks": {
-      "city": {
-        "passed": true,
-        "view": "settlement",
-        "scene_kind": "city"
-      },
-      "settlement_battle": {
-        "passed": true,
-        "view": "settlement_battle",
-        "scene_kind": "city"
-      },
-      "city_restored": {
-        "passed": true,
-        "view": "settlement",
-        "scene_kind": "city"
-      },
-      "battle_deployment": {
-        "passed": true,
-        "view": "battle",
-        "scene_kind": "battlefield"
-      },
-      "battle_menu": {
-        "passed": true,
-        "view": "battle",
-        "scene_kind": "battlefield"
-      },
-      "city_reloaded": {
-        "passed": true,
-        "view": "settlement",
-        "scene_kind": "city"
-      },
-      "world_generation": {
-        "passed": true,
-        "view": "world_generation",
-        "scene_kind": "unavailable"
-      },
-      "terrain_generated": {
-        "passed": true,
-        "view": "world_generation",
-        "scene_kind": "unavailable"
-      }
-    },
-    "missing": [],
-    "limits": [
-      "Battle is a generated deployment scene, not active fighting or a battle conclusion.",
-      "Generation checks initial setup and public terrain generation; exact private wizard step and full political-world completion remain unvalidated."
-    ]
-  },
   "binary_checks": {
     "method": "Selected member references/access/arithmetic inspected with JDK javap; no game method execution. Not formal equivalence of the complete shipped source and binary.",
     "checks": [
@@ -164,12 +187,13 @@
   "not_established": [
     "All game variables and attributes",
     "Stable official contract for individual mapped getters",
+    "Stable multi-page snapshot during active simulation",
     "Active fighting and battle conclusion",
     "Complete political-world generation",
     "Editor runtime coverage",
     "Private wizard step, exact selected room, management tab, full tooltip text and arbitrary panel tree",
     "Immediate menu unload callback",
     "Large-city performance",
-    "On-demand whole-scene entity requests"
+    "Windows on-demand client transport"
   ]
 }

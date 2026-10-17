@@ -4,7 +4,7 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "songs-of-syx-ai-assistant"
-version = "0.6.0"
+version = "0.7.0"
 description = "Read-only game-state and citation MCP foundation for Songs of Syx"
 requires-python = ">=3.11"
 dependencies = ["mcp==2.3.0"]
@@ -17,7 +17,7 @@ syx-mcp = "syx_mcp:main"
 syx-knowledge = "syx_knowledge:main"
 
 [tool.setuptools]
-py-modules = ["syx_mcp", "syx_knowledge", "syx_query", "syx_api_support", "syx_api_manifest"]
+py-modules = ["syx_mcp", "syx_knowledge", "syx_query", "syx_api_support", "syx_api_manifest", "syx_live"]
 
 [tool.pytest.ini_options]
 testpaths = ["."]

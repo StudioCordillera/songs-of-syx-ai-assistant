@@ -10,4 +10,4 @@ Current boundary: an in-process SCRIPT mod, typed public-API observations, bound
 
 Full game state, all-menu coverage and a fully documented stable mod API are not currently available.
 
-Next data-access work: design bounded on-demand typed entity/data requests across the whole instantiated scene, with session/snapshot provenance and update-thread execution. The current prefix entity list and dedicated selected-person export do not implement arbitrary whole-state selection or every entity attribute. Any new request protocol must remain read-only, reject arbitrary member names/code, and preserve the public API boundary. No such mailbox is included in 0.6.0.
+On-demand entity requests are implemented in 0.7.0: fixed public fields and named individual stats, bounded filters/cursors, update-thread evaluation and request/session/tick provenance. The isolated over-1,000-entity fixture passes. Next data-access work is stable bounded multi-page observations, broader typed non-entity schemas, attribute meanings/units and large-city performance. Current paging is mutable across responses, and no complete game-state schema is claimed.

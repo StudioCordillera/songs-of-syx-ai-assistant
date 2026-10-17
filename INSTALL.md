@@ -22,7 +22,7 @@ Copy the `syx-ai-assistant` folder into the game's **user** `mods` folder. On th
 
 Create the Python environment and install the project as shown in README. Merge `codex.example.toml` into your client's MCP configuration, replacing the executable path. Restart/reconnect the MCP client after configuration.
 
-Both the game and MCP server default to `~/.local/share/syx-assistant`. Set `SYX_STATE_DIR` in both processes to override; the game also accepts `-Dsyx.assistant.stateDir=/absolute/path`. The directory is local to this user and holds live game data, the optional reviewed corpus. No network listener is opened.
+Both the game and MCP server default to `~/.local/share/syx-assistant`. Set `SYX_STATE_DIR` in both processes to override; the game also accepts `-Dsyx.assistant.stateDir=/absolute/path`. The directory is local to this user and holds live game data, the optional reviewed corpus, and bounded read-request/response transport files. No network listener is opened.
 
 Run `syx-knowledge --state-dir /your/state/directory` once to merge the five reviewed starter summaries without overwriting existing records. Installed resource/technology/stat references do not require this step.
 
@@ -31,7 +31,7 @@ Ask the assistant to call `game_status`, `game_query_help`, and `describe_game_f
 ## Access boundary
 
 Only the in-process script mod reads the game, using mapped public APIs. MCP reads detached local snapshots.
-No control panel, screenshot tool, private-field query or native input adapter is included. Version 0.6.0 adds get_game_ui_context and get_game_api_support for partial context and source evidence.
+No control panel, screenshot tool, private-field query or native input adapter is included. Version 0.7.0 includes partial UI/API evidence tools and query_live_entities for bounded on-demand reads. The latter requires a POSIX MCP host and a matching 0.7.0 mod; older mods cannot answer these requests.
 Replace the previous mod folder/JAR completely when upgrading; do not merge old classes into the new JAR.
 See API_BOUNDARY.md for primary-source provenance and lifecycle limitations.
 
