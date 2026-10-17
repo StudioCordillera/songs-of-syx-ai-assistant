@@ -226,6 +226,7 @@ def describe(value, path='', result=None, budget=300):
     return result
 
 QUERY_HELP = {
+    "access_boundary": "Read-only typed public game API exports via SCRIPT. No private fields, screenshots, input or OS automation. Public mappings are source-verified, not all individually documented. No UI context exported.",
     "workflow": ["game_status", "describe_game_fields(domain)", "select_game_state(spec)"],
     "batch": {"queries": "1..10 query objects", "expected_snapshot_id": "optional snapshot pin"},
     "query": {"source": {"domain": "domain name", "path": "JSON pointer to rows"},
@@ -237,8 +238,7 @@ QUERY_HELP = {
         "logical":"and/or: [expressions]; not/is_null: expression", "constants":"scalars can be used directly"},
     "example": {"queries":[{"source":{"domain":"resources","path":"/stockpiles"},
         "select":{"stored":{"field":"/stockpile_stored"}},"sort":[{"field":"/stored","direction":"asc"}],"limit":5}]},
-    "deep_reads":"query_live_game_fields([]) lists roots; root/path/depth=0 discovers game fields; fields maps aliases to pointers; arrays use /0, /@size, /@items. Up to 20 reads, depth 0..4, limit 1..100 on one tick.",
-    "limits":"10k intermediate rows, 200k expression work, 32 KiB specification, 64 KiB response; deep reads 10k nodes, 7 KiB input",
+    "limits":"10k intermediate rows, 200k expression work, 32 KiB specification, 64 KiB response",
     "evidence":"search_game_references: installed help text, version/mods and origin. search_guidance: reviewed external excerpts, authority filter and citation URLs. Unknown/mismatched versions require verification.",
-    "semantics":"Missing fields error; null stays null; division by zero returns null; aggregates ignore null; empty sum/avg/min/max null; count zero. All collectors currently partial. Raw fields version-specific, units not guaranteed."
+    "semantics":"Missing fields error; null stays null; division by zero returns null; aggregates ignore null; empty sum/avg/min/max null; count zero. All collectors currently partial. No raw field exploration or UI access is exposed."
 }

@@ -1,13 +1,11 @@
 # Roadmap
 
-Implemented experimental baseline: version-checked Java mod, cached snapshots, 18 partial collectors, field discovery and targeted raw reads, bounded structured queries, installed help catalog, small curated external corpus, and opt-in game UI driver.
+Current boundary: an in-process SCRIPT mod, typed public-API observations, bounded snapshot selections and cited reference retrieval. No private reflection or native/OS UI automation. See API_BOUNDARY.md.
 
-Next priorities:
+1. Expand explicit data mappings with primary-source provenance, meanings, units and per-version coverage. Leave inaccessible data unavailable.
+2. Investigate public game APIs for selected entities, open panels and hover context. Do not use screenshot/input/private-field fallbacks.
+3. Establish a documented unload-to-menu lifecycle hook or keep the freshness limitation explicit; test menus/transitions and large settlements.
+4. Extend reviewed official/developer reference coverage and version-aware search.
+5. Build an in-game chat client using supported OpenAI authentication, subject to registration/eligibility.
 
-1. Expand typed entities, rooms, spatial/tile data and stable relationships, documenting field meanings/units and coverage per game version.
-2. Add version-aware indexing and refresh of official patch notes, shipped help, developer forum replies and reviewed high-quality guides, with precise passage citations and evaluation questions.
-3. Measure capture/query costs on large cities, add further data paging and test reload/new game/crash/version migration paths.
-4. Validate player-facing control permissions, key/text actions and supported operating systems.
-5. Build in-game chat using an officially supported client/authentication route, with subscription eligibility and registration verified before release.
-
-No license has been chosen. Do not redistribute game binaries/source, saves or full copyrighted guides.
+Full game state, all-menu coverage and a fully documented stable mod API are not currently available.

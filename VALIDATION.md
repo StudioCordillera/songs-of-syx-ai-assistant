@@ -1,22 +1,20 @@
-# Validation — 2026-10-17
+# Validation — 0.3.0 public API boundary
 
-## Automated checks
+## Current checks
 
-- 30 Python tests pass: snapshot validation/freshness, demo isolation, unload, paging, bounded results, corpus provenance/version labels, MCP transport/tool annotations, mailbox retries, screenshot validation, structured filters/joins/projections/grouping/aggregation/nulls/limits and invalid specifications.
-- Java policy/JSON tests pass, including nine rejection cases.
-- Java raw field reader/parser fixture tests pass, including private fields, field projection, indexed array selection, cycles and seven invalid-request cases.
-- All mod sources compile against the installed game with Java 16 target bytecode.
+- 25 Python tests pass: snapshot validity/freshness, demo isolation, paging, selected-data bounds, query filtering/joins/grouping/aggregation, cited source authority/version labels, and MCP transport.
+- MCP transport verifies exactly seven tools, all read-only. No raw-field, screenshot or input tools are registered.
+- Boundary tests check the mod namespace and reject reflection, native input/capture, process launch and engine-resource bypass patterns in production Java source. These tests supplement source review, not a complete security proof.
+- Three production Java source files compile against the installed 0.71.44 JAR with Java 16 target bytecode. Detached JSON serialization tests pass.
 
-## Live copied-save validation
+## Rebuilt-mod copied-save test
 
-Installed game: 0.71.44, Steam build23998889. Linux, isolated user profile, Java21. The test bootstrap uses a copy of an existing save; no original save was modified. The loaded settlement had 216 counted residents and 31 employment records. All 18 domain collectors returned explicitly partial data.
+The new 0.3.0 mod was loaded in an isolated Linux user profile using Java21 and a copied save. All 18 domains returned partial coverage. The installed-help catalog contained 720 records; a structured query ranked the 42 resource rows by stockpile storage and returned only selected IDs/values. No control mailbox was created. Original saves were not modified.
 
-The exporter produced 720 installed reference records. Live raw root discovery returned 11 roots; reading player field definitions, a resource's private/internal attributes, resource collection size (42), and clock definitions succeeded through the actual mailbox. Structured ranking of stockpile values succeeded after using the discovered `stockpile_stored` field. Missing `/amount` was correctly rejected rather than invented.
+## Explicit limitations
 
-Previous live runs validated screenshot MCP image content, hover, scrolling, right click, fresh post-action screenshots, invalid-grant rejection, Stop, and unloaded tombstones after graceful shutdown. The control test harness grants only within its isolated test process; production requests cannot self-grant. Physical enable/stop interaction, key/text behavior and other platforms need further manual validation.
+The script lifecycle is documented in the shipped SCRIPT source and semi-official script guide. Most individual data getters are public APIs verified in shipped source, not separately documented stable contracts. API_BOUNDARY.md records that distinction. Complete state access is not claimed.
 
-## Practical limits
+No UI context or gameplay control is exported. The prior native-input and private-reflection tests are historical and do not apply to this build. All menus, battles, world-map transitions and load/reload combinations have not been validated.
 
-This is a working experimental adapter, not complete state mapping or a finished game assistant. Raw reflection exposes reachable permitted game objects, with bounds, cycles and blocked-object descriptors. Units/encodings are not inferred. There is no measured frame-time budget, large-city stress test, save/reload matrix, or cross-platform certification. The external corpus has five reviewed summaries: three official release-note topics, one historical developer reply and one version-family community guide; broader official coverage and automated refresh remain work.
-
-No in-game chat/login or end-to-end autonomous advisory quality evaluation has been completed. Existing Codex+MCP is the supported prototype connection.
+GameDisposable promises cleanup on the next game initialization. JVM shutdown also closes the exporter. Immediate return-to-menu detection is not established without an appropriate public lifecycle hook; stale state expires after 30 seconds. No large-city frame-time or cross-platform performance claim is made.

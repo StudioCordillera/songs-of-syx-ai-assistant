@@ -22,15 +22,18 @@ Copy the `syx-ai-assistant` folder into the game's **user** `mods` folder. On th
 
 Create the Python environment and install the project as shown in README. Merge `codex.example.toml` into your client's MCP configuration, replacing the executable path. Restart/reconnect the MCP client after configuration.
 
-Both the game and MCP server default to `~/.local/share/syx-assistant`. Set `SYX_STATE_DIR` in both processes to override; the game also accepts `-Dsyx.assistant.stateDir=/absolute/path`. The directory is local to this user and holds live game data, screenshot receipts and the optional reviewed corpus. No network listener is opened.
+Both the game and MCP server default to `~/.local/share/syx-assistant`. Set `SYX_STATE_DIR` in both processes to override; the game also accepts `-Dsyx.assistant.stateDir=/absolute/path`. The directory is local to this user and holds live game data, the optional reviewed corpus. No network listener is opened.
 
 Run `syx-knowledge --state-dir /your/state/directory` once to merge the five reviewed starter summaries without overwriting existing records. Installed resource/technology/stat references do not require this step.
 
-Ask the assistant to call `game_status`, `game_query_help`, and `describe_game_fields`. For deeper reads call `query_live_game_fields` with an empty list to discover roots. See QUERY_GUIDE.md for examples. A missing/unloaded/stale snapshot is an explicit error; never replace it with synthetic data.
+Ask the assistant to call `game_status`, `game_query_help`, and `describe_game_fields`. See QUERY_GUIDE.md for examples. A missing/unloaded/stale snapshot is an explicit error; never replace it with synthetic data.
 
-## Optional UI control
+## Access boundary
 
-The in-game panel offers “Allow AI control (5 min)” and Stop. Reading game state requires no grant. Capturing/controlling the viewport follows the current driver rules; changing the UI requires a current grant, session and recent screenshot. Physical key/mouse/scroll input revokes the grant. The assistant cannot click its own permission controls. No desktop access is exposed.
+Only the in-process script mod reads the game, using mapped public APIs. MCP reads detached local snapshots.
+No control panel, screenshot tool, private-field query or native input adapter is included in 0.3.0.
+Replace the previous mod folder/JAR completely when upgrading; do not merge old classes into the new JAR.
+See API_BOUNDARY.md for primary-source provenance and lifecycle limitations.
 
 ## Troubleshooting
 

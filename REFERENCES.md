@@ -19,13 +19,9 @@ Checked 2026-10-17. Recheck official docs at implementation time; access and pre
 
 Community mod templates may help investigation but must be labeled community references and checked against the shipped game. No community template is used here to assert unverified official API signatures. The implementation was checked against locally shipped `info/MAKE_A_MOD.txt`, `info/scriptGuide.odt`, `info/SongsOfSyx-sources.jar`, and actual loader/SCRIPT bytecode for 0.71.44. These proprietary references are not redistributed.
 
-## Computer-use references (checked 2026-10-17)
+## Access boundary
 
-- [OpenAI browser and desktop drivers](https://developers.openai.com/api/docs/guides/tools-computer-use-sdk-drivers): observations/actions and coordinate conventions; the game needs its own driver.
-- [Computer-use integration recipes](https://developers.openai.com/api/docs/guides/tools-computer-use-integration): screenshot-based integration patterns.
-- [Plan-usage preview limitations](https://developers.openai.com/siwc/token-sharing-open-source/preview-limitations): native computer use and hosted MCP are excluded on this route; local function/custom-tool execution is a separate integration concern.
-
-These establish integration constraints; the local driver validation is documented in VALIDATION.md. They do not guarantee account/model availability.
+See API_BOUNDARY.md for shipped primary references. The screenshot/input and reflection adapters were removed in 0.3.0. Former computer-use design references do not establish an approved game mod API.
 
 ## Gameplay evidence shipped with this prototype
 

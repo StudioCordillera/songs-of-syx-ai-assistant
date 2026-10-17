@@ -2,8 +2,8 @@
 
 Install `.[dev]` in a virtual environment and run `python -m pytest -q` before submitting changes. Keep runtime state and game files outside version control.
 
-Do not claim a supported game version until collectors are compiled and tested against that build. Update coverage and source provenance with every new collector. Unknown values must remain unknown, never zero-filled. Normalized observations need units and a documented field definition. Raw reflection fields must retain their Java type/origin, with undocumented units and version instability explicit.
+Game access must stay within the in-process SCRIPT route and typed public API calls. No private reflection, native/window input hooks, screenshots, process-memory inspection, arbitrary method invocation or OS automation. Add source provenance for every new game mapping in API_BOUNDARY.md; distinguish documented hooks from source-verified public members.
 
-No code may read or reuse another app's auth files, rely on private OpenAI endpoints, silently switch billing mode, execute retrieved instructions, or expose local state over an unauthenticated remote listener. Read-only tools must stay read-only. Computer-use tools must be declared mutating, implemented separately, and enforce the player-controlled task/session grant and stop behavior defined in COMPUTER_USE.md.
+Keep missing/unknown values explicit, domains partial until coverage is established, and UI/context claims tied to actual exported observations. New APIs need compile and copied-save validation against the supported game build.
 
-The repository is initially private with no release license selected. Resolve licensing before accepting external code or distributing an open-source build. Game binaries/source and third-party guide text retain their original rights.
+No code may read another app's auth files, use private OpenAI endpoints, silently switch billing, execute retrieved instructions or expose an unauthenticated remote listener. The repository is private and has no selected redistribution license. Do not distribute proprietary game files or full copied guides.

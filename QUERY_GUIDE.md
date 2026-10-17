@@ -35,26 +35,12 @@ Limits: 10 queries/batch, 3 joins/query, 10,000 intermediate rows, 200,000 work 
 32 KiB specification, 64 KiB response, 100 returned rows/query. Narrow the request on a limit error.
 No SQL, expressions as code, arbitrary methods or state writes are accepted.
 
-## Deep variable discovery
+## Public API coverage
 
-`query_live_game_fields([])` lists roots. `query_live_game_fields` performs up to 20 targeted reads
-on one game update thread, with the current tick and version attached. It requires a fresh loaded game,
-but does not require a computer-control grant. This path reads the game directly, rather than a snapshot.
-
-```json
-{"reads":[{"root":"player","path":"","depth":0,"limit":30}]}
-```
-
-At depth zero, objects return field names, Java types, declaring classes and readability.
-Follow discovered field paths with JSON pointers, including private game fields.
-Use `fields` to select named subpaths, for example `{"capital":"/capital"}` **only after discovering that field**.
-Arrays/lists support `/0`, `/@size` and `/@items`; offset/limit page their values or object field definitions.
-Depth is 0–4, with a 10,000-node work budget and 64 KiB response cap. Cycle markers and blocked objects
-are explicit. Non-game implementation objects/native handles are outside the exposed graph.
-
-This exposes a broad reachable game-owned object graph, not a guarantee of every JVM value.
-Raw names/layouts are version-specific and may have undocumented units or encodings.
-Do not infer mechanics or units from a field name alone. Prefer the normalized collectors when available.
+Only fields mapped from direct public game APIs are exported. There is no arbitrary/private field exploration.
+Discover the exported shape with `describe_game_fields`; use the structured query language for complex selections.
+All current domains are partial. See API_BOUNDARY.md for source provenance and documentation limitations.
+No active panel, selected UI object or tooltip context is currently exported.
 
 ## References and advice
 
