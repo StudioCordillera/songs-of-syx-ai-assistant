@@ -179,6 +179,8 @@ public final class StateCollector {
             }
             return object("statistics", rows);
         }, "Public aggregate statistics only; no causal/historical completeness is claimed.");
+        try { result.put("ui_context",UiContextCollector.collect()); }
+        catch(Exception e) { result.put("ui_context",object("available",false,"coverage","unavailable","reason",e.getClass().getSimpleName()+": "+e.getMessage())); }
         result.put("references",references());
         return result;
     }
