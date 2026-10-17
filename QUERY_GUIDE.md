@@ -55,10 +55,10 @@ The initial external corpus is deliberately small. It is not an exhaustive or au
 
 ## UI-aware selections and scope
 
-`{"context":"/selected_subject/id"}` reads a UI context field from the same snapshot. For example:
+`{"context":"/selected_subject/entity_id"}` reads a UI context field from the same snapshot. For example:
 
 ```json
-{"include_ui_context":true,"queries":[{"name":"selected_person","source":{"domain":"entities","path":"/items"},"where":{"eq":[{"field":"/id"},{"context":"/selected_subject/id"}]},"select":{"id":{"field":"/id"}},"limit":1}]}
+{"include_ui_context":true,"queries":[{"name":"selected_person","source":{"domain":"entities","path":"/items"},"where":{"eq":[{"field":"/id"},{"context":"/selected_subject/entity_id"}]},"select":{"id":{"field":"/id"}},"limit":1}]}
 ```
 
 Discover the actual entity path before querying. A missing context field is an error; an empty result does not prove the person is absent from the game because entity export is bounded. Modal overlays may obscure the underlying selection.

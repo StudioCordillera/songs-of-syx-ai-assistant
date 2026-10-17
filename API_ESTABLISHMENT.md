@@ -39,7 +39,7 @@ The snapshot identifies whether an instantiated settlement is a city or a genera
 
 `get_game_ui_context` returns a partial UI observation from the same snapshot as exported state, including active view, known overlay flags, selected subject identity and open room blueprints. Unsupported details have reasons. Selected objects describe underlying panels and may be obscured; “this” is not automatically resolved when a modal is open. Individual subject statistics must not be inferred from population aggregates.
 
-`select_game_state` supports a `{"context":"/selected_subject/id"}` expression and optional `include_ui_context: true`, using the same snapshot as the data query. Results carry source coverage and scope, including joined sources. A selected person outside the bounded exported entity set remains unavailable, not silently inferred.
+`select_game_state` supports a `{"context":"/selected_subject/entity_id"}` expression and optional `include_ui_context: true`, using the same snapshot as the data query. Results carry source coverage and scope, including joined sources. A selected person outside the bounded exported entity set remains unavailable, not silently inferred.
 
 `get_game_api_support(query, offset, limit)` returns capability evidence/limits and a paginated, searchable compiler inventory with source paths, declaration lines, source hashes and mod call sites. It is usable without a loaded game. It does not expose a method-call or private-field interface.
 
