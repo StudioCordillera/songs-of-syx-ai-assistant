@@ -1,40 +1,128 @@
 {
-  "version": "0.7.0",
+  "version": "0.8.0",
   "game_version": "0.71.44",
   "python_tests": {
     "passed": 56
   },
-  "codec_checks": {
-    "valid_request": true,
-    "rejections_passed": 11,
-    "game_initialized": false
-  },
-  "production_public_member_references": 174,
+  "production_public_member_references": 183,
   "production_source_sha256": {
     "syx/assistant/AssistantScript.java": "40ee882b3305cbc78f35013a87ce9167c6d32d749ebf6109c828416ec0ee412a",
     "syx/assistant/EntityReadRequest.java": "3aa2f3bd4d8000abe7ff5247d2a24b28df31d72c088f0c164313497ecedab945",
     "syx/assistant/JsonWriter.java": "c525eb60d3224cab83ed3fd6b8594ec8652211f00bd947e873e1482f919e81dc",
     "syx/assistant/StateCollector.java": "96f441ec7210c6f5e080cf9225c8c99321a35e243321c9bc9317aa1181cae743",
-    "syx/assistant/UiContextCollector.java": "49d1c49f79800145f10ad62c633dbf93b3ffeaa6faed1e0737a3b2eadae24607"
+    "syx/assistant/UiContentCollector.java": "c0d20c7f9f2734a0bb625427875f06bfcd07edb20611248b39b6e8f480ef5a48",
+    "syx/assistant/UiContextCollector.java": "8528cf0b959aa9dbd428a508db6d6cf850a89019ed5669a0f2bc1294dd34f97e"
   },
-  "on_demand_entities": {
+  "extended_context": {
     "passed": true,
-    "game_version": "0.71.44",
-    "live_entities": 1395,
-    "prefix_limit": 1000,
-    "target_beyond_prefix": true,
-    "pages": 18,
-    "combined_filters": true,
-    "concurrent_mcp_requests": true,
-    "unknown_stat_rejected": true,
-    "same_response_context": true,
+    "checks": {
+      "city": {
+        "passed": true,
+        "view": "settlement",
+        "known_nodes": 0,
+        "truncated": false
+      },
+      "popup": {
+        "passed": true,
+        "view": "settlement",
+        "known_nodes": 10,
+        "truncated": false
+      },
+      "popup_secondary": {
+        "passed": true,
+        "view": "settlement",
+        "known_nodes": 10,
+        "truncated": false
+      },
+      "section": {
+        "passed": true,
+        "view": "settlement",
+        "known_nodes": 10,
+        "truncated": false
+      },
+      "content_budget": {
+        "passed": true,
+        "view": "settlement",
+        "known_nodes": 80,
+        "truncated": true
+      },
+      "content_depth": {
+        "passed": true,
+        "view": "settlement",
+        "known_nodes": 7,
+        "truncated": true
+      },
+      "content_closed": {
+        "passed": true,
+        "view": "settlement",
+        "known_nodes": 0,
+        "truncated": false
+      },
+      "text_input": {
+        "passed": true,
+        "view": "settlement",
+        "known_nodes": 0,
+        "truncated": false
+      },
+      "full_screen_prompt": {
+        "passed": true,
+        "view": "settlement",
+        "known_nodes": 0,
+        "truncated": false
+      },
+      "city_reloaded": {
+        "passed": true,
+        "view": "settlement",
+        "known_nodes": 0,
+        "truncated": false
+      },
+      "world_editor": {
+        "passed": true,
+        "view": "world_editor",
+        "known_nodes": 0,
+        "truncated": false
+      },
+      "after_world_editor": {
+        "passed": true,
+        "view": "settlement",
+        "known_nodes": 0,
+        "truncated": false
+      },
+      "battle_setup": {
+        "passed": true,
+        "view": "battle_setup",
+        "known_nodes": 0,
+        "truncated": false
+      },
+      "after_battle_setup": {
+        "passed": true,
+        "view": "settlement",
+        "known_nodes": 0,
+        "truncated": false
+      },
+      "battle_deployment": {
+        "passed": true,
+        "view": "battle",
+        "known_nodes": 0,
+        "truncated": false
+      },
+      "after_retreat": {
+        "passed": true,
+        "view": "settlement",
+        "known_nodes": 0,
+        "truncated": false
+      }
+    },
+    "missing": [],
     "limits": [
-      "Paused isolated copied game; not a performance benchmark.",
-      "Cursor pages are separate observations, not a stable multi-page snapshot.",
-      "No private attributes or arbitrary field/method invocation."
+      "Content tests use public game widgets built by the isolated fixture, not every native game dialog.",
+      "Only three exposed roots and mapped widget types; no complete panel tree, final rendered visibility or global overlay order.",
+      "Retreat is invoked from generated deployment. Active combat and victory/defeat UI are not validated.",
+      "Editor activation is checked on a copied completed world, not every editing workflow or full new-world generation."
     ]
   },
-  "scene_checks": {
+  "scene_checks_previous_version": {
+    "version": "0.7.0",
     "passed": true,
     "checks": {
       "city": {
@@ -90,6 +178,24 @@
     "limits": [
       "Battle is a generated deployment scene, not active fighting or a battle conclusion.",
       "Generation checks initial setup and public terrain generation; exact private wizard step and full political-world completion remain unvalidated."
+    ]
+  },
+  "on_demand_entities_previous_version": {
+    "version": "0.7.0",
+    "passed": true,
+    "game_version": "0.71.44",
+    "live_entities": 1395,
+    "prefix_limit": 1000,
+    "target_beyond_prefix": true,
+    "pages": 18,
+    "combined_filters": true,
+    "concurrent_mcp_requests": true,
+    "unknown_stat_rejected": true,
+    "same_response_context": true,
+    "limits": [
+      "Paused isolated copied game; not a performance benchmark.",
+      "Cursor pages are separate observations, not a stable multi-page snapshot.",
+      "No private attributes or arbitrary field/method invocation."
     ]
   },
   "context_checks_previous_version": {
@@ -188,12 +294,16 @@
     "All game variables and attributes",
     "Stable official contract for individual mapped getters",
     "Stable multi-page snapshot during active simulation",
-    "Active fighting and battle conclusion",
-    "Complete political-world generation",
-    "Editor runtime coverage",
-    "Private wizard step, exact selected room, management tab, full tooltip text and arbitrary panel tree",
+    "Active fighting and victory/defeat UI",
+    "Complete political-world generation and full editor workflows",
+    "Complete native-dialog content, private wrappers, exact selected room/tab, tooltip text and global panel tree/order",
+    "Final rendered visibility or clipping",
+    "Arbitrary battle-outcome event feed",
     "Immediate menu unload callback",
     "Large-city performance",
-    "Windows on-demand client transport"
-  ]
+    "Windows on-demand client transport",
+    "Runtime attestation of installed mod/source identity"
+  ],
+  "tested_mod_jar_sha256": "376d69548fdbb475b1fbaab72e3692f3d5022ed94c1bcaadcaf0c2ac72b418dd",
+  "isolated_profile_jar_matches_build": true
 }

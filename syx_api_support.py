@@ -18,6 +18,12 @@ CAPABILITIES = [
  {'id':'scene_and_resource_scope','support':'public_source_verified','validation':'eight scene checks, including generated battlefield and initial/terrain world setup; RESOURCE.owned binary check',
   'references':['api-audit.json','API_ESTABLISHMENT.md'],
   'limits':'Scene-local, campaign and mixed quantities are labeled separately. Terrain generation is not full world completion; exact wizard stage is private.'},
+ {'id':'exposed_ui_content','support':'public_source_verified','validation':'isolated game-widget fixture: nested labels, switches, control flags, hidden labels, repeated references, node/text/depth caps and MCP retrieval',
+  'references':['view/interrupter/IPopup.java:82','view/interrupter/InterGuisection.java:95','snake2d/util/gui/GuiSection.java:76','util/gui/misc/GTextR.java:35','api-audit.json'],
+  'limits':'Three public roots only; opaque widgets remain opaque. No general panel tree/order, final rendered visibility, private input values or tooltip text. Local node IDs are not action handles.'},
+ {'id':'editor_and_retreat_transitions','support':'public_source_verified','validation':'world editor and battle setup activation on a copied completed world; generated deployment retreats to restored city with session rotation',
+  'references':['API_ESTABLISHMENT.md'],
+  'limits':'WorldGen flags can persist after view changes. Retreat result is asserted by the test-supplied exiter; production has no arbitrary battle-outcome feed. Active fighting, victory/defeat and full editor workflows remain unvalidated.'},
  {'id':'selected_subject','support':'public_source_verified','validation':'subject-selection fixture passed; complete matrix recorded in API_ESTABLISHMENT.md',
   'references':['view/sett/ui/subject/UISubjects.java:20','view/sett/ui/subject/UISubject.java:79'],
   'limits':'Underlying settlement subject panel; modal overlays or hidden UI may obscure it. Dedicated entities.selected_subject exports class/type and named individual stat getters independently of the first-1,000 list. Raw values/bounds have unknown semantic units; overlays may obscure the selection.'},
@@ -44,7 +50,7 @@ CAPABILITIES = [
   'limits':'No official complete enumerable state schema established. Public API mappings expose a subset; private fields are excluded. Expand typed mappings only with provenance and validation.'},
  {'id':'all_states_and_menus','support':'unavailable','validation':'coverage gaps explicitly retained',
   'references':['API_ESTABLISHMENT.md'],
-  'limits':'Active combat/conclusion, full political-world generation, editors, options/save/load subpages, every popup type and crash/suspend transitions are not exhaustively validated.'}
+  'limits':'Active fighting, victory/defeat paths, full political-world generation, full editor workflows, options/save/load subpages, every popup type and crash/suspend transitions are not exhaustively validated.'}
 ]
 
 def support(query='', offset=0, limit=10):
@@ -59,4 +65,4 @@ def support(query='', offset=0, limit=10):
         'members':members[offset:offset+limit], 'next_offset':offset+limit if offset+limit<len(members) else None,
         'inventory_size':len(MANIFEST['members']),'binary_checks':MANIFEST.get('binary_checks'), 'game_jar_sha256':MANIFEST['game_jar_sha256'],
         'source_archive_sha256':MANIFEST['source_archive_sha256'],
-        'warning':'Inventory covers only production mod references. Source line/type/signature matches and public access do not establish official stability or complete variable/menu coverage. Validation labels describe only listed checks.'}
+        'warning':'Inventory covers only production mod references. Source line/type/signature matches and public access do not establish official stability or complete variable/menu coverage. Validation labels describe only listed checks. This is the repository adapter inventory, not an attestation of which mod binary is installed; use paired mod/MCP builds.'}

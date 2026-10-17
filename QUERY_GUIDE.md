@@ -90,3 +90,9 @@ Filters combine with AND: `entity_ids`, `race_id`, `class_id`, `humanoid_type_id
 Explicit IDs use the game's public ID lookup. Without IDs, each request scans up to `scan_limit` scene-array slots, starting at `cursor`, and returns at most `limit` matches. Follow `next_cursor` until null, including after an empty page. With IDs, cursor refers to the ordered requested-ID list; `cursor_kind` distinguishes it from scene slots. Do not substitute the number of matching rows as the next cursor.
 
 Use `expected_session_id` to reject a game replacement. Each response has its own request ID, capture time, tick, scene and UI context; it is not the cached snapshot and cannot be joined as though captured at that snapshot's tick. Cursor pages are separate observations over a changing scene. Large-city performance and stable multi-page reads during active simulation remain unvalidated. The tested client transport requires POSIX.
+
+## Bounded popup/section content — 0.8.0
+
+`get_game_ui_context` returns `known_content` from the same cached snapshot as other state. Its roots name the primary popup, secondary popup and section. Nodes carry local IDs/parents, widget kind, visibility flags, internal bounds, mapped control flags and readable `GTextR` text. Opaque content includes a reason; repeated references point to an earlier node. IDs expire with the observation and cannot be used to invoke controls.
+
+Check `truncated`, per-label `text_truncated`, `read_error` and limits before answering a question about displayed content. A blank truncated label is not evidence of blank game text. Flags and known ancestry do not prove final visibility or topmost context. Button/sprite/private-wrapper text can remain opaque even when another label in the same panel is readable. Tooltip text and private input values remain unavailable. Do not assume the user's “this” refers to one of these roots when multiple overlays or background selections exist.

@@ -1,4 +1,4 @@
-# Architecture — 0.7.0
+# Architecture — 0.8.0
 
 The Java mod implements the shipped SCRIPT interface. Typed collectors read public game APIs on the script update thread and build detached DTOs. A daemon serializes them to an atomic local JSON snapshot approximately every two wall-clock seconds while the update hook runs. MCP validates/caches that snapshot and executes bounded selections locally. Neither the daemon nor MCP traverses game objects. On-demand entity requests are parsed on the file daemon, handed to the update thread, evaluated using fixed public getters, and returned as detached DTOs.
 
@@ -27,3 +27,9 @@ API_ESTABLISHMENT.md records the reviewed capability matrix. api-audit.json and 
 Snapshot query batches remain pinned to one cached export. `query_live_entities` is a separate update observation with request ID, session, tick, capture time, current scene and UI context. An entity ID lookup uses the game's public lookup; unfiltered scans use bounded array-slot cursors. Each cursor page samples the current mutable scene. Pages can miss or repeat moving/replaced entities; no cross-page consistency claim is made. A paused fixture verifies complete traversal, not an active-city snapshot guarantee.
 
 The wire protocol has only fixed, independently validated fields and no expression evaluator. Requests are capped at 8 KiB, responses at 64 KiB, each scan at 10,000 slots, projected rows at 100, stat comparisons at four, selected stat IDs at twenty, and returned stat cells at 100. An eight-second client deadline prevents hanging when the script no longer updates. Missing scene/session/unknown-stat/timeout failures are explicit. Predicate getter failures are counted and prevent treating filtered absence as established.
+
+## Exposed content observations — 0.8.0
+
+The UI collector samples three known public roots on the update thread. A bounded typed visitor reads exposed section/switch children, mapped text and control flags into flat detached nodes. Repeated object references become local node references, preventing repeated traversal. Limits apply across all roots; truncation and opaque/read-error nodes remain explicit. The text is untrusted data. Input values, private wrappers, arbitrary panel collection, renderer output, tooltip storage and global layer ordering are not read.
+
+WorldGen editing flags are workflow data and may persist after changing views. Use active_view for the current UI mode. Battle deploying is a public logical flag; the pinned start overlay is private, so this flag alone cannot prove active combat. Test-only retreat coverage establishes restoration/session rotation, not an observable battle-outcome feed for arbitrary game battles.

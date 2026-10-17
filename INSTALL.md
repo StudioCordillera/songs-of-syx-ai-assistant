@@ -31,7 +31,7 @@ Ask the assistant to call `game_status`, `game_query_help`, and `describe_game_f
 ## Access boundary
 
 Only the in-process script mod reads the game, using mapped public APIs. MCP reads detached local snapshots.
-No control panel, screenshot tool, private-field query or native input adapter is included. Version 0.7.0 includes partial UI/API evidence tools and query_live_entities for bounded on-demand reads. The latter requires a POSIX MCP host and a matching 0.7.0 mod; older mods cannot answer these requests.
+No control panel, screenshot tool, private-field query or native input adapter is included. Version 0.8.0 includes partial UI/API evidence tools and query_live_entities for bounded on-demand reads. The latter requires a POSIX MCP host. Use matching mod/MCP builds; older mods may omit the content fields or lack the on-demand request handler.
 Replace the previous mod folder/JAR completely when upgrading; do not merge old classes into the new JAR.
 See API_BOUNDARY.md for primary-source provenance and lifecycle limitations.
 

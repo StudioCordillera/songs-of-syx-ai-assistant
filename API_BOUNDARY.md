@@ -1,4 +1,4 @@
-# Game API boundary — 0.7.0
+# Game API boundary — 0.8.0
 
 The game-facing plugin runs inside Songs of Syx using `script.SCRIPT` and `SCRIPT_INSTANCE`. All gameplay observations originate from direct public game API calls on the script update thread. The Python MCP reads detached local exports; it does not inspect or control the game process itself.
 
@@ -53,10 +53,16 @@ Local JSON export and stdio MCP are the transport between the in-process plugin 
 
 ## Compiler inventory
 
-The production references resolve to 174 public game API members. The metadata inventory includes source anchors and hashes; it does not enumerate every game variable or establish official stability. See API_ESTABLISHMENT.md for exact evidence levels and runtime checks.
+The production references resolve to 183 public game API members. The metadata inventory includes source anchors and hashes; it does not enumerate every game variable or establish official stability. See API_ESTABLISHMENT.md for exact evidence levels and runtime checks.
 
-## On-demand read transport — 0.7.0
+## On-demand read transport — introduced in 0.7.0
 
 `query_live_entities` writes a bounded request to the local private runtime directory. The file daemon parses a strict fixed-key protocol and hands an immutable request to the script update thread. Only that thread reads game APIs. It returns detached data; the daemon performs response serialization and atomic file replacement. The MCP client verifies request/session/version/time identity and bounds. Concurrent POSIX clients serialize requests with an OS-managed file lock. No network listener or process-inspection adapter is used.
 
 Supported selection is finite: IDs, race/class/humanoid type, exclusive-upper tile bounds, up to four raw stat comparisons, and fixed projected fields. Explicit IDs use public `ENTETIES.getByID`; other selections scan at most 10,000 array slots per response. No writable game API is added. These new members are compiler/source audited; public accessibility is not an official stability contract. The shipped `getAllEnts` Javadoc explicitly describes its returned array as read-only; the adapter never changes its entries.
+
+## Typed UI-content mapping — 0.8.0
+
+Known popup/section roots expose public render objects. The adapter follows only mapped `GuiSection.elements` and `CLICKABLE.ClickSwitch.current` edges, reads `GTextR.text` labels, control active/selected flags and public internal bounds. This is bounded typed traversal of exposed UI data, not arbitrary object/field traversal. It does not invoke render, hover, input, click, layout, setter or gameplay methods. No private wrappers are unwrapped. General panel enumeration, final visibility and global stacking remain unsupported.
+
+The six production source files are included in the compiler inventory. The development extended fixture constructs game widgets and activates editors/retreat through public methods; none of those test mutations are included in the production JAR.
