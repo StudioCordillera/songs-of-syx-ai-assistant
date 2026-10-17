@@ -61,6 +61,16 @@ The initial external corpus is deliberately small. It is not an exhaustive or au
 {"include_ui_context":true,"queries":[{"name":"selected_person","source":{"domain":"entities","path":"/items"},"where":{"eq":[{"field":"/id"},{"context":"/selected_subject/entity_id"}]},"select":{"id":{"field":"/id"}},"limit":1}]}
 ```
 
-Discover the actual entity path before querying. A missing context field is an error; an empty result does not prove the person is absent from the game because entity export is bounded. Modal overlays may obscure the underlying selection.
+Discover the actual entity path before querying. A missing context field is an error; an empty result in `/items` does not prove the person is absent from the game because that list is bounded. Use the dedicated `/selected_subject` object for the selected person. Modal overlays may obscure the underlying selection.
 
 Query results include coverage and scope for each source and join, plus `mixed_scopes`. Inspect `game_status.scene` and these scopes before comparing city, battlefield and campaign values. Resources also provide `field_definitions`: `owned` mixes scene logistics and player trade promises, while `stockpile_stored` describes the instantiated settlement. During world preparation, unavailable domains contain null, not fabricated zero values.
+
+## Selected person's individual statistics
+
+The entities domain's `/selected_subject/stats` path contains the selected person's named public individual statistics. Query it directly, independently of `/items`:
+
+```json
+{"include_ui_context":true,"queries":[{"source":{"domain":"entities","path":"/selected_subject/stats"},"where":{"eq":[{"field":"/coverage"},"partial"]},"select":{"stat":{"field":"/key"},"value":{"field":"/value"},"reference":{"field":"/reference_id"}},"limit":10}]}
+```
+
+Pass a returned reference ID directly to `search_game_references` to retrieve the installed description. Raw values and getter bounds do not establish semantic units, satisfaction effects or complete personal history. A null selected subject makes this query invalid; inspect context first. Selection may remain behind an overlay.

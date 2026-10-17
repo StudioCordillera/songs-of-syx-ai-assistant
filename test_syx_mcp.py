@@ -122,7 +122,7 @@ def test_corpus_citations_and_version(setup):
 def test_mcp_transport(setup):
     a, state = setup
     state['ui_context']={'available':True,'coverage':'partial','active_view':'settlement','overlay_order_known':False}
-    state['references']=[{'id':'fixture:1','category':'stat','title':'Fixture food',
+    state['references']=[{'id':'stat:95487','category':'stat','title':'Fixture food',
         'text':'Test fixture only, not a gameplay fact.','origin':'test fixture'}]
     save(a,state)
     async def exercise():
@@ -150,7 +150,9 @@ def test_mcp_transport(setup):
                 help_result = await session.call_tool('game_query_help', {})
                 assert not help_result.is_error and 'binary_operators' in str(help_result)
                 references = await session.call_tool('search_game_references', {'query':'food'})
-                assert not references.is_error and 'fixture:1' in str(references)
+                assert not references.is_error and 'stat:95487' in str(references)
+                exact_reference = await session.call_tool('search_game_references', {'query':'stat:95487','category':'stat'})
+                assert not exact_reference.is_error and 'Fixture food' in str(exact_reference)
                 context = await session.call_tool('get_game_ui_context', {})
                 assert not context.is_error and 'settlement' in str(context)
                 support = await session.call_tool('get_game_api_support', {'query':'selected_room_instance'})

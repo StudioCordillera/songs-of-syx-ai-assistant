@@ -17,7 +17,7 @@ CAPABILITIES = [
   'limits':'Scene-local, campaign and mixed quantities are labeled separately. Terrain generation is not full world completion; exact wizard stage is private.'},
  {'id':'selected_subject','support':'public_source_verified','validation':'subject-selection fixture passed; complete matrix recorded in API_ESTABLISHMENT.md',
   'references':['view/sett/ui/subject/UISubjects.java:20','view/sett/ui/subject/UISubject.java:79'],
-  'limits':'Underlying settlement subject panel; modal overlays or hidden UI may obscure it. Entity ID can link to exported entity data; the first-1,000 export may omit the selected person.'},
+  'limits':'Underlying settlement subject panel; modal overlays or hidden UI may obscure it. Dedicated entities.selected_subject exports class/type and named individual stat getters independently of the first-1,000 list. Raw values/bounds have unknown semantic units; overlays may obscure the selection.'},
  {'id':'open_room_blueprint','support':'public_source_verified','validation':'room table/detail public getter runtime check',
   'references':['view/sett/ui/room/UIRooms.java:150'],
   'limits':'Blueprint identity only. No public selected room-instance getter established.'},

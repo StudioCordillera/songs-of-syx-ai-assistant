@@ -1,23 +1,25 @@
-# API establishment report — 0.5.0, game 0.71.44
+# API establishment report — 0.6.0, game 0.71.44
 
 This report establishes what can be verified within the user's required in-process public-API boundary. It does not create an official guarantee on behalf of the game developer.
 
 ## Evidence levels
 
 1. **Documented script contract:** the shipped semi-official script guide and SCRIPT interface describe script creation, updates and persistence callbacks. They do not document every game statistic or menu.
-2. **Source-verified public API:** Java compiler attribution resolves each game member referenced by production mod code. The current inventory contains 165 members, all public. Of these, 164 match declaring type, name, arity and simple parameter types in shipped source; the remaining member is the compiler-generated enum `values()` method. Only one referenced member has its own Javadoc block; Javadoc presence does not establish semantics or stability. Script override contracts are reviewed separately from the member-reference inventory.
+2. **Source-verified public API:** Java compiler attribution resolves each game member referenced by production mod code. The current inventory contains 173 members, all public. Of these, 172 match declaring type, name, arity and simple parameter types in shipped source; the remaining member is the compiler-generated enum `values()` method. Only one referenced member has its own Javadoc block; Javadoc presence does not establish semantics or stability. Script override contracts are reviewed separately from the member-reference inventory.
 3. **Runtime evidence:** the isolated fixture exercises supported contexts using public game methods and a copied save. The production mod only observes. Test mutations and engine bootstrap code are never packaged into the mod.
 4. **Unavailable/unvalidated:** missing public accessors and untested transitions stay explicit. No reflection, screenshot, native-input or package-access workaround is added.
 
 The [official documentation project](https://github.com/songsofsyx/documentation) links the published guide. Its [getting-started page](https://songs-of-syx.readthedocs.io/en/latest/modding_getting_started.html), checked 2026-10-17, contains a heading but no API details. This does not supply the missing member-level contracts.
 
+Runtime evidence spans the 0.5.0 scene fixture and 0.6.0 context/individual-stat fixture. Exact run scopes are recorded in VALIDATION.md and validation-evidence.json.
+
 ## Current coverage matrix
 
 | Capability | Established access | Runtime scope / limits |
 | --- | --- | --- |
-| Exported state variables | 18 partial typed public-API domains; 165 referenced members in the audit | Existing copied save; not every variable or every entity attribute |
+| Exported state variables | 18 partial typed public-API domains; 173 referenced members in the audit | Existing copied save; not every variable or every entity attribute |
 | Active view | `VIEW.current`, subview `isActive` | Settlement, world, settlement tactical HUD, generated battle deployment and initial/terrain world generation exercised; editor views compiled only |
-| Selected subject | `UISubjects.current` and public entity identity/race/location | Subject panel exercised; may remain behind a modal overlay |
+| Selected subject | `UISubjects.current`, individual class/type and named `STAT.hasIndu` / `STAT.indu` getters | 58 individual statistics observed in the copied-save subject; values/min/max and installed-help reference IDs. Panel may remain behind a modal overlay |
 | Room context | `UIRooms.openIs` and room-list membership | Room blueprint/table/detail presence exercised; exact selected instance unavailable |
 | Game menu / confirmation | Public known interrupters and `isActivated` | Both exercised; menu subpages not enumerated |
 | Management | `IManager.open` | Open/closed exercised; selected tab remains private |
@@ -39,7 +41,7 @@ The snapshot identifies whether an instantiated settlement is a city or a genera
 
 `get_game_ui_context` returns a partial UI observation from the same snapshot as exported state, including active view, known overlay flags, selected subject identity and open room blueprints. Unsupported details have reasons. Selected objects describe underlying panels and may be obscured; “this” is not automatically resolved when a modal is open. Individual subject statistics must not be inferred from population aggregates.
 
-`select_game_state` supports a `{"context":"/selected_subject/entity_id"}` expression and optional `include_ui_context: true`, using the same snapshot as the data query. Results carry source coverage and scope, including joined sources. A selected person outside the bounded exported entity set remains unavailable, not silently inferred.
+`select_game_state` supports a `{"context":"/selected_subject/entity_id"}` expression and optional `include_ui_context: true`, using the same snapshot as the data query. Results carry source coverage and scope, including joined sources. The selected person has a dedicated `/selected_subject` export in the entities domain, independent of the bounded `/items` list. Named individual statistics are partial, not a complete attribute schema.
 
 `get_game_api_support(query, offset, limit)` returns capability evidence/limits and a paginated, searchable compiler inventory with source paths, declaration lines, source hashes and mod call sites. It is usable without a loaded game. It does not expose a method-call or private-field interface.
 
@@ -62,3 +64,9 @@ python3 audit_api.py --game-dir '/path/to/Songs of Syx'
 An official complete state schema, a stable contract for individual getters, selected room-instance/tab readers, a general panel tree, tooltip text enumeration and a script-level unload/menu callback were not established. Existing private/package-private fields do not satisfy the boundary. These need an appropriate public API, official clarification/extension, or a narrower product promise. Further local tooling can inspect availability but cannot turn an undocumented/private implementation into an official public contract.
 
 A concrete unsent proposal for these missing public contracts is recorded in UPSTREAM_API_REQUEST.md. It is not an implementation or official support promise.
+
+## Selected individual data — 0.6.0
+
+The entities domain includes a dedicated `selected_subject` object with identity, race, class, type and named statistics whose public `hasIndu()` advertises an individual getter. This path does not depend on the first-1,000 `/items` export. Each statistic provides raw integer value, getter bounds, coverage and a `reference_id`. Missing getters fail individually; unknown semantic units stay unknown. A selected person is not inferred from population statistics. A null selection remains null.
+
+The installed-help search accepts an exact reference ID such as the returned `stat:N`, so an advisor can retrieve the matching in-game description rather than guessing the meaning from a numeric value. These descriptions are installed game/mod data, not an official stability promise. The copied save has 295 entities; behavior in a city beyond the 1,000-row list cap has not been separately exercised. Dedicated selection is collected independently in code.

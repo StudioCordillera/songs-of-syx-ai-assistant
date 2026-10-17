@@ -1,4 +1,4 @@
-# Game API boundary — 0.5.0
+# Game API boundary — 0.6.0
 
 The game-facing plugin runs inside Songs of Syx using `script.SCRIPT` and `SCRIPT_INSTANCE`. All gameplay observations originate from direct public game API calls on the script update thread. The Python MCP reads detached local exports; it does not inspect or control the game process itself.
 
@@ -30,6 +30,7 @@ All following collectors use direct public members from the shipped game. These 
 | Workforce | `SETT.ROOMS().ins()`, blueprint/room employment getters |
 | Research | `TECHS.ALL()`, `GAME.player().tech().level()` |
 | Entities | `SETT.ENTITIES().getAllEnts()`, IDs, positions, race; first 1,000, explicit truncation |
+| Selected individual stats | `Humanoid.indu()`, `Induvidual.clas()/hType()`, named `STAT.hasIndu()/indu()` and `INT_O.get/min/max`; raw units, partial schema |
 | Aggregate stats | `STATS.COLLECTIONS()`, stat data/info/divider accessors |
 | Trade / diplomacy | `GAME.player().trade`, `FACTIONS.active()`, `DIP.get()` |
 | World / events | `WORLD.REGIONS().active()`, region public accessors, `GAME.events()`, `GAME.EVENT()` |
@@ -52,4 +53,4 @@ Local JSON export and stdio MCP are the transport between the in-process plugin 
 
 ## Compiler inventory
 
-The production references resolve to 165 public game API members. The metadata inventory includes source anchors and hashes; it does not enumerate every game variable or establish official stability. See API_ESTABLISHMENT.md for exact evidence levels and runtime checks.
+The production references resolve to 173 public game API members. The metadata inventory includes source anchors and hashes; it does not enumerate every game variable or establish official stability. See API_ESTABLISHMENT.md for exact evidence levels and runtime checks.

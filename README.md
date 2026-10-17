@@ -2,7 +2,7 @@
 
 A local Java mod and MCP server that let an assistant inspect a loaded Songs of Syx game, request selected data, and advise the player with cited evidence.
 
-**0.5.0 — read-only, in-process public-API bridge.**
+**0.6.0 — read-only, in-process public-API bridge.**
 
 **Experimental working prototype for game 0.71.44 (Steam build 23998889).** Tested against a copied save on Linux. Other builds are rejected by the runtime guard. This is not a finished in-game chat application.
 
@@ -13,6 +13,7 @@ A local Java mod and MCP server that let an assistant inspect a loaded Songs of 
 - Eighteen explicitly partial domain collectors: population, resources, production, employment, services, housing, health, law, happiness, research, trade, diplomacy, military, world, map, entities, events and settings.
 - Search resource, technology and stat descriptions loaded by the game. The copied-save test produced 720 reference records, tagged with the exact version and active mods.
 - Search a small reviewed external corpus with direct links, author/authority, retrieval date and compatibility warnings. Official/developer evidence ranks first; an authority filter is available.
+- Selected citizen identity/class/type and named individual statistics, linked to installed descriptions and independent of the bounded entity list.
 - Partial UI context through public view/overlay/subject APIs, plus a searchable API evidence catalog. See [the establishment report](API_ESTABLISHMENT.md).
 - Game access exclusively through the in-process script mod and mapped public game APIs. No private reflection, screenshot capture or native/input hooks.
 

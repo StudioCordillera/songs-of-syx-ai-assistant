@@ -1,17 +1,92 @@
 {
-  "version": "0.5.0",
+  "version": "0.6.0",
   "game_version": "0.71.44",
   "python_tests": {
     "passed": 37
   },
-  "production_public_member_references": 165,
+  "production_public_member_references": 173,
   "production_source_sha256": {
     "syx/assistant/AssistantScript.java": "aac3d851cd3dc1981269cf2e6fefa19ca313f7839a11627021a2ba29addb3fed",
     "syx/assistant/JsonWriter.java": "c525eb60d3224cab83ed3fd6b8594ec8652211f00bd947e873e1482f919e81dc",
-    "syx/assistant/StateCollector.java": "6f5b95fa264f9580896a719f0703a9858ebcb47088668930eb4fb73a85b4d52a",
+    "syx/assistant/StateCollector.java": "d1982c5022b6f33dc43780f5e235f399290ad80e3eb7224491dec866640ad5ba",
     "syx/assistant/UiContextCollector.java": "49d1c49f79800145f10ad62c633dbf93b3ffeaa6faed1e0737a3b2eadae24607"
   },
-  "scene_checks": {
+  "context_checks": {
+    "version": "0.6.0",
+    "passed": true,
+    "checks": {
+      "settlement": {
+        "passed": true,
+        "snapshot_fresh": true,
+        "ui_context_available": true
+      },
+      "subject": {
+        "passed": true,
+        "snapshot_fresh": true,
+        "ui_context_available": true
+      },
+      "game_menu": {
+        "passed": true,
+        "snapshot_fresh": true,
+        "ui_context_available": true
+      },
+      "confirmation": {
+        "passed": true,
+        "snapshot_fresh": true,
+        "ui_context_available": true
+      },
+      "world": {
+        "passed": true,
+        "snapshot_fresh": true,
+        "ui_context_available": true
+      },
+      "management": {
+        "passed": true,
+        "snapshot_fresh": true,
+        "ui_context_available": true
+      },
+      "encyclopedia": {
+        "passed": true,
+        "snapshot_fresh": true,
+        "ui_context_available": true
+      },
+      "loading_overlay": {
+        "passed": true,
+        "snapshot_fresh": true,
+        "ui_context_available": true
+      },
+      "room": {
+        "passed": true,
+        "snapshot_fresh": true,
+        "ui_context_available": true
+      },
+      "reloaded": {
+        "passed": true,
+        "snapshot_fresh": true,
+        "ui_context_available": true
+      },
+      "main_menu": {
+        "passed": true,
+        "snapshot_fresh": false,
+        "ui_context_available": false
+      }
+    },
+    "missing": [],
+    "limits": [
+      "Main menu is inferred only as unknown/stale after updates stop; no menu identification API established.",
+      "Loading-overlay flag test is separate from the real save reload transition.",
+      "Battle, world generation and other menu subpages remain untested."
+    ]
+  },
+  "selected_individual": {
+    "named_stats_observed": 58,
+    "copied_save_entity_total": 295,
+    "same_snapshot_selection_verified": true,
+    "exact_description_mcp_lookup_verified": true,
+    "over_1000_entity_city_tested": false
+  },
+  "scene_checks_previous_version": {
+    "version": "0.5.0",
     "passed": true,
     "checks": {
       "city": {
@@ -61,11 +136,6 @@
       "Generation checks initial setup and public terrain generation; exact private wizard step and full political-world completion remain unvalidated."
     ]
   },
-  "context_checks_previous_version": {
-    "version": "0.4.0",
-    "passed": 11,
-    "note": "Not rerun as a complete eleven-phase scenario in 0.5.0."
-  },
   "binary_checks": {
     "method": "Selected member references/access/arithmetic inspected with JDK javap; no game method execution. Not formal equivalence of the complete shipped source and binary.",
     "checks": [
@@ -99,6 +169,7 @@
     "Editor runtime coverage",
     "Private wizard step, exact selected room, management tab, full tooltip text and arbitrary panel tree",
     "Immediate menu unload callback",
-    "Large-city performance"
+    "Large-city performance",
+    "On-demand whole-scene entity requests"
   ]
 }

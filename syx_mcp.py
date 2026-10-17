@@ -287,7 +287,8 @@ def create_server(advisor: Advisor) -> MCPServer:
     def search_game_references(query: str, category: str | None = None, limit: int = 5) -> dict:
         """Search installed in-game resource, technology and stat help text. These are primary
         installed-data references, with exact game version and active mods. Modded text may
-        differ from the base game. Cite the reference ID/origin alongside the observation.
+        differ from the base game. Query an exact reference ID to retrieve its description.
+        Cite the reference ID/origin alongside the observation.
         """
         if not query.strip() or len(query)>500 or not 1<=limit<=10:
             raise ValueError('Provide a query up to 500 characters and limit 1..10')
@@ -296,7 +297,7 @@ def create_server(advisor: Advisor) -> MCPServer:
         ranked=[]
         for reference in snapshot.references:
             if category is not None and category!=reference.category: continue
-            score=sum(term in (reference.title+' '+reference.text).lower() for term in terms)
+            score=1000 if reference.id==query.strip() else sum(term in (reference.title+' '+reference.text).lower() for term in terms)
             if score: ranked.append((score,reference.id,reference.model_dump()))
         ranked.sort(key=lambda row:(-row[0],row[1]))
         return {'state':advisor.status(snapshot),'results':[row[2] for row in ranked[:limit]],
