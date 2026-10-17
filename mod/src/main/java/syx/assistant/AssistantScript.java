@@ -40,6 +40,9 @@ public final class AssistantScript implements SCRIPT {
         final String session = UUID.randomUUID().toString();
         final Path dir = stateDirectory();
         final AtomicReference<Map<String,Object>> pending = new AtomicReference<>();
+        final AtomicReference<EntityReadRequest> readRequest = new AtomicReference<>();
+        final AtomicReference<Map<String,Object>> readResponse = new AtomicReference<>();
+        String lastRequestText;
         final ScheduledExecutorService io;
         long sequence = 0, lastCapture = 0;
         volatile boolean closed;
@@ -55,25 +58,51 @@ public final class AssistantScript implements SCRIPT {
         }
         public void update(double ds) {
             if (closed) return;
+            EntityReadRequest request=readRequest.getAndSet(null);
+            if(request!=null) readResponse.set(request.collect(session));
             long now = System.nanoTime();
             if (now-lastCapture < 2_000_000_000L) return;
             lastCapture = now;
             pending.set(StateCollector.collect(session, ++sequence));
         }
+        private void writeDto(String name,Map<String,Object> dto,int cap) throws IOException {
+            byte[] bytes=JsonWriter.encode(dto).getBytes(StandardCharsets.UTF_8);
+            if(bytes.length>cap)throw new IOException("Export exceeds size limit");
+            Path tmp=dir.resolve(name+"-"+session+".tmp");
+            Files.write(tmp,bytes);
+            Files.move(tmp,dir.resolve(name+".json"),StandardCopyOption.ATOMIC_MOVE,StandardCopyOption.REPLACE_EXISTING);
+        }
+        private void pollReadRequest() {
+            Path file=dir.resolve("entity-request.txt");
+            try {
+                if(!Files.isRegularFile(file,LinkOption.NOFOLLOW_LINKS))return;
+                byte[] raw;
+                try(java.io.InputStream input=Files.newInputStream(file)){raw=input.readNBytes(8193);}
+                if(raw.length>8192)throw new IOException("Read request exceeds 8 KiB");
+                String text=new String(raw,StandardCharsets.UTF_8);
+                if(text.equals(lastRequestText))return;
+                lastRequestText=text;
+                readRequest.set(EntityReadRequest.parse(text));
+            } catch(Exception error) { System.err.println("Syx assistant read request: "+error); }
+        }
         private synchronized void flush() {
+            if(!closed)pollReadRequest();
+            Map<String,Object> response=readResponse.getAndSet(null);
+            if(response!=null)try {
+                if(JsonWriter.encode(response).getBytes(StandardCharsets.UTF_8).length>65536)
+                    response=StateCollector.object("request_id",response.get("request_id"),"session_id",session,"game_version",VERSION.VERSION_STRING,
+                        "captured_at",java.time.Instant.now().toString(),"available",false,"reason","Response exceeds 64 KiB; select fewer fields, stats or rows","data",null);
+                writeDto("entity-response",response,65536);
+            } catch(Exception error) {System.err.println("Syx assistant read response: "+error);}
             Map<String,Object> dto = pending.getAndSet(null);
             if (dto == null) return;
-            try {
-                byte[] bytes = JsonWriter.encode(dto).getBytes(StandardCharsets.UTF_8);
-                if (bytes.length > 16*1024*1024) throw new IOException("Snapshot exceeds 16 MiB");
-                Path tmp = dir.resolve("snapshot-"+session+".tmp");
-                Files.write(tmp, bytes);
-                Files.move(tmp, dir.resolve("snapshot.json"), StandardCopyOption.ATOMIC_MOVE, StandardCopyOption.REPLACE_EXISTING);
-            } catch (Exception e) { System.err.println("Syx assistant export: "+e); }
+            try { writeDto("snapshot",dto,16*1024*1024); }
+            catch (Exception e) { System.err.println("Syx assistant export: "+e); }
         }
         synchronized void close() {
             if (closed) return;
             closed = true;
+            readRequest.set(null);readResponse.set(null);
             pending.set(StateCollector.envelope(session, ++sequence, false));
             flush(); io.shutdown();
         }

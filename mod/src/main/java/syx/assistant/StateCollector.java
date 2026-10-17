@@ -39,8 +39,21 @@ public final class StateCollector {
         for(TECH technology:TECHS.ALL()) result.add(object("id","technology:"+technology.key,"category","technology",
             "title",technology.name().toString(),"text",helpText(technology.desc()),"origin","init.tech.TECH: "+technology.key));
         for(STAT stat:STATS.all()) result.add(object("id","stat:"+stat.index(),"category","stat",
-            "title",stat.info().name.toString(),"text",helpText(stat.info().desc),"origin","settlement.stats.stat.STAT: "+stat.key()));
+            "title",stat.info().name.toString(),"text",helpText(stat.info().desc),"origin","settlement.stats.stat.STAT: "+stat.key(),"stat_id",stat.index(),"individual_getter_available",stat.hasIndu() && stat.indu()!=null));
         referenceCache=result; return result;
+    }
+    static Map<String,Object> individualStat(Humanoid h,STAT stat) {
+            Map<String,Object> row=object("stat_id",stat.index(),"key",stat.key(),"reference_id","stat:"+stat.index(),
+                "unit","raw game integer; semantic units not established");
+            try {
+                util.data.INT_O<settlement.stats.Induvidual> getter=stat.indu();
+                if(getter==null) throw new IllegalStateException("No individual getter");
+                row.put("value",getter.get(h.indu()));row.put("min",getter.min(h.indu()));row.put("max",getter.max(h.indu()));
+                row.put("coverage","partial");
+            } catch(RuntimeException error) {
+                row.put("value",null);row.put("coverage","unavailable");row.put("reason",error.getClass().getSimpleName());
+            }
+        return row;
     }
     private static Map<String,Object> selectedSubject() {
         if(!view.main.VIEW.existTemp() || !view.main.VIEW.s().isActive()) return null;
@@ -50,17 +63,7 @@ public final class StateCollector {
         List<Object> stats=new ArrayList<>();int unsupported=0;
         for(STAT stat:STATS.all()) {
             if(!stat.hasIndu()) { unsupported++;continue; }
-            Map<String,Object> row=object("stat_id",stat.index(),"key",stat.key(),"reference_id","stat:"+stat.index(),
-                "unit","raw game integer; semantic units not established");
-            try {
-                util.data.INT_O<settlement.stats.Induvidual> getter=stat.indu();
-                if(getter==null) throw new IllegalStateException("No individual getter");
-                row.put("value",getter.get(individual));row.put("min",getter.min(individual));row.put("max",getter.max(individual));
-                row.put("coverage","partial");
-            } catch(RuntimeException error) {
-                row.put("value",null);row.put("coverage","unavailable");row.put("reason",error.getClass().getSimpleName());
-            }
-            stats.add(row);
+            stats.add(individualStat(h,stat));
         }
         return object("entity_id",h.id(),"race_id",h.race().key,"class_id",individual.clas().key,"type_id",individual.hType().key,
             "tile_x",h.tc().x(),"tile_y",h.tc().y(),"stats",stats,"unsupported_stat_count",unsupported,
