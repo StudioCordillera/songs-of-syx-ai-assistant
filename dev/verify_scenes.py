@@ -7,7 +7,7 @@ import time
 from syx_mcp import Advisor
 
 
-def verify(directory:Path,timeout:float=260):
+def verify(directory:Path,timeout:float=260,on_demand:bool=False):
     advisor=Advisor(directory/'snapshot.json',directory/'corpus.json')
     required={'city','settlement_battle','city_restored','battle_deployment','battle_menu','city_reloaded','world_generation','terrain_generated'}
     checks={};sessions={};began=time.monotonic()
@@ -51,7 +51,21 @@ def verify(directory:Path,timeout:float=260):
                     assert domain.coverage=='unavailable' and domain.data is None,domain
                 assert scene['world_generation']['has_generated_terrain']==(name=='terrain_generated')
                 assert not context['world_generation_step']['available']
-            checks[name]={'passed':True,'view':context['active_view'],'scene_kind':scene['settlement_scene_kind']}
+            read_available=None
+            if on_demand:
+                from syx_live import query_entities
+                if name in {'world_generation','terrain_generated'}:
+                    try:query_entities(advisor,{'fields':['id'],'limit':1,'expected_session_id':snapshot.session_id})
+                    except ValueError as error:assert 'No instantiated settlement scene' in str(error),error
+                    else:raise AssertionError('Empty world setup must reject entity reads')
+                    read_available=False
+                else:
+                    observation=query_entities(advisor,{'fields':['id'],'limit':1,'expected_session_id':snapshot.session_id})
+                    assert observation['scene']['settlement_scene_kind']==scene['settlement_scene_kind']
+                    assert observation['ui_context']['active_view']==context['active_view']
+                    read_available=True
+            checks[name]={'passed':True,'view':context['active_view'],'scene_kind':scene['settlement_scene_kind'],
+                          'on_demand_read_available':read_available}
             print('PASS',name,flush=True)
             if required<=checks.keys():break
         except (FileNotFoundError,json.JSONDecodeError):pass
@@ -66,4 +80,5 @@ def verify(directory:Path,timeout:float=260):
 
 if __name__=='__main__':
     p=argparse.ArgumentParser(description=__doc__);p.add_argument('--state-dir',type=Path,required=True);p.add_argument('--timeout',type=float,default=260)
-    args=p.parse_args();verify(args.state_dir,args.timeout)
+    p.add_argument('--on-demand',action='store_true')
+    args=p.parse_args();verify(args.state_dir,args.timeout,args.on_demand)
