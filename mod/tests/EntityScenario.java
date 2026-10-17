@@ -34,6 +34,19 @@ public final class EntityScenario {
             expected.put("race_id",target.race().key);expected.put("class_id",target.indu().clas().key);expected.put("humanoid_type_id",target.indu().hType().key);
             expected.put("tile_x",target.tc().x());expected.put("tile_y",target.tc().y());
             expected.put("stat_id",chosen.index());expected.put("stat_value",chosen.indu().get(target.indu()));
+            List<Object> relationshipCases=new ArrayList<>();
+            Map<String,Boolean> found=new LinkedHashMap<>();
+            for(String relation:List.of("workplace","profession","home_assignment","division"))found.put(relation,false);
+            // Null assignments on newly added citizens, plus real pre-existing non-null assignments.
+            relationshipCases.add(Map.of("entity_id",target.id(),"relations",expectedRelationships(target)));
+            for(ENTITY e:all)if(e instanceof Humanoid && !e.isRemoved()) {
+                Humanoid h=(Humanoid)e;Map<String,Object> relations=expectedRelationships(h);boolean useful=false;
+                for(String key:found.keySet())if(!found.get(key) && relations.get(key)!=null){found.put(key,true);useful=true;}
+                if(useful)relationshipCases.add(Map.of("entity_id",h.id(),"relations",relations));
+                if(!found.containsValue(false))break;
+            }
+            if(found.containsValue(false))throw new IllegalStateException("Missing non-null relationship fixture: "+found);
+            expected.put("relationship_cases",relationshipCases);
             Files.createDirectories(output);
             Files.writeString(output.resolve("entity-fixture.json"),JsonWriter.encode(Map.of("started_at",Instant.now().toString(),"expected",expected)));
             long began=System.currentTimeMillis();
@@ -41,4 +54,18 @@ public final class EntityScenario {
             System.err.println("ENTITY TEST: isolated fixture ready; live entities="+total+", target slot="+slot);
         }catch(Exception error){CORE.annihilate(error);}
     }
+    static Map<String,Object> expectedRelationships(Humanoid h) {
+        Map<String,Object> values=new LinkedHashMap<>();
+        var room=STATS.WORK().EMPLOYED.get(h);
+        values.put("workplace",room==null?null:Map.of("room_id",room.index(),"blueprint_id",room.blueprint().key,
+            "name",room.name().toString(),"anchor_tile_x",room.mX(),"anchor_tile_y",room.mY()));
+        var profession=STATS.WORK().profession.get(h.indu());
+        values.put("profession",profession==null?null:Map.of("blueprint_id",profession.key));
+        var home=STATS.HOME().GETTER.hCoo(h);
+        values.put("home_assignment",home==null?null:Map.of("tile_x",home.x(),"tile_y",home.y()));
+        var div=h.division();
+        values.put("division",div==null?null:Map.of("division_id",(int)div.index(),"army_division_index",(int)div.indexArmy(),"side",div.player()?"player":"enemy"));
+        return values;
+    }
+
 }
