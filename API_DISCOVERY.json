@@ -1,0 +1,41 @@
+{
+  "schema_version": 1,
+  "game_jar_sha256": "fe0137c05408e5ee9e31f06fc44fe37a5d4372d9c985b280f0852d1347c0224b",
+  "source_archive_sha256": "a3fc2aa9f4be31aec0616a5030a656ac49a6011343b7e91395c7bac0b9dfb0a5",
+  "source_files": 2443,
+  "warning": "Offline declaration candidates only. Public enclosing types and member access are compiler checked. No purity, safe getter, live reachability, thread, units, runtime validation or official stability contract is inferred. Inherited members are declared under their owner. Missing/ambiguous anchors remain explicit; signatures are not proof of source/binary equivalence. No method bodies, Javadoc text or game values are included.",
+  "catalog_sha256": "5b4b13770eb3251ce066e4f9cf57b5e6b1956687136b5be33a680b707a73b065",
+  "production_audit_paired": true,
+  "production_reference_count": 197,
+  "production_references_found": 197,
+  "production_references_by_root_package": {
+    "game": 49,
+    "init": 17,
+    "settlement": 49,
+    "snake2d": 13,
+    "util": 10,
+    "view": 42,
+    "world": 17
+  },
+  "public_type_count": 2052,
+  "public_declared_member_count": 17442,
+  "members_by_root_package": {
+    "cutscene": 1,
+    "game": 2295,
+    "init": 1726,
+    "integrations": 7,
+    "launcher": 69,
+    "menu": 11,
+    "script": 28,
+    "settlement": 6606,
+    "snake2d": 2817,
+    "util": 1664,
+    "view": 1006,
+    "world": 1212
+  },
+  "source_matches": {
+    "unique_signature_anchor": 16932,
+    "no_exact_source_anchor": 510
+  },
+  "unresolved_source_type_count": 0
+}
