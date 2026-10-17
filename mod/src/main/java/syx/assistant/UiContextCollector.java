@@ -35,6 +35,7 @@ public final class UiContextCollector {
                 "flags_note","Workflow flags can persist after leaving an editor; use active_view for current UI mode"),
             "scope_note","Settlement getters refer to the currently instantiated scene, which can be a battlefield. Faction ledgers/technology/diplomacy refer to campaign/player resources.");
     }
+    @SuppressWarnings("unchecked")
     public static Map<String,Object> collect() {
         Map<String,Object> result=object("coverage","partial","source","public game API; sampled during SCRIPT_INSTANCE.update",
             "active_view",null,"selected_subject",null,"open_room_blueprints",new ArrayList<>(),
@@ -71,7 +72,15 @@ public final class UiContextCollector {
         try {result.put("known_content",UiContentCollector.collect());}
         catch(RuntimeException failure){result.put("known_content",object("coverage","unavailable","reason",failure.getClass().getSimpleName()));}
         result.put("tooltip_present",!VIEW.hoverBox().emptyIs());
-        result.put("known_overlay_active",flags.values().stream().anyMatch(Boolean.TRUE::equals));
+        boolean knownOverlay=flags.values().stream().anyMatch(Boolean.TRUE::equals);
+        result.put("known_overlay_active",knownOverlay);
+        boolean globalConsumed=VIEW.inters().manager.isHovered();
+        result.put("input_capture",object("global_hover_consumed",globalConsumed,
+            "active_view_hover_consumed",VIEW.current().uiManager.isHovered(),
+            "global_hover_consumed_without_known_overlay_flag",globalConsumed && !knownOverlay,
+            "scope","Latest public hover-dispatch consumption flags. Not a complete overlay inventory, current pointer target, stacking order or final rendered visibility."));
+        if(kind.equals("battle"))((Map<String,Object>)result.get("unsupported")).put("battle_conclusion_overlay",
+            "BattleState conclusion flag/result overlay are private; army counts and hover consumption alone do not identify a visible result dialog or outcome");
         result.put("overlay_order_known",false);
         result.put("reference_resolution","Selected objects describe underlying panels; a modal, management screen or hidden UI can obscure them. Do not assume the user's 'this' refers to a selected object.");
         if(kind.equals("settlement")) {

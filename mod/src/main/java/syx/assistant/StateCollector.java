@@ -70,6 +70,26 @@ public final class StateCollector {
             "scope","underlying settlement subject panel; may be obscured by overlays or hidden UI",
             "coverage","partial","reason","Named statistics advertising hasIndu() only; not every attribute, history or private AI field. Independent of the first-1000 entity list.");
     }
+    private static Map<String,Object> sceneArmy(String side,game.battle.Army army) {
+        List<Object> divisions=new ArrayList<>();
+        for(game.battle.div.Div div:army.divisions()) {
+            int present=div.menNrOf();int configured=div.info.men();
+            if(present<=0 && configured<=0)continue;
+            Map<String,Object> row=object("division_id",(int)div.index(),"army_division_index",(int)div.indexArmy(),
+                "name",div.info.name().toString(),"present_men",present,"configured_men",configured);
+            try {
+                game.battle.thread.status.DivStatus status=div.status();
+                row.put("engine_engagement_flag",status.isFighting());
+                double morale=div.morale();row.put("morale_raw",Double.isFinite(morale)?morale:null);
+                row.put("race_id",div.race()==null?null:div.race().key);row.put("coverage","partial");
+            }catch(RuntimeException error){row.put("coverage","unavailable");row.put("reason",error.getClass().getSimpleName());}
+            divisions.add(row);
+        }
+        return object("side",side,"men",army.men(),"divisions",divisions,
+            "scope","Currently instantiated settlement/battlefield army, not every campaign/world army",
+            "status_note","engine_engagement_flag is the public DivStatus engagement flag from the latest published battle-worker buffer; it may lag simulation or remain stale when battle workers pause (including conclusion), and does not cover every form of damage/projectile activity",
+            "units_note","Men are counts. configured_men minus present_men is not a general casualty measure. Morale is the raw game factor; range and interpretation are not established.");
+    }
     private StateCollector() {}
     public static Map<String,Object> object(Object... pairs) {
         Map<String,Object> m = new LinkedHashMap<>();
@@ -211,8 +231,10 @@ public final class StateCollector {
                         "divider",s.dataDivider(),"unit","game-defined stat; inspect meaning before interpreting"));
                 }
             }
-            return object("statistics", rows);
-        }, "Public aggregate statistics only; no causal/historical completeness is claimed.");
+            Map<String,Object> data=object("statistics", rows);
+            if(group.getKey().equals("military"))data.put("scene_armies",Arrays.asList(sceneArmy("player",GAME.ARMIES().player()),sceneArmy("enemy",GAME.ARMIES().enemy())));
+            return data;
+        }, group.getKey().equals("military")?"Public battle aggregates and scene division rows; not every campaign army, private order state or combat history":"Public aggregate statistics only; no causal/historical completeness is claimed.");
         Set<String> sceneDomains=Set.of("population","resources","employment","services","housing","health","law","happiness","military","map","entities");
         for(String key:DOMAINS) {
             Map<String,Object> record=(Map<String,Object>)domains.get(key);
