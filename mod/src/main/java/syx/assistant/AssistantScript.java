@@ -55,8 +55,10 @@ public final class AssistantScript implements SCRIPT {
             io = Executors.newSingleThreadScheduledExecutor(r -> { Thread t = new Thread(r, "syx-assistant-export"); t.setDaemon(true); return t; });
             io.scheduleWithFixedDelay(this::flush, 0, 100, TimeUnit.MILLISECONDS);
             Runtime.getRuntime().addShutdownHook(new Thread(this::close, "syx-assistant-close"));
+            GAME.addAfterUpdate(this::sample);
         }
-        public void update(double ds) {
+        public void update(double ds) { /* GAME.addAfterUpdate also runs when UI pauses skip resource updates. */ }
+        private void sample() {
             if (closed) return;
             EntityReadRequest request=readRequest.getAndSet(null);
             if(request!=null) readResponse.set(request.collect(session));
@@ -89,10 +91,11 @@ public final class AssistantScript implements SCRIPT {
             if(!closed)pollReadRequest();
             Map<String,Object> response=readResponse.getAndSet(null);
             if(response!=null)try {
-                if(JsonWriter.encode(response).getBytes(StandardCharsets.UTF_8).length>65536)
+                int cap="capture".equals(response.get("read_mode"))?2*1024*1024:65536;
+                if(JsonWriter.encode(response).getBytes(StandardCharsets.UTF_8).length>cap)
                     response=StateCollector.object("request_id",response.get("request_id"),"session_id",session,"game_version",VERSION.VERSION_STRING,
-                        "captured_at",java.time.Instant.now().toString(),"available",false,"reason","Response exceeds 64 KiB; select fewer fields, stats or rows","data",null);
-                writeDto("entity-response",response,65536);
+                        "captured_at",java.time.Instant.now().toString(),"available",false,"reason","Response exceeds the read mode byte budget; select fewer fields, stats or rows","data",null);
+                writeDto("entity-response",response,cap);
             } catch(Exception error) {System.err.println("Syx assistant read response: "+error);}
             Map<String,Object> dto = pending.getAndSet(null);
             if (dto == null) return;

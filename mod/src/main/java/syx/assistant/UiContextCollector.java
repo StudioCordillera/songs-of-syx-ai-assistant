@@ -37,7 +37,7 @@ public final class UiContextCollector {
     }
     @SuppressWarnings("unchecked")
     public static Map<String,Object> collect() {
-        Map<String,Object> result=object("coverage","partial","source","public game API; sampled during SCRIPT_INSTANCE.update",
+        Map<String,Object> result=object("coverage","partial","source","public game API; sampled from GAME.addAfterUpdate on the game update thread",
             "active_view",null,"selected_subject",null,"open_room_blueprints",new ArrayList<>(),
             "unsupported",object("selected_room_instance","No public selected-instance getter established",
                 "tooltip_text","GBox has no established read-only text enumeration API",
