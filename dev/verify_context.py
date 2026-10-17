@@ -34,7 +34,21 @@ def verify(directory: Path, timeout: float = 220):
                 assert context['coverage']=='partial' and not context['overlay_order_known']
                 assert context['unsupported']['selected_room_instance']
                 if name=='settlement':assert context['active_view']=='settlement'
-                if name=='subject':assert context['selected_subject'] is not None
+                if name=='subject':
+                    selected=snapshot.domains['entities'].data['selected_subject']
+                    assert selected is not None
+                    assert selected['entity_id']==context['selected_subject']['entity_id']
+                    assert selected['stats'] and all(row['reference_id'].startswith('stat:') for row in selected['stats'])
+                    assert any(row['coverage']=='partial' and type(row['value']) is int for row in selected['stats'])
+                    spec={'queries':[{'source':{'domain':'entities','path':'/selected_subject/stats'},
+                        'where':{'eq':[{'field':'/coverage'},'partial']},
+                        'select':{'stat_id':{'field':'/stat_id'},'value':{'field':'/value'},'reference_id':{'field':'/reference_id'}},'limit':5}],
+                        'include_ui_context':True,'expected_snapshot_id':snapshot.snapshot_id}
+                    chosen=advisor.select(spec)
+                    assert chosen['state']['snapshot_id']==snapshot.snapshot_id
+                    assert chosen['ui_context']['selected_subject']['entity_id']==selected['entity_id']
+                    assert chosen['results'][0]['rows']
+                    print('INDIVIDUAL_STATS',len(selected['stats']),'ENTITY_TOTAL',snapshot.domains['entities'].data['total'],flush=True)
                 if name=='game_menu':assert flags['game_menu'] and context['known_overlay_active']
                 if name=='confirmation':assert flags['confirmation'] and not flags['game_menu']
                 if name=='world':assert context['active_view']=='world' and context['selected_subject'] is None
