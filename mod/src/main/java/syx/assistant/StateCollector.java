@@ -42,6 +42,31 @@ public final class StateCollector {
             "title",stat.info().name.toString(),"text",helpText(stat.info().desc),"origin","settlement.stats.stat.STAT: "+stat.key()));
         referenceCache=result; return result;
     }
+    private static Map<String,Object> selectedSubject() {
+        if(!view.main.VIEW.existTemp() || !view.main.VIEW.s().isActive()) return null;
+        Humanoid h=view.main.VIEW.s().ui.subjects.current();
+        if(h==null || h.isRemoved()) return null;
+        settlement.stats.Induvidual individual=h.indu();
+        List<Object> stats=new ArrayList<>();int unsupported=0;
+        for(STAT stat:STATS.all()) {
+            if(!stat.hasIndu()) { unsupported++;continue; }
+            Map<String,Object> row=object("stat_id",stat.index(),"key",stat.key(),"reference_id","stat:"+stat.index(),
+                "unit","raw game integer; semantic units not established");
+            try {
+                util.data.INT_O<settlement.stats.Induvidual> getter=stat.indu();
+                if(getter==null) throw new IllegalStateException("No individual getter");
+                row.put("value",getter.get(individual));row.put("min",getter.min(individual));row.put("max",getter.max(individual));
+                row.put("coverage","partial");
+            } catch(RuntimeException error) {
+                row.put("value",null);row.put("coverage","unavailable");row.put("reason",error.getClass().getSimpleName());
+            }
+            stats.add(row);
+        }
+        return object("entity_id",h.id(),"race_id",h.race().key,"class_id",individual.clas().key,"type_id",individual.hType().key,
+            "tile_x",h.tc().x(),"tile_y",h.tc().y(),"stats",stats,"unsupported_stat_count",unsupported,
+            "scope","underlying settlement subject panel; may be obscured by overlays or hidden UI",
+            "coverage","partial","reason","Named statistics advertising hasIndu() only; not every attribute, history or private AI field. Independent of the first-1000 entity list.");
+    }
     private StateCollector() {}
     public static Map<String,Object> object(Object... pairs) {
         Map<String,Object> m = new LinkedHashMap<>();
@@ -123,8 +148,8 @@ public final class StateCollector {
                 if (e instanceof Humanoid) row.put("race_id", ((Humanoid)e).race().key);
                 rows.add(row);
             }
-            return object("items", rows, "total", total, "truncated", total>1000);
-        }, "First 1000 live entity IDs/types/positions; no private AI state. Truncation is explicit.");
+            return object("items", rows, "total", total, "truncated", total>1000,"selected_subject",selectedSubject());
+        }, "First 1000 live entity IDs/types/positions plus selected subject named individual statistics, independent of list truncation; not all attributes or private AI state.");
         run(domains, "trade", () -> {
             List<Object> rows=new ArrayList<>();
             for(RESOURCE r: RESOURCES.ALL()) rows.add(object("id",r.key,
