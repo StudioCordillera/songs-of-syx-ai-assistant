@@ -13,6 +13,8 @@ import util.text.D;
 public final class LiveSmoke {
     public static void main(String[] args) {
         if (args.length != 1) throw new IllegalArgumentException("Pass a COPIED save file");
+        PathCheck.validate(args[0]);
+        if(Boolean.getBoolean("syx.smoke.validateOnly")) {System.out.println("Fixture paths validated");return;}
         CORE.init(new ErrorHandler() {
             @Override public void handle(String output,String dump) {
                 // Keep engine stderr in the test log, without launching its external Swing error dialog.
@@ -39,6 +41,10 @@ public final class LiveSmoke {
                                 public void doAfterSet() {
                                     GAME.SPEED.speedSet(0);
                                     view.main.VIEW.inters().load.deactivate();
+                                    if (Boolean.getBoolean("syx.smoke.scenes")) {
+                                        SceneScenario.install(Paths.get(System.getProperty("syx.assistant.stateDir")),Paths.get(args[0]));
+                                        return;
+                                    }
                                     if (Boolean.getBoolean("syx.smoke.context")) {
                                         ContextScenario.install(Paths.get(System.getProperty("syx.assistant.stateDir")),Paths.get(args[0]));
                                         return;
@@ -55,5 +61,22 @@ public final class LiveSmoke {
                 };
             }
         });
+    }
+}
+
+
+/** Refuse accidental use of the real profile or original saves before the engine starts. */
+final class PathCheck {
+    static void validate(String save) {
+        try {
+            String configured=System.getProperty("syx.assistant.stateDir");
+            if(configured==null)throw new IllegalArgumentException("Set an isolated state directory");
+            java.nio.file.Path root=java.nio.file.Paths.get(configured).toAbsolutePath().normalize().getParent().toRealPath();
+            java.nio.file.Path expected=root.resolve("smoke-home");
+            if(java.nio.file.Files.isSymbolicLink(expected))throw new IllegalArgumentException("Fixture home must not be a symlink");
+            java.nio.file.Path home=java.nio.file.Paths.get(System.getProperty("user.home")).toRealPath();
+            if(!home.equals(expected.toRealPath()))throw new IllegalArgumentException("Use the sibling smoke-home profile, never your normal home");
+            if(!java.nio.file.Paths.get(save).toRealPath().startsWith(root))throw new IllegalArgumentException("Save must be a copy inside the fixture runtime root");
+        } catch(java.io.IOException e){throw new IllegalArgumentException("Fixture paths must exist",e);}
     }
 }
