@@ -2,7 +2,7 @@
 
 A local Java mod and MCP server that let an assistant inspect a loaded Songs of Syx game, request selected data, and advise the player with cited evidence.
 
-**0.8.0 — read-only, in-process public-API bridge.**
+**0.9.0 — read-only, in-process public-API bridge.**
 
 **Experimental working prototype for game 0.71.44 (Steam build 23998889).** Tested against a copied save on Linux. Other game version strings are rejected by the runtime guard; the tested binary hashes are recorded in the audit, and the guard does not attest the loaded JAR hash. This is not a finished in-game chat application.
 
@@ -16,6 +16,7 @@ A local Java mod and MCP server that let an assistant inspect a loaded Songs of 
 - Search a small reviewed external corpus with direct links, author/authority, retrieval date and compatibility warnings. Official/developer evidence ranks first; an authority filter is available.
 - Selected citizen identity/class/type and named individual statistics, linked to installed descriptions and independent of the bounded entity list.
 - Bounded label/control observations from exposed popup and section roots, with explicit opaque/truncated content. Editor activation and retreat-to-city transitions are checked in an isolated copied game.
+- Scene division counts, raw morale and published engagement flags, with stale-buffer limits. Controlled running-battle victory/defeat paths are checked using public game UI dispatch in the test fixture.
 - Partial UI context through public view/overlay/subject APIs, plus a searchable API evidence catalog. See [the establishment report](API_ESTABLISHMENT.md).
 - Game access exclusively through the in-process script mod and mapped public game APIs. No private reflection, screenshot capture or native/input hooks.
 

@@ -1,24 +1,24 @@
-# API establishment report — 0.8.0, game 0.71.44
+# API establishment report — 0.9.0, game 0.71.44
 
 This report establishes what can be verified within the user's required in-process public-API boundary. It does not create an official guarantee on behalf of the game developer.
 
 ## Evidence levels
 
 1. **Documented script contract:** the shipped semi-official script guide and SCRIPT interface describe script creation, updates and persistence callbacks. They do not document every game statistic or menu.
-2. **Source-verified public API:** Java compiler attribution resolves each game member referenced by production mod code. The current inventory contains 183 members, all public. Of these, 182 match declaring type, name, arity and simple parameter types in shipped source; the remaining member is the compiler-generated enum `values()` method. Only one referenced member has its own Javadoc block; Javadoc presence does not establish semantics or stability. Script override contracts are reviewed separately from the member-reference inventory.
+2. **Source-verified public API:** Java compiler attribution resolves each game member referenced by production mod code. The current inventory contains 197 members, all public. Of these, 196 match declaring type, name, arity and simple parameter types in shipped source; the remaining member is the compiler-generated enum `values()` method. Only one referenced member has its own Javadoc block; Javadoc presence does not establish semantics or stability. Script override contracts are reviewed separately from the member-reference inventory.
 3. **Runtime evidence:** the isolated fixture exercises supported contexts using public game methods and a copied save. The production mod only observes. Test mutations and engine bootstrap code are never packaged into the mod.
 4. **Unavailable/unvalidated:** missing public accessors and untested transitions stay explicit. No reflection, screenshot, native-input or package-access workaround is added.
 
 The [official documentation project](https://github.com/songsofsyx/documentation) links the published guide. Its [getting-started page](https://songs-of-syx.readthedocs.io/en/latest/modding_getting_started.html), checked 2026-10-17, contains a heading but no API details. This does not supply the missing member-level contracts.
 
-Runtime evidence spans the 0.8.0 extended-context fixture, 0.7.0 scene/entity fixtures and 0.6.0 context fixture. Exact run scopes are recorded in VALIDATION.md and validation-evidence.json.
+Runtime evidence spans the 0.9.0 battle lifecycle fixture, 0.8.0 extended-context fixture, 0.7.0 scene/entity fixtures and 0.6.0 context fixture. Exact run scopes are recorded in VALIDATION.md and validation-evidence.json.
 
 ## Current coverage matrix
 
 | Capability | Established access | Runtime scope / limits |
 | --- | --- | --- |
-| Exported state variables | 18 partial typed public-API domains; 183 referenced members in the audit | Existing copied save; not every variable or every entity attribute |
-| Active view | `VIEW.current`, subview `isActive` | Settlement, world, settlement tactical HUD, generated battle deployment and initial/terrain world generation exercised; editor activation exercised on a copied completed world |
+| Exported state variables | 18 partial typed public-API domains; 197 referenced members in the audit | Existing copied save; not every variable or every entity attribute |
+| Active view | `VIEW.current`, subview `isActive` | Settlement, world, settlement tactical HUD, generated deployment/engagement and controlled victory/defeat restoration, plus initial/terrain world generation; editor activation checked on a copied completed world |
 | Selected subject | `UISubjects.current`, individual class/type and named `STAT.hasIndu` / `STAT.indu` getters | 58 individual statistics observed in the copied-save subject; values/min/max and installed-help reference IDs. Panel may remain behind a modal overlay |
 | Room context | `UIRooms.openIs` and room-list membership | Room blueprint/table/detail presence exercised; exact selected instance unavailable |
 | Game menu / confirmation | Public known interrupters and `isActivated` | Both exercised; menu subpages not enumerated |
@@ -29,7 +29,7 @@ Runtime evidence spans the 0.8.0 extended-context fixture, 0.7.0 scene/entity fi
 | Main menu | No plugin context callback/accessor established | Fixture returns there; plugin uses freshness/unknown-state fallback, not menu identification |
 | Full tooltip text | No read-only public enumeration established | Presence only; GBox text storage is private |
 | Complete panel hierarchy / stacking | No public general enumeration/order established | Known overlay flags only; cannot select a topmost panel from these flags |
-| All game variables / all menus | No complete public schema or contract established | Still unavailable; active combat/conclusion, complete world generation, editors, menu subpages and every popup combination are not exhaustively tested |
+| All game variables / all menus | No complete public schema or contract established | Still unavailable; natural campaign outcomes/full combat history, complete world generation/editor workflows, menu subpages and every popup combination are not exhaustively tested |
 
 ## Scene scope and semantic checks
 
@@ -88,3 +88,15 @@ Reads are bounded to 80 nodes total, depth six, 4,096 UTF-16 text characters and
 The isolated extended fixture checks sixteen phases: base city; primary/secondary popups; section; node/text/depth limits; closed content; text input without private-value export; full-screen prompt; copied-save reload; world editor; return to city with the editing workflow flag still set; battle setup editor; return to city; battle deployment; and public retreat restoring the city with a new session. Content widgets are constructed by the fixture using game APIs, so this is not a claim that every native game dialog is readable. Retreat is tested from deployment, not active fighting. The test-supplied exiter asserts the result; production does not expose an arbitrary battle-result event feed.
 
 The snapshot now explains that WorldGen workflow flags can persist after editor exit. `active_view` identifies the current UI mode. The battle deployment flag is likewise described as a logical flag, not proof that simulation/combat is running; the pinned start overlay remains inaccessible through a public read getter.
+
+## Running battles, scene divisions and input consumption — 0.9.0
+
+The military domain includes `scene_armies` for the player/enemy armies of the instantiated city or battlefield. Nonempty/configured division rows expose scene division ID, army-local index, name, present/configured men, race, raw morale and the public `DivStatus.isFighting()` engagement flag. These are public getters/fields checked by the compiler inventory and copied-game runtime. They do not enumerate every campaign army, order, history or private AI attribute.
+
+The engagement flag is a published worker-buffer observation. It can lag and remain true after men reach zero when battle workers pause for a conclusion. It is not an instantaneous combat indicator or complete damage/projectile log. Morale is a raw game factor; do not convert it to a percentage. Configured minus present men is not a general casualty measure. IDs belong to the observed scene; do not reuse them across scene regeneration/session changes.
+
+`input_capture` reports latest public hover-dispatch consumption by global and current-view managers. `global_hover_consumed_without_known_overlay_flag` is the literal combination of those observations, not a dialog identity. A false value does not prove that no private overlay exists. No cursor target, complete input routing, global stacking or rendered visibility is established.
+
+The nine-phase battle lifecycle fixture starts two generated battles through public `ViewSubSimple.uiManager` / `InterManager.hover` / `InterManager.click`, issues public melee orders, observes actual engine engagement, then applies deterministic test-only elimination to set up victory and defeat result paths. It closes the actual private result overlays through the public dispatcher using a public `UIBattleResult` layout reference. Test-supplied exiters verify VICTORY/DEFEAT, and both restore the copied city with new sessions. No native/OS input, screenshot, private overlay field or protected callback is read/invoked directly. These test actions are excluded from production.
+
+The result overlay remains private and has no mapped public presence/title/content getter. Production reports counts, raw hover-consumption data and that unsupported reason; it does not fabricate a result dialog identity or expose an arbitrary battle-outcome feed. The fixture proves controlled paths, not natural campaign outcomes, battle AI quality, every combat condition or every result UI workflow.

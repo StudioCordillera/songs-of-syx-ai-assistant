@@ -1,19 +1,106 @@
 {
-  "version": "0.8.0",
+  "version": "0.9.0",
   "game_version": "0.71.44",
   "python_tests": {
     "passed": 56
   },
-  "production_public_member_references": 183,
+  "production_public_member_references": 197,
   "production_source_sha256": {
     "syx/assistant/AssistantScript.java": "40ee882b3305cbc78f35013a87ce9167c6d32d749ebf6109c828416ec0ee412a",
     "syx/assistant/EntityReadRequest.java": "3aa2f3bd4d8000abe7ff5247d2a24b28df31d72c088f0c164313497ecedab945",
     "syx/assistant/JsonWriter.java": "c525eb60d3224cab83ed3fd6b8594ec8652211f00bd947e873e1482f919e81dc",
-    "syx/assistant/StateCollector.java": "96f441ec7210c6f5e080cf9225c8c99321a35e243321c9bc9317aa1181cae743",
+    "syx/assistant/StateCollector.java": "38d0ce736b235d0c9234fc8840a243a64380ccc359d04d03b71cf5873af121bf",
     "syx/assistant/UiContentCollector.java": "c0d20c7f9f2734a0bb625427875f06bfcd07edb20611248b39b6e8f480ef5a48",
-    "syx/assistant/UiContextCollector.java": "8528cf0b959aa9dbd428a508db6d6cf850a89019ed5669a0f2bc1294dd34f97e"
+    "syx/assistant/UiContextCollector.java": "57e3a215d6ecc13a3c5483facad60ac9d7ab8cc077ff8b9601c3d6a68c1d983a"
   },
-  "extended_context": {
+  "tested_mod_jar_sha256": "dcdb0b9331d30543a5a21601637d20b3d80cc2dc72a1288ca0c4ada5a91b9e96",
+  "isolated_profile_jar_matches_build": true,
+  "battle_lifecycle": {
+    "passed": true,
+    "checks": {
+      "city": {
+        "passed": true,
+        "view": "settlement",
+        "player_men": 31,
+        "enemy_men": 0,
+        "engine_engagement_observed": false,
+        "global_hover_consumed": false
+      },
+      "deployment_victory": {
+        "passed": true,
+        "view": "battle",
+        "player_men": 40,
+        "enemy_men": 40,
+        "engine_engagement_observed": false,
+        "global_hover_consumed": false
+      },
+      "engagement_victory": {
+        "passed": true,
+        "view": "battle",
+        "player_men": 40,
+        "enemy_men": 40,
+        "engine_engagement_observed": true,
+        "global_hover_consumed": false
+      },
+      "result_victory": {
+        "passed": true,
+        "view": "battle",
+        "player_men": 40,
+        "enemy_men": 0,
+        "engine_engagement_observed": true,
+        "global_hover_consumed": true
+      },
+      "after_victory": {
+        "passed": true,
+        "view": "settlement",
+        "player_men": 31,
+        "enemy_men": 0,
+        "engine_engagement_observed": false,
+        "global_hover_consumed": false
+      },
+      "deployment_defeat": {
+        "passed": true,
+        "view": "battle",
+        "player_men": 40,
+        "enemy_men": 40,
+        "engine_engagement_observed": false,
+        "global_hover_consumed": false
+      },
+      "engagement_defeat": {
+        "passed": true,
+        "view": "battle",
+        "player_men": 40,
+        "enemy_men": 39,
+        "engine_engagement_observed": true,
+        "global_hover_consumed": false
+      },
+      "result_defeat": {
+        "passed": true,
+        "view": "battle",
+        "player_men": 0,
+        "enemy_men": 39,
+        "engine_engagement_observed": false,
+        "global_hover_consumed": true
+      },
+      "after_defeat": {
+        "passed": true,
+        "view": "settlement",
+        "player_men": 31,
+        "enemy_men": 0,
+        "engine_engagement_observed": false,
+        "global_hover_consumed": false
+      }
+    },
+    "missing": [],
+    "limits": [
+      "Start/result Close dispatch is test-only through public game managers; no OS/native input or screenshots.",
+      "Genuine engine engagement is observed before deterministic public casualty setup. Victory/defeat are controlled fixture outcomes, not AI combat benchmarks.",
+      "Actual private result overlays are not inspected. The test-supplied exiter verifies outcomes; production exposes no result-dialog identity or arbitrary outcome event feed.",
+      "DivStatus is the latest published battle-worker buffer and may lag or miss brief engagement; not a complete combat log."
+    ]
+  },
+  "extended_context_previous_version": {
+    "version": "0.8.0",
     "passed": true,
     "checks": {
       "city": {
@@ -294,16 +381,14 @@
     "All game variables and attributes",
     "Stable official contract for individual mapped getters",
     "Stable multi-page snapshot during active simulation",
-    "Active fighting and victory/defeat UI",
+    "Natural campaign battle outcomes, every combat condition and complete combat history",
+    "Private result-overlay identity/content or arbitrary battle-outcome event feed",
     "Complete political-world generation and full editor workflows",
-    "Complete native-dialog content, private wrappers, exact selected room/tab, tooltip text and global panel tree/order",
+    "Every native dialog, private wrappers, exact room/tab, tooltip text and global panel tree/order",
     "Final rendered visibility or clipping",
-    "Arbitrary battle-outcome event feed",
     "Immediate menu unload callback",
     "Large-city performance",
     "Windows on-demand client transport",
     "Runtime attestation of installed mod/source identity"
-  ],
-  "tested_mod_jar_sha256": "376d69548fdbb475b1fbaab72e3692f3d5022ed94c1bcaadcaf0c2ac72b418dd",
-  "isolated_profile_jar_matches_build": true
+  ]
 }

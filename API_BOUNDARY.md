@@ -1,4 +1,4 @@
-# Game API boundary — 0.8.0
+# Game API boundary — 0.9.0
 
 The game-facing plugin runs inside Songs of Syx using `script.SCRIPT` and `SCRIPT_INSTANCE`. All gameplay observations originate from direct public game API calls on the script update thread. The Python MCP reads detached local exports; it does not inspect or control the game process itself.
 
@@ -53,7 +53,7 @@ Local JSON export and stdio MCP are the transport between the in-process plugin 
 
 ## Compiler inventory
 
-The production references resolve to 183 public game API members. The metadata inventory includes source anchors and hashes; it does not enumerate every game variable or establish official stability. See API_ESTABLISHMENT.md for exact evidence levels and runtime checks.
+The production references resolve to 197 public game API members. The metadata inventory includes source anchors and hashes; it does not enumerate every game variable or establish official stability. See API_ESTABLISHMENT.md for exact evidence levels and runtime checks.
 
 ## On-demand read transport — introduced in 0.7.0
 
@@ -66,3 +66,9 @@ Supported selection is finite: IDs, race/class/humanoid type, exclusive-upper ti
 Known popup/section roots expose public render objects. The adapter follows only mapped `GuiSection.elements` and `CLICKABLE.ClickSwitch.current` edges, reads `GTextR.text` labels, control active/selected flags and public internal bounds. This is bounded typed traversal of exposed UI data, not arbitrary object/field traversal. It does not invoke render, hover, input, click, layout, setter or gameplay methods. No private wrappers are unwrapped. General panel enumeration, final visibility and global stacking remain unsupported.
 
 The six production source files are included in the compiler inventory. The development extended fixture constructs game widgets and activates editors/retreat through public methods; none of those test mutations are included in the production JAR.
+
+## Scene divisions and public hover flags — 0.9.0
+
+Production reads `Army.divisions`, `Div.info`, `DivInfo.men/name`, `Div.menNrOf/index/indexArmy/race/morale/status` and `DivStatus.isFighting`, plus public `InterManager.isHovered` through known global/current-view managers. No battle orders, kill, speed, hover or click calls are added to production. Source boundary checks reject these concrete test-control call patterns in the mod tree; they supplement review rather than prove every possible mutation is absent.
+
+Battle validation uses public game UI dispatch and public test-only orders/casualty setup. The pinned start button and actual private conclusion overlay are never obtained through reflection or a private field. The fixture constructs the public result-layout type to locate its Close control, then dispatches to the actual game manager; the game performs its normal protected callbacks internally. This is a source-verified test path, not a documented stable computer-use contract or a shipped action interface.

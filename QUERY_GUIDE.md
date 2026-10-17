@@ -96,3 +96,15 @@ Use `expected_session_id` to reject a game replacement. Each response has its ow
 `get_game_ui_context` returns `known_content` from the same cached snapshot as other state. Its roots name the primary popup, secondary popup and section. Nodes carry local IDs/parents, widget kind, visibility flags, internal bounds, mapped control flags and readable `GTextR` text. Opaque content includes a reason; repeated references point to an earlier node. IDs expire with the observation and cannot be used to invoke controls.
 
 Check `truncated`, per-label `text_truncated`, `read_error` and limits before answering a question about displayed content. A blank truncated label is not evidence of blank game text. Flags and known ancestry do not prove final visibility or topmost context. Button/sprite/private-wrapper text can remain opaque even when another label in the same panel is readable. Tooltip text and private input values remain unavailable. Do not assume the user's “this” refers to one of these roots when multiple overlays or background selections exist.
+
+## Scene division data and unknown input consumers — 0.9.0
+
+Discover `military.scene_armies` before querying. Each side's `divisions` list contains scene-local IDs, name, present/configured men, race, raw morale and the engine's published engagement flag. For example, after confirming the player army is at index zero:
+
+```json
+{"queries":[{"source":{"domain":"military","path":"/scene_armies/0/divisions"},"where":{"and":[{"gt":[{"field":"/present_men"},0]},{"eq":[{"field":"/engine_engagement_flag"},true]}]},"select":{"division":{"field":"/name"},"men":{"field":"/present_men"},"morale_raw":{"field":"/morale_raw"}},"limit":10}]}
+```
+
+This selects rows reporting a published engagement flag, not proof of instantaneous fighting. Worker buffers may lag or remain stale during a conclusion; brief engagement can be missed by periodic snapshots. Morale has no established percentage/range here, and the configured/present difference is not a general casualty count. These armies belong to the current instantiated scene, not every world army. Treat division IDs as observation/scene scoped.
+
+`input_capture.global_hover_consumed` and `active_view_hover_consumed` report the latest public manager flags. `global_hover_consumed_without_known_overlay_flag` can highlight input consumption while all mapped overlay flags are false. It does not identify a private battle-result screen or any other dialog, and its absence does not prove that an unmapped overlay is absent. Exact battle-conclusion content stays unavailable.

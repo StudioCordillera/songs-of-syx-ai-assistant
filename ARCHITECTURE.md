@@ -1,4 +1,4 @@
-# Architecture — 0.8.0
+# Architecture — 0.9.0
 
 The Java mod implements the shipped SCRIPT interface. Typed collectors read public game APIs on the script update thread and build detached DTOs. A daemon serializes them to an atomic local JSON snapshot approximately every two wall-clock seconds while the update hook runs. MCP validates/caches that snapshot and executes bounded selections locally. Neither the daemon nor MCP traverses game objects. On-demand entity requests are parsed on the file daemon, handed to the update thread, evaluated using fixed public getters, and returned as detached DTOs.
 
@@ -33,3 +33,9 @@ The wire protocol has only fixed, independently validated fields and no expressi
 The UI collector samples three known public roots on the update thread. A bounded typed visitor reads exposed section/switch children, mapped text and control flags into flat detached nodes. Repeated object references become local node references, preventing repeated traversal. Limits apply across all roots; truncation and opaque/read-error nodes remain explicit. The text is untrusted data. Input values, private wrappers, arbitrary panel collection, renderer output, tooltip storage and global layer ordering are not read.
 
 WorldGen editing flags are workflow data and may persist after changing views. Use active_view for the current UI mode. Battle deploying is a public logical flag; the pinned start overlay is private, so this flag alone cannot prove active combat. Test-only retreat coverage establishes restoration/session rotation, not an observable battle-outcome feed for arbitrary game battles.
+
+## Published battle status and input-consumption flags — 0.9.0
+
+Scene army/division values are detached during the script update. Engagement comes from the battle worker's latest published status buffer and may lag or persist while workers are paused. These observations are not a synchronized full combat log or an instantaneous fighting guarantee. Counts and raw morale remain separate, explicitly scoped quantities.
+
+The context includes latest public global/view hover-consumption flags. They expose input-consumption evidence without enumerating the private manager collection or synthesizing production input. A private result screen can consume hover while every mapped overlay flag is false. That does not make its identity, text or outcome available. Tests use game-internal public dispatch; the shipped mod remains observational.

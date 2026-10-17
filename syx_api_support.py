@@ -23,7 +23,16 @@ CAPABILITIES = [
   'limits':'Three public roots only; opaque widgets remain opaque. No general panel tree/order, final rendered visibility, private input values or tooltip text. Local node IDs are not action handles.'},
  {'id':'editor_and_retreat_transitions','support':'public_source_verified','validation':'world editor and battle setup activation on a copied completed world; generated deployment retreats to restored city with session rotation',
   'references':['API_ESTABLISHMENT.md'],
-  'limits':'WorldGen flags can persist after view changes. Retreat result is asserted by the test-supplied exiter; production has no arbitrary battle-outcome feed. Active fighting, victory/defeat and full editor workflows remain unvalidated.'},
+  'limits':'WorldGen flags can persist after view changes. Retreat result is asserted by the test-supplied exiter; production has no arbitrary battle-outcome feed. This fixture covers editor activation/retreat; the 0.9 controlled battle fixture covers sampled engagement/results. Full editor workflows and natural campaign outcomes remain unvalidated.'},
+ {'id':'scene_division_status','support':'public_source_verified','validation':'controlled forty-person player/enemy battles; present/configured men, raw morale and published engagement flags exported during deployment, engagement and result/restoration',
+  'references':['game/battle/div/Div.java:132','game/battle/thread/status/DivStatus.java:186','api-audit.json'],
+  'limits':'Instantiated-scene armies only. Worker engagement may lag/remain stale while paused; not an instantaneous combat flag or full log. Raw morale is not an established percentage; configured/present difference is not a general casualty count.'},
+ {'id':'hover_consumption','support':'public_source_verified','validation':'private result paths consume global hover with every known overlay flag false',
+  'references':['view/interrupter/InterManager.java:169','api-audit.json'],
+  'limits':'Latest dispatcher flags only, not a pointer target, overlay identity/tree/order, complete routing or rendered visibility. False does not prove no private overlay.'},
+ {'id':'controlled_battle_lifecycle','support':'public_source_verified','validation':'public game UI dispatch starts battles and closes controlled victory/defeat result paths; actual engine engagement and restored-city session rotation checked',
+  'references':['API_ESTABLISHMENT.md','view/interrupter/InterManager.java:101','view/interrupter/InterManager.java:148','view/battle/UIBattleResult.java:36'],
+  'limits':'Control calls exist only in the isolated fixture. Private result presence/title/content and arbitrary outcome event feed remain unavailable in production. Deterministic casualty setup is not natural campaign resolution or a battle-AI benchmark.'},
  {'id':'selected_subject','support':'public_source_verified','validation':'subject-selection fixture passed; complete matrix recorded in API_ESTABLISHMENT.md',
   'references':['view/sett/ui/subject/UISubjects.java:20','view/sett/ui/subject/UISubject.java:79'],
   'limits':'Underlying settlement subject panel; modal overlays or hidden UI may obscure it. Dedicated entities.selected_subject exports class/type and named individual stat getters independently of the first-1,000 list. Raw values/bounds have unknown semantic units; overlays may obscure the selection.'},
@@ -50,7 +59,7 @@ CAPABILITIES = [
   'limits':'No official complete enumerable state schema established. Public API mappings expose a subset; private fields are excluded. Expand typed mappings only with provenance and validation.'},
  {'id':'all_states_and_menus','support':'unavailable','validation':'coverage gaps explicitly retained',
   'references':['API_ESTABLISHMENT.md'],
-  'limits':'Active fighting, victory/defeat paths, full political-world generation, full editor workflows, options/save/load subpages, every popup type and crash/suspend transitions are not exhaustively validated.'}
+  'limits':'Sampled engagement and controlled victory/defeat paths are checked. Natural campaign outcomes, every combat condition, full political-world generation, full editor workflows, options/save/load subpages, every popup type and crash/suspend transitions are not exhaustively validated.'}
 ]
 
 def support(query='', offset=0, limit=10):
