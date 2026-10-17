@@ -4,10 +4,11 @@
   "source_archive_sha256": "a3fc2aa9f4be31aec0616a5030a656ac49a6011343b7e91395c7bac0b9dfb0a5",
   "method": "Java compiler attribution of production mod references; source anchors match declaring type/name/arity, not method body equivalence",
   "mod_source_sha256": {
-    "syx/assistant/AssistantScript.java": "f7f56d7d7eccf0f20e3d4c7ceb28f7a6397a0e984d0745ab92bf63c8fe63d097",
+    "syx/assistant/AssistantScript.java": "e5bb85e22a77a39c3033020b95462ad4b2e8cd642f395d8cdff6f809ab9fec77",
     "syx/assistant/EntityReadRequest.java": "deb0f86cad28da1c8677394a4aeb26913b0c80b4ee90c08cb882bedbc11f8a03",
     "syx/assistant/JsonWriter.java": "c525eb60d3224cab83ed3fd6b8594ec8652211f00bd947e873e1482f919e81dc",
-    "syx/assistant/StateCollector.java": "f485475e5921aa26a6c023dab5b2eab29e51df2da40aa295bf0099b4d3a5b90d",
+    "syx/assistant/StateCollector.java": "dc5d25f18cb75b7e432e73482b23ae52405d791dc1d4f9c6c386f6242e901458",
+    "syx/assistant/TileReadRequest.java": "1a192cde61a7e1bdefa170390c00b17c74573b9c41de71700ebea466411ad3c5",
     "syx/assistant/UiContentCollector.java": "c0d20c7f9f2734a0bb625427875f06bfcd07edb20611248b39b6e8f480ef5a48",
     "syx/assistant/UiContextCollector.java": "c379afcb36169380a5956c51a9b76f9598b723c14fae136e5850b20177ef066e"
   },
@@ -21,7 +22,7 @@
       "public": true,
       "source_file": "game/GAME.java",
       "uses": [
-        "StateCollector.java:260",
+        "StateCollector.java:261",
         "UiContextCollector.java:59"
       ],
       "parameter_types": [],
@@ -98,7 +99,7 @@
       "public": true,
       "source_file": "game/GAME.java",
       "uses": [
-        "AssistantScript.java:58"
+        "AssistantScript.java:61"
       ],
       "parameter_types": [
         "snake2d.util.misc.ACTION"
@@ -184,7 +185,8 @@
       "source_file": "game/GAME.java",
       "uses": [
         "EntityReadRequest.java:164",
-        "StateCollector.java:133"
+        "StateCollector.java:133",
+        "TileReadRequest.java:61"
       ],
       "parameter_types": [],
       "compiler_generated_enum": false,
@@ -284,11 +286,13 @@
       "public": true,
       "source_file": "game/VERSION.java",
       "uses": [
+        "AssistantScript.java:112",
+        "AssistantScript.java:120",
         "AssistantScript.java:29",
-        "AssistantScript.java:96",
         "EntityReadRequest.java:104",
         "EntityReadRequest.java:163",
-        "StateCollector.java:133"
+        "StateCollector.java:133",
+        "TileReadRequest.java:60"
       ],
       "parameter_types": [],
       "compiler_generated_enum": false,
@@ -313,7 +317,7 @@
       "public": true,
       "source_file": "game/battle/Armies.java",
       "uses": [
-        "StateCollector.java:260",
+        "StateCollector.java:261",
         "UiContextCollector.java:59"
       ],
       "parameter_types": [],
@@ -339,7 +343,7 @@
       "public": true,
       "source_file": "game/battle/Armies.java",
       "uses": [
-        "StateCollector.java:260",
+        "StateCollector.java:261",
         "UiContextCollector.java:59"
       ],
       "parameter_types": [],
@@ -1457,6 +1461,32 @@
       "documentation_status": "human_review_required; Javadoc presence alone does not establish a stable mod contract"
     },
     {
+      "id": "init.resources.Minable#resource",
+      "owner": "init.resources.Minable",
+      "name": "resource",
+      "kind": "FIELD",
+      "signature": "resource",
+      "public": true,
+      "source_file": "init/resources/Minable.java",
+      "uses": [
+        "TileReadRequest.java:113",
+        "TileReadRequest.java:82"
+      ],
+      "parameter_types": [],
+      "compiler_generated_enum": false,
+      "arity": -1,
+      "source_candidates": [
+        {
+          "line": 31,
+          "source_sha256": "5de45066c3498f8172e7955e13797e5457afb45fb2640e5ac01668047fc003ab",
+          "parameter_types": [],
+          "has_javadoc": false
+        }
+      ],
+      "source_match": "name_arity_and_simple_parameter_types",
+      "documentation_status": "human_review_required; Javadoc presence alone does not establish a stable mod contract"
+    },
+    {
       "id": "init.resources.RESOURCE#key",
       "owner": "init.resources.RESOURCE",
       "name": "key",
@@ -1469,7 +1499,9 @@
         "StateCollector.java:167",
         "StateCollector.java:203",
         "StateCollector.java:37",
-        "StateCollector.java:38"
+        "StateCollector.java:38",
+        "TileReadRequest.java:113",
+        "TileReadRequest.java:82"
       ],
       "parameter_types": [],
       "compiler_generated_enum": false,
@@ -1707,8 +1739,8 @@
         "EntityReadRequest.java:136",
         "EntityReadRequest.java:150",
         "StateCollector.java:146",
-        "StateCollector.java:251",
-        "StateCollector.java:253",
+        "StateCollector.java:252",
+        "StateCollector.java:254",
         "StateCollector.java:93"
       ],
       "parameter_types": [],
@@ -1735,7 +1767,7 @@
       "source_file": "init/type/HCLASSES.java",
       "uses": [
         "StateCollector.java:145",
-        "StateCollector.java:248"
+        "StateCollector.java:249"
       ],
       "parameter_types": [],
       "compiler_generated_enum": false,
@@ -2059,6 +2091,87 @@
       "documentation_status": "human_review_required; Javadoc presence alone does not establish a stable mod contract"
     },
     {
+      "id": "settlement.main.SETT#FLOOR()",
+      "owner": "settlement.main.SETT",
+      "name": "FLOOR",
+      "kind": "METHOD",
+      "signature": "FLOOR()",
+      "public": true,
+      "source_file": "settlement/main/SETT.java",
+      "uses": [
+        "TileReadRequest.java:103",
+        "TileReadRequest.java:104",
+        "TileReadRequest.java:76"
+      ],
+      "parameter_types": [],
+      "compiler_generated_enum": false,
+      "arity": 0,
+      "source_candidates": [
+        {
+          "line": 127,
+          "source_sha256": "406866466d776896e2bf4bda86172a7c9a9ffc7df3494557e1e1135b55f76561",
+          "parameter_types": [],
+          "has_javadoc": false
+        }
+      ],
+      "source_match": "name_arity_and_simple_parameter_types",
+      "documentation_status": "human_review_required; Javadoc presence alone does not establish a stable mod contract"
+    },
+    {
+      "id": "settlement.main.SETT#MINERALS()",
+      "owner": "settlement.main.SETT",
+      "name": "MINERALS",
+      "kind": "METHOD",
+      "signature": "MINERALS()",
+      "public": true,
+      "source_file": "settlement/main/SETT.java",
+      "uses": [
+        "TileReadRequest.java:112",
+        "TileReadRequest.java:114",
+        "TileReadRequest.java:82"
+      ],
+      "parameter_types": [],
+      "compiler_generated_enum": false,
+      "arity": 0,
+      "source_candidates": [
+        {
+          "line": 163,
+          "source_sha256": "406866466d776896e2bf4bda86172a7c9a9ffc7df3494557e1e1135b55f76561",
+          "parameter_types": [],
+          "has_javadoc": false
+        }
+      ],
+      "source_match": "name_arity_and_simple_parameter_types",
+      "documentation_status": "human_review_required; Javadoc presence alone does not establish a stable mod contract"
+    },
+    {
+      "id": "settlement.main.SETT#PATH()",
+      "owner": "settlement.main.SETT",
+      "name": "PATH",
+      "kind": "METHOD",
+      "signature": "PATH()",
+      "public": true,
+      "source_file": "settlement/main/SETT.java",
+      "uses": [
+        "TileReadRequest.java:117",
+        "TileReadRequest.java:120",
+        "TileReadRequest.java:83"
+      ],
+      "parameter_types": [],
+      "compiler_generated_enum": false,
+      "arity": 0,
+      "source_candidates": [
+        {
+          "line": 135,
+          "source_sha256": "406866466d776896e2bf4bda86172a7c9a9ffc7df3494557e1e1135b55f76561",
+          "parameter_types": [],
+          "has_javadoc": false
+        }
+      ],
+      "source_match": "name_arity_and_simple_parameter_types",
+      "documentation_status": "human_review_required; Javadoc presence alone does not establish a stable mod contract"
+    },
+    {
       "id": "settlement.main.SETT#ROOMS()",
       "owner": "settlement.main.SETT",
       "name": "ROOMS",
@@ -2070,6 +2183,8 @@
         "StateCollector.java:152",
         "StateCollector.java:153",
         "StateCollector.java:173",
+        "TileReadRequest.java:107",
+        "TileReadRequest.java:78",
         "UiContextCollector.java:94"
       ],
       "parameter_types": [],
@@ -2087,6 +2202,32 @@
       "documentation_status": "human_review_required; Javadoc presence alone does not establish a stable mod contract"
     },
     {
+      "id": "settlement.main.SETT#TERRAIN()",
+      "owner": "settlement.main.SETT",
+      "name": "TERRAIN",
+      "kind": "METHOD",
+      "signature": "TERRAIN()",
+      "public": true,
+      "source_file": "settlement/main/SETT.java",
+      "uses": [
+        "TileReadRequest.java:75",
+        "TileReadRequest.java:99"
+      ],
+      "parameter_types": [],
+      "compiler_generated_enum": false,
+      "arity": 0,
+      "source_candidates": [
+        {
+          "line": 115,
+          "source_sha256": "406866466d776896e2bf4bda86172a7c9a9ffc7df3494557e1e1135b55f76561",
+          "parameter_types": [],
+          "has_javadoc": false
+        }
+      ],
+      "source_match": "name_arity_and_simple_parameter_types",
+      "documentation_status": "human_review_required; Javadoc presence alone does not establish a stable mod contract"
+    },
+    {
       "id": "settlement.main.SETT#THEIGHT",
       "owner": "settlement.main.SETT",
       "name": "THEIGHT",
@@ -2095,7 +2236,8 @@
       "public": true,
       "source_file": "settlement/main/SETT.java",
       "uses": [
-        "StateCollector.java:233"
+        "StateCollector.java:233",
+        "TileReadRequest.java:68"
       ],
       "parameter_types": [],
       "compiler_generated_enum": false,
@@ -2120,7 +2262,8 @@
       "public": true,
       "source_file": "settlement/main/SETT.java",
       "uses": [
-        "StateCollector.java:233"
+        "StateCollector.java:233",
+        "TileReadRequest.java:68"
       ],
       "parameter_types": [],
       "compiler_generated_enum": false,
@@ -2171,7 +2314,8 @@
       "source_file": "settlement/main/SETT.java",
       "uses": [
         "EntityReadRequest.java:111",
-        "StateCollector.java:270",
+        "StateCollector.java:271",
+        "TileReadRequest.java:67",
         "UiContextCollector.java:31",
         "UiContextCollector.java:32"
       ],
@@ -2184,6 +2328,188 @@
           "source_sha256": "406866466d776896e2bf4bda86172a7c9a9ffc7df3494557e1e1135b55f76561",
           "parameter_types": [],
           "has_javadoc": false
+        }
+      ],
+      "source_match": "name_arity_and_simple_parameter_types",
+      "documentation_status": "human_review_required; Javadoc presence alone does not establish a stable mod contract"
+    },
+    {
+      "id": "settlement.path.AVAILABILITY#availableToStandOn",
+      "owner": "settlement.path.AVAILABILITY",
+      "name": "availableToStandOn",
+      "kind": "FIELD",
+      "signature": "availableToStandOn",
+      "public": true,
+      "source_file": "settlement/path/AVAILABILITY.java",
+      "uses": [
+        "TileReadRequest.java:118"
+      ],
+      "parameter_types": [],
+      "compiler_generated_enum": false,
+      "arity": -1,
+      "source_candidates": [
+        {
+          "line": 36,
+          "source_sha256": "8d2f465a992c34fe223f7d3beec90a7dc3088fc2abc5e5c9a5cca643399cf5f8",
+          "parameter_types": [],
+          "has_javadoc": false
+        }
+      ],
+      "source_match": "name_arity_and_simple_parameter_types",
+      "documentation_status": "human_review_required; Javadoc presence alone does not establish a stable mod contract"
+    },
+    {
+      "id": "settlement.path.AVAILABILITY#enemy",
+      "owner": "settlement.path.AVAILABILITY",
+      "name": "enemy",
+      "kind": "FIELD",
+      "signature": "enemy",
+      "public": true,
+      "source_file": "settlement/path/AVAILABILITY.java",
+      "uses": [
+        "TileReadRequest.java:119"
+      ],
+      "parameter_types": [],
+      "compiler_generated_enum": false,
+      "arity": -1,
+      "source_candidates": [
+        {
+          "line": 39,
+          "source_sha256": "8d2f465a992c34fe223f7d3beec90a7dc3088fc2abc5e5c9a5cca643399cf5f8",
+          "parameter_types": [],
+          "has_javadoc": false
+        }
+      ],
+      "source_match": "name_arity_and_simple_parameter_types",
+      "documentation_status": "human_review_required; Javadoc presence alone does not establish a stable mod contract"
+    },
+    {
+      "id": "settlement.path.AVAILABILITY#movementSpeed",
+      "owner": "settlement.path.AVAILABILITY",
+      "name": "movementSpeed",
+      "kind": "FIELD",
+      "signature": "movementSpeed",
+      "public": true,
+      "source_file": "settlement/path/AVAILABILITY.java",
+      "uses": [
+        "TileReadRequest.java:119"
+      ],
+      "parameter_types": [],
+      "compiler_generated_enum": false,
+      "arity": -1,
+      "source_candidates": [
+        {
+          "line": 41,
+          "source_sha256": "8d2f465a992c34fe223f7d3beec90a7dc3088fc2abc5e5c9a5cca643399cf5f8",
+          "parameter_types": [],
+          "has_javadoc": false
+        }
+      ],
+      "source_match": "name_arity_and_simple_parameter_types",
+      "documentation_status": "human_review_required; Javadoc presence alone does not establish a stable mod contract"
+    },
+    {
+      "id": "settlement.path.AVAILABILITY#player",
+      "owner": "settlement.path.AVAILABILITY",
+      "name": "player",
+      "kind": "FIELD",
+      "signature": "player",
+      "public": true,
+      "source_file": "settlement/path/AVAILABILITY.java",
+      "uses": [
+        "TileReadRequest.java:119"
+      ],
+      "parameter_types": [],
+      "compiler_generated_enum": false,
+      "arity": -1,
+      "source_candidates": [
+        {
+          "line": 38,
+          "source_sha256": "8d2f465a992c34fe223f7d3beec90a7dc3088fc2abc5e5c9a5cca643399cf5f8",
+          "parameter_types": [],
+          "has_javadoc": false
+        }
+      ],
+      "source_match": "name_arity_and_simple_parameter_types",
+      "documentation_status": "human_review_required; Javadoc presence alone does not establish a stable mod contract"
+    },
+    {
+      "id": "settlement.path.AVAILABILITY#tileCollide",
+      "owner": "settlement.path.AVAILABILITY",
+      "name": "tileCollide",
+      "kind": "FIELD",
+      "signature": "tileCollide",
+      "public": true,
+      "source_file": "settlement/path/AVAILABILITY.java",
+      "uses": [
+        "TileReadRequest.java:118"
+      ],
+      "parameter_types": [],
+      "compiler_generated_enum": false,
+      "arity": -1,
+      "source_candidates": [
+        {
+          "line": 40,
+          "source_sha256": "8d2f465a992c34fe223f7d3beec90a7dc3088fc2abc5e5c9a5cca643399cf5f8",
+          "parameter_types": [],
+          "has_javadoc": false
+        }
+      ],
+      "source_match": "name_arity_and_simple_parameter_types",
+      "documentation_status": "human_review_required; Javadoc presence alone does not establish a stable mod contract"
+    },
+    {
+      "id": "settlement.path.PATHING#getAvailability(int,int)",
+      "owner": "settlement.path.PATHING",
+      "name": "getAvailability",
+      "kind": "METHOD",
+      "signature": "getAvailability(int,int)",
+      "public": true,
+      "source_file": "settlement/path/PATHING.java",
+      "uses": [
+        "TileReadRequest.java:117"
+      ],
+      "parameter_types": [
+        "int",
+        "int"
+      ],
+      "compiler_generated_enum": false,
+      "arity": 2,
+      "source_candidates": [
+        {
+          "line": 215,
+          "source_sha256": "37426e6b19adcb79c4ceb20b9f44323d6c87a7266864d6ed87fb55897c35e10f",
+          "parameter_types": [
+            "int",
+            "int"
+          ],
+          "has_javadoc": false
+        }
+      ],
+      "source_match": "name_arity_and_simple_parameter_types",
+      "documentation_status": "human_review_required; Javadoc presence alone does not establish a stable mod contract"
+    },
+    {
+      "id": "settlement.path.PATHING#reachability",
+      "owner": "settlement.path.PATHING",
+      "name": "reachability",
+      "kind": "FIELD",
+      "signature": "reachability",
+      "public": true,
+      "source_file": "settlement/path/PATHING.java",
+      "uses": [
+        "TileReadRequest.java:120",
+        "TileReadRequest.java:83"
+      ],
+      "parameter_types": [],
+      "compiler_generated_enum": false,
+      "arity": -1,
+      "source_candidates": [
+        {
+          "line": 172,
+          "source_sha256": "37426e6b19adcb79c4ceb20b9f44323d6c87a7266864d6ed87fb55897c35e10f",
+          "parameter_types": [],
+          "has_javadoc": true
         }
       ],
       "source_match": "name_arity_and_simple_parameter_types",
@@ -2372,6 +2698,63 @@
       "documentation_status": "human_review_required; Javadoc presence alone does not establish a stable mod contract"
     },
     {
+      "id": "settlement.room.main.ROOMS#map",
+      "owner": "settlement.room.main.ROOMS",
+      "name": "map",
+      "kind": "FIELD",
+      "signature": "map",
+      "public": true,
+      "source_file": "settlement/room/main/ROOMS.java",
+      "uses": [
+        "TileReadRequest.java:107",
+        "TileReadRequest.java:78"
+      ],
+      "parameter_types": [],
+      "compiler_generated_enum": false,
+      "arity": -1,
+      "source_candidates": [
+        {
+          "line": 123,
+          "source_sha256": "de6ba96c43487d94418acf70cc99f2948b699b0a3183fd3ff0831ea3e93d0196",
+          "parameter_types": [],
+          "has_javadoc": false
+        }
+      ],
+      "source_match": "name_arity_and_simple_parameter_types",
+      "documentation_status": "human_review_required; Javadoc presence alone does not establish a stable mod contract"
+    },
+    {
+      "id": "settlement.room.main.Room#area(int,int)",
+      "owner": "settlement.room.main.Room",
+      "name": "area",
+      "kind": "METHOD",
+      "signature": "area(int,int)",
+      "public": true,
+      "source_file": "settlement/room/main/Room.java",
+      "uses": [
+        "TileReadRequest.java:109"
+      ],
+      "parameter_types": [
+        "int",
+        "int"
+      ],
+      "compiler_generated_enum": false,
+      "arity": 2,
+      "source_candidates": [
+        {
+          "line": 159,
+          "source_sha256": "00cfa45c5e55c6ae24ab361af2505570cf7e40fb5e55a3341de66e435034d877",
+          "parameter_types": [
+            "int",
+            "int"
+          ],
+          "has_javadoc": false
+        }
+      ],
+      "source_match": "name_arity_and_simple_parameter_types",
+      "documentation_status": "human_review_required; Javadoc presence alone does not establish a stable mod contract"
+    },
+    {
       "id": "settlement.room.main.Room#blueprint()",
       "owner": "settlement.room.main.Room",
       "name": "blueprint",
@@ -2380,7 +2763,9 @@
       "public": true,
       "source_file": "settlement/room/main/Room.java",
       "uses": [
-        "StateCollector.java:65"
+        "StateCollector.java:65",
+        "TileReadRequest.java:108",
+        "TileReadRequest.java:80"
       ],
       "parameter_types": [],
       "compiler_generated_enum": false,
@@ -2405,7 +2790,8 @@
       "public": true,
       "source_file": "settlement/room/main/Room.java",
       "uses": [
-        "StateCollector.java:65"
+        "StateCollector.java:65",
+        "TileReadRequest.java:108"
       ],
       "parameter_types": [],
       "compiler_generated_enum": false,
@@ -2415,6 +2801,99 @@
           "line": 76,
           "source_sha256": "00cfa45c5e55c6ae24ab361af2505570cf7e40fb5e55a3341de66e435034d877",
           "parameter_types": [],
+          "has_javadoc": false
+        }
+      ],
+      "source_match": "name_arity_and_simple_parameter_types",
+      "documentation_status": "human_review_required; Javadoc presence alone does not establish a stable mod contract"
+    },
+    {
+      "id": "settlement.room.main.Room#mX(int,int)",
+      "owner": "settlement.room.main.Room",
+      "name": "mX",
+      "kind": "METHOD",
+      "signature": "mX(int,int)",
+      "public": true,
+      "source_file": "settlement/room/main/Room.java",
+      "uses": [
+        "TileReadRequest.java:109"
+      ],
+      "parameter_types": [
+        "int",
+        "int"
+      ],
+      "compiler_generated_enum": false,
+      "arity": 2,
+      "source_candidates": [
+        {
+          "line": 101,
+          "source_sha256": "00cfa45c5e55c6ae24ab361af2505570cf7e40fb5e55a3341de66e435034d877",
+          "parameter_types": [
+            "int",
+            "int"
+          ],
+          "has_javadoc": false
+        }
+      ],
+      "source_match": "name_arity_and_simple_parameter_types",
+      "documentation_status": "human_review_required; Javadoc presence alone does not establish a stable mod contract"
+    },
+    {
+      "id": "settlement.room.main.Room#mY(int,int)",
+      "owner": "settlement.room.main.Room",
+      "name": "mY",
+      "kind": "METHOD",
+      "signature": "mY(int,int)",
+      "public": true,
+      "source_file": "settlement/room/main/Room.java",
+      "uses": [
+        "TileReadRequest.java:109"
+      ],
+      "parameter_types": [
+        "int",
+        "int"
+      ],
+      "compiler_generated_enum": false,
+      "arity": 2,
+      "source_candidates": [
+        {
+          "line": 102,
+          "source_sha256": "00cfa45c5e55c6ae24ab361af2505570cf7e40fb5e55a3341de66e435034d877",
+          "parameter_types": [
+            "int",
+            "int"
+          ],
+          "has_javadoc": false
+        }
+      ],
+      "source_match": "name_arity_and_simple_parameter_types",
+      "documentation_status": "human_review_required; Javadoc presence alone does not establish a stable mod contract"
+    },
+    {
+      "id": "settlement.room.main.Room#name(int,int)",
+      "owner": "settlement.room.main.Room",
+      "name": "name",
+      "kind": "METHOD",
+      "signature": "name(int,int)",
+      "public": true,
+      "source_file": "settlement/room/main/Room.java",
+      "uses": [
+        "TileReadRequest.java:108"
+      ],
+      "parameter_types": [
+        "int",
+        "int"
+      ],
+      "compiler_generated_enum": false,
+      "arity": 2,
+      "source_candidates": [
+        {
+          "line": 62,
+          "source_sha256": "00cfa45c5e55c6ae24ab361af2505570cf7e40fb5e55a3341de66e435034d877",
+          "parameter_types": [
+            "int",
+            "int"
+          ],
           "has_javadoc": false
         }
       ],
@@ -2433,6 +2912,8 @@
         "StateCollector.java:176",
         "StateCollector.java:65",
         "StateCollector.java:70",
+        "TileReadRequest.java:108",
+        "TileReadRequest.java:80",
         "UiContextCollector.java:95"
       ],
       "parameter_types": [],
@@ -2632,6 +3113,38 @@
       "documentation_status": "human_review_required; Javadoc presence alone does not establish a stable mod contract"
     },
     {
+      "id": "settlement.room.main.RoomsMap#get(int,int)",
+      "owner": "settlement.room.main.RoomsMap",
+      "name": "get",
+      "kind": "METHOD",
+      "signature": "get(int,int)",
+      "public": true,
+      "source_file": "settlement/room/main/RoomsMap.java",
+      "uses": [
+        "TileReadRequest.java:107",
+        "TileReadRequest.java:78"
+      ],
+      "parameter_types": [
+        "int",
+        "int"
+      ],
+      "compiler_generated_enum": false,
+      "arity": 2,
+      "source_candidates": [
+        {
+          "line": 238,
+          "source_sha256": "42262ac80e338eec40b159e4b9adb2148763af22f698654b1cc201dc2e0209fa",
+          "parameter_types": [
+            "int",
+            "int"
+          ],
+          "has_javadoc": false
+        }
+      ],
+      "source_match": "name_arity_and_simple_parameter_types",
+      "documentation_status": "human_review_required; Javadoc presence alone does not establish a stable mod contract"
+    },
+    {
       "id": "settlement.room.main.employment.RoomEmploymentIns#employed()",
       "owner": "settlement.room.main.employment.RoomEmploymentIns",
       "name": "employed",
@@ -2794,7 +3307,7 @@
       "public": true,
       "source_file": "settlement/stats/STATS.java",
       "uses": [
-        "StateCollector.java:243"
+        "StateCollector.java:244"
       ],
       "parameter_types": [],
       "compiler_generated_enum": false,
@@ -3079,8 +3592,8 @@
       "source_file": "settlement/stats/stat/SETT_STATISTICS.java",
       "uses": [
         "StateCollector.java:146",
-        "StateCollector.java:250",
-        "StateCollector.java:251"
+        "StateCollector.java:251",
+        "StateCollector.java:252"
       ],
       "parameter_types": [
         "init.type.HCLASS"
@@ -3109,7 +3622,7 @@
       "public": true,
       "source_file": "settlement/stats/stat/SETT_STATISTICS.java",
       "uses": [
-        "StateCollector.java:256"
+        "StateCollector.java:257"
       ],
       "parameter_types": [],
       "compiler_generated_enum": false,
@@ -3219,7 +3732,7 @@
       "public": true,
       "source_file": "settlement/stats/stat/STAT.java",
       "uses": [
-        "StateCollector.java:255",
+        "StateCollector.java:256",
         "StateCollector.java:42"
       ],
       "parameter_types": [],
@@ -3245,7 +3758,7 @@
       "public": true,
       "source_file": "settlement/stats/stat/STAT.java",
       "uses": [
-        "StateCollector.java:255",
+        "StateCollector.java:256",
         "StateCollector.java:42",
         "StateCollector.java:46"
       ],
@@ -3272,7 +3785,7 @@
       "public": true,
       "source_file": "settlement/stats/stat/StatCollection.java",
       "uses": [
-        "StateCollector.java:246"
+        "StateCollector.java:247"
       ],
       "parameter_types": [],
       "compiler_generated_enum": false,
@@ -3297,8 +3810,8 @@
       "public": true,
       "source_file": "settlement/stats/stat/StatCollection.java",
       "uses": [
-        "StateCollector.java:244",
-        "StateCollector.java:255"
+        "StateCollector.java:245",
+        "StateCollector.java:256"
       ],
       "parameter_types": [],
       "compiler_generated_enum": false,
@@ -3338,6 +3851,367 @@
             "Humanoid"
           ],
           "has_javadoc": false
+        }
+      ],
+      "source_match": "name_arity_and_simple_parameter_types",
+      "documentation_status": "human_review_required; Javadoc presence alone does not establish a stable mod contract"
+    },
+    {
+      "id": "settlement.tilemap.floor.Floors#degrade",
+      "owner": "settlement.tilemap.floor.Floors",
+      "name": "degrade",
+      "kind": "FIELD",
+      "signature": "degrade",
+      "public": true,
+      "source_file": "settlement/tilemap/floor/Floors.java",
+      "uses": [
+        "TileReadRequest.java:104"
+      ],
+      "parameter_types": [],
+      "compiler_generated_enum": false,
+      "arity": -1,
+      "source_candidates": [
+        {
+          "line": 786,
+          "source_sha256": "5db66a71df2dbfda803053edbb7a399edf61440b55a5ccea6519e3382b4d95f0",
+          "parameter_types": [],
+          "has_javadoc": false
+        }
+      ],
+      "source_match": "name_arity_and_simple_parameter_types",
+      "documentation_status": "human_review_required; Javadoc presence alone does not establish a stable mod contract"
+    },
+    {
+      "id": "settlement.tilemap.floor.Floors#getter",
+      "owner": "settlement.tilemap.floor.Floors",
+      "name": "getter",
+      "kind": "FIELD",
+      "signature": "getter",
+      "public": true,
+      "source_file": "settlement/tilemap/floor/Floors.java",
+      "uses": [
+        "TileReadRequest.java:103",
+        "TileReadRequest.java:76"
+      ],
+      "parameter_types": [],
+      "compiler_generated_enum": false,
+      "arity": -1,
+      "source_candidates": [
+        {
+          "line": 764,
+          "source_sha256": "5db66a71df2dbfda803053edbb7a399edf61440b55a5ccea6519e3382b4d95f0",
+          "parameter_types": [],
+          "has_javadoc": false
+        }
+      ],
+      "source_match": "name_arity_and_simple_parameter_types",
+      "documentation_status": "human_review_required; Javadoc presence alone does not establish a stable mod contract"
+    },
+    {
+      "id": "settlement.tilemap.floor.Floors.Floor#isRoad",
+      "owner": "settlement.tilemap.floor.Floors.Floor",
+      "name": "isRoad",
+      "kind": "FIELD",
+      "signature": "isRoad",
+      "public": true,
+      "source_file": "settlement/tilemap/floor/Floors.java",
+      "uses": [
+        "TileReadRequest.java:104"
+      ],
+      "parameter_types": [],
+      "compiler_generated_enum": false,
+      "arity": -1,
+      "source_candidates": [
+        {
+          "line": 559,
+          "source_sha256": "5db66a71df2dbfda803053edbb7a399edf61440b55a5ccea6519e3382b4d95f0",
+          "parameter_types": [],
+          "has_javadoc": false
+        }
+      ],
+      "source_match": "name_arity_and_simple_parameter_types",
+      "documentation_status": "human_review_required; Javadoc presence alone does not establish a stable mod contract"
+    },
+    {
+      "id": "settlement.tilemap.floor.Floors.Floor#key",
+      "owner": "settlement.tilemap.floor.Floors.Floor",
+      "name": "key",
+      "kind": "FIELD",
+      "signature": "key",
+      "public": true,
+      "source_file": "settlement/tilemap/floor/Floors.java",
+      "uses": [
+        "TileReadRequest.java:104",
+        "TileReadRequest.java:76"
+      ],
+      "parameter_types": [],
+      "compiler_generated_enum": false,
+      "arity": -1,
+      "source_candidates": [
+        {
+          "line": 569,
+          "source_sha256": "5db66a71df2dbfda803053edbb7a399edf61440b55a5ccea6519e3382b4d95f0",
+          "parameter_types": [],
+          "has_javadoc": false
+        }
+      ],
+      "source_match": "name_arity_and_simple_parameter_types",
+      "documentation_status": "human_review_required; Javadoc presence alone does not establish a stable mod contract"
+    },
+    {
+      "id": "settlement.tilemap.floor.Floors.Floor#name",
+      "owner": "settlement.tilemap.floor.Floors.Floor",
+      "name": "name",
+      "kind": "FIELD",
+      "signature": "name",
+      "public": true,
+      "source_file": "settlement/tilemap/floor/Floors.java",
+      "uses": [
+        "TileReadRequest.java:104"
+      ],
+      "parameter_types": [],
+      "compiler_generated_enum": false,
+      "arity": -1,
+      "source_candidates": [
+        {
+          "line": 557,
+          "source_sha256": "5db66a71df2dbfda803053edbb7a399edf61440b55a5ccea6519e3382b4d95f0",
+          "parameter_types": [],
+          "has_javadoc": false
+        }
+      ],
+      "source_match": "name_arity_and_simple_parameter_types",
+      "documentation_status": "human_review_required; Javadoc presence alone does not establish a stable mod contract"
+    },
+    {
+      "id": "settlement.tilemap.ground.Minables#amountD",
+      "owner": "settlement.tilemap.ground.Minables",
+      "name": "amountD",
+      "kind": "FIELD",
+      "signature": "amountD",
+      "public": true,
+      "source_file": "settlement/tilemap/ground/Minables.java",
+      "uses": [
+        "TileReadRequest.java:114"
+      ],
+      "parameter_types": [],
+      "compiler_generated_enum": false,
+      "arity": -1,
+      "source_candidates": [
+        {
+          "line": 216,
+          "source_sha256": "5d949a067a29328b315993974fba87d3ff827a0819f1868821c099ac2f16382d",
+          "parameter_types": [],
+          "has_javadoc": false
+        }
+      ],
+      "source_match": "name_arity_and_simple_parameter_types",
+      "documentation_status": "human_review_required; Javadoc presence alone does not establish a stable mod contract"
+    },
+    {
+      "id": "settlement.tilemap.ground.Minables#amountInt",
+      "owner": "settlement.tilemap.ground.Minables",
+      "name": "amountInt",
+      "kind": "FIELD",
+      "signature": "amountInt",
+      "public": true,
+      "source_file": "settlement/tilemap/ground/Minables.java",
+      "uses": [
+        "TileReadRequest.java:114"
+      ],
+      "parameter_types": [],
+      "compiler_generated_enum": false,
+      "arity": -1,
+      "source_candidates": [
+        {
+          "line": 175,
+          "source_sha256": "5d949a067a29328b315993974fba87d3ff827a0819f1868821c099ac2f16382d",
+          "parameter_types": [],
+          "has_javadoc": false
+        }
+      ],
+      "source_match": "name_arity_and_simple_parameter_types",
+      "documentation_status": "human_review_required; Javadoc presence alone does not establish a stable mod contract"
+    },
+    {
+      "id": "settlement.tilemap.ground.Minables#getter",
+      "owner": "settlement.tilemap.ground.Minables",
+      "name": "getter",
+      "kind": "FIELD",
+      "signature": "getter",
+      "public": true,
+      "source_file": "settlement/tilemap/ground/Minables.java",
+      "uses": [
+        "TileReadRequest.java:112",
+        "TileReadRequest.java:82"
+      ],
+      "parameter_types": [],
+      "compiler_generated_enum": false,
+      "arity": -1,
+      "source_candidates": [
+        {
+          "line": 138,
+          "source_sha256": "5d949a067a29328b315993974fba87d3ff827a0819f1868821c099ac2f16382d",
+          "parameter_types": [],
+          "has_javadoc": false
+        }
+      ],
+      "source_match": "name_arity_and_simple_parameter_types",
+      "documentation_status": "human_review_required; Javadoc presence alone does not establish a stable mod contract"
+    },
+    {
+      "id": "settlement.tilemap.ground.Minables#value",
+      "owner": "settlement.tilemap.ground.Minables",
+      "name": "value",
+      "kind": "FIELD",
+      "signature": "value",
+      "public": true,
+      "source_file": "settlement/tilemap/ground/Minables.java",
+      "uses": [
+        "TileReadRequest.java:114"
+      ],
+      "parameter_types": [],
+      "compiler_generated_enum": false,
+      "arity": -1,
+      "source_candidates": [
+        {
+          "line": 248,
+          "source_sha256": "5d949a067a29328b315993974fba87d3ff827a0819f1868821c099ac2f16382d",
+          "parameter_types": [],
+          "has_javadoc": false
+        }
+      ],
+      "source_match": "name_arity_and_simple_parameter_types",
+      "documentation_status": "human_review_required; Javadoc presence alone does not establish a stable mod contract"
+    },
+    {
+      "id": "settlement.tilemap.terrain.Terrain#get(int,int)",
+      "owner": "settlement.tilemap.terrain.Terrain",
+      "name": "get",
+      "kind": "METHOD",
+      "signature": "get(int,int)",
+      "public": true,
+      "source_file": "settlement/tilemap/terrain/Terrain.java",
+      "uses": [
+        "TileReadRequest.java:75",
+        "TileReadRequest.java:99"
+      ],
+      "parameter_types": [
+        "int",
+        "int"
+      ],
+      "compiler_generated_enum": false,
+      "arity": 2,
+      "source_candidates": [
+        {
+          "line": 240,
+          "source_sha256": "835439852101f6cdd153614826c41742b93272e02780fee1a9bc433246885827",
+          "parameter_types": [
+            "int",
+            "int"
+          ],
+          "has_javadoc": false
+        }
+      ],
+      "source_match": "name_arity_and_simple_parameter_types",
+      "documentation_status": "human_review_required; Javadoc presence alone does not establish a stable mod contract"
+    },
+    {
+      "id": "settlement.tilemap.terrain.Terrain.TerrainTile#isMassiveWall()",
+      "owner": "settlement.tilemap.terrain.Terrain.TerrainTile",
+      "name": "isMassiveWall",
+      "kind": "METHOD",
+      "signature": "isMassiveWall()",
+      "public": true,
+      "source_file": "settlement/tilemap/terrain/Terrain.java",
+      "uses": [
+        "TileReadRequest.java:100"
+      ],
+      "parameter_types": [],
+      "compiler_generated_enum": false,
+      "arity": 0,
+      "source_candidates": [
+        {
+          "line": 384,
+          "source_sha256": "835439852101f6cdd153614826c41742b93272e02780fee1a9bc433246885827",
+          "parameter_types": [],
+          "has_javadoc": false
+        }
+      ],
+      "source_match": "name_arity_and_simple_parameter_types",
+      "documentation_status": "human_review_required; Javadoc presence alone does not establish a stable mod contract"
+    },
+    {
+      "id": "settlement.tilemap.terrain.Terrain.TerrainTile#key()",
+      "owner": "settlement.tilemap.terrain.Terrain.TerrainTile",
+      "name": "key",
+      "kind": "METHOD",
+      "signature": "key()",
+      "public": true,
+      "source_file": "settlement/tilemap/terrain/Terrain.java",
+      "uses": [
+        "TileReadRequest.java:100",
+        "TileReadRequest.java:75"
+      ],
+      "parameter_types": [],
+      "compiler_generated_enum": false,
+      "arity": 0,
+      "source_candidates": [
+        {
+          "line": 491,
+          "source_sha256": "835439852101f6cdd153614826c41742b93272e02780fee1a9bc433246885827",
+          "parameter_types": [],
+          "has_javadoc": false
+        }
+      ],
+      "source_match": "name_arity_and_simple_parameter_types",
+      "documentation_status": "human_review_required; Javadoc presence alone does not establish a stable mod contract"
+    },
+    {
+      "id": "settlement.tilemap.terrain.Terrain.TerrainTile#name()",
+      "owner": "settlement.tilemap.terrain.Terrain.TerrainTile",
+      "name": "name",
+      "kind": "METHOD",
+      "signature": "name()",
+      "public": true,
+      "source_file": "settlement/tilemap/terrain/Terrain.java",
+      "uses": [
+        "TileReadRequest.java:100"
+      ],
+      "parameter_types": [],
+      "compiler_generated_enum": false,
+      "arity": 0,
+      "source_candidates": [
+        {
+          "line": 357,
+          "source_sha256": "835439852101f6cdd153614826c41742b93272e02780fee1a9bc433246885827",
+          "parameter_types": [],
+          "has_javadoc": false
+        }
+      ],
+      "source_match": "name_arity_and_simple_parameter_types",
+      "documentation_status": "human_review_required; Javadoc presence alone does not establish a stable mod contract"
+    },
+    {
+      "id": "settlement.tilemap.terrain.Terrain.TerrainTile#roofIs()",
+      "owner": "settlement.tilemap.terrain.Terrain.TerrainTile",
+      "name": "roofIs",
+      "kind": "METHOD",
+      "signature": "roofIs()",
+      "public": true,
+      "source_file": "settlement/tilemap/terrain/Terrain.java",
+      "uses": [
+        "TileReadRequest.java:100"
+      ],
+      "parameter_types": [],
+      "compiler_generated_enum": false,
+      "arity": 0,
+      "source_candidates": [
+        {
+          "line": 392,
+          "source_sha256": "835439852101f6cdd153614826c41742b93272e02780fee1a9bc433246885827",
+          "parameter_types": [],
+          "has_javadoc": true
         }
       ],
       "source_match": "name_arity_and_simple_parameter_types",
@@ -3658,6 +4532,135 @@
       "documentation_status": "human_review_required; Javadoc presence alone does not establish a stable mod contract"
     },
     {
+      "id": "snake2d.util.map.MAP_BOOLEAN#is(int,int)",
+      "owner": "snake2d.util.map.MAP_BOOLEAN",
+      "name": "is",
+      "kind": "METHOD",
+      "signature": "is(int,int)",
+      "public": true,
+      "source_file": "snake2d/util/map/MAP_BOOLEAN.java",
+      "uses": [
+        "TileReadRequest.java:120",
+        "TileReadRequest.java:83"
+      ],
+      "parameter_types": [
+        "int",
+        "int"
+      ],
+      "compiler_generated_enum": false,
+      "arity": 2,
+      "source_candidates": [
+        {
+          "line": 13,
+          "source_sha256": "5e642444ef92da156a9cfaeb509d246a7829b869c8eafba6de7e28793cad4302",
+          "parameter_types": [
+            "int",
+            "int"
+          ],
+          "has_javadoc": false
+        }
+      ],
+      "source_match": "name_arity_and_simple_parameter_types",
+      "documentation_status": "human_review_required; Javadoc presence alone does not establish a stable mod contract"
+    },
+    {
+      "id": "snake2d.util.map.MAP_DOUBLE#get(int,int)",
+      "owner": "snake2d.util.map.MAP_DOUBLE",
+      "name": "get",
+      "kind": "METHOD",
+      "signature": "get(int,int)",
+      "public": true,
+      "source_file": "snake2d/util/map/MAP_DOUBLE.java",
+      "uses": [
+        "TileReadRequest.java:104",
+        "TileReadRequest.java:114"
+      ],
+      "parameter_types": [
+        "int",
+        "int"
+      ],
+      "compiler_generated_enum": false,
+      "arity": 2,
+      "source_candidates": [
+        {
+          "line": 71,
+          "source_sha256": "8a7cbf50db18c43d0a0c473bc8a894cf7312097b1ddcca8878d43afe59d6ffcb",
+          "parameter_types": [
+            "int",
+            "int"
+          ],
+          "has_javadoc": true
+        }
+      ],
+      "source_match": "name_arity_and_simple_parameter_types",
+      "documentation_status": "human_review_required; Javadoc presence alone does not establish a stable mod contract"
+    },
+    {
+      "id": "snake2d.util.map.MAP_INT#get(int,int)",
+      "owner": "snake2d.util.map.MAP_INT",
+      "name": "get",
+      "kind": "METHOD",
+      "signature": "get(int,int)",
+      "public": true,
+      "source_file": "snake2d/util/map/MAP_INT.java",
+      "uses": [
+        "TileReadRequest.java:114"
+      ],
+      "parameter_types": [
+        "int",
+        "int"
+      ],
+      "compiler_generated_enum": false,
+      "arity": 2,
+      "source_candidates": [
+        {
+          "line": 70,
+          "source_sha256": "78948bf82e85c7ea9b621a7244a3b1cc88523573dbd3ae5eb026b99ec2fddda6",
+          "parameter_types": [
+            "int",
+            "int"
+          ],
+          "has_javadoc": true
+        }
+      ],
+      "source_match": "name_arity_and_simple_parameter_types",
+      "documentation_status": "human_review_required; Javadoc presence alone does not establish a stable mod contract"
+    },
+    {
+      "id": "snake2d.util.map.MAP_OBJECT#get(int,int)",
+      "owner": "snake2d.util.map.MAP_OBJECT",
+      "name": "get",
+      "kind": "METHOD",
+      "signature": "get(int,int)",
+      "public": true,
+      "source_file": "snake2d/util/map/MAP_OBJECT.java",
+      "uses": [
+        "TileReadRequest.java:103",
+        "TileReadRequest.java:112",
+        "TileReadRequest.java:76",
+        "TileReadRequest.java:82"
+      ],
+      "parameter_types": [
+        "int",
+        "int"
+      ],
+      "compiler_generated_enum": false,
+      "arity": 2,
+      "source_candidates": [
+        {
+          "line": 41,
+          "source_sha256": "1a621c7419d0bff754a2fb53f99e0b840d08dc373b9aecd6b0cce8edc06d4958",
+          "parameter_types": [
+            "int",
+            "int"
+          ],
+          "has_javadoc": true
+        }
+      ],
+      "source_match": "name_arity_and_simple_parameter_types",
+      "documentation_status": "human_review_required; Javadoc presence alone does not establish a stable mod contract"
+    },
+    {
       "id": "snake2d.util.sprite.text.Str#toString()",
       "owner": "snake2d.util.sprite.text.Str",
       "name": "toString",
@@ -3891,7 +4894,7 @@
       "source_file": "util/info/INFO.java",
       "uses": [
         "StateCollector.java:151",
-        "StateCollector.java:255",
+        "StateCollector.java:256",
         "StateCollector.java:38",
         "StateCollector.java:42"
       ],
@@ -3920,7 +4923,7 @@
       "uses": [
         "StateCollector.java:146",
         "StateCollector.java:147",
-        "StateCollector.java:251"
+        "StateCollector.java:252"
       ],
       "parameter_types": [
         "T"
@@ -3949,7 +4952,7 @@
       "public": true,
       "source_file": "util/statistics/HISTORY_INT.java",
       "uses": [
-        "StateCollector.java:250"
+        "StateCollector.java:251"
       ],
       "parameter_types": [
         "T"
@@ -5106,7 +6109,7 @@
       "public": true,
       "source_file": "world/WORLD.java",
       "uses": [
-        "StateCollector.java:273",
+        "StateCollector.java:274",
         "UiContextCollector.java:30"
       ],
       "parameter_types": [],
@@ -5232,7 +6235,7 @@
       "public": true,
       "source_file": "world/WorldGen.java",
       "uses": [
-        "StateCollector.java:273",
+        "StateCollector.java:274",
         "UiContextCollector.java:33"
       ],
       "parameter_types": [],

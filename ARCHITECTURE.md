@@ -1,10 +1,10 @@
-# Architecture — 0.11.0
+# Architecture — 0.12.0
 
 The Java mod implements the shipped SCRIPT interface. Typed collectors read public game APIs on the game update thread through public `GAME.addAfterUpdate` and build detached DTOs. A daemon serializes them to an atomic local JSON snapshot approximately every two wall-clock seconds while the update hook runs. MCP validates/caches that snapshot and executes bounded selections locally. Neither the daemon nor MCP traverses game objects. On-demand entity requests are parsed on the file daemon, handed to the update thread, evaluated using fixed public getters, and returned as detached DTOs.
 
 The snapshot includes version, mods, session, tick, time and 18 partial domains, plus the installed-help catalog. Query batches share one cached snapshot; optional snapshot pins reject changes. See QUERY_GUIDE.md. Missing/unknown values are distinct from zero. Snapshot input is limited to 16 MiB. Retained-capture MCP tool text is bounded to 64 KiB; transport framing can add bytes.
 
-Twelve read-only MCP tools are registered, including partial UI context and an API evidence inventory. The private raw-field reader and screenshot/input mailbox are removed. No reflection, native callback hook, arbitrary code tool, process-memory access, OS automation or gameplay mutation is included. API_BOUNDARY.md records the documented lifecycle and source-verified public API mappings separately.
+Thirteen read-only MCP tools are registered, including partial UI context and an API evidence inventory. The private raw-field reader and screenshot/input mailbox are removed. No reflection, native callback hook, arbitrary code tool, process-memory access, OS automation or gameplay mutation is included. API_BOUNDARY.md records the documented lifecycle and source-verified public API mappings separately.
 
 The local runtime directory is transport/storage for detached game exports and curated reference summaries. It is not an external screen/process automation adapter. No network listener is opened. The model/client may send selected state for inference according to its configuration.
 
@@ -53,3 +53,11 @@ PROVIDERS.md adds Claude subscription, Claude API and DeepSeek API support along
 Capture protocol 2 uses the same fixed-key mailbox, but requires cursor zero and ID projection, allows 2,000 rows / 100,000 scanned slots / 4,000 projected stat cells and a 2 MiB local response. An incomplete scan, excess matching rows or predicate error fails instead of retaining a partial selection. The server stores at most three captures for 120 seconds each; tokens are server-local, and fresh loaded same-session/version observations are required. Legacy protocol 1 and `query_live_entities` retain their previous smaller bounds and mutable cursor semantics.
 
 Each SCRIPT instance registers its sampler with public `GAME.addAfterUpdate`; its SCRIPT update method performs no sampling. Source/binary review and the copied-game run establish that this callback still runs when a menu pauses simulation with requested speed nonzero. The hook is source-verified public API, not a documented stable script contract. Standalone menu callbacks and instant unload detection remain unavailable.
+
+## Spatial observations — 0.12.0
+
+`query_live_tiles` uses a separate fixed 15-key tile mailbox, sharing the POSIX request lock with entity queries. The IO daemon parses a detached request; only the registered game after-update observer reads terrain, floor, coordinate-aware room, mineral and path APIs. It scans at most 4,096 tiles and returns at most 100 selected rows, with session/tick/time/scene/UI context. Local response and actual MCP tool text are each capped at 64 KiB; protocol framing can add bytes. Oversize responses fail instead of silently truncating.
+
+Coordinates are rectangular, with exclusive upper bounds and row-major rectangle offsets. Each page is a separate mutable observation; entity capture tokens do not retain tile pages. Group-level available/data distinguish missing floor/room/mineral values from getter failures. Predicate errors make matching absence/count unknown. The schema and structured field definitions are exposed through game_query_help.on_demand_tiles. No arbitrary member path, setter, input or rendering call is added.
+
+Public RoomSingleton coordinate getters refresh internal scratch caches. Scalar/string values are copied immediately on the game update thread. Shared room-map records do not identify unique room instances; instance_room_id is populated only for RoomInstance. These are map observations, not UI selection. Path component flags do not establish a route for a specific agent or construction suitability; mineral amounts do not establish production yield or deposit lifetime.

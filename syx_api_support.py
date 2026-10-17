@@ -1,5 +1,8 @@
 """Explicitly reviewed capability coverage; automation cannot turn public APIs into official contracts."""
 CAPABILITIES = [
+ {'id':'spatial_tile_selections','support':'public_source_verified','validation':'0.12 copied-city MCP fixture compares public terrain/floor/room/mineral/path fields, absent/present values, combined filters and rectangular paging; exact scene report is version/hash scoped in validation-evidence.json',
+  'references':['API_ESTABLISHMENT.md','QUERY_GUIDE.md','settlement/tilemap/terrain/Terrain.java','settlement/tilemap/floor/Floors.java','settlement/room/main/RoomSingleton.java','settlement/tilemap/ground/Minables.java','settlement/path/PATHING.java','api-audit.json'],
+  'limits':'Fixed projections and AND predicates; 4,096 tiles scanned/100 rows per mutable page. Shared singleton room records are not unique instances or UI selection. Component reachability is not a particular-agent route/construction guarantee. No full tile/world schema, global worker synchronization or large-city performance claim.'},
  {'id':'retained_entity_captures','support':'public_source_verified','validation':'0.11 copied-game MCP fixture: 1,395 entities over 70 pages while simulation advances; original tick/time/context retained, new citizen excluded until recapture; bounds/concurrent pages pass',
   'references':['API_ESTABLISHMENT.md','QUERY_GUIDE.md','api-audit.json'],
   'limits':'Bounded fixed entity fields only: 2,000 rows, 100,000 scanned slots, 4,000 stat cells, 2 MiB local payload. Three server-local captures for 120 seconds; same-session fresh state required. Not a global worker-thread transaction or complete state schema. Legacy cursor queries remain mutable.'},

@@ -1,15 +1,16 @@
 {
-  "version": "0.11.0",
+  "version": "0.12.0",
   "game_version": "0.71.44",
   "python_tests": {
-    "passed": 69
+    "passed": 90
   },
-  "production_public_member_references": 210,
+  "production_public_member_references": 246,
   "production_source_sha256": {
-    "syx/assistant/AssistantScript.java": "f7f56d7d7eccf0f20e3d4c7ceb28f7a6397a0e984d0745ab92bf63c8fe63d097",
+    "syx/assistant/AssistantScript.java": "e5bb85e22a77a39c3033020b95462ad4b2e8cd642f395d8cdff6f809ab9fec77",
     "syx/assistant/EntityReadRequest.java": "deb0f86cad28da1c8677394a4aeb26913b0c80b4ee90c08cb882bedbc11f8a03",
     "syx/assistant/JsonWriter.java": "c525eb60d3224cab83ed3fd6b8594ec8652211f00bd947e873e1482f919e81dc",
-    "syx/assistant/StateCollector.java": "f485475e5921aa26a6c023dab5b2eab29e51df2da40aa295bf0099b4d3a5b90d",
+    "syx/assistant/StateCollector.java": "dc5d25f18cb75b7e432e73482b23ae52405d791dc1d4f9c6c386f6242e901458",
+    "syx/assistant/TileReadRequest.java": "1a192cde61a7e1bdefa170390c00b17c74573b9c41de71700ebea466411ad3c5",
     "syx/assistant/UiContentCollector.java": "c0d20c7f9f2734a0bb625427875f06bfcd07edb20611248b39b6e8f480ef5a48",
     "syx/assistant/UiContextCollector.java": "c379afcb36169380a5956c51a9b76f9598b723c14fae136e5850b20177ef066e"
   },
@@ -404,7 +405,7 @@
     "source_files": 2443,
     "public_types": 2052,
     "public_declared_members": 17442,
-    "production_references_found": 210,
+    "production_references_found": 246,
     "catalog_sha256": "5b4b13770eb3251ce066e4f9cf57b5e6b1956687136b5be33a680b707a73b065",
     "synthetic_binary_source_fixture_passed": true,
     "limits": "Declaration metadata only; no new runtime data mappings or getter safety/contracts established. Full metadata regenerated locally; summary is source/binary hash paired."
@@ -440,7 +441,7 @@
     "fixture_sha256": "4c2025eb645630807b11ece5f14065a8444252d7ae90204dd015f02006fc5902",
     "adapter_version": "0.10.0"
   },
-  "tested_mod_jar_sha256": "6da5e25c6b27e756e93a9b0b8b763cb9df76d2d4c6edea454fc8ee95d659a20d",
+  "tested_mod_jar_sha256": "272031340af548f950a0b989c6f127a940d8d68507b472ad276487409fd4416b",
   "retained_entity_capture": {
     "passed": true,
     "game_version": "0.71.44",
@@ -552,5 +553,121 @@
     "inference_or_subscription_validation": false,
     "limits": "No provider login or paid model request; validates local MCP client transport and offline setup profiles only.",
     "normal_mcp_test_entry_absent": true
+  },
+  "spatial_tile_queries": {
+    "passed": true,
+    "game_version": "0.71.44",
+    "point_cases": 16,
+    "case_labels": [
+      "no_room",
+      "no_floor",
+      "no_mineral",
+      "terrain:TREE_SIZE_0",
+      "terrain:NOTHING",
+      "terrain:FLOWER",
+      "terrain:ROCK",
+      "terrain:BUSH",
+      "terrain:TREE_SIZE_2",
+      "terrain:DECORD_MID_FERTILITY_1X1",
+      "terrain:TREE_SIZE_1",
+      "terrain:MUSHROOM",
+      "floor",
+      "mineral",
+      "shared_room_record",
+      "instance_room"
+    ],
+    "pages": 33,
+    "matching_tiles": 306,
+    "field_parity": true,
+    "null_presence_distinguished": true,
+    "combined_filters": true,
+    "mineral_installed_reference": true,
+    "coordinate_and_cursor_bounds": true,
+    "concurrent_tile_entity_requests": true,
+    "mcp_text_cap_checked": true,
+    "observer_phase": "GAME.addAfterUpdate",
+    "limits": [
+      "Copied paused city; cursor pages remain separate mutable observations.",
+      "Scene follow-up covers city/tactical HUD/generated deployment/menu/reload/initial and terrain world setup; not active combat or every menu.",
+      "Room map record IDs can be shared; no UI-selected room, construction suitability, particular-agent route or yield forecast established."
+    ],
+    "adapter_version": "0.12.0",
+    "tested_mod_jar_sha256": "272031340af548f950a0b989c6f127a940d8d68507b472ad276487409fd4416b",
+    "game_process_exit_code": 0,
+    "verifier_exit_code": 0,
+    "verifier_sha256": "00b210bf6eff3ea6d989c50b28132d7da1120e5d19a0fc4bd58cdcf0c08747bb",
+    "fixture_sha256": "eb4e19e28f5a9abb93d13280a220f3da841c12207b9ecd65a8d7dfb56cd6157a"
+  },
+  "spatial_scene_regression": {
+    "passed": true,
+    "checks": {
+      "city": {
+        "passed": true,
+        "view": "settlement",
+        "scene_kind": "city",
+        "on_demand_read_available": true,
+        "tile_read_available": true
+      },
+      "settlement_battle": {
+        "passed": true,
+        "view": "settlement_battle",
+        "scene_kind": "city",
+        "on_demand_read_available": true,
+        "tile_read_available": true
+      },
+      "city_restored": {
+        "passed": true,
+        "view": "settlement",
+        "scene_kind": "city",
+        "on_demand_read_available": true,
+        "tile_read_available": true
+      },
+      "battle_deployment": {
+        "passed": true,
+        "view": "battle",
+        "scene_kind": "battlefield",
+        "on_demand_read_available": true,
+        "tile_read_available": true
+      },
+      "battle_menu": {
+        "passed": true,
+        "view": "battle",
+        "scene_kind": "battlefield",
+        "on_demand_read_available": true,
+        "tile_read_available": true
+      },
+      "city_reloaded": {
+        "passed": true,
+        "view": "settlement",
+        "scene_kind": "city",
+        "on_demand_read_available": true,
+        "tile_read_available": true
+      },
+      "world_generation": {
+        "passed": true,
+        "view": "world_generation",
+        "scene_kind": "unavailable",
+        "on_demand_read_available": false,
+        "tile_read_available": false
+      },
+      "terrain_generated": {
+        "passed": true,
+        "view": "world_generation",
+        "scene_kind": "unavailable",
+        "on_demand_read_available": false,
+        "tile_read_available": false
+      }
+    },
+    "missing": [],
+    "limits": [
+      "Battle is a generated deployment scene, not active fighting or a battle conclusion.",
+      "Generation checks initial setup and public terrain generation; exact private wizard step and full political-world completion remain unvalidated."
+    ],
+    "adapter_version": "0.12.0",
+    "tested_mod_jar_sha256": "272031340af548f950a0b989c6f127a940d8d68507b472ad276487409fd4416b",
+    "game_process_exit_code": 0,
+    "verifier_exit_code": 0,
+    "verifier_sha256": "57e3bcd0e6f758c7dc563857a82e9d67c52bc1924c2ecf203381019cb5d0b34c",
+    "fixture_sha256": "ae623566198d96c324ae911d14c9100da0ab73a6e7c49f1c877c675ec60b6a55"
   }
 }

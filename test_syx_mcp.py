@@ -135,7 +135,7 @@ def test_mcp_transport(setup):
                 listing = await session.list_tools()
                 assert {t.name for t in listing.tools} == {
                     'game_query_help', 'game_status', 'query_game_state', 'search_guidance',
-                    'describe_game_fields', 'select_game_state', 'search_game_references', 'get_game_ui_context', 'get_game_api_support', 'query_live_entities', 'capture_live_entities', 'read_entity_capture'}
+                    'describe_game_fields', 'select_game_state', 'search_game_references', 'get_game_ui_context', 'get_game_api_support', 'query_live_entities', 'capture_live_entities', 'read_entity_capture','query_live_tiles'}
                 assert all(t.annotations.read_only_hint for t in listing.tools)
                 assert next(t for t in listing.tools if t.name=="capture_live_entities").annotations.idempotent_hint is False
                 result = await session.call_tool('game_status', {})
@@ -156,6 +156,8 @@ def test_mcp_transport(setup):
                 assert not exact_reference.is_error and 'Fixture food' in str(exact_reference)
                 context = await session.call_tool('get_game_ui_context', {})
                 assert not context.is_error and 'settlement' in str(context)
+                tile_read = await session.call_tool('query_live_tiles', {'spec':{'tile_bounds':[0,0,1,1]}})
+                assert tile_read.is_error
                 live_read = await session.call_tool('query_live_entities', {'spec':{}})
                 assert live_read.is_error and 'non-demo' in str(live_read)
                 capture = await session.call_tool('capture_live_entities', {'spec':{}})

@@ -2,7 +2,7 @@
 
 A local Java mod and MCP server that let an assistant inspect a loaded Songs of Syx game, request selected data, and advise the player with cited evidence.
 
-**0.11.0 — read-only, in-process public-API bridge.**
+**0.12.0 — read-only, in-process public-API bridge.**
 
 **Experimental working prototype for game 0.71.44 (Steam build 23998889).** Tested against a copied save on Linux. Other game version strings are rejected by the runtime guard; the tested binary hashes are recorded in the audit, and the guard does not attest the loaded JAR hash. This is not a finished in-game chat application.
 
@@ -55,3 +55,5 @@ For the broader offline public-declaration inventory and remaining mapping work,
 Required provider expansion: Claude subscription, Claude API and DeepSeek API, alongside OpenAI. See [provider requirements and connection profiles](PROVIDERS.md). Official-client MCP templates are supplied; authenticated provider/model validation and the custom in-game provider selector remain unfinished.
 
 0.11.0 adds retained bounded entity selections (`capture_live_entities` / `read_entity_capture`) and refreshes observations through public `GAME.addAfterUpdate`, including UI-paused nonzero-speed menus. The copied-game run retained 1,395 entities across 70 pages while simulation advanced. Full state/schema and all-menu coverage remain unfinished.
+
+0.12.0 adds bounded spatial queries for terrain, floors, coordinate-aware rooms, minerals and path flags. Request a rectangle, combine fixed filters and project just the needed groups with `query_live_tiles`; read the meanings and limits in QUERY_GUIDE.md. All domains remain partial.

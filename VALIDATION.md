@@ -1,11 +1,11 @@
-# Validation — 0.11.0 public API/context audit
+# Validation — 0.12.0 public API/context audit
 
 ## Current checks
 
-- 69 Python tests pass: snapshot validity/freshness, demo isolation, paging, selected-data bounds, query filtering/joins/grouping/aggregation, cited source authority/version labels, and MCP transport.
-- MCP transport verifies exactly twelve tools, all read-only. No raw-field, screenshot or input tools are registered.
+- 90 Python tests pass: snapshot validity/freshness, demo isolation, paging, selected-data bounds, query filtering/joins/grouping/aggregation, cited source authority/version labels, and MCP transport.
+- MCP transport verifies exactly thirteen tools, all read-only. No raw-field, screenshot or input tools are registered.
 - Boundary tests check the mod namespace and reject reflection, native input/capture, process launch and engine-resource bypass patterns in production Java source. These tests supplement source review, not a complete security proof.
-- Six production Java source files compile against the installed 0.71.44 JAR with Java 16 target bytecode. Detached JSON serialization tests pass.
+- Seven production Java source files compile against the installed 0.71.44 JAR with Java 16 target bytecode. Detached JSON serialization tests pass.
 
 ## Rebuilt-mod copied-save test
 
@@ -21,7 +21,7 @@ GameDisposable promises cleanup on the next game initialization. JVM shutdown al
 
 ## Reproducible evidence
 
-The production compiler audit resolved 210 public game members, with 209 shipped-source declaration matches and one generated enum member. It inventories mod references rather than every possible game variable. API_ESTABLISHMENT.md records the distinction between documented script contracts, public source-verified access and runtime checks. The context verifier completed with no missing phases; both verifier and isolated game exited with code zero. Test output/state remains local under runtime/ and is not published.
+The production compiler audit resolved 246 public game members, with 245 shipped-source declaration matches and one generated enum member. It inventories mod references rather than every possible game variable. API_ESTABLISHMENT.md records the distinction between documented script contracts, public source-verified access and runtime checks. The context verifier completed with no missing phases; both verifier and isolated game exited with code zero. Test output/state remains local under runtime/ and is not published.
 
 ## Isolated fixture preflight
 
@@ -57,7 +57,7 @@ The 0.8.0 extended-context, 0.7.0 scene/entity and 0.6.0 context fixtures remain
 
 ## Offline public-declaration discovery
 
-The discovery extension passes an independent compiled synthetic API fixture, and the full Python suite now passes 57 tests. The installed-game scan resolves 2,052 public types / 17,442 declared public members from 2,443 shipped source files, with all 210 production references present. API_DISCOVERY.json contains hashes/counts, and API_DISCOVERY.md records the scope and missing source-anchor cases. The initial discovery pass added development evidence without changing production Java code; the later 0.10.0 relationship mapping has its own runtime evidence below. Existing earlier fixtures retain their original build scope.
+The discovery extension passes an independent compiled synthetic API fixture, and the full Python suite now passes 57 tests. The installed-game scan resolves 2,052 public types / 17,442 declared public members from 2,443 shipped source files, with all 246 production references present. API_DISCOVERY.json contains hashes/counts, and API_DISCOVERY.md records the scope and missing source-anchor cases. The initial discovery pass added development evidence without changing production Java code; the later 0.10.0 relationship mapping has its own runtime evidence below. Existing earlier fixtures retain their original build scope.
 
 ## Person assignments — 0.10.0
 
@@ -76,3 +76,11 @@ This establishes bounded retained entity paging, not a global worker-thread tran
 ## Provider requirements and local client check
 
 PROVIDERS.md records nine required provider acceptance gates. Official Claude Code 2.1.296 reports Connected for the local stdio MCP in an isolated configuration; the normal client configuration contains no test entry. All three shell profiles pass syntax and credential-variable transition checks using fake values. No login or paid model request was made. Subscription entitlement, Claude API/DeepSeek inference, provider-specific model tool round-trips and in-game provider selection remain pending. provider-validation.json records this limited scope.
+
+## Spatial query and scene regression — 0.12.0
+
+The tile verifier checks direct public-getter expectations in a copied paused city through the actual MCP tool. It covers absent/present floors, room instances/shared room records and mineral deposits, terrain varieties, combined filters, coordinate bounds, exact installed mineral reference retrieval, rectangular pagination and concurrent tile/entity requests. The updated scene verifier additionally checks tile and legacy entity requests through city, tactical HUD, restored city, generated battle deployment/menu, reload and initial/terrain world setup. No game save is written by the tile fixture.
+
+The first tile pass succeeded, but its follow-up verifier had started before the new editable module mapping was installed and failed to import syx_tiles. A late transition-only verifier then missed the original city phase and could not verify the reload baseline. Those are failed full-run attempts, not complete scene evidence. The clean installed-environment rerun passes all sixteen tile point cases, 306 matching tiles over 33 pages, and all eight scene phases. Both game and verifier exit zero. Current scoped reports are in validation-evidence.json.
+
+The automated suite covers spatial selection bounds, unsupported/private projections, wire encoding, demo refusal, response scope/cursor/coordinate errors and the thirteen-tool MCP inventory. Pure Java tile framing accepts a valid frame and rejects fourteen malformed/unsupported frames. Earlier retained entity, battle and context reports preserve their earlier version/hash scope. This does not establish every game state/menu, active-combat tile consistency, complete tile/world schema or performance at large scales.

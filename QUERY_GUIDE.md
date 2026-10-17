@@ -132,3 +132,19 @@ Use the same finite predicates/stat IDs as live entity queries. ID projection is
 All matching rows must fit 2,000 rows, 100,000 scanned slots, 4,000 selected stat cells and a 2 MiB local payload. Row/scan/predicate/byte failures retain nothing; narrow the selection on failure. Each server retains three captures for 120 seconds, evicting the oldest when full. Tokens are server-local and do not survive restart. Reads require a fresh loaded observation with the same session/version; expiration, eviction and session changes fail explicitly. Pages allow up to 100 rows and 64 KiB of MCP tool text; reduce limit or omit UI context for wide rows. Protocol framing can add bytes.
 
 Capture reads page copied values and do not reread game objects, freeze/pause the game or synchronize background simulation/battle workers. Full game-state/schema, large-city performance and permanent entity IDs remain unestablished. Install paired updated mod/MCP builds. `game_query_help.retained_entities` provides the exact schema and limits.
+
+## Spatial selections — 0.12.0
+
+Use game_query_help.on_demand_tiles for the exact schema and structured field definitions. `query_live_tiles` accepts an explicit rectangle `[x1,y1,x2,y2]` with upper bounds excluded, fixed field groups and AND predicates:
+
+```json
+{"tile_bounds":[100,100,124,124],"fields":["terrain","room","path"],"has_room":false,"throne_component_reachable":true,"limit":20,"scan_limit":4096}
+```
+
+Choose coordinates from observed data and check map dimensions. Optional exact keys are terrain_id, floor_id, room_blueprint_id and mineral_resource_id. An unmatched key can return no matches; it is not an unknown-API error. Follow next_cursor even after empty pages. The cursor is a row-major offset inside this same rectangle, not a global tile index or match count. Keep bounds/filters unchanged while traversing. Each page samples the current scene separately; entity capture tokens do not retain tiles.
+
+At most 4,096 tiles are scanned and 100 rows returned per request. Input is capped at 8 KiB; local response and actual MCP tool text are each capped at 64 KiB. Reduce limit/fields on size errors. Request deadline is eight seconds and the POSIX request lock is shared with entity queries. Use expected_session_id; cite the returned session/tick/time and scene/UI context. No instantiated scene gives an explicit error; initial world setup is not a city.
+
+Every row includes tile_x/tile_y, plus requested groups as `{available,data}`. True/null means no floor/room/deposit reported; false means a getter failure. Nonzero predicate_errors prevents treating matching absence/count as established. Room data belongs to the supplied coordinate, not the UI-selected room. map_record_id may be shared by singleton rooms; instance_room_id exists only for RoomInstance. Anchors and singleton bounding area are engine values, not guaranteed geometric center or usable area. IDs expire with scene/session changes.
+
+Terrain roof/wall flags and floor road/degradation values are engine observations. Mineral amount_raw is a stored 6-bit value, amount_fraction is amount_raw/63, and richness_flag_raw is a stored one-bit flag; retrieve the associated installed resource description using reference_id. These values do not establish extraction yield or lifetime. Path factors and throne-component reachability include adjacent components and do not establish a route for a particular agent, final visibility or construction suitability. Full tile state, fertility, world-map state, global worker consistency and large-city performance remain unestablished.

@@ -1,4 +1,4 @@
-# Game API boundary — 0.11.0
+# Game API boundary — 0.12.0
 
 The game-facing plugin runs inside Songs of Syx using `script.SCRIPT` and `SCRIPT_INSTANCE`. All gameplay observations originate from direct public game API calls on the game update thread via public `GAME.addAfterUpdate`. The Python MCP reads detached local exports; it does not inspect or control the game process itself.
 
@@ -47,17 +47,17 @@ Cleanup occurs at next game initialization and JVM shutdown. Without an official
 
 ## MCP and references
 
-Twelve read-only tools are available: UI context and API support/evidence, plus status, field schema discovery, bounded subtree reads, structured selection, query help, installed-reference search and reviewed external-source search. Filters, projections, joins and aggregates operate on exported public-API data. There is no raw Java field query or control mailbox. A bounded read-request transport asks the script update thread for fixed entity observations; it accepts no gameplay action, arbitrary method or object-member path.
+Thirteen read-only tools are available: UI context and API support/evidence, plus status, field schema discovery, bounded subtree reads, structured selection, query help, installed-reference search and reviewed external-source search. Filters, projections, joins and aggregates operate on exported public-API data. There is no raw Java field query or control mailbox. A bounded read-request transport asks the game update thread for fixed entity observations; it accepts no gameplay action, arbitrary method or object-member path.
 
 Local JSON export and stdio MCP are the transport between the in-process plugin and the assistant. The selected official assistant client handles provider authentication/inference; see PROVIDERS.md. External guide summaries are reference evidence, not a source of live game state or executable instructions.
 
 ## Compiler inventory
 
-The production references resolve to 210 public game API members. The metadata inventory includes source anchors and hashes; it does not enumerate every game variable or establish official stability. See API_ESTABLISHMENT.md for exact evidence levels and runtime checks.
+The production references resolve to 246 public game API members. The metadata inventory includes source anchors and hashes; it does not enumerate every game variable or establish official stability. See API_ESTABLISHMENT.md for exact evidence levels and runtime checks.
 
 ## On-demand read transport — introduced in 0.7.0
 
-`query_live_entities` writes a bounded request to the local private runtime directory. The file daemon parses a strict fixed-key protocol and hands an immutable request to the script update thread. Only that thread reads game APIs. It returns detached data; the daemon performs response serialization and atomic file replacement. The MCP client verifies request/session/version/time identity and bounds. Concurrent POSIX clients serialize requests with an OS-managed file lock. No network listener or process-inspection adapter is used.
+`query_live_entities` writes a bounded request to the local private runtime directory. The file daemon parses a strict fixed-key protocol and hands an immutable request to the game update thread. Only that thread reads game APIs. It returns detached data; the daemon performs response serialization and atomic file replacement. The MCP client verifies request/session/version/time identity and bounds. Concurrent POSIX clients serialize requests with an OS-managed file lock. No network listener or process-inspection adapter is used.
 
 Supported selection is finite: IDs, race/class/humanoid type, exclusive-upper tile bounds, up to four raw stat comparisons, and fixed projected fields. Explicit IDs use public `ENTETIES.getByID`; other selections scan at most 10,000 array slots per response. No writable game API is added. These new members are compiler/source audited; public accessibility is not an official stability contract. The shipped `getAllEnts` Javadoc explicitly describes its returned array as read-only; the adapter never changes its entries.
 
@@ -65,7 +65,7 @@ Supported selection is finite: IDs, race/class/humanoid type, exclusive-upper ti
 
 Known popup/section roots expose public render objects. The adapter follows only mapped `GuiSection.elements` and `CLICKABLE.ClickSwitch.current` edges, reads `GTextR.text` labels, control active/selected flags and public internal bounds. This is bounded typed traversal of exposed UI data, not arbitrary object/field traversal. It does not invoke render, hover, input, click, layout, setter or gameplay methods. No private wrappers are unwrapped. General panel enumeration, final visibility and global stacking remain unsupported.
 
-The six production source files are included in the compiler inventory. The development extended fixture constructs game widgets and activates editors/retreat through public methods; none of those test mutations are included in the production JAR.
+The seven production source files are included in the compiler inventory. The development extended fixture constructs game widgets and activates editors/retreat through public methods; none of those test mutations are included in the production JAR.
 
 ## Scene divisions and public hover flags — 0.9.0
 
@@ -76,3 +76,7 @@ Battle validation uses public game UI dispatch and public test-only orders/casua
 0.10.0 adds fixed person-assignment observations through public workplace/profession/home-coordinate/division readers. Each getter has explicit available/data status. Stored assignments do not establish current activity, occupancy, selected UI room or persistent IDs. See API_ESTABLISHMENT.md for source and runtime scope.
 
 0.11.0 adds bounded retained entity captures using the same fixed public getters. Only detached DTOs are retained in the MCP server; no game object is cached there. `GAME.addAfterUpdate` is source/binary verified and runtime checked for UI-paused sampling, not a separately documented stable contract. Capture selection and legacy cursor limits are distinguished in QUERY_GUIDE.md.
+
+## Finite tile access — 0.12.0
+
+A separate TileReadRequest serves finite terrain/floor/room/mineral/path projections and AND filters, bounded to the instantiated map. Public routes include SETT.TERRAIN/FLOOR/ROOMS/MINERALS/PATH, their public maps and named getters. Coordinate-aware RoomSingleton name/anchor/area getters refresh reusable scratch caches; copied DTOs never retain those objects. No gameplay setter or UI-selected-room inference is added. Room map record IDs may be shared; only RoomInstance gets an instance ID. QUERY_GUIDE.md and agent-facing field definitions record units, source paths and limitations. Public source/binary accessibility still does not establish a separately documented stable getter contract.

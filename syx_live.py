@@ -103,7 +103,7 @@ def query_entities(advisor,spec:dict,*,timeout:float=8)->dict:
 def capture_entities(advisor,spec:dict,*,timeout:float=8)->dict:
     return _read_entities(advisor,EntityCaptureSelection.model_validate(spec),timeout=timeout,capture=True)
 
-def _read_entities(advisor,selection,*,timeout:float,capture=False)->dict:
+def _read_entities(advisor,selection,*,timeout:float,capture=False,channel='entity')->dict:
     from syx_mcp import load_json
     snapshot=advisor.snapshot();status=advisor.status(snapshot)
     if not status['live']:raise ValueError('On-demand reads require a fresh loaded non-demo game')
@@ -118,10 +118,10 @@ def _read_entities(advisor,selection,*,timeout:float,capture=False)->dict:
     with request_lock(directory,deadline):
         remaining=deadline-time.monotonic()
         if remaining<.5:raise ValueError('Read request timed out waiting for transport')
-        request=directory/'entity-request.txt'
-        response=directory/'entity-response.json'
+        request=directory/f'{channel}-request.txt'
+        response=directory/f'{channel}-response.json'
         if request.is_symlink() or response.is_symlink():raise ValueError('Refusing symlink read transport')
-        tmp=directory/f'entity-request-{request_id}.tmp'
+        tmp=directory/f'{channel}-request-{request_id}.tmp'
         try:
             with tmp.open('x',encoding='utf-8') as f:
                 f.write(selection.wire(request_id,snapshot.session_id,int(time.time()*1000+remaining*1000)))
@@ -145,7 +145,8 @@ def _read_entities(advisor,selection,*,timeout:float,capture=False)->dict:
                 data=result.get('data')
                 if not isinstance(data,dict) or not isinstance(data.get('rows'),list) or len(data['rows'])>selection.limit:
                     raise ValueError('Invalid bounded entity response')
-                if type(data.get('scanned_slots')) is not int or not 0<=data['scanned_slots']<=selection.scan_limit:
+                scanned_key='scanned_tiles' if channel=='tile' else 'scanned_slots'
+                if type(data.get(scanned_key)) is not int or not 0<=data[scanned_key]<=selection.scan_limit:
                     raise ValueError('Invalid scan bound')
                 if capture and (data.get("next_cursor") is not None or data.get("predicate_errors")!=0):
                     raise ValueError("Incomplete capture; no selection retained")
