@@ -65,6 +65,7 @@ public final class StateCollector {
     public static Map<String,Object> collect(String session, long sequence) {
         Map<String,Object> result = envelope(session, sequence, true);
         Map<String,Object> domains = (Map<String,Object>) result.get("domains");
+        Map<String,Object> scene=UiContextCollector.scene();result.put("scene",scene);
         // Each collector fails independently; failed values stay unavailable, never become zero.
         run(domains, "population", () -> {
             List<Object> rows = new ArrayList<>();
@@ -77,7 +78,12 @@ public final class StateCollector {
             for (RESOURCE r: RESOURCES.ALL()) rows.add(object("id", r.key, "name", r.name.toString(),
                 "owned", r.owned(), "stockpile_stored", SETT.ROOMS().STOCKPILE.tally().amount.total(r),
                 "stockpile_capacity", SETT.ROOMS().STOCKPILE.tally().space.total(r), "unit", "resource units"));
-            return object("stockpiles", rows);
+            return object("stockpiles", rows,"field_definitions",object(
+                "owned",object("unit","resource units","scope","mixed_scene_logistics_and_player_trade_promises",
+                    "definition","Game RESOURCE.owned(): reservable warehouse/hauler goods plus import/export/station goods and incoming station goods, minus player trade promises; not a warehouse-only count",
+                    "source","init/resources/RESOURCE.java:537"),
+                "stockpile_stored",object("unit","resource units","scope","instantiated_settlement_scene","source","SETT.ROOMS().STOCKPILE.tally().amount.total(resource)"),
+                "stockpile_capacity",object("unit","resource units","scope","instantiated_settlement_scene","source","SETT.ROOMS().STOCKPILE.tally().space.total(resource)")));
         }, "Owned resources and warehouse totals; excludes per-crate and in-transit breakdowns.");
         run(domains, "production", () -> {
             List<Object> rows = new ArrayList<>();
@@ -179,6 +185,21 @@ public final class StateCollector {
             }
             return object("statistics", rows);
         }, "Public aggregate statistics only; no causal/historical completeness is claimed.");
+        Set<String> sceneDomains=Set.of("population","resources","employment","services","housing","health","law","happiness","military","map","entities");
+        for(String key:DOMAINS) {
+            Map<String,Object> record=(Map<String,Object>)domains.get(key);
+            String scope=sceneDomains.contains(key)?"instantiated_settlement_scene":
+                Set.of("production","trade","research","diplomacy").contains(key)?"campaign_player_or_faction":"game_or_world";
+            if(key.equals("resources"))scope="mixed_scene_logistics_and_player_trade_promises";
+            record.put("scope",scope);
+            if(sceneDomains.contains(key) && !SETT.exists())domains.put(key,object("coverage","unavailable","data",null,"scope",scope,
+                "reason","No instantiated settlement scene; new-game preparation data is not a live city"));
+        }
+        if(!world.WORLD.GEN().isDone) for(String key:Set.of("world","production","trade","research","diplomacy","events")) {
+            Map<String,Object> previous=(Map<String,Object>)domains.get(key);
+            domains.put(key,object("coverage","unavailable","data",null,"scope",previous.get("scope"),
+                "reason","World generation is not complete; campaign/economy placeholders are not a completed world"));
+        }
         try { result.put("ui_context",UiContextCollector.collect()); }
         catch(Exception e) { result.put("ui_context",object("available",false,"coverage","unavailable","reason",e.getClass().getSimpleName()+": "+e.getMessage())); }
         result.put("references",references());

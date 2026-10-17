@@ -15,6 +15,25 @@ public final class UiContextCollector {
     private static void flag(Map<String,Object> flags,String name,Interrupter panel) {
         flags.put(name,panel.isActivated());
     }
+    public static String activeView() {
+        if(!VIEW.existTemp() || VIEW.current()==null)return "unavailable";
+        if(VIEW.current() instanceof view.world.generator.WorldViewGenerator)return "world_generation";
+        if(VIEW.s().isActive())return "settlement";
+        if(VIEW.s().battle.isActive())return "settlement_battle";
+        if(VIEW.world().isActive())return "world";
+        if(VIEW.b().isActive())return "battle";
+        if(VIEW.b().editor.isActive())return "battle_setup";
+        if(VIEW.world().editor.isActive())return "world_editor";
+        return "other";
+    }
+    public static Map<String,Object> scene() {
+        world.WorldGen gen=world.WORLD.GEN();
+        return object("active_view",activeView(),"settlement_exists",SETT.exists(),
+            "settlement_scene_kind",!SETT.exists()?"unavailable":SETT.WORLD_AREA().isBattle?"battlefield":"city",
+            "world_generation",object("has_generated_terrain",gen.hasGeneratedTerrain,"is_done",gen.isDone,"is_editing",gen.isEditing,
+                "player_location_selected",gen.playerX>=0 && gen.playerY>=0),
+            "scope_note","Settlement getters refer to the currently instantiated scene, which can be a battlefield. Faction ledgers/technology/diplomacy refer to campaign/player resources.");
+    }
     public static Map<String,Object> collect() {
         Map<String,Object> result=object("coverage","partial","source","public game API; sampled during SCRIPT_INSTANCE.update",
             "active_view",null,"selected_subject",null,"open_room_blueprints",new ArrayList<>(),
@@ -27,8 +46,17 @@ public final class UiContextCollector {
             result.put("available",false); result.put("reason","No initialized game view");return result;
         }
         result.put("available",true);
-        String kind=VIEW.s().isActive()?"settlement":VIEW.world().isActive()?"world":VIEW.b().isActive()?"battle":"other";
+        String kind=activeView();
         result.put("active_view",kind);
+        result.put("world_generation_step",object("available",false,"reason","Wizard staging fields are private; WorldGen flags describe preparation, not the exact visible step"));
+        if(kind.equals("battle")) {
+            game.battle.state.BattleState battle=VIEW.b().state();
+            result.put("battle_context",battle==null?object("available",false,"reason","No active BattleState"):
+                object("available",true,"deploying",battle.deploying(),"throne_timer_seconds",battle.throneTimer(),
+                    "player_men",game.GAME.ARMIES().player().men(),"enemy_men",game.GAME.ARMIES().enemy().men(),
+                    "deployment_bounds",object("unit","settlement_tiles","x1",battle.deploymentBounds().x1(),"x2",battle.deploymentBounds().x2(),
+                        "y1",battle.deploymentBounds().y1(),"y2",battle.deploymentBounds().y2())));
+        }
         result.put("view_class",VIEW.current().getClass().getName());
         result.put("ui_hidden",VIEW.hideUI());
         Interrupters i=VIEW.inters(); Map<String,Object> flags=new LinkedHashMap<>();
