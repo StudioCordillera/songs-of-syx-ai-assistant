@@ -1,4 +1,4 @@
-# Game API boundary — 0.3.0
+# Game API boundary — 0.4.0
 
 The game-facing plugin runs inside Songs of Syx using `script.SCRIPT` and `SCRIPT_INSTANCE`. All gameplay observations originate from direct public game API calls on the script update thread. The Python MCP reads detached local exports; it does not inspect or control the game process itself.
 
@@ -40,12 +40,16 @@ Each domain remains partial and includes a coverage reason. New data mappings ne
 
 ## UI and lifecycle
 
-No UI context is currently exported. Documented SCRIPT hover/key/mouse callbacks are observations/hooks, not an API for synthetic input or an accessibility tree. Do not substitute screenshots, OS input or private UI fields. A future UI context adapter must identify an appropriate public game API and record its documentation/source provenance first.
+Partial UI context is now exported through direct public view/overlay/subject APIs; see API_ESTABLISHMENT.md and api-audit.json. Documented SCRIPT hover/key/mouse callbacks are observations/hooks, not an API for synthetic input or an accessibility tree. Do not substitute screenshots, OS input or private UI fields. The UI adapter reports selected subject identity, known overlay flags and room blueprint context. It explicitly excludes private tabs, exact selected room instances, tooltip text and a full panel hierarchy. These are source-verified APIs, not stable official contracts.
 
 Cleanup occurs at next game initialization and JVM shutdown. Without an officially established unload callback, return-to-menu relies on the 30-second freshness timeout; the last snapshot may remain marked loaded in that window. This is a known limitation, not all-menu support.
 
 ## MCP and references
 
-Seven read-only tools remain: status, field schema discovery, bounded subtree reads, structured selection, query help, installed-reference search and reviewed external-source search. Filters, projections, joins and aggregates operate on exported public-API data. There is no raw Java field query or control mailbox.
+Nine read-only tools are available: UI context and API support/evidence, plus status, field schema discovery, bounded subtree reads, structured selection, query help, installed-reference search and reviewed external-source search. Filters, projections, joins and aggregates operate on exported public-API data. There is no raw Java field query or control mailbox.
 
 Local JSON export and stdio MCP are the transport between the in-process plugin and the assistant. The assistant client handles OpenAI authentication/inference. External guide summaries are reference evidence, not a source of live game state or executable instructions.
+
+## Compiler inventory
+
+The production references resolve to 141 public game API members. The metadata inventory includes source anchors and hashes; it does not enumerate every game variable or establish official stability. See API_ESTABLISHMENT.md for exact evidence levels and runtime checks.

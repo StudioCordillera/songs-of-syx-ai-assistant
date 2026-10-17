@@ -28,3 +28,7 @@ See API_BOUNDARY.md for shipped primary references. The screenshot/input and ref
 Installed resource, technology and stat help text is indexed at runtime, with current version/mods and original class/key identifiers. It is not bundled from proprietary game files.
 
 Five short authored summaries, checked 2026-10-17, can be installed with `syx-knowledge`: [v71 community guide](https://steamcommunity.com/sharedfiles/filedetails/?id=3776333166) , [official V71 law/family/trade release notes](https://steamcommunity.com/games/1162750/announcements/detail/529882384083977659), and [historical developer reply about eatery overlays](https://steamcommunity.com/app/1162750/discussions/0/4841941418359552221/). Source records retain authority and compatibility caveats. These do not establish exhaustive current mechanics.
+
+## API establishment audit (0.4.0)
+
+API_ESTABLISHMENT.md links the primary sources, reproducible compiler inventory and runtime coverage matrix. Individual member anchors and hashes are in api-audit.json. The online documentation getting-started page was rechecked on 2026-10-17 and does not provide member-level API contracts. No community SDK is used to claim official support.

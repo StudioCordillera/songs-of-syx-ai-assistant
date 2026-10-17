@@ -40,7 +40,7 @@ No SQL, expressions as code, arbitrary methods or state writes are accepted.
 Only fields mapped from direct public game APIs are exported. There is no arbitrary/private field exploration.
 Discover the exported shape with `describe_game_fields`; use the structured query language for complex selections.
 All current domains are partial. See API_BOUNDARY.md for source provenance and documentation limitations.
-No active panel, selected UI object or tooltip context is currently exported.
+Use `get_game_ui_context` for active view, known overlays and selected subject identity. Open room blueprint context is available; exact instance, management tab, tooltip text and complete panel ordering are unavailable. Inspect `get_game_api_support` for evidence and limits before assuming a query exists.
 
 ## References and advice
 

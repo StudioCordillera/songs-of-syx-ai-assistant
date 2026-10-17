@@ -121,6 +121,7 @@ def test_corpus_citations_and_version(setup):
 
 def test_mcp_transport(setup):
     a, state = setup
+    state['ui_context']={'available':True,'coverage':'partial','active_view':'settlement','overlay_order_known':False}
     state['references']=[{'id':'fixture:1','category':'stat','title':'Fixture food',
         'text':'Test fixture only, not a gameplay fact.','origin':'test fixture'}]
     save(a,state)
@@ -134,7 +135,7 @@ def test_mcp_transport(setup):
                 listing = await session.list_tools()
                 assert {t.name for t in listing.tools} == {
                     'game_query_help', 'game_status', 'query_game_state', 'search_guidance',
-                    'describe_game_fields', 'select_game_state', 'search_game_references'}
+                    'describe_game_fields', 'select_game_state', 'search_game_references', 'get_game_ui_context', 'get_game_api_support'}
                 assert all(t.annotations.read_only_hint for t in listing.tools)
                 result = await session.call_tool('game_status', {})
                 assert not result.is_error
@@ -150,6 +151,26 @@ def test_mcp_transport(setup):
                 assert not help_result.is_error and 'binary_operators' in str(help_result)
                 references = await session.call_tool('search_game_references', {'query':'food'})
                 assert not references.is_error and 'fixture:1' in str(references)
+                context = await session.call_tool('get_game_ui_context', {})
+                assert not context.is_error and 'settlement' in str(context)
+                support = await session.call_tool('get_game_api_support', {'query':'selected_room_instance'})
+                assert not support.is_error and 'unavailable' in str(support)
+                state['demo']=False
+                state['captured_at']=(datetime.now(timezone.utc)-timedelta(seconds=90)).isoformat()
+                save(a,state)
+                stale_context = await session.call_tool('get_game_ui_context', {})
+                assert stale_context.is_error
+
                 invalid = await session.call_tool('query_game_state', {'domain': '../secret'})
                 assert invalid.is_error
     asyncio.run(exercise())
+
+
+def test_stale_state_is_unknown_not_currently_loaded(setup):
+    advisor,state=setup
+    state['demo']=False
+    state['captured_at']=(datetime.now(timezone.utc)-timedelta(seconds=90)).isoformat()
+    save(advisor,state)
+    status=advisor.status()
+    assert status['game_loaded'] is None and status['observed_game_loaded'] is True
+    assert status['state_certainty']=='unknown_updates_stopped'

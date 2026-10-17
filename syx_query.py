@@ -226,7 +226,7 @@ def describe(value, path='', result=None, budget=300):
     return result
 
 QUERY_HELP = {
-    "access_boundary": "Read-only typed public game API exports via SCRIPT. No private fields, screenshots, input or OS automation. Public mappings are source-verified, not all individually documented. No UI context exported.",
+    "access_boundary": "Read-only typed public game API exports via SCRIPT. No private fields, screenshots, input or OS automation. Public mappings are source-verified, not all individually documented. Partial UI context is available through get_game_ui_context; get_game_api_support explains evidence and gaps.",
     "workflow": ["game_status", "describe_game_fields(domain)", "select_game_state(spec)"],
     "batch": {"queries": "1..10 query objects", "expected_snapshot_id": "optional snapshot pin"},
     "query": {"source": {"domain": "domain name", "path": "JSON pointer to rows"},
