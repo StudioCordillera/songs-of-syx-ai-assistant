@@ -31,7 +31,8 @@ public final class UiContextCollector {
         return object("active_view",activeView(),"settlement_exists",SETT.exists(),
             "settlement_scene_kind",!SETT.exists()?"unavailable":SETT.WORLD_AREA().isBattle?"battlefield":"city",
             "world_generation",object("has_generated_terrain",gen.hasGeneratedTerrain,"is_done",gen.isDone,"is_editing",gen.isEditing,
-                "player_location_selected",gen.playerX>=0 && gen.playerY>=0),
+                "player_location_selected",gen.playerX>=0 && gen.playerY>=0,
+                "flags_note","Workflow flags can persist after leaving an editor; use active_view for current UI mode"),
             "scope_note","Settlement getters refer to the currently instantiated scene, which can be a battlefield. Faction ledgers/technology/diplomacy refer to campaign/player resources.");
     }
     public static Map<String,Object> collect() {
@@ -53,6 +54,7 @@ public final class UiContextCollector {
             game.battle.state.BattleState battle=VIEW.b().state();
             result.put("battle_context",battle==null?object("available",false,"reason","No active BattleState"):
                 object("available",true,"deploying",battle.deploying(),"throne_timer_seconds",battle.throneTimer(),
+                    "phase_note","deploying is a logical BattleState flag; pinned start-overlay visibility is not publicly exposed and this flag alone does not prove active fighting",
                     "player_men",game.GAME.ARMIES().player().men(),"enemy_men",game.GAME.ARMIES().enemy().men(),
                     "deployment_bounds",object("unit","settlement_tiles","x1",battle.deploymentBounds().x1(),"x2",battle.deploymentBounds().x2(),
                         "y1",battle.deploymentBounds().y1(),"y2",battle.deploymentBounds().y2())));
@@ -66,6 +68,8 @@ public final class UiContextCollector {
         flag(flags,"encyclopedia",VIEW.UI().wiki);
         flags.put("management_screen",VIEW.UI().manager.open());
         result.put("known_overlays",flags);
+        try {result.put("known_content",UiContentCollector.collect());}
+        catch(RuntimeException failure){result.put("known_content",object("coverage","unavailable","reason",failure.getClass().getSimpleName()));}
         result.put("tooltip_present",!VIEW.hoverBox().emptyIs());
         result.put("known_overlay_active",flags.values().stream().anyMatch(Boolean.TRUE::equals));
         result.put("overlay_order_known",false);
