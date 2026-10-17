@@ -12,7 +12,7 @@ flowchart LR
   A --> U[Cited answer to player]
 ```
 
-Only the MCP server, snapshot reader, and local corpus search exist in this commit. Collectors, in-game UI, and automated web retrieval are planned.
+Only the MCP server, snapshot reader, and local corpus search exist in this commit. Collectors, in-game UI, automated web retrieval, and optional game computer use are planned. See [COMPUTER_USE.md](COMPUTER_USE.md) for the screenshot/action contract and control lifecycle.
 
 ## OpenAI connection
 
@@ -58,4 +58,8 @@ Answer format: (1) observation with snapshot/tick/pointer, (2) supported mechani
 
 ## Privacy and trust
 
-The MCP process uses stdio, reads only two operator-configured files, and opens no listener. It has no gameplay mutation, shell, arbitrary URL fetch, or arbitrary file-read tool. OS permissions must keep the runtime directory private to the user. The advisor only sends queried state to the AI client; the client may then transmit that content for inference with user consent. Optional remote access requires a separate authenticated design. Third-party strings must never override advisor instructions.
+The MCP process uses stdio, reads only two operator-configured files, and opens no listener. The current prototype has no gameplay mutation, shell, arbitrary URL fetch, or arbitrary file-read tool. The planned computer-use adapter will add separately declared mutating UI tools with player-controlled task/session grants, game-window scoping and immediate stop. OS permissions must keep the runtime directory private to the user. The advisor only sends queried state to the AI client; the client may then transmit that content for inference with user consent. Optional remote access requires a separate authenticated design. Third-party strings must never override advisor instructions.
+
+## Optional game computer use
+
+The target architecture combines state queries, cited knowledge, screenshot/UI observation and player-authorized input. A separate local game driver captures the viewport and queues validated input on the game thread. Local MCP tools expose this driver to the assistant client. Only observations/state queries retain read-only annotations; click/hover/scroll/drag/key/text tools change UI or gameplay state. The current `syx_mcp.py` remains the read-only prototype. [Computer-use design](COMPUTER_USE.md) defines the proposed tools, freshness rules and acceptance criteria.

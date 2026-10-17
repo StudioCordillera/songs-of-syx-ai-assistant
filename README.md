@@ -1,6 +1,6 @@
 # Songs of Syx AI Assistant
 
-A custom advisor mod that understands the currently loaded Songs of Syx game and answers questions with cited game guides and forum evidence, using supported OpenAI subscription connections.
+A custom assistant mod that understands the currently loaded Songs of Syx game and answers questions with cited game guides and forum evidence, using supported OpenAI subscription connections.
 
 **Status: researched foundation and runnable MCP prototype. No installable game mod or live game integration yet.**
 
@@ -8,7 +8,7 @@ A custom advisor mod that understands the currently loaded Songs of Syx game and
 
 Ask “Why is my food supply falling?” and receive an explanation tied to this settlement's stockpiles, production, consumption, workforce, and current game version, with links supporting the mechanics and actionable suggestions. The target is comprehensive access to the loaded game, through structured queries rather than sending every entity to the model on every question.
 
-The initial assistant observes and advises. It does not issue gameplay commands.
+The assistant will also support optional game computer use: see the screen, inspect panels, click, type, scroll and carry out player-authorized gameplay tasks. The existing prototype observes and advises; the control driver is planned.
 
 ## What works today
 
@@ -22,10 +22,11 @@ The initial assistant observes and advises. It does not issue gameplay commands.
 
 - The Java mod/exporter for a verified game build, including unload detection and complete domain collectors.
 - Retrieval/refresh of real gameplay guides and forum posts. The corpus starts empty; the source directory is discovery metadata, not retrieved gameplay evidence.
+- Game-window screenshots and an opt-in computer-use driver; see [the computer-use design](COMPUTER_USE.md).
 - In-game chat UI and subscription login integration. The prototype connects to an existing Codex client; it performs no model calls itself.
 - Cross-platform packaging and in-game performance/compatibility validation.
 
-See [architecture](ARCHITECTURE.md), [roadmap](ROADMAP.md), and [verified references](REFERENCES.md).
+See [computer use](COMPUTER_USE.md), [architecture](ARCHITECTURE.md), [roadmap](ROADMAP.md), and [verified references](REFERENCES.md).
 
 ## Try the MCP prototype
 

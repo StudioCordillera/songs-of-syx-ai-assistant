@@ -18,3 +18,11 @@ Checked 2026-10-17. Recheck official docs at implementation time; access and pre
 | [Steam guides directory](https://steamcommunity.com/app/1162750/guides/) | Community platform | Starting point for guide discovery, not evidence for gameplay mechanics. |
 
 Community mod templates may help investigation but must be labeled community references and checked against the shipped game. No community template is used here to assert unverified official API signatures. Local shipped documentation is the next required primary reference for the Java mod.
+
+## Computer-use references (checked 2026-10-17)
+
+- [OpenAI browser and desktop drivers](https://developers.openai.com/api/docs/guides/tools-computer-use-sdk-drivers): observations/actions and coordinate conventions; the game needs its own driver.
+- [Computer-use integration recipes](https://developers.openai.com/api/docs/guides/tools-computer-use-integration): screenshot-based integration patterns.
+- [Plan-usage preview limitations](https://developers.openai.com/siwc/token-sharing-open-source/preview-limitations): native computer use and hosted MCP are excluded on this route; local function/custom-tool execution is a separate integration concern.
+
+These establish design constraints, not a tested Songs of Syx driver or guaranteed account/model availability.

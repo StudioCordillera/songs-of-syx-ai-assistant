@@ -34,7 +34,17 @@ Implemented: official-reference research, read-only stdio MCP, explicit snapshot
 - Keep authentication out of the game-state exporter. Implement consent, token storage/refresh/revocation and account-specific model discovery.
 - Acceptance: login, expired/revoked token, plan exhaustion, no network, unsupported model and MCP failure all have clear recovery; no silent API billing fallback.
 
-## 5 — Release
+## 5 — Game computer use
+
+- Implement the separate game observation/input adapter described in COMPUTER_USE.md after validating the installed game's render/UI/input hooks.
+- Add viewport screenshots and visible element metadata, then click/hover/scroll/drag/key/text tools with honest mutating annotations.
+- Add a visible player-controlled task/session grant, stop button, emergency hotkey and immediate takeover.
+- Enforce game-window boundaries, fresh observations, bounded inputs and duplicate-action receipts.
+- Verify actions with refreshed screenshots and structured game state; retain cited mechanics in explanations.
+- Validate the subscription-client screenshot/custom-tool loop; native computer use is excluded from the current plan-usage preview.
+- Acceptance: all cases in COMPUTER_USE.md pass on each supported platform before control is enabled in release builds.
+
+## 6 — Release
 
 - Validate Windows/Linux/macOS compatibility where the game and tooling support them.
 - Package per supported game version; include setup and mod conflict diagnostics.
