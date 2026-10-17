@@ -1,9 +1,9 @@
-# Validation — 0.10.0 public API/context audit
+# Validation — 0.11.0 public API/context audit
 
 ## Current checks
 
-- 57 Python tests pass: snapshot validity/freshness, demo isolation, paging, selected-data bounds, query filtering/joins/grouping/aggregation, cited source authority/version labels, and MCP transport.
-- MCP transport verifies exactly ten tools, all read-only. No raw-field, screenshot or input tools are registered.
+- 69 Python tests pass: snapshot validity/freshness, demo isolation, paging, selected-data bounds, query filtering/joins/grouping/aggregation, cited source authority/version labels, and MCP transport.
+- MCP transport verifies exactly twelve tools, all read-only. No raw-field, screenshot or input tools are registered.
 - Boundary tests check the mod namespace and reject reflection, native input/capture, process launch and engine-resource bypass patterns in production Java source. These tests supplement source review, not a complete security proof.
 - Six production Java source files compile against the installed 0.71.44 JAR with Java 16 target bytecode. Detached JSON serialization tests pass.
 
@@ -21,13 +21,13 @@ GameDisposable promises cleanup on the next game initialization. JVM shutdown al
 
 ## Reproducible evidence
 
-The production compiler audit resolved 209 public game members, with 208 shipped-source declaration matches and one generated enum member. It inventories mod references rather than every possible game variable. API_ESTABLISHMENT.md records the distinction between documented script contracts, public source-verified access and runtime checks. The context verifier completed with no missing phases; both verifier and isolated game exited with code zero. Test output/state remains local under runtime/ and is not published.
+The production compiler audit resolved 210 public game members, with 209 shipped-source declaration matches and one generated enum member. It inventories mod references rather than every possible game variable. API_ESTABLISHMENT.md records the distinction between documented script contracts, public source-verified access and runtime checks. The context verifier completed with no missing phases; both verifier and isolated game exited with code zero. Test output/state remains local under runtime/ and is not published.
 
 ## Isolated fixture preflight
 
 `LiveSmoke` requires an explicit state directory, an existing sibling `smoke-home` as its isolated user home, and a copied save inside that fixture root. It resolves real paths and rejects the normal user home or an original save outside the root before engine initialization. `-Dsyx.smoke.validateOnly=true` validates these boundaries without starting the engine. Fixtures are development-only and never packaged in the mod. Scene verification is implemented by `dev/verify_scenes.py`; context verification by `dev/verify_context.py`.
 
-Three static binary checks pass for resource-owned semantics, the menu state factory and engine-disposal accessibility. They support these specific findings, not whole-SDK source/binary equivalence. The latest scene run and verifier both exited zero, with all eight required phases observed. Runtime reports and saves remain private local artifacts.
+Four static binary checks pass for public after-update dispatch, resource-owned semantics, the menu state factory and engine-disposal accessibility. They support these specific findings, not whole-SDK source/binary equivalence. The latest scene run and verifier both exited zero, with all eight required phases observed. Runtime reports and saves remain private local artifacts.
 
 ## Individual data and description retrieval — 0.6.0
 
@@ -57,8 +57,22 @@ The 0.8.0 extended-context, 0.7.0 scene/entity and 0.6.0 context fixtures remain
 
 ## Offline public-declaration discovery
 
-The discovery extension passes an independent compiled synthetic API fixture, and the full Python suite now passes 57 tests. The installed-game scan resolves 2,052 public types / 17,442 declared public members from 2,443 shipped source files, with all 209 production references present. API_DISCOVERY.json contains hashes/counts, and API_DISCOVERY.md records the scope and missing source-anchor cases. The initial discovery pass added development evidence without changing production Java code; the later 0.10.0 relationship mapping has its own runtime evidence below. Existing earlier fixtures retain their original build scope.
+The discovery extension passes an independent compiled synthetic API fixture, and the full Python suite now passes 57 tests. The installed-game scan resolves 2,052 public types / 17,442 declared public members from 2,443 shipped source files, with all 210 production references present. API_DISCOVERY.json contains hashes/counts, and API_DISCOVERY.md records the scope and missing source-anchor cases. The initial discovery pass added development evidence without changing production Java code; the later 0.10.0 relationship mapping has its own runtime evidence below. Existing earlier fixtures retain their original build scope.
 
 ## Person assignments — 0.10.0
 
 The updated EntityScenario / verify_entities run passes with 1,395 entities and a selected person beyond the first-1,000 export. It checks all four relationship kinds with both absent and present assignments (two workplace, profession and home cases; one division case), selected-person parity, combined predicates, 18-page traversal, unknown-stat rejection and concurrent MCP reads requesting the new relationship projection through the actual server. Both processes exit zero. Full suite: 57 passing tests. Existing battle/context reports retain their earlier build scope; this pass does not rerun or extend those scenarios.
+
+## Retained captures and observer regression — 0.11.0
+
+The actual MCP run captures 1,395 entities and reads 70 retained pages while simulation advances. All pages preserve original tick/time and UI context, exclude a newly created citizen, and a new capture includes it. Concurrent pages, actual MCP text bounds, row/scan failures and UI-paused nonzero-speed export refresh pass. Both processes exit zero. Twelve new Python tests cover immutable-cache behavior, token expiry/eviction, session/server scope, size/completeness/identity failures and selection bounds; the full suite passes 69 tests. Java protocol tests include capture bounds as well as legacy malformed-request checks.
+
+The eleven-phase context scenario passes again with the exact 0.11.0 mod: settlement, subject, game menu, confirmation, world, management, encyclopedia, loading overlay, room blueprint, reload and stale/unknown return-to-menu. Game/verifier exit zero. Earlier battle, editor and scene reports retain their original version/hash scope; they were not all rerun with the new observer.
+
+Exploratory capture runs identified three issues before the successful run: SCRIPT sampling stopped under a UI pause with requested speed nonzero; clearing ordinary interrupters did not remove the fixture's pinned menu; and placing 1,100 fixture citizens together caused an engine collision-grid failure after resume. The production sampler now registers public GAME.addAfterUpdate. The fixture explicitly removes its pinned menu and disperses temporary citizens across reachable empty tiles. Those failed runs are not counted as passing validation. No copied game was saved and normal profile data was not modified.
+
+This establishes bounded retained entity paging, not a global worker-thread transaction, full schema, all-menu support or large-city performance. The after-update hook is source/binary verified, not a separately documented stable SCRIPT contract.
+
+## Provider requirements and local client check
+
+PROVIDERS.md records nine required provider acceptance gates. Official Claude Code 2.1.296 reports Connected for the local stdio MCP in an isolated configuration; the normal client configuration contains no test entry. All three shell profiles pass syntax and credential-variable transition checks using fake values. No login or paid model request was made. Subscription entitlement, Claude API/DeepSeek inference, provider-specific model tool round-trips and in-game provider selection remain pending. provider-validation.json records this limited scope.

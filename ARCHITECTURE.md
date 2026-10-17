@@ -1,10 +1,10 @@
-# Architecture — 0.10.0
+# Architecture — 0.11.0
 
-The Java mod implements the shipped SCRIPT interface. Typed collectors read public game APIs on the script update thread and build detached DTOs. A daemon serializes them to an atomic local JSON snapshot approximately every two wall-clock seconds while the update hook runs. MCP validates/caches that snapshot and executes bounded selections locally. Neither the daemon nor MCP traverses game objects. On-demand entity requests are parsed on the file daemon, handed to the update thread, evaluated using fixed public getters, and returned as detached DTOs.
+The Java mod implements the shipped SCRIPT interface. Typed collectors read public game APIs on the game update thread through public `GAME.addAfterUpdate` and build detached DTOs. A daemon serializes them to an atomic local JSON snapshot approximately every two wall-clock seconds while the update hook runs. MCP validates/caches that snapshot and executes bounded selections locally. Neither the daemon nor MCP traverses game objects. On-demand entity requests are parsed on the file daemon, handed to the update thread, evaluated using fixed public getters, and returned as detached DTOs.
 
-The snapshot includes version, mods, session, tick, time and 18 partial domains, plus the installed-help catalog. Query batches share one cached snapshot; optional snapshot pins reject changes. See QUERY_GUIDE.md. Missing/unknown values are distinct from zero. Input is limited to 16 MiB and responses to 64 KiB.
+The snapshot includes version, mods, session, tick, time and 18 partial domains, plus the installed-help catalog. Query batches share one cached snapshot; optional snapshot pins reject changes. See QUERY_GUIDE.md. Missing/unknown values are distinct from zero. Snapshot input is limited to 16 MiB. Retained-capture MCP tool text is bounded to 64 KiB; transport framing can add bytes.
 
-Ten read-only MCP tools are registered, including partial UI context and an API evidence inventory. The private raw-field reader and screenshot/input mailbox are removed. No reflection, native callback hook, arbitrary code tool, process-memory access, OS automation or gameplay mutation is included. API_BOUNDARY.md records the documented lifecycle and source-verified public API mappings separately.
+Twelve read-only MCP tools are registered, including partial UI context and an API evidence inventory. The private raw-field reader and screenshot/input mailbox are removed. No reflection, native callback hook, arbitrary code tool, process-memory access, OS automation or gameplay mutation is included. API_BOUNDARY.md records the documented lifecycle and source-verified public API mappings separately.
 
 The local runtime directory is transport/storage for detached game exports and curated reference summaries. It is not an external screen/process automation adapter. No network listener is opened. The model/client may send selected state for inference according to its configuration.
 
@@ -20,7 +20,7 @@ Use an existing Codex client signed in with ChatGPT and connect the local stdio 
 
 ## Source and context evidence
 
-API_ESTABLISHMENT.md records the reviewed capability matrix. api-audit.json and syx_api_manifest.py contain compiler-resolved public member references, source declaration anchors and hashes. The agent can query this evidence with get_game_api_support. This metadata is not an arbitrary API invocation interface. UiContextCollector reads fixed public getters during the script update and is captured in the same detached snapshot; it neither traverses private fields nor captures the screen.
+API_ESTABLISHMENT.md records the reviewed capability matrix. api-audit.json and syx_api_manifest.py contain compiler-resolved public member references, source declaration anchors and hashes. The agent can query this evidence with get_game_api_support. This metadata is not an arbitrary API invocation interface. UiContextCollector reads fixed public getters during the game after-update callback and is captured in the same detached snapshot; it neither traverses private fields nor captures the screen.
 
 ## On-demand consistency and limits
 
@@ -36,8 +36,20 @@ WorldGen editing flags are workflow data and may persist after changing views. U
 
 ## Published battle status and input-consumption flags — 0.9.0
 
-Scene army/division values are detached during the script update. Engagement comes from the battle worker's latest published status buffer and may lag or persist while workers are paused. These observations are not a synchronized full combat log or an instantaneous fighting guarantee. Counts and raw morale remain separate, explicitly scoped quantities.
+Scene army/division values are detached during the game after-update callback. Engagement comes from the battle worker's latest published status buffer and may lag or persist while workers are paused. These observations are not a synchronized full combat log or an instantaneous fighting guarantee. Counts and raw morale remain separate, explicitly scoped quantities.
 
 The context includes latest public global/view hover-consumption flags. They expose input-consumption evidence without enumerating the private manager collection or synthesizing production input. A private result screen can consume hover while every mapped overlay flag is false. That does not make its identity, text or outcome available. Tests use game-internal public dispatch; the shipped mod remains observational.
 
 The optional person relationships projection and selected-person snapshot share one typed DTO builder. Public getters run on the update thread; room names/IDs, stored home coordinates and division IDs are copied immediately. No retained scratch coordinate or game object crosses into the daemon. Getter failure is distinct from an unassigned/null relationship. These are recorded assignments, not an activity or UI-selection model.
+
+## Multi-provider requirement
+
+PROVIDERS.md adds Claude subscription, Claude API and DeepSeek API support alongside OpenAI. The initial design connects an existing client to the same local MCP; provider/account credentials and inference stay in that client. Future in-game adapters must preserve query bounds, context/freshness semantics, tool-call IDs and cited references across providers, and must never switch provider or billing route silently. Configuration templates do not constitute authenticated integration tests.
+
+## Retained entity selections and observer phase — 0.11.0
+
+`capture_live_entities` requests one bounded after-update observation, including original scene/UI context, then retains immutable encoded detached DTOs inside this MCP server. Creation returns metadata and a token only. `read_entity_capture` pages that retained observation, preserving tick/time/session; current snapshot status is separate. Paging does not reread game objects. No global simulation/battle-worker transaction is claimed.
+
+Capture protocol 2 uses the same fixed-key mailbox, but requires cursor zero and ID projection, allows 2,000 rows / 100,000 scanned slots / 4,000 projected stat cells and a 2 MiB local response. An incomplete scan, excess matching rows or predicate error fails instead of retaining a partial selection. The server stores at most three captures for 120 seconds each; tokens are server-local, and fresh loaded same-session/version observations are required. Legacy protocol 1 and `query_live_entities` retain their previous smaller bounds and mutable cursor semantics.
+
+Each SCRIPT instance registers its sampler with public `GAME.addAfterUpdate`; its SCRIPT update method performs no sampling. Source/binary review and the copied-game run establish that this callback still runs when a menu pauses simulation with requested speed nonzero. The hook is source-verified public API, not a documented stable script contract. Standalone menu callbacks and instant unload detection remain unavailable.

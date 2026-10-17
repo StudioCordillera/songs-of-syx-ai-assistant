@@ -2,7 +2,7 @@
 
 A local Java mod and MCP server that let an assistant inspect a loaded Songs of Syx game, request selected data, and advise the player with cited evidence.
 
-**0.10.0 — read-only, in-process public-API bridge.**
+**0.11.0 — read-only, in-process public-API bridge.**
 
 **Experimental working prototype for game 0.71.44 (Steam build 23998889).** Tested against a copied save on Linux. Other game version strings are rejected by the runtime guard; the tested binary hashes are recorded in the audit, and the guard does not attest the loaded JAR hash. This is not a finished in-game chat application.
 
@@ -46,8 +46,12 @@ A custom in-game chat UI and its supported subscription login remain future work
 
 ## Current limits
 
-All normalized domains are partial; complete state access is not claimed. On-demand entity pages are separate update observations and are not a stable multi-page snapshot. This transport currently requires a POSIX MCP host. Public API mappings are verified against shipped source, while the script lifecycle is documented in the shipped guide and SCRIPT interface. Much of the game code is undocumented; public does not mean a stable officially documented contract. See API_BOUNDARY.md. UI context is partial: view, known overlays, selected subject, room blueprint and bounded exposed popup/section content. Full tooltip text, selected room instance, management tab and arbitrary panel order are unavailable. Screenshots and game control remain excluded. The external corpus starts with five reviewed summaries; automatic web retrieval and comprehensive coverage remain unimplemented. Return-to-menu detection relies on freshness expiry (up to 30 seconds); cleanup is established for next initialization and JVM shutdown.
+All normalized domains are partial; complete state access is not claimed. Legacy on-demand cursor pages are separate mutable observations. New bounded entity captures retain one observation for paging; they are not a global simulation-worker transaction. This transport currently requires a POSIX MCP host. Public API mappings are verified against shipped source, while the script lifecycle is documented in the shipped guide and SCRIPT interface. Much of the game code is undocumented; public does not mean a stable officially documented contract. See API_BOUNDARY.md. UI context is partial: view, known overlays, selected subject, room blueprint and bounded exposed popup/section content. Full tooltip text, selected room instance, management tab and arbitrary panel order are unavailable. Screenshots and game control remain excluded. The external corpus starts with five reviewed summaries; automatic web retrieval and comprehensive coverage remain unimplemented. Return-to-menu detection relies on freshness expiry (up to 30 seconds); cleanup is established for next initialization and JVM shutdown.
 
 Do not commit game binaries, game source, saves, snapshots, screenshots of private saves, account credentials or copied full guides. The repository is private; no source license has been selected for redistribution.
 
 For the broader offline public-declaration inventory and remaining mapping work, see [API_DISCOVERY.md](API_DISCOVERY.md). It catalogs candidate declarations without executing game code or automatically exposing mutators.
+
+Required provider expansion: Claude subscription, Claude API and DeepSeek API, alongside OpenAI. See [provider requirements and connection profiles](PROVIDERS.md). Official-client MCP templates are supplied; authenticated provider/model validation and the custom in-game provider selector remain unfinished.
+
+0.11.0 adds retained bounded entity selections (`capture_live_entities` / `read_entity_capture`) and refreshes observations through public `GAME.addAfterUpdate`, including UI-paused nonzero-speed menus. The copied-game run retained 1,395 entities across 70 pages while simulation advanced. Full state/schema and all-menu coverage remain unfinished.

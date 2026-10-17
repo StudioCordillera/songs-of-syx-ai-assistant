@@ -1,0 +1,12 @@
+{
+  "mcpServers": {
+    "syx-assistant": {
+      "type": "stdio",
+      "command": "/absolute/path/to/songs-of-syx-ai-assistant/.venv/bin/python",
+      "args": ["-m", "syx_mcp"],
+      "env": {
+        "SYX_STATE_DIR": "/absolute/path/to/your/syx-assistant-state"
+      }
+    }
+  }
+}

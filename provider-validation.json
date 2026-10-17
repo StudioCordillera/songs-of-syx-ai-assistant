@@ -1,0 +1,12 @@
+{
+  "passed": true,
+  "client": "Claude Code",
+  "client_version": "2.1.296",
+  "local_stdio_health": "Connected",
+  "isolated_configuration": true,
+  "credential_free_server_config": true,
+  "profile_shell_transition_checks": true,
+  "inference_or_subscription_validation": false,
+  "limits": "No provider login or paid model request; validates local MCP client transport and offline setup profiles only.",
+  "normal_mcp_test_entry_absent": true
+}

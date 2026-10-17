@@ -135,8 +135,9 @@ def test_mcp_transport(setup):
                 listing = await session.list_tools()
                 assert {t.name for t in listing.tools} == {
                     'game_query_help', 'game_status', 'query_game_state', 'search_guidance',
-                    'describe_game_fields', 'select_game_state', 'search_game_references', 'get_game_ui_context', 'get_game_api_support', 'query_live_entities'}
+                    'describe_game_fields', 'select_game_state', 'search_game_references', 'get_game_ui_context', 'get_game_api_support', 'query_live_entities', 'capture_live_entities', 'read_entity_capture'}
                 assert all(t.annotations.read_only_hint for t in listing.tools)
+                assert next(t for t in listing.tools if t.name=="capture_live_entities").annotations.idempotent_hint is False
                 result = await session.call_tool('game_status', {})
                 assert not result.is_error
                 assert 'demo-session' in str(result)
@@ -157,6 +158,10 @@ def test_mcp_transport(setup):
                 assert not context.is_error and 'settlement' in str(context)
                 live_read = await session.call_tool('query_live_entities', {'spec':{}})
                 assert live_read.is_error and 'non-demo' in str(live_read)
+                capture = await session.call_tool('capture_live_entities', {'spec':{}})
+                assert capture.is_error and 'non-demo' in str(capture)
+                missing_capture = await session.call_tool('read_entity_capture', {'capture_id':str(__import__('uuid').uuid4())})
+                assert missing_capture.is_error and 'missing' in str(missing_capture).lower()
                 support = await session.call_tool('get_game_api_support', {'query':'selected_room_instance'})
                 assert not support.is_error and 'unavailable' in str(support)
                 state['demo']=False

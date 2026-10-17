@@ -7,7 +7,7 @@ import json
 import os
 from pathlib import Path
 import time
-from typing import Annotated, Literal
+from typing import Annotated, Literal, ClassVar
 from uuid import UUID, uuid4
 
 from pydantic import BaseModel, ConfigDict, Field, StrictInt, StrictStr, model_validator
@@ -25,6 +25,7 @@ class StatFilter(StrictModel):
     value: Int32
 
 class EntitySelection(StrictModel):
+    STAT_CELL_LIMIT: ClassVar[int] = 100
     entity_ids: list[Int32] = Field(default_factory=list, max_length=100)
     race_id: StrictStr | None = Field(default=None,min_length=1,max_length=100)
     class_id: StrictStr | None = Field(default=None,min_length=1,max_length=100)
@@ -45,8 +46,8 @@ class EntitySelection(StrictModel):
         if self.tile_bounds and (self.tile_bounds[0]>=self.tile_bounds[2] or self.tile_bounds[1]>=self.tile_bounds[3]):
             raise ValueError('Tile bounds are [x1,y1,x2,y2], with exclusive upper bounds')
         if 'stats' in self.fields:
-            if not self.stat_ids or len(self.stat_ids)*self.limit>100:
-                raise ValueError('Select 1..20 stat IDs and at most 100 returned stat cells (limit × stat_ids)')
+            if not self.stat_ids or len(self.stat_ids)*self.limit>self.STAT_CELL_LIMIT:
+                raise ValueError(f'Select 1..20 stat IDs and at most {self.STAT_CELL_LIMIT} returned stat cells (row bound × stat_ids)')
         elif self.stat_ids:raise ValueError('stat_ids require stats in fields')
         return self
 
@@ -61,6 +62,20 @@ class EntitySelection(StrictModel):
         text=''.join(f'{key}={value}\n' for key,value in values.items())
         if len(text.encode())>8192:raise ValueError('Read request exceeds 8 KiB')
         return text
+
+class EntityCaptureSelection(EntitySelection):
+    STAT_CELL_LIMIT: ClassVar[int] = 4000
+    limit: Annotated[StrictInt,Field(ge=1,le=2000)] = Field(default=2000,alias='max_rows')
+    scan_limit: Annotated[StrictInt,Field(ge=1,le=100000)] = 100000
+    cursor: Annotated[StrictInt,Field(ge=0,le=0)] = 0
+
+    @model_validator(mode='after')
+    def validate_capture(self):
+        if 'id' not in self.fields:raise ValueError('Capture requires id in fields')
+        return self
+
+    def wire(self,request_id:str,session:str,expires:int)->str:
+        return super().wire(request_id,session,expires).replace('protocol=1\n','protocol=2\n',1)
 
 @contextmanager
 def request_lock(directory:Path,deadline:float):
@@ -83,8 +98,13 @@ def request_lock(directory:Path,deadline:float):
         os.close(fd)
 
 def query_entities(advisor,spec:dict,*,timeout:float=8)->dict:
+    return _read_entities(advisor,EntitySelection.model_validate(spec),timeout=timeout)
+
+def capture_entities(advisor,spec:dict,*,timeout:float=8)->dict:
+    return _read_entities(advisor,EntityCaptureSelection.model_validate(spec),timeout=timeout,capture=True)
+
+def _read_entities(advisor,selection,*,timeout:float,capture=False)->dict:
     from syx_mcp import load_json
-    selection=EntitySelection.model_validate(spec)
     snapshot=advisor.snapshot();status=advisor.status(snapshot)
     if not status['live']:raise ValueError('On-demand reads require a fresh loaded non-demo game')
     if selection.expected_session_id is not None and selection.expected_session_id!=snapshot.session_id:
@@ -112,7 +132,7 @@ def query_entities(advisor,spec:dict,*,timeout:float=8)->dict:
             current=advisor.snapshot()
             if current.session_id!=snapshot.session_id:raise ValueError('Session changed during read; rediscover game state')
             if not advisor.status(current)['live']:raise ValueError('Game observation is no longer fresh/loaded')
-            try:result=load_json(response,65536)
+            try:result=load_json(response,2*1024*1024 if capture else 65536)
             except FileNotFoundError:result=None
             if isinstance(result,dict) and result.get('request_id')==request_id:
                 if result.get('session_id')!=snapshot.session_id:raise ValueError('Read response belongs to a different session')
@@ -121,11 +141,14 @@ def query_entities(advisor,spec:dict,*,timeout:float=8)->dict:
                 if captured.tzinfo is None or not -2<=(datetime.now(timezone.utc)-captured).total_seconds()<=10:
                     raise ValueError('Read response timestamp is not recent')
                 if result.get('available') is not True:raise ValueError(result.get('reason','Game read unavailable'))
+                if capture and result.get("read_mode")!="capture":raise ValueError("Exporter did not return capture mode")
                 data=result.get('data')
                 if not isinstance(data,dict) or not isinstance(data.get('rows'),list) or len(data['rows'])>selection.limit:
                     raise ValueError('Invalid bounded entity response')
                 if type(data.get('scanned_slots')) is not int or not 0<=data['scanned_slots']<=selection.scan_limit:
                     raise ValueError('Invalid scan bound')
+                if capture and (data.get("next_cursor") is not None or data.get("predicate_errors")!=0):
+                    raise ValueError("Incomplete capture; no selection retained")
                 return result
             time.sleep(.05)
     raise ValueError('Game update did not answer the read request in time; inspect game_status and the game log')
@@ -133,7 +156,7 @@ def query_entities(advisor,spec:dict,*,timeout:float=8)->dict:
 ENTITY_QUERY_HELP = {
     'tool':'query_live_entities',
     'selection':EntitySelection.model_json_schema(),
-    'boundary':'Fixed public entity getters and named individual statistics on SCRIPT_INSTANCE.update. Read-only; no arbitrary fields, methods or code.',
+    'boundary':'Fixed public entity getters and named individual statistics on the registered GAME.addAfterUpdate observer. Read-only; no arbitrary fields, methods or code.',
     'scope':'Current instantiated city or battlefield; unavailable without SETT. Not every game variable or private AI attribute.',
     'paging':'With entity_ids, the public getByID lookup is used and cursor indexes the requested ID list. Otherwise cursor indexes mutable scene-array slots. next_cursor continues from the scanned position, not the count of matching entities. Each page is a separate observation; no multi-page snapshot guarantee.',
     'limits':'10000 array slots scanned, 100 returned rows, four stat comparisons, 20 projected stats and 100 stat cells per request; 8 KiB request, 64 KiB response, 8-second deadline. POSIX MCP host required.',

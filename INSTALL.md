@@ -45,3 +45,7 @@ See API_BOUNDARY.md for primary-source provenance and lifecycle limitations.
 - Unclear raw field: inspect shipped game documentation/source locally and record its meaning before relying on it.
 
 For a synthetic offline demonstration, copy `snapshot.example.json` to a separate runtime directory. It is labeled demo and never accepted for live UI control.
+
+## Claude subscription/API and DeepSeek API
+
+Use the official-client profiles and shared stdio configuration in [PROVIDERS.md](PROVIDERS.md). `claude.mcp.example.json` contains no provider credentials. These setup examples do not install, authenticate or start a provider client automatically.

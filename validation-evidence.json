@@ -1,17 +1,17 @@
 {
-  "version": "0.10.0",
+  "version": "0.11.0",
   "game_version": "0.71.44",
   "python_tests": {
-    "passed": 57
+    "passed": 69
   },
-  "production_public_member_references": 209,
+  "production_public_member_references": 210,
   "production_source_sha256": {
-    "syx/assistant/AssistantScript.java": "40ee882b3305cbc78f35013a87ce9167c6d32d749ebf6109c828416ec0ee412a",
-    "syx/assistant/EntityReadRequest.java": "e0a0806c1ebc40afb35a3c3acc1ffeeb36aeb6d4b08e804e994566c956ae45af",
+    "syx/assistant/AssistantScript.java": "f7f56d7d7eccf0f20e3d4c7ceb28f7a6397a0e984d0745ab92bf63c8fe63d097",
+    "syx/assistant/EntityReadRequest.java": "deb0f86cad28da1c8677394a4aeb26913b0c80b4ee90c08cb882bedbc11f8a03",
     "syx/assistant/JsonWriter.java": "c525eb60d3224cab83ed3fd6b8594ec8652211f00bd947e873e1482f919e81dc",
     "syx/assistant/StateCollector.java": "f485475e5921aa26a6c023dab5b2eab29e51df2da40aa295bf0099b4d3a5b90d",
     "syx/assistant/UiContentCollector.java": "c0d20c7f9f2734a0bb625427875f06bfcd07edb20611248b39b6e8f480ef5a48",
-    "syx/assistant/UiContextCollector.java": "57e3a215d6ecc13a3c5483facad60ac9d7ab8cc077ff8b9601c3d6a68c1d983a"
+    "syx/assistant/UiContextCollector.java": "c379afcb36169380a5956c51a9b76f9598b723c14fae136e5850b20177ef066e"
   },
   "isolated_profile_jar_matches_build": true,
   "battle_lifecycle": {
@@ -97,7 +97,8 @@
       "Actual private result overlays are not inspected. The test-supplied exiter verifies outcomes; production exposes no result-dialog identity or arbitrary outcome event feed.",
       "DivStatus is the latest published battle-worker buffer and may lag or miss brief engagement; not a complete combat log."
     ],
-    "tested_mod_jar_sha256": "dcdb0b9331d30543a5a21601637d20b3d80cc2dc72a1288ca0c4ada5a91b9e96"
+    "tested_mod_jar_sha256": "dcdb0b9331d30543a5a21601637d20b3d80cc2dc72a1288ca0c4ada5a91b9e96",
+    "adapter_version": "0.9.0"
   },
   "extended_context_previous_version": {
     "version": "0.8.0",
@@ -356,6 +357,13 @@
     "method": "Selected member references/access/arithmetic inspected with JDK javap; no game method execution. Not formal equivalence of the complete shipped source and binary.",
     "checks": [
       {
+        "id": "game_after_update_dispatch",
+        "passed": true,
+        "member": "game.GAME#addAfterUpdate(ACTION)",
+        "normalized_disassembly_sha256": "070142eafa6fe2e346c41e7ea6c70c6b8011b9ee47eebfe3be3f0b05e68086f4",
+        "conclusion": "Public registration appends an ACTION to the after-update collection, dispatched after resource update loops. UI-paused nonzero-speed behavior needs runtime validation; no standalone menu/unload contract is established."
+      },
+      {
         "id": "resource_owned_definition",
         "passed": true,
         "member": "init.resources.RESOURCE#owned()",
@@ -380,7 +388,7 @@
   "not_established": [
     "All game variables and attributes",
     "Stable official contract for individual mapped getters",
-    "Stable multi-page snapshot during active simulation",
+    "Globally synchronized full-game/worker-thread transaction and complete state schema",
     "Natural campaign battle outcomes, every combat condition and complete combat history",
     "Private result-overlay identity/content or arbitrary battle-outcome event feed",
     "Complete political-world generation and full editor workflows",
@@ -396,7 +404,7 @@
     "source_files": 2443,
     "public_types": 2052,
     "public_declared_members": 17442,
-    "production_references_found": 209,
+    "production_references_found": 210,
     "catalog_sha256": "5b4b13770eb3251ce066e4f9cf57b5e6b1956687136b5be33a680b707a73b065",
     "synthetic_binary_source_fixture_passed": true,
     "limits": "Declaration metadata only; no new runtime data mappings or getter safety/contracts established. Full metadata regenerated locally; summary is source/binary hash paired."
@@ -429,7 +437,120 @@
     "verifier_exit_code": 0,
     "tested_mod_jar_sha256": "9016416f674a3c185c76be957adb95190f9829337415501fe3822c7f8b277a81",
     "verifier_sha256": "b451724aebda7cbabe44fa3cb6743554972ff3310e2111cb0e22d5f013d94425",
-    "fixture_sha256": "4c2025eb645630807b11ece5f14065a8444252d7ae90204dd015f02006fc5902"
+    "fixture_sha256": "4c2025eb645630807b11ece5f14065a8444252d7ae90204dd015f02006fc5902",
+    "adapter_version": "0.10.0"
   },
-  "tested_mod_jar_sha256": "9016416f674a3c185c76be957adb95190f9829337415501fe3822c7f8b277a81"
+  "tested_mod_jar_sha256": "6da5e25c6b27e756e93a9b0b8b763cb9df76d2d4c6edea454fc8ee95d659a20d",
+  "retained_entity_capture": {
+    "passed": true,
+    "game_version": "0.71.44",
+    "captured_entities": 1395,
+    "pages": 70,
+    "original_capture_tick": 2493770,
+    "later_game_tick": 2493869,
+    "all_pages_same_tick_and_time": true,
+    "new_entity_excluded_from_old_capture": true,
+    "new_capture_sees_new_entity": true,
+    "captured_ui_context_preserved": true,
+    "concurrent_mcp_pages": true,
+    "row_and_scan_bounds_rejected": true,
+    "mcp_text_cap_checked": true,
+    "ui_paused_nonzero_speed_refresh": true,
+    "observer_phase": "GAME.addAfterUpdate",
+    "limits": [
+      "One bounded game update-thread observation, not a global worker-thread transaction.",
+      "Copied city with temporary fixture citizens; not a large-city performance benchmark.",
+      "This run does not exhaust lifecycle/battle/menu states; unit tests cover token expiry/eviction/session invalidation."
+    ],
+    "adapter_version": "0.11.0",
+    "game_process_exit_code": 0,
+    "verifier_exit_code": 0,
+    "tested_mod_jar_sha256": "6da5e25c6b27e756e93a9b0b8b763cb9df76d2d4c6edea454fc8ee95d659a20d",
+    "verifier_sha256": "4801c518f869854c5a9f6e42cb070222809827fc1fde207822f359224ccc6eee",
+    "fixture_sha256": "33622c30acc59b3519b683fb1bd127f10521694a4b54ac659f08f7ecc08306fc"
+  },
+  "context_observer_regression": {
+    "passed": true,
+    "checks": {
+      "settlement": {
+        "passed": true,
+        "snapshot_fresh": true,
+        "ui_context_available": true
+      },
+      "subject": {
+        "passed": true,
+        "snapshot_fresh": true,
+        "ui_context_available": true
+      },
+      "game_menu": {
+        "passed": true,
+        "snapshot_fresh": true,
+        "ui_context_available": true
+      },
+      "confirmation": {
+        "passed": true,
+        "snapshot_fresh": true,
+        "ui_context_available": true
+      },
+      "world": {
+        "passed": true,
+        "snapshot_fresh": true,
+        "ui_context_available": true
+      },
+      "management": {
+        "passed": true,
+        "snapshot_fresh": true,
+        "ui_context_available": true
+      },
+      "encyclopedia": {
+        "passed": true,
+        "snapshot_fresh": true,
+        "ui_context_available": true
+      },
+      "loading_overlay": {
+        "passed": true,
+        "snapshot_fresh": true,
+        "ui_context_available": true
+      },
+      "room": {
+        "passed": true,
+        "snapshot_fresh": true,
+        "ui_context_available": true
+      },
+      "reloaded": {
+        "passed": true,
+        "snapshot_fresh": true,
+        "ui_context_available": true
+      },
+      "main_menu": {
+        "passed": true,
+        "snapshot_fresh": false,
+        "ui_context_available": false
+      }
+    },
+    "missing": [],
+    "limits": [
+      "Main menu is inferred only as unknown/stale after updates stop; no menu identification API established.",
+      "Loading-overlay flag test is separate from the real save reload transition.",
+      "Battle, world generation and other menu subpages remain untested."
+    ],
+    "adapter_version": "0.11.0",
+    "game_process_exit_code": 0,
+    "verifier_exit_code": 0,
+    "tested_mod_jar_sha256": "6da5e25c6b27e756e93a9b0b8b763cb9df76d2d4c6edea454fc8ee95d659a20d",
+    "verifier_sha256": "ba4595ac8abc8227ab0a17df3238650ce09c3e103602b4b9fdb96b3e48b83a05",
+    "fixture_sha256": "ea5c012f82578379e68e36bb5facf82e4808f1af6da8033d9bdad17d70428f32"
+  },
+  "provider_client": {
+    "passed": true,
+    "client": "Claude Code",
+    "client_version": "2.1.296",
+    "local_stdio_health": "Connected",
+    "isolated_configuration": true,
+    "credential_free_server_config": true,
+    "profile_shell_transition_checks": true,
+    "inference_or_subscription_validation": false,
+    "limits": "No provider login or paid model request; validates local MCP client transport and offline setup profiles only.",
+    "normal_mcp_test_entry_absent": true
+  }
 }

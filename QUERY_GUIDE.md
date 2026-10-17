@@ -89,7 +89,7 @@ Filters combine with AND: `entity_ids`, `race_id`, `class_id`, `humanoid_type_id
 
 Explicit IDs use the game's public ID lookup. Without IDs, each request scans up to `scan_limit` scene-array slots, starting at `cursor`, and returns at most `limit` matches. Follow `next_cursor` until null, including after an empty page. With IDs, cursor refers to the ordered requested-ID list; `cursor_kind` distinguishes it from scene slots. Do not substitute the number of matching rows as the next cursor.
 
-Use `expected_session_id` to reject a game replacement. Each response has its own request ID, capture time, tick, scene and UI context; it is not the cached snapshot and cannot be joined as though captured at that snapshot's tick. Cursor pages are separate observations over a changing scene. Large-city performance and stable multi-page reads during active simulation remain unvalidated. The tested client transport requires POSIX.
+Use `expected_session_id` to reject a game replacement. Each response has its own request ID, capture time, tick, scene and UI context; it is not the cached snapshot and cannot be joined as though captured at that snapshot's tick. Cursor pages are separate observations over a changing scene. Large-city performance remains unvalidated. Use the retained capture tools below for consistent bounded entity paging. The tested client transport requires POSIX.
 
 ## Bounded popup/section content — 0.8.0
 
@@ -118,3 +118,17 @@ This selects rows reporting a published engagement flag, not proof of instantane
 Pass this as `spec` to `query_live_entities` after discovering the current session and entity IDs. Each of `workplace`, `profession`, `home_assignment` and `division` returns `{available,data}`. Available with null data means no recorded assignment; unavailable means the getter failed. Recorded profession is separate from current workplace. Home coordinates describe an assignment, not occupancy/current position. Workplace anchors are room anchor tiles, not the person's position or UI selection. Division IDs can be matched with `military/scene_armies` in the same scene, but cross-response reads are separate observations; IDs are not persistent across regeneration. Use paired mod/MCP builds; older mods reject the new projection explicitly. Request fewer rows if a relationship projection exceeds the existing 64 KiB response bound.
 
 The selected-person snapshot also includes `entities/selected_subject/relationships`, so `select_game_state` can inspect these fields with the same snapshot/context as other data.
+
+## Retained entity pages — 0.11.0
+
+For a complex selection that must remain unchanged across pages, pass a specification to `capture_live_entities`:
+
+```json
+{"fields":["id","race_id","tile_x","tile_y","relationships"],"max_rows":2000,"scan_limit":100000}
+```
+
+Use the same finite predicates/stat IDs as live entity queries. ID projection is required; cursor is zero. Creation returns metadata only, including `capture_id`, original tick/time/session and row count. Then call `read_entity_capture(capture_id, offset=0, limit=20, include_ui_context=true)` and follow `next_offset` until null. Here offset indexes retained rows, not live scene-array slots. Use the original capture provenance when citing data. `captured_ui_context` belongs to that observation; `current_state` separately describes the latest exported status. Other live queries or captures are separate observations.
+
+All matching rows must fit 2,000 rows, 100,000 scanned slots, 4,000 selected stat cells and a 2 MiB local payload. Row/scan/predicate/byte failures retain nothing; narrow the selection on failure. Each server retains three captures for 120 seconds, evicting the oldest when full. Tokens are server-local and do not survive restart. Reads require a fresh loaded observation with the same session/version; expiration, eviction and session changes fail explicitly. Pages allow up to 100 rows and 64 KiB of MCP tool text; reduce limit or omit UI context for wide rows. Protocol framing can add bytes.
+
+Capture reads page copied values and do not reread game objects, freeze/pause the game or synchronize background simulation/battle workers. Full game-state/schema, large-city performance and permanent entity IDs remain unestablished. Install paired updated mod/MCP builds. `game_query_help.retained_entities` provides the exact schema and limits.

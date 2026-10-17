@@ -1,5 +1,11 @@
 """Explicitly reviewed capability coverage; automation cannot turn public APIs into official contracts."""
 CAPABILITIES = [
+ {'id':'retained_entity_captures','support':'public_source_verified','validation':'0.11 copied-game MCP fixture: 1,395 entities over 70 pages while simulation advances; original tick/time/context retained, new citizen excluded until recapture; bounds/concurrent pages pass',
+  'references':['API_ESTABLISHMENT.md','QUERY_GUIDE.md','api-audit.json'],
+  'limits':'Bounded fixed entity fields only: 2,000 rows, 100,000 scanned slots, 4,000 stat cells, 2 MiB local payload. Three server-local captures for 120 seconds; same-session fresh state required. Not a global worker-thread transaction or complete state schema. Legacy cursor queries remain mutable.'},
+ {'id':'public_after_update_observer','support':'public_source_verified','validation':'Installed source/binary dispatch check plus nonzero requested-speed UI-pause refresh and eleven-context reload/menu regression in 0.11',
+  'references':['api-audit.json','VALIDATION.md'],
+  'limits':'GAME.addAfterUpdate is public and source-verified, not a separately documented stable SCRIPT contract. No standalone menu callbacks or instant unload observer established.'},
  {'id':'person_relationships','support':'public_source_verified','validation':'1,395-entity copied-game fixture: null/non-null workplace, profession, home assignment and division; selected-person parity beyond prefix; game/verifier exit zero',
   'references':['API_ESTABLISHMENT.md','settlement/stats/colls/StatsWork.java:383','settlement/stats/colls/StatsHome.java:490','settlement/entity/humanoid/Humanoid.java:581','api-audit.json'],
   'limits':'Recorded assignments, not current activity, occupancy, UI selection or permanent campaign IDs. Separate per-getter unavailable/data status. Fixed optional projection, not arbitrary traversal or relationship filters. Public source-verified, not an officially stable member contract.'},

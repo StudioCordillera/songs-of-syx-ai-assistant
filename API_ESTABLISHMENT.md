@@ -1,23 +1,23 @@
-# API establishment report — 0.10.0, game 0.71.44
+# API establishment report — 0.11.0, game 0.71.44
 
 This report establishes what can be verified within the user's required in-process public-API boundary. It does not create an official guarantee on behalf of the game developer.
 
 ## Evidence levels
 
 1. **Documented script contract:** the shipped semi-official script guide and SCRIPT interface describe script creation, updates and persistence callbacks. They do not document every game statistic or menu.
-2. **Source-verified public API:** Java compiler attribution resolves each game member referenced by production mod code. The current inventory contains 209 members, all public. Of these, 208 match declaring type, name, arity and simple parameter types in shipped source; the remaining member is the compiler-generated enum `values()` method. Only one referenced member has its own Javadoc block; Javadoc presence does not establish semantics or stability. Script override contracts are reviewed separately from the member-reference inventory.
+2. **Source-verified public API:** Java compiler attribution resolves each game member referenced by production mod code. The current inventory contains 210 members, all public. Of these, 209 match declaring type, name, arity and simple parameter types in shipped source; the remaining member is the compiler-generated enum `values()` method. Only one referenced member has its own Javadoc block; Javadoc presence does not establish semantics or stability. Script override contracts are reviewed separately from the member-reference inventory.
 3. **Runtime evidence:** the isolated fixture exercises supported contexts using public game methods and a copied save. The production mod only observes. Test mutations and engine bootstrap code are never packaged into the mod.
 4. **Unavailable/unvalidated:** missing public accessors and untested transitions stay explicit. No reflection, screenshot, native-input or package-access workaround is added.
 
 The [official documentation project](https://github.com/songsofsyx/documentation) links the published guide. Its [getting-started page](https://songs-of-syx.readthedocs.io/en/latest/modding_getting_started.html), checked 2026-10-17, contains a heading but no API details. This does not supply the missing member-level contracts.
 
-Runtime evidence spans the 0.10.0 relationship fixture, 0.9.0 battle lifecycle fixture, 0.8.0 extended-context fixture, 0.7.0 scene/entity fixtures and 0.6.0 context fixture. Exact run scopes are recorded in VALIDATION.md and validation-evidence.json.
+Runtime evidence spans the 0.11.0 retained-capture/context fixtures, 0.10.0 relationship fixture, 0.9.0 battle lifecycle fixture, 0.8.0 extended-context fixture, 0.7.0 scene/entity fixtures and 0.6.0 context fixture. Exact run scopes are recorded in VALIDATION.md and validation-evidence.json.
 
 ## Current coverage matrix
 
 | Capability | Established access | Runtime scope / limits |
 | --- | --- | --- |
-| Exported state variables | 18 partial typed public-API domains; 209 referenced members in the audit | Existing copied save; not every variable or every entity attribute |
+| Exported state variables | 18 partial typed public-API domains; 210 referenced members in the audit | Existing copied save; not every variable or every entity attribute |
 | Active view | `VIEW.current`, subview `isActive` | Settlement, world, settlement tactical HUD, generated deployment/engagement and controlled victory/defeat restoration, plus initial/terrain world generation; editor activation checked on a copied completed world |
 | Selected subject | `UISubjects.current`, individual class/type and named `STAT.hasIndu` / `STAT.indu` getters | 58 individual statistics observed in the copied-save subject; values/min/max and installed-help reference IDs. Panel may remain behind a modal overlay |
 | Room context | `UIRooms.openIs` and room-list membership | Room blueprint/table/detail presence exercised; exact selected instance unavailable |
@@ -35,7 +35,7 @@ Runtime evidence spans the 0.10.0 relationship fixture, 0.9.0 battle lifecycle f
 
 The snapshot identifies whether an instantiated settlement is a city or a generated battlefield. Domain scopes distinguish scene-local observations, campaign/player data, and mixed resource logistics. During initial world setup, seventeen domains are explicitly unavailable; settings remain observable. Generated terrain alone does not establish a completed playable world. The exact wizard stage remains private.
 
-`RESOURCE.owned()` is a mixed logistics quantity: warehouse/hauler and import/export/station goods, including incoming station goods, minus player trade promises. It is not a warehouse count and may be negative. Resource field definitions identify this scope separately from stockpile storage/capacity. A development-only bytecode check verifies this getter's operations against the installed JAR. Two further checks confirm the exit-to-menu factory and the package-private engine-disposal contract. Only fingerprints, member names and conclusions are published, not proprietary method bodies.
+`RESOURCE.owned()` is a mixed logistics quantity: warehouse/hauler and import/export/station goods, including incoming station goods, minus player trade promises. It is not a warehouse count and may be negative. Resource field definitions identify this scope separately from stockpile storage/capacity. A development-only bytecode check verifies this getter's operations against the installed JAR. Three further checks confirm the public after-update dispatch, the exit-to-menu factory and the package-private engine-disposal contract. Only fingerprints, member names and conclusions are published, not proprietary method bodies.
 
 ## Agent-facing tools
 
@@ -77,7 +77,7 @@ Fixed public getters now serve bounded entity requests across the instantiated s
 
 The isolated fixture adds temporary citizens to a copied game without saving it. It verifies 1,395 live entities, a selected target absent from the 1,000-row snapshot prefix, direct attribute/stat reads, combined class/race/type/tile/stat predicates, 18-page complete paused-scene traversal, unknown-stat rejection, concurrent MCP reads and same-response UI context. Fixture mutations are never part of production. No arbitrary-field or method-call interface was introduced.
 
-This is more complete entity access, not a complete game-variable schema. Every page is a separate observation; generic entity histories/private AI and stable whole-scene snapshot paging remain unavailable. See QUERY_GUIDE.md and validation-evidence.json for exact scope.
+This is more complete entity access, not a complete game-variable schema. Every page is a separate observation; generic entity histories/private AI remain unavailable. The 0.11.0 tools below add bounded retained paging. See QUERY_GUIDE.md and validation-evidence.json for exact scope.
 
 ## Exposed UI content and transitions — 0.8.0
 
@@ -103,7 +103,7 @@ The result overlay remains private and has no mapped public presence/title/conte
 
 ## Broader declaration discovery
 
-API_DISCOVERY.md records a separate compiler-based scan of the shipped source/archive pair: 2,052 public types and 17,442 declared public member candidates. It includes all 209 production references and retains unresolved source-anchor matches explicitly. Constructors, mutators and rendering APIs are candidates only; this is not live variable coverage. No new production methods are exposed by the catalog. The public CORE/CORE_STATE/menu declarations inspected in this pass still do not establish a current-menu getter or unload callback.
+API_DISCOVERY.md records a separate compiler-based scan of the shipped source/archive pair: 2,052 public types and 17,442 declared public member candidates. It includes all 210 production references and retains unresolved source-anchor matches explicitly. Constructors, mutators and rendering APIs are candidates only; this is not live variable coverage. No new production methods are exposed by the catalog. The public CORE/CORE_STATE/menu declarations inspected in this pass still do not establish a current-menu getter or unload callback.
 
 ## Person relationships — 0.10.0
 
@@ -116,6 +116,14 @@ API_DISCOVERY.md records a separate compiler-based scan of the shipped source/ar
 | home_assignment | `STATS.HOME().GETTER.hCoo(h)` | Stored assigned-home tile coordinates, copied immediately from a reusable scratch coordinate. Not current position, room-instance identity, occupancy or independently validated house existence |
 | division | `Humanoid.division()` via `STATS.BATTLE().DIV.get`; `Div.index`, `indexArmy`, `player` | Scene division ID, army-local index and side, joinable with the observed scene-army division IDs. Not a persistent campaign army ID or private orders/history |
 
-These public getters are source-verified rather than officially documented stable member contracts. Room and division IDs may be reused after deletion/regeneration; use session and observation provenance. Reads run only on the script update thread and detached DTOs contain no retained game objects or scratch coordinates.
+These public getters are source-verified rather than officially documented stable member contracts. Room and division IDs may be reused after deletion/regeneration; use session and observation provenance. Reads run only on the game update thread and detached DTOs contain no retained game objects or scratch coordinates.
 
 The 1,395-entity copied-game fixture checks null and non-null assignments for all four relationships, selected-person parity beyond the bounded prefix, existing predicates, 18-page paused-scene traversal and concurrent MCP requests. Both the verifier and game process exit zero. It does not establish active-simulation consistency, every entity subtype or large-city performance. No production control methods are added.
+
+## Retained entity observations and menu-pause sampling — 0.11.0
+
+`capture_live_entities` copies one complete matching bounded selection through fixed public getters in a single `GAME.addAfterUpdate` callback. `read_entity_capture` pages server-local immutable encoded DTOs with their original tick/time/session and optional original UI context. Selection completeness is enforced within row/scan/stat/byte bounds; failures retain nothing. This does not synchronize all worker threads, enumerate the entire game schema or preserve observations indefinitely. See QUERY_GUIDE.md for limits.
+
+The successful copied-game run captures 1,395 entities and reads 70 pages while the game advances from capture tick 2,493,770 to a later observed tick 2,493,869. Every page retains the original capture tick/time, excludes a newly created fixture citizen, and a new capture sees that citizen. Original UI context, concurrent MCP pages, byte bounds and row/scan failures pass. Both game and verifier exit zero. The eleven-context scenario also passes against this exact mod, including reload/session rotation and the stale/unknown main-menu fallback. Earlier battle/editor scenarios retain their earlier adapter/hash scope.
+
+This work exposed that a UI pause at nonzero requested speed can skip SCRIPT resource updates. Sampling now uses public `GAME.addAfterUpdate`, checked against shipped source and installed bytecode and observed to refresh the menu/world context during that pause. This is a source-verified hook, not a new official stability promise. It still supplies no standalone main-menu accessor or immediate unload callback. Failed exploratory runs and fixture corrections are described in VALIDATION.md.

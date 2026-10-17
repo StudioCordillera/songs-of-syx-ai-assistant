@@ -32,3 +32,14 @@ Five short authored summaries, checked 2026-10-17, can be installed with `syx-kn
 ## API establishment audit (0.4.0)
 
 API_ESTABLISHMENT.md links the primary sources, reproducible compiler inventory and runtime coverage matrix. Individual member anchors and hashes are in api-audit.json. The online documentation getting-started page was rechecked on 2026-10-17 and does not provide member-level API contracts. No community SDK is used to claim official support.
+
+## Additional provider evidence (2026-10-17)
+
+- [Claude Code authentication](https://code.claude.com/docs/en/authentication): official login, API-key and authentication precedence.
+- [Claude Code MCP](https://code.claude.com/docs/en/mcp): local stdio server configuration.
+- [Claude plan/Agent SDK notice](https://support.claude.com/en/articles/15036540-use-the-claude-agent-sdk-with-your-claude-plan): current subscription/SDK and plan-specific credit guidance; recheck eligibility.
+- [Claude API authentication](https://platform.claude.com/docs/en/manage-claude/authentication): API credential mechanisms.
+- [DeepSeek Claude Code integration](https://api-docs.deepseek.com/quick_start/agent_integrations/claude_code/): compatible endpoint and model settings.
+- [DeepSeek API introduction](https://api-docs.deepseek.com/): native service endpoint and current model identifiers.
+
+PROVIDERS.md tracks required behavior and distinguishes supplied connection templates from pending authenticated/model/in-game-client validation.

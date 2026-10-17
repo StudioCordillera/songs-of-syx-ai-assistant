@@ -41,7 +41,7 @@ def test_support_bounds(kwargs):
 def test_critical_binary_evidence_is_explicit():
     checks=MANIFEST['binary_checks']['checks']
     assert {check['id'] for check in checks}=={
-        'resource_owned_definition','return_to_menu','engine_disposal_visibility'}
+        'resource_owned_definition','return_to_menu','engine_disposal_visibility','game_after_update_dispatch'}
     assert all(check['passed'] for check in checks)
     for check in checks:
         if 'normalized_disassembly_sha256' in check:

@@ -1,6 +1,6 @@
-# Game API boundary — 0.10.0
+# Game API boundary — 0.11.0
 
-The game-facing plugin runs inside Songs of Syx using `script.SCRIPT` and `SCRIPT_INSTANCE`. All gameplay observations originate from direct public game API calls on the script update thread. The Python MCP reads detached local exports; it does not inspect or control the game process itself.
+The game-facing plugin runs inside Songs of Syx using `script.SCRIPT` and `SCRIPT_INSTANCE`. All gameplay observations originate from direct public game API calls on the game update thread via public `GAME.addAfterUpdate`. The Python MCP reads detached local exports; it does not inspect or control the game process itself.
 
 The plugin has no private-field reflection, arbitrary object traversal, memory reading, native/window callback hooks, synthetic mouse/keyboard input, screenshot capture, OS automation, arbitrary method invocation or state writes. The previous raw-field and computer-use implementations have been removed from the current source and build. Old Git history is not the current supported implementation.
 
@@ -12,7 +12,7 @@ Read locally from the licensed 0.71.44 installation; proprietary source/docs are
 | --- | --- |
 | `info/MAKE_A_MOD.txt` | Mod metadata, version folders and launcher mod discovery. |
 | `info/scriptGuide.odt`, Overview / Project setup | Describes itself as semi-official; instructs adding `SongsOfSyx.jar` to the classpath and implementing `script.SCRIPT`. Also warns that much of the game code is undocumented. |
-| `info/SongsOfSyx-sources.jar!/script/SCRIPT.java` | Documented factory, init/update/save/load, render/hover/key/mouse callbacks. We use creation/update/save/load; observation-only implementation. |
+| `info/SongsOfSyx-sources.jar!/script/SCRIPT.java` | Documented factory, init/update/save/load, render/hover/key/mouse callbacks. We use creation/save/load and register a separate public after-update observer; observation-only implementation. |
 | `info/SongsOfSyx-sources.jar!/game/GameDisposable.java` | Cleanup on next game initialization; does not promise an unload-to-menu callback. |
 | Installed `SongsOfSyx.jar` public API | Compiles the typed collectors against the actual installed build; current loader uses `V71/script/*.jar`. |
 
@@ -47,13 +47,13 @@ Cleanup occurs at next game initialization and JVM shutdown. Without an official
 
 ## MCP and references
 
-Ten read-only tools are available: UI context and API support/evidence, plus status, field schema discovery, bounded subtree reads, structured selection, query help, installed-reference search and reviewed external-source search. Filters, projections, joins and aggregates operate on exported public-API data. There is no raw Java field query or control mailbox. A bounded read-request transport asks the script update thread for fixed entity observations; it accepts no gameplay action, arbitrary method or object-member path.
+Twelve read-only tools are available: UI context and API support/evidence, plus status, field schema discovery, bounded subtree reads, structured selection, query help, installed-reference search and reviewed external-source search. Filters, projections, joins and aggregates operate on exported public-API data. There is no raw Java field query or control mailbox. A bounded read-request transport asks the script update thread for fixed entity observations; it accepts no gameplay action, arbitrary method or object-member path.
 
-Local JSON export and stdio MCP are the transport between the in-process plugin and the assistant. The assistant client handles OpenAI authentication/inference. External guide summaries are reference evidence, not a source of live game state or executable instructions.
+Local JSON export and stdio MCP are the transport between the in-process plugin and the assistant. The selected official assistant client handles provider authentication/inference; see PROVIDERS.md. External guide summaries are reference evidence, not a source of live game state or executable instructions.
 
 ## Compiler inventory
 
-The production references resolve to 209 public game API members. The metadata inventory includes source anchors and hashes; it does not enumerate every game variable or establish official stability. See API_ESTABLISHMENT.md for exact evidence levels and runtime checks.
+The production references resolve to 210 public game API members. The metadata inventory includes source anchors and hashes; it does not enumerate every game variable or establish official stability. See API_ESTABLISHMENT.md for exact evidence levels and runtime checks.
 
 ## On-demand read transport — introduced in 0.7.0
 
@@ -74,3 +74,5 @@ Production reads `Army.divisions`, `Div.info`, `DivInfo.men/name`, `Div.menNrOf/
 Battle validation uses public game UI dispatch and public test-only orders/casualty setup. The pinned start button and actual private conclusion overlay are never obtained through reflection or a private field. The fixture constructs the public result-layout type to locate its Close control, then dispatches to the actual game manager; the game performs its normal protected callbacks internally. This is a source-verified test path, not a documented stable computer-use contract or a shipped action interface.
 
 0.10.0 adds fixed person-assignment observations through public workplace/profession/home-coordinate/division readers. Each getter has explicit available/data status. Stored assignments do not establish current activity, occupancy, selected UI room or persistent IDs. See API_ESTABLISHMENT.md for source and runtime scope.
+
+0.11.0 adds bounded retained entity captures using the same fixed public getters. Only detached DTOs are retained in the MCP server; no game object is cached there. `GAME.addAfterUpdate` is source/binary verified and runtime checked for UI-paused sampling, not a separately documented stable contract. Capture selection and legacy cursor limits are distinguished in QUERY_GUIDE.md.

@@ -2,13 +2,13 @@
 
 The production reference audit proves only the public members used by our adapter. To identify remaining mapping work, `catalog_api.py` separately scans the entire shipped source archive and resolves its named types and public declared members against the installed game JAR with the Java compiler. It never starts the game, executes its classes, or uses reflection. This is development tooling, outside the packaged mod and MCP server.
 
-The current scan covers 2,443 source files, resolves every cataloged named top-level/member source type, and finds 2,052 public types with public enclosing types and 17,442 public declared member signatures. All 209 production reference IDs occur in this catalog. Matching game JAR/source archive hashes establish that the discovery run and production audit used the same reference pair. They do not attest the installed/running mod.
+The current scan covers 2,443 source files, resolves every cataloged named top-level/member source type, and finds 2,052 public types with public enclosing types and 17,442 public declared member signatures. All 210 production reference IDs occur in this catalog. Matching game JAR/source archive hashes establish that the discovery run and production audit used the same reference pair. They do not attest the installed/running mod.
 
 | Root package | Public declared member candidates | Production reference IDs |
 | --- | ---: | ---: |
 | settlement | 6,606 | 59 |
 | snake2d | 2,817 | 13 |
-| game | 2,295 | 50 |
+| game | 2,295 | 51 |
 | init | 1,726 | 17 |
 | util | 1,664 | 11 |
 | world | 1,212 | 17 |
@@ -43,4 +43,4 @@ The public compiled declarations for `snake2d.CORE` and `CORE_STATE` provide no 
 
 This finding is scoped to these inspected classes and the earlier SCRIPT/disposal review. It does not prove that no other public lifecycle mechanism could exist. Continue targeted review of object entry points and thread contracts before making a broader claim.
 
-For each useful candidate, remaining work is to establish a public route from the loaded game's objects, review getter implementation/thread/units semantics, write a bounded typed mapping, extend the production audit, and validate actual game behavior. Priority areas remain entity relationships, non-entity data, consistent multi-page observations, UI selections and lifecycle gaps. A public declaration alone is never permission to run a mutator or guess a private implementation's meaning.
+For each useful candidate, remaining work is to establish a public route from the loaded game's objects, review getter implementation/thread/units semantics, write a bounded typed mapping, extend the production audit, and validate actual game behavior. Priority areas remain entity relationships, non-entity data, broader consistent typed observations, UI selections and lifecycle gaps. A public declaration alone is never permission to run a mutator or guess a private implementation's meaning.
