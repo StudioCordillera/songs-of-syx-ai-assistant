@@ -55,6 +55,31 @@ public final class StateCollector {
             }
         return row;
     }
+    /** Detached relationship DTOs; each public getter failure remains distinct from an absent assignment. */
+    static Map<String,Object> personRelationships(Humanoid h) {
+        Map<String,Object> result=object("coverage","partial","scope","instantiated_settlement_scene",
+            "reason","Recorded assignments only, not current activity or UI selection. IDs are scene/session scoped; no private AI, complete history or home occupancy is inferred.");
+        try {
+            settlement.room.main.RoomInstance room=STATS.WORK().EMPLOYED.get(h);
+            result.put("workplace",object("available",true,"data",room==null?null:object(
+                "room_id",room.index(),"blueprint_id",room.blueprint().key,"name",room.name().toString(),
+                "anchor_tile_x",room.mX(),"anchor_tile_y",room.mY())));
+        } catch(RuntimeException error) {result.put("workplace",object("available",false,"data",null,"reason",error.getClass().getSimpleName()));}
+        try {
+            settlement.room.main.RoomBlueprintImp profession=STATS.WORK().profession.get(h.indu());
+            result.put("profession",object("available",true,"data",profession==null?null:object("blueprint_id",profession.key)));
+        } catch(RuntimeException error) {result.put("profession",object("available",false,"data",null,"reason",error.getClass().getSimpleName()));}
+        try {
+            snake2d.util.datatypes.COORDINATE home=STATS.HOME().GETTER.hCoo(h);
+            result.put("home_assignment",object("available",true,"data",home==null?null:object("tile_x",home.x(),"tile_y",home.y())));
+        } catch(RuntimeException error) {result.put("home_assignment",object("available",false,"data",null,"reason",error.getClass().getSimpleName()));}
+        try {
+            game.battle.div.Div div=h.division();
+            result.put("division",object("available",true,"data",div==null?null:object("division_id",(int)div.index(),
+                "army_division_index",(int)div.indexArmy(),"side",div.player()?"player":"enemy")));
+        } catch(RuntimeException error) {result.put("division",object("available",false,"data",null,"reason",error.getClass().getSimpleName()));}
+        return result;
+    }
     private static Map<String,Object> selectedSubject() {
         if(!view.main.VIEW.existTemp() || !view.main.VIEW.s().isActive()) return null;
         Humanoid h=view.main.VIEW.s().ui.subjects.current();
@@ -66,7 +91,7 @@ public final class StateCollector {
             stats.add(individualStat(h,stat));
         }
         return object("entity_id",h.id(),"race_id",h.race().key,"class_id",individual.clas().key,"type_id",individual.hType().key,
-            "tile_x",h.tc().x(),"tile_y",h.tc().y(),"stats",stats,"unsupported_stat_count",unsupported,
+            "tile_x",h.tc().x(),"tile_y",h.tc().y(),"relationships",personRelationships(h),"stats",stats,"unsupported_stat_count",unsupported,
             "scope","underlying settlement subject panel; may be obscured by overlays or hidden UI",
             "coverage","partial","reason","Named statistics advertising hasIndu() only; not every attribute, history or private AI field. Independent of the first-1000 entity list.");
     }

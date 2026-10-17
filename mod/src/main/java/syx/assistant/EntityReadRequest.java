@@ -23,7 +23,7 @@ public final class EntityReadRequest {
     final int[] bounds;
     final List<Filter> filters;
     private static final Set<String> KEYS=Set.of("protocol","request_id","session","expires","cursor","scan_limit","limit","ids","race","class","type","bounds","fields","stats","filters");
-    private static final Set<String> FIELDS=Set.of("id","entity_type","tile_x","tile_y","race_id","class_id","humanoid_type_id","stats");
+    private static final Set<String> FIELDS=Set.of("id","entity_type","tile_x","tile_y","race_id","class_id","humanoid_type_id","stats","relationships");
     private static final Set<String> OPS=Set.of("eq","ne","lt","lte","gt","gte");
 
     private static int integer(String text,int low,int high) {
@@ -144,6 +144,7 @@ public final class EntityReadRequest {
                     case "race_id":row.put(field,h==null?null:h.race().key);break;
                     case "class_id":row.put(field,h==null?null:h.indu().clas().key);break;
                     case "humanoid_type_id":row.put(field,h==null?null:h.indu().hType().key);break;
+                    case "relationships":row.put(field,h==null?null:StateCollector.personRelationships(h));break;
                     case "stats":
                         List<Object> values=new ArrayList<>();
                         if(h!=null)for(Integer statId:statIds)values.add(StateCollector.individualStat(h,stats.get(statId)));
