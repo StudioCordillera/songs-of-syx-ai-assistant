@@ -38,10 +38,10 @@ public final class ContextScenario {
         phase++;
         switch(phase) {
             case 1:
-                for(ENTITY e:SETT.ENTITIES().getAllEnts()) if(e instanceof Humanoid && !e.isRemoved()) {
-                    VIEW.s().ui.subjects.showSingle((Humanoid)e);announce("subject");return;
-                }
-                throw new IllegalStateException("No subject fixture");
+                Humanoid last=null;
+                for(ENTITY e:SETT.ENTITIES().getAllEnts()) if(e instanceof Humanoid && !e.isRemoved()) last=(Humanoid)e;
+                if(last==null) throw new IllegalStateException("No subject fixture");
+                VIEW.s().ui.subjects.showSingle(last);announce("subject");return;
             case 2: VIEW.inters().menu.show();announce("game_menu");return;
             case 3:
                 VIEW.inters().manager.remove(VIEW.inters().menu);
