@@ -57,7 +57,7 @@ The 0.8.0 extended-context, 0.7.0 scene/entity and 0.6.0 context fixtures remain
 
 ## Offline public-declaration discovery
 
-The discovery extension passes an independent compiled synthetic API fixture, and the full Python suite now passes 57 tests. The installed-game scan resolves 2,052 public types / 17,442 declared public members from 2,443 shipped source files, with all 246 production references present. API_DISCOVERY.json contains hashes/counts, and API_DISCOVERY.md records the scope and missing source-anchor cases. The initial discovery pass added development evidence without changing production Java code; the later 0.10.0 relationship mapping has its own runtime evidence below. Existing earlier fixtures retain their original build scope.
+The discovery extension passes an independent compiled synthetic API fixture; that initial release had 57 passing Python tests. The installed-game scan resolves 2,052 public types / 17,442 declared public members from 2,443 shipped source files, with all 246 production references present. API_DISCOVERY.json contains hashes/counts, and API_DISCOVERY.md records the scope and missing source-anchor cases. The initial discovery pass added development evidence without changing production Java code; the later 0.10.0 relationship mapping has its own runtime evidence below. Existing earlier fixtures retain their original build scope.
 
 ## Person assignments — 0.10.0
 
