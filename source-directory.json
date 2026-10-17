@@ -1,0 +1,20 @@
+{
+  "notice": "Discovery metadata only; not retrieved evidence for gameplay claims.",
+  "sources": [
+    {
+      "kind": "official",
+      "title": "Game documentation",
+      "url": "https://songs-of-syx.readthedocs.io/en/latest/"
+    },
+    {
+      "kind": "guide",
+      "title": "Steam community guides",
+      "url": "https://steamcommunity.com/app/1162750/guides/"
+    },
+    {
+      "kind": "forum",
+      "title": "Steam community discussions",
+      "url": "https://steamcommunity.com/app/1162750/discussions/"
+    }
+  ]
+}

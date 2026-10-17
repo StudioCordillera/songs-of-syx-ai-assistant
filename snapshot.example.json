@@ -1,0 +1,111 @@
+{
+  "schema_version": 1,
+  "session_id": "demo-session",
+  "snapshot_id": "demo-0001",
+  "game_version": "DEMO-unverified",
+  "tick": 100,
+  "captured_at": "2026-10-17T00:00:00Z",
+  "game_loaded": true,
+  "demo": true,
+  "mods": [],
+  "domains": {
+    "population": {
+      "coverage": "unavailable",
+      "reason": "Collector not implemented",
+      "data": null
+    },
+    "resources": {
+      "coverage": "partial",
+      "reason": "Synthetic example; units are illustrative only",
+      "data": {
+        "stockpiles": [
+          {
+            "id": "demo-food",
+            "amount": 123,
+            "unit": "illustrative units"
+          }
+        ]
+      }
+    },
+    "production": {
+      "coverage": "unavailable",
+      "reason": "Collector not implemented",
+      "data": null
+    },
+    "employment": {
+      "coverage": "unavailable",
+      "reason": "Collector not implemented",
+      "data": null
+    },
+    "services": {
+      "coverage": "unavailable",
+      "reason": "Collector not implemented",
+      "data": null
+    },
+    "housing": {
+      "coverage": "unavailable",
+      "reason": "Collector not implemented",
+      "data": null
+    },
+    "health": {
+      "coverage": "unavailable",
+      "reason": "Collector not implemented",
+      "data": null
+    },
+    "law": {
+      "coverage": "unavailable",
+      "reason": "Collector not implemented",
+      "data": null
+    },
+    "happiness": {
+      "coverage": "unavailable",
+      "reason": "Collector not implemented",
+      "data": null
+    },
+    "research": {
+      "coverage": "unavailable",
+      "reason": "Collector not implemented",
+      "data": null
+    },
+    "trade": {
+      "coverage": "unavailable",
+      "reason": "Collector not implemented",
+      "data": null
+    },
+    "diplomacy": {
+      "coverage": "unavailable",
+      "reason": "Collector not implemented",
+      "data": null
+    },
+    "military": {
+      "coverage": "unavailable",
+      "reason": "Collector not implemented",
+      "data": null
+    },
+    "world": {
+      "coverage": "unavailable",
+      "reason": "Collector not implemented",
+      "data": null
+    },
+    "map": {
+      "coverage": "unavailable",
+      "reason": "Collector not implemented",
+      "data": null
+    },
+    "entities": {
+      "coverage": "unavailable",
+      "reason": "Collector not implemented",
+      "data": null
+    },
+    "events": {
+      "coverage": "unavailable",
+      "reason": "Collector not implemented",
+      "data": null
+    },
+    "settings": {
+      "coverage": "unavailable",
+      "reason": "Collector not implemented",
+      "data": null
+    }
+  }
+}
