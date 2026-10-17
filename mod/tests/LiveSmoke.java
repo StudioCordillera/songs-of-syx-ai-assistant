@@ -13,7 +13,12 @@ import util.text.D;
 public final class LiveSmoke {
     public static void main(String[] args) {
         if (args.length != 1) throw new IllegalArgumentException("Pass a COPIED save file");
-        CORE.init(new ErrorHandler());
+        CORE.init(new ErrorHandler() {
+            @Override public void handle(String output,String dump) {
+                // Keep engine stderr in the test log, without launching its external Swing error dialog.
+                System.out.println("SMOKE_CAPTURED_ENGINE_OUTPUT: "+output);
+            }
+        });
         LSettings settings = new LSettings();
         settings.screenMode.set(2); settings.windowWidth.set(12); settings.windowHeight.set(9);
         settings.rpc.set(0); settings.save();
@@ -34,6 +39,10 @@ public final class LiveSmoke {
                                 public void doAfterSet() {
                                     GAME.SPEED.speedSet(0);
                                     view.main.VIEW.inters().load.deactivate();
+                                    if (Boolean.getBoolean("syx.smoke.context")) {
+                                        ContextScenario.install(Paths.get(System.getProperty("syx.assistant.stateDir")),Paths.get(args[0]));
+                                        return;
+                                    }
                                     final long loaded=System.currentTimeMillis();
                                     GAME.addAfterUpdate(() -> { if (System.currentTimeMillis()-loaded>180_000) CORE.annihilate(); });
                                 }
