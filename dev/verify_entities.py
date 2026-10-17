@@ -42,6 +42,20 @@ def verify(directory:Path,timeout=200):
     assert response['ui_context']['selected_subject']['entity_id']==expected['entity_id']
     assert response['scene']['settlement_scene_kind']=='city'
     print('PASS direct identity, attributes, stat and same-response UI context',flush=True)
+    relation_counts={key:0 for key in ('workplace','profession','home_assignment','division')}
+    for case in expected['relationship_cases']:
+        result=query_entities(advisor,{**pinned,'entity_ids':[case['entity_id']],
+            'fields':['id','relationships'],'limit':1})
+        relations=result['data']['rows'][0]['relationships']
+        for key,wanted in case['relations'].items():
+            assert relations[key]['available'] is True
+            assert relations[key]['data']==wanted,(key,relations[key],wanted)
+            if wanted is not None:relation_counts[key]+=1
+    assert all(relation_counts.values()),relation_counts
+    selected=prefix['selected_subject']['relationships']
+    for key,wanted in expected['relationship_cases'][0]['relations'].items():
+        assert selected[key]['available'] and selected[key]['data']==wanted
+    print('PASS null and non-null workplace/profession/home/division assignments and selected-person parity',relation_counts,flush=True)
     filtered=query_entities(advisor,{**pinned,'cursor':expected['slot'],'scan_limit':1,'limit':1,
         'race_id':expected['race_id'],'class_id':expected['class_id'],'humanoid_type_id':expected['humanoid_type_id'],
         'tile_bounds':[expected['tile_x'],expected['tile_y'],expected['tile_x']+1,expected['tile_y']+1],
@@ -71,10 +85,13 @@ def verify(directory:Path,timeout=200):
             async with ClientSession(*streams) as session:
                 await session.initialize()
                 async def read():
-                    result=await session.call_tool('query_live_entities',{'spec':{**pinned,'entity_ids':[expected['entity_id']],'fields':['id'],'limit':1}})
+                    result=await session.call_tool('query_live_entities',{'spec':{**pinned,'entity_ids':[expected['entity_id']],'fields':['id','relationships'],'limit':1}})
                     assert not result.is_error,result
                     value=json.loads(next(x.text for x in result.content if x.type=='text'))
-                    assert value['data']['rows']==[{'id':expected['entity_id']}]
+                    row=value['data']['rows'][0]
+                    assert row['id']==expected['entity_id']
+                    for key,wanted in expected['relationship_cases'][0]['relations'].items():
+                        assert row['relationships'][key]['available'] and row['relationships'][key]['data']==wanted
                     return value['request_id']
                 first,second=await asyncio.gather(read(),read());assert first!=second
     asyncio.run(mcp_check())
@@ -84,7 +101,7 @@ def verify(directory:Path,timeout=200):
     assert current.ui_context['selected_subject']['entity_id']==expected['entity_id']
     report={'passed':True,'game_version':snapshot.game_version,'live_entities':expected['total'],'prefix_limit':1000,
         'target_beyond_prefix':True,'pages':pages,'combined_filters':True,'concurrent_mcp_requests':True,
-        'unknown_stat_rejected':True,'same_response_context':True,
+        'unknown_stat_rejected':True,'same_response_context':True,'relationship_nonnull_cases':relation_counts,'selected_relationship_parity':True,'relationships_over_mcp':True,
         'limits':['Paused isolated copied game; not a performance benchmark.','Cursor pages are separate observations, not a stable multi-page snapshot.','No private attributes or arbitrary field/method invocation.']}
     (directory/'entity-validation.json').write_text(json.dumps(report,indent=2)+'\n')
     (directory/'verifier.done').write_text('passed\n')
