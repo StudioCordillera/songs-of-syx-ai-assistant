@@ -49,7 +49,7 @@ public final class LiveSmoke {
                                         ExtendedContextScenario.install(Paths.get(System.getProperty("syx.assistant.stateDir")),Paths.get(args[0]));
                                         return;
                                     }
-                                    if (Boolean.getBoolean("syx.smoke.entities")) {
+                                    if (Boolean.getBoolean("syx.smoke.entities") || Boolean.getBoolean("syx.smoke.capture")) {
                                         EntityScenario.install(Paths.get(System.getProperty("syx.assistant.stateDir")));
                                         return;
                                     }

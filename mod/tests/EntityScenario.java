@@ -19,7 +19,18 @@ public final class EntityScenario {
             Humanoid seed=null;
             for(ENTITY e:SETT.ENTITIES().getAllEnts())if(e instanceof Humanoid && !e.isRemoved()){seed=(Humanoid)e;break;}
             if(seed==null)throw new IllegalStateException("No seed citizen");
-            for(int i=0;i<1100;i++)new Humanoid(seed.body().cX(),seed.body().cY(),seed.race(),init.type.HTYPES.SUBJECT(),init.type.CAUSE_ARRIVES.IMMIGRATED());
+            if(Boolean.getBoolean("syx.smoke.capture")) {
+                int added=0;
+                for(int y=2;y<SETT.THEIGHT-2 && added<1100;y+=4)for(int x=2;x<SETT.TWIDTH-2 && added<1100;x+=4) {
+                    if(!SETT.PATH().getAvailability(x,y).availableToStandOn || !SETT.PATH().reachability.is(x,y) || SETT.ENTITIES().hasAtTile(x,y))continue;
+                    Humanoid made=new Humanoid(x*init.constant.C.TILE_SIZE+init.constant.C.TILE_SIZEH,
+                        y*init.constant.C.TILE_SIZE+init.constant.C.TILE_SIZEH,seed.race(),init.type.HTYPES.SUBJECT(),init.type.CAUSE_ARRIVES.IMMIGRATED());
+                    if(!made.isRemoved())added++;
+                }
+                if(added!=1100)throw new IllegalStateException("Not enough separated public walkable fixture tiles: "+added);
+            } else {
+                for(int i=0;i<1100;i++)new Humanoid(seed.body().cX(),seed.body().cY(),seed.race(),init.type.HTYPES.SUBJECT(),init.type.CAUSE_ARRIVES.IMMIGRATED());
+            }
             ENTITY[] all=SETT.ENTITIES().getAllEnts();Humanoid target=null;int slot=-1,total=0;
             for(int i=0;i<all.length;i++)if(all[i]!=null && !all[i].isRemoved()) {
                 total++;
@@ -49,6 +60,24 @@ public final class EntityScenario {
             expected.put("relationship_cases",relationshipCases);
             Files.createDirectories(output);
             Files.writeString(output.resolve("entity-fixture.json"),JsonWriter.encode(Map.of("started_at",Instant.now().toString(),"expected",expected)));
+            if(Boolean.getBoolean("syx.smoke.capture")) {
+                final Humanoid source=seed;final boolean[] mutated={false};
+                final boolean[] resumed={false};
+                GAME.addAfterUpdate(()->{
+                    if(mutated[0] && !resumed[0] && Files.exists(output.resolve("capture-resume.request"))) {
+                        resumed[0]=true;VIEW.inters().manager.remove(VIEW.inters().menu);VIEW.inters().manager.clear();VIEW.current().uiManager.clear();GAME.SPEED.speedSet(1);
+                        try {Files.writeString(output.resolve("capture-resumed.json"),JsonWriter.encode(Map.of("tick",GAME.updateI())));}
+                        catch(Exception error){CORE.annihilate(error);}
+                    }
+                    if(mutated[0] || !Files.exists(output.resolve("capture-mutate.request")))return;
+                    mutated[0]=true;
+                    try {
+                        Humanoid added=new Humanoid(source.body().cX(),source.body().cY(),source.race(),init.type.HTYPES.SUBJECT(),init.type.CAUSE_ARRIVES.IMMIGRATED());
+                        VIEW.world().activate();VIEW.inters().menu.show();GAME.SPEED.speedSet(1);
+                        Files.writeString(output.resolve("capture-mutated.json"),JsonWriter.encode(Map.of("added_entity_id",added.id(),"mutation_tick",GAME.updateI())));
+                    }catch(Exception error){CORE.annihilate(error);}
+                });
+            }
             long began=System.currentTimeMillis();
             GAME.addAfterUpdate(()->{if(Files.exists(output.resolve("verifier.done")) || System.currentTimeMillis()-began>140000)CORE.annihilate();});
             System.err.println("ENTITY TEST: isolated fixture ready; live entities="+total+", target slot="+slot);
