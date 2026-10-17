@@ -108,3 +108,13 @@ Discover `military.scene_armies` before querying. Each side's `divisions` list c
 This selects rows reporting a published engagement flag, not proof of instantaneous fighting. Worker buffers may lag or remain stale during a conclusion; brief engagement can be missed by periodic snapshots. Morale has no established percentage/range here, and the configured/present difference is not a general casualty count. These armies belong to the current instantiated scene, not every world army. Treat division IDs as observation/scene scoped.
 
 `input_capture.global_hover_consumed` and `active_view_hover_consumed` report the latest public manager flags. `global_hover_consumed_without_known_overlay_flag` can highlight input consumption while all mapped overlay flags are false. It does not identify a private battle-result screen or any other dialog, and its absence does not prove that an unmapped overlay is absent. Exact battle-conclusion content stays unavailable.
+
+## Person relationship projection (0.10.0)
+
+```json
+{"entity_ids":[123],"fields":["id","relationships"],"limit":1}
+```
+
+Pass this as `spec` to `query_live_entities` after discovering the current session and entity IDs. Each of `workplace`, `profession`, `home_assignment` and `division` returns `{available,data}`. Available with null data means no recorded assignment; unavailable means the getter failed. Recorded profession is separate from current workplace. Home coordinates describe an assignment, not occupancy/current position. Workplace anchors are room anchor tiles, not the person's position or UI selection. Division IDs can be matched with `military/scene_armies` in the same scene, but cross-response reads are separate observations; IDs are not persistent across regeneration. Use paired mod/MCP builds; older mods reject the new projection explicitly. Request fewer rows if a relationship projection exceeds the existing 64 KiB response bound.
+
+The selected-person snapshot also includes `entities/selected_subject/relationships`, so `select_game_state` can inspect these fields with the same snapshot/context as other data.

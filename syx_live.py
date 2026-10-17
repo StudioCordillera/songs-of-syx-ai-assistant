@@ -14,7 +14,7 @@ from pydantic import BaseModel, ConfigDict, Field, StrictInt, StrictStr, model_v
 
 Int32 = Annotated[StrictInt, Field(ge=-(2**31), le=2**31-1)]
 StatId = Annotated[StrictInt, Field(ge=0, le=100000)]
-OutputField = Literal['id','entity_type','tile_x','tile_y','race_id','class_id','humanoid_type_id','stats']
+OutputField = Literal['id','entity_type','tile_x','tile_y','race_id','class_id','humanoid_type_id','stats','relationships']
 
 class StrictModel(BaseModel):
     model_config = ConfigDict(extra='forbid')
@@ -31,7 +31,7 @@ class EntitySelection(StrictModel):
     humanoid_type_id: StrictStr | None = Field(default=None,min_length=1,max_length=100)
     tile_bounds: list[Annotated[StrictInt,Field(ge=0,le=100000)]] | None = Field(default=None,min_length=4,max_length=4)
     stat_filters: list[StatFilter] = Field(default_factory=list,max_length=4)
-    fields: list[OutputField] = Field(default_factory=lambda:['id','entity_type','tile_x','tile_y','race_id'],min_length=1,max_length=8)
+    fields: list[OutputField] = Field(default_factory=lambda:['id','entity_type','tile_x','tile_y','race_id'],min_length=1,max_length=9)
     stat_ids: list[StatId] = Field(default_factory=list,max_length=20)
     cursor: Annotated[StrictInt,Field(ge=0,le=2**31-1)] = 0
     scan_limit: Annotated[StrictInt,Field(ge=1,le=10000)] = 10000
@@ -137,5 +137,6 @@ ENTITY_QUERY_HELP = {
     'scope':'Current instantiated city or battlefield; unavailable without SETT. Not every game variable or private AI attribute.',
     'paging':'With entity_ids, the public getByID lookup is used and cursor indexes the requested ID list. Otherwise cursor indexes mutable scene-array slots. next_cursor continues from the scanned position, not the count of matching entities. Each page is a separate observation; no multi-page snapshot guarantee.',
     'limits':'10000 array slots scanned, 100 returned rows, four stat comparisons, 20 projected stats and 100 stat cells per request; 8 KiB request, 64 KiB response, 8-second deadline. POSIX MCP host required.',
+    'relationships':'Optional relationships projection: recorded workplace room identity/blueprint/name/anchor; recorded profession blueprint; stored home-assignment coordinates; scene division identity/side. Per-getter available/data distinguish absent assignment from failed observation. Non-humanoids return null. These are not current activity, home occupancy, selected room, permanent IDs or a complete history. Requires the paired updated mod.',
     'units':'Raw stat integers and getter bounds do not establish semantic units. Cite returned reference_id and retrieve the installed description.',
 }

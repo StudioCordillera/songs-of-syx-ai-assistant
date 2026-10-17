@@ -2,15 +2,15 @@
 
 The production reference audit proves only the public members used by our adapter. To identify remaining mapping work, `catalog_api.py` separately scans the entire shipped source archive and resolves its named types and public declared members against the installed game JAR with the Java compiler. It never starts the game, executes its classes, or uses reflection. This is development tooling, outside the packaged mod and MCP server.
 
-The current scan covers 2,443 source files, resolves every cataloged named top-level/member source type, and finds 2,052 public types with public enclosing types and 17,442 public declared member signatures. All 197 production reference IDs occur in this catalog. Matching game JAR/source archive hashes establish that the discovery run and production audit used the same reference pair. They do not attest the installed/running mod.
+The current scan covers 2,443 source files, resolves every cataloged named top-level/member source type, and finds 2,052 public types with public enclosing types and 17,442 public declared member signatures. All 209 production reference IDs occur in this catalog. Matching game JAR/source archive hashes establish that the discovery run and production audit used the same reference pair. They do not attest the installed/running mod.
 
 | Root package | Public declared member candidates | Production reference IDs |
 | --- | ---: | ---: |
-| settlement | 6,606 | 49 |
+| settlement | 6,606 | 59 |
 | snake2d | 2,817 | 13 |
-| game | 2,295 | 49 |
+| game | 2,295 | 50 |
 | init | 1,726 | 17 |
-| util | 1,664 | 10 |
+| util | 1,664 | 11 |
 | world | 1,212 | 17 |
 | view | 1,006 | 42 |
 | launcher | 69 | 0 |

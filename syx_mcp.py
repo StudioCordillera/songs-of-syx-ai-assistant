@@ -240,7 +240,7 @@ def create_server(advisor: Advisor) -> MCPServer:
     def query_live_entities(spec: dict) -> dict:
         """Request selected entity data directly from the mod's update thread, beyond the prefix snapshot.
         Fixed filters: entity_ids, race_id, class_id, humanoid_type_id, tile_bounds, stat_filters.
-        Select fields/stat_ids; limit/cursor/scan_limit bound work. Call game_query_help first.
+        Select fields/stat_ids, including optional recorded person relationships; limit/cursor/scan_limit bound work. Call game_query_help first.
         Read-only; no arbitrary field names, methods or code. Each cursor page is a separate observation.
         """
         from syx_live import query_entities

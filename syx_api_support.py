@@ -1,5 +1,8 @@
 """Explicitly reviewed capability coverage; automation cannot turn public APIs into official contracts."""
 CAPABILITIES = [
+ {'id':'person_relationships','support':'public_source_verified','validation':'1,395-entity copied-game fixture: null/non-null workplace, profession, home assignment and division; selected-person parity beyond prefix; game/verifier exit zero',
+  'references':['API_ESTABLISHMENT.md','settlement/stats/colls/StatsWork.java:383','settlement/stats/colls/StatsHome.java:490','settlement/entity/humanoid/Humanoid.java:581','api-audit.json'],
+  'limits':'Recorded assignments, not current activity, occupancy, UI selection or permanent campaign IDs. Separate per-getter unavailable/data status. Fixed optional projection, not arbitrary traversal or relationship filters. Public source-verified, not an officially stable member contract.'},
  {'id':'script_lifecycle','support':'documented_script_contract','validation':'copied-save load/reload and shutdown',
   'references':['script/SCRIPT.java:47','script/SCRIPT.java:78','game/GameDisposable.java:5'],
   'limits':'No documented unload-to-main-menu callback. Update, creation and persistence hooks do not provide standalone menu coverage.'},

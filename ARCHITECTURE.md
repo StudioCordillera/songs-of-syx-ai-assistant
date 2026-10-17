@@ -1,4 +1,4 @@
-# Architecture — 0.9.0
+# Architecture — 0.10.0
 
 The Java mod implements the shipped SCRIPT interface. Typed collectors read public game APIs on the script update thread and build detached DTOs. A daemon serializes them to an atomic local JSON snapshot approximately every two wall-clock seconds while the update hook runs. MCP validates/caches that snapshot and executes bounded selections locally. Neither the daemon nor MCP traverses game objects. On-demand entity requests are parsed on the file daemon, handed to the update thread, evaluated using fixed public getters, and returned as detached DTOs.
 
@@ -39,3 +39,5 @@ WorldGen editing flags are workflow data and may persist after changing views. U
 Scene army/division values are detached during the script update. Engagement comes from the battle worker's latest published status buffer and may lag or persist while workers are paused. These observations are not a synchronized full combat log or an instantaneous fighting guarantee. Counts and raw morale remain separate, explicitly scoped quantities.
 
 The context includes latest public global/view hover-consumption flags. They expose input-consumption evidence without enumerating the private manager collection or synthesizing production input. A private result screen can consume hover while every mapped overlay flag is false. That does not make its identity, text or outcome available. Tests use game-internal public dispatch; the shipped mod remains observational.
+
+The optional person relationships projection and selected-person snapshot share one typed DTO builder. Public getters run on the update thread; room names/IDs, stored home coordinates and division IDs are copied immediately. No retained scratch coordinate or game object crosses into the daemon. Getter failure is distinct from an unassigned/null relationship. These are recorded assignments, not an activity or UI-selection model.
