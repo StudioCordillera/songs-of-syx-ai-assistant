@@ -7,7 +7,7 @@ import time
 from syx_mcp import Advisor
 
 
-def verify(directory:Path,timeout:float=260,on_demand:bool=False):
+def verify(directory:Path,timeout:float=260,on_demand:bool=False,tiles:bool=False):
     advisor=Advisor(directory/'snapshot.json',directory/'corpus.json')
     required={'city','settlement_battle','city_restored','battle_deployment','battle_menu','city_reloaded','world_generation','terrain_generated'}
     checks={};sessions={};began=time.monotonic()
@@ -64,8 +64,25 @@ def verify(directory:Path,timeout:float=260,on_demand:bool=False):
                     assert observation['scene']['settlement_scene_kind']==scene['settlement_scene_kind']
                     assert observation['ui_context']['active_view']==context['active_view']
                     read_available=True
+            tile_available=None
+            if tiles:
+                from syx_tiles import query_tiles
+                selection={'tile_bounds':[0,0,1,1],'fields':['terrain','floor','room','minerals','path'],
+                           'limit':1,'expected_session_id':snapshot.session_id}
+                if name in {'world_generation','terrain_generated'}:
+                    try:query_tiles(advisor,selection)
+                    except ValueError as error:assert 'No instantiated settlement scene' in str(error),error
+                    else:raise AssertionError('Empty world setup must reject tile reads')
+                    tile_available=False
+                else:
+                    tile=query_tiles(advisor,selection)
+                    assert tile['scene']['settlement_scene_kind']==scene['settlement_scene_kind']
+                    assert tile['ui_context']['active_view']==context['active_view']
+                    assert tile['data']['rows'][0]['terrain']['available']
+                    assert tile['data']['next_cursor'] is None
+                    tile_available=True
             checks[name]={'passed':True,'view':context['active_view'],'scene_kind':scene['settlement_scene_kind'],
-                          'on_demand_read_available':read_available}
+                          'on_demand_read_available':read_available,'tile_read_available':tile_available}
             print('PASS',name,flush=True)
             if required<=checks.keys():break
         except (FileNotFoundError,json.JSONDecodeError):pass
@@ -81,4 +98,5 @@ def verify(directory:Path,timeout:float=260,on_demand:bool=False):
 if __name__=='__main__':
     p=argparse.ArgumentParser(description=__doc__);p.add_argument('--state-dir',type=Path,required=True);p.add_argument('--timeout',type=float,default=260)
     p.add_argument('--on-demand',action='store_true')
-    args=p.parse_args();verify(args.state_dir,args.timeout,args.on_demand)
+    p.add_argument('--tiles',action='store_true')
+    args=p.parse_args();verify(args.state_dir,args.timeout,args.on_demand,args.tiles)
