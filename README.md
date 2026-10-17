@@ -24,7 +24,7 @@ Read the [query guide](QUERY_GUIDE.md), [installation instructions](INSTALL.md),
 
 ## Quick start
 
-Python 3.11+ and a full JDK 16+ are required to build. Use your licensed game installation:
+Python 3.11+ and a full JDK 17+ are required for the development tests and API audits below. The mod targets Java 16 bytecode. Use your licensed game installation:
 
 ```sh
 python3 -m venv .venv
