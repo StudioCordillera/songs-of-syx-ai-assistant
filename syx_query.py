@@ -58,6 +58,8 @@ class QueryEngine:
             return pointer(row, args)
         if op=='literal':
             return args
+        if op=='context':
+            return pointer(self.snapshot.ui_context,args)
         if op in {'and','or'}:
             if not isinstance(args,list) or not 1<=len(args)<=20:
                 raise ValueError('and/or require 1..20 conditions')
@@ -103,9 +105,15 @@ class QueryEngine:
         self.spend(len(rows))
         return rows
 
+    def source_metadata(self, spec):
+        domain=self.snapshot.domains[spec['domain']]
+        return {'domain':spec['domain'],'path':spec.get('path',''),
+                'coverage':domain.coverage,'scope':domain.scope}
+
     def query(self, spec):
         keys(spec, {'name','source','where','joins','select','group_by','aggregates','sort','offset','limit'}, 'query')
         rows = self.source(spec['source'])
+        source_metadata=[self.source_metadata(spec['source'])]
         joins = spec.get('joins',[])
         if not isinstance(joins,list) or len(joins)>3:
             raise ValueError('At most three joins are supported')
@@ -117,7 +125,9 @@ class QueryEngine:
             kind=join.get('kind','inner')
             if kind not in {'inner','left'}: raise ValueError('Join kind must be inner or left')
             index=defaultdict(list)
-            for right in self.source(join['source']):
+            right_rows=self.source(join['source'])
+            source_metadata.append(self.source_metadata(join['source']))
+            for right in right_rows:
                 key=pointer(right,join['right_key'])
                 if isinstance(key,(list,dict)): raise ValueError('Join keys must be scalar')
                 if key is not None: index[(type(key).__name__,key)].append(right)
@@ -195,11 +205,14 @@ class QueryEngine:
         total=len(rows)
         return {'name':spec.get('name'), 'rows':rows[offset:offset+limit], 'matched_total':total,
                 'next_offset':offset+limit if offset+limit<total else None,
-                'source_coverage':self.snapshot.domains[spec['source']['domain']].coverage}
+                'source_coverage':self.snapshot.domains[spec['source']['domain']].coverage,
+                'source_scope':self.snapshot.domains[spec['source']['domain']].scope,
+                'sources':source_metadata,'mixed_scopes':len({s['scope'] for s in source_metadata if s['scope'] is not None})>1}
 
     def execute(self, spec):
         if len(json.dumps(spec).encode())>32768: raise ValueError('Query specification exceeds 32 KiB')
-        keys(spec, {'queries','expected_snapshot_id'}, 'query batch')
+        keys(spec, {'queries','expected_snapshot_id','include_ui_context'}, 'query batch')
+        if type(spec.get('include_ui_context',False)) is not bool: raise ValueError('include_ui_context must be a boolean')
         queries=spec.get('queries')
         if not isinstance(queries,list) or not 1<=len(queries)<=10: raise ValueError('Provide 1..10 queries')
         expected=spec.get('expected_snapshot_id')
@@ -228,17 +241,17 @@ def describe(value, path='', result=None, budget=300):
 QUERY_HELP = {
     "access_boundary": "Read-only typed public game API exports via SCRIPT. No private fields, screenshots, input or OS automation. Public mappings are source-verified, not all individually documented. Partial UI context is available through get_game_ui_context; get_game_api_support explains evidence and gaps.",
     "workflow": ["game_status", "describe_game_fields(domain)", "select_game_state(spec)"],
-    "batch": {"queries": "1..10 query objects", "expected_snapshot_id": "optional snapshot pin"},
+    "batch": {"queries": "1..10 query objects", "expected_snapshot_id": "optional snapshot pin", "include_ui_context": "optional boolean; return UI context from the same snapshot"},
     "query": {"source": {"domain": "domain name", "path": "JSON pointer to rows"},
         "where": "expression", "select": "alias -> expression", "joins": "up to 3 source/left_key/right_key/as/kind joins",
         "group_by": "alias -> expression (instead of select)", "aggregates": "alias -> {op: count|sum|avg|min|max, value: expression}",
         "sort": [{"field":"pointer in projected result", "direction":"asc|desc"}], "offset":0,"limit":"1..100"},
-    "expressions": {"field":"JSON pointer", "literal":"any JSON value", "binary_operators":
+    "expressions": {"field":"JSON pointer into row", "context":"JSON pointer into this snapshot UI context", "literal":"any JSON value", "binary_operators":
         "eq ne lt lte gt gte in contains add subtract multiply divide: [left,right]",
         "logical":"and/or: [expressions]; not/is_null: expression", "constants":"scalars can be used directly"},
     "example": {"queries":[{"source":{"domain":"resources","path":"/stockpiles"},
         "select":{"stored":{"field":"/stockpile_stored"}},"sort":[{"field":"/stored","direction":"asc"}],"limit":5}]},
     "limits":"10k intermediate rows, 200k expression work, 32 KiB specification, 64 KiB response",
     "evidence":"search_game_references: installed help text, version/mods and origin. search_guidance: reviewed external excerpts, authority filter and citation URLs. Unknown/mismatched versions require verification.",
-    "semantics":"Missing fields error; null stays null; division by zero returns null; aggregates ignore null; empty sum/avg/min/max null; count zero. All collectors currently partial. No raw field exploration or UI access is exposed."
+    "semantics":"Missing fields error; null stays null; division by zero returns null; aggregates ignore null; empty sum/avg/min/max null; count zero. All collectors currently partial. No raw field exploration or UI control is exposed. Inspect scene metadata and each source scope; battlefield observations differ from campaign ledgers."
 }

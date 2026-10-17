@@ -57,3 +57,30 @@ def test_consistency_and_size(snapshot):
         QueryEngine(snapshot).execute({'expected_snapshot_id':'wrong','queries':[{'source':source()}]})
     with pytest.raises(ValueError,match='64 KiB'):
         run(snapshot,{'source':source(),'select':{'x':{'literal':'x'*25000}}})
+
+
+def test_join_retains_each_source_scope(snapshot):
+    snapshot.domains['resources'].scope='instantiated_settlement_scene'
+    snapshot.domains['production'].scope='campaign_player_or_faction'
+    q={'source':source(),'joins':[{'source':{'domain':'production','path':'/rows'},
+        'left_key':'/id','right_key':'/id','as':'flow','kind':'inner'}],
+        'select':{'id':field('/id')}}
+    result=run(snapshot,q)
+    assert result['mixed_scopes'] is True
+    assert [(s['domain'],s['scope']) for s in result['sources']]==[
+        ('resources','instantiated_settlement_scene'),('production','campaign_player_or_faction')]
+
+
+def test_context_expression_uses_same_snapshot(snapshot):
+    from syx_mcp import Domain
+    snapshot.domains['entities']=Domain(coverage='partial',reason='synthetic fixture',
+        data={'items':[{'id':7},{'id':8}]})
+    snapshot.ui_context={'selected_subject':{'entity_id':8},'known_overlay_active':True}
+    q={'source':{'domain':'entities','path':'/items'},
+       'where':{'eq':[{'field':'/id'},{'context':'/selected_subject/entity_id'}]}}
+    result=QueryEngine(snapshot).execute({'queries':[q],'include_ui_context':True})[0]
+    assert result['rows']==[{'id':8}]
+    snapshot.ui_context['selected_subject']=None
+    with pytest.raises(ValueError,match='does not exist'):run(snapshot,q)
+    with pytest.raises(ValueError,match='boolean'):
+        QueryEngine(snapshot).execute({'queries':[q],'include_ui_context':'yes'})

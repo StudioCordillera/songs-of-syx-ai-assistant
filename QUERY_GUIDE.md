@@ -52,3 +52,15 @@ Use `get_game_ui_context` for active view, known overlays and selected subject i
    version-family match does not prove applicability to the current patch. Report gaps instead of inventing evidence.
 
 The initial external corpus is deliberately small. It is not an exhaustive or automatically updated knowledge base.
+
+## UI-aware selections and scope
+
+`{"context":"/selected_subject/id"}` reads a UI context field from the same snapshot. For example:
+
+```json
+{"include_ui_context":true,"queries":[{"name":"selected_person","source":{"domain":"entities","path":"/items"},"where":{"eq":[{"field":"/id"},{"context":"/selected_subject/id"}]},"select":{"id":{"field":"/id"}},"limit":1}]}
+```
+
+Discover the actual entity path before querying. A missing context field is an error; an empty result does not prove the person is absent from the game because entity export is bounded. Modal overlays may obscure the underlying selection.
+
+Query results include coverage and scope for each source and join, plus `mixed_scopes`. Inspect `game_status.scene` and these scopes before comparing city, battlefield and campaign values. Resources also provide `field_definitions`: `owned` mixes scene logistics and player trade promises, while `stockpile_stored` describes the instantiated settlement. During world preparation, unavailable domains contain null, not fabricated zero values.

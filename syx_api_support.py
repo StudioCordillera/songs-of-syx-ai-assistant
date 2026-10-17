@@ -6,15 +6,18 @@ CAPABILITIES = [
  {'id':'exported_variables','support':'public_source_verified','validation':'compiled against 0.71.44; 18 partial domains exercised',
   'references':['api-audit.json'],
   'limits':'Only explicitly mapped getters/fields, not every game variable. Most individual members have no Javadoc; no stable compatibility contract.'},
- {'id':'active_game_view','support':'public_source_verified','validation':'settlement and world runtime checks; battle predicate compiled, battle runtime test pending',
+ {'id':'active_game_view','support':'public_source_verified','validation':'settlement, world, tactical city HUD, generated battle deployment and initial/terrain world-generation runtime checks',
   'references':['view/main/VIEW.java:324','view/main/VIEW.java:433'],
   'limits':'Reports active game subview; cannot identify standalone main-menu subpages.'},
  {'id':'known_overlays','support':'public_source_verified','validation':'game menu, confirmation, management, encyclopedia and loading-overlay runtime checks',
   'references':['view/main/Interrupters.java:17','view/interrupter/Interrupter.java:155','view/interrupter/IPopup.java:78'],
   'limits':'Known flags only; full overlay order, arbitrary panel enumeration and menu subpages not exposed.'},
+ {'id':'scene_and_resource_scope','support':'public_source_verified','validation':'eight scene checks, including generated battlefield and initial/terrain world setup; RESOURCE.owned binary check',
+  'references':['api-audit.json','API_ESTABLISHMENT.md'],
+  'limits':'Scene-local, campaign and mixed quantities are labeled separately. Terrain generation is not full world completion; exact wizard stage is private.'},
  {'id':'selected_subject','support':'public_source_verified','validation':'subject-selection fixture passed; complete matrix recorded in API_ESTABLISHMENT.md',
   'references':['view/sett/ui/subject/UISubjects.java:20','view/sett/ui/subject/UISubject.java:79'],
-  'limits':'Underlying settlement subject panel; modal overlays or hidden UI may obscure it. Entity ID links to exported entity data.'},
+  'limits':'Underlying settlement subject panel; modal overlays or hidden UI may obscure it. Entity ID can link to exported entity data; the first-1,000 export may omit the selected person.'},
  {'id':'open_room_blueprint','support':'public_source_verified','validation':'room table/detail public getter runtime check',
   'references':['view/sett/ui/room/UIRooms.java:150'],
   'limits':'Blueprint identity only. No public selected room-instance getter established.'},
@@ -38,7 +41,7 @@ CAPABILITIES = [
   'limits':'No official complete enumerable state schema established. Public API mappings expose a subset; private fields are excluded. Expand typed mappings only with provenance and validation.'},
  {'id':'all_states_and_menus','support':'unavailable','validation':'coverage gaps explicitly retained',
   'references':['API_ESTABLISHMENT.md'],
-  'limits':'Battles, world generation, options/save/load subpages, every popup type and crash/suspend transitions are not exhaustively validated.'}
+  'limits':'Active combat/conclusion, full political-world generation, editors, options/save/load subpages, every popup type and crash/suspend transitions are not exhaustively validated.'}
 ]
 
 def support(query='', offset=0, limit=10):
@@ -51,6 +54,6 @@ def support(query='', offset=0, limit=10):
     members=[m for m in MANIFEST['members'] if matches({k:v for k,v in m.items() if k in {'id','owner','name','source_file'}})]
     return {'game_version':'0.71.44','capabilities':capabilities,'member_total':len(members),
         'members':members[offset:offset+limit], 'next_offset':offset+limit if offset+limit<len(members) else None,
-        'inventory_size':len(MANIFEST['members']),'game_jar_sha256':MANIFEST['game_jar_sha256'],
+        'inventory_size':len(MANIFEST['members']),'binary_checks':MANIFEST.get('binary_checks'), 'game_jar_sha256':MANIFEST['game_jar_sha256'],
         'source_archive_sha256':MANIFEST['source_archive_sha256'],
         'warning':'Inventory covers only production mod references. Source line/type/signature matches and public access do not establish official stability or complete variable/menu coverage. Validation labels describe only listed checks.'}

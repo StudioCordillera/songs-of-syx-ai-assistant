@@ -174,3 +174,31 @@ def test_stale_state_is_unknown_not_currently_loaded(setup):
     status=advisor.status()
     assert status['game_loaded'] is None and status['observed_game_loaded'] is True
     assert status['state_certainty']=='unknown_updates_stopped'
+
+
+def test_scene_scope_is_preserved_and_setup_placeholders_rejected(setup):
+    a,state=setup
+    state['scene']={'active_view':'world_generation','settlement_exists':False,
+                    'settlement_scene_kind':'unavailable'}
+    state['domains']['resources']={'coverage':'unavailable','reason':'Not generated',
+                                   'scope':'instantiated_settlement_scene','data':None}
+    save(a,state)
+    assert a.status()['scene']['settlement_exists'] is False
+    assert a.status()['coverage']['resources']['scope']=='instantiated_settlement_scene'
+    with pytest.raises(ValueError,match='unavailable'):
+        a.select({'queries':[{'source':{'domain':'resources'}}]})
+
+
+def test_select_can_return_context_without_mixing_snapshots(setup):
+    advisor,state=setup
+    state['ui_context']={'available':True,'known_overlays':{'confirmation':True},
+                         'selected_subject':{'entity_id':8}}
+    state['domains']['entities']={'coverage':'partial','reason':'synthetic fixture',
+        'scope':'instantiated_settlement_scene','data':{'items':[{'id':8}]}}
+    save(advisor,state)
+    result=advisor.select({'queries':[{'source':{'domain':'entities','path':'/items'},
+        'where':{'eq':[{'field':'/id'},{'context':'/selected_subject/entity_id'}]}}],
+        'include_ui_context':True})
+    assert result['ui_context']['known_overlays']['confirmation'] is True
+    assert result['results'][0]['rows']==[{'id':8}]
+    assert result['state']['snapshot_id']==state['snapshot_id']

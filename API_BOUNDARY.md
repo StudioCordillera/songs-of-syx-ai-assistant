@@ -1,4 +1,4 @@
-# Game API boundary — 0.4.0
+# Game API boundary — 0.5.0
 
 The game-facing plugin runs inside Songs of Syx using `script.SCRIPT` and `SCRIPT_INSTANCE`. All gameplay observations originate from direct public game API calls on the script update thread. The Python MCP reads detached local exports; it does not inspect or control the game process itself.
 
@@ -52,4 +52,4 @@ Local JSON export and stdio MCP are the transport between the in-process plugin 
 
 ## Compiler inventory
 
-The production references resolve to 141 public game API members. The metadata inventory includes source anchors and hashes; it does not enumerate every game variable or establish official stability. See API_ESTABLISHMENT.md for exact evidence levels and runtime checks.
+The production references resolve to 165 public game API members. The metadata inventory includes source anchors and hashes; it does not enumerate every game variable or establish official stability. See API_ESTABLISHMENT.md for exact evidence levels and runtime checks.

@@ -2,7 +2,7 @@
 
 A local Java mod and MCP server that let an assistant inspect a loaded Songs of Syx game, request selected data, and advise the player with cited evidence.
 
-**0.4.0 — read-only, in-process public-API bridge.**
+**0.5.0 — read-only, in-process public-API bridge.**
 
 **Experimental working prototype for game 0.71.44 (Steam build 23998889).** Tested against a copied save on Linux. Other builds are rejected by the runtime guard. This is not a finished in-game chat application.
 
