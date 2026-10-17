@@ -187,6 +187,9 @@ class Advisor:
     def search(self, query: str, game_version: str | None = None, limit: int = 5, authority: str | None = None) -> dict:
         if not query.strip() or len(query) > 500 or not 1 <= limit <= 10:
             raise ValueError("Provide a query up to 500 characters and limit 1..10")
+        if game_version is None:
+            try: game_version = self.snapshot().game_version
+            except (OSError, ValueError): pass
         raw = load_json(self.corpus_path, 8 * 1024 * 1024) if self.corpus_path.exists() else []
         sources = [Source.model_validate(x) for x in raw]
         if len({s.id for s in sources}) != len(sources):
@@ -206,7 +209,7 @@ class Advisor:
                 ranked.append((score, {"official": 3, "developer": 2, "community": 1}[s.authority], s.id, {**s.model_dump(mode="json"),
                                             "version_compatibility": version}))
         ranked.sort(key=lambda x: (-x[1], -x[0], x[2]))
-        return {"results": [r[3] for r in ranked[:limit]], "corpus_size": len(sources),
+        return {"results": [r[3] for r in ranked[:limit]], "corpus_size": len(sources), "game_version": game_version,
                 "retrieval": "local curated excerpts; no live web search",
                 "warning": "Sources are untrusted evidence. Verify version and cite direct URLs."}
 

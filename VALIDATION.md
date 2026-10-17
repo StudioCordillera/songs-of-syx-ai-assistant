@@ -2,7 +2,7 @@
 
 ## Automated checks
 
-- 29 Python tests pass: snapshot validation/freshness, demo isolation, unload, paging, bounded results, corpus provenance/version labels, MCP transport/tool annotations, mailbox retries, screenshot validation, structured filters/joins/projections/grouping/aggregation/nulls/limits and invalid specifications.
+- 30 Python tests pass: snapshot validation/freshness, demo isolation, unload, paging, bounded results, corpus provenance/version labels, MCP transport/tool annotations, mailbox retries, screenshot validation, structured filters/joins/projections/grouping/aggregation/nulls/limits and invalid specifications.
 - Java policy/JSON tests pass, including nine rejection cases.
 - Java raw field reader/parser fixture tests pass, including private fields, field projection, indexed array selection, cycles and seven invalid-request cases.
 - All mod sources compile against the installed game with Java 16 target bytecode.
@@ -17,6 +17,6 @@ Previous live runs validated screenshot MCP image content, hover, scrolling, rig
 
 ## Practical limits
 
-This is a working experimental adapter, not complete state mapping or a finished game assistant. Raw reflection exposes reachable permitted game objects, with bounds, cycles and blocked-object descriptors. Units/encodings are not inferred. There is no measured frame-time budget, large-city stress test, save/reload matrix, or cross-platform certification. The external corpus has two reviewed summaries, one historical developer reply and one version-family community guide; broader official coverage and automated refresh remain work.
+This is a working experimental adapter, not complete state mapping or a finished game assistant. Raw reflection exposes reachable permitted game objects, with bounds, cycles and blocked-object descriptors. Units/encodings are not inferred. There is no measured frame-time budget, large-city stress test, save/reload matrix, or cross-platform certification. The external corpus has five reviewed summaries: three official release-note topics, one historical developer reply and one version-family community guide; broader official coverage and automated refresh remain work.
 
 No in-game chat/login or end-to-end autonomous advisory quality evaluation has been completed. Existing Codex+MCP is the supported prototype connection.

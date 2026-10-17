@@ -1,7 +1,10 @@
-# Merge this entry into your Codex configuration after installing the project.
-# Replace every /ABSOLUTE/PATH with your local checkout path.
+# Merge into your Codex configuration after installing the project.
+# Replace /ABSOLUTE/PATH with the checkout path.
 [mcp_servers.syx_advisor]
 command = "/ABSOLUTE/PATH/.venv/bin/syx-mcp"
 # Windows: command = "C:/ABSOLUTE/PATH/.venv/Scripts/syx-mcp.exe"
-[mcp_servers.syx_advisor.env]
-SYX_STATE_DIR = "/ABSOLUTE/PATH/runtime"
+
+# Both game and server default to ~/.local/share/syx-assistant.
+# If you override it, set the same value in the game's environment too:
+# [mcp_servers.syx_advisor.env]
+# SYX_STATE_DIR = "/ABSOLUTE/STATE/DIRECTORY"

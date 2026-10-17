@@ -38,6 +38,6 @@ A custom in-game chat UI and its supported subscription login remain future work
 
 ## Current limits
 
-Raw field discovery exposes a broad reachable game graph, not every value in the JVM. Native/non-game objects are blocked, result sizes and traversal are bounded, and raw field meanings/units may be undocumented. All normalized domains are partial. Large entity collections, tile inspection and relationships need further typed collectors. The external corpus starts with two reviewed summaries; automatic web retrieval, refresh and comprehensive reference coverage are not implemented.
+Raw field discovery exposes a broad reachable game graph, not every value in the JVM. Native/non-game objects are blocked, result sizes and traversal are bounded, and raw field meanings/units may be undocumented. All normalized domains are partial. Large entity collections, tile inspection and relationships need further typed collectors. The external corpus starts with five reviewed summaries; automatic web retrieval, refresh and comprehensive reference coverage are not implemented.
 
 Do not commit game binaries, game source, saves, snapshots, screenshots of private saves, account credentials or copied full guides. The repository is private; no source license has been selected for redistribution.

@@ -35,6 +35,30 @@ SEEDS = [
 ]
 
 
+# Original summaries of the official V71 release announcement, under 150 words total.
+# Content verified via Steam's full-text announcement archive; canonical link is retained.
+for topic, text in {
+    'law': 'V71 redesigned law around the effects of crime punishments on happiness and loyalty. '
+           'Guard coverage and related law infrastructure modify those effects. '
+           'The announcement presents happiness and fear-based loyalty as alternative approaches to control.',
+    'families': 'Most races gained natural reproduction in V71. Parents care for infants before they become children. '
+                'Reproduction settings can limit growth and cause unhappiness among subjects who want children. '
+                'The update includes family trees and a shared nursery that reduces child mortality.',
+    'trade': 'V71 changed trade to include percentage tariffs in both directions and per-item logistics costs. '
+             'The release announcement describes early trading as more expensive and notes that emissary placement '
+             'affects trade opportunities. Technology costs and recipe-specific research also changed.'
+}.items():
+    SEEDS.append({
+        'id': 'official-v71-'+topic, 'title': 'V71 official release notes — '+topic,
+        'url': 'https://steamcommunity.com/games/1162750/announcements/detail/529882384083977659',
+        'kind': 'official', 'authority': 'official', 'author': 'Gamatron / Songs of Syx',
+        'game_versions': ['0.71'],
+        'version_notes': 'V71 release announcement; later patch changes require verification. Section: '+topic+'. '
+            'Text checked in Steam full-text announcement archive; canonical announcement URL retained.',
+        'text': text, 'retrieved_at': '2026-10-17T19:00:51Z'
+    })
+
+
 def install_seed(directory: Path):
     from syx_mcp import Source, load_json
     directory.mkdir(parents=True, exist_ok=True)
@@ -43,7 +67,7 @@ def install_seed(directory: Path):
     by_id = {item.id: item.model_dump(mode='json') for item in map(Source.model_validate, existing)}
     for record in SEEDS:
         # Retrieval date records the source check for these authored summaries, not today's reinstallation.
-        source = Source.model_validate({**record, 'retrieved_at': '2026-10-17T18:00:00Z'})
+        source = Source.model_validate({'retrieved_at': '2026-10-17T18:00:00Z', **record})
         by_id.setdefault(source.id, source.model_dump(mode='json'))
     temp = directory / 'corpus.seed-tmp'
     temp.write_text(json.dumps(list(by_id.values()), indent=2) + '\n')

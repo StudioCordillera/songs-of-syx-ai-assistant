@@ -120,7 +120,10 @@ def test_corpus_citations_and_version(setup):
 
 
 def test_mcp_transport(setup):
-    a, _ = setup
+    a, state = setup
+    state['references']=[{'id':'fixture:1','category':'stat','title':'Fixture food',
+        'text':'Test fixture only, not a gameplay fact.','origin':'test fixture'}]
+    save(a,state)
     async def exercise():
         params = StdioServerParameters(command=sys.executable,
             args=['-m', 'syx_mcp'], cwd=str(ROOT),
@@ -142,6 +145,14 @@ def test_mcp_transport(setup):
                 query = await session.call_tool('query_game_state', {
                     'domain': 'resources', 'pointer': '/stockpiles'})
                 assert not query.is_error
+                selection = await session.call_tool('select_game_state', {'spec':{'queries':[
+                    {'source':{'domain':'resources','path':'/stockpiles'},
+                     'select':{'amount':{'field':'/amount'}},'limit':1}]}})
+                assert not selection.is_error and '123' in str(selection)
+                help_result = await session.call_tool('game_query_help', {})
+                assert not help_result.is_error and 'binary_operators' in str(help_result)
+                references = await session.call_tool('search_game_references', {'query':'food'})
+                assert not references.is_error and 'fixture:1' in str(references)
                 invalid = await session.call_tool('query_game_state', {'domain': '../secret'})
                 assert invalid.is_error
     asyncio.run(exercise())

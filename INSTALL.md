@@ -24,7 +24,7 @@ Create the Python environment and install the project as shown in README. Merge 
 
 Both the game and MCP server default to `~/.local/share/syx-assistant`. Set `SYX_STATE_DIR` in both processes to override; the game also accepts `-Dsyx.assistant.stateDir=/absolute/path`. The directory is local to this user and holds live game data, screenshot receipts and the optional reviewed corpus. No network listener is opened.
 
-Run `syx-knowledge --state-dir /your/state/directory` once to merge the two reviewed starter summaries without overwriting existing records. Installed resource/technology/stat references do not require this step.
+Run `syx-knowledge --state-dir /your/state/directory` once to merge the five reviewed starter summaries without overwriting existing records. Installed resource/technology/stat references do not require this step.
 
 Ask the assistant to call `game_status`, `game_query_help`, and `describe_game_fields`. For deeper reads call `query_live_game_fields` with an empty list to discover roots. See QUERY_GUIDE.md for examples. A missing/unloaded/stale snapshot is an explicit error; never replace it with synthetic data.
 

@@ -77,8 +77,8 @@ def test_input_bounds_before_mailbox(tmp_path):
 def test_seed_sources_preserve_version_and_authority(tmp_path):
     from syx_knowledge import install_seed
     from syx_mcp import Advisor
-    assert install_seed(tmp_path)==2
-    assert install_seed(tmp_path)==2
+    assert install_seed(tmp_path)==5
+    assert install_seed(tmp_path)==5
     a=Advisor(tmp_path/'snapshot.json',tmp_path/'corpus.json')
     guide=a.search('farms food', '0.71.44', authority='community')['results'][0]
     assert guide['authority']=='community'
@@ -87,3 +87,14 @@ def test_seed_sources_preserve_version_and_authority(tmp_path):
     forum=a.search('eatery overlay','0.71.44')['results'][0]
     assert forum['authority']=='developer'
     assert forum['version_compatibility']=='unknown'
+
+
+def test_official_source_precedence_and_filter(tmp_path):
+    from syx_knowledge import install_seed
+    from syx_mcp import Advisor
+    install_seed(tmp_path)
+    advisor=Advisor(tmp_path/'snapshot.json',tmp_path/'corpus.json')
+    hit=advisor.search('trade', '0.71.44')['results'][0]
+    assert hit['authority']=='official' and hit['version_compatibility']=='family_match'
+    assert '529882384083977659' in hit['url']
+    assert all(r['authority']=='developer' for r in advisor.search('food', authority='developer')['results'])
