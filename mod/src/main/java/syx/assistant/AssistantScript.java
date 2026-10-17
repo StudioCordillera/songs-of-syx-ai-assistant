@@ -42,6 +42,9 @@ public final class AssistantScript implements SCRIPT {
         final AtomicReference<Map<String,Object>> pending = new AtomicReference<>();
         final AtomicReference<EntityReadRequest> readRequest = new AtomicReference<>();
         final AtomicReference<Map<String,Object>> readResponse = new AtomicReference<>();
+        final AtomicReference<TileReadRequest> tileRequest = new AtomicReference<>();
+        final AtomicReference<Map<String,Object>> tileResponse = new AtomicReference<>();
+        String lastTileRequestText;
         String lastRequestText;
         final ScheduledExecutorService io;
         long sequence = 0, lastCapture = 0;
@@ -62,6 +65,8 @@ public final class AssistantScript implements SCRIPT {
             if (closed) return;
             EntityReadRequest request=readRequest.getAndSet(null);
             if(request!=null) readResponse.set(request.collect(session));
+            TileReadRequest tiles=tileRequest.getAndSet(null);
+            if(tiles!=null)tileResponse.set(tiles.collect(session));
             long now = System.nanoTime();
             if (now-lastCapture < 2_000_000_000L) return;
             lastCapture = now;
@@ -87,8 +92,27 @@ public final class AssistantScript implements SCRIPT {
                 readRequest.set(EntityReadRequest.parse(text));
             } catch(Exception error) { System.err.println("Syx assistant read request: "+error); }
         }
+        private void pollTileRequest() {
+            Path file=dir.resolve("tile-request.txt");
+            try {
+                if(!Files.isRegularFile(file,LinkOption.NOFOLLOW_LINKS))return;
+                byte[] raw;
+                try(java.io.InputStream input=Files.newInputStream(file)){raw=input.readNBytes(8193);}
+                if(raw.length>8192)throw new IOException("Tile request exceeds 8 KiB");
+                String text=new String(raw,StandardCharsets.UTF_8);
+                if(text.equals(lastTileRequestText))return;
+                lastTileRequestText=text;tileRequest.set(TileReadRequest.parse(text));
+            } catch(Exception error){System.err.println("Syx assistant tile request: "+error);}
+        }
         private synchronized void flush() {
-            if(!closed)pollReadRequest();
+            if(!closed){pollReadRequest();pollTileRequest();}
+            Map<String,Object> tiles=tileResponse.getAndSet(null);
+            if(tiles!=null)try {
+                if(JsonWriter.encode(tiles).getBytes(StandardCharsets.UTF_8).length>65536)
+                    tiles=StateCollector.object("request_id",tiles.get("request_id"),"session_id",session,"game_version",VERSION.VERSION_STRING,
+                        "captured_at",java.time.Instant.now().toString(),"available",false,"reason","Tile response exceeds 64 KiB; select fewer fields or rows","data",null);
+                writeDto("tile-response",tiles,65536);
+            } catch(Exception error){System.err.println("Syx assistant tile response: "+error);}
             Map<String,Object> response=readResponse.getAndSet(null);
             if(response!=null)try {
                 int cap="capture".equals(response.get("read_mode"))?2*1024*1024:65536;
@@ -105,7 +129,7 @@ public final class AssistantScript implements SCRIPT {
         synchronized void close() {
             if (closed) return;
             closed = true;
-            readRequest.set(null);readResponse.set(null);
+            readRequest.set(null);readResponse.set(null);tileRequest.set(null);tileResponse.set(null);
             pending.set(StateCollector.envelope(session, ++sequence, false));
             flush(); io.shutdown();
         }

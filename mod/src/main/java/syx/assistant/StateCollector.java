@@ -230,8 +230,9 @@ public final class StateCollector {
         }, "Registered event types and current scripted-event ID only; no prediction or complete incident history.");
         run(domains, "settings", () -> object("paused", GAME.SPEED.isPaused(), "speed_target", GAME.SPEED.speedTarget(),
             "game_seconds", TIME.currentSecond(), "seconds_per_day", TIME.secondsPerDay()), "Clock/speed only; not all game settings.");
-        run(domains, "map", () -> object("width", SETT.TWIDTH, "height", SETT.THEIGHT, "coordinate_unit", "settlement tiles"),
-            "Map dimensions only; terrain and tile contents are not exported yet.");
+        run(domains, "map", () -> object("width", SETT.TWIDTH, "height", SETT.THEIGHT, "coordinate_unit", "settlement tiles",
+            "on_demand_tool","query_live_tiles","tile_fields",Arrays.asList("terrain","floor","room","minerals","path")),
+            "Dimensions and supported on-demand tile projections; tile rows require bounded spatial queries and are not included in this snapshot.");
         // Preserve every public stat by collection without guessing its meaning or normalized units.
         Map<String,String[]> groups = new LinkedHashMap<>();
         groups.put("services", new String[]{"SERVICE", "ACCESS", "NEEDS"});
