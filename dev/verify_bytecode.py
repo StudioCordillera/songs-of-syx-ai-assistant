@@ -38,9 +38,19 @@ def verify(java, jar):
     resource=disassemble(java,jar,'snake2d.CORE_RESOURCE')
     if not re.search(r'^  abstract void dis\(\);$',resource,re.M):
         raise ValueError('Disposal API visibility changed; re-audit its applicability')
+    game=disassemble(java,jar,'game.GAME')
+    update=method(game,'public void update(double, double);')
+    register=method(game,'public static void addAfterUpdate(snake2d.util.misc.ACTION);')
+    resource_update=update.rindex('game/GAME$GameResource.update:')
+    dispatch=update.index('onUpdateFinish:',resource_update)
+    if 'snake2d/util/misc/ACTION.exe:' not in update[dispatch:] or 'onUpdateFinish:' not in register or 'ArrayListGrower.add:' not in register:
+        raise ValueError('After-update observer dispatch changed; re-establish sampling phase')
     return {
         'method':'Selected member references/access/arithmetic inspected with JDK javap; no game method execution. Not formal equivalence of the complete shipped source and binary.',
         'checks':[
+            {'id':'game_after_update_dispatch','passed':True,'member':'game.GAME#addAfterUpdate(ACTION)',
+             'normalized_disassembly_sha256':fingerprint(update+register),
+             'conclusion':'Public registration appends an ACTION to the after-update collection, dispatched after resource update loops. UI-paused nonzero-speed behavior needs runtime validation; no standalone menu/unload contract is established.'},
             {'id':'resource_owned_definition','passed':True,'member':'init.resources.RESOURCE#owned()',
              'normalized_disassembly_sha256':fingerprint(owned),
              'conclusion':'Scene logistics and incoming station goods are added; player trade promises are subtracted. Not warehouse-only inventory.'},
