@@ -130,8 +130,12 @@ def test_mcp_transport(setup):
                 await session.initialize()
                 listing = await session.list_tools()
                 assert {t.name for t in listing.tools} == {
-                    'game_status', 'query_game_state', 'search_guidance'}
-                assert all(t.annotations.read_only_hint for t in listing.tools)
+                    'game_query_help', 'game_status', 'query_game_state', 'search_guidance', 'get_control_status',
+                    'observe_game_ui', 'game_ui_action', 'stop_game_control',
+                    'describe_game_fields', 'select_game_state', 'query_live_game_fields', 'search_game_references'}
+                assert all(t.annotations.read_only_hint for t in listing.tools
+                    if t.name not in {'game_ui_action', 'stop_game_control'})
+                assert not next(t for t in listing.tools if t.name == 'game_ui_action').annotations.read_only_hint
                 result = await session.call_tool('game_status', {})
                 assert not result.is_error
                 assert 'demo-session' in str(result)

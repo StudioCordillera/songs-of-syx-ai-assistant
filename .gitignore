@@ -13,3 +13,5 @@ runtime/
 *.sav
 *.log
 auth.json
+.tools/
+*.zip

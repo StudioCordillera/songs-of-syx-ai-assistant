@@ -17,7 +17,7 @@ Checked 2026-10-17. Recheck official docs at implementation time; access and pre
 | [Game store page](https://store.steampowered.com/app/1162750/Songs_of_Syx/) | Developer/publisher via Steam | Confirms game identity and Steam app ID. |
 | [Steam guides directory](https://steamcommunity.com/app/1162750/guides/) | Community platform | Starting point for guide discovery, not evidence for gameplay mechanics. |
 
-Community mod templates may help investigation but must be labeled community references and checked against the shipped game. No community template is used here to assert unverified official API signatures. Local shipped documentation is the next required primary reference for the Java mod.
+Community mod templates may help investigation but must be labeled community references and checked against the shipped game. No community template is used here to assert unverified official API signatures. The implementation was checked against locally shipped `info/MAKE_A_MOD.txt`, `info/scriptGuide.odt`, `info/SongsOfSyx-sources.jar`, and actual loader/SCRIPT bytecode for 0.71.44. These proprietary references are not redistributed.
 
 ## Computer-use references (checked 2026-10-17)
 
@@ -25,4 +25,10 @@ Community mod templates may help investigation but must be labeled community ref
 - [Computer-use integration recipes](https://developers.openai.com/api/docs/guides/tools-computer-use-integration): screenshot-based integration patterns.
 - [Plan-usage preview limitations](https://developers.openai.com/siwc/token-sharing-open-source/preview-limitations): native computer use and hosted MCP are excluded on this route; local function/custom-tool execution is a separate integration concern.
 
-These establish design constraints, not a tested Songs of Syx driver or guaranteed account/model availability.
+These establish integration constraints; the local driver validation is documented in VALIDATION.md. They do not guarantee account/model availability.
+
+## Gameplay evidence shipped with this prototype
+
+Installed resource, technology and stat help text is indexed at runtime, with current version/mods and original class/key identifiers. It is not bundled from proprietary game files.
+
+Two short authored summaries, checked 2026-10-17, can be installed with `syx-knowledge`: [v71 community guide](https://steamcommunity.com/sharedfiles/filedetails/?id=3776333166) and [historical developer reply about eatery overlays](https://steamcommunity.com/app/1162750/discussions/0/4841941418359552221/). Source records retain authority and compatibility caveats. Neither establishes exhaustive current mechanics.

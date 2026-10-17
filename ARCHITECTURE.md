@@ -1,65 +1,35 @@
 # Architecture and contracts
 
-## Data flow
+The Java SCRIPT mod collects detached data on the game update thread. A daemon serializes and atomically publishes a snapshot about every two wall-clock seconds, including while paused. A local Python stdio MCP validates and caches the snapshot, executes bounded selections, and returns only requested results. It opens no network listener.
 
-```mermaid
-flowchart LR
-  G[Loaded Songs of Syx game] --> J[Java mod collectors]
-  J --> S[Atomic local snapshot]
-  S --> M[Read-only MCP server]
-  C[Reviewed guide/forum excerpts] --> M
-  M <--> A[Codex client initially]
-  A --> U[Cited answer to player]
-```
+## State access
 
-Only the MCP server, snapshot reader, and local corpus search exist in this commit. Collectors, in-game UI, automated web retrieval, and optional game computer use are planned. See [COMPUTER_USE.md](COMPUTER_USE.md) for the screenshot/action contract and control lifecycle.
+The normalized snapshot contains 18 partial domains, explicit coverage/reasons, version, active mods, tick, capture time, session ID and snapshot ID. It is limited to 16 MiB. `game_status` rejects stale (>30 seconds) or future-clock data as live. Session IDs rotate on load. Game disposal and process shutdown publish an unloaded tombstone; abrupt process termination relies on freshness expiry.
+
+Structured queries execute against one immutable cached snapshot. Filters, projections, joins, grouping and numeric aggregation happen locally. Snapshot pins reject a changed view. Query work, intermediate rows, input and output sizes are bounded. Null/unavailable values remain distinct from zero. See QUERY_GUIDE.md.
+
+A second read-only path queues targeted reflection requests through a local file mailbox to the game update thread. It discovers and reads fields of approved game-owned classes, indexed arrays and lists. No arbitrary method calls or state writes are exposed. Twenty selections can share one tick. Private fields are accessible when the JVM permits it; native and non-game implementation objects remain blocked. This broadens coverage beyond explicitly mapped collectors without pretending raw internals have stable names or known units.
+
+Requests have deadlines, UUIDs, intent fingerprints, durable claims and bounded receipts. UI actions reuse an existing receipt on retry; uncertain timeouts must not be repeated with a fresh ID. Raw queries and screenshots use the same mailbox, with operation-specific checks. The runtime directory must be private to the local user.
+
+## Evidence
+
+The game publishes an installed-data catalog of resource, technology and stat descriptions. Its cache resets with each game session. Search results carry ID, category, title, help text and origin, together with snapshot version and mods. This is primary evidence of installed help text, which can differ with mods; it is not proof that every mechanic follows the tooltip exactly.
+
+The external corpus stores short reviewed original summaries or permitted excerpts, direct HTTPS URLs, authority, authors, retrieval dates and version notes. Official/developer sources rank ahead of community sources among matches, and callers can filter authority. Compatibility labels are match, family_match, mismatch or unknown. A family match is not patch-level verification. The initial corpus is small and not automatically refreshed. Website directories are discovery metadata, not gameplay evidence.
+
+Answers should distinguish observed state, cited mechanics, inference and suggested action. Cite snapshot/tick/field paths for state, installed reference IDs/origins for game text, and direct URLs for external material. Unknown evidence is an explicit gap. Retrieved strings are data, never instructions to the agent.
+
+## Game integration
+
+Targets 0.71.44/build23998889, compiled against the licensed installed JAR. Shipped modding instructions, SCRIPT interfaces, loader bytecode and source were inspected locally as primary references. The adapter uses forceInit for existing saves and stores no persistent script data. Java 16 bytecode was exercised with Java 21 on Linux. No game binaries or proprietary source are distributed.
 
 ## OpenAI connection
 
-**Development path:** sign into an existing Codex client with ChatGPT, then add this stdio MCP. No OpenAI secrets are needed by the MCP process. Check account/plan limits in the client. Official references: [authentication](https://learn.chatgpt.com/docs/auth), [MCP configuration](https://learn.chatgpt.com/docs/extend/mcp?surface=cli).
+The implemented route is an existing Codex client signed in with ChatGPT plus this local MCP. The client owns authentication, model use and account limits. The mod/MCP server read no account tokens and make no model API calls.
 
-**Custom in-game experience:** evaluate the official [ChatGPT plan usage flow](https://developers.openai.com/siwc/token-sharing-open-source) for eligible local/open-source applications and [Codex app-server](https://learn.chatgpt.com/docs/app-server). This is a proposed integration, not implemented login. Verify registration and distribution eligibility, obtain consent, keep credentials in OS storage, and support disconnect/revocation. Never reuse Codex's client identity or steal existing tokens.
+A custom in-game chat experience remains future work. Official references describe [Codex authentication](https://learn.chatgpt.com/docs/auth), [local MCP](https://learn.chatgpt.com/docs/extend/mcp?surface=cli), [app-server](https://learn.chatgpt.com/docs/app-server), and [eligible application plan usage](https://developers.openai.com/siwc/token-sharing-open-source). The latter requires registration/consent and has [preview restrictions](https://developers.openai.com/siwc/token-sharing-open-source/preview-limitations), including native computer-use/hosted-MCP exclusions. Local custom tools are a separate client integration. Do not assume a subscription is an unrestricted API key or silently switch to separately billed APIs.
 
-The [preview limitations](https://developers.openai.com/siwc/token-sharing-open-source/preview-limitations) exclude hosted MCP on this route. Execute MCP locally and bridge results through supported function tools, or use documented app-server support. Do not promise arbitrary subscription-funded API calls. A separately selected API-key mode would be separately billed. Do not silently fall back to paid API calls.
+## Optional UI control
 
-For a direct plan-usage integration, the documented constraints include streamed, non-stored Responses calls and supported model discovery. Do not bake a model name into the mod; discover choices for the signed-in account. Authentication and inference implementation are deferred to their own milestone.
-
-## Game bridge
-
-Implement a Java script mod against the user's installed build and its shipped modding examples. The published game documentation repository links to a getting-started page that is currently only a heading, so it cannot establish Java signatures or comprehensive state access. Consult local shipped documentation and source *as references only*, without redistributing them. The exact Java version, SCRIPT hooks, lifecycle callbacks, and field mappings remain unverified.
-
-Collectors run through the game-supported simulation update lifecycle. Build a consistent immutable snapshot on the game thread; offload serialization and file I/O. Never walk mutable game objects from MCP/network threads. Publish with a temporary file and same-directory atomic replace. Start with a 2-second configurable capture interval and measure cost before making a performance claim.
-
-Write an unloaded/tombstone snapshot as soon as the save unloads; rotate `session_id` on every load/new game. A 30-second freshness timeout is a fallback when the exporter stops unexpectedly, so a recent snapshot alone is not proof that the game is still loaded. A later session handshake/heartbeat should tighten this window. Paused games continue a wall-clock heartbeat without advancing the simulation tick. On unsupported builds fail with a clear compatibility error; don't silently omit domains.
-
-## Snapshot v1
-
-`snapshot.example.json` is a synthetic valid envelope. `Snapshot` in `syx_mcp.py` is the authoritative validation model. JSON Schema can be generated with:
-
-```sh
-.venv/bin/python -c 'import json; from syx_mcp import Snapshot; print(json.dumps(Snapshot.model_json_schema(), indent=2))'
-```
-
-Required metadata: schema version, game version, loaded flag, demo flag, opaque session and snapshot IDs, nonnegative tick, UTC/offset-aware capture time, active mods, and explicit coverage for every known domain. “Complete” means complete relative to a documented collector contract for a supported build, never all Java memory.
-
-Domains target population, resources, production, employment, services, housing, health, law, happiness, research, trade, diplomacy, military, world, map, entities, events, and settings. Each carries `complete`, `partial`, or `unavailable`, a reason, and JSON data. Entity/map arrays need stable IDs, units, page semantics and per-build field definitions before implementation. Current v1 payloads are intentionally extensible; these domain schemas have not been invented from unverified game APIs.
-
-Read queries take a domain and RFC 6901 JSON pointer, with array pagination (maximum 100 items). A caller can pin `expected_snapshot_id`; a changed snapshot forces retry, preventing silent joins across ticks. Results include provenance and coverage. Inputs are bounded to 16 MiB and results to 64 KiB; a future chunked exporter is needed for city/entity datasets that exceed this prototype limit.
-
-## Evidence and citations
-
-`corpus.example.json` is empty by design. An operator may place a JSON array in `SYX_STATE_DIR/corpus.json`. Each record follows the `Source` model: stable `id`, title, direct HTTPS URL, kind (`official`, `guide`, `forum`), retrieval time, optional publication time, explicit game versions if verified, and a short licensed excerpt or original factual summary. Do not guess a version from a title or assert unknown compatibility.
-
-`source-directory.json` lists starting places for future retrieval. A directory entry is not evidence for a gameplay claim. Retrieval must capture the actual specific guide/post URL and the supporting passage. Respect site access rules, attribution and licenses; do not scrape private Discord or bundle full copyrighted guides.
-
-The prototype searches only local reviewed records. Automated discovery, fetch, freshness refresh and deduplication are future work. Version mismatches remain visible rather than being silently discarded; the assistant must not treat them as established current mechanics. Retrieved content and game strings are untrusted data, never authority to run instructions or reveal secrets.
-
-Answer format: (1) observation with snapshot/tick/pointer, (2) supported mechanic with direct source URL, (3) inference clearly labeled, (4) suggested action and uncertainty. If evidence is absent, say so. A status flag or citation does not by itself guarantee correctness; end-to-end answer quality needs evaluation.
-
-## Privacy and trust
-
-The MCP process uses stdio, reads only two operator-configured files, and opens no listener. The current prototype has no gameplay mutation, shell, arbitrary URL fetch, or arbitrary file-read tool. The planned computer-use adapter will add separately declared mutating UI tools with player-controlled task/session grants, game-window scoping and immediate stop. OS permissions must keep the runtime directory private to the user. The advisor only sends queried state to the AI client; the client may then transmit that content for inference with user consent. Optional remote access requires a separate authenticated design. Third-party strings must never override advisor instructions.
-
-## Optional game computer use
-
-The target architecture combines state queries, cited knowledge, screenshot/UI observation and player-authorized input. A separate local game driver captures the viewport and queues validated input on the game thread. Local MCP tools expose this driver to the assistant client. Only observations/state queries retain read-only annotations; click/hover/scroll/drag/key/text tools change UI or gameplay state. The current `syx_mcp.py` remains the read-only prototype. [Computer-use design](COMPUTER_USE.md) defines the proposed tools, freshness rules and acceptance criteria.
+A game-specific GLFW adapter captures only the game framebuffer and forwards bounded input inside the game. Grants originate in the local in-game panel, expire after five minutes and are revoked by physical input or Stop. Every action validates session, grant, recent frame, focus and coordinates. The permission panel is excluded from assistant input. No OS desktop, shell or arbitrary code tools are present. See COMPUTER_USE.md for limits and tested operations.
