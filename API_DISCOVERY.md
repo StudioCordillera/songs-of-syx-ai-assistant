@@ -2,7 +2,7 @@
 
 The production reference audit proves only the public members used by our adapter. To identify remaining mapping work, `catalog_api.py` separately scans the entire shipped source archive and resolves its named types and public declared members against the installed game JAR with the Java compiler. It never starts the game, executes its classes, or uses reflection. This is development tooling, outside the packaged mod and MCP server.
 
-The current scan covers 2,443 source files, resolves every named source type, and finds 2,052 public types with public enclosing types and 17,442 public declared member signatures. All 197 production reference IDs occur in this catalog. Matching game JAR/source archive hashes establish that the discovery run and production audit used the same reference pair. They do not attest the installed/running mod.
+The current scan covers 2,443 source files, resolves every cataloged named top-level/member source type, and finds 2,052 public types with public enclosing types and 17,442 public declared member signatures. All 197 production reference IDs occur in this catalog. Matching game JAR/source archive hashes establish that the discovery run and production audit used the same reference pair. They do not attest the installed/running mod.
 
 | Root package | Public declared member candidates | Production reference IDs |
 | --- | ---: | ---: |
@@ -19,7 +19,7 @@ The current scan covers 2,443 source files, resolves every named source type, an
 | integrations | 7 | 0 |
 | cutscene | 1 | 0 |
 
-These are not variable counts or a completion percentage. Constructors, setters, renderers, collections and utilities are included. Script overrides are documented separately; zero referenced `script` members does not mean no SCRIPT integration. Inherited declarations are listed at their declaring owner. Public inherited members declared by an inaccessible owner and JAR-only types absent from shipped source are outside this catalog's enumeration scope. Public signatures can themselves involve inaccessible types. Object availability, purity and safe invocation are not established by a declaration.
+These are not variable counts or a completion percentage. Constructors, setters, renderers, collections and utilities are included. Script overrides are documented separately; zero referenced `script` members does not mean no SCRIPT integration. Local/anonymous implementation classes are outside this catalog. Inherited declarations are listed at their declaring owner. Public inherited members declared by an inaccessible owner and JAR-only types absent from shipped source are outside this catalog's enumeration scope. Public signatures can themselves involve inaccessible types. Object availability, purity and safe invocation are not established by a declaration.
 
 16,932 members have one source anchor matching owner, name and simple parameter type strings; 510 do not. This lightweight matching does not prove fully qualified type equivalence or method-body equivalence. Unmatched entries include generated enum methods, implicit constructors and different source/binary spelling of nested types. They are retained with explicit missing-anchor status; they are not promoted to source-verified getter contracts. The stricter production audit remains authoritative for adapter references. No method bodies, Javadoc text or game values are included in either the full local metadata output or the checked-in summary.
 
