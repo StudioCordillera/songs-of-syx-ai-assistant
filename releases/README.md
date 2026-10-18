@@ -17,3 +17,5 @@ To validate a candidate while keeping the public ZIP intact, package into a runt
 The current core suite also checks nonzero city trade bookkeeping in a copied save and verifies that battlefield-unavailable city logistics cannot be queried/count-aggregated as zero. This is a scoped evidence checkpoint, not a complete trading or all-menu acceptance claim.
 
 The service-counter build adds a seventh core fixture group: per-room raw service points, a nullable staffing join and installed help links. The same candidate is checked across the existing scene/UI groups before promotion. Service points are not daily people capacity or guaranteed citizen access; see SERVICE_COUNTERS.md.
+
+The reference/discovery checkpoint keeps the service-counter Java JAR unchanged and updates its paired Python knowledge/API-support modules. It validates current modules with unit tests, actual MCP retrieval/discovery, two current-build Pro turns and extracted-client startup/install checks. Earlier scene/core reports retain their prior Python hashes; unchanged Java does not relabel those as a new full-suite run. The previous tested ZIP is retained on promotion.

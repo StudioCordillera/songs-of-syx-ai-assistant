@@ -46,3 +46,20 @@ def test_critical_binary_evidence_is_explicit():
     for check in checks:
         if 'normalized_disassembly_sha256' in check:
             assert len(check['normalized_disassembly_sha256'])==64
+
+
+@pytest.mark.parametrize('capability,warning', [
+    ('room_service_counters','not people/day'),
+    ('city_trade_pipeline','Unavailable on battlefields'),
+    ('regional_population_counters','Not a settlement census'),
+])
+def test_new_data_capabilities_have_evidence_and_explicit_limits(capability,warning):
+    from pathlib import Path
+    record=support(capability)['capabilities']
+    assert len(record)==1 and record[0]['support']=='public_source_verified'
+    assert warning in record[0]['limits']
+    assert 'documented stable contracts' in record[0]['limits']
+    source_paths={member['source_file'] for member in MANIFEST['members']}
+    for reference in record[0]['references']:
+        if reference.endswith('.java'):assert reference in source_paths
+        else:assert (Path(__file__).parent/reference).is_file()

@@ -121,6 +121,32 @@ SEEDS.append({
 })
 
 
+# Original summaries reviewed in the official English announcement feed on 2026-10-18.
+# Canonical event title/ID checked separately; family version is not exact-patch proof.
+for topic,title,text,section in [
+    ('research-education','research, education and administration',
+     'The V71 notes describe recipe-specific consumption research and administration becoming a research-point producer. '
+     'Education multiplies innovation, knowledge and administration output using education level and room quality. '
+     'Check installed currency descriptions and current costs; later patches may differ.',
+     'TECH AND TRADE RENEWED; EDUCATION & ADMIN OVERHAUL'),
+    ('service-fetch-treatment','service free-fetch and hospital treatments',
+     'The V71 announcement describes service free-fetch without directly adjacent warehouses. '
+     'Fabric and opiate hospital treatments are behind technology. These notes do not establish throughput, '
+     'reachability or an individual patient survival chance; verify current room help.',
+     'ECONOMY, PRODUCTION & BALANCE; MISC & QUALITY OF LIFE')
+]:
+    SEEDS.append({
+        'id':'official-v71-'+topic,'title':'V71 official release notes — '+title,
+        'url':'https://steamcommunity.com/games/1162750/announcements/detail/529882384083977659',
+        'kind':'official','authority':'official','author':'Gamatron / Songs of Syx','game_versions':['0.71'],
+        'retrieved_at':'2026-10-18T11:15:21Z',
+        'version_notes':'Official V71 release announcement dated 15 June 2026. Section: '+section+'. '
+            'Text reviewed in https://steamcommunity.com/app/1162750/announcements/?l=english; '
+            'canonical event title verified separately. Later patches and exact 0.71.44 compatibility remain unverified.',
+        'text':text
+    })
+
+
 def install_seed(directory: Path):
     from syx_mcp import Source, load_json
     directory.mkdir(parents=True, exist_ok=True)

@@ -1,0 +1,69 @@
+{
+  "passed": true,
+  "evaluated_at": "2026-10-18T11:17:40.575647+00:00",
+  "checks": [
+    {
+      "id": "room_service_counters",
+      "support": "public_source_verified",
+      "references": [
+        "settlement/room/service/module/ROOM_SERVICER.java",
+        "settlement/room/service/module/RoomServiceInstance.java",
+        "SERVICE_COUNTERS.md",
+        "SERVICE_VALIDATION.json",
+        "service-query-example.json"
+      ],
+      "passed": true
+    },
+    {
+      "id": "city_trade_pipeline",
+      "support": "public_source_verified",
+      "references": [
+        "game/faction/player/Player.java",
+        "settlement/trade/PBuyer.java",
+        "settlement/trade/PSeller.java",
+        "TRADE_PIPELINE.md",
+        "TRADE_VALIDATION.json",
+        "PLAYER_CORE_VALIDATION.json"
+      ],
+      "passed": true
+    },
+    {
+      "id": "regional_population_counters",
+      "support": "public_source_verified",
+      "references": [
+        "world/region/RD.java",
+        "world/region/pop/RDRaces.java",
+        "world/region/pop/RDRace.java",
+        "WORLD_VALIDATION.json",
+        "DATA_COVERAGE.md",
+        "PLAYER_CORE_VALIDATION.json"
+      ],
+      "passed": true
+    },
+    {
+      "id": "all_game_variables",
+      "support": "unavailable",
+      "passed": true
+    },
+    {
+      "id": "all_states_and_menus",
+      "support": "unavailable",
+      "passed": true
+    }
+  ],
+  "service_counter_member_anchors_checked": 3,
+  "no_game_snapshot_required": true,
+  "inference_calls": 0,
+  "public_inventory_size": 346,
+  "source_sha256": {
+    "syx_mcp.py": "f46d48e261c8a766a1a501a286ac288a1587a26baacbca54a970429e0c9ece8c",
+    "syx_api_support.py": "edd652f645e9d425f06192ee33b262620ca2b43a2a2c4f49311b464f9570597a",
+    "syx_api_manifest.py": "b8ae7dfe560785f083ef609df36b4138d05be3bac16ca001f6bd9b61c8bdb820",
+    "dev/verify_capability_discovery.py": "3699442c1dd9bdcbec9827019e4c0dc8c4d9ad25525b7b0fe7faac67ead5dc16"
+  },
+  "limits": [
+    "Capability records summarize existing evidence; no new game getter/scene or official stable contract is established.",
+    "Offline discovery is not an attestation of a separately installed game mod; pair source-matching builds.",
+    "Three supported capabilities and two explicit gaps sampled, not exhaustive metadata acceptance."
+  ]
+}

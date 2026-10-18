@@ -13,7 +13,7 @@ The current build passed two actual in-game Pro turns: a selective state query a
 ## What works
 
 - Request specific entities across the instantiated scene through fixed public getters: IDs, race/class/type, tile bounds, individual-stat comparisons and chosen attributes. Bounded cursor pages reach beyond the snapshot prefix.
-- Discover explicitly exported fields and request selected public-API observations without dumping the whole snapshot into the model.
+- Discover explicitly exported fields and request selected public-API observations without dumping the whole snapshot into the model. Offline API-support records route service counters, city trade and regional population to their validated mappings and limits.
 - Filter, project, join, group, aggregate, sort and paginate normalized snapshot data. Batched queries share one snapshot.
 - Eighteen explicitly partial domain collectors: population, resources, production, employment, services, housing, health, law, happiness, research, trade, diplomacy, military, world, map, entities, events and settings.
 - Per-room current recipe input/output rows and stored production quantities, joinable to employment and resources; explicit caps, mixed scopes and stored-bucket caveats. See [production evidence](PRODUCTION_VALIDATION.json).
@@ -22,7 +22,7 @@ The current build passed two actual in-game Pro turns: a selective state query a
 - Campaign region populations by playable race, joinable to region ownership, capital and area, with explicit caps and stored-count semantics. See [world evidence](WORLD_VALIDATION.json).
 - Research prerequisite relationships, per-currency next-level costs and point allocation through public getters; discover meanings before treating these as an unlock decision. See [core development evidence](CORE_VALIDATION.json) and [data coverage](DATA_COVERAGE.md).
 - Search resource, technology, stat, room and research-currency descriptions loaded by the game. The latest copied-save test produced 834 reference records, tagged with the exact version and active mods.
-- Search a small reviewed external corpus with direct links, author/authority, retrieval date and compatibility warnings. Whole-word relevance ranks first; version compatibility and official/developer authority break ties. An authority filter is available.
+- Search eleven reviewed external summaries with direct links, author/authority, retrieval date and compatibility warnings, including official V71 research/education and service-fetch/treatment notes. Whole-word relevance ranks first; version compatibility and official/developer authority break ties. An authority filter is available.
 - On-demand person relationships: assigned workplace room, recorded profession, stored home coordinates and scene division. Absence and getter failure stay distinct.
 - Selected citizen identity/class/type and named individual statistics, linked to installed descriptions and independent of the bounded entity list.
 - Bounded label/control observations from exposed popup and section roots, with explicit opaque/truncated content. Editor activation and retreat-to-city transitions are checked in an isolated copied game.

@@ -300,14 +300,167 @@
   },
   {
     "case_id": "authority-no-match-official",
-    "query": "warehouse fetch radius",
+    "query": "quasar hyperdrive",
     "authority": "official",
     "expected_id": null
   },
   {
     "case_id": "authority-no-match-developer",
-    "query": "warehouse fetch radius",
+    "query": "quasar hyperdrive",
     "authority": "developer",
     "expected_id": null
+  },
+  {
+    "case_id": "research-recipe",
+    "query": "Why does each recipe have consumption research in V71?",
+    "expected_id": "official-v71-research-education",
+    "expected_url": "https://steamcommunity.com/games/1162750/announcements/detail/529882384083977659",
+    "expected_authority": "official",
+    "expected_author": "Gamatron / Songs of Syx",
+    "expected_compatibility": "family_match",
+    "reviewed_advice": "Inspect recipe-specific research before applying old shared-node advice.",
+    "required_passages": [
+      "recipe-specific consumption research"
+    ],
+    "required_caveats": [
+      "later patches may differ"
+    ]
+  },
+  {
+    "case_id": "research-education",
+    "query": "How do education and room quality affect innovation knowledge and administration output?",
+    "expected_id": "official-v71-research-education",
+    "expected_url": "https://steamcommunity.com/games/1162750/announcements/detail/529882384083977659",
+    "expected_authority": "official",
+    "expected_author": "Gamatron / Songs of Syx",
+    "expected_compatibility": "family_match",
+    "reviewed_advice": "Inspect education and room quality before advising about research output.",
+    "required_passages": [
+      "Education multiplies innovation, knowledge and administration output",
+      "education level and room quality"
+    ],
+    "required_caveats": [
+      "later patches may differ"
+    ]
+  },
+  {
+    "case_id": "research-admin",
+    "query": "Is administration a research point producer in V71?",
+    "expected_id": "official-v71-research-education",
+    "expected_url": "https://steamcommunity.com/games/1162750/announcements/detail/529882384083977659",
+    "expected_authority": "official",
+    "expected_author": "Gamatron / Songs of Syx",
+    "expected_compatibility": "family_match",
+    "reviewed_advice": "Treat V71 administration as research production and verify installed currency descriptions.",
+    "required_passages": [
+      "administration becoming a research-point producer"
+    ],
+    "required_caveats": [
+      "later patches may differ"
+    ]
+  },
+  {
+    "case_id": "service-fetch",
+    "query": "Do service rooms need warehouses directly adjacent for free-fetch in V71?",
+    "expected_id": "official-v71-service-fetch-treatment",
+    "expected_url": "https://steamcommunity.com/games/1162750/announcements/detail/529882384083977659",
+    "expected_authority": "official",
+    "expected_author": "Gamatron / Songs of Syx",
+    "expected_compatibility": "family_match",
+    "reviewed_advice": "Use version-specific service-fetch notes before requiring adjacent warehouses.",
+    "required_passages": [
+      "service free-fetch without directly adjacent warehouses"
+    ],
+    "required_caveats": [
+      "do not establish throughput",
+      "verify current room help"
+    ]
+  },
+  {
+    "case_id": "service-treatment",
+    "query": "Are fabric and opiate hospital treatments behind technology in V71?",
+    "expected_id": "official-v71-service-fetch-treatment",
+    "expected_url": "https://steamcommunity.com/games/1162750/announcements/detail/529882384083977659",
+    "expected_authority": "official",
+    "expected_author": "Gamatron / Songs of Syx",
+    "expected_compatibility": "family_match",
+    "reviewed_advice": "Inspect treatment technology and installed help without inventing patient survival odds.",
+    "required_passages": [
+      "Fabric and opiate hospital treatments are behind technology"
+    ],
+    "required_caveats": [
+      "do not establish throughput",
+      "verify current room help"
+    ]
+  },
+  {
+    "case_id": "research-version-0.72.1",
+    "query": "Why does each recipe have consumption research in V71?",
+    "expected_id": "official-v71-research-education",
+    "expected_url": "https://steamcommunity.com/games/1162750/announcements/detail/529882384083977659",
+    "expected_authority": "official",
+    "expected_author": "Gamatron / Songs of Syx",
+    "expected_compatibility": "mismatch",
+    "reviewed_advice": "Inspect recipe-specific research before applying old shared-node advice.",
+    "required_passages": [
+      "recipe-specific consumption research"
+    ],
+    "required_caveats": [
+      "later patches may differ"
+    ],
+    "game_version": "0.72.1"
+  },
+  {
+    "case_id": "research-version-0.71",
+    "query": "How do education and room quality affect innovation knowledge and administration output?",
+    "expected_id": "official-v71-research-education",
+    "expected_url": "https://steamcommunity.com/games/1162750/announcements/detail/529882384083977659",
+    "expected_authority": "official",
+    "expected_author": "Gamatron / Songs of Syx",
+    "expected_compatibility": "match",
+    "reviewed_advice": "Inspect education and room quality before advising about research output.",
+    "required_passages": [
+      "Education multiplies innovation, knowledge and administration output",
+      "education level and room quality"
+    ],
+    "required_caveats": [
+      "later patches may differ"
+    ],
+    "game_version": "0.71"
+  },
+  {
+    "case_id": "official-research-filter",
+    "query": "Why does each recipe have consumption research in V71?",
+    "expected_id": "official-v71-research-education",
+    "expected_url": "https://steamcommunity.com/games/1162750/announcements/detail/529882384083977659",
+    "expected_authority": "official",
+    "expected_author": "Gamatron / Songs of Syx",
+    "expected_compatibility": "family_match",
+    "reviewed_advice": "Inspect recipe-specific research before applying old shared-node advice.",
+    "required_passages": [
+      "recipe-specific consumption research"
+    ],
+    "required_caveats": [
+      "later patches may differ"
+    ],
+    "authority": "official"
+  },
+  {
+    "case_id": "official-service-fetch-filter",
+    "query": "Do service rooms need warehouses directly adjacent for free-fetch in V71?",
+    "expected_id": "official-v71-service-fetch-treatment",
+    "expected_url": "https://steamcommunity.com/games/1162750/announcements/detail/529882384083977659",
+    "expected_authority": "official",
+    "expected_author": "Gamatron / Songs of Syx",
+    "expected_compatibility": "family_match",
+    "reviewed_advice": "Use version-specific service-fetch notes before requiring adjacent warehouses.",
+    "required_passages": [
+      "service free-fetch without directly adjacent warehouses"
+    ],
+    "required_caveats": [
+      "do not establish throughput",
+      "verify current room help"
+    ],
+    "authority": "official"
   }
 ]

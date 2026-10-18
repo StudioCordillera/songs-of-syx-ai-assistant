@@ -1,0 +1,38 @@
+{
+  "reviewed_at": "2026-10-18T11:15:21Z",
+  "authority": "official",
+  "canonical_url": "https://steamcommunity.com/games/1162750/announcements/detail/529882384083977659",
+  "canonical_title": "V71 - Reign of Terror - Available Now",
+  "rendered_text_url": "https://steamcommunity.com/app/1162750/announcements/?l=english",
+  "release_date": "2026-06-15",
+  "date_precision": "Day only; publication timezone/time not established.",
+  "sections_reviewed": [
+    "TECH AND TRADE RENEWED",
+    "EDUCATION & ADMIN OVERHAUL",
+    "ECONOMY, PRODUCTION & BALANCE",
+    "MISC & QUALITY OF LIFE"
+  ],
+  "summaries": [
+    {
+      "id": "official-v71-research-education",
+      "body_sha256": "8e01f4aa8d343b55d706e1536021a07528d7a0f2d9cce41da121e44fd5e80965",
+      "game_versions": [
+        "0.71"
+      ]
+    },
+    {
+      "id": "official-v71-service-fetch-treatment",
+      "body_sha256": "274734597886f6ae4f9d562388f0fbf33323335178eb37b4b9cd21b782f83da1",
+      "game_versions": [
+        "0.71"
+      ]
+    }
+  ],
+  "review_method": "Read the official English announcement feed and separately verify the canonical event title/ID. Author original short summaries; retain canonical citation and rendering provenance.",
+  "limits": [
+    "V71 family release evidence, not exact 0.71.44 patch validation or live-state evidence.",
+    "Two topic summaries share one announcement; record count is not independent-source count.",
+    "No formulas, current optimality, service reachability or patient-level outcome is established.",
+    "No automatic web refresh or full guide mirroring. Existing summaries and their retrieval dates are preserved."
+  ]
+}

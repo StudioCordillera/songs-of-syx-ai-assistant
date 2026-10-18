@@ -1,16 +1,16 @@
 {
   "builder_source_sha256": "2c4f12d389e254f85d8996383b25ceacac01a1b49348d0e1b89849c8f694f40b",
   "packager_source_sha256": "58e88da6eae9ed17b86f42472c1b4c3b548922f57b712c28a6ad8918774d5ce8",
-  "built_at": "2026-10-18T10:35:12.647172+00:00",
+  "built_at": "2026-10-18T11:21:13.483456+00:00",
   "model": "deepseek-v4-pro",
   "platform": "Linux",
   "game_version": "0.71.44",
   "mod_jar_sha256": "e93b031e96032bf8cc20dc42e3b1d37c4d261901c2c0f1d0779055454d711a78",
   "files": {
     "syx_mcp.py": "f46d48e261c8a766a1a501a286ac288a1587a26baacbca54a970429e0c9ece8c",
-    "syx_knowledge.py": "7947aac1cea46f450fe56ee91efa11e9871f86085a90939f0d0c2007327896c0",
+    "syx_knowledge.py": "8ba92826d9a9b27099b29d26c50b054a172c6d10ca755ee7f70d538a4573d17a",
     "syx_query.py": "05b164574204a058b5a739f69be72e38bcb3b841c7f24a1e73b560090926d4f5",
-    "syx_api_support.py": "d6058456dcd5468c025bdc04975042476db8d82c7362ce1b7249969607e12ff6",
+    "syx_api_support.py": "edd652f645e9d425f06192ee33b262620ca2b43a2a2c4f49311b464f9570597a",
     "syx_api_manifest.py": "b8ae7dfe560785f083ef609df36b4138d05be3bac16ca001f6bd9b61c8bdb820",
     "syx_live.py": "a7c5d5b457eeb2b8f8240079aed5183a736e6dee9f5c3c140122ade0bb21616a",
     "syx_capture.py": "fb27ec6c9278992d668bb54c85b34f17c625329a8d6f409df7fba1e3e56bcc55",
@@ -59,9 +59,9 @@
     },
     "python_source_sha256": {
       "syx_mcp.py": "f46d48e261c8a766a1a501a286ac288a1587a26baacbca54a970429e0c9ece8c",
-      "syx_knowledge.py": "7947aac1cea46f450fe56ee91efa11e9871f86085a90939f0d0c2007327896c0",
+      "syx_knowledge.py": "8ba92826d9a9b27099b29d26c50b054a172c6d10ca755ee7f70d538a4573d17a",
       "syx_query.py": "05b164574204a058b5a739f69be72e38bcb3b841c7f24a1e73b560090926d4f5",
-      "syx_api_support.py": "d6058456dcd5468c025bdc04975042476db8d82c7362ce1b7249969607e12ff6",
+      "syx_api_support.py": "edd652f645e9d425f06192ee33b262620ca2b43a2a2c4f49311b464f9570597a",
       "syx_api_manifest.py": "b8ae7dfe560785f083ef609df36b4138d05be3bac16ca001f6bd9b61c8bdb820",
       "syx_live.py": "a7c5d5b457eeb2b8f8240079aed5183a736e6dee9f5c3c140122ade0bb21616a",
       "syx_capture.py": "fb27ec6c9278992d668bb54c85b34f17c625329a8d6f409df7fba1e3e56bcc55",
@@ -76,11 +76,13 @@
     "limits": [
       "Copied city; native own-widget text/click fixture, not physical keyboard or every screen size.",
       "No complete game-state/all-menu claim. Raw read-only tool evidence remains in the private local history.",
-      "Linux user-test bundle; game and Python dependencies must be installed separately."
+      "Linux user-test bundle; game and Python dependencies must be installed separately.",
+      "No new seven-group core/scene run in this checkpoint; unchanged Java evidence retains its prior Python hashes. Current changed modules have unit, actual MCP, Pro and distribution checks."
     ],
+    "validated_at": "2026-10-18T11:21:13.443303+00:00",
     "game_version": "0.71.44",
     "game_jar_sha256": "fe0137c05408e5ee9e31f06fc44fe37a5d4372d9c985b280f0852d1347c0224b",
-    "python_tests_passed": 155,
+    "python_tests_passed": 159,
     "public_production_members": 346,
     "non_public_production_members": 0,
     "prior_unchanged_chat_focus_evidence": {
@@ -123,20 +125,30 @@
       "installer_copy_isolated_profile": true,
       "provided_key_literal_absent_from_archive": true,
       "dependency_install_retry_after_failure_unit_test": true,
-      "dependency_setup_scope": "Requirements unchanged; corrected candidate refreshed and checked in the environment freshly installed this checkpoint."
+      "dependency_setup_scope": "Fresh environment installed and checked against the reference/discovery candidate; requirements unchanged."
     },
-    "core_check_groups_passed": [
-      "services",
-      "trade",
-      "world",
-      "production",
-      "scenes",
-      "context",
-      "extended"
-    ],
-    "core_validation_report_sha256": "a9392159d41c95d83ae77177d5c29e4d9bd74ae13ea79c5e256380ecdd710f92",
-    "service_counter_report_sha256": "3aa5b9e963a1fb0c423e1a75b7c10a520fe0b5d9dd6fb6d1ac3c8eb80e8aaa31",
-    "nested_unavailable_source_actual_mcp_guard": true,
+    "unchanged_game_jar_core_evidence": {
+      "mod_jar_sha256": "e93b031e96032bf8cc20dc42e3b1d37c4d261901c2c0f1d0779055454d711a78",
+      "report_file": "PLAYER_CORE_VALIDATION.json",
+      "report_sha256": "a9392159d41c95d83ae77177d5c29e4d9bd74ae13ea79c5e256380ecdd710f92",
+      "recorded_groups": [
+        "services",
+        "trade",
+        "world",
+        "production",
+        "scenes",
+        "context",
+        "extended"
+      ],
+      "changed_python_modules_since_core": [
+        "syx_api_support.py",
+        "syx_knowledge.py"
+      ],
+      "scope": "Prior seven-group suite retains its recorded Python hashes. Java JAR and state-selection modules are unchanged; this is not a new full-suite run of the updated reference/discovery modules."
+    },
+    "guidance_validation_report_sha256": "04f13f6c2006c291e34a70344c866b000e6b06c7daa8132a5e15c3d4c0cd1e0f",
+    "capability_discovery_report_sha256": "9e5bf7ab91ba34876414cb08eecdbed7eb2f5c5cdfdc25d01eb5004a94227d2b",
+    "reference_source_review_sha256": "a404d5988827226eebb72b485b506869328d8899119c5e94ed7183310e732c98",
     "native_geometry_checks": {
       "composer_width_pixels": 792,
       "usable_characters": 240,
@@ -150,5 +162,5 @@
     }
   },
   "run_instructions": "README.txt",
-  "download_sha256": "26b9f87a8ee1bca37873e6218f8ee874bfe13f683e727651f674a25b8fbfbb94"
+  "download_sha256": "71333f0effba85a7de223df5bce2188b7b647f3f5c7bb768dfa2308cd2e814c4"
 }
