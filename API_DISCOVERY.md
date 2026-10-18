@@ -48,3 +48,5 @@ For each useful candidate, remaining work is to establish a public route from th
 The chat-development audit now contains 275 production public-member references, all present in the same offline catalog. This includes the opt-in mod-owned GUI; it does not add new game-data coverage or establish a stable official GUI contract. The 246-reference observation-only inventory belongs to the 0.12.0 baseline.
 
 The current shared-chat audit inventories 276 public production game members, all source/compiler matched and present in the offline catalog. Earlier 275/246-member inventories belong to their stated builds. No private game API reference was added. Current hashes and per-provider evidence are in CHAT_VALIDATION.json.
+
+The current simplified player build inventories 314 public production member references, all present in the offline catalog; zero non-public production references. See USER_TEST_VALIDATION.json for this build’s exact hashes and two-turn Pro check. Earlier inventories above remain historical.

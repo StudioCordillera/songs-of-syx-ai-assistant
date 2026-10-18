@@ -1,5 +1,11 @@
 # Installation and connection
 
+## Play the tested build
+
+Use the [latest player ZIP](https://github.com/StudioCordillera/songs-of-syx-ai-assistant/raw/refs/heads/main/releases/latest-user-test.zip) and its [instructions](user_test/README.txt). It includes the compiled mod and simple DeepSeek Pro helper; no Java compiler is required. Python and its dependencies remain required. The installer backs up the prior mod and does not edit saves.
+
+The remaining sections describe development and standalone MCP use.
+
 ## Build the mod
 
 Use the actual 0.71.44 game folder containing `SongsOfSyx.jar`. A full JDK with the compiler and release signatures is needed. `SYX_JAVA_HOME` can select a JDK home if the default runtime lacks those components.
@@ -24,7 +30,7 @@ Create the Python environment and install the project as shown in README. Merge 
 
 Both the game and MCP server default to `~/.local/share/syx-assistant`. Set `SYX_STATE_DIR` in both processes to override; the game also accepts `-Dsyx.assistant.stateDir=/absolute/path`. The directory is local to this user and holds live game data, the optional reviewed corpus, and bounded read-request/response transport files. No network listener is opened.
 
-Run `syx-knowledge --state-dir /your/state/directory` once to merge the five reviewed starter summaries without overwriting existing records. Installed resource/technology/stat references do not require this step.
+Run `syx-knowledge --state-dir /your/state/directory` once to merge the nine reviewed starter summaries without overwriting existing records. Installed resource/technology/stat references do not require this step.
 
 Ask the assistant to call `game_status`, `game_query_help`, and `describe_game_fields`. See QUERY_GUIDE.md for examples. A missing/unloaded/stale snapshot is an explicit error; never replace it with synthetic data.
 

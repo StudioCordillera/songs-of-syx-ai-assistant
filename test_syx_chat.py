@@ -337,3 +337,41 @@ def test_claude_api_missing_key_never_uses_subscription(tmp_path):
         assert store.chat(cid)['route']=='api'
         store.close()
     run(scenario())
+
+
+def test_simple_player_interface_defaults_to_pro_and_omits_debug_events(tmp_path):
+    from syx_chat_service import Coordinator,unb64
+    async def scenario():
+        session=uid();store=ChatStore(tmp_path/'history')
+        old=store.new(session,'Old flash')
+        coordinator=Coordinator(store,MCP(session),tmp_path,'',simple=True)
+        await coordinator.dispatch({'request_id':uid(),'action':'new','session_id':session})
+        cid=coordinator.selected
+        assert store.chat(cid)['model']=='deepseek-v4-pro'
+        turn=uid();store.begin(cid,turn,session,'What needs attention?')
+        store.append(cid,turn,session,'tool',{'name':'query_game_state','arguments':{'private_debug':'never display'},'result':{'rows':[42]}})
+        store.append(cid,turn,session,'assistant',{'text':'Your answer.','tool_calls':[{'id':'internal'}]})
+        coordinator.write_ui()
+        raw=(tmp_path/'chat-ui.txt').read_text()
+        visible=[unb64(line[5:]) for line in raw.splitlines() if line.startswith('line=')]
+        assert visible==['You: What needs attention?','Assistant: Your answer.']
+        assert 'chat='+old['chat_id'] not in raw
+        assert 'private_debug' not in str(visible) and 'internal' not in str(visible)
+        with pytest.raises(ValueError,match='DeepSeek Pro'):
+            await coordinator.dispatch({'request_id':uid(),'action':'new','session_id':session,'model':'deepseek-flash'})
+        assert len(store.list())==2 and not coordinator.tasks
+        assert 'raw JSON' in coordinator.loop.instructions
+        store.close()
+    run(scenario())
+
+
+def test_explicit_pro_is_sent_without_flash_fallback():
+    async def scenario():
+        sent=[]
+        def handler(request):
+            sent.append(json.loads(request.content))
+            return httpx.Response(200,text=stream([chunk({'content':'Hello'},'stop')]))
+        async with httpx.AsyncClient(transport=httpx.MockTransport(handler)) as client:
+            reply=await DeepSeek('test-key','deepseek-v4-pro',client).complete([],[])
+        assert reply['content']=='Hello' and sent[0]['model']=='deepseek-v4-pro'
+    run(scenario())

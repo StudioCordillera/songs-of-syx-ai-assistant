@@ -1,0 +1,12 @@
+name: Check playable user-test bundle
+on: [push, pull_request, workflow_dispatch]
+permissions:
+  contents: read
+jobs:
+  check-release:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v7
+        with:
+          persist-credentials: false
+      - run: python3 dev/check_user_test_release.py

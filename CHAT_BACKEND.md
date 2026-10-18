@@ -2,23 +2,29 @@
 
 The development implementation now completes real two-turn game/tool/reference conversations through the same panel for **DeepSeek API** and **Claude subscription**, in separate chats. It adds private SQLite histories, rename/export/confirmed deletion, expandable evidence and explicit attachment after a copied-save reload. This does not complete every gate in [IN_GAME_CHAT.md](IN_GAME_CHAT.md): OpenAI sign-in, authenticated Claude API use, account setup entirely inside the game, proper multiline editing, physical keyboard testing and broader lifecycle/platform coverage remain pending.
 
-## Development launch
+## Player build
+
+The [latest tested ZIP](https://github.com/StudioCordillera/songs-of-syx-ai-assistant/raw/refs/heads/main/releases/latest-user-test.zip) defaults to **DeepSeek Pro** (`deepseek-v4-pro`) and a simple panel enabled without extra Java flags. Follow [player setup](user_test/README.txt). It has separate saved chats, an automatically titled first question, a wrapped 240-character composer, Send/Stop and explicit attachment after loading another game. Provider selection, sign-in, evidence, export and deletion controls are hidden. Tool calls remain restricted read-only MCP queries; their raw evidence is stored privately rather than rendered in the transcript. The native text buffer reserves one character, so this input allocates 241 for 240 usable characters.
+
+USER_TEST_VALIDATION.json records a real two-turn Pro check on the packaged source: three selected resource rows, retrieved guide citations and no tool JSON in the player transcript. It also records limitations. Historical CHAT_VALIDATION.json describes the older advanced UI, not acceptance of every current menu or physical keyboard behavior.
+
+## Advanced development launch
 
 Install the Python project in a virtual environment (`pip install -e '.[dev,claude]'`). The Claude extra pins the tested official Agent SDK. Install/authenticate the official Claude Code client for the subscription route; the coordinator uses its supported authentication rather than reading tokens itself. The tested client reported Claude Pro authentication. Eligibility, plan limits and extra-usage settings remain controlled by the provider/account. [Anthropic's plan notice](https://support.claude.com/en/articles/15036540-use-the-claude-agent-sdk-with-your-claude-plan) currently permits Agent SDK subscription usage; recheck it when distributing.
 
 Use the same `SYX_STATE_DIR` as the game exporter. Supply DeepSeek credentials in the coordinator's environment or through a literal dotenv file:
 
 ```sh
-syx-chat --state-dir "$SYX_STATE_DIR" --env-file /path/to/private/provider.env
+syx-chat --advanced --state-dir "$SYX_STATE_DIR" --env-file /path/to/private/provider.env
 ```
 
 `--env-file` reads exactly one `DEEPSEEK_API_KEY` entry without shell execution or interpolation. For explicit Claude API chats, `--claude-env-file` reads `ANTHROPIC_API_KEY` from a separate file (or use that environment variable). Missing Claude API credentials refuse the request; an existing subscription login is never a fallback. No real Anthropic API-key request has been validated yet. Credentials are not entered into chat, committed configuration or game launch arguments.
 
-The coordinator merges five reviewed starter summaries automatically, preserving existing records and original retrieval dates. Installed game references remain separate and require no setup step. The corpus is small, version caveats remain explicit, and no live web crawl occurs.
+The coordinator merges nine reviewed starter summaries automatically, preserving existing records and original retrieval dates. Installed game references remain separate and require no setup step. The corpus is small, version caveats remain explicit, and no live web crawl occurs.
 
 The default history directory is `~/.local/share/syx-assistant-chat`, separate from game exports/saves. `--history-dir` overrides it. One coordinator owns it using a POSIX lock; Windows support is pending. Stop with Ctrl-C. Restart marks interrupted turns and never automatically resends them.
 
-Build/install the development mod using [INSTALL.md](INSTALL.md). Enable its panel with the Java property `-Dsyx.assistant.chat=true`. It is off by default. The panel offers **New DeepSeek**, **New Claude plan**, **New Claude API**, the chat list/transcript, Add text, Send, Stop, Evidence, Rename, Export, Confirm delete and Attach to this game. Each provider choice creates a separate chat; existing transcripts are not silently sent to another provider. New DeepSeek chats use `deepseek-flash`; new Claude chats use the explicit `haiku` alias. Other model selection in the panel is pending. The adapter/store also recognize the documented DeepSeek Pro identifier and Claude's Sonnet/Opus aliases; those choices are not independently validated here.
+Build/install the development mod using [INSTALL.md](INSTALL.md). The simple panel is on by default. Disable with `-Dsyx.assistant.chat=false`; expose the developer panel with `-Dsyx.assistant.chat.advanced=true` and run the coordinator with `--advanced`. The panel offers **New DeepSeek**, **New Claude plan**, **New Claude API**, the chat list/transcript, Add text, Send, Stop, Evidence, Rename, Export, Confirm delete and Attach to this game. Each provider choice creates a separate chat; existing transcripts are not silently sent to another provider. New DeepSeek chats now use `deepseek-v4-pro`; new Claude chats use the explicit `haiku` alias. Other model selection in the panel is pending. The adapter/store also recognize the documented DeepSeek Pro identifier and Claude's Sonnet/Opus aliases; Pro is validated in USER_TEST_VALIDATION.json; Claude Sonnet/Opus choices are not independently validated here.
 
 The single-line composer accepts short segments. Add text appends them into a draft up to 8000 characters; Send submits the draft plus current segment. The current composer names a new chat or renames the selected one. Chat selection clears an unsent draft. A running reply preserves the draft and refuses another Send. A reloaded game's chat requires explicit attachment; the draft is retained when this preflight rejects a send. This is a prototype interaction, pending proper multiline editing.
 

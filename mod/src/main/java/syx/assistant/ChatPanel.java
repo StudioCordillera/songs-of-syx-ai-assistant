@@ -21,6 +21,7 @@ import view.main.VIEW;
 
 /** Experimental own-panel GUI. Uses public widgets; never dispatches game input. */
 final class ChatPanel extends InterGuisection {
+    private final boolean advanced=Boolean.getBoolean("syx.assistant.chat.advanced");
     private final String session;
     private final Consumer<String> submit;
     private final GInput composer;
@@ -30,7 +31,7 @@ final class ChatPanel extends InterGuisection {
     private String acknowledged="", waiting="", lastState="";
     private boolean opened,running,deleteArmed;
     private long heartbeat;
-    private String connection="Coordinator not connected",provider="deepseek",route="api",model="deepseek-flash";
+    private String connection="Coordinator not connected",provider="deepseek",route="api",model="deepseek-v4-pro";
     private long lastRefresh;
     private final List<String[]> chats=new ArrayList<>();
     private final List<String> transcript=new ArrayList<>();
@@ -40,7 +41,18 @@ final class ChatPanel extends InterGuisection {
         super(VIEW.inters().manager);
         this.session=session;this.submit=submit;
         int capacity=Math.max(8,Math.min(64,780/UI.FONT().S.maxCWidth));
-        composer=new GInput(new StringInputSprite(capacity,UI.FONT().S));
+        StringInputSprite input=advanced?new StringInputSprite(capacity,UI.FONT().S):new StringInputSprite(241,UI.FONT().S) {
+            @Override public int width(){return 780;}
+            @Override public int height(){return UI.FONT().S.height()*4;}
+            @Override public void render(SPRITE_RENDERER renderer,int x1,int x2,int y1,int y2) {
+                String text=text().toString();
+                int cursor=Math.max(0,Math.min(marker,text.length()));
+                if(listening())text=text.substring(0,cursor)+"|"+text.substring(cursor);
+                UI.FONT().S.render(renderer,text,x1,y1,780,1.0);
+            }
+        };
+        composer=new GInput(input);
+        if(!advanced)((snake2d.util.datatypes.Rec)composer.body()).setWidth(792);
         pin();persistantSet();rebuild();
     }
     @Override protected boolean update(float ds) { return true; }
@@ -50,7 +62,7 @@ final class ChatPanel extends InterGuisection {
         return StateCollector.object("enabled",true,"panel_open",opened,"chat_id",chat.isEmpty()?null:chat,
             "generating",running,"runtime_session_id",session,"attached_session_id",attachedSession.isEmpty()?null:attachedSession,
             "attachment_required",!chat.isEmpty()&&!session.equals(attachedSession),
-            "provider",provider,"route",route,"model",model,"experimental",true,
+            "provider",provider,"route",route,"model",model,"interface",advanced?"advanced":"simple","experimental",true,
             "scope","Mod-owned chat panel only; underlying game selection remains separate");
     }
     private static String decode(String value) {
@@ -134,10 +146,10 @@ final class ChatPanel extends InterGuisection {
             }
         };
         panel.add(button("Close",this::toggle),16,86);
-        panel.add(button("New DeepSeek",()->action("new",composer.text().length()>0?composer.text().toString():"New chat")),140,86);
-        panel.add(button("Attach to this game",()->action("attach",null)),340,86);
-        panel.add(button("Evidence",()->action("evidence",null)),650,86);
-        panel.add(new GTextR(UI.FONT().S,connection+" | "+model+" | OpenAI setup pending"),16,130);
+        panel.add(button(advanced?"New DeepSeek":"New chat",()->action("new","New chat","deepseek","api","deepseek-v4-pro")),140,86);
+        if(advanced || (!chat.isEmpty()&&!attachedSession.equals(session)))panel.add(button("Use with this game",()->action("attach",null)),340,86);
+        if(advanced)panel.add(button("Evidence",()->action("evidence",null)),650,86);
+        panel.add(new GTextR(UI.FONT().S,advanced?connection+" | "+model:"DeepSeek Pro"+(running?" — Thinking…":"")),16,130);
         String message=notice.length()>110?notice.substring(0,110):notice;
         panel.add(new GTextR(UI.FONT().S,message),16,154);
         List<RENDEROBJ> choices=new ArrayList<>();
@@ -162,12 +174,13 @@ final class ChatPanel extends InterGuisection {
             if(rows.size()>=1200)break;
         }
         if(rows.size()>=1200)rows.add(new GTextR(UI.FONT().S,"[Panel row limit reached; full bounded evidence is retained locally.]"));
-        if(rows.isEmpty())rows.add(new GTextR(UI.FONT().S,"Create/select a chat. Add text in short segments, then Send."));
+        if(rows.isEmpty())rows.add(new GTextR(UI.FONT().S,advanced?"Create/select a chat. Add text in short segments, then Send.":"Start a new chat and ask about your game."));
         boolean follow=history==null || history.target.get()>=history.target.max();
         int scroll=follow?Integer.MAX_VALUE:history.target.get();
         history=new GScrollRows(rows,250);history.target.set(scroll);
         panel.add(history.view(),16,266);
         panel.add(composer,16,526);
+        if(advanced) {
         panel.add(new GTextR(UI.FONT().S,"Draft: "+draft.length()+" chars. Add text appends a segment (maximum 8000)."),16,568);
         panel.add(button("Rename",()->action("rename",composer.text().toString())),16,640);
         panel.add(button("Export",()->action("export",null)),200,640);
@@ -182,14 +195,15 @@ final class ChatPanel extends InterGuisection {
             if(draft.length()+text.length()+1>8000){notice="Draft exceeds 8000 characters";rebuild();return;}
             if(draft.length()>0)draft.append(' ');draft.append(text);composer.text().clear();rebuild();
         }),16,594);
+        } else panel.add(new GTextR(UI.FONT().S,"Ask a question (up to 240 characters), then Send."),16,620);
         panel.add(button("Send",()->{
             if(!attachedSession.equals(session)){notice="This chat belongs to another game session. Use Attach to this game before sending.";rebuild();return;}
             if(running){notice="Stop or wait for the current reply before sending another message";rebuild();return;}
             String text=draft.toString()+(draft.length()>0?" ":"")+composer.text();
             if(text.isBlank()||text.length()>8000){notice="Enter 1..8000 characters";rebuild();return;}
             if(waiting.isEmpty()&&!chat.isEmpty()){action("send",text);draft.setLength(0);composer.text().clear();}
-        }),200,594);
-        panel.add(button("Stop",()->action("stop",null)),340,594);
+        }),200,advanced?594:650);
+        panel.add(button("Stop",()->action("stop",null)),340,advanced?594:650);
         panel.body().setWidth(Math.max(840,panel.body().width()));
         activate(panel);
     }

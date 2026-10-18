@@ -70,7 +70,7 @@ public final class AssistantScript implements SCRIPT {
         public void update(double ds) { /* GAME.addAfterUpdate also runs when UI pauses skip resource updates. */ }
         private void sample() {
             if (closed) return;
-            if(Boolean.getBoolean("syx.assistant.chat")) {
+            if(Boolean.parseBoolean(System.getProperty("syx.assistant.chat","true"))) {
                 if(chatPanel==null)chatPanel=new ChatPanel(session,chatAction::set);
                 chatPanel.refresh(chatState.get());
             }
@@ -132,7 +132,7 @@ public final class AssistantScript implements SCRIPT {
             }catch(Exception error){System.err.println("Syx assistant chat IPC failed");}
         }
         private synchronized void flush() {
-            if(!closed){pollReadRequest();pollTileRequest();if(Boolean.getBoolean("syx.assistant.chat"))pollChat();}
+            if(!closed){pollReadRequest();pollTileRequest();if(Boolean.parseBoolean(System.getProperty("syx.assistant.chat","true")))pollChat();}
             Map<String,Object> tiles=tileResponse.getAndSet(null);
             if(tiles!=null)try {
                 if(JsonWriter.encode(tiles).getBytes(StandardCharsets.UTF_8).length>65536)

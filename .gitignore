@@ -15,3 +15,5 @@ runtime/
 auth.json
 .tools/
 *.zip
+!releases/latest-user-test.zip
+!releases/previous-user-test.zip

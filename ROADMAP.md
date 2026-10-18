@@ -6,11 +6,13 @@ Return to the core mod objectives. Further provider integration, account binding
 
 The game-facing boundary remains an in-process SCRIPT mod using explicit public APIs verified against the installed game and shipped source. Distinguish documented script contracts from source-verified public members. Do not use reflection, private fields, process-memory inspection, screenshots, native input or arbitrary method invocation to fill gaps.
 
+The runnable player checkpoint now requires a source-matching `releases/latest-user-test.zip` with simplified DeepSeek Pro chat. Rebuild and validate the player bundle after production changes; `dev/check_user_test_release.py`, the repository pre-push hook and CI detect stale bundled code. Keep the last tested download while preparing a candidate. See USER_TEST_VALIDATION.json and releases/README.md. This delivery requirement does not replace the core objectives below.
+
 ## 1. Selective access to game state — first priority
 
 Goal: let an assistant discover available variables and request a complex, bounded selection quickly, without receiving the entire state on each question.
 
-Implemented: 18 partial typed domains; snapshot filters, projections, joins, arithmetic and aggregates; on-demand person/stat reads; retained entity captures for stable paging; finite terrain/floor/room/mineral/path reads. Results identify their observation, session, coverage and scope. The compiler audit currently inventories 308 public production member references. The offline public-member catalog is a discovery backlog, not a count of supported variables.
+Implemented: 18 partial typed domains; snapshot filters, projections, joins, arithmetic and aggregates; on-demand person/stat reads; retained entity captures for stable paging; finite terrain/floor/room/mineral/path reads. Results identify their observation, session, coverage and scope. The compiler audit currently inventories 314 public production member references. The offline public-member catalog is a discovery backlog, not a count of supported variables.
 
 Next work:
 

@@ -37,6 +37,16 @@ public final class ChatLiveScenario {
                         Object id=panel.context().get("chat_id");if(id==null)return;
                         if(secondProvider && !"claude".equals(panel.context().get("provider")))return;
                         if(secondProvider)require(!id.toString().equals(deepseekChat),"Provider switch reused the earlier chat");
+                        if(!Boolean.getBoolean("syx.smoke.chatClaude")&&!secondProvider) {
+                            require("simple".equals(panel.context().get("interface")),"Expected simple player interface");
+                            require("deepseek-v4-pro".equals(panel.context().get("model")),"Expected DeepSeek Pro");
+                            for(RENDEROBJ control:panel.section().elements())if(control instanceof GInput) {
+                                require(control.body().width()==792,"Question box width is incorrect");
+                                require(control.body().y2()<620,"Question box overlaps its hint or send controls");
+                                require(((GInput)control).text().length()+((GInput)control).text().spaceLeft()==240,"Question capacity is incorrect");
+                            }
+                            for(RENDEROBJ control:panel.section().elements())require(control.body().x1()!=650,"Developer/provider control is visible");
+                        }
                         chat=id.toString();send(panel,directory,Boolean.getBoolean("syx.smoke.chatSelect")?"Use select_game_state: 3 least positive owned.":Boolean.getBoolean("syx.smoke.chatGuidance")?"Use search_guidance: food. Cite a URL briefly.":"Use tools: population total; cite session and tick.");phase=3;break;
                     case 3:
                         if(!complete(directory)||Boolean.TRUE.equals(panel.context().get("generating")))return;

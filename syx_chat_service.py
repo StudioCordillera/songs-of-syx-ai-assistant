@@ -1,7 +1,7 @@
 """Local chat coordinator. File IPC only; no listening network port or game access.
 
-Development launcher: syx-chat. Production in-game account setup/packaging remains
-pending. Only the native DeepSeek API route is implemented by this coordinator.
+The player launcher defaults to a simplified DeepSeek Pro interface. Advanced
+developer mode retains the experimental additional provider controls.
 """
 import argparse
 import asyncio
@@ -69,9 +69,11 @@ def action(raw):
 
 
 class Coordinator:
-    def __init__(self,store,mcp,state_dir,api_key,claude_api_key=""):
+    def __init__(self,store,mcp,state_dir,api_key,claude_api_key="",simple=False):
+        self.simple=simple
         self.store=store;self.mcp=mcp;self.directory=Path(state_dir);self.key=api_key;self.claude_api_key=claude_api_key
         self.loop=Conversation(store,mcp,lambda chat:DeepSeek(api_key,chat['model']))
+        if simple:self.loop.instructions+='\nPlayer interface: answer in plain language. Keep raw JSON, tool calls, session IDs, snapshot IDs, ticks and JSON pointers in the local evidence log rather than the player-facing text. Cite human-readable guide URLs or installed source names when supporting mechanics. Do not narrate internal protocols.'
         from syx_claude import ClaudeConversation
         self.claude_loop=ClaudeConversation(store,mcp,None,api_key=claude_api_key)
         self.tasks={};self.selected=None;self.ack='';self.notice='DeepSeek API configured' if api_key else 'DeepSeek API key missing; set DEEPSEEK_API_KEY before starting the coordinator'
@@ -87,8 +89,15 @@ class Coordinator:
         with self.store.db:self.store.db.execute('INSERT INTO actions(request_id) VALUES(?)',(rid,))
         self.ack=rid
         name=request['action'];session=request['session_id'];cid=request.get('chat_id')
+        if self.simple:
+            if name=='new':
+                choice=(request.get('provider','deepseek'),request.get('route','api'),request.get('model','deepseek-v4-pro'))
+                if choice!=('deepseek','api','deepseek-v4-pro'):raise ValueError('This user-test build uses DeepSeek Pro')
+            elif name=='evidence':raise ValueError('Developer evidence controls are disabled in this user-test build')
+            elif self.store.chat(cid)['model']!='deepseek-v4-pro' or self.store.chat(cid)['provider']!='deepseek':
+                raise ValueError('Start a new DeepSeek Pro chat in this user-test build')
         if name=='new':
-            self.selected=self.store.new(session,request.get('text') or 'New chat',request.get('provider','deepseek'),request.get('model','deepseek-flash'),request.get('route','api'))['chat_id'];self.notice='Chat created';return
+            self.selected=self.store.new(session,request.get('text') or 'New chat',request.get('provider','deepseek'),request.get('model','deepseek-v4-pro' if self.simple else 'deepseek-flash'),request.get('route','api'))['chat_id'];self.notice='Chat created';return
         selected_chat=self.store.chat(cid);self.selected=cid
         if name=='evidence':
             if cid in self.expanded:self.expanded.remove(cid)
@@ -114,6 +123,8 @@ class Coordinator:
         if (selected_chat['provider'],selected_chat['route'])==('claude','api') and not self.claude_api_key:raise ValueError('Claude API key is missing; subscription fallback is disabled')
         if selected_chat['provider']=='deepseek' and not self.key:raise ValueError('DeepSeek API key is missing; no request sent')
         if cid in self.tasks and not self.tasks[cid].done():raise ValueError('A reply is already running')
+        if self.simple and selected_chat['title']=='New chat':
+            self.store.rename(cid,request.get('text','New chat')[:60] or 'New chat')
         # A duplicate action ID is also the durable turn ID. Both journals prevent resubmission.
         self.partial[cid]=''
         def emit(text):self.partial[cid]+=text
@@ -131,7 +142,9 @@ class Coordinator:
         lines=['protocol=1','updated_at='+str(time.time()),'request_id='+self.ack,
             'notice='+b64(self.store.clean(self.notice)), 'connected='+str(bool(self.key)).lower(),
             'connection_status='+b64('DeepSeek API verified this run' if ('deepseek','api') in self.validated else 'DeepSeek API key loaded; not yet verified' if self.key else 'DeepSeek API key missing')]
-        for chat in self.store.list():lines.append('chat='+chat['chat_id']+'|'+b64(chat['title']))
+        for chat in self.store.list():
+            if not self.simple or (chat['provider'],chat['route'],chat['model'])==('deepseek','api','deepseek-v4-pro'):
+                lines.append('chat='+chat['chat_id']+'|'+b64(chat['title']))
         if self.selected:
             chat=self.store.chat(self.selected)
             if chat['provider']=='claude':
@@ -149,6 +162,15 @@ class Coordinator:
                 lines.append('line='+b64('[Earlier events retained locally; this preview shows the latest 100 events.]'))
             for event in self.store.events(self.selected,after=after,limit=100):
                 payload=event['payload'];kind=event['kind']
+                if self.simple:
+                    if kind in {'user','assistant'}:
+                        text=payload.get('text','')
+                        if not text:continue
+                        text=('You: ' if kind=='user' else 'Assistant: ')+text
+                    elif kind in {'turn_error','turn_cancelled'}:text='Reply interrupted. Please try again or start a new chat.'
+                    elif kind=='session_boundary':text='Conversation connected to this game.'
+                    else:continue
+                    lines.append('line='+b64(text));continue
                 if kind=='tool':
                     if self.selected in self.expanded:text='Tool evidence: '+json.dumps(payload,ensure_ascii=False)
                     else:
@@ -163,7 +185,7 @@ class Coordinator:
                 text=event['at']+' ['+event['game_session']+'] '+text
                 if len(text)>16000:text=text[:15900]+' [Preview truncated; full bounded event retained locally.]'
                 lines.append('line='+b64(text))
-            if self.selected in self.partial:lines.append('line='+b64('Streaming: '+self.store.clean(self.partial[self.selected])))
+            if self.selected in self.partial:lines.append('line='+b64(('Assistant: ' if self.simple else 'Streaming: ')+self.store.clean(self.partial[self.selected])))
         # Drop oldest preview lines to fit IPC budget; never silently truncate a paid request.
         while len(('\n'.join(lines)+'\n').encode())>240000:
             indices=[i for i,line in enumerate(lines) if line.startswith('line=')]
@@ -224,7 +246,7 @@ async def serve(args):
             async with stdio_client(params) as (read,write):
                 async with ClientSession(read,write) as mcp:
                     await mcp.initialize()
-                    await Coordinator(store,mcp,directory,key,claude_key).serve()
+                    await Coordinator(store,mcp,directory,key,claude_key,simple=not args.advanced).serve()
         finally:store.close()
 
 
@@ -233,6 +255,7 @@ def main():
     parser.add_argument('--state-dir',default=os.environ.get('SYX_STATE_DIR',str(Path.home()/'.local/share/syx-assistant')))
     parser.add_argument('--history-dir',default=str(Path.home()/'.local/share/syx-assistant-chat'))
     parser.add_argument('--env-file',help='Read DEEPSEEK_API_KEY from a local literal dotenv file; never executes shell content')
+    parser.add_argument('--advanced',action='store_true',help='Developer UI output and additional providers; not used by the user-test launcher')
     parser.add_argument('--claude-env-file',help='Read ANTHROPIC_API_KEY from a local literal dotenv file for explicit Claude API chats')
     args=parser.parse_args()
     try:asyncio.run(serve(args))
