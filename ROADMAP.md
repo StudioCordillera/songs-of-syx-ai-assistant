@@ -111,3 +111,6 @@ The exact producer-degradation candidate passes 177 tests, two actual Pro turns,
 
 
 The stockpile boundary review identifies five public stored tally candidates and separates incoming-space reservations, reserved goods and differing zero-capacity defaults. STOCKPILE_BOUNDARY.md and STOCKPILE_BOUNDARY_REVIEW.json record static source/bytecode/catalog evidence only. Crate coordinate binding uses shared mutable scratch state and is excluded from the proposed route. No new data mapping, native parity/cap/fault/cost acceptance or player payload change is claimed; bounded copied-game getter/MCP validation remains required.
+
+
+The stockpile reader follow-up checks 42 resources in one copied warehouse: 420 overload comparisons, per-room/global tally sums, positive incoming/stored reservations, zero-capacity resource defaults and immediate public deactivate/reactivate behavior. Existing production stored/capacity fields match actual MCP selection over the retained original observation. STOCKPILE_READER_VALIDATION.json keeps candidate reservation/per-room arrays separate from shipped MCP fields. No additional production mapping or zero-capacity aggregate-room, removed-room, unavailable-scene, cap/fault or large-city acceptance is claimed.

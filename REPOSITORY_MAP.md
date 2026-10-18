@@ -51,6 +51,7 @@ Only these production classes are packaged. `mod/tests/` contains non-shipped bo
 | dev/verify_*_contract.py, verify_bytecode.py, review_production_modifier_boundary.py, review_stockpile_boundary.py, verify_production_periods.py | Static licensed source/binary review without initializing game classes; publish metadata/hashes/conclusions only. |
 | test_*.py | Offline regression tests with mock providers/synthetic observations/local Git repos. No key or paid inference needed. |
 | mod/tests/ + dev/verify_*.py | Explicit licensed-game getter/MCP/context/cap/lifecycle fixtures and metadata-only reports. Read each verifier's scope. |
+| dev/run_stockpile_probe.py | Published-JAR copied-city candidate stockpile readers, overload/sum/lifecycle checks and existing MCP total parity; locks/restores copied mod, no provider calls. |
 | dev/run_player_chat_check.py | Explicit paid two-turn Pro test using a manually supplied key; builds/audits current source, isolates game/MCP credentials and restores copied-profile mod. |
 | dev/verify_user_test_chat.py | Verify an already executed native Pro chat/history; does not itself launch the game or provider. |
 | dev/verify_current_player_core.py | Exact published/candidate JAR through seven copied-save groups, no inference. |
@@ -71,7 +72,7 @@ The release whitelist is `make_user_test.MODULES`, five files in `user_test/`, o
 - `*-query-example.json` / `selective-query-examples.json`: executable selection examples; sort paths refer to projected result names.
 - `USER_TEST_VALIDATION.json`: published player JAR/Python/provider evidence; `PLAYER_CORE_VALIDATION.json`: its exact grouped native follow-up.
 - `DEGRADATION_*`, `WORKFORCE_*`, `SERVICE_VALIDATION.json`, `GUIDANCE_VALIDATION.json`, `CAPABILITY_DISCOVERY_VALIDATION.json`: read exact hashes/scopes and current parent links. Controlled/synthetic cases do not imply natural all-state coverage.
-- `STOCKPILE_BOUNDARY_REVIEW.json` / `STOCKPILE_BOUNDARY.md`: static candidate review only; no additional runtime fields or getter/MCP acceptance.
+- `STOCKPILE_BOUNDARY_REVIEW.json` / `STOCKPILE_BOUNDARY.md`: static candidate review; paired STOCKPILE_READER_VALIDATION.json checks finite native readers and existing aggregate MCP fields, with additional reservation/per-room production exposure still pending.
 - Other `*_VALIDATION.json`, `validation-evidence.json`, `provider-validation.json` and source-review reports may belong to older builds. Preserve them as historical evidence; current equivalents can be nested in PLAYER_CORE. The index distinguishes their roles.
 - `COLLABORATION_VALIDATION.json`: developer-tool/docs check evidence, separate from the published player's test count and JAR.
 

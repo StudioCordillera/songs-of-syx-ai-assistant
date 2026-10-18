@@ -1,6 +1,6 @@
 # Stockpile and logistics candidate boundary
 
-[STOCKPILE_BOUNDARY_REVIEW.json](STOCKPILE_BOUNDARY_REVIEW.json) records static review of Songs of Syx 0.71.44's licensed source/binary and its paired public declaration catalog. **No new stockpile fields are exposed by this checkpoint.** The production inventory remains 359 public references; the simple Pro player and its tested predecessor are unchanged. These are shipped-source findings, not separately documented stable mod contracts.
+[STOCKPILE_BOUNDARY_REVIEW.json](STOCKPILE_BOUNDARY_REVIEW.json) records static review of Songs of Syx 0.71.44's licensed source/binary and its paired public declaration catalog. **No new stockpile fields are exposed by this checkpoint.** The production inventory remains 359 public references; the simple Pro player and its tested predecessor are unchanged. These are shipped-source findings, not separately documented stable mod contracts. Existing aggregate `resources.stockpiles[].stockpile_stored` and `stockpile_capacity` already use the amount/space tallies; additional reservation/per-room exposure remains pending.
 
 ## Narrow candidate route
 
@@ -34,7 +34,7 @@ None should be presented as an interchangeable player-facing fullness percentage
 
 Keep a future mapping city-only until other scenes are established. Collect on the existing game after-update thread into detached DTOs; never expose tally objects, reservation actions or arbitrary method invocation. Resource/room scans and row counts need explicit budgets, truncation and failed-read metadata. Preserve null versus zero and unavailable scene semantics. A resource-wide total must not silently be inferred from a capped room prefix.
 
-Before exposing data, use a disposable copied game to compare each public getter with exported rows and actual MCP selections. Cover at least unassigned/zero-capacity resources, positive storage, both reservation counters where safely obtainable, inactive/removed rooms, a bounded per-room join and unavailable scenes. Establish actual cap/failure behavior and relevant collection cost separately. Synthetic values do not prove that live reservations were observed. No such runtime acceptance is claimed here.
+Before exposing data, use a disposable copied game to compare each public getter with exported rows and actual MCP selections. Cover at least unassigned/zero-capacity resources, positive storage, both reservation counters where safely obtainable, inactive/removed rooms, a bounded per-room join and unavailable scenes. Establish actual cap/failure behavior and relevant collection cost separately. Synthetic values do not prove that live reservations were observed. The finite native checks below establish only the stated reader/legacy-mapping cases; they do not complete that acceptance list.
 
 ## Reproduce the static review
 
@@ -48,3 +48,25 @@ Before exposing data, use a disposable copied game to compare each public getter
 ```
 
 Use `catalog_api.py` as described in [API discovery](API_DISCOVERY.md) if the local declaration catalog is absent. The review checks catalog/game/source checksum pairing, public declaration identities, selected getter bytecode, bookkeeping source markers and the crate binder's scratch writes. It never initializes the game, invokes game methods, changes a profile or uses a provider key. Published evidence contains metadata/hashes/conclusions only; licensed source and bytecode stay local.
+
+
+## Finite copied-city reader check
+
+[STOCKPILE_READER_VALIDATION.json](STOCKPILE_READER_VALIDATION.json) pins the exact published degradation player JAR, game/source pair, fixture and verifier. A separate virtual display with software rendering kept the normal player process and desktop untouched. The fixture used only the disposable copied profile/save and the machine-wide native lock; it restored that profile's prior mod JAR and wrote no save or provider request.
+
+The paused city had **42 resources and one active stockpile**. All five integer/resource overloads matched for global and per-room reads (420 comparisons), and room sums matched global counters. Nine resources had assigned capacity, five had positive stored goods, one had positive reserved incoming capacity and two had positive reserved stored goods. Those are observed nonzero cases, not injected reservation values. Thirty-three resources had zero capacity; global `load` and per-resource `storedD` returned their reviewed default of one. No room had zero aggregate assigned capacity, so `getUsedSpace()`'s zero-capacity branch remains statically reviewed only.
+
+Existing production stored/capacity values matched the direct getter fixture. An actual stdio MCP `select_game_state` call filtered positive capacity, projected resource/stored/capacity, sorted stored quantities and checked the first five rows, total matches and original UI context. It served the retained real observation with its unchanged timestamp in a separate test directory; it did not replace the mod's live snapshot. The reservation/per-room candidate arrays were checked inside the native fixture and are **not** new production MCP fields.
+
+After the baseline observation, the fixture called public `deactivate()` and `activate(true)` on the copied stockpile only. Immediate deactivation retained all five per-resource tallies; reactivation restored its active flag. This is controlled fixture behavior, never a production control tool. It does not establish removal behavior, inactive simulation over time, reservation completion or lifecycle semantics for every room type. Overload/sum agreement is a bookkeeping consistency check, not an independent physical-crate audit.
+
+To reproduce after preparing the isolated profile/save in [CONTRIBUTING.md](CONTRIBUTING.md):
+
+```sh
+LIBGL_ALWAYS_SOFTWARE=1 xvfb-run -a -s '-screen 0 1280x960x24' \
+  .venv/bin/python dev/run_stockpile_probe.py \
+  --game-dir '/path/to/Songs of Syx' --save runtime/smoke.save \
+  --java '/path/to/java' --jdk-home '/path/to/full-jdk'
+```
+
+The runner refuses a game/source pair that differs from the static review before native execution. It extracts the source-matching published mod and acquires the fixture lock itself; do not wrap it in another lock. Xvfb and working software OpenGL are optional host tools for an isolated display; a native display also works but may present a fixture window. Raw observations and logs stay private under ignored runtime/. Cap/fault injection, large-city timings, unavailable scenes and additional production mappings remain future work.
