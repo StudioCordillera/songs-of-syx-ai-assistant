@@ -5,7 +5,7 @@ This is a routing inventory of the current adapter, not a complete game schema. 
 | Domain | Main snapshot query paths | Established content | Principal remaining gap |
 | --- | --- | --- | --- |
 | population | `/total`, `/by_race_class` | Scene counts by race/class | Growth factors, complete histories and individual attributes |
-| resources | `/stockpiles`, `/field_definitions` | Stored/capacity and mixed-logistics owned quantities | Reservations, transit and full storage relationships |
+| resources | `/stockpiles`, `/stockpile_bookkeeping/rows`, `/field_definitions` | Bounded global city assigned-crate, stored/capacity and stored/incoming-reservation counters; distinct mixed-logistics owned quantities | Per-room/crate relationships, transit/ground goods, exact tally age and effective reachability |
 | production | `/resources`, `/room_data/flows` | Campaign ledger plus bounded current scene recipe inputs/outputs, stored quantities and producer-room degradation | Production modifiers, bucket alignment, retained observations and forecasts |
 | employment | `/rooms`, `/field_definitions` | Bounded room identity, workforce counts/targets and stored work/travel/fetch/combined factors; shared room-instance key | Jobs/history, exact factor age and complete production modifiers |
 | services | `/statistics`, `/room_data/rooms`, `/access_policy`, `/field_definitions` | Aggregate stats, per-room raw service points and configured race/class permission flags, linked to staffing/population/help | Daily capacity, demand, effective individual access/reachability, full provider types and explanations |
@@ -18,8 +18,8 @@ This is a routing inventory of the current adapter, not a complete game schema. 
 | diplomacy | `/factions` | Active faction identities and stance | Treaties and relationship factors |
 | military | `/statistics`, `/scene_armies` | BATTLE aggregates and instantiated scene divisions | Full world-army/order schemas and combat history |
 | world | `/regions`, `/population_by_race`, `/field_definitions` | Region IDs, owners, coordinates, capital/area and bounded stored regional population by playable race | Regional economy/army relationships, non-playable counters and world-scale cost validation |
-| map | dimensions and on-demand tool description | Scene dimensions plus finite tile reads | Broader spatial fields and retained spatial batches |
-| entities | `/items`, `/selected_subject` | Prefix IDs/positions and dedicated selected-person public stats | More typed attributes and relationship filtering |
+| map | dimensions and on-demand tool description | Scene dimensions, finite tile reads and bounded retained tile selections | Broader spatial fields, larger retained batches and all-field/scene/fault costs |
+| entities | `/items`, `/selected_subject` | Prefix IDs/positions and dedicated selected-person public stats | More typed attributes and relationship filters beyond recorded workplace |
 | events | `/registered_event_types`, current event ID/elapsed fields | Registered event types and current scripted event | Complete incidents/history and future-event claims |
 | settings | pause/speed/time fields | Current public clock and requested speed | Full settings schema |
 
@@ -30,6 +30,7 @@ Aggregate stat collections are intentionally left in game-defined units until th
 - `query_live_entities`: finite projected fields, IDs, recorded-workplace room filter, named stat filters and recorded workplace/profession/home/division assignments. Cursor pages are separate observations.
 - `capture_live_entities` / `read_entity_capture`: bounded detached observations retained for stable paging, with original session/tick/context. Not a global worker transaction.
 - `query_live_tiles`: terrain/floor/room/mineral/path fields in a bounded rectangle, with fixed filters. Coordinate room data does not identify a UI-selected room. Cursor pages remain separate observations.
+- `capture_live_tiles` / `read_tile_capture`: a complete <=4096-tile scan with <=100 matches/64 KiB from one callback, then retained historical pages; incomplete selections retain nothing.
 
 See QUERY_GUIDE.md for exact limits and query syntax. IDs must share a documented mapping before joins are used: similarly named labels or different composite IDs are not proof of a relationship.
 

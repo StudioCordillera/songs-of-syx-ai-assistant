@@ -1,0 +1,167 @@
+{
+  "passed": true,
+  "reviewed_at": "2026-10-18T22:15:20.596533+00:00",
+  "stage": "Static candidate only; production regional-output mapping is not implemented by this review",
+  "game_jar_sha256": "fe0137c05408e5ee9e31f06fc44fe37a5d4372d9c985b280f0852d1347c0224b",
+  "source_archive_sha256": "a3fc2aa9f4be31aec0616a5030a656ac49a6011343b7e91395c7bac0b9dfb0a5",
+  "catalog_sha256": "5b4b13770eb3251ce066e4f9cf57b5e6b1956687136b5be33a680b707a73b065",
+  "candidate_public_members": [
+    "world.region.RD#OUTPUT()",
+    "world.region.RDOutputs#get(init.trade.TRADABLE)",
+    "world.region.RDOutputs.RDOutput#yearlyAccumilation",
+    "init.trade.TR#get(init.resources.RESOURCE)",
+    "init.trade.TRADABLE#index()",
+    "init.trade.TRADABLE#key()",
+    "world.region.RDOutputs.RDResource#daysUntilDailydelivery()",
+    "util.data.DataO.DataAbs#get(T)"
+  ],
+  "method_checks": [
+    {
+      "owner": "world.region.RD",
+      "signature": "public static world.region.RDOutputs OUTPUT();",
+      "source_path": "world/region/RD.java",
+      "source_sha256": "08f77bed092170e9ec96516ee613569f624fd2b01dd0441777dcd80c5a3ac247",
+      "normalized_disassembly_sha256": "1b57ffb0d1b5776a5296be705a80317312c3e6cd87ec01c5f0651e10fc0e041f",
+      "direct_stored_reader_check": true
+    },
+    {
+      "owner": "init.trade.TR",
+      "signature": "public static init.trade.TRADABLEO<init.resources.RESOURCE> get(init.resources.RESOURCE);",
+      "source_path": "init/trade/TR.java",
+      "source_sha256": "df0df07040232d61e8d44db24fd336b5628e7f3d8df9c860f38aa5cbac07a90f",
+      "normalized_disassembly_sha256": "4576d2e647bb88b3fdac711830270c4818d92d781f9b7c6ac702f9943e9034c4",
+      "direct_stored_reader_check": true
+    },
+    {
+      "owner": "world.region.RDOutputs",
+      "signature": "public world.region.RDOutputs$RDResource get(init.trade.TRADABLE);",
+      "source_path": "world/region/RDOutputs.java",
+      "source_sha256": "a8fb0f34a42b5f978adeedeadabe11ee025d96f7abdb465b22c5c7a4e1a827ab",
+      "normalized_disassembly_sha256": "e9efc0af1e0813fbdfe6997df3142813072d44e8077c2ed298839edfc958d0ad",
+      "direct_stored_reader_check": true
+    },
+    {
+      "owner": "util.data.DataO$DataAbs",
+      "signature": "public int get(T);",
+      "source_path": "util/data/DataO.java",
+      "source_sha256": "f9be5b1dbf41ad010e633414afd71ef800d1db634ad302f41819063f09d25cb7",
+      "normalized_disassembly_sha256": "717e1383d26b91d0cd87897d132d75de3544a46e7940ececbc62c23926b34288",
+      "direct_stored_reader_check": true
+    },
+    {
+      "owner": "world.region.RD$RDInit$1",
+      "signature": "protected long[] data(world.map.regions.Region);",
+      "source_path": "world/region/RD.java",
+      "source_sha256": "08f77bed092170e9ec96516ee613569f624fd2b01dd0441777dcd80c5a3ac247",
+      "normalized_disassembly_sha256": "512c7985122e3c2a877a46cce1e42959c0197b58595e4397dd6066791210608a",
+      "direct_stored_reader_check": true
+    },
+    {
+      "owner": "world.region.RDOutputs$RDResource",
+      "signature": "public int daysUntilDailydelivery();",
+      "source_path": "world/region/RDOutputs.java",
+      "source_sha256": "a8fb0f34a42b5f978adeedeadabe11ee025d96f7abdb465b22c5c7a4e1a827ab",
+      "normalized_disassembly_sha256": "fd3efa1a97e7833e4408563379680c68bc572183698258afe1833dd0d3d86e3c",
+      "direct_stored_reader_check": true
+    },
+    {
+      "owner": "world.region.RDOutputs$RDOutput",
+      "signature": "public int daysUntilDailydelivery();",
+      "source_path": "world/region/RDOutputs.java",
+      "source_sha256": "a8fb0f34a42b5f978adeedeadabe11ee025d96f7abdb465b22c5c7a4e1a827ab",
+      "normalized_disassembly_sha256": "e0c3807de21e1e78453a020ee2d3ddbcc68fce11916ece6566fda5ebdd62cd02",
+      "direct_stored_reader_check": true
+    },
+    {
+      "owner": "snake2d.util.MATH",
+      "signature": "public static int ETA(int, int, int);",
+      "source_path": "snake2d/util/MATH.java",
+      "source_sha256": "a5326ac0dfe38ceadc3b774027635b263afbbc3f1cf7b9a6ab18a1f3e4f449d8",
+      "normalized_disassembly_sha256": "dffc5bb1f751af65cb08c34cf954be9c7876df190d0c18802cd0e66fe976ef00",
+      "direct_stored_reader_check": true
+    },
+    {
+      "owner": "world.region.updating.Shipper",
+      "signature": "private void count(world.region.RDOutputs$RDResource, world.map.regions.Region, double);",
+      "source_path": "world/region/updating/Shipper.java",
+      "source_sha256": "5d1a1599dd75f2ea2cc5475f559b94b7f5bfb9a305802c9ab0a6cb3550d2b6dc",
+      "normalized_disassembly_sha256": "2c8574fb38f98a5ee6259dcb1bf737a9797220c6715e1676454db69bdbde17d8",
+      "direct_stored_reader_check": false
+    },
+    {
+      "owner": "world.region.updating.Shipper",
+      "signature": "private void clear(world.region.RDOutputs$RDResource, world.map.regions.Region);",
+      "source_path": "world/region/updating/Shipper.java",
+      "source_sha256": "5d1a1599dd75f2ea2cc5475f559b94b7f5bfb9a305802c9ab0a6cb3550d2b6dc",
+      "normalized_disassembly_sha256": "29f6dfdab0f8e97ddc57595eec577cb5ba5bf12221a96fec59263af5828b06d1",
+      "direct_stored_reader_check": false
+    },
+    {
+      "owner": "world.region.updating.Shipper",
+      "signature": "private int amount(world.region.RDOutputs$RDResource, world.map.regions.Region, double);",
+      "source_path": "world/region/updating/Shipper.java",
+      "source_sha256": "5d1a1599dd75f2ea2cc5475f559b94b7f5bfb9a305802c9ab0a6cb3550d2b6dc",
+      "normalized_disassembly_sha256": "9c606efaa6679a4b9eaa6487844447c187e528019146ae713b3ff7c256acc465",
+      "direct_stored_reader_check": false
+    },
+    {
+      "owner": "world.region.updating.Shipper",
+      "signature": "public void ship(world.map.regions.Region, double);",
+      "source_path": "world/region/updating/Shipper.java",
+      "source_sha256": "5d1a1599dd75f2ea2cc5475f559b94b7f5bfb9a305802c9ab0a6cb3550d2b6dc",
+      "normalized_disassembly_sha256": "b2b753f965f7369aedb704085a2cb78a6794c8aa835cf596eb5c6245dc4e853d",
+      "direct_stored_reader_check": false
+    },
+    {
+      "owner": "world.region.RDOutputs$1",
+      "signature": "public void change(world.map.regions.Region, game.faction.Faction, game.faction.Faction);",
+      "source_path": "world/region/RDOutputs.java",
+      "source_sha256": "a8fb0f34a42b5f978adeedeadabe11ee025d96f7abdb465b22c5c7a4e1a827ab",
+      "normalized_disassembly_sha256": "8475d9039f809ee263c2f71e5bf5f77645c1ad4d303a4e885b9cca3d9e035e62",
+      "direct_stored_reader_check": false
+    },
+    {
+      "owner": "world.region.RDBoostCache",
+      "signature": "public double get(world.map.regions.Region);",
+      "source_path": "world/region/RDBoostCache.java",
+      "source_sha256": "a345db5ec2de35b0bef6685be1b8b5bcab08ddef7a78b1748793da5b9c83f93f",
+      "normalized_disassembly_sha256": "9256566e65b256dac78acbf58b9f9991bf3713258484d6d514f65ae00bb9b571",
+      "direct_stored_reader_check": false
+    }
+  ],
+  "additional_source_sha256": {
+    "world/region/RD.java": "08f77bed092170e9ec96516ee613569f624fd2b01dd0441777dcd80c5a3ac247",
+    "init/trade/TR.java": "df0df07040232d61e8d44db24fd336b5628e7f3d8df9c860f38aa5cbac07a90f",
+    "world/region/RDOutputs.java": "a8fb0f34a42b5f978adeedeadabe11ee025d96f7abdb465b22c5c7a4e1a827ab",
+    "util/data/DataO.java": "f9be5b1dbf41ad010e633414afd71ef800d1db634ad302f41819063f09d25cb7",
+    "snake2d/util/MATH.java": "a5326ac0dfe38ceadc3b774027635b263afbbc3f1cf7b9a6ab18a1f3e4f449d8",
+    "world/region/updating/Shipper.java": "5d1a1599dd75f2ea2cc5475f559b94b7f5bfb9a305802c9ab0a6cb3550d2b6dc",
+    "world/region/RDBoostCache.java": "a345db5ec2de35b0bef6685be1b8b5bcab08ddef7a78b1748793da5b9c83f93f",
+    "world/region/updating/RDUpdater.java": "f74c95567c6d15cd40804a2443d264c8200c3cecb11f172c1dfc4e46ac2b29d5"
+  },
+  "compile_probe": {
+    "passed": true,
+    "source_sha256": "d3bb254a62b172131037b7fe8ece6006da2ef83f2f44d3c3294fc3b12adc2005",
+    "annotation_processing": false,
+    "game_classes_executed": false
+  },
+  "reviewer_source_sha256": {
+    "dev/review_regional_output_boundary.py": "7c35c5971ee475019834b73f59838adbd5cd5b32f2dc3f5cd31f7b2bc5d17a35",
+    "dev/review_stockpile_boundary.py": "cdeab8295dd4f05a562d433815015262c5296a038a1aa54c26a7810c85867ef6",
+    "dev/verify_bytecode.py": "82bcd57e36eee9c4f960a523b04391a6f748ba15fdcdb25484e3193df61ca494"
+  },
+  "conclusions": [
+    "Resource -> TR.get(resource) -> RD.OUTPUT().get(tradable) -> yearlyAccumilation.get(region) compiles using ordinary public members. The reviewed DataAbs getter decodes packed region storage; its data provider indexes the stored region array. No direct write/allocation/backward branch is present in these selected reader bodies. This is not a full transitive purity proof.",
+    "The stored integer is an accrued scheduled-output counter, not current inventory, an annual delivered total, full regional production or an arrival forecast. Shipper count adds the yearly-part boost scaled by elapsed game days with stochastic fractional rounding. The exact last-update time is private.",
+    "The accumulator contributes to amount only on its configured delivery day. After a positive amount is loaded/reserved into a successfully created shipment, clear resets the accumulator only on that configured day. Unowned, besieged, no-capital and player-capital cases can skip shipping; missing shipments do not establish delivery.",
+    "The owner-change callback resets output accumulators. This is static reset-path evidence, not a native ownership-transfer or rollover test.",
+    "daysUntilDailydelivery computes a cyclic configured day offset, with a growable seasonal offset when present. It is not an ETA, reachability guarantee, active shipping condition or actual arrival time.",
+    "RDBoostCache.get can invoke a setter and refresh computed state. Broad boost/production calculations and mutable building previews remain excluded from a stored-observation candidate. Native probe must not call shipper, delivery, squeeze, boost or cache refresh methods."
+  ],
+  "limits": [
+    "Shipped-source/binary verification, not a separately documented stable official mod contract.",
+    "Only named routes are reviewed. Public metadata does not prove runtime reachability, cost, all scenes or all resource/non-resource tradables.",
+    "No production exposure, native counter parity, natural nonzero/seasonal rollover, cap/fault or full collector cost proof is supplied by this static report.",
+    "Licensed source/bytecode bodies are not published. No reflection, process memory, screenshot, native input or game method execution."
+  ]
+}

@@ -30,6 +30,7 @@ def scope(path):
                 'CAPABILITY_DISCOVERY_VALIDATION.json'}:
         return 'Current linked player/feature evidence; inspect exact source/JAR hashes and case scope'
     if name in {'TILE_CAPTURE_VALIDATION.json','ENTITY_CAPTURE_REGRESSION_VALIDATION.json'}:return 'Current retained-read native evidence; inspect bounded selection and source/JAR scope'
+    if name=='REGIONAL_OUTPUT_READER_VALIDATION.json':return 'Candidate native regional stored-reader probe only; no production MCP counter exposure'
     if name=='WORLD_FACTION_CONTEXT_VALIDATION.json':return 'Native faction-panel/current-context and MCP join checks; finite copied-world scope'
     if name=='CURRENT_COLLECTION_COST_VALIDATION.json':return 'Current published collector small-city timings; historical baseline preserved, no large-city/live-request acceptance'
     if name=='STOCKPILE_BOOKKEEPING_VALIDATION.json':return 'Current global stockpile DTO/MCP evidence; per-room arrays are fixture-only'

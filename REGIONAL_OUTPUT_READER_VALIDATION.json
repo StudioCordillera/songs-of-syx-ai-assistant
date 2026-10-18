@@ -1,0 +1,243 @@
+{
+  "passed": true,
+  "stage": "Native candidate-reader probe; regional-output counters are not exposed by MCP",
+  "shape": {
+    "regions": 203,
+    "natural_zero_cells": 8163,
+    "negative_cells": 0,
+    "resources": 42,
+    "natural_positive_cells": 363,
+    "counter_cells": 8526
+  },
+  "configured_day_offset_checks": 42,
+  "controlled_values": [
+    0,
+    37,
+    2147483647
+  ],
+  "unrelated_cells_unchanged_during_controls": true,
+  "controlled_counter_restored": true,
+  "repeated_matrix_unchanged": true,
+  "matrix_sha256": "714dd72c621b52277fa992ce0eaef3cdf36a8b3049cc98da6f16d6158b44753b",
+  "samples": [
+    {
+      "sample": 0,
+      "cells": 8526,
+      "read_and_int_array_ns": 695894
+    },
+    {
+      "sample": 1,
+      "cells": 8526,
+      "read_and_int_array_ns": 788614
+    },
+    {
+      "sample": 2,
+      "cells": 8526,
+      "read_and_int_array_ns": 473960
+    },
+    {
+      "sample": 3,
+      "cells": 8526,
+      "read_and_int_array_ns": 233872
+    },
+    {
+      "sample": 4,
+      "cells": 8526,
+      "read_and_int_array_ns": 184274
+    },
+    {
+      "sample": 5,
+      "cells": 8526,
+      "read_and_int_array_ns": 279692
+    },
+    {
+      "sample": 6,
+      "cells": 8526,
+      "read_and_int_array_ns": 267903
+    },
+    {
+      "sample": 7,
+      "cells": 8526,
+      "read_and_int_array_ns": 334190
+    },
+    {
+      "sample": 8,
+      "cells": 8526,
+      "read_and_int_array_ns": 90718
+    },
+    {
+      "sample": 9,
+      "cells": 8526,
+      "read_and_int_array_ns": 239693
+    },
+    {
+      "sample": 10,
+      "cells": 8526,
+      "read_and_int_array_ns": 145084
+    },
+    {
+      "sample": 11,
+      "cells": 8526,
+      "read_and_int_array_ns": 150656
+    },
+    {
+      "sample": 12,
+      "cells": 8526,
+      "read_and_int_array_ns": 111103
+    },
+    {
+      "sample": 13,
+      "cells": 8526,
+      "read_and_int_array_ns": 134995
+    },
+    {
+      "sample": 14,
+      "cells": 8526,
+      "read_and_int_array_ns": 88518
+    },
+    {
+      "sample": 15,
+      "cells": 8526,
+      "read_and_int_array_ns": 119065
+    },
+    {
+      "sample": 16,
+      "cells": 8526,
+      "read_and_int_array_ns": 107321
+    },
+    {
+      "sample": 17,
+      "cells": 8526,
+      "read_and_int_array_ns": 129037
+    },
+    {
+      "sample": 18,
+      "cells": 8526,
+      "read_and_int_array_ns": 139742
+    },
+    {
+      "sample": 19,
+      "cells": 8526,
+      "read_and_int_array_ns": 155708
+    },
+    {
+      "sample": 20,
+      "cells": 8526,
+      "read_and_int_array_ns": 90545
+    },
+    {
+      "sample": 21,
+      "cells": 8526,
+      "read_and_int_array_ns": 105248
+    },
+    {
+      "sample": 22,
+      "cells": 8526,
+      "read_and_int_array_ns": 98042
+    },
+    {
+      "sample": 23,
+      "cells": 8526,
+      "read_and_int_array_ns": 111325
+    },
+    {
+      "sample": 24,
+      "cells": 8526,
+      "read_and_int_array_ns": 223298
+    },
+    {
+      "sample": 25,
+      "cells": 8526,
+      "read_and_int_array_ns": 106813
+    },
+    {
+      "sample": 26,
+      "cells": 8526,
+      "read_and_int_array_ns": 88863
+    },
+    {
+      "sample": 27,
+      "cells": 8526,
+      "read_and_int_array_ns": 110013
+    },
+    {
+      "sample": 28,
+      "cells": 8526,
+      "read_and_int_array_ns": 135417
+    },
+    {
+      "sample": 29,
+      "cells": 8526,
+      "read_and_int_array_ns": 126283
+    },
+    {
+      "sample": 30,
+      "cells": 8526,
+      "read_and_int_array_ns": 122291
+    },
+    {
+      "sample": 31,
+      "cells": 8526,
+      "read_and_int_array_ns": 123136
+    }
+  ],
+  "read_and_int_array_ms": {
+    "min": 0.089,
+    "median": 0.132,
+    "p95": 0.474,
+    "max": 0.789
+  },
+  "current_mcp_region_resource_identity_parity": true,
+  "limits": [
+    "Paused finite copied world; candidate only, no new production observation or MCP counter parity.",
+    "Controlled public setter calls affect one disposable counter only and restore it in the same callback; no saves.",
+    "No shipper, boost, cache refresh, ownership transfer or actual seasonal delivery/arrival action is invoked.",
+    "Read timings include array allocation and getter traversal only, not snapshot collection/encoding/MCP/FPS or representative large-world acceptance.",
+    "Native shape/results alone do not implement a DTO, field definition, selective counter route or unavailable-scene diagnostics.",
+    "All 32 timing samples follow initial reads/control checks; none is a cold-start measurement."
+  ],
+  "validated_at": "2026-10-18T22:17:50.197559+00:00",
+  "game_exit_code": 0,
+  "mod_jar_sha256": "d50072623dbd669cc7ae56c1ad6b022d0a860e344cc73328e9908a1c99dbd857",
+  "game_jar_sha256": "fe0137c05408e5ee9e31f06fc44fe37a5d4372d9c985b280f0852d1347c0224b",
+  "production_source_sha256": {
+    "syx/assistant/AssistantScript.java": "079b048597c373f88d8179d4f8e8fec576a82c5b13ad6c95fe6e672ba3722e3a",
+    "syx/assistant/ChatPanel.java": "3138d3e863ccb36ad5b6b37a7e1f3486dd2d8c1dc43ab469b26af714548d8437",
+    "syx/assistant/EntityReadRequest.java": "e2d13aee21f399e8718382d5b43d5a6c85e5d78d2708d8105b9f1ecfe730edf8",
+    "syx/assistant/JsonWriter.java": "c525eb60d3224cab83ed3fd6b8594ec8652211f00bd947e873e1482f919e81dc",
+    "syx/assistant/StateCollector.java": "073b965746f839b99432d062d157439a4f8c0911385627dd3aef14767fb5d258",
+    "syx/assistant/TileReadRequest.java": "1a192cde61a7e1bdefa170390c00b17c74573b9c41de71700ebea466411ad3c5",
+    "syx/assistant/UiContentCollector.java": "c0d20c7f9f2734a0bb625427875f06bfcd07edb20611248b39b6e8f480ef5a48",
+    "syx/assistant/UiContextCollector.java": "398ab4931efb3451ad0d0dcf80e0c19651e9ffb20fd8b6e6377a9ca53358f7d5"
+  },
+  "python_source_sha256": {
+    "syx_mcp.py": "7978d3c17dd0495cedcf162b0c2cbe0f2f0518ab0ccfb8641f8adc4e90f71b4e",
+    "syx_knowledge.py": "f5d7dd6d387ad0fb8f2b024a3bd599ad1cec28f2906dfae27d9d2fdf56e4de7e",
+    "syx_query.py": "039795c9c0e1a4f167ff7bb98afd5955c52814d4fcf40705d0c59cdf06b684b4",
+    "syx_api_support.py": "ffcc8f9fad51de63d0edebe8982d0564cd78454f04f765fedf58d01d768b666f",
+    "syx_api_manifest.py": "c0fbabb826313aaf55393f3d5665af2510b3ba82ccc001a7d896c9e0ca33aedd",
+    "syx_live.py": "8238cdfc021c8d43a02e9c9b304fe262f701ebd52a492c17ea9ce3e308e37885",
+    "syx_capture.py": "506f18a5b55ea66cd38ac239bd7398fde597420e0363327629308098f23f82a9",
+    "syx_tiles.py": "43024d10af917442d4d994f316db18fbd7cab388196682c471891135553c843f",
+    "syx_chat_store.py": "7344b35476096b680e0cf85958f97596b3c9cfe843072202f30e357b97dedbe5",
+    "syx_deepseek.py": "d58e21dbcfdeb1ef0f411dfbb4c0267234bdc5cc185e00d300821725ca1885e3",
+    "syx_chat.py": "2ebb914f8e517b742ddf851f8901c96b6f383c2112691e4f05031d7231c37e62",
+    "syx_chat_service.py": "8e311cc51bf686d70d466f7a31863b9cbf1905231066316eb492f2c7bd074b6b",
+    "syx_claude.py": "3a850a645907f27b1a9cb15c3c5244b96b2da97d5d0dc37f5cd7d6f708cf92a8",
+    "syx_claude_worker.py": "ab6638b2c4ef3a4a1548fde1c0739a48f4d47e468494dd7444019f3f330dea38"
+  },
+  "inference_calls": 0,
+  "fixture_source_sha256": {
+    "mod/tests/LiveSmoke.java": "85580587e93c3e870bec0ee5737019f13ac18223a4281059cc3cd64303158827",
+    "mod/tests/TileScenario.java": "cd9b03885f7e7e985191c3f45eb3c7a209dc3c670169aac339d13f20e2571f1e",
+    "mod/tests/EntityScenario.java": "df9b359332c391857857d93ed5d38e36f2029b3a066c3bcb540e74f3eda69f7d",
+    "mod/tests/SceneScenario.java": "ae623566198d96c324ae911d14c9100da0ab73a6e7c49f1c877c675ec60b6a55",
+    "mod/tests/FactionUiScenario.java": "b0c2afc70c0620039f263770789c27a63167938fd6c1258b4ca73b7454eb7463",
+    "mod/tests/RegionalOutputScenario.java": "7aced23bff4580d883542c9a8c9b8b6df2d206be80942f83c2ab82c183783096",
+    "dev/verify_regional_output_readers.py": "7e923b5dcc91eeab772e016bc266e187b6838c4954698ac12aeefee0f2a02b96",
+    "dev/run_read_fixture.py": "9f8f9129757170d1514356f40e83e7c437f5757940f55a03ea8366a4a12566dd"
+  },
+  "candidate_boundary_review_sha256": "f90a6e48a15ab5c1682024e030c9a9ed94c9178bbeb1a80e17e88d2ae4873441",
+  "copied_profile_mod_restored": true,
+  "copied_save_unchanged": true
+}
