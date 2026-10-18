@@ -1,46 +1,313 @@
 [
   {
     "query": "How did V71 change trade tariffs and logistics?",
-    "expected_id": "official-v71-trade"
+    "expected_id": "official-v71-trade",
+    "case_id": "player-question-01",
+    "expected_url": "https://steamcommunity.com/games/1162750/announcements/detail/529882384083977659",
+    "expected_authority": "official",
+    "expected_author": "Gamatron / Songs of Syx",
+    "expected_compatibility": "family_match",
+    "reviewed_advice": "Check tariffs and per-item logistics before comparing trade profitability.",
+    "required_passages": [
+      "percentage tariffs in both directions",
+      "per-item logistics costs"
+    ],
+    "required_caveats": [
+      "later patch changes require verification"
+    ]
   },
   {
     "query": "What changed about law punishments and loyalty in V71?",
-    "expected_id": "official-v71-law"
+    "expected_id": "official-v71-law",
+    "case_id": "player-question-02",
+    "expected_url": "https://steamcommunity.com/games/1162750/announcements/detail/529882384083977659",
+    "expected_authority": "official",
+    "expected_author": "Gamatron / Songs of Syx",
+    "expected_compatibility": "family_match",
+    "reviewed_advice": "Law advice must account for effects on both happiness and loyalty.",
+    "required_passages": [
+      "effects of crime punishments on happiness and loyalty",
+      "Guard coverage"
+    ],
+    "required_caveats": [
+      "later patch changes require verification"
+    ]
   },
   {
     "query": "How do parents care for infants and what does a nursery do?",
-    "expected_id": "official-v71-families"
+    "expected_id": "official-v71-families",
+    "case_id": "player-question-03",
+    "expected_url": "https://steamcommunity.com/games/1162750/announcements/detail/529882384083977659",
+    "expected_authority": "official",
+    "expected_author": "Gamatron / Songs of Syx",
+    "expected_compatibility": "family_match",
+    "reviewed_advice": "Consult reproduction settings and nursery help when discussing child growth.",
+    "required_passages": [
+      "Parents care for infants",
+      "nursery that reduces child mortality"
+    ],
+    "required_caveats": [
+      "later patch changes require verification"
+    ]
   },
   {
     "query": "Why is the eatery overlay red or blue when people are hungry?",
-    "expected_id": "steam-developer-eatery-overlay-2022"
+    "expected_id": "steam-developer-eatery-overlay-2022",
+    "case_id": "player-question-04",
+    "expected_url": "https://steamcommunity.com/app/1162750/discussions/0/4841941418359552221/",
+    "expected_authority": "developer",
+    "expected_author": "Gamatron",
+    "expected_compatibility": "unknown",
+    "reviewed_advice": "Historical red overlay may indicate unmet eatery service, not an established current mechanic.",
+    "required_passages": [
+      "red cells",
+      "full or lacked food"
+    ],
+    "required_caveats": [
+      "requires confirmation in the current game"
+    ]
   },
   {
     "query": "Why does the workload estimate differ from actual production?",
-    "expected_id": "developer-workload-estimate-2023"
+    "expected_id": "developer-workload-estimate-2023",
+    "case_id": "player-question-05",
+    "expected_url": "https://steamcommunity.com/app/1162750/discussions/0/3800525036429614132/",
+    "expected_authority": "developer",
+    "expected_author": "Gamatron",
+    "expected_compatibility": "unknown",
+    "reviewed_advice": "A workload estimate alone does not establish realized output or a current bug.",
+    "required_passages": [
+      "estimate from actual production",
+      "time actually worked"
+    ],
+    "required_caveats": [
+      "does not prove a current production bug"
+    ]
   },
   {
     "query": "Do pastures gain animal capacity from fertility?",
-    "expected_id": "developer-pasture-fertility-2021"
+    "expected_id": "developer-pasture-fertility-2021",
+    "case_id": "player-question-06",
+    "expected_url": "https://steamcommunity.com/app/1162750/discussions/0/2954914688097551706/",
+    "expected_authority": "developer",
+    "expected_author": "Gamatron",
+    "expected_compatibility": "unknown",
+    "reviewed_advice": "Historical capacity explanation does not prove a present irrigation yield formula.",
+    "required_passages": [
+      "fertility and area"
+    ],
+    "required_caveats": [
+      "not a current per-worker yield formula",
+      "proof that irrigation improves every pasture"
+    ]
   },
   {
     "query": "Where can I find release notes for previous versions?",
-    "expected_id": "developer-faq-reference-navigation"
+    "expected_id": "developer-faq-reference-navigation",
+    "case_id": "player-question-07",
+    "expected_url": "https://steamcommunity.com/app/1162750/discussions/0/3388408347654953100/",
+    "expected_authority": "developer",
+    "expected_author": "Gamatron",
+    "expected_compatibility": "unknown",
+    "reviewed_advice": "Historical FAQ provides reference navigation, with current UI verification required.",
+    "required_passages": [
+      "wiki and the in-game encyclopedia",
+      "launcher version numbers lead to release notes"
+    ],
+    "required_caveats": [
+      "historical navigation instructions"
+    ]
   },
   {
     "query": "How can I start food farms with moisture and hunting?",
-    "expected_id": "steam-v71-starting-economy"
+    "expected_id": "steam-v71-starting-economy",
+    "case_id": "player-question-08",
+    "expected_url": "https://steamcommunity.com/sharedfiles/filedetails/?id=3776333166",
+    "expected_authority": "community",
+    "expected_author": "ApathicAlpaca",
+    "expected_compatibility": "family_match",
+    "reviewed_advice": "Check moisture and local conditions before applying community farm recommendations.",
+    "required_passages": [
+      "inspecting moisture before placing farms"
+    ],
+    "required_caveats": [
+      "community recommendations, not guaranteed optimal rules"
+    ]
   },
   {
     "query": "How do warehouse fetch priority and radius affect collection?",
-    "expected_id": "steam-v71-logistics-nerond"
+    "expected_id": "steam-v71-logistics-nerond",
+    "case_id": "player-question-09",
+    "expected_url": "https://steamcommunity.com/sharedfiles/filedetails/?id=3622513777",
+    "expected_authority": "community",
+    "expected_author": "Nerond",
+    "expected_compatibility": "family_match",
+    "reviewed_advice": "Inspect warehouse range and pulling configuration before adding staff.",
+    "required_passages": [
+      "Warehouse fetch radius limits collection distance",
+      "Fetch, priority and explicit pull sources"
+    ],
+    "required_caveats": [
+      "does not establish exact capacity, spoilage or throughput formulas"
+    ]
   },
   {
     "query": "Why can loading and unloading stations create a transport loop?",
-    "expected_id": "steam-v71-logistics-nerond"
+    "expected_id": "steam-v71-logistics-nerond",
+    "case_id": "player-question-10",
+    "expected_url": "https://steamcommunity.com/sharedfiles/filedetails/?id=3622513777",
+    "expected_authority": "community",
+    "expected_author": "Nerond",
+    "expected_compatibility": "family_match",
+    "reviewed_advice": "Check whether unrestricted warehouses fetch delivered goods back before blaming transport capacity.",
+    "required_passages": [
+      "fetch delivered goods back and create a loop"
+    ],
+    "required_caveats": [
+      "does not establish exact capacity, spoilage or throughput formulas"
+    ]
   },
   {
     "query": "quasar hyperdrive",
+    "expected_id": null,
+    "case_id": "player-question-11"
+  },
+  {
+    "query": "How did V71 change trade tariffs and logistics?",
+    "expected_id": "official-v71-trade",
+    "case_id": "version-0.71",
+    "expected_url": "https://steamcommunity.com/games/1162750/announcements/detail/529882384083977659",
+    "expected_authority": "official",
+    "expected_author": "Gamatron / Songs of Syx",
+    "expected_compatibility": "match",
+    "reviewed_advice": "Check tariffs and per-item logistics before comparing trade profitability.",
+    "required_passages": [
+      "percentage tariffs in both directions",
+      "per-item logistics costs"
+    ],
+    "required_caveats": [
+      "later patch changes require verification"
+    ],
+    "game_version": "0.71"
+  },
+  {
+    "query": "How did V71 change trade tariffs and logistics?",
+    "expected_id": "official-v71-trade",
+    "case_id": "version-0.71.44",
+    "expected_url": "https://steamcommunity.com/games/1162750/announcements/detail/529882384083977659",
+    "expected_authority": "official",
+    "expected_author": "Gamatron / Songs of Syx",
+    "expected_compatibility": "family_match",
+    "reviewed_advice": "Check tariffs and per-item logistics before comparing trade profitability.",
+    "required_passages": [
+      "percentage tariffs in both directions",
+      "per-item logistics costs"
+    ],
+    "required_caveats": [
+      "later patch changes require verification"
+    ],
+    "game_version": "0.71.44"
+  },
+  {
+    "query": "How did V71 change trade tariffs and logistics?",
+    "expected_id": "official-v71-trade",
+    "case_id": "version-0.72.1",
+    "expected_url": "https://steamcommunity.com/games/1162750/announcements/detail/529882384083977659",
+    "expected_authority": "official",
+    "expected_author": "Gamatron / Songs of Syx",
+    "expected_compatibility": "mismatch",
+    "reviewed_advice": "Check tariffs and per-item logistics before comparing trade profitability.",
+    "required_passages": [
+      "percentage tariffs in both directions",
+      "per-item logistics costs"
+    ],
+    "required_caveats": [
+      "later patch changes require verification"
+    ],
+    "game_version": "0.72.1"
+  },
+  {
+    "query": "How did V71 change trade tariffs and logistics?",
+    "expected_id": "official-v71-trade",
+    "case_id": "version-0.7",
+    "expected_url": "https://steamcommunity.com/games/1162750/announcements/detail/529882384083977659",
+    "expected_authority": "official",
+    "expected_author": "Gamatron / Songs of Syx",
+    "expected_compatibility": "mismatch",
+    "reviewed_advice": "Check tariffs and per-item logistics before comparing trade profitability.",
+    "required_passages": [
+      "percentage tariffs in both directions",
+      "per-item logistics costs"
+    ],
+    "required_caveats": [
+      "later patch changes require verification"
+    ],
+    "game_version": "0.7"
+  },
+  {
+    "query": "How did V71 change trade tariffs and logistics?",
+    "expected_id": "official-v71-trade",
+    "case_id": "authority-official",
+    "expected_url": "https://steamcommunity.com/games/1162750/announcements/detail/529882384083977659",
+    "expected_authority": "official",
+    "expected_author": "Gamatron / Songs of Syx",
+    "expected_compatibility": "family_match",
+    "reviewed_advice": "Check tariffs and per-item logistics before comparing trade profitability.",
+    "required_passages": [
+      "percentage tariffs in both directions",
+      "per-item logistics costs"
+    ],
+    "required_caveats": [
+      "later patch changes require verification"
+    ],
+    "authority": "official"
+  },
+  {
+    "query": "Why does the workload estimate differ from actual production?",
+    "expected_id": "developer-workload-estimate-2023",
+    "case_id": "authority-developer",
+    "expected_url": "https://steamcommunity.com/app/1162750/discussions/0/3800525036429614132/",
+    "expected_authority": "developer",
+    "expected_author": "Gamatron",
+    "expected_compatibility": "unknown",
+    "reviewed_advice": "A workload estimate alone does not establish realized output or a current bug.",
+    "required_passages": [
+      "estimate from actual production",
+      "time actually worked"
+    ],
+    "required_caveats": [
+      "does not prove a current production bug"
+    ],
+    "authority": "developer"
+  },
+  {
+    "query": "How do warehouse fetch priority and radius affect collection?",
+    "expected_id": "steam-v71-logistics-nerond",
+    "case_id": "authority-community",
+    "expected_url": "https://steamcommunity.com/sharedfiles/filedetails/?id=3622513777",
+    "expected_authority": "community",
+    "expected_author": "Nerond",
+    "expected_compatibility": "family_match",
+    "reviewed_advice": "Inspect warehouse range and pulling configuration before adding staff.",
+    "required_passages": [
+      "Warehouse fetch radius limits collection distance",
+      "Fetch, priority and explicit pull sources"
+    ],
+    "required_caveats": [
+      "does not establish exact capacity, spoilage or throughput formulas"
+    ],
+    "authority": "community"
+  },
+  {
+    "case_id": "authority-no-match-official",
+    "query": "warehouse fetch radius",
+    "authority": "official",
+    "expected_id": null
+  },
+  {
+    "case_id": "authority-no-match-developer",
+    "query": "warehouse fetch radius",
+    "authority": "developer",
     "expected_id": null
   }
 ]
