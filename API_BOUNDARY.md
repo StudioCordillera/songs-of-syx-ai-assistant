@@ -1,8 +1,10 @@
 # Game API boundary — 0.12.0
 
+Current compiler inventory: 359 public production references, zero non-public references (api-audit.json). Checkpoint notes below retain their original inventory counts and evidence scopes; they are not separate claims about the latest build.
+
 The game-facing plugin runs inside Songs of Syx using `script.SCRIPT` and `SCRIPT_INSTANCE`. All gameplay observations originate from direct public game API calls on the game update thread via public `GAME.addAfterUpdate`. The Python MCP reads detached local exports; it does not inspect or control the game process itself.
 
-The plugin has no private-field reflection, arbitrary object traversal, memory reading, native/window callback hooks, synthetic mouse/keyboard input, screenshot capture, OS automation, arbitrary method invocation or state writes. The previous raw-field and computer-use implementations have been removed from the current source and build. Old Git history is not the current supported implementation.
+The plugin has no private-field reflection, arbitrary object traversal, memory reading, native/window callback hooks, synthetic mouse/keyboard input, screenshot capture, OS automation, arbitrary method invocation or gameplay-state writes. The previous raw-field and computer-use implementations have been removed from the current source and build. Old Git history is not the current supported implementation.
 
 ## Primary references and their limits
 
@@ -83,9 +85,9 @@ A separate TileReadRequest serves finite terrain/floor/room/mineral/path project
 
 ## Optional mod-owned chat GUI
 
-The experimental `ChatPanel` adds a separate public `InterGuisection`, public GUI widgets and public input-focus state for its own composer. `AssistantScript` schedules GUI work on the game update thread and moves detached chat IPC strings on its I/O worker. The production panel never invokes game input dispatch, existing gameplay controls or private UI traversal. These widget members are source/compiler-verified public APIs; this is not a claim of official stability. The compiler audit now inventories 275 public production member references. The older 246-member inventory is the observation-only 0.12.0 baseline. The test-only `ChatUiScenario` dispatches public manager clicks exclusively to the mod's own widgets in a throwaway profile; it is not packaged. See [the implementation](CHAT_BACKEND.md) and [its evidence](CHAT_VALIDATION.json).
+The experimental `ChatPanel` adds a separate public `InterGuisection`, public GUI widgets and public input-focus state for its own composer. `AssistantScript` schedules GUI work on the game update thread and moves detached chat IPC strings on its I/O worker. The production panel never invokes game input dispatch, existing gameplay controls or private UI traversal. These widget members are source/compiler-verified public APIs; this is not a claim of official stability. The chat-prototype compiler audit inventoried 275 public production member references. The older 246-member inventory is the observation-only 0.12.0 baseline. The test-only `ChatUiScenario` dispatches public manager clicks exclusively to the mod's own widgets in a throwaway profile; it is not packaged. See [the implementation](CHAT_BACKEND.md) and [its evidence](CHAT_VALIDATION.json).
 
-The current shared-chat audit inventories 276 public production game members, all source/compiler matched and present in the offline catalog. Earlier 275/246-member inventories belong to their stated builds. No private game API reference was added. Current hashes and per-provider evidence are in CHAT_VALIDATION.json.
+The authenticated shared-chat checkpoint audit inventoried 276 public production game members, all source/compiler matched and present in the offline catalog. Earlier 275/246-member inventories belong to their stated builds. No private game API reference was added. Current hashes and per-provider evidence are in CHAT_VALIDATION.json.
 
 ## Research relationships and allocation — development checkpoint
 
@@ -112,8 +114,8 @@ The adapter uses public Player.buyer/seller routes, PBuyer/PSeller counter acces
 
 ## Per-room service counters
 
-Only public `ROOM_SERVICER.service` and `RoomServiceInstance.total/available/reserved` are added. The three counter readers are checked as direct stored-field returns against the installed binary, with shipped-source anchors. No service reporting, finder query, reservation write, load/refresh or private implementation cast is used. The current compiler audit contains 346 public references and zero non-public references. The counters retain room-specific raw meanings, with no people/day or individual-access inference. See SERVICE_COUNTERS.md and SERVICE_VALIDATION.json.
+Only public `ROOM_SERVICER.service` and `RoomServiceInstance.total/available/reserved` are added. The three counter readers are checked as direct stored-field returns against the installed binary, with shipped-source anchors. No service reporting, finder query, reservation write, load/refresh or private implementation cast is used. The service-counter checkpoint compiler audit contained 346 public references and zero non-public references. The counters retain room-specific raw meanings, with no people/day or individual-access inference. See SERVICE_COUNTERS.md and SERVICE_VALIDATION.json.
 
 ## Configured cohort service permissions
 
-The collector adds public RoomServiceAccess.ALL/stats/index, RoomService.room, StatServiceImp.permission, BOOLEANO.is and HCLASS_RACE.clP readers. Production uses the returned public boolean interface, never the private permission implementation or bitmap, and calls no setter or accessRequest. The configured flag is explicitly distinct from the individual eligibility rules found in shipped accessRequest source. Static source/binary review is scoped evidence, not an official stable contract or a general purity proof. City policy is unavailable on battlefields and incomplete setup. The compiler audit contains 353 public members and zero non-public references. See SERVICE_PERMISSIONS.md and SERVICE_VALIDATION.json.
+The collector adds public RoomServiceAccess.ALL/stats/index, RoomService.room, StatServiceImp.permission, BOOLEANO.is and HCLASS_RACE.clP readers. Production uses the returned public boolean interface, never the private permission implementation or bitmap, and calls no setter or accessRequest. The configured flag is explicitly distinct from the individual eligibility rules found in shipped accessRequest source. Static source/binary review is scoped evidence, not an official stable contract or a general purity proof. City policy is unavailable on battlefields and incomplete setup. The service-policy checkpoint compiler audit contained 353 public members and zero non-public references. See SERVICE_PERMISSIONS.md and SERVICE_VALIDATION.json.

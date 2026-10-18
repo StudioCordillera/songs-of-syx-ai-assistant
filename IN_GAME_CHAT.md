@@ -4,7 +4,9 @@ Added 2026-10-17 at the user's request. **Required feature; experimental impleme
 
 This includes DeepSeek: connecting a DeepSeek API account must lead to the same in-game conversation interface, without requiring the player to find a separate compatible client. Existing Claude Code/Codex configurations are development bridges, not the finished player experience. See [PROVIDERS.md](PROVIDERS.md) for authentication requirements and pending account tests.
 
-## Player experience
+The delivered player currently uses simple DeepSeek Pro chat/history with hidden login/provider/debug controls (USER_TEST_VALIDATION.json). The complete multi-provider setup/selection/evidence UI described below remains a requirement, not a request to expand it during the present core-data focus. Older advanced routes have separate CHAT_VALIDATION.json evidence.
+
+## Full required player experience
 
 Open the assistant in the game, choose a provider/model and subscription or API route, and connect using the supported official authentication flow. The panel shows the active connection in plain language. Create a named chat, ask a question, see the answer arrive, inspect its game observations and citations, and continue the conversation. Previous chats remain accessible under their game-session history.
 

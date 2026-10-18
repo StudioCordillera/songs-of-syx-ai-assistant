@@ -2,3 +2,4 @@
 set -eu
 cd "$(git rev-parse --show-toplevel)"
 python3 dev/check_user_test_release.py
+python3 dev/check_documentation.py

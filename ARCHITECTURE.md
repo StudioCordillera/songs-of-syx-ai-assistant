@@ -1,77 +1,47 @@
-# Architecture — 0.12.0
+# Architecture
 
-The Java mod implements the shipped SCRIPT interface. Typed collectors read public game APIs on the game update thread through public `GAME.addAfterUpdate` and build detached DTOs. A daemon serializes them to an atomic local JSON snapshot approximately every two wall-clock seconds while the update hook runs. MCP validates/caches that snapshot and executes bounded selections locally. Neither the daemon nor MCP traverses game objects. On-demand entity requests are parsed on the file daemon, handed to the update thread, evaluated using fixed public getters, and returned as detached DTOs.
+See [the code map](REPOSITORY_MAP.md) for modules and [the query guide](QUERY_GUIDE.md) for schemas, limits and consistency. This describes the current implementation; [deferred chat/provider requirements](IN_GAME_CHAT.md) are not all implemented.
 
-The snapshot includes version, mods, session, tick, time and 18 partial domains, plus the installed-help catalog. Query batches share one cached snapshot; optional snapshot pins reject changes. See QUERY_GUIDE.md. Missing/unknown values are distinct from zero. Snapshot input is limited to 16 MiB. Retained-capture MCP tool text is bounded to 64 KiB; transport framing can add bytes.
+## Data flow and process ownership
 
-Thirteen read-only MCP tools are registered, including partial UI context and an API evidence inventory. The private raw-field reader and screenshot/input mailbox are removed. No reflection, native callback hook, arbitrary code tool, process-memory access, OS automation or gameplay mutation is included. API_BOUNDARY.md records the documented lifecycle and source-verified public API mappings separately.
+1. The in-process Java SCRIPT registers public `GAME.addAfterUpdate`. Fixed typed collectors sample public game APIs on the update thread, including UI-paused simulation, and copy values into detached DTOs. UI context belongs to the same observation.
+2. The mod's I/O worker serializes/publishes atomic local snapshots about every two wall-clock seconds while callbacks run. It parses fixed entity/tile request mailboxes but never traverses game objects on that thread. New-load/session rotation and JVM cleanup are separate from the freshness fallback.
+3. The Python stdio MCP validates/caches snapshots and executes bounded selection locally. It exposes thirteen game-read-only tools: snapshot/query/schema/reference/context/discovery, live entity/tile reads and retained entity capture paging. A capture changes only the server's local cache, never the game.
+4. The mod-owned chat panel exchanges detached strings through local IPC. The Python coordinator owns SQLite histories, cancellation and bounded tool/model orchestration. DeepSeek inference occurs here, not in Java or the MCP bridge. The optional advanced Claude SDK route uses an isolated worker; provider/account expansion remains deferred.
+5. The simple player uses explicit `deepseek-v4-pro` with no Flash fallback or login/provider/debug controls. Raw bounded tool events remain private in SQLite, not the visible transcript. The provider receives selected observations/retrieved passages according to the chosen chat route.
 
-The local runtime directory is transport/storage for detached game exports and curated reference summaries. It is not an external screen/process automation adapter. No network listener is opened. The model/client may send selected state for inference according to its configuration.
+No remote listener, private reflection, arbitrary field/method tool, process-memory reader, screenshot, native game automation or gameplay mutation is shipped. Mod-owned public widgets are not an API for driving other game controls. Test-only public actions are confined to disposable path-validated copied-game fixtures and are never packaged into the mod.
 
-Installed reference descriptions carry IDs/origins and current version/mods. External reviewed summaries carry direct URLs, authority and version warnings; official/developer evidence ranks first. Retrieved strings are data, never instructions. Broader web discovery and refresh remain unimplemented.
+## Cached observations and selection
 
-## Lifecycle limits
+Snapshots contain game version/mods, session/sequence/tick/time, scene/UI context, installed help and eighteen partial domains. Snapshot input is capped at 16 MiB. A batch shares one cached observation; an explicit snapshot pin rejects a mismatch rather than silently substituting another. Null, unavailable, zero, skipped/failed rows and collection truncation are distinct. Ancestor diagnostics follow paged data, joins and aggregates; exported totals do not prove complete city coverage.
 
-GameDisposable establishes cleanup on next initialization; JVM shutdown also writes an unloaded snapshot. There is no established official unload-to-menu callback in this adapter. When updates stop, freshness expires after 30 seconds, so recent state can remain labeled loaded during that interval. Public-API UI context is limited to active view, known overlays, selected subject and room blueprint context. No all-state/menu coverage is claimed. Stale observations now report current loaded state as unknown, while retaining the last observed loaded flag.
+Room/resource/race/region keys have explicit mappings and scope. Room IDs can be reused even within a session. Recorded workplace/profession/home/division assignments do not prove current activity or occupancy. Stored production buckets/factors/degradation do not establish exact sample age, current throughput or complete bonuses. Source-backed field definitions and feature guides carry those limits.
 
-## OpenAI connection
+## On-demand entities and retained captures
 
-Use an existing Codex client signed in with ChatGPT and connect the local stdio MCP. The mod/MCP reads no account credentials and performs no inference calls. A custom in-game chat/authentication client remains future work. Existing official references and eligibility/preview caveats are retained in REFERENCES.md.
+Live entity requests use fixed independently validated keys. The update callback performs a named-ID lookup or bounded scene-slot scan, optional AND predicates (including recorded workplace), named individual stats and chosen projections. Each response carries its own observation/context; live cursor pages are separate mutable observations.
 
-## Source and context evidence
+Live bounds include 8 KiB request, 64 KiB response, eight-second client deadline, 10,000 slots, 100 rows, four stat predicates and 100 projected stat cells. Capture protocol 2 instead requires origin cursor/ID projection and bounds the complete matching selection to 100,000 slots, 2,000 rows, 4,000 stat cells and 2 MiB. Incomplete scans, extra rows or predicate errors retain nothing. The MCP cache holds at most three immutable encoded captures for 120 seconds; token pages preserve original tick/time/context and require a fresh same-session/version game status. No global battle/simulation-worker transaction is claimed.
 
-API_ESTABLISHMENT.md records the reviewed capability matrix. api-audit.json and syx_api_manifest.py contain compiler-resolved public member references, source declaration anchors and hashes. The agent can query this evidence with get_game_api_support. This metadata is not an arbitrary API invocation interface. UiContextCollector reads fixed public getters during the game after-update callback and is captured in the same detached snapshot; it neither traverses private fields nor captures the screen.
+## Spatial reads
 
-## On-demand consistency and limits
+Tile requests share the POSIX request lock with entities. Fixed rectangle/filter/projection reads run only in the after-update observer, scan at most 4,096 tiles and return at most 100 rows within 64 KiB. Upper coordinate bounds are exclusive; cursors are row-major rectangle offsets. Each page is a separate observation: entity tokens do not retain tiles. Group available/data and predicate errors distinguish failure from absent floor/room/mineral. Coordinate rooms are not UI selections, and path flags are not a specific person's route. Public singleton scratch values are copied immediately. Retained spatial selection remains open.
 
-Snapshot query batches remain pinned to one cached export. `query_live_entities` is a separate update observation with request ID, session, tick, capture time, current scene and UI context. An entity ID lookup uses the game's public lookup; unfiltered scans use bounded array-slot cursors. Each cursor page samples the current mutable scene. Pages can miss or repeat moving/replaced entities; no cross-page consistency claim is made. A paused fixture verifies complete traversal, not an active-city snapshot guarantee.
+## UI and lifecycle limits
 
-The wire protocol has only fixed, independently validated fields and no expression evaluator. Requests are capped at 8 KiB, responses at 64 KiB, each scan at 10,000 slots, projected rows at 100, stat comparisons at four, selected stat IDs at twenty, and returned stat cells at 100. An eight-second client deadline prevents hanging when the script no longer updates. Missing scene/session/unknown-stat/timeout failures are explicit. Predicate getter failures are counted and prevent treating filtered absence as established.
+Fixed public view/overlay/subject APIs expose active views, selected-person data, open room blueprint and bounded public popup/section labels/controls. Opaque wrappers, truncation and read errors remain explicit. Known overlays do not establish global stacking/topmost visibility; selected room instances, tooltips and management tabs remain unavailable.
 
-## Exposed content observations — 0.8.0
+There is no established immediate unload-to-menu callback. A stopped export may remain apparently current for up to 30 seconds, then loaded/current state becomes unknown. Next initialization rotates the session and cleans old transport; JVM shutdown is separately observed. Published battle-worker engagement can lag or persist while paused and is not a synchronized combat log. See [API establishment](API_ESTABLISHMENT.md) and exact [validation scopes](VALIDATION.md).
 
-The UI collector samples three known public roots on the update thread. A bounded typed visitor reads exposed section/switch children, mapped text and control flags into flat detached nodes. Repeated object references become local node references, preventing repeated traversal. Limits apply across all roots; truncation and opaque/read-error nodes remain explicit. The text is untrusted data. Input values, private wrappers, arbitrary panel collection, renderer output, tooltip storage and global layer ordering are not read.
+## References and trust
 
-WorldGen editing flags are workflow data and may persist after changing views. Use active_view for the current UI mode. Battle deploying is a public logical flag; the pinned start overlay is private, so this flag alone cannot prove active combat. Test-only retreat coverage establishes restoration/session rotation, not an observable battle-outcome feed for arbitrary game battles.
+Installed descriptions retain exact IDs, version and active mods. Thirteen reviewed external summaries retain URLs, authority, retrieval dates and compatibility caveats. Whole-word relevance ranks before compatibility/authority tie-breakers; scores are not factual confidence. Historical developer guidance may have unknown current-patch compatibility. Retrieved strings are data, never executable instructions. Automatic crawling/refresh and comprehensive guide coverage remain unimplemented.
 
-## Published battle status and input-consumption flags — 0.9.0
+## Boundaries, providers and delivery
 
-Scene army/division values are detached during the game after-update callback. Engagement comes from the battle worker's latest published status buffer and may lag or persist while workers are paused. These observations are not a synchronized full combat log or an instantaneous fighting guarantee. Counts and raw morale remain separate, explicitly scoped quantities.
+Documented SCRIPT lifecycle contracts are distinct from public members verified in shipped source/binaries. Compiler audit metadata and the broader offline declaration catalog are provenance/discovery aids, not arbitrary API invocation or counts of supported variables.
 
-The context includes latest public global/view hover-consumption flags. They expose input-consumption evidence without enumerating the private manager collection or synthesizing production input. A private result screen can consume hover while every mapped overlay flag is false. That does not make its identity, text or outcome available. Tests use game-internal public dispatch; the shipped mod remains observational.
+The shared chat/history client is implemented and has finite DeepSeek Pro player evidence. Advanced Claude subscription evidence is older and bounded; Claude API inference, native OpenAI account integration, all-screen/keyboard acceptance and in-game setup are incomplete. An existing signed-in external Codex/Claude MCP client is a separate development bridge. The local MCP itself performs no inference and needs no provider key.
 
-The optional person relationships projection and selected-person snapshot share one typed DTO builder. Public getters run on the update thread; room names/IDs, stored home coordinates and division IDs are copied immediately. No retained scratch coordinate or game object crosses into the daemon. Getter failure is distinct from an unassigned/null relationship. These are recorded assignments, not an activity or UI-selection model.
-
-## Multi-provider requirement
-
-PROVIDERS.md adds Claude subscription, Claude API and DeepSeek API support alongside OpenAI. The required product design provides the common in-game chat/session-history interface in IN_GAME_CHAT.md, backed by a local conversation coordinator and provider adapters. Existing external clients are development bridges; their configurations alone do not complete provider support. Provider/account credentials and inference stay outside the observational game bridge/MCP. Future in-game adapters must preserve query bounds, context/freshness semantics, tool-call IDs and cited references across providers, and must never switch provider or billing route silently. Configuration templates do not constitute authenticated integration tests.
-
-## Retained entity selections and observer phase — 0.11.0
-
-`capture_live_entities` requests one bounded after-update observation, including original scene/UI context, then retains immutable encoded detached DTOs inside this MCP server. Creation returns metadata and a token only. `read_entity_capture` pages that retained observation, preserving tick/time/session; current snapshot status is separate. Paging does not reread game objects. No global simulation/battle-worker transaction is claimed.
-
-Capture protocol 2 uses the same fixed-key mailbox, but requires cursor zero and ID projection, allows 2,000 rows / 100,000 scanned slots / 4,000 projected stat cells and a 2 MiB local response. An incomplete scan, excess matching rows or predicate error fails instead of retaining a partial selection. The server stores at most three captures for 120 seconds each; tokens are server-local, and fresh loaded same-session/version observations are required. Legacy protocol 1 and `query_live_entities` retain their previous smaller bounds and mutable cursor semantics.
-
-Each SCRIPT instance registers its sampler with public `GAME.addAfterUpdate`; its SCRIPT update method performs no sampling. Source/binary review and the copied-game run establish that this callback still runs when a menu pauses simulation with requested speed nonzero. The hook is source-verified public API, not a documented stable script contract. Standalone menu callbacks and instant unload detection remain unavailable.
-
-## Spatial observations — 0.12.0
-
-`query_live_tiles` uses a separate fixed 15-key tile mailbox, sharing the POSIX request lock with entity queries. The IO daemon parses a detached request; only the registered game after-update observer reads terrain, floor, coordinate-aware room, mineral and path APIs. It scans at most 4,096 tiles and returns at most 100 selected rows, with session/tick/time/scene/UI context. Local response and actual MCP tool text are each capped at 64 KiB; protocol framing can add bytes. Oversize responses fail instead of silently truncating.
-
-Coordinates are rectangular, with exclusive upper bounds and row-major rectangle offsets. Each page is a separate mutable observation; entity capture tokens do not retain tile pages. Group-level available/data distinguish missing floor/room/mineral values from getter failures. Predicate errors make matching absence/count unknown. The schema and structured field definitions are exposed through game_query_help.on_demand_tiles. No arbitrary member path, setter, input or rendering call is added.
-
-Public RoomSingleton coordinate getters refresh internal scratch caches. Scalar/string values are copied immediately on the game update thread. Shared room-map records do not identify unique room instances; instance_room_id is populated only for RoomInstance. These are map observations, not UI selection. Path component flags do not establish a route for a specific agent or construction suitability; mineral amounts do not establish production yield or deposit lifetime.
-
-## Required common chat interface and local history
-
-IN_GAME_CHAT.md establishes one in-game composer/transcript/chat list/session log across every supported provider and subscription/API route. A local coordinator should handle durable conversation IDs, event history, asynchronous provider requests and bounded MCP tool orchestration. The exporter session UUID is a runtime observation identity, not a stable save GUID; cross-load continuation must be explicit and historical evidence must retain its original identity/time. DeepSeek requires a first-class API path behind this interface, without making an external coding client a player prerequisite.
-
-This is a required design, not implemented functionality. Public GUI hooks for the mod's own panel still need review/validation; accepting input in that panel does not authorize native input, screenshots, private game UI traversal or gameplay control. Current observation tests do not validate chat/history or authenticated inference.
-
-## Chat development implementation
-
-The optional mod-owned panel exchanges bounded detached strings with a local coordinator on the existing I/O worker. GUI operations stay on the game update thread. The coordinator owns SQLite history, explicit session attachment, cancellation and a bounded provider-independent loop over the existing read-only MCP tools. A native DeepSeek API adapter is implemented; subscription adapters and account setup remain pending. See [CHAT_BACKEND.md](CHAT_BACKEND.md) for protocol, limits and validation. The observation bridge itself makes no inference requests.
-
-## Authenticated shared-chat checkpoint
-
-DeepSeek API and Claude subscription now pass separate two-turn flows through the shared in-game panel with selective MCP queries and cited guides. Local rename/evidence/export/delete and reload attachment are tested. Claude API has an explicit SDK route and missing-key/no-plan-fallback tests; actual API-key inference remains pending. See [current evidence](CHAT_VALIDATION.json) and [execution/credential limits](CHAT_BACKEND.md). OpenAI sign-in, fully in-game account setup, physical keyboard/multiline behavior and exhaustive scene coverage remain required.
+`make_user_test.py` packages only our classes/Python/player files from matching provider/source evidence. Freshness checks protect the tracked latest ZIP; promotion retains its tested predecessor. Exact USER_TEST/PLAYER_CORE reports identify tested builds, while older reports retain their hashes. [CONTRIBUTING.md](CONTRIBUTING.md) covers collaborative reconciliation and candidate validation.

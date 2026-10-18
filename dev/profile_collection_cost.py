@@ -135,4 +135,6 @@ def profile(args):
 if __name__=='__main__':
     p=argparse.ArgumentParser(description=__doc__)
     for name in ['game-dir','save','java','jdk-home']:p.add_argument('--'+name,type=Path,required=True)
-    profile(p.parse_args())
+    from game_fixture_lock import exclusive_fixture
+    args=p.parse_args()
+    with exclusive_fixture():profile(args)

@@ -23,15 +23,17 @@ Community mod templates may help investigation but must be labeled community ref
 
 See API_BOUNDARY.md for shipped primary references. The screenshot/input and reflection adapters were removed in 0.3.0. Former computer-use design references do not establish an approved game mod API.
 
-## Gameplay evidence shipped with this prototype
+## Gameplay evidence and review history
+
+The current seed contains 13 reviewed original summaries; GUIDANCE_VALIDATION.json records 37 authored cases. The paragraphs below preserve earlier expansion scopes/dates. See HISTORICAL_REFERENCE_REVIEW.json and HISTORICAL_REFERENCE_VALIDATION.json for the latest additions. Installed help and external guidance remain separate.
 
 Installed resource, technology and stat help text is indexed at runtime, with current version/mods and original class/key identifiers. It is not bundled from proprietary game files.
 
-Five short authored summaries, checked 2026-10-17, can be installed with `syx-knowledge`: [v71 community guide](https://steamcommunity.com/sharedfiles/filedetails/?id=3776333166) , [official V71 law/family/trade release notes](https://steamcommunity.com/games/1162750/announcements/detail/529882384083977659), and [historical developer reply about eatery overlays](https://steamcommunity.com/app/1162750/discussions/0/4841941418359552221/). Source records retain authority and compatibility caveats. These do not establish exhaustive current mechanics.
+The initial five short authored summaries, checked 2026-10-17, could be installed with `syx-knowledge`: [v71 community guide](https://steamcommunity.com/sharedfiles/filedetails/?id=3776333166) , [official V71 law/family/trade release notes](https://steamcommunity.com/games/1162750/announcements/detail/529882384083977659), and [historical developer reply about eatery overlays](https://steamcommunity.com/app/1162750/discussions/0/4841941418359552221/). Source records retain authority and compatibility caveats. These do not establish exhaustive current mechanics.
 
 ## Additional reviewed gameplay evidence (2026-10-18 UTC)
 
-The starter corpus now contains nine original summaries. Three added records were checked directly on their canonical Steam pages, including the developer badge and surrounding discussion:
+At this historical expansion checkpoint, the starter corpus contained nine original summaries. Three added records were checked directly on their canonical Steam pages, including the developer badge and surrounding discussion:
 
 | Source | Authority | Scope / limitation |
 | --- | --- | --- |
@@ -41,7 +43,7 @@ The starter corpus now contains nine original summaries. Three added records wer
 
 These records retain unknown version compatibility rather than being labeled V71-compatible by assumption. Wiki.gg pages encountered during discovery returned access errors and were not added as newly reviewed evidence. Existing source timestamps are preserved when the corpus is reinstalled.
 
-Search uses whole-word relevance before version compatibility and authority tie-breakers. Matching terms and a retrieval score are returned for inspection; the score is not factual confidence. The response stays within 64 KiB and reports truncation. See GUIDANCE_VALIDATION.json for the eleven authored local-MCP cases. This is a lexical starter retrieval check, not a comprehensive evaluation of model advice.
+Search uses whole-word relevance before version compatibility and authority tie-breakers. Matching terms and a retrieval score are returned for inspection; the score is not factual confidence. The response stays within 64 KiB and reports truncation. See GUIDANCE_VALIDATION.json for the current 37 authored local-MCP cases. This is a lexical starter retrieval check, not a comprehensive evaluation of model advice.
 
 ## API establishment audit (0.4.0)
 

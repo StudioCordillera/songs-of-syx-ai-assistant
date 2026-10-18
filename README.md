@@ -1,73 +1,58 @@
 # Songs of Syx AI Assistant
 
-A local Java mod and MCP server that let an assistant inspect a loaded Songs of Syx game, request selected data, and advise the player with cited evidence.
+A local Java mod and MCP server for selective game observations, UI-aware questions and cited guidance. The current player build targets **Songs of Syx 0.71.44**. Core coverage is partial; provider/account expansion is deferred.
 
-**Playable Linux user test for Songs of Syx 0.71.44:** [Download the latest tested ZIP](https://github.com/StudioCordillera/songs-of-syx-ai-assistant/raw/refs/heads/main/releases/latest-user-test.zip).
+## Play the tested build
 
-Extract it, run `python3 install-mod.py`, then `sh start-chat.sh`. Enable the mod in the game launcher, load your game and open **AI chat → New chat**. The helper asks for your DeepSeek API key once and saves it privately outside the bundle. It uses **DeepSeek Pro**, with a simple chat list, transcript, wrapped question box, Send and Stop. No login/provider/debug controls appear in the player interface. Read-only MCP queries run internally; raw tool JSON stays in private logs.
+[Download the latest tested Linux ZIP](https://github.com/StudioCordillera/songs-of-syx-ai-assistant/raw/refs/heads/main/releases/latest-user-test.zip), extract it, run `python3 install-mod.py`, then `sh start-chat.sh`. Enable the mod, load a game and open **AI chat → New chat**. Python and first-launch internet access for dependencies are required; no Java compiler is needed to use the bundle.
 
-[Player instructions](user_test/README.txt) · [Build and rollback policy](releases/README.md) · [Exact user-test evidence](USER_TEST_VALIDATION.json)
+The player gets **DeepSeek Pro** (`deepseek-v4-pro`), a simple chat list/transcript, wrapped composer, Send/Stop and durable local histories. The helper keeps its key outside version control and the published bundle; it never bundles credentials. Login/provider/debug controls are hidden and raw tool evidence stays in private history. See [player instructions](user_test/README.txt), [installation](INSTALL.md) and [build/rollback policy](releases/README.md).
 
-The current build passed two actual in-game Pro turns: a selective state query and a retrieved guide citation. Linux and the copied-save test are the established scope. Physical keyboard/scaling, complete game-state coverage and exhaustive menus remain unfinished. The mod rejects other game version strings; the runtime version check does not attest the game JAR hash. Provider/account expansion remains deferred. [Advanced developer chat](CHAT_BACKEND.md) retains the earlier experimental controls behind explicit flags.
+## Start collaborating
 
-## What works
+Read [shared instructions](AGENTS.md), the [repository map](REPOSITORY_MAP.md), [contributor/test workflow](CONTRIBUTING.md), [current handoff](WORK_STATUS.md) and [roadmap](ROADMAP.md). Claude's [entry file](CLAUDE.md) imports the same shared instructions. The [documentation index](DOCUMENTATION_INDEX.md) maps current guides and historical evidence.
 
-- Request specific entities across the instantiated scene through fixed public getters: IDs, race/class/type, tile bounds, individual-stat comparisons and chosen attributes. Bounded cursor pages reach beyond the snapshot prefix.
-- Discover explicitly exported fields and request selected public-API observations without dumping the whole snapshot into the model. Offline API-support records route service counters, city trade and regional population to their validated mappings and limits.
-- Filter, project, join, group, aggregate, sort and paginate normalized snapshot data. Batched queries share one snapshot.
-- Eighteen explicitly partial domain collectors: population, resources, production, employment, services, housing, health, law, happiness, research, trade, diplomacy, military, world, map, entities, events and settings.
-- Per-room current recipe input/output rows and stored production quantities, joinable to employment and resources; explicit caps, mixed scopes and stored-bucket caveats. See [production evidence](PRODUCTION_VALIDATION.json).
-- Configured city service permissions by race/class, joinable to population cohorts; explicit individual-rule exceptions and unavailable battlefield policy. See [policy mapping](SERVICE_PERMISSIONS.md).
-- Per-room stored service-point availability/reservations, joinable to staffing and installed help; raw points are not daily capacity or individual access. See [service mapping and limits](SERVICE_COUNTERS.md).
-- City resource import/export stages by trade reason and configured buy/sell limits, joinable to warehouse storage; battlefield city logistics stay explicitly unavailable. See [trade mapping and limits](TRADE_PIPELINE.md).
-- Campaign region populations by playable race, joinable to region ownership, capital and area, with explicit caps and stored-count semantics. See [world evidence](WORLD_VALIDATION.json).
-- Research prerequisite relationships, per-currency next-level costs and point allocation through public getters; discover meanings before treating these as an unlock decision. See [core development evidence](CORE_VALIDATION.json) and [data coverage](DATA_COVERAGE.md).
-- Search resource, technology, stat, room and research-currency descriptions loaded by the game. The latest copied-save test produced 834 reference records, tagged with the exact version and active mods.
-- Search eleven reviewed external summaries with direct links, author/authority, retrieval date and compatibility warnings, including official V71 research/education and service-fetch/treatment notes. Whole-word relevance ranks first; version compatibility and official/developer authority break ties. An authority filter is available.
-- On-demand person relationships: assigned workplace room, recorded profession, stored home coordinates and scene division. Absence and getter failure stay distinct.
-- Selected citizen identity/class/type and named individual statistics, linked to installed descriptions and independent of the bounded entity list.
-- Bounded label/control observations from exposed popup and section roots, with explicit opaque/truncated content. Editor activation and retreat-to-city transitions are checked in an isolated copied game.
-- Scene division counts, raw morale and published engagement flags, with stale-buffer limits. Controlled running-battle victory/defeat paths are checked using public game UI dispatch in the test fixture.
-- Partial UI context through public view/overlay/subject APIs, plus a searchable API evidence catalog. See [the establishment report](API_ESTABLISHMENT.md).
-- Game access exclusively through the in-process script mod and mapped public game APIs. No private reflection, screenshot capture or native/input hooks.
+At the start of every run, and again before publishing:
 
-Read the [query guide](QUERY_GUIDE.md), [installation instructions](INSTALL.md), [architecture](ARCHITECTURE.md), [validation report](VALIDATION.md), [API boundary and source provenance](API_BOUNDARY.md), and [reference register](REFERENCES.md).
+```sh
+python3 dev/collaboration_status.py
+```
 
-## Quick start
+It fetches remote branches/tags and reports remote changes, overlapping unpublished work and a changed tracked player bundle. It never merges or discards files. Compare competing implementations and their tests; keep the stronger solution or combine them, regardless of author. [Reconciliation instructions](CONTRIBUTING.md#reconcile-concurrent-work) explain preservation and acceptance.
 
-Python 3.11+ and a full JDK 17+ are required for the development tests and API audits below. The mod targets Java 16 bytecode. Use your licensed game installation:
+## What is implemented
+
+- Eighteen partial domains spanning population, resources, production, employment, services, housing, health, law, happiness, research, trade, diplomacy, military, world, map, entities, events and settings.
+- Discoverable fields/provenance and bounded filters, projections, joins, grouping, arithmetic, aggregates, sorting and pagination. Query batches share one cached observation.
+- On-demand person/stat/relationship reads beyond the exported prefix, recorded-workplace filtering and retained entity captures for consistent bounded paging. Separate live cursor pages remain different observations.
+- Bounded terrain/floor/room/mineral/path queries. Tile pages are not retained captures or UI-selected room identities.
+- Recipe/recorded-flow and staffing joins, stored workforce factors and producer degradation with explicit units, threshold, age and completeness limits. Configured service permissions and stored service-point counters are distinct from individual access/daily capacity.
+- Bounded city trade bookkeeping, regional population and research relationships. [Data coverage](DATA_COVERAGE.md) describes fields and missing mappings.
+- Installed help (834 references in the copied-game fixture) and 13 reviewed external summaries, with direct URLs, authority and version caveats. Lexical relevance ranks before compatibility/authority tie-breakers. See [reference register](REFERENCES.md) and [retrieval evaluation](GUIDANCE_EVALUATION.md).
+- Partial public-API UI context: active views, known overlays, selected person, open room blueprint and bounded exposed popup/section content. [UI/API limits](API_ESTABLISHMENT.md) remain explicit.
+
+The production bridge uses explicit **in-process public game APIs**, detached DTOs and no private reflection, process memory, screenshots, native input or gameplay-control tools. Most getters are verified against shipped source/binaries; they are not separately documented stable mod contracts. See [API boundary](API_BOUNDARY.md), [architecture](ARCHITECTURE.md) and [query guide](QUERY_GUIDE.md).
+
+## Development
+
+Python 3.11+, Git and a full JDK 17+ are needed for the offline suite/compiler audits. Licensed game files and a working native desktop/OpenGL environment are needed for copied-game tests. Keys are unnecessary for offline tests:
 
 ```sh
 python3 -m venv .venv
 .venv/bin/python -m pip install -e '.[dev]'
 .venv/bin/python -m pytest -q
-python3 build_mod.py --game-dir '/path/to/Songs of Syx'
+python3 dev/check_documentation.py
+python3 dev/check_user_test_release.py
 ```
 
-Copy `dist/syx-ai-assistant` into the game's user mod directory, enable it in the launcher, then load a game. Configure your existing Codex client using [codex.example.toml](codex.example.toml). Both processes must use the same `SYX_STATE_DIR`; the default is `~/.local/share/syx-assistant`. Windows uses `.venv\Scripts\syx-mcp.exe`.
+[CONTRIBUTING.md](CONTRIBUTING.md) gives portable game/JDK configuration and a repeatable two-turn Pro integration command. Claude on this shared device uses the ignored local `.env` through `--env-file .env`; other environments may supply `DEEPSEEK_API_KEY` directly. Paid tests run only when explicitly invoked. No contributor must rely on another person's credential path or ignored tools; LOCAL_DEVELOPMENT.md records conveniences available on this shared device.
 
-Install the optional reviewed starter summaries with `.venv/bin/syx-knowledge`. Without a corpus, installed-game references still work. Call `game_status`, then `game_query_help` to get started.
+## Evidence and remaining gaps
 
-## Subscription connection
+[USER_TEST_VALIDATION.json](USER_TEST_VALIDATION.json) pins the published player source/JAR and provider check. [PLAYER_CORE_VALIDATION.json](PLAYER_CORE_VALIDATION.json) pins seven finite copied-save groups. The degradation mapping also has a separate controlled nonzero-room test; it does not establish natural wear or output effects. [VALIDATION.md](VALIDATION.md) separates current and historical evidence; old hashes and retrieval dates are not relabeled as new tests.
 
-Use an existing Codex client signed in with ChatGPT and connect this local MCP server. The client supplies the model and its subscription entitlements; the MCP server makes no inference calls and needs no OpenAI credentials.
+Complete variables/production modifiers, retained spatial selections, larger-city costs and other collector cap/fault paths, broader current-version references, physical keyboard/display testing and exhaustive menus remain open. Exact selected-room identity, tooltip/tab hierarchy and immediate unload-to-menu identification are unestablished. Return to menu can leave the previous observation apparently current for up to 30 seconds, then state becomes unknown.
 
-The experimental shared in-game panel has bounded DeepSeek API and Claude subscription acceptance evidence. Native OpenAI plan integration remains pending. OpenAI's eligible local/open-source application route requires registration and consent; native computer use and hosted MCP have preview restrictions. See the [connection decision](ARCHITECTURE.md#openai-connection). An API-key route would have separate billing.
+The advanced [chat/provider implementation](CHAT_BACKEND.md) has older bounded Claude subscription evidence; Claude API inference and native OpenAI integration remain incomplete. The current player remains simple Pro. External [Codex](codex.example.toml)/[Claude](claude.mcp.example.json) MCP profiles are development bridges, not completion of in-game account support. [Provider](PROVIDERS.md) and [chat requirements](IN_GAME_CHAT.md) retain deferred gates.
 
-## Current limits
-
-All normalized domains are partial; complete state access is not claimed. Legacy on-demand cursor pages are separate mutable observations. New bounded entity captures retain one observation for paging; they are not a global simulation-worker transaction. This transport currently requires a POSIX MCP host. Public API mappings are verified against shipped source, while the script lifecycle is documented in the shipped guide and SCRIPT interface. Much of the game code is undocumented; public does not mean a stable officially documented contract. See API_BOUNDARY.md. UI context is partial: view, known overlays, selected subject, room blueprint and bounded exposed popup/section content. Full tooltip text, selected room instance, management tab and arbitrary panel order are unavailable. Screenshots and game control remain excluded. The external corpus starts with nine reviewed summaries; automatic web retrieval and comprehensive coverage remain unimplemented. Return-to-menu detection relies on freshness expiry (up to 30 seconds); cleanup is established for next initialization and JVM shutdown.
-
-Do not commit game binaries, game source, saves, snapshots, screenshots of private saves, account credentials or copied full guides. The repository is public; no source license has been selected for redistribution.
-
-For the broader offline public-declaration inventory and remaining mapping work, see [API_DISCOVERY.md](API_DISCOVERY.md). It catalogs candidate declarations without executing game code or automatically exposing mutators.
-
-Provider requirements and connection profiles are tracked in [PROVIDERS.md](PROVIDERS.md). DeepSeek API and Claude subscription have bounded in-game acceptance evidence in CHAT_VALIDATION.json. Claude API, native OpenAI integration and the remaining model/client acceptance gates stay open.
-
-0.11.0 adds retained bounded entity selections (`capture_live_entities` / `read_entity_capture`) and refreshes observations through public `GAME.addAfterUpdate`, including UI-paused nonzero-speed menus. The copied-game run retained 1,395 entities across 70 pages while simulation advanced. Full state/schema and all-menu coverage remain unfinished.
-
-0.12.0 adds bounded spatial queries for terrain, floors, coordinate-aware rooms, minerals and path flags. Request a rectangle, combine fixed filters and project just the needed groups with `query_live_tiles`; read the meanings and limits in QUERY_GUIDE.md. All domains remain partial.
-
-**Required player interface:** every supported subscription/API option must provide the same [in-game chat client and session/chat history](IN_GAME_CHAT.md). DeepSeek needs a first-class API path in that interface; external client profiles are development aids. The development implementation provides the shared panel and durable histories; see CHAT_BACKEND.md for current routes and open acceptance gates.
-
-OpenAI subscription sign-in and transport are [prepared separately](OPENAI_CONNECTION.md); final account-access approval and authenticated integration remain pending.
+The repository is public. No redistribution license has been selected. Do not commit keys, auth files, licensed game binaries/source, saves, snapshots, histories or copied full guides.

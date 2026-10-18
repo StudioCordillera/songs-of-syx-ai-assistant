@@ -17,6 +17,7 @@ import zipfile
 ROOT=Path(__file__).resolve().parent.parent
 sys.path.insert(0,str(ROOT))
 from check_user_test_release import check
+from game_fixture_lock import exclusive_fixture
 
 
 def sha(path):return hashlib.sha256(path.read_bytes()).hexdigest()
@@ -87,4 +88,5 @@ if __name__=='__main__':
     for name in ('game-dir','save','java','jdk-home'):p.add_argument('--'+name,type=Path,required=True)
     p.add_argument('--candidate-dir',type=Path,help='Validate a candidate without replacing the published bundle')
     p.add_argument('--validation',type=Path,help='Matching candidate provider-check report')
-    verify(p.parse_args())
+    args=p.parse_args()
+    with exclusive_fixture():verify(args)

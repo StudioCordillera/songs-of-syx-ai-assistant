@@ -10,7 +10,7 @@ USER_TEST_VALIDATION.json records a real two-turn Pro check on the packaged sour
 
 ## Advanced development launch
 
-Install the Python project in a virtual environment (`pip install -e '.[dev,claude]'`). The Claude extra pins the tested official Agent SDK. Install/authenticate the official Claude Code client for the subscription route; the coordinator uses its supported authentication rather than reading tokens itself. The tested client reported Claude Pro authentication. Eligibility, plan limits and extra-usage settings remain controlled by the provider/account. [Anthropic's plan notice](https://support.claude.com/en/articles/15036540-use-the-claude-agent-sdk-with-your-claude-plan) currently permits Agent SDK subscription usage; recheck it when distributing.
+Install the Python project in a virtual environment (`pip install -e '.[dev,claude]'`). The Claude extra pins the tested official Agent SDK. Install/authenticate the official Claude Code client for the subscription route; the coordinator uses its supported authentication rather than reading tokens itself. The tested client reported Claude Pro authentication. Eligibility, plan limits and extra-usage settings remain controlled by the provider/account. The plan notice linked in REFERENCES.md was reviewed for the historical authenticated checkpoint; recheck current account eligibility/policy before expanding that deferred route.
 
 Use the same `SYX_STATE_DIR` as the game exporter. Supply DeepSeek credentials in the coordinator's environment or through a literal dotenv file:
 
@@ -20,7 +20,7 @@ syx-chat --advanced --state-dir "$SYX_STATE_DIR" --env-file /path/to/private/pro
 
 `--env-file` reads exactly one `DEEPSEEK_API_KEY` entry without shell execution or interpolation. For explicit Claude API chats, `--claude-env-file` reads `ANTHROPIC_API_KEY` from a separate file (or use that environment variable). Missing Claude API credentials refuse the request; an existing subscription login is never a fallback. No real Anthropic API-key request has been validated yet. Credentials are not entered into chat, committed configuration or game launch arguments.
 
-The coordinator merges nine reviewed starter summaries automatically, preserving existing records and original retrieval dates. Installed game references remain separate and require no setup step. The corpus is small, version caveats remain explicit, and no live web crawl occurs.
+The coordinator merges 13 reviewed starter summaries automatically, preserving existing records and original retrieval dates. Installed game references remain separate and require no setup step. The corpus is small, version caveats remain explicit, and no live web crawl occurs.
 
 The default history directory is `~/.local/share/syx-assistant-chat`, separate from game exports/saves. `--history-dir` overrides it. One coordinator owns it using a POSIX lock; Windows support is pending. Stop with Ctrl-C. Restart marks interrupted turns and never automatically resends them.
 

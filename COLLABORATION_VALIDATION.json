@@ -1,0 +1,60 @@
+{
+  "passed": true,
+  "scope": "Collaboration/docs/developer tooling only; published production payload unchanged.",
+  "offline_tests_passed": 187,
+  "local_git_and_coordination_tests": 10,
+  "remote_fetch_divergence_overlap_preservation_cases": true,
+  "shared_native_lock_exclusion_release": true,
+  "local_literal_env_without_framework_environment_test": true,
+  "local_env_ignored_not_tracked_owner_only": true,
+  "paid_dev_runner": {
+    "passed": true,
+    "model": "deepseek-v4-pro",
+    "completed_turns": 2,
+    "game_exit_code": 0,
+    "credential_mode": "Explicit literal private file; key never displayed or committed.",
+    "dev_runner_source_sha256": "407b30e67642d0efbb3863e0c65ca584391bfebe57af30c593f47c0871387e5c",
+    "candidate_mod_jar_sha256": "adfe6c3ae094819a4bfb0e54e290920cfe4d560db1c392caef1f207cf40e2f7e",
+    "private_metadata_report_sha256": "9af9dcdb9dc92278de6d4238080f4ea09292d0fb2333f7602605d1334e948b93",
+    "limits": "Copied city; tests the developer entry point, not a new all-menu or production-release acceptance run."
+  },
+  "published_player_evidence_preserved": true,
+  "recurring_prompt_remote_reconciliation_updated": true,
+  "limits": [
+    "The Git helper reports drift; implementation quality/merge decisions require contributor assessment and affected tests.",
+    "Machine-wide fixture lock is advisory and coordinates only cooperating runners; separate checkouts remain necessary.",
+    "Documentation checking covers inventory/local destinations and selected current facts, not every historical semantic claim or external URL.",
+    "No provider/account expansion, new game coverage, license selection or cloud setup is performed."
+  ],
+  "documentation_check": {
+    "passed": true,
+    "markdown_files_checked": 36,
+    "indexed_artifacts": 77,
+    "current_seed_count": 13,
+    "current_public_member_count": 359,
+    "current_player_model": "deepseek-v4-pro",
+    "limits": [
+      "Checks local link destinations/inventory and selected current entry-point facts, not every semantic claim or external URL availability.",
+      "Historical evidence dates/hashes are preserved. No game/provider inference performed by this check."
+    ]
+  },
+  "source_sha256": {
+    "AGENTS.md": "d7795720c0b05be41974223cf046fd8dba7d90a93c872364265332222e03ca0b",
+    "CLAUDE.md": "adb4e1611929cf60e766ceded2dff78477f958e593995a2e653c61916aeab15d",
+    "CONTRIBUTING.md": "6b743ddfba8923d6b07614755d86bfce2d3050ebd048da49e91813d06bd2b2a7",
+    "LOCAL_DEVELOPMENT.md": "42d3004393499ab32d3386c3e6428976085060bd0a78f76de85b36e21d868be2",
+    "REPOSITORY_MAP.md": "d5afe1c5558a4b073c27be63f86a94a76b8c51c617306791d4c1e1dc0db58421",
+    "DOCUMENTATION_INDEX.md": "75df84e05cd87f26d1963d3e9e86a37624f4e5d82c0d713cb804a202a6b802af",
+    "WORK_STATUS.md": "3f68f2d614e287fce27138b14a1098044cd2b9acc760c76912e8face468e7b12",
+    "dev/collaboration_status.py": "232f46fdd8141e8be19398ff6a4b49f052652ca9e83318ff7ca7b466ee12e935",
+    "dev/game_fixture_lock.py": "47c9f713b2480b532b93e52c5a0b3ba3644e17b10e4126b55e72ba49473ffe07",
+    "dev/check_documentation.py": "383e47aabc6bd45385a15dbb94076b5c640623040e9a85d1837addca5cdb2098",
+    "dev/run_player_chat_check.py": "407b30e67642d0efbb3863e0c65ca584391bfebe57af30c593f47c0871387e5c",
+    "dev/verify_current_player_core.py": "65e09d6e98c8360fb195fb4e0254f9bc852196044716378bd8ada94f271a21bd",
+    "dev/profile_collection_cost.py": "144334a72f70dcaba5f8cac6ea96f38851bc0ee76553e39ea43eb9f9f6961055",
+    "test_collaboration_status.py": "b5193bc3dc3f75363d969e41b0683fc089d8e8766ced49e6a157837f54226b2a",
+    ".githooks/pre-push": "94ffbdbd1576553c68b4053ff0dff256e4a7886d2feddfa1c61f3ed74b11e40b",
+    ".github/workflows/check-user-test.yml": "57af6b5930eca161e9e9e22f91ff26ee7560c67f28263ad60790ef763e325832"
+  },
+  "tracked_credential_file_documentation_gate": true
+}

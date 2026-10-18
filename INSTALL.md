@@ -1,65 +1,47 @@
-# Installation and connection
+# Installation and development connection
 
-## Play the tested build
+## Play the tested Linux build
 
-Use the [latest player ZIP](https://github.com/StudioCordillera/songs-of-syx-ai-assistant/raw/refs/heads/main/releases/latest-user-test.zip) and its [instructions](user_test/README.txt). It includes the compiled mod and simple DeepSeek Pro helper; no Java compiler is required. Python and its dependencies remain required. The installer backs up the prior mod and does not edit saves.
+Download the [latest tested player ZIP](https://github.com/StudioCordillera/songs-of-syx-ai-assistant/raw/refs/heads/main/releases/latest-user-test.zip), extract it, run `python3 install-mod.py`, then `sh start-chat.sh`. Enable the mod, load a supported **0.71.44** game and open **AI chat → New chat**. Read [the bundled instructions](user_test/README.txt).
 
-The remaining sections describe development and standalone MCP use.
+The bundle contains the compiled mod and simple DeepSeek Pro client, chat/session histories, Send/Stop and a wrapped composer. No compiler or coding client is needed to play. Python and first-launch dependency downloads are required. Credentials stay in a private external environment/file, never the bundle or game save. Provider/login/debug controls are hidden; tool JSON stays in private logs. The installer backs up the existing own-mod folder and rolls back copying failures without editing saves. [Release policy](releases/README.md) explains the retained previous ZIP.
 
-## Build the mod
+## Build and test as a contributor
 
-Use the actual 0.71.44 game folder containing `SongsOfSyx.jar`. A full JDK with the compiler and release signatures is needed. `SYX_JAVA_HOME` can select a JDK home if the default runtime lacks those components.
+Use [CONTRIBUTING.md](CONTRIBUTING.md) for complete Python/JDK/game configuration, copied-game fixture setup, manually supplied DeepSeek credentials, native tests and candidate promotion. Read [AGENTS.md](AGENTS.md) at each run and fetch/compare collaborators' work before editing/publishing.
 
 ```sh
-python3 build_mod.py --game-dir '/path/to/Songs of Syx'
+python3 -m venv .venv
+.venv/bin/python -m pip install -e '.[dev]'
+export SYX_JAVA_HOME='/path/to/full-jdk'
+.venv/bin/python -m pytest -q
+.venv/bin/python build_mod.py --game-dir '/path/to/Songs of Syx'
 ```
 
-The build contains only this project's classes. It targets Java 16 bytecode and creates:
+A full JDK 17+ is required for development/audits; the mod targets release 16. Native copied-game tests use Java 21 on the tested host and need a working desktop/OpenGL environment. Never substitute a synthetic observation for a loaded game or use an original save as a mutable fixture.
 
-```
-dist/syx-ai-assistant/_Info.txt
-dist/syx-ai-assistant/V71/script/syx-ai-assistant.jar
-```
+The builder creates `dist/syx-ai-assistant/_Info.txt` and `dist/syx-ai-assistant/V71/script/syx-ai-assistant.jar`. The 0.71.44 loader scans `V71/script/*.jar`; older documentation's `script/jar` path is historical. For manual installation use the launcher's user-mod directory (`~/.local/share/songsofsyx/mods` on the tested Linux machine), replace this mod's entire folder and enable it. Do not merge old classes into a new JAR. Prefer the tested player installer for backups.
 
-The shipped guide's `script/jar` example is older than the current loader; 0.71.44 scans `V71/script/*.jar`.
-Copy the `syx-ai-assistant` folder into the game's **user** `mods` folder. On the tested Linux machine this is `~/.local/share/songsofsyx/mods`. Use the launcher's mod-folder location on other platforms. Enable the mod and load an existing or new game. Back up saves before using an experimental mod. The script stores no persistent save data.
+## Standalone MCP
 
-## Set up MCP
+The game and MCP must share `SYX_STATE_DIR` (default `~/.local/share/syx-assistant`); Java also accepts `-Dsyx.assistant.stateDir=/absolute/path`. This local directory contains detached exports, optional curated summaries and bounded request/response mailboxes. It is not the save directory and opens no network listener. Live request transport currently needs a POSIX host.
 
-Create the Python environment and install the project as shown in README. Merge `codex.example.toml` into your client's MCP configuration, replacing the executable path. Restart/reconnect the MCP client after configuration.
+Merge [Codex](codex.example.toml) or [Claude](claude.mcp.example.json) stdio configuration into your existing client using your own executable/state paths. These are development bridges, not in-game account setup. MCP reads no provider credentials and makes no inference calls. Ask for `game_status`, `game_query_help`, `get_game_api_support` and `describe_game_fields` before a narrow query.
 
-Both the game and MCP server default to `~/.local/share/syx-assistant`. Set `SYX_STATE_DIR` in both processes to override; the game also accepts `-Dsyx.assistant.stateDir=/absolute/path`. The directory is local to this user and holds live game data, the optional reviewed corpus, and bounded read-request/response transport files. No network listener is opened.
+`syx-knowledge --state-dir <directory>` merges 13 reviewed starter summaries without replacing edited records or refreshing old retrieval dates. The native coordinator does this automatically. Installed-game descriptions require no seed setup. Matching current mod/MCP builds are required; old mods may omit fields or reject new wire keys. [Query limits](QUERY_GUIDE.md), [data coverage](DATA_COVERAGE.md) and [API boundary](API_BOUNDARY.md) explain provenance and partial scope.
 
-Run `syx-knowledge --state-dir /your/state/directory` once to merge the nine reviewed starter summaries without overwriting existing records. Installed resource/technology/stat references do not require this step.
+## Chat development routes
 
-Ask the assistant to call `game_status`, `game_query_help`, and `describe_game_fields`. See QUERY_GUIDE.md for examples. A missing/unloaded/stale snapshot is an explicit error; never replace it with synthetic data.
+The current simple Pro panel is enabled by default. Start `.venv/bin/python -m syx_chat_service --state-dir <same-directory> --history-dir <private-dev-history>` with `--env-file .env` for the private local key (or an explicitly supplied environment key), or use the paid fixture runner in CONTRIBUTING.md. No Claude-compatible endpoint profile is needed for this native DeepSeek route.
 
-## Access boundary
-
-Only the in-process script mod reads the game, using mapped public APIs. MCP reads detached local snapshots.
-No control panel, screenshot tool, private-field query or native input adapter is included. Version 0.8.0 includes partial UI/API evidence tools and query_live_entities for bounded on-demand reads. The latter requires a POSIX MCP host. Use matching mod/MCP builds; older mods may omit the content fields or lack the on-demand request handler.
-Replace the previous mod folder/JAR completely when upgrading; do not merge old classes into the new JAR.
-See API_BOUNDARY.md for primary-source provenance and lifecycle limitations.
+Advanced developer controls require both `-Dsyx.assistant.chat.advanced=true` and coordinator `--advanced`. [CHAT_BACKEND.md](CHAT_BACKEND.md) describes that historical/experimental interface and older Claude subscription evidence. Provider/account expansion stays deferred; Claude API inference, native OpenAI access and in-game account setup remain incomplete. [PROVIDERS.md](PROVIDERS.md) distinguishes requirements from evidence.
 
 ## Troubleshooting
 
-- Unsupported game: use the verified build or update and revalidate the adapter; do not bypass the version guard.
-- No snapshot: confirm the mod is enabled, a game is loaded and both processes point at the same directory.
-- Stale snapshot: inspect the game log; a paused game should still refresh wall-clock snapshots.
-- Compiler missing: select a complete JDK, rather than a JRE.
-- Result too large: discover the field schema, project fewer fields, lower depth or paginate.
-- Unclear raw field: inspect shipped game documentation/source locally and record its meaning before relying on it.
+- Unsupported version: use the supported build or explicitly revalidate the adapter; do not bypass the guard.
+- Missing/stale data: confirm enabled mod, loaded game, matching build/state paths and logs. UI-paused games should refresh, but menu return can retain apparently current data for up to 30 seconds before state becomes unknown.
+- Missing compiler: select a full JDK using SYX_JAVA_HOME with java on PATH.
+- Oversized query: inspect schema, project fewer fields/rows or page. Completing pages does not undo collector truncation/failures.
+- Ambiguous field/UI: use source-backed definitions and same-observation context; unknown/private data stays unavailable.
 
-For a synthetic offline demonstration, copy `snapshot.example.json` to a separate runtime directory. It is labeled demo and never accepted for live UI control.
-
-## Claude subscription/API and DeepSeek API
-
-Use the official-client profiles and shared stdio configuration in [PROVIDERS.md](PROVIDERS.md). `claude.mcp.example.json` contains no provider credentials. These setup examples do not install, authenticate or start a provider client automatically.
-
-The finished mod must include the common in-game chat and per-session/per-chat history for all providers, including DeepSeek API. See [IN_GAME_CHAT.md](IN_GAME_CHAT.md). The current version supplies observation tools and development connection examples; it does not yet include that player-facing client.
-
-## Experimental native chat
-
-The current development checkout includes an opt-in in-game chat prototype and local coordinator. Follow [CHAT_BACKEND.md](CHAT_BACKEND.md); this requires a development launch and does not yet provide in-game account setup or complete subscription-provider support. The 0.12.0 packaged observation baseline does not contain this prototype.
-
-The coordinator now merges the reviewed starter summaries automatically. For native DeepSeek or official Claude SDK routes, install `.[dev,claude]` and follow [CHAT_BACKEND.md](CHAT_BACKEND.md), including literal credential-file options. DeepSeek API and Claude subscription have authenticated in-game evidence; an Anthropic API key and OpenAI sign-in remain pending.
+`snapshot.example.json` is an explicitly synthetic offline example. It is never a live fallback. Screenshots, native game control, private fields and arbitrary invocation remain excluded.

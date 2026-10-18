@@ -2,6 +2,8 @@
 
 ## Current focus
 
+Every new/resumed run first fetches and compares collaborator changes using dev/collaboration_status.py and AGENTS.md. Reconcile overlapping unpublished work by comparing correctness/evidence and retaining or combining the stronger implementation. CONTRIBUTING.md documents the workflow; WORK_STATUS.md is the concise handoff.
+
 Return to the core mod objectives. Further provider integration, account binding and sign-in work are deferred while the game-data and guidance foundations advance. Existing chat implementations remain available experimentally; they are not evidence that the core mod is complete.
 
 The game-facing boundary remains an in-process SCRIPT mod using explicit public APIs verified against the installed game and shipped source. Distinguish documented script contracts from source-verified public members. Do not use reflection, private fields, process-memory inspection, screenshots, native input or arbitrary method invocation to fill gaps.

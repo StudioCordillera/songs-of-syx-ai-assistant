@@ -10,3 +10,4 @@ jobs:
         with:
           persist-credentials: false
       - run: python3 dev/check_user_test_release.py
+      - run: python3 dev/check_documentation.py
