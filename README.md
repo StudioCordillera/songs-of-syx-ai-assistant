@@ -4,7 +4,7 @@ A local Java mod and MCP server that let an assistant inspect a loaded Songs of 
 
 **0.12.0 observation baseline, with an experimental chat development implementation.**
 
-[Chat backend and opt-in in-game panel](CHAT_BACKEND.md): native DeepSeek API transport, separate session/chat histories and read-only MCP tool loop. Account authentication and the full in-game client acceptance gates remain pending.
+[Chat backend and opt-in in-game panel](CHAT_BACKEND.md): authenticated DeepSeek API and Claude subscription conversations, separate session/chat histories, cited MCP observations, expandable evidence and export/delete controls. Claude API is implemented but awaiting credential validation; OpenAI sign-in and full client acceptance remain pending.
 
 **Experimental working prototype for game 0.71.44 (Steam build 23998889).** Tested against a copied save on Linux. Other game version strings are rejected by the runtime guard; the tested binary hashes are recorded in the audit, and the guard does not attest the loaded JAR hash. This is not a finished in-game chat application.
 

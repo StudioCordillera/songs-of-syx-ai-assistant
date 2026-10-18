@@ -235,3 +235,105 @@ def test_cleanup_failure_cannot_change_completed_turn(tmp_path):
             store.append(chat['chat_id'],turn,uid(),'assistant',{'text':'Wrong provenance'})
         store.close()
     run(scenario())
+
+
+def test_literal_credential_file_no_execution_or_interpolation(tmp_path):
+    from syx_chat_service import read_key_file
+    path=tmp_path/'credentials'
+    path.write_text('# local credentials\nexport DEEPSEEK_API_KEY = "sample-value" # comment\n')
+    assert read_key_file(path)=='sample-value'
+    path.write_text('DEEPSEEK_API_KEY=literal$(touch${IFS}marker)\n')
+    assert read_key_file(path)=='literal$(touch${IFS}marker)'
+    assert not (tmp_path/'marker').exists()
+    for text in ['', 'DEEPSEEK_API_KEY=\n','DEEPSEEK_API_KEY="two words"\n','DEEPSEEK_API_KEY=a\nDEEPSEEK_API_KEY=b\n']:
+        path.write_text(text)
+        with pytest.raises(ValueError):read_key_file(path)
+    link=tmp_path/'linked';link.symlink_to(path)
+    with pytest.raises(OSError):read_key_file(link)
+
+
+def test_export_rename_delete_and_evidence_controls(tmp_path):
+    from syx_chat_service import Coordinator,unb64
+    async def scenario():
+        session=uid();store=ChatStore(tmp_path/'history',secrets=['private-key']);chat=store.new(session);cid=chat['chat_id'];turn=uid()
+        store.begin(cid,turn,session,'Question')
+        store.append(cid,turn,session,'tool',{'name':'query_game_state','arguments':{},'result':{'structuredContent':{'state':{'session_id':session,'tick':7},'detail':'expanded-value'}}})
+        store.append(cid,turn,session,'assistant',{'text':'Answer','reasoning_content':'hidden-value'})
+        store.finish(cid,turn,'completed')
+        coordinator=Coordinator(store,MCP(session),tmp_path,'')
+        async def dispatch(name,**extra):
+            await coordinator.dispatch(dict(request_id=uid(),action=name,session_id=session,chat_id=cid,**extra))
+        await dispatch('rename',text='Renamed private-key')
+        assert store.chat(cid)['title']=='Renamed [credential redacted]'
+        await dispatch('select');coordinator.write_ui()
+        def lines():return '\n'.join(unb64(line[5:]) for line in (tmp_path/'chat-ui.txt').read_text().splitlines() if line.startswith('line='))
+        assert 'expanded-value' not in lines() and '"tick": 7' in lines()
+        await dispatch('evidence');coordinator.write_ui();assert 'expanded-value' in lines()
+        await dispatch('export')
+        path=tmp_path/'history/exports'/f'{cid}.json'
+        data=json.loads(path.read_text());assert data['chat']['chat_id']==cid
+        assert 'private-key' not in path.read_text() and 'hidden-value' not in path.read_text()
+        assert stat.S_IMODE(path.stat().st_mode)==0o600
+        await dispatch('delete');assert store.list()==[] and path.exists()
+        assert coordinator.selected is None
+        store.close()
+    run(scenario())
+
+
+def test_claude_worker_environment_blocks_provider_fallback(monkeypatch):
+    from syx_claude import worker_environment
+    for name in ['DEEPSEEK_API_KEY','OPENAI_API_KEY','ANTHROPIC_API_KEY','ANTHROPIC_BASE_URL','CLAUDE_CODE_USE_BEDROCK','CLAUDE_CODE_OAUTH_TOKEN']:
+        monkeypatch.setenv(name,'must-not-inherit')
+    env=worker_environment()
+    assert all(env.get(name)!='must-not-inherit' for name in ['DEEPSEEK_API_KEY','OPENAI_API_KEY','ANTHROPIC_API_KEY','ANTHROPIC_BASE_URL','CLAUDE_CODE_USE_BEDROCK','CLAUDE_CODE_OAUTH_TOKEN'])
+
+
+@pytest.mark.parametrize("route",["subscription","api"])
+def test_claude_sdk_bridge_preserves_ids_history_and_read_only_boundary(tmp_path,monkeypatch,route):
+    from syx_claude import ClaudeConversation
+    import syx_claude
+    class Output:
+        def __init__(self,events):self.events=list(events)
+        async def readline(self):return (json.dumps(self.events.pop(0))+'\n').encode() if self.events else b''
+    class Input:
+        def __init__(self):self.lines=[]
+        def write(self,raw):self.lines.append(json.loads(raw))
+        async def drain(self):pass
+    class Process:
+        pid=123456789
+        def __init__(self,events):self.stdout=Output(events);self.stdin=Input()
+        async def wait(self):return 0
+    async def scenario():
+        session=uid();store=ChatStore(tmp_path);chat=store.new(session,provider='claude',model='haiku',route=route);turn=uid()
+        bridge=uid();proc=Process([
+            {'type':'tool','request_id':bridge,'name':'query_game_state','arguments':{'domain':'population'}},
+            {'type':'phase','text':'Checking','tool_calls':[{'id':'sdk_call_1','name':'mcp__syx__query_game_state','arguments':{'domain':'population'}}],'resolved_model':'test-model'},
+            {'type':'text','text':'Answer'}, {'type':'result','success':True,'text':'Answer'}])
+        async def spawn(*args,**kwargs):return proc
+        monkeypatch.setattr(syx_claude.asyncio,'create_subprocess_exec',spawn)
+        monkeypatch.setattr(syx_claude.os,'killpg',lambda *_:None)
+        loop=ClaudeConversation(store,MCP(session),None,api_key="test-api-key" if route=="api" else "");visible=[]
+        assert await loop.run(chat['chat_id'],turn,session,'Question',visible.append)=='Answer'
+        assert visible==['Answer'] and store.turns(chat['chat_id'])[0]['status']=='completed'
+        assert proc.stdin.lines[1]['request_id']==bridge
+        events=store.events(chat['chat_id'])
+        assert any(e['payload'].get('bridge_request_id')==bridge for e in events)
+        assert any(e['payload'].get('tool_calls',[{}])[0].get('id')=='sdk_call_1' for e in events if e['kind']=='assistant' and e['payload'].get('tool_calls'))
+        assert all(e['payload']['route']==route for e in events)
+        assert proc.stdin.lines[0]['route']==route
+        store.close()
+    run(scenario())
+
+
+def test_claude_api_missing_key_never_uses_subscription(tmp_path):
+    from syx_chat_service import Coordinator
+    async def scenario():
+        session=uid();store=ChatStore(tmp_path/'history');coordinator=Coordinator(store,MCP(session),tmp_path,'')
+        await coordinator.dispatch(dict(request_id=uid(),action='new',session_id=session,provider='claude',route='api',model='haiku',text='API chat'))
+        cid=coordinator.selected
+        with pytest.raises(ValueError,match='subscription fallback is disabled'):
+            await coordinator.dispatch(dict(request_id=uid(),action='send',session_id=session,chat_id=cid,text='Question'))
+        assert not store.turns(cid) and not coordinator.tasks
+        assert store.chat(cid)['route']=='api'
+        store.close()
+    run(scenario())

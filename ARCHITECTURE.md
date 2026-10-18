@@ -71,3 +71,7 @@ This is a required design, not implemented functionality. Public GUI hooks for t
 ## Chat development implementation
 
 The optional mod-owned panel exchanges bounded detached strings with a local coordinator on the existing I/O worker. GUI operations stay on the game update thread. The coordinator owns SQLite history, explicit session attachment, cancellation and a bounded provider-independent loop over the existing read-only MCP tools. A native DeepSeek API adapter is implemented; subscription adapters and account setup remain pending. See [CHAT_BACKEND.md](CHAT_BACKEND.md) for protocol, limits and validation. The observation bridge itself makes no inference requests.
+
+## Authenticated shared-chat checkpoint
+
+DeepSeek API and Claude subscription now pass separate two-turn flows through the shared in-game panel with selective MCP queries and cited guides. Local rename/evidence/export/delete and reload attachment are tested. Claude API has an explicit SDK route and missing-key/no-plan-fallback tests; actual API-key inference remains pending. See [current evidence](CHAT_VALIDATION.json) and [execution/credential limits](CHAT_BACKEND.md). OpenAI sign-in, fully in-game account setup, physical keyboard/multiline behavior and exhaustive scene coverage remain required.

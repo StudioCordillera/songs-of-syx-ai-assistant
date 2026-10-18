@@ -7,11 +7,11 @@ Added 2026-10-17 at the user's request. These requirements extend the existing O
 | Required choice | Required product route / available development bridge | Credential / entitlement owner | Current project status |
 | --- | --- | --- | --- |
 | OpenAI subscription | Shared in-game chat through a permitted official subscription route; existing Codex MCP configuration is a development bridge | Official client/account | In-game client/authentication pending; original eligibility caveats remain in REFERENCES.md |
-| Claude subscription | Shared in-game chat through permitted official subscription authentication; Claude Code MCP profile is a development bridge | Claude Code/account; plan limits apply | Official route checked; MCP/profile templates added; Claude Code 2.1.296 local stdio health check passed; account/model validation pending |
-| Claude API | Shared in-game chat with an Anthropic API adapter; Claude Code profile is a development bridge | User's Anthropic API account | Configuration/profile supplied; paid inference validation pending |
-| DeepSeek API | Shared in-game chat with a first-class DeepSeek API adapter; Claude Code profile is a development bridge | User's DeepSeek API account | Configuration/profile supplied; paid inference validation pending |
+| Claude subscription | Shared in-game chat through permitted official subscription authentication; Claude Code MCP profile is a development bridge | Claude Code/account; plan limits apply | Official Agent SDK route implemented; two authenticated in-game Haiku-alias turns and cited MCP guidance passed; broader models/account setup pending |
+| Claude API | Shared in-game chat with an Anthropic API adapter; Claude Code profile is a development bridge | User's Anthropic API account | Official SDK API route implemented and missing-key/no-subscription-fallback tested; authenticated API-key inference pending |
+| DeepSeek API | Shared in-game chat with a first-class DeepSeek API adapter; Claude Code profile is a development bridge | User's DeepSeek API account | Native adapter implemented; two authenticated in-game turns and cited selective data/guidance passed; full model/account setup pending |
 
-The required player interface is the shared in-game chat client and per-session/per-chat history specified in [IN_GAME_CHAT.md](IN_GAME_CHAT.md). Existing external-client profiles are development bridges only. They do not complete product support, particularly for DeepSeek. The shared interface, persistence and provider adapters remain unimplemented; template availability is not authenticated model validation.
+The required player interface is the shared in-game chat client and per-session/per-chat history specified in [IN_GAME_CHAT.md](IN_GAME_CHAT.md). Existing external-client profiles are development bridges only. They do not complete product support, particularly for DeepSeek. The shared interface and persistence are implemented experimentally; current authenticated evidence covers DeepSeek API and Claude subscription. Template availability alone is not model validation.
 
 ## Requirements and acceptance gates
 
@@ -49,4 +49,4 @@ For the DeepSeek profile, Claude Code is the MCP/tool client and DeepSeek suppli
 
 ## Native chat development implementation
 
-A [native DeepSeek transport, shared conversation/history engine and opt-in panel](CHAT_BACKEND.md) now exist. Mocked protocol and local GUI checks do not establish authenticated inference or complete provider support. OpenAI/Claude routes and in-game account setup remain pending.
+A [native DeepSeek transport, shared conversation/history engine and opt-in panel](CHAT_BACKEND.md) now exist. Authenticated DeepSeek API and Claude subscription flows now pass in separate chats through that interface. Claude API is implemented with offline/missing-key tests but lacks a real Anthropic key test. OpenAI and in-game account setup remain pending. See CHAT_VALIDATION.json for current evidence.

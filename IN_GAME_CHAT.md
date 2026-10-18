@@ -48,3 +48,7 @@ A local chat coordinator should own conversation persistence, cancellation and p
 DeepSeek requires a first-class API adapter behind this interface. A Claude Code configuration is useful for development but must not be the player's only way to use DeepSeek. Subscription adapters must follow the provider's permitted official authentication and entitlement route; where an eligible route is unavailable, show the limitation rather than scraping tokens or silently billing an API account. Provider-specific streaming/tool-call/continuation behavior must be verified independently.
 
 Implement the shared panel, local history and provider-independent conversation loop together with a usable DeepSeek API path. Do not defer the interface indefinitely while counting backend configurations as completed support. Broader game-state/public-API coverage remains an independent continuing objective.
+
+## Current authenticated implementation checkpoint
+
+The shared panel now completes two-turn questions for DeepSeek API and Claude subscription in separate chats, including actual selective queries and guide URLs. Rename/evidence/export/confirmed deletion and explicit attachment after reload pass isolated GUI tests. Claude API is implemented with a missing-key/no-subscription-fallback gate, without authenticated API-key evidence. OpenAI, in-game connection setup, multiline/keyboard work and broad scene coverage remain open. See [current evidence](CHAT_VALIDATION.json) and [implementation limits](CHAT_BACKEND.md).

@@ -71,8 +71,9 @@ class ChatStore:
     def new(self,game_session,title='New chat',provider='deepseek',model='deepseek-flash',route='api'):
         identity(game_session)
         if not isinstance(title,str) or not 1<=len(title.strip())<=100:raise ValueError('Chat title must contain 1..100 characters')
-        if (provider,route)!=('deepseek','api') or model not in {'deepseek-flash','deepseek-v4-pro'}:
-            raise ValueError('This backend currently implements DeepSeek API only; other routes remain pending')
+        supported={('deepseek','api'):{'deepseek-flash','deepseek-v4-pro'},('claude','subscription'):{'haiku','sonnet','opus'},('claude','api'):{'haiku','sonnet','opus'}}
+        if model not in supported.get((provider,route),set()):
+            raise ValueError('Unsupported explicit provider/model/route; no fallback is available')
         cid=str(uuid4())
         with self.db:self.db.execute('INSERT INTO chats VALUES(?,?,?,?,?,?,?)',(cid,self.clean(title.strip()),game_session,provider,model,route,now()))
         return self.chat(cid)
@@ -138,3 +139,33 @@ class ChatStore:
     def delete(self,chat_id):
         self.chat(chat_id)
         with self.db:self.db.execute('DELETE FROM chats WHERE chat_id=?',(chat_id,))
+
+    def rename(self,chat_id,title):
+        self.chat(chat_id)
+        if not isinstance(title,str) or not 1<=len(title.strip())<=100:raise ValueError('Chat title must contain 1..100 characters')
+        with self.db:self.db.execute('UPDATE chats SET title=? WHERE chat_id=?',(self.clean(title.strip()),chat_id))
+        return self.chat(chat_id)
+
+    def export(self,chat_id):
+        """Explicit local export. No game saves or provider continuation are included."""
+        chat=self.chat(chat_id)
+        rows=self.db.execute('SELECT count(*) FROM events WHERE chat_id=?',(chat_id,)).fetchone()[0]
+        if rows>10000:raise ValueError('Chat exceeds the 10000-event export limit')
+        events=[];after=0;budget=0
+        while True:
+            page=self.events(chat_id,after,25)
+            if not page:break
+            budget+=sum(len(json.dumps(row,ensure_ascii=False).encode()) for row in page)
+            if budget>10*1024*1024:raise ValueError('Chat exceeds the 10 MiB export limit')
+            events.extend(page);after=page[-1]['sequence']
+        raw=json.dumps(self.clean(dict(schema_version=1,chat=chat,turns=self.turns(chat_id),events=events)),ensure_ascii=False,allow_nan=False,indent=2).encode()
+        if len(raw)>10*1024*1024:raise ValueError('Chat exceeds the 10 MiB export limit')
+        directory=self.directory/'exports'
+        if directory.is_symlink():raise ValueError('Export directory cannot be a symlink')
+        directory.mkdir(exist_ok=True,mode=0o700);directory.chmod(0o700)
+        import os
+        temporary=directory/(chat_id+'.tmp')
+        fd=os.open(temporary,os.O_WRONLY|os.O_CREAT|os.O_TRUNC|os.O_NOFOLLOW,0o600)
+        with os.fdopen(fd,'wb') as file:file.write(raw)
+        target=directory/(chat_id+'.json');os.replace(temporary,target)
+        return target

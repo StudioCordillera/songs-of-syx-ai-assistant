@@ -55,3 +55,5 @@ The finished mod must include the common in-game chat and per-session/per-chat h
 ## Experimental native chat
 
 The current development checkout includes an opt-in in-game chat prototype and local coordinator. Follow [CHAT_BACKEND.md](CHAT_BACKEND.md); this requires a development launch and does not yet provide in-game account setup or complete subscription-provider support. The 0.12.0 packaged observation baseline does not contain this prototype.
+
+The coordinator now merges the reviewed starter summaries automatically. For native DeepSeek or official Claude SDK routes, install `.[dev,claude]` and follow [CHAT_BACKEND.md](CHAT_BACKEND.md), including literal credential-file options. DeepSeek API and Claude subscription have authenticated in-game evidence; an Anthropic API key and OpenAI sign-in remain pending.

@@ -150,6 +150,11 @@ def test_mcp_transport(setup):
                 assert not selection.is_error and '123' in str(selection)
                 help_result = await session.call_tool('game_query_help', {})
                 assert not help_result.is_error and 'binary_operators' in str(help_result)
+                bad_shape=await session.call_tool('select_game_state',{'spec':{'queries':[{'domain':'resources'}]}})
+                assert bad_shape.is_error and 'Invalid query fields' in str(bad_shape)
+                old_selection=await session.call_tool('select_game_state',{'spec':{'expected_snapshot_id':'old-id','queries':[{'source':{'domain':'resources'}}]}})
+                assert old_selection.is_error and 'Snapshot changed' in str(old_selection)
+
                 references = await session.call_tool('search_game_references', {'query':'food'})
                 assert not references.is_error and 'stat:95487' in str(references)
                 exact_reference = await session.call_tool('search_game_references', {'query':'stat:95487','category':'stat'})

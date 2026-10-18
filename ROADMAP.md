@@ -29,3 +29,7 @@ The shared in-game client/session-history requirement was made explicit on 2026-
 ### 2026-10-17 chat implementation checkpoint
 
 Shared SQLite history, bounded read-only MCP conversation loop, native DeepSeek streaming/tool transport, file coordinator and opt-in public-widget panel are implemented experimentally. See [implementation and open gates](CHAT_BACKEND.md). Subscription adapters, authenticated end-to-end replies, in-game connection setup and broad menu/focus/lifecycle validation remain required.
+
+## Authenticated shared-chat checkpoint
+
+DeepSeek API and Claude subscription now pass separate two-turn flows through the shared in-game panel with selective MCP queries and cited guides. Local rename/evidence/export/delete and reload attachment are tested. Claude API has an explicit SDK route and missing-key/no-plan-fallback tests; actual API-key inference remains pending. See [current evidence](CHAT_VALIDATION.json) and [execution/credential limits](CHAT_BACKEND.md). OpenAI sign-in, fully in-game account setup, physical keyboard/multiline behavior and exhaustive scene coverage remain required.

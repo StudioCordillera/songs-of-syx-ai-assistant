@@ -1,32 +1,100 @@
 {
-  "passed": true,
-  "limitations": [
-    "No real provider inference",
-    "No physical keyboard test",
-    "No full menu/modal/reload coverage",
-    "Experimental opt-in panel"
-  ],
-  "checks": [
-    "public GUI own-panel click consumed",
-    "open and close",
-    "create chat via file coordinator",
-    "composer focus",
-    "missing-key send rejection",
-    "reopen chat identity",
-    "world and city panel persistence"
-  ],
-  "implementation": "Development chat prototype following observation baseline 0.12.0",
-  "game_version": "0.71.44",
   "date": "2026-10-17",
-  "mocked_protocol_inference_only": true,
-  "authenticated_inference_tested": false,
-  "production_public_api_references": 275,
+  "passed": true,
+  "implementation": "Experimental shared in-game chat: DeepSeek API and Claude subscription",
+  "python_tests": {
+    "passed": 115
+  },
+  "authenticated_providers": {
+    "deepseek": {
+      "route": "api",
+      "completed_in_game_turns": 2,
+      "same_chat_followup": true,
+      "successful_tools": [
+        "describe_game_fields",
+        "game_query_help",
+        "game_status",
+        "query_game_state",
+        "search_guidance",
+        "select_game_state"
+      ],
+      "select_result_row_counts": [
+        3
+      ],
+      "guidance_source_ids": [
+        "steam-developer-eatery-overlay-2022",
+        "steam-v71-starting-economy"
+      ],
+      "visible_source_urls_verified": true,
+      "provider_tool_ids_recorded": true
+    },
+    "claude": {
+      "route": "subscription",
+      "completed_in_game_turns": 2,
+      "same_chat_followup": true,
+      "successful_tools": [
+        "describe_game_fields",
+        "game_query_help",
+        "game_status",
+        "search_guidance",
+        "select_game_state"
+      ],
+      "select_result_row_counts": [
+        3
+      ],
+      "guidance_source_ids": [
+        "steam-developer-eatery-overlay-2022",
+        "steam-v71-starting-economy"
+      ],
+      "visible_source_urls_verified": true,
+      "provider_tool_ids_recorded": true
+    }
+  },
+  "game_ui": {
+    "passed": true,
+    "limitations": [
+      "Text entered through test-only own-widget API; no physical keyboard test",
+      "Limited city scene",
+      "Answer/citation quality verified separately"
+    ],
+    "checks": [
+      "GUI send with real DeepSeek API and Claude subscription in separate chats",
+      "two completed turns in same chat",
+      "own clicks consumed"
+    ]
+  },
+  "history_lifecycle": {
+    "tested_jar_sha256": "5008e70436b9fa46dfd601f25aab8c8f5e58265ca69978da33203743d0ab62ed",
+    "checks": [
+      "rename through own GUI",
+      "evidence toggle through own GUI",
+      "own panel persists without closing game menu",
+      "reload preserves chat and rejects send before explicit attachment",
+      "explicit attach after reload",
+      "local export through own GUI",
+      "confirmed deletion through own GUI"
+    ],
+    "passed": true,
+    "limitations": [
+      "No physical keyboard test",
+      "Standalone main menu has no established script lifecycle",
+      "No battle or world-generation input test"
+    ]
+  },
+  "configured_credential_absent_from_runtime_logs": true,
+  "hidden_reasoning_fields_absent_from_history": true,
+  "export_preserved_explicit_session_boundary": true,
+  "confirmed_delete_preserves_export": true,
+  "claude_api": {
+    "implemented": true,
+    "protocol_and_missing_key_tests": true,
+    "authenticated_inference_tested": false
+  },
+  "current_production_public_api_references": 276,
   "non_public_game_references": 0,
-  "game_jar_sha256": "fe0137c05408e5ee9e31f06fc44fe37a5d4372d9c985b280f0852d1347c0224b",
-  "source_archive_sha256": "a3fc2aa9f4be31aec0616a5030a656ac49a6011343b7e91395c7bac0b9dfb0a5",
-  "production_source_sha256": {
+  "current_production_source_sha256": {
     "syx/assistant/AssistantScript.java": "00e23af134a7a1d0d22ab270f285f043889e9c53a51fea2e458236f66a96fdf0",
-    "syx/assistant/ChatPanel.java": "0578ec4841c3e5661add23745f298e5b13c2edfa2ed0577bdf45ce040befec6b",
+    "syx/assistant/ChatPanel.java": "29e43cc0794021fa864cd690cf703c85e6d01d2e9279a0fdb8c933401f625e20",
     "syx/assistant/EntityReadRequest.java": "deb0f86cad28da1c8677394a4aeb26913b0c80b4ee90c08cb882bedbc11f8a03",
     "syx/assistant/JsonWriter.java": "c525eb60d3224cab83ed3fd6b8594ec8652211f00bd947e873e1482f919e81dc",
     "syx/assistant/StateCollector.java": "dc5d25f18cb75b7e432e73482b23ae52405d791dc1d4f9c6c386f6242e901458",
@@ -34,16 +102,117 @@
     "syx/assistant/UiContentCollector.java": "c0d20c7f9f2734a0bb625427875f06bfcd07edb20611248b39b6e8f480ef5a48",
     "syx/assistant/UiContextCollector.java": "afada4ff94ebb8e6d9bcd401d91ce176f554eebd050e6c9e79e731f787ec84ae"
   },
-  "tested_mod_jar_sha256": "479490b0337fdb81da05f829099bcaa542aa2e950d3c5e5f01b943ba9cdaf1a9",
-  "tested_mod_class_count": 14,
+  "tested_shared_chat_jar_sha256": "3eb538ea1175abeb5e22b25bb5c6e1fad4364f583a3db335cab76de7584662f0",
   "isolated_profile_jar_matches_build": true,
-  "own_panel_export_verified": true,
-  "coordinator_chats": 1,
-  "coordinator_action_admissions": 2,
-  "paid_inference_turns": 0,
-  "prior_observation_baseline": "validation-evidence.json (0.12.0, separate historical evidence)",
-  "python_tests": {
-    "passed": 109,
-    "mocked_or_credential_free": true
+  "limits": [
+    "No physical keyboard test; fixture enters text through public mod-owned widgets",
+    "No exhaustive menu/battle/world-generation chat validation",
+    "Standalone main menu script lifecycle remains unavailable",
+    "No general answer-correctness guarantee; tool outcomes are checked separately from model claims",
+    "Claude SDK starts an explicit new provider context each turn with bounded visible chat history",
+    "OpenAI sign-in and Anthropic API credential/inference remain pending"
+  ],
+  "previous_mock_checkpoint": {
+    "passed": true,
+    "limitations": [
+      "No real provider inference",
+      "No physical keyboard test",
+      "No full menu/modal/reload coverage",
+      "Experimental opt-in panel"
+    ],
+    "checks": [
+      "public GUI own-panel click consumed",
+      "open and close",
+      "create chat via file coordinator",
+      "composer focus",
+      "missing-key send rejection",
+      "reopen chat identity",
+      "world and city panel persistence"
+    ],
+    "implementation": "Development chat prototype following observation baseline 0.12.0",
+    "game_version": "0.71.44",
+    "date": "2026-10-17",
+    "mocked_protocol_inference_only": true,
+    "authenticated_inference_tested": false,
+    "production_public_api_references": 275,
+    "non_public_game_references": 0,
+    "game_jar_sha256": "fe0137c05408e5ee9e31f06fc44fe37a5d4372d9c985b280f0852d1347c0224b",
+    "source_archive_sha256": "a3fc2aa9f4be31aec0616a5030a656ac49a6011343b7e91395c7bac0b9dfb0a5",
+    "production_source_sha256": {
+      "syx/assistant/AssistantScript.java": "00e23af134a7a1d0d22ab270f285f043889e9c53a51fea2e458236f66a96fdf0",
+      "syx/assistant/ChatPanel.java": "0578ec4841c3e5661add23745f298e5b13c2edfa2ed0577bdf45ce040befec6b",
+      "syx/assistant/EntityReadRequest.java": "deb0f86cad28da1c8677394a4aeb26913b0c80b4ee90c08cb882bedbc11f8a03",
+      "syx/assistant/JsonWriter.java": "c525eb60d3224cab83ed3fd6b8594ec8652211f00bd947e873e1482f919e81dc",
+      "syx/assistant/StateCollector.java": "dc5d25f18cb75b7e432e73482b23ae52405d791dc1d4f9c6c386f6242e901458",
+      "syx/assistant/TileReadRequest.java": "1a192cde61a7e1bdefa170390c00b17c74573b9c41de71700ebea466411ad3c5",
+      "syx/assistant/UiContentCollector.java": "c0d20c7f9f2734a0bb625427875f06bfcd07edb20611248b39b6e8f480ef5a48",
+      "syx/assistant/UiContextCollector.java": "afada4ff94ebb8e6d9bcd401d91ce176f554eebd050e6c9e79e731f787ec84ae"
+    },
+    "tested_mod_jar_sha256": "479490b0337fdb81da05f829099bcaa542aa2e950d3c5e5f01b943ba9cdaf1a9",
+    "tested_mod_class_count": 14,
+    "isolated_profile_jar_matches_build": true,
+    "own_panel_export_verified": true,
+    "coordinator_chats": 1,
+    "coordinator_action_admissions": 2,
+    "paid_inference_turns": 0,
+    "prior_observation_baseline": "validation-evidence.json (0.12.0, separate historical evidence)",
+    "python_tests": {
+      "passed": 109,
+      "mocked_or_credential_free": true
+    }
+  },
+  "independent_history_verifier": {
+    "passed": true,
+    "providers": {
+      "deepseek": {
+        "route": "api",
+        "completed_turns": 2,
+        "successful_tools": [
+          "describe_game_fields",
+          "game_query_help",
+          "game_status",
+          "query_game_state",
+          "search_guidance",
+          "select_game_state"
+        ],
+        "select_result_row_counts": [
+          3
+        ],
+        "guidance_source_ids": [
+          "steam-developer-eatery-overlay-2022",
+          "steam-v71-starting-economy"
+        ],
+        "external_urls_match_retrieved_sources": true
+      },
+      "claude": {
+        "route": "subscription",
+        "completed_turns": 2,
+        "successful_tools": [
+          "describe_game_fields",
+          "game_query_help",
+          "game_status",
+          "search_guidance",
+          "select_game_state"
+        ],
+        "select_result_row_counts": [
+          3
+        ],
+        "guidance_source_ids": [
+          "steam-developer-eatery-overlay-2022",
+          "steam-v71-starting-economy"
+        ],
+        "external_urls_match_retrieved_sources": true
+      }
+    }
+  },
+  "tested_python_source_sha256": {
+    "syx_chat.py": "95880915546cfb56577b3354772b0117eb656c392cafb6632cefbdc9b6c39a52",
+    "syx_chat_store.py": "7344b35476096b680e0cf85958f97596b3c9cfe843072202f30e357b97dedbe5",
+    "syx_chat_service.py": "4e90d63f8a4dfe8316630eb5930169f19ba3b5dcfdb7e66f10b14c4059e9fd87",
+    "syx_deepseek.py": "d58e21dbcfdeb1ef0f411dfbb4c0267234bdc5cc185e00d300821725ca1885e3",
+    "syx_claude.py": "3a850a645907f27b1a9cb15c3c5244b96b2da97d5d0dc37f5cd7d6f708cf92a8",
+    "syx_claude_worker.py": "ab6638b2c4ef3a4a1548fde1c0739a48f4d47e468494dd7444019f3f330dea38",
+    "syx_mcp.py": "2de9db040e478790b6f85570315cce2e60ca70802c76febda292e7b4fcaa3d2b",
+    "syx_query.py": "252ff9199e7ec566f0c0a91ea0afb0a8557f5ce51ef62be64abd6216a113b80e"
   }
 }

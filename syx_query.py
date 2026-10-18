@@ -251,6 +251,8 @@ QUERY_HELP = {
         "logical":"and/or: [expressions]; not/is_null: expression", "constants":"scalars can be used directly"},
     "example": {"queries":[{"source":{"domain":"resources","path":"/stockpiles"},
         "select":{"stored":{"field":"/stockpile_stored"}},"sort":[{"field":"/stored","direction":"asc"}],"limit":5}]},
+    "lowest_positive_example":{"queries":[{"source":{"domain":"resources","path":"/stockpiles"},"where":{"gt":[{"field":"/owned"},0]},"select":{"id":{"field":"/id"},"owned":{"field":"/owned"}},"sort":[{"field":"/owned","direction":"asc"}],"limit":3}]},
+    "snapshot_selection":"Omit expected_snapshot_id for a fresh atomic cached observation. Pinning a prior snapshot is intentional strict matching; exports refresh every ~2s, so discovery and subsequent model reasoning often outlive a pinned ID. Cite returned state metadata. Never silently substitute a mismatched snapshot.",
     "limits":"10k intermediate rows, 200k expression work, 32 KiB specification, 64 KiB response",
     "evidence":"search_game_references: installed help text, version/mods and origin. search_guidance: reviewed external excerpts, authority filter and citation URLs. Unknown/mismatched versions require verification.",
     "semantics":"Missing fields error; null stays null; division by zero returns null; aggregates ignore null; empty sum/avg/min/max null; count zero. All collectors currently partial. No raw field exploration or UI control is exposed. Inspect scene metadata and each source scope; battlefield observations differ from campaign ledgers."
