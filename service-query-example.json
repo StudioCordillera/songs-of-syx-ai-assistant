@@ -1,0 +1,56 @@
+{
+  "include_ui_context": true,
+  "queries": [
+    {
+      "name": "service_points_and_staffing",
+      "source": {
+        "domain": "services",
+        "path": "/room_data/rooms"
+      },
+      "where": {
+        "gt": [
+          {
+            "field": "/total_slots_raw"
+          },
+          0
+        ]
+      },
+      "joins": [
+        {
+          "source": {
+            "domain": "employment",
+            "path": "/rooms"
+          },
+          "left_key": "/room_id",
+          "right_key": "/room_id",
+          "as": "work",
+          "kind": "left"
+        }
+      ],
+      "select": {
+        "room": {
+          "field": "/room_id"
+        },
+        "blueprint": {
+          "field": "/blueprint_id"
+        },
+        "active": {
+          "field": "/active"
+        },
+        "total_slots": {
+          "field": "/total_slots_raw"
+        },
+        "available_slots": {
+          "field": "/available_slots_raw"
+        },
+        "reserved_slots": {
+          "field": "/reserved_slots_raw"
+        },
+        "staffing": {
+          "field": "/work"
+        }
+      },
+      "limit": 5
+    }
+  ]
+}

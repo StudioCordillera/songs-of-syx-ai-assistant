@@ -109,3 +109,7 @@ World data adds public `RD.RACES`, `RDRaces.population/all`, `RDRace.race/pop`, 
 ## Resource trade pipeline checkpoint
 
 The adapter uses public Player.buyer/seller routes, PBuyer/PSeller counter accessors and public configuration readers, with TRADE_TYPE identifiers. Resource adapters are reached through their public base API; no inaccessible implementation field is accessed. The observer never calls reserve/deliver/remove/extract/set to obtain data. Those public mutations appear only in the isolated copied-game fixture to establish nonzero read cases. The staged city data is suppressed on battlefields and distinguished from the campaign ledger. TRADE_VALIDATION.json pins source review, compiler access and copied-game MCP checks; no separately documented stable getter contract is claimed.
+
+## Per-room service counters
+
+Only public `ROOM_SERVICER.service` and `RoomServiceInstance.total/available/reserved` are added. The three counter readers are checked as direct stored-field returns against the installed binary, with shipped-source anchors. No service reporting, finder query, reservation write, load/refresh or private implementation cast is used. The current compiler audit contains 346 public references and zero non-public references. The counters retain room-specific raw meanings, with no people/day or individual-access inference. See SERVICE_COUNTERS.md and SERVICE_VALIDATION.json.

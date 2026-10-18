@@ -8,7 +8,7 @@ This is a routing inventory of the current adapter, not a complete game schema. 
 | resources | `/stockpiles`, `/field_definitions` | Stored/capacity and mixed-logistics owned quantities | Reservations, transit and full storage relationships |
 | production | `/resources`, `/room_data/flows` | Campaign ledger plus bounded current scene recipe inputs/outputs and stored quantities | Production modifiers, bucket alignment, retained observations and forecasts |
 | employment | `/rooms` | Room identity, shared observed room-instance ID, position and worker counts/targets | Jobs, production relationships and modifiers |
-| services | `/statistics` | Selected public aggregate stat collections | Service capacity, demand, provider relationships and explanations |
+| services | `/statistics`, `/room_data/rooms`, `/field_definitions` | Aggregate stats plus bounded per-room raw total/available/reserved service points, linked to staffing/help | Daily capacity, demand, individual access/reachability, full provider types and explanations |
 | housing | `/statistics` | HOME aggregate stats | Home availability, quality and occupancy relationships |
 | health | `/statistics` | Disease/environment/food aggregate stats | Causes, disease progression and complete treatment coverage |
 | law | `/statistics` | LAW aggregate stats | Individual cases and complete enforcement/punishment factors |
@@ -45,3 +45,7 @@ Each mapping needs source semantics, compiler/public access verification, bounde
 ## Stored production periods
 
 [Production-period review](PRODUCTION_PERIODS.md) establishes the pinned source/binary rollover behavior and the absence of an exact public age getter in the inspected classes. The protected marker and opaque storage are not used by the adapter. Existing stored-bucket caveats remain required; this review does not convert a bucket into a calendar-aligned rate.
+
+## Service availability and staffing
+
+[SERVICE_COUNTERS.md](SERVICE_COUNTERS.md) records public getter meanings and boundaries for the new room service table. [service-query-example.json](service-query-example.json) retains services without an employment row as a null staffing object. Stored points are not people/day, and missing interfaces/failures do not imply zero service. The copied-city evidence is finite; large-city caps and all provider types remain open.

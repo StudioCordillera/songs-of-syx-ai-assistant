@@ -15,3 +15,5 @@ The launcher checks dependency imports at each start and retries installation wh
 To validate a candidate while keeping the public ZIP intact, package into a runtime directory and pass `--candidate-dir` plus its `--validation` report to `dev/verify_current_player_core.py`. Its default remains the published bundle. The core suite includes copied-game regional getter checks before scene/UI regressions. Promote only after the relevant checks pass.
 
 The current core suite also checks nonzero city trade bookkeeping in a copied save and verifies that battlefield-unavailable city logistics cannot be queried/count-aggregated as zero. This is a scoped evidence checkpoint, not a complete trading or all-menu acceptance claim.
+
+The service-counter build adds a seventh core fixture group: per-room raw service points, a nullable staffing join and installed help links. The same candidate is checked across the existing scene/UI groups before promotion. Service points are not daily people capacity or guaranteed citizen access; see SERVICE_COUNTERS.md.

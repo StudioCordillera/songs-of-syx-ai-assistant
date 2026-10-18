@@ -165,6 +165,31 @@ public final class StateCollector {
             "truncated",truncated,"row_limit",2000,"scan_room_limit",10000,
             "reason","Current recipe only for public ROOM_PRODUCER_INSTANCE rooms. Stored ledger buckets are not refreshed by this observer; configured rates and recorded quantities are not output forecasts or a complete service/production schema.");
     }
+    /** Public ROOM_SERVICER counters only; no service finder, report or refresh calls. */
+    private static Map<String,Object> roomServices() {
+        if(!SETT.exists())return object("coverage","unavailable","scope","instantiated_settlement_scene",
+            "reason","No instantiated settlement scene","rooms",null);
+        List<Object> rows=new ArrayList<>(),failures=new ArrayList<>();
+        int scanned=0,failed=0;boolean truncated=false;
+        scan:for(RoomBlueprintIns<?> blueprint:SETT.ROOMS().ins())for(RoomInstance room:blueprint.all()) {
+            if(scanned>=10000){truncated=true;break scan;}scanned++;
+            if(!(room instanceof settlement.room.service.module.ROOM_SERVICER))continue;
+            if(rows.size()>=2000){truncated=true;break scan;}
+            try {
+                var service=((settlement.room.service.module.ROOM_SERVICER)room).service();
+                if(service==null)throw new IllegalStateException("No service counters");
+                rows.add(object("room_id",room.index(),"blueprint_id",blueprint.key,"reference_id","room:"+blueprint.key,
+                    "active",room.active(),"total_slots_raw",service.total(),"available_slots_raw",service.available(),
+                    "reserved_slots_raw",service.reserved()));
+            }catch(RuntimeException error) {
+                failed++;if(failures.size()<10)failures.add(object("room_id",room.index(),"reason",error.getClass().getSimpleName()));
+            }
+        }
+        return object("coverage","partial","scope","instantiated_settlement_scene","rooms",rows,
+            "scanned_rooms",scanned,"failed_rooms",failed,"failure_samples",failures,"truncated",truncated,
+            "row_limit",2000,"scan_room_limit",10000,
+            "reason","ROOM_SERVICER instances only. Stored raw service-point counters, not people served per day, demand, reachability, citizen permissions or a complete service schema. Unimplemented room interfaces do not mean zero service.");
+    }
     /** Campaign regional counters, detached and bounded; never forces regional updates. */
     private static Map<String,Object> worldData() {
         List<Object> regions=new ArrayList<>(),population=new ArrayList<>(),failures=new ArrayList<>();
@@ -427,9 +452,20 @@ public final class StateCollector {
                 }
             }
             Map<String,Object> data=object("statistics", rows);
+            if(group.getKey().equals("services")) {
+                data.put("room_data",roomServices());
+                data.put("field_definitions",object("room_data",object(
+                    "scope","instantiated_settlement_scene","source","settlement/room/service/module/ROOM_SERVICER.java; RoomServiceInstance.java",
+                    "room_id","Public RoomInstance.index(), joins employment.room_id in the same observation; not a permanent identity or selected room.",
+                    "total_slots_raw","Stored RoomServiceInstance.total(): configured count of service points for this instance, with room-specific meaning; not daily throughput or people capacity.",
+                    "available_slots_raw","Stored RoomServiceInstance.available(): reported reservable service-point count; not proof a particular citizen can reach or use it.",
+                    "reserved_slots_raw","Stored RoomServiceInstance.reserved(): reported reserved service-point count; total minus available need not equal reserved.",
+                    "active","Public room activation flag. Inactive rooms can still retain stored counters; no refresh is performed.",
+                    "missing","Only instances implementing public ROOM_SERVICER are included. Other rooms, failures and truncation are not zero counts.")));
+            }
             if(group.getKey().equals("military"))data.put("scene_armies",Arrays.asList(sceneArmy("player",GAME.ARMIES().player()),sceneArmy("enemy",GAME.ARMIES().enemy())));
             return data;
-        }, group.getKey().equals("military")?"Public battle aggregates and scene division rows; not every campaign army, private order state or combat history":"Public aggregate statistics only; no causal/historical completeness is claimed.");
+        }, group.getKey().equals("military")?"Public battle aggregates and scene division rows; not every campaign army, private order state or combat history":group.getKey().equals("services")?"Public service aggregates and bounded per-room stored service-point counters; not demand, daily capacity, citizen access or complete service mechanics.":"Public aggregate statistics only; no causal/historical completeness is claimed.");
         Set<String> sceneDomains=Set.of("population","resources","employment","services","housing","health","law","happiness","military","map","entities");
         for(String key:DOMAINS) {
             Map<String,Object> record=(Map<String,Object>)domains.get(key);

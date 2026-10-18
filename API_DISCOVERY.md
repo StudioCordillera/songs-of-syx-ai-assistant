@@ -54,3 +54,5 @@ The current simplified player build inventories 314 public production member ref
 The regional-population checkpoint brings the production audit to 322 public member references, all present in the same pinned offline catalog. The eight added public references support stored regional counts and realm-capital/area reads. WORLD_VALIDATION.json records scoped copied-campaign evidence; the catalog still does not enumerate supported variables or establish an official stability contract.
 
 The current resource-trade checkpoint inventories 342 public production member references, all present in the same offline catalog, with zero non-public production references. This expands explicit typed mapping, not arbitrary variable discovery or a completion percentage.
+
+The service-counter checkpoint pairs the new 346-member public production audit with the unchanged pinned offline catalog. All 346 IDs occur in its 17,442 candidates. This rechecks audit membership against the existing catalog, not complete state coverage or a new game version.

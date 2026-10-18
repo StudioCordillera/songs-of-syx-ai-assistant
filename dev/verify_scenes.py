@@ -78,6 +78,13 @@ def verify(directory:Path,timeout:float=260,on_demand:bool=False,tiles:bool=Fals
                 assert production.data['room_data']['coverage']=='partial'
                 assert production.data['room_data']['scope']=='instantiated_settlement_scene'
                 assert production.data['room_data']['failed_rooms']==0
+            services=snapshot.domains['services']
+            if name not in {'world_generation','terrain_generated'}:
+                assert services.coverage=='partial' and services.scope=='instantiated_settlement_scene'
+                rooms=services.data['room_data']
+                assert rooms['coverage']=='partial' and rooms['scope']=='instantiated_settlement_scene'
+                assert rooms['failed_rooms']==0 and not rooms['truncated']
+                assert len(rooms['rooms'])<=rooms['row_limit'] and rooms['scanned_rooms']<=rooms['scan_room_limit']
             regional=snapshot.domains['world']
             if name not in {'world_generation','terrain_generated'}:
                 assert regional.coverage=='partial'
@@ -133,6 +140,7 @@ def verify(directory:Path,timeout:float=260,on_demand:bool=False,tiles:bool=Fals
                           'on_demand_read_available':read_available,'tile_read_available':tile_available,
                           'city_trade_pipeline_coverage':city_trade.data['settlement_pipeline']['coverage'] if city_trade.data else 'unavailable',
                           'world_population_coverage':regional.coverage,
+                          'service_room_coverage':services.data['room_data']['coverage'] if services.data else 'unavailable',
                           'production_coverage':production.coverage,
                           'production_room_coverage':production.data['room_data']['coverage'] if production.data else 'unavailable'}
             print('PASS',name,flush=True)

@@ -43,9 +43,10 @@ def verify(args):
     profile_mod=home/'.local/share/songsofsyx/mods/syx-ai-assistant/V71/script/syx-ai-assistant.jar'
     assert profile_mod.parent.is_dir() and not profile_mod.is_symlink();shutil.copy2(jar,profile_mod)
     classpath=':'.join(map(str,[game/'SongsOfSyx.jar',game/'base/script/000_Tutorial.jar',game/'base/script/001_Tutorial.jar',jar,classes]))
-    used_fixtures=['LiveSmoke.java','TradeScenario.java','WorldScenario.java','ProductionScenario.java','SceneScenario.java','ContextScenario.java','ExtendedContextScenario.java']
+    used_fixtures=['LiveSmoke.java','ServiceScenario.java','TradeScenario.java','WorldScenario.java','ProductionScenario.java','SceneScenario.java','ContextScenario.java','ExtendedContextScenario.java']
     fixture_hashes={'mod/tests/'+n:sha(ROOT/'mod/tests'/n) for n in used_fixtures}
-    cases=[('trade','verify_trade.py',[],'trade-validation.json'),
+    cases=[('services','verify_services.py',[],'service-validation.json'),
+           ('trade','verify_trade.py',[],'trade-validation.json'),
            ('world','verify_world.py',[],'world-validation.json'),
            ('production','verify_production.py',[], 'production-validation.json'),
            ('scenes','verify_scenes.py',['--on-demand','--tiles'],'scene-validation.json'),

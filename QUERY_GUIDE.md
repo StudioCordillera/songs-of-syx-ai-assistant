@@ -238,3 +238,9 @@ All trade reasons are retained. If the question concerns market trade only, firs
 ### Nested unavailable observations
 
 An enclosing observation can be unavailable even when its overall domain is partial. A battlefield's city-trade pipeline is one example. `select_game_state` refuses an unavailable nested source or join, so aggregating it cannot produce a misleading zero. Field projections of its container return null. `query_game_state` reports the effective unavailable coverage and reason, with null data/total for a container, while scalar diagnostic metadata remains readable. Replies and source records retain `subtree_coverage`, `subtree_scope` and `subtree_reason` where supplied; the existing domain scope remains separate. An observed, available empty table can still legitimately count as zero.
+
+## Service points and staffing
+
+Use `describe_game_fields("services")`, then select `/room_data/rooms`. The runnable example in [service-query-example.json](service-query-example.json) filters positive configured service counts and left-joins staffing by the same-observation `room_id`, with five result rows and shared UI context. Some services have no employment row: the projected staffing object remains null. Reading a nested field through that null object is a missing-field error under the query contract; do not replace it with zero.
+
+`total_slots_raw`, `available_slots_raw` and `reserved_slots_raw` are stored room-specific service-point counters. They do not establish people/day, demand, citizen permissions or reachability, and total minus available need not equal reserved. Read [SERVICE_COUNTERS.md](SERVICE_COUNTERS.md) and the returned coverage/limits before using these values in advice. The existing aggregate `/statistics` table remains separate.
