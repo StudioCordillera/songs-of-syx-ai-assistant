@@ -1,0 +1,11 @@
+# Recorded workplace selection
+
+`query_live_entities` and `capture_live_entities` accept optional `workplace_room_id`, a strict integer from zero to 2^31−1. The predicate compares the humanoid's recorded workplace through the already mapped public `STATS.WORK().EMPLOYED.get(h)` and room index. It combines with existing ID/race/class/type/tile/stat filters using AND and does not require the relationships projection. Unassigned people and non-humanoids do not match. A syntactically valid unknown room index may return no matches; an empty selection does not prove that a room exists or has no workers beyond an unfinished/erroring scan.
+
+For example, request `{"workplace_room_id": 123, "fields": ["id", "relationships"], "limit": 25}` using a currently observed room index. Inspect returned workplace blueprint/anchor, scene, session and time. This selects recorded assignments, not current work, profession, visitor presence, room occupancy, UI selection or a permanent room identity. Room indexes can be reused even within a session. Session pinning prevents crossing a reload; it does not make an older cached room record identical to a later live observation.
+
+Live cursor pages retain their existing independent-observation semantics; keep the filter on each continuation. A capture evaluates the bounded selection once and retains detached rows, the original selection and original tick/time/context for paging. It does not freeze the game. Existing scan/row/stat/byte/deadline and capture retention limits are unchanged. Live predicate exceptions increment predicate_errors; a capture with any predicate error retains nothing.
+
+The optional wire line is emitted only when the filter is supplied. Requests omitting it retain the previous wire shape. An older mod rejects the new optional key rather than silently ignoring the filter; use the paired current player build. No employee-list enumeration, shared employee-cache helper, arbitrary method or game setter is exposed.
+
+WORKPLACE_FILTER_VALIDATION.json pins finite copied-game worker-ID/getter comparisons, alternate/unassigned exclusions, combined filters and retained pages. This is not large-city cost, worker-history, all-class/scene or complete room/production coverage. Public getters are verified against shipped source, not separately documented stable contracts.

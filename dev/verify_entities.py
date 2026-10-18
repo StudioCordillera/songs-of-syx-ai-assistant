@@ -95,6 +95,43 @@ def verify(directory:Path,timeout=200):
                         assert row['relationships'][key]['available'] and row['relationships'][key]['data']==wanted
                     return value['request_id']
                 first,second=await asyncio.gather(read(),read());assert first!=second
+                workplace=expected['workplace_filter']
+                async def tool(name,args):
+                    result=await session.call_tool(name,args)
+                    assert not result.is_error,result
+                    return json.loads(next(x.text for x in result.content if x.type=='text'))
+                selected=[];position=0
+                while True:
+                    page=await tool('query_live_entities',{'spec':{**pinned,'workplace_room_id':workplace['room_id'],
+                        'fields':['id','relationships'],'cursor':position,'limit':2}})
+                    assert page['data']['predicate_errors']==0
+                    for row in page['data']['rows']:
+                        assert row['relationships']['workplace']['available']
+                        assert row['relationships']['workplace']['data']['room_id']==workplace['room_id']
+                    selected.extend(row['id'] for row in page['data']['rows'])
+                    position=page['data']['next_cursor']
+                    if position is None:break
+                assert selected==workplace['entity_ids'] and len(selected)>=2
+                none=await tool('query_live_entities',{'spec':{**pinned,'workplace_room_id':workplace['room_id'],
+                    'entity_ids':[workplace['other_room_entity_id'],workplace['unassigned_entity_id']],'fields':['id']}})
+                assert none['data']['rows']==[] and none['data']['predicate_errors']==0
+                exact=await tool('query_live_entities',{'spec':{**pinned,'workplace_room_id':workplace['room_id'],
+                    'entity_ids':selected[:1],'race_id':workplace['sample_race_id'],'fields':['id','stats'],
+                    'stat_ids':[expected['stat_id']],'limit':1,
+                    'stat_filters':[{'stat_id':expected['stat_id'],'op':'eq','value':workplace['sample_stat_value']}]}})
+                assert [r['id'] for r in exact['data']['rows']]==selected[:1]
+                assert exact['data']['rows'][0]['stats'][0]['value']==workplace['sample_stat_value']
+                created=await tool('capture_live_entities',{'spec':{**pinned,'workplace_room_id':workplace['room_id'],
+                    'fields':['id','relationships'],'max_rows':len(selected)}})
+                retained=created['capture'];assert retained['row_count']==len(selected)
+                assert retained['selection']['workplace_room_id']==workplace['room_id']
+                retained_ids=[]
+                for offset in range(len(selected)):
+                    page=await tool('read_entity_capture',{'capture_id':retained['capture_id'],'offset':offset,'limit':1,'include_ui_context':True})
+                    assert page['capture']['tick']==retained['tick'] and page['capture']['captured_at']==retained['captured_at']
+                    assert page['capture']['selection']['workplace_room_id']==workplace['room_id']
+                    retained_ids.extend(r['id'] for r in page['rows'])
+                assert retained_ids==selected
                 diagnostics=[{'path':'','total':expected['total'],'truncated':True}]
                 for offset in [0,900]:
                     result=await session.call_tool('query_game_state',{'domain':'entities','pointer':'/items','offset':offset,'limit':100})
@@ -118,10 +155,11 @@ def verify(directory:Path,timeout=200):
     assert current.domains['entities'].data['total']==expected['total']
     assert current.ui_context['selected_subject']['entity_id']==expected['entity_id']
     report={'passed':True,'evaluated_at':datetime.now(timezone.utc).isoformat(),'game_version':snapshot.game_version,'live_entities':expected['total'],'prefix_limit':1000,
-        'target_beyond_prefix':True,'actual_prefix_truncation_diagnostics_over_mcp':True,'exported_aggregate_count':1000,'pages':pages,'combined_filters':True,'concurrent_mcp_requests':True,
+        'target_beyond_prefix':True,'actual_prefix_truncation_diagnostics_over_mcp':True,'workplace_filter_live_and_retained_parity':True,
+        'workplace_matching_entities':len(expected['workplace_filter']['entity_ids']),'other_room_and_unassigned_rejected':True,'workplace_stat_race_id_and_projection_combination':True,'exported_aggregate_count':1000,'pages':pages,'combined_filters':True,'concurrent_mcp_requests':True,
         'unknown_stat_rejected':True,'same_response_context':True,'relationship_nonnull_cases':relation_counts,'selected_relationship_parity':True,'relationships_over_mcp':True,
         'source_sha256':{n:hashlib.sha256((Path(__file__).resolve().parent.parent/n).read_bytes()).hexdigest() for n in
-            ['dev/verify_entities.py','mod/tests/EntityScenario.java','mod/tests/LiveSmoke.java','syx_query.py','syx_mcp.py','syx_live.py']},
+            ['dev/verify_entities.py','mod/tests/EntityScenario.java','mod/tests/LiveSmoke.java','syx_query.py','syx_mcp.py','syx_live.py','syx_capture.py','mod/src/main/java/syx/assistant/EntityReadRequest.java']},
         'inference_calls':0,
         'limits':['The fixture adds 1100 temporary citizens through public constructors in a copied game and never saves; this crosses the actual entity prefix cap, not room/service/world caps.',
             'Collection flags are compared on first/last cached pages and aggregate sources; no collector read-failure injection.',

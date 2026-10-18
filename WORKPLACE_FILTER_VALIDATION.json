@@ -1,0 +1,54 @@
+{
+  "passed": true,
+  "evaluated_at": "2026-10-18T15:42:36.123862+00:00",
+  "game_version": "0.71.44",
+  "live_entities": 1395,
+  "prefix_limit": 1000,
+  "target_beyond_prefix": true,
+  "actual_prefix_truncation_diagnostics_over_mcp": true,
+  "workplace_filter_live_and_retained_parity": true,
+  "workplace_matching_entities": 14,
+  "other_room_and_unassigned_rejected": true,
+  "workplace_stat_race_id_and_projection_combination": true,
+  "exported_aggregate_count": 1000,
+  "pages": 18,
+  "combined_filters": true,
+  "concurrent_mcp_requests": true,
+  "unknown_stat_rejected": true,
+  "same_response_context": true,
+  "relationship_nonnull_cases": {
+    "workplace": 2,
+    "profession": 2,
+    "home_assignment": 2,
+    "division": 1
+  },
+  "selected_relationship_parity": true,
+  "relationships_over_mcp": true,
+  "source_sha256": {
+    "dev/verify_entities.py": "04d316f3be24ca0fa1c6e298088eeb32104035b4773243c32dc1d0edd9b71f52",
+    "mod/tests/EntityScenario.java": "df9b359332c391857857d93ed5d38e36f2029b3a066c3bcb540e74f3eda69f7d",
+    "mod/tests/LiveSmoke.java": "cf293645ea419e1e5f190e494f813896d98c0fab964b553ea0b2a50bc0c0a6fa",
+    "syx_query.py": "039795c9c0e1a4f167ff7bb98afd5955c52814d4fcf40705d0c59cdf06b684b4",
+    "syx_mcp.py": "e0d596a394865af6bdd6a2e6fce04e14e36d60281e93ab18e0cc6c54dea92a34",
+    "syx_live.py": "8238cdfc021c8d43a02e9c9b304fe262f701ebd52a492c17ea9ce3e308e37885",
+    "syx_capture.py": "fb27ec6c9278992d668bb54c85b34f17c625329a8d6f409df7fba1e3e56bcc55",
+    "mod/src/main/java/syx/assistant/EntityReadRequest.java": "e2d13aee21f399e8718382d5b43d5a6c85e5d78d2708d8105b9f1ecfe730edf8"
+  },
+  "inference_calls": 0,
+  "limits": [
+    "The fixture adds 1100 temporary citizens through public constructors in a copied game and never saves; this crosses the actual entity prefix cap, not room/service/world caps.",
+    "Collection flags are compared on first/last cached pages and aggregate sources; no collector read-failure injection.",
+    "Paused isolated copied game; not a performance benchmark.",
+    "Cursor pages are separate observations, not a stable multi-page snapshot.",
+    "No private attributes or arbitrary field/method invocation."
+  ],
+  "game_exit_code": 0,
+  "mod_jar_sha256": "6338655aea84e310cf2e19e1abe652235b8c544be5e8e790e27403e336dfc200",
+  "game_jar_sha256": "fe0137c05408e5ee9e31f06fc44fe37a5d4372d9c985b280f0852d1347c0224b",
+  "wire_codec_tests": {
+    "passed": true,
+    "scope": "Pure Java request parser; no game state or UI initialized. Legacy live/capture and optional zero/max-int accepted; 16 invalid requests and four invalid capture requests rejected.",
+    "test_source_sha256": "f81bf36c382228c4f100d0a4c14a1753b3ab1dd120b255b9a404fe73ded8af85",
+    "compiled_fixture_sha256": "59f6aef00cfa0591267390494a9ab0933e31432c1693133c53c4824cac66a9b2"
+  }
+}

@@ -1,6 +1,18 @@
-# Validation — 0.12.0 public API/context audit
+# Validation evidence
 
-## Current checks
+## Current workplace-filter player checkpoint
+
+The source-matching player JAR/Python pair passes 175 Python tests, the pure Java request-codec checks, two real DeepSeek Pro turns and all seven copied-save core groups. PLAYER_CORE_VALIDATION.json records current service/trade/world/production checks, eight scene phases, eleven UI/help lifecycle phases and sixteen extended phases. USER_TEST_VALIDATION.json links the exact source/JAR and follow-up evidence. Earlier sections below retain their historical scopes.
+
+WORKPLACE_FILTER_VALIDATION.json independently checks 14 assigned workers in a paused copied scene containing 1,395 entities. Live cursor pages agree with native recorded-workplace getters; alternate-room/unassigned people are excluded; ID/race/stat predicates and projections combine; retained pages preserve the original selection/tick/time. The fixture repeats the real 1,000-row entity-prefix cap diagnostics and on-demand traversal beyond it. No game is saved. The pure Java parser accepts legacy live/capture requests and optional zero/max-int IDs and rejects malformed/duplicate/overflow/unknown fields. Assignment does not establish present activity, and room indexes can be reused within a session. This is not all-class/scene or large-city cost acceptance.
+
+The compiler inventory remains 358 public production member references with zero non-public references. PRODUCTION_MODIFIER_REVIEW.json and PRODUCTION_MODIFIER_BOUNDARIES.md are developer-only static shipped-file reviews, not runtime calls or stable official API contracts. Generic employee-cache/rate helpers remain unexposed. A narrower public degradation getter remains a future candidate.
+
+Six supported capability records, two explicit gaps and three member anchors pass actual MCP discovery; all 37 guidance cases pass with 52 supporting fragments and 39 caveats. No external source review date is refreshed by these local regressions. Fresh extracted dependencies, launcher/coordinator startup, isolated installation and archive credential exclusion pass. The simple Pro transcript remains free of tool/debug events. Prior focus evidence is retained only after checking unchanged compiled ChatPanel classes; no physical-keyboard or exhaustive display claim is made.
+
+SERVICE_VALIDATION.json retains the same-source static counter/policy reviews alongside the new game checks. WORKFORCE_VALIDATION.json is refreshed from the current grouped production fixture. Historical standalone entity-prefix and collection-cost reports retain their older JAR/source hashes; StateCollector is unchanged, but timing is not relabeled as a new benchmark. The player ZIP is promoted only after checks pass, and its predecessor is retained. Complete variables/modifiers, larger-city cost, other collector cap/fault paths, complete menus and broader current-version reference coverage remain open.
+
+## Initial 0.12.0 public API/context checks
 
 - 90 Python tests pass: snapshot validity/freshness, demo isolation, paging, selected-data bounds, query filtering/joins/grouping/aggregation, cited source authority/version labels, and MCP transport.
 - MCP transport verifies exactly thirteen tools, all read-only. No raw-field, screenshot or input tools are registered.

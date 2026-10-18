@@ -15,7 +15,8 @@ from syx_mcp import Advisor
 ROOT=Path(__file__).parent
 
 @pytest.mark.parametrize('spec',[
-    {'fields':['privateAI']},{'method':'kill'},{'limit':True},{'cursor':-1},
+    {'workplace_room_id':True},{'workplace_room_id':-1},{'workplace_room_id':2**31},
+    {'workplace_room_id':'1'},{'workplace_room_id':1.5},{'fields':['privateAI']},{'method':'kill'},{'limit':True},{'cursor':-1},
     {'scan_limit':10001},{'entity_ids':[1,1]},{'fields':['stats'],'stat_ids':[]},
     {'fields':['stats'],'stat_ids':[1,2],'limit':51},{'tile_bounds':[0,0,0,2]},
     {'stat_filters':[{'stat_id':1,'op':'invoke','value':0}]},{'stat_ids':[1]},
@@ -91,3 +92,15 @@ def test_missing_update_times_out_and_lock_is_reusable(live):
     with pytest.raises(ValueError,match='did not answer'):query_entities(advisor,{},timeout=.6)
     # A second attempt can acquire the released transport lock; no stale lease remains.
     with pytest.raises(ValueError,match='did not answer'):query_entities(advisor,{},timeout=.6)
+
+
+def test_workplace_filter_wire_is_optional_and_shared_by_capture():
+    from syx_live import EntityCaptureSelection
+    request,session=str(uuid4()),str(uuid4())
+    expires=int(time.time()*1000+8000)
+    legacy=EntitySelection(fields=['id']).wire(request,session,expires)
+    assert 'workplace_room_id' not in legacy and len(legacy.splitlines())==15
+    for mode in [EntitySelection,EntityCaptureSelection]:
+        selection=mode(workplace_room_id=0,fields=['id'])
+        wire=selection.wire(request,session,expires)
+        assert wire.count('workplace_room_id=0\n')==1 and len(wire.splitlines())==16

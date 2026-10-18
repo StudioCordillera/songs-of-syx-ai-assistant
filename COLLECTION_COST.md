@@ -1,6 +1,6 @@
 # Collection and selection cost baseline
 
-COLLECTION_COST_VALIDATION.json records a native run of the exact shipped player JAR on Songs of Syx 0.71.44, followed by offline parsing and selection of its retained observation. This is a small copied-city baseline, not large-city acceptance or a performance guarantee.
+COLLECTION_COST_VALIDATION.json records a native run of the workforce-factor player JAR (`153f37ee51cb47c38ea568c589e3a642c43e1cfaf1a7911070730da0eacb2b1e`) on Songs of Syx 0.71.44, followed by offline parsing and selection of its retained observation. This is a small copied-city baseline, not large-city acceptance or a performance guarantee.
 
 ## Observed results
 
@@ -35,4 +35,7 @@ The runner requires the licensed installation and existing isolated smoke profil
 
 The last observation retains its real timestamp and a separate profiling session/sequence. It is private runtime evidence, never substituted for the active bridge snapshot. Only timing/shape metadata and hashes are published; game binaries, saves, DTO values and installed help text are not published. The report pins fixture, query, production Java and Python source hashes and a zero game exit code.
 
-All 168 Python tests and player release freshness checks pass for the workforce build. This run measures the current collector/JAR and Python hashes recorded in the report; earlier measurements remain historical evidence in Git. An additional offline check of the SHA-matching retained observation confirms 31 employing-room rows with factors and no employment read failures/truncation. No timestamp is refreshed by this check. Larger settlements, cap/fault behavior, all scenes, sustained FPS and worst-case latency still require separate evidence.
+All 168 Python tests and player release freshness checks pass for the workforce build. This run measures the workforce-factor collector/JAR and Python hashes recorded in the report; earlier measurements remain historical evidence in Git. An additional offline check of the SHA-matching retained observation confirms 31 employing-room rows with factors and no employment read failures/truncation. No timestamp is refreshed by this check. Larger settlements, cap/fault behavior, all scenes, sustained FPS and worst-case latency still require separate evidence.
+
+
+The subsequent workplace-filter checkpoint changes on-demand entity selection, not `StateCollector`. Its JAR and paired Python hashes differ. The timing report retains the earlier whole-build hashes and is not relabeled as a new benchmark. Workplace-filter correctness evidence does not establish its cost in a large city.

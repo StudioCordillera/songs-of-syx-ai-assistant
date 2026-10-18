@@ -30,6 +30,7 @@ class EntitySelection(StrictModel):
     race_id: StrictStr | None = Field(default=None,min_length=1,max_length=100)
     class_id: StrictStr | None = Field(default=None,min_length=1,max_length=100)
     humanoid_type_id: StrictStr | None = Field(default=None,min_length=1,max_length=100)
+    workplace_room_id: Annotated[StrictInt,Field(ge=0,le=2**31-1)] | None = None
     tile_bounds: list[Annotated[StrictInt,Field(ge=0,le=100000)]] | None = Field(default=None,min_length=4,max_length=4)
     stat_filters: list[StatFilter] = Field(default_factory=list,max_length=4)
     fields: list[OutputField] = Field(default_factory=lambda:['id','entity_type','tile_x','tile_y','race_id'],min_length=1,max_length=9)
@@ -59,6 +60,7 @@ class EntitySelection(StrictModel):
             'type':encoded(self.humanoid_type_id),'bounds':','.join(map(str,self.tile_bounds or [])),
             'fields':','.join(self.fields),'stats':','.join(map(str,self.stat_ids)),
             'filters':','.join(f'{f.stat_id}:{f.op}:{f.value}' for f in self.stat_filters)}
+        if self.workplace_room_id is not None:values['workplace_room_id']=str(self.workplace_room_id)
         text=''.join(f'{key}={value}\n' for key,value in values.items())
         if len(text.encode())>8192:raise ValueError('Read request exceeds 8 KiB')
         return text
@@ -162,5 +164,6 @@ ENTITY_QUERY_HELP = {
     'paging':'With entity_ids, the public getByID lookup is used and cursor indexes the requested ID list. Otherwise cursor indexes mutable scene-array slots. next_cursor continues from the scanned position, not the count of matching entities. Each page is a separate observation; no multi-page snapshot guarantee.',
     'limits':'10000 array slots scanned, 100 returned rows, four stat comparisons, 20 projected stats and 100 stat cells per request; 8 KiB request, 64 KiB response, 8-second deadline. POSIX MCP host required.',
     'relationships':'Optional relationships projection: recorded workplace room identity/blueprint/name/anchor; recorded profession blueprint; stored home-assignment coordinates; scene division identity/side. Per-getter available/data distinguish absent assignment from failed observation. Non-humanoids return null. These are not current activity, home occupancy, selected room, permanent IDs or a complete history. Requires the paired updated mod.',
+    'workplace_filter':'Optional workplace_room_id selects humanoids whose recorded STATS.WORK().EMPLOYED room index matches. AND with other filters; independent of projections. Unassigned/non-humanoids do not match. Not present activity, profession or UI selection. Room indexes can be reused within a session: inspect returned relationships, scene and time; do not silently join to an older cached room. This optional wire field requires a paired updated mod; requests omitting it retain the prior wire shape. Captures retain this filtered selection from their original observation.',
     'units':'Raw stat integers and getter bounds do not establish semantic units. Cite returned reference_id and retrieve the installed description.',
 }

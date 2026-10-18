@@ -27,7 +27,7 @@ Aggregate stat collections are intentionally left in game-defined units until th
 
 ## Reads beyond the prefix snapshot
 
-- `query_live_entities`: finite projected fields, IDs, named stat filters and recorded workplace/profession/home/division assignments. Cursor pages are separate observations.
+- `query_live_entities`: finite projected fields, IDs, recorded-workplace room filter, named stat filters and recorded workplace/profession/home/division assignments. Cursor pages are separate observations.
 - `capture_live_entities` / `read_entity_capture`: bounded detached observations retained for stable paging, with original session/tick/context. Not a global worker transaction.
 - `query_live_tiles`: terrain/floor/room/mineral/path fields in a bounded rectangle, with fixed filters. Coordinate room data does not identify a UI-selected room. Cursor pages remain separate observations.
 
@@ -53,3 +53,6 @@ Each mapping needs source semantics, compiler/public access verification, bounde
 Configured city permissions now have a separate bounded [policy mapping](SERVICE_PERMISSIONS.md) and [cohort query example](service-policy-query-example.json). Flags apply to registered service types, including unbuilt ones; individual nobles/tourists/children can follow different rules. Missing policies are unknown, not denial. Battlefield/setup policy defaults are not exported as campaign-city settings.
 
 [Stored workforce factors](WORKFORCE_FACTORS.md) extend employment with source-backed public readers and an output/workforce join example. The factors are stored/defaulted/smoothed and are not current productivity percentages or a complete modifier stack. Employment now reports 2,000-row/10,000-room-scan limits, failures and truncation; missing joined rooms remain unknown. Both fetch-participation branches have finite copied-city getter/arithmetic evidence; larger-city and cap/fault branches remain open.
+
+
+The workplace-filter checkpoint selects assigned humanoids through the existing public recorded-workplace getter, including stable retained-capture paging. WORKPLACE_FILTER_VALIDATION.json compares 14 matching workers with native getters in a paused copied scene containing 1,395 entities, checks other-room/unassigned exclusions and combined ID/race/stat predicates, and repeats actual prefix-cap diagnostics. It does not establish current activity or permanent room identities. PRODUCTION_MODIFIER_BOUNDARIES.md records why generic employee-cache/production-rate helpers remain outside the bounded observer; the full modifier stack remains open.

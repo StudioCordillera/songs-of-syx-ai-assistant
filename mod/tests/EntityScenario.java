@@ -58,6 +58,22 @@ public final class EntityScenario {
             }
             if(found.containsValue(false))throw new IllegalStateException("Missing non-null relationship fixture: "+found);
             expected.put("relationship_cases",relationshipCases);
+            Map<Integer,List<Integer>> assigned=new LinkedHashMap<>();
+            Map<Integer,Humanoid> people=new LinkedHashMap<>();
+            for(ENTITY entity:all)if(entity instanceof Humanoid && !entity.isRemoved()) {
+                Humanoid person=(Humanoid)entity;people.put(person.id(),person);
+                var workplace=STATS.WORK().EMPLOYED.get(person);
+                if(workplace!=null)assigned.computeIfAbsent((int)workplace.index(),key->new ArrayList<>()).add(person.id());
+            }
+            var largest=assigned.entrySet().stream().max(Comparator.comparingInt(e->e.getValue().size())).orElseThrow();
+            if(largest.getValue().size()<2 || assigned.size()<2 || STATS.WORK().EMPLOYED.get(target)!=null)
+                throw new IllegalStateException("Workplace filter requires two assigned groups and an unassigned target");
+            int other=assigned.entrySet().stream().filter(e->!e.getKey().equals(largest.getKey())).findFirst().orElseThrow().getValue().get(0);
+            Humanoid sampleWorker=people.get(largest.getValue().get(0));
+            expected.put("workplace_filter",Map.of("room_id",largest.getKey(),"entity_ids",largest.getValue(),
+                "other_room_entity_id",other,"unassigned_entity_id",target.id(),"sample_race_id",sampleWorker.race().key,
+                "sample_stat_value",chosen.indu().get(sampleWorker.indu())));
+
             Files.createDirectories(output);
             Files.writeString(output.resolve("entity-fixture.json"),JsonWriter.encode(Map.of("started_at",Instant.now().toString(),"expected",expected)));
             if(Boolean.getBoolean("syx.smoke.capture")) {

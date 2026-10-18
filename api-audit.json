@@ -6,7 +6,7 @@
   "mod_source_sha256": {
     "syx/assistant/AssistantScript.java": "079b048597c373f88d8179d4f8e8fec576a82c5b13ad6c95fe6e672ba3722e3a",
     "syx/assistant/ChatPanel.java": "3138d3e863ccb36ad5b6b37a7e1f3486dd2d8c1dc43ab469b26af714548d8437",
-    "syx/assistant/EntityReadRequest.java": "deb0f86cad28da1c8677394a4aeb26913b0c80b4ee90c08cb882bedbc11f8a03",
+    "syx/assistant/EntityReadRequest.java": "e2d13aee21f399e8718382d5b43d5a6c85e5d78d2708d8105b9f1ecfe730edf8",
     "syx/assistant/JsonWriter.java": "c525eb60d3224cab83ed3fd6b8594ec8652211f00bd947e873e1482f919e81dc",
     "syx/assistant/StateCollector.java": "bd26d226a650ce16c5710dce6b579322f916c79549c79ebf024bf356bf1a070d",
     "syx/assistant/TileReadRequest.java": "1a192cde61a7e1bdefa170390c00b17c74573b9c41de71700ebea466411ad3c5",
@@ -187,7 +187,7 @@
       "public": true,
       "source_file": "game/GAME.java",
       "uses": [
-        "EntityReadRequest.java:164",
+        "EntityReadRequest.java:172",
         "StateCollector.java:358",
         "TileReadRequest.java:61"
       ],
@@ -292,8 +292,8 @@
         "AssistantScript.java:139",
         "AssistantScript.java:147",
         "AssistantScript.java:29",
-        "EntityReadRequest.java:104",
-        "EntityReadRequest.java:163",
+        "EntityReadRequest.java:106",
+        "EntityReadRequest.java:171",
         "StateCollector.java:358",
         "TileReadRequest.java:60"
       ],
@@ -1768,8 +1768,8 @@
       "public": true,
       "source_file": "init/race/Race.java",
       "uses": [
-        "EntityReadRequest.java:135",
-        "EntityReadRequest.java:149",
+        "EntityReadRequest.java:137",
+        "EntityReadRequest.java:157",
         "StateCollector.java:102",
         "StateCollector.java:118",
         "StateCollector.java:252",
@@ -2435,8 +2435,8 @@
       "public": true,
       "source_file": "init/type/HCLASS.java",
       "uses": [
-        "EntityReadRequest.java:136",
-        "EntityReadRequest.java:150",
+        "EntityReadRequest.java:138",
+        "EntityReadRequest.java:158",
         "StateCollector.java:102",
         "StateCollector.java:252",
         "StateCollector.java:371",
@@ -2524,8 +2524,8 @@
       "public": true,
       "source_file": "init/type/HTYPE.java",
       "uses": [
-        "EntityReadRequest.java:137",
-        "EntityReadRequest.java:151",
+        "EntityReadRequest.java:139",
+        "EntityReadRequest.java:159",
         "StateCollector.java:102"
       ],
       "parameter_types": [],
@@ -2551,7 +2551,7 @@
       "public": true,
       "source_file": "settlement/entity/ENTETIES.java",
       "uses": [
-        "EntityReadRequest.java:122",
+        "EntityReadRequest.java:124",
         "StateCollector.java:440"
       ],
       "parameter_types": [],
@@ -2577,7 +2577,7 @@
       "public": true,
       "source_file": "settlement/entity/ENTETIES.java",
       "uses": [
-        "EntityReadRequest.java:125"
+        "EntityReadRequest.java:127"
       ],
       "parameter_types": [
         "int"
@@ -2606,8 +2606,8 @@
       "public": true,
       "source_file": "settlement/entity/ENTITY.java",
       "uses": [
-        "EntityReadRequest.java:131",
-        "EntityReadRequest.java:145",
+        "EntityReadRequest.java:133",
+        "EntityReadRequest.java:153",
         "StateCollector.java:102",
         "StateCollector.java:444",
         "UiContextCollector.java:90"
@@ -2635,7 +2635,7 @@
       "public": true,
       "source_file": "settlement/entity/ENTITY.java",
       "uses": [
-        "EntityReadRequest.java:131",
+        "EntityReadRequest.java:133",
         "StateCollector.java:441",
         "StateCollector.java:95",
         "UiContextCollector.java:89"
@@ -2663,9 +2663,9 @@
       "public": true,
       "source_file": "settlement/entity/ENTITY.java",
       "uses": [
-        "EntityReadRequest.java:132",
-        "EntityReadRequest.java:147",
-        "EntityReadRequest.java:148",
+        "EntityReadRequest.java:134",
+        "EntityReadRequest.java:155",
+        "EntityReadRequest.java:156",
         "StateCollector.java:103",
         "StateCollector.java:444",
         "UiContextCollector.java:90"
@@ -2718,11 +2718,11 @@
       "public": true,
       "source_file": "settlement/entity/humanoid/Humanoid.java",
       "uses": [
-        "EntityReadRequest.java:136",
-        "EntityReadRequest.java:137",
+        "EntityReadRequest.java:138",
         "EntityReadRequest.java:139",
-        "EntityReadRequest.java:150",
-        "EntityReadRequest.java:151",
+        "EntityReadRequest.java:146",
+        "EntityReadRequest.java:158",
+        "EntityReadRequest.java:159",
         "StateCollector.java:60",
         "StateCollector.java:78",
         "StateCollector.java:96"
@@ -2750,8 +2750,8 @@
       "public": true,
       "source_file": "settlement/entity/humanoid/Humanoid.java",
       "uses": [
-        "EntityReadRequest.java:135",
-        "EntityReadRequest.java:149",
+        "EntityReadRequest.java:137",
+        "EntityReadRequest.java:157",
         "StateCollector.java:102",
         "StateCollector.java:445",
         "UiContextCollector.java:90"
@@ -2831,8 +2831,8 @@
       "public": true,
       "source_file": "settlement/main/SETT.java",
       "uses": [
-        "EntityReadRequest.java:122",
-        "EntityReadRequest.java:125",
+        "EntityReadRequest.java:124",
+        "EntityReadRequest.java:127",
         "StateCollector.java:440"
       ],
       "parameter_types": [],
@@ -3102,7 +3102,7 @@
       "public": true,
       "source_file": "settlement/main/SETT.java",
       "uses": [
-        "EntityReadRequest.java:111",
+        "EntityReadRequest.java:113",
         "StateCollector.java:130",
         "StateCollector.java:171",
         "StateCollector.java:212",
@@ -3864,6 +3864,7 @@
       "public": true,
       "source_file": "settlement/room/main/Room.java",
       "uses": [
+        "EntityReadRequest.java:144",
         "StateCollector.java:145",
         "StateCollector.java:151",
         "StateCollector.java:189",
@@ -4698,8 +4699,8 @@
       "public": true,
       "source_file": "settlement/stats/Induvidual.java",
       "uses": [
-        "EntityReadRequest.java:136",
-        "EntityReadRequest.java:150",
+        "EntityReadRequest.java:138",
+        "EntityReadRequest.java:158",
         "StateCollector.java:102"
       ],
       "parameter_types": [],
@@ -4725,8 +4726,8 @@
       "public": true,
       "source_file": "settlement/stats/Induvidual.java",
       "uses": [
-        "EntityReadRequest.java:137",
-        "EntityReadRequest.java:151",
+        "EntityReadRequest.java:139",
+        "EntityReadRequest.java:159",
         "StateCollector.java:102"
       ],
       "parameter_types": [],
@@ -4828,6 +4829,7 @@
       "public": true,
       "source_file": "settlement/stats/STATS.java",
       "uses": [
+        "EntityReadRequest.java:143",
         "StateCollector.java:72",
         "StateCollector.java:78"
       ],
@@ -4854,7 +4856,7 @@
       "public": true,
       "source_file": "settlement/stats/STATS.java",
       "uses": [
-        "EntityReadRequest.java:115",
+        "EntityReadRequest.java:117",
         "StateCollector.java:41",
         "StateCollector.java:98"
       ],
@@ -4961,6 +4963,7 @@
       "public": true,
       "source_file": "settlement/stats/colls/StatsWork.java",
       "uses": [
+        "EntityReadRequest.java:143",
         "StateCollector.java:72"
       ],
       "parameter_types": [],
@@ -5117,7 +5120,7 @@
       "public": true,
       "source_file": "settlement/stats/stat/STAT.java",
       "uses": [
-        "EntityReadRequest.java:116",
+        "EntityReadRequest.java:118",
         "StateCollector.java:42",
         "StateCollector.java:99"
       ],
@@ -5144,9 +5147,9 @@
       "public": true,
       "source_file": "settlement/stats/stat/STAT.java",
       "uses": [
-        "EntityReadRequest.java:115",
-        "EntityReadRequest.java:116",
         "EntityReadRequest.java:117",
+        "EntityReadRequest.java:118",
+        "EntityReadRequest.java:119",
         "StateCollector.java:41",
         "StateCollector.java:42",
         "StateCollector.java:55"
@@ -5174,8 +5177,8 @@
       "public": true,
       "source_file": "settlement/stats/stat/STAT.java",
       "uses": [
-        "EntityReadRequest.java:116",
-        "EntityReadRequest.java:139",
+        "EntityReadRequest.java:118",
+        "EntityReadRequest.java:146",
         "StateCollector.java:42",
         "StateCollector.java:58"
       ],
@@ -5306,6 +5309,7 @@
       "public": true,
       "source_file": "settlement/stats/stat/StatObject.java",
       "uses": [
+        "EntityReadRequest.java:143",
         "StateCollector.java:72"
       ],
       "parameter_types": [
@@ -6129,8 +6133,8 @@
       "public": true,
       "source_file": "snake2d/util/datatypes/COORDINATE.java",
       "uses": [
-        "EntityReadRequest.java:132",
-        "EntityReadRequest.java:147",
+        "EntityReadRequest.java:134",
+        "EntityReadRequest.java:155",
         "StateCollector.java:103",
         "StateCollector.java:444",
         "StateCollector.java:83",
@@ -6159,8 +6163,8 @@
       "public": true,
       "source_file": "snake2d/util/datatypes/COORDINATE.java",
       "uses": [
-        "EntityReadRequest.java:132",
-        "EntityReadRequest.java:148",
+        "EntityReadRequest.java:134",
+        "EntityReadRequest.java:156",
         "StateCollector.java:103",
         "StateCollector.java:444",
         "StateCollector.java:83",
@@ -7283,7 +7287,7 @@
       "public": true,
       "source_file": "util/data/INT_O.java",
       "uses": [
-        "EntityReadRequest.java:139",
+        "EntityReadRequest.java:146",
         "StateCollector.java:195",
         "StateCollector.java:196",
         "StateCollector.java:323",

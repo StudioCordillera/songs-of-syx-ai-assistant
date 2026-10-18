@@ -1,7 +1,17 @@
 {
   "passed": true,
-  "evaluated_at": "2026-10-18T15:16:57.498521+00:00",
+  "evaluated_at": "2026-10-18T15:43:03.454161+00:00",
   "checks": [
+    {
+      "id": "entity_workplace_filter",
+      "support": "public_source_verified",
+      "references": [
+        "settlement/stats/colls/StatsWork.java",
+        "WORKPLACE_FILTER.md",
+        "WORKPLACE_FILTER_VALIDATION.json"
+      ],
+      "passed": true
+    },
     {
       "id": "room_workforce_factors",
       "support": "public_source_verified",
@@ -82,13 +92,13 @@
   "public_inventory_size": 358,
   "source_sha256": {
     "syx_mcp.py": "e0d596a394865af6bdd6a2e6fce04e14e36d60281e93ab18e0cc6c54dea92a34",
-    "syx_api_support.py": "71025de73b132383b21731b958f1a79e9c54929c8e152078e75be5ee31161ec3",
-    "syx_api_manifest.py": "42a1b13ae6bc0ec7e80e4183285abea5c3e669d94c7af9e50fc8962f840c53e8",
-    "dev/verify_capability_discovery.py": "534fa966d189fea0e288fb8446328f5e2366c74c98e349cb4bba62547b4856ef"
+    "syx_api_support.py": "c21249884900d1c1028dfef9f431e43be7ecf088344fafca4ae5593f5bb9ce3a",
+    "syx_api_manifest.py": "89fa14af72b14fa5715e11c5deb11b24cb70350d0bfbcdc975c2451d6772c247",
+    "dev/verify_capability_discovery.py": "ed12f215caec413f49e963d848a3a1a7917b52dd684e95a24348aa465425fb19"
   },
   "limits": [
     "Capability records summarize existing evidence; no new game getter/scene or official stable contract is established.",
     "Offline discovery is not an attestation of a separately installed game mod; pair source-matching builds.",
-    "Five supported capabilities and two explicit gaps sampled, not exhaustive metadata acceptance."
+    "Six supported capabilities and two explicit gaps sampled, not exhaustive metadata acceptance."
   ]
 }

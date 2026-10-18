@@ -17,6 +17,7 @@ public final class EntityReadRequest {
     public final String id, session;
     final long expires;
     final int cursor, scanLimit, limit;
+    final Integer workplaceRoomId;
     final boolean capture;
     final Set<Integer> ids, statIds;
     final Set<String> fields;
@@ -55,13 +56,14 @@ public final class EntityReadRequest {
         for(String line:text.split("\n")) {
             int equals=line.indexOf('=');if(equals<1)throw new IllegalArgumentException("Invalid request line");
             String key=line.substring(0,equals);
-            if(!KEYS.contains(key) || parts.put(key,line.substring(equals+1))!=null)throw new IllegalArgumentException("Unknown or duplicate request field");
+            if((!KEYS.contains(key) && !key.equals("workplace_room_id")) || parts.put(key,line.substring(equals+1))!=null)throw new IllegalArgumentException("Unknown or duplicate request field");
         }
-        if(!parts.keySet().equals(KEYS) || !Set.of("1","2").contains(parts.get("protocol")))throw new IllegalArgumentException("Unsupported request protocol");
+        if(!parts.keySet().containsAll(KEYS) || !Set.of("1","2").contains(parts.get("protocol")))throw new IllegalArgumentException("Unsupported request protocol");
         return new EntityReadRequest(parts);
     }
     private EntityReadRequest(Map<String,String> p) {
         id=uuid(p.get("request_id"));session=uuid(p.get("session"));
+        workplaceRoomId=p.containsKey("workplace_room_id")?integer(p.get("workplace_room_id"),0,Integer.MAX_VALUE):null;
         capture="2".equals(p.get("protocol"));
         if(!p.get("expires").matches("[0-9]{13}"))throw new IllegalArgumentException("Invalid deadline");
         expires=Long.parseLong(p.get("expires"));
@@ -131,12 +133,18 @@ public final class EntityReadRequest {
                 ENTITY e=entities[next];if(e==null || e.isRemoved() || (!ids.isEmpty() && !ids.contains(e.id())))continue;
                 if(bounds!=null && (e.tc().x()<bounds[0] || e.tc().y()<bounds[1] || e.tc().x()>=bounds[2] || e.tc().y()>=bounds[3]))continue;
                 Humanoid h=e instanceof Humanoid?(Humanoid)e:null;
-                if((race!=null || clas!=null || type!=null || !filters.isEmpty()) && h==null)continue;
+                if((race!=null || clas!=null || type!=null || workplaceRoomId!=null || !filters.isEmpty()) && h==null)continue;
                 if(race!=null && !race.equals(h.race().key))continue;
                 if(clas!=null && !clas.equals(h.indu().clas().key))continue;
                 if(type!=null && !type.equals(h.indu().hType().key))continue;
                 boolean matches=true;
-                try {for(Filter f:filters)if(!f.matches(stats.get(f.id).indu().get(h.indu()))){matches=false;break;}}
+                try {
+                    if(workplaceRoomId!=null) {
+                        var workplace=STATS.WORK().EMPLOYED.get(h);
+                        matches=workplace!=null && workplace.index()==workplaceRoomId;
+                    }
+                    if(matches)for(Filter f:filters)if(!f.matches(stats.get(f.id).indu().get(h.indu()))){matches=false;break;}
+                }
                 catch(RuntimeException failure){skipped++;continue;}
                 if(!matches)continue;
                 if(capture && rows.size()>=limit)throw new IllegalArgumentException("Capture exceeds row bound; narrow selection or raise max_rows up to 2000");

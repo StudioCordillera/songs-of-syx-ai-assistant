@@ -1,0 +1,84 @@
+{
+  "passed": true,
+  "game_jar_sha256": "fe0137c05408e5ee9e31f06fc44fe37a5d4372d9c985b280f0852d1347c0224b",
+  "source_archive_sha256": "a3fc2aa9f4be31aec0616a5030a656ac49a6011343b7e91395c7bac0b9dfb0a5",
+  "method": "Static source/binary review; no game execution, reflection or private runtime access.",
+  "checks": [
+    {
+      "owner": "settlement.room.industry.module.IndustryUtil",
+      "signature": "public static double calcProductionRate(double, settlement.room.industry.module.IndustryRate, game.boosting.Boostable, settlement.room.main.RoomInstance);",
+      "source_path": "settlement/room/industry/module/IndustryUtil.java",
+      "source_sha256": "908b1a65fd25c7a2ac16d567b37083b10980730bc1e9e570ad4142fa89c7038d",
+      "normalized_disassembly_sha256": "9fbbb6c20e7405cb88156a048adc3ad4b1a64f621231852161b85c13a65aeb68",
+      "static_inspection_only": true
+    },
+    {
+      "owner": "settlement.room.main.employment.RoomEmploymentIns",
+      "signature": "public static snake2d.util.sets.LIST<settlement.entity.humanoid.Humanoid> employees(settlement.room.main.RoomInstance);",
+      "source_path": "settlement/room/main/employment/RoomEmploymentIns.java",
+      "source_sha256": "281ac10e22bc4a4766531b28418885c6127a9a30bfec339ce00d1448035be7d5",
+      "normalized_disassembly_sha256": "e7496ce57438df914a81b0d82f9e613eb9dac366832b81cef033901b8cc33210",
+      "static_inspection_only": true
+    },
+    {
+      "owner": "settlement.room.main.employment.RoomEmploymentIns",
+      "signature": "private static boolean echeck(java.lang.Object);",
+      "source_path": "settlement/room/main/employment/RoomEmploymentIns.java",
+      "source_sha256": "281ac10e22bc4a4766531b28418885c6127a9a30bfec339ce00d1448035be7d5",
+      "normalized_disassembly_sha256": "64104761c42455c92c92ff2d3c68cfaa28e41fb23ab48c52120bab9f83939819",
+      "static_inspection_only": true
+    },
+    {
+      "owner": "settlement.room.main.employment.RoomEmploymentIns",
+      "signature": "public static snake2d.util.sets.LIST<settlement.entity.humanoid.Humanoid> employees(settlement.room.main.RoomInstance, snake2d.util.sets.LISTE<settlement.entity.humanoid.Humanoid>);",
+      "source_path": "settlement/room/main/employment/RoomEmploymentIns.java",
+      "source_sha256": "281ac10e22bc4a4766531b28418885c6127a9a30bfec339ce00d1448035be7d5",
+      "normalized_disassembly_sha256": "5081d03c71bc76d877ece0b2a31bd713d0aadbc111d680d648ac1d01ae57b770",
+      "static_inspection_only": true
+    },
+    {
+      "owner": "settlement.room.industry.module.IndustryUtil",
+      "signature": "public static double roomBonus(settlement.room.main.RoomInstance, settlement.room.industry.module.IndustryRate);",
+      "source_path": "settlement/room/industry/module/IndustryUtil.java",
+      "source_sha256": "908b1a65fd25c7a2ac16d567b37083b10980730bc1e9e570ad4142fa89c7038d",
+      "normalized_disassembly_sha256": "42485028c4ae126b37424c9625274fed70af070620fcbff419974b3c45560584",
+      "static_inspection_only": true
+    },
+    {
+      "owner": "settlement.room.main.RoomInstance",
+      "signature": "public double getDegrade();",
+      "source_path": "settlement/room/main/RoomInstance.java",
+      "source_sha256": "5a2cd2bb21b33e0461efcea619998ea6a139782f80702f360de6d7584bdf6f07",
+      "normalized_disassembly_sha256": "ef0d2ed9d4900330378241d4c00fdff5735b6395b6905a822decfe64606dcf41",
+      "static_inspection_only": true
+    },
+    {
+      "owner": "settlement.maintenance.ROOM_DEGRADER",
+      "signature": "public static double get(int);",
+      "source_path": "settlement/maintenance/ROOM_DEGRADER.java",
+      "source_sha256": "1f1319199e851e70f5aabd2e1ebeae7466a08f9ec977c90079635b565e6937d1",
+      "normalized_disassembly_sha256": "8e09c7964b5865f77e57c27c70fb9e13a01905e3832ae74e6dc67b492f4e4f96",
+      "static_inspection_only": true
+    },
+    {
+      "owner": "settlement.maintenance.MRoom",
+      "signature": "public static double degrade(int);",
+      "source_path": "settlement/maintenance/MRoom.java",
+      "source_sha256": "81a93c32cebaed3f1da558910e9523bc7ed60d80df864b6e06fa01e760feee6b",
+      "normalized_disassembly_sha256": "c16d21e1909f06e5f26bb2f6025d3b0be805fcefe78c716adbe8456ecc007e03",
+      "static_inspection_only": true
+    }
+  ],
+  "conclusions": [
+    "Room-average production helper evaluates dynamic boosts and per-person bonus reads, averages employees and defaults the average to one without employees. It is not a measured room total or output forecast.",
+    "Employee enumeration uses a shared cache keyed by update/object; its private cache check writes static cache metadata and clears the shared list. Population traversal stops at list capacity and has no observer-supplied scan bound.",
+    "Generic roomBonus dispatches RoomBoost.get. A public interface alone does not establish the purity, units or cost of every implementation.",
+    "RoomInstance.getDegrade is a narrower public candidate: the reviewed stored-decoder chain has no write opcode. It is not yet mapped or runtime-validated by this checkpoint."
+  ],
+  "verifier_source_sha256": "7d17f31b5e8c97f9a999e293b2cc7bd4ff2e2a658e5f582125e1bd16515ab245",
+  "limits": [
+    "Scoped call-site/source review, not complete call-graph equivalence or a general purity proof.",
+    "Private helpers and a package implementation are inspected only in shipped files, never called by the mod or fixture.",
+    "No new game getters, full modifier stack, cost bound, present productivity, large-city or all-menu acceptance."
+  ]
+}

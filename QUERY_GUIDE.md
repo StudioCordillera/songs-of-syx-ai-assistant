@@ -85,7 +85,7 @@ Call `game_query_help` for the complete `on_demand_entities` schema. `query_live
 
 Replace these example IDs with observed values. Installed stat search results advertise `stat_id` and `individual_getter_available`; use named individual getters only. Projected stat values provide bounds and a reference ID. Raw integer units are not established merely by reading these values.
 
-Filters combine with AND: `entity_ids`, `race_id`, `class_id`, `humanoid_type_id`, `tile_bounds: [x1,y1,x2,y2]` (upper bounds excluded), and up to four `stat_filters: [{stat_id,op,value}]` using `eq/ne/lt/lte/gt/gte`. Missing individual getters or unknown stat IDs fail explicitly. `predicate_errors` counts entities whose predicate getter failed; nonzero errors mean matching absence/count is unknown.
+Filters combine with AND: `entity_ids`, `race_id`, `class_id`, `humanoid_type_id`, `tile_bounds: [x1,y1,x2,y2]` (upper bounds excluded), `workplace_room_id` (recorded humanoid assignment), and up to four `stat_filters: [{stat_id,op,value}]` using `eq/ne/lt/lte/gt/gte`. Missing individual getters or unknown stat IDs fail explicitly. `predicate_errors` counts entities whose predicate getter failed; nonzero errors mean matching absence/count is unknown.
 
 Explicit IDs use the game's public ID lookup. Without IDs, each request scans up to `scan_limit` scene-array slots, starting at `cursor`, and returns at most `limit` matches. Follow `next_cursor` until null, including after an empty page. With IDs, cursor refers to the ordered requested-ID list; `cursor_kind` distinguishes it from scene slots. Do not substitute the number of matching rows as the next cursor.
 
@@ -268,3 +268,16 @@ Diagnostics follow the source/pointer path; they do not scan all descendants of 
 `employment /rooms` now includes `work_factors` with stored efficiency, travel/fetch factors, a blueprint flag selecting whether fetch participates, and the game's combined employment factor. Run workforce-query-example.json for a bounded staffed-room selection and a same-observation output/staffing left join. Projecting the whole staffing object preserves null when a join is unmatched; do not traverse a nested field through null without a guard.
 
 Inspect `describe_game_fields("employment")` for meanings and periods. These dimensionless values may be smoothed/defaulted/reset; exact sample age is unknown. They are not current productivity percentages, complete room/person/technology modifiers, input availability or future output. Production ledger buckets have their own age/carry limits. Employment root scan/row limits, failures and truncation follow `/rooms` into each query source's `collection_diagnostics`. A missing workforce row remains unknown. See WORKFORCE_FACTORS.md and WORKFORCE_VALIDATION.json.
+
+
+## Select people assigned to an observed room
+
+`query_live_entities` and `capture_live_entities` share the optional strict integer `workplace_room_id`. It combines with other predicates using AND, whether or not relationships are projected. Discover the current room index from observed employment or workplace data; do not invent an ID or infer the selected instance from an open blueprint. For example, pass this as the live tool's `spec` after replacing the example ID:
+
+```json
+{"workplace_room_id":123,"fields":["id","relationships"],"limit":25}
+```
+
+Follow `next_cursor` with the same filter even after an empty page. For stable bounded paging, use the same selection with `capture_live_entities`, replace `limit` with `max_rows`, then page the returned capture. Inspect the returned original session/tick/time/context. `game_query_help.on_demand_entities.workplace_filter` and WORKPLACE_FILTER.md explain limits and compatibility.
+
+This selects recorded assignments, not active work, profession, room occupancy or UI selection. Unassigned people and non-humanoids do not match. Room indices can be reused even within a session: a separately cached room row and a later live selection are separate observations, and `expected_session_id` does not make those observations simultaneous. Check returned blueprint/anchor identities; do not silently join separate observations as one. Live predicate errors mean completeness is unknown; capture predicate errors fail without retaining rows. Existing row, scan, byte, deadline and retention bounds apply. Older mods reject the optional wire key explicitly; install the paired current player build.
