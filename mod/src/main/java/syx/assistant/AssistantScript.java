@@ -31,6 +31,10 @@ public final class AssistantScript implements SCRIPT {
         StateCollector.clearReferenceCache();
         active = new Instance(); return active;
     }
+    static ChatPanel currentChatPanel() { return active==null?null:active.chatPanel; }
+    static Map<String,Object> chatContext() {
+        return active!=null && active.chatPanel!=null?active.chatPanel.context():StateCollector.object("enabled",false);
+    }
     public static Path stateDirectory() {
         String configured = System.getProperty("syx.assistant.stateDir", System.getenv("SYX_STATE_DIR"));
         if (configured != null && !configured.isBlank()) return Paths.get(configured).toAbsolutePath();
@@ -47,6 +51,9 @@ public final class AssistantScript implements SCRIPT {
         String lastTileRequestText;
         String lastRequestText;
         final ScheduledExecutorService io;
+        final AtomicReference<String> chatState=new AtomicReference<>();
+        final AtomicReference<String> chatAction=new AtomicReference<>();
+        ChatPanel chatPanel;
         long sequence = 0, lastCapture = 0;
         volatile boolean closed;
         Instance() {
@@ -63,6 +70,10 @@ public final class AssistantScript implements SCRIPT {
         public void update(double ds) { /* GAME.addAfterUpdate also runs when UI pauses skip resource updates. */ }
         private void sample() {
             if (closed) return;
+            if(Boolean.getBoolean("syx.assistant.chat")) {
+                if(chatPanel==null)chatPanel=new ChatPanel(session,chatAction::set);
+                chatPanel.refresh(chatState.get());
+            }
             EntityReadRequest request=readRequest.getAndSet(null);
             if(request!=null) readResponse.set(request.collect(session));
             TileReadRequest tiles=tileRequest.getAndSet(null);
@@ -104,8 +115,24 @@ public final class AssistantScript implements SCRIPT {
                 lastTileRequestText=text;tileRequest.set(TileReadRequest.parse(text));
             } catch(Exception error){System.err.println("Syx assistant tile request: "+error);}
         }
+        private void pollChat() {
+            try {
+                Path file=dir.resolve("chat-ui.txt");
+                if(Files.isRegularFile(file,LinkOption.NOFOLLOW_LINKS)) {
+                    byte[] raw;
+                    try(java.io.InputStream input=Files.newInputStream(file)){raw=input.readNBytes(262145);}
+                    if(raw.length<=262144)chatState.set(new String(raw,StandardCharsets.UTF_8));
+                }
+                String action=chatAction.getAndSet(null);
+                if(action!=null) {
+                    Path tmp=dir.resolve("chat-action-"+session+".tmp");
+                    Files.writeString(tmp,action,StandardCharsets.US_ASCII);
+                    Files.move(tmp,dir.resolve("chat-action.txt"),StandardCopyOption.ATOMIC_MOVE,StandardCopyOption.REPLACE_EXISTING);
+                }
+            }catch(Exception error){System.err.println("Syx assistant chat IPC failed");}
+        }
         private synchronized void flush() {
-            if(!closed){pollReadRequest();pollTileRequest();}
+            if(!closed){pollReadRequest();pollTileRequest();if(Boolean.getBoolean("syx.assistant.chat"))pollChat();}
             Map<String,Object> tiles=tileResponse.getAndSet(null);
             if(tiles!=null)try {
                 if(JsonWriter.encode(tiles).getBytes(StandardCharsets.UTF_8).length>65536)

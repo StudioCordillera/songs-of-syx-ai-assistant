@@ -44,3 +44,5 @@ The public compiled declarations for `snake2d.CORE` and `CORE_STATE` provide no 
 This finding is scoped to these inspected classes and the earlier SCRIPT/disposal review. It does not prove that no other public lifecycle mechanism could exist. Continue targeted review of object entry points and thread contracts before making a broader claim.
 
 For each useful candidate, remaining work is to establish a public route from the loaded game's objects, review getter implementation/thread/units semantics, write a bounded typed mapping, extend the production audit, and validate actual game behavior. Priority areas remain entity relationships, non-entity data, broader consistent typed observations, UI selections and lifecycle gaps. A public declaration alone is never permission to run a mutator or guess a private implementation's meaning.
+
+The chat-development audit now contains 275 production public-member references, all present in the same offline catalog. This includes the opt-in mod-owned GUI; it does not add new game-data coverage or establish a stable official GUI contract. The 246-reference observation-only inventory belongs to the 0.12.0 baseline.

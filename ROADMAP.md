@@ -25,3 +25,7 @@ Offline declaration discovery now covers the shipped source archive: 2,052 publi
 0.12.0 adds bounded spatial selection of public terrain/floor/room/mineral/path data, with structured field meanings and explicit shared-room/component limits. Remaining map work includes broader typed fields, consistent retained spatial batches and performance validation. Full world-map/variable schemas, UI-selection/lifecycle contracts and comprehensive menu/combat coverage remain objectives.
 
 The shared in-game client/session-history requirement was made explicit on 2026-10-17 after the user reported that DeepSeek API access lacked a usable client. It is a required feature for every provider, not an optional post-integration enhancement. No chat UI, transcript persistence or authenticated in-game provider flow is implemented yet.
+
+### 2026-10-17 chat implementation checkpoint
+
+Shared SQLite history, bounded read-only MCP conversation loop, native DeepSeek streaming/tool transport, file coordinator and opt-in public-widget panel are implemented experimentally. See [implementation and open gates](CHAT_BACKEND.md). Subscription adapters, authenticated end-to-end replies, in-game connection setup and broad menu/focus/lifecycle validation remain required.

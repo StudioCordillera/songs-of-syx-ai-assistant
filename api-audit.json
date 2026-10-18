@@ -4,13 +4,14 @@
   "source_archive_sha256": "a3fc2aa9f4be31aec0616a5030a656ac49a6011343b7e91395c7bac0b9dfb0a5",
   "method": "Java compiler attribution of production mod references; source anchors match declaring type/name/arity, not method body equivalence",
   "mod_source_sha256": {
-    "syx/assistant/AssistantScript.java": "e5bb85e22a77a39c3033020b95462ad4b2e8cd642f395d8cdff6f809ab9fec77",
+    "syx/assistant/AssistantScript.java": "00e23af134a7a1d0d22ab270f285f043889e9c53a51fea2e458236f66a96fdf0",
+    "syx/assistant/ChatPanel.java": "0578ec4841c3e5661add23745f298e5b13c2edfa2ed0577bdf45ce040befec6b",
     "syx/assistant/EntityReadRequest.java": "deb0f86cad28da1c8677394a4aeb26913b0c80b4ee90c08cb882bedbc11f8a03",
     "syx/assistant/JsonWriter.java": "c525eb60d3224cab83ed3fd6b8594ec8652211f00bd947e873e1482f919e81dc",
     "syx/assistant/StateCollector.java": "dc5d25f18cb75b7e432e73482b23ae52405d791dc1d4f9c6c386f6242e901458",
     "syx/assistant/TileReadRequest.java": "1a192cde61a7e1bdefa170390c00b17c74573b9c41de71700ebea466411ad3c5",
     "syx/assistant/UiContentCollector.java": "c0d20c7f9f2734a0bb625427875f06bfcd07edb20611248b39b6e8f480ef5a48",
-    "syx/assistant/UiContextCollector.java": "c379afcb36169380a5956c51a9b76f9598b723c14fae136e5850b20177ef066e"
+    "syx/assistant/UiContextCollector.java": "afada4ff94ebb8e6d9bcd401d91ce176f554eebd050e6c9e79e731f787ec84ae"
   },
   "members": [
     {
@@ -23,7 +24,7 @@
       "source_file": "game/GAME.java",
       "uses": [
         "StateCollector.java:261",
-        "UiContextCollector.java:59"
+        "UiContextCollector.java:60"
       ],
       "parameter_types": [],
       "compiler_generated_enum": false,
@@ -99,7 +100,7 @@
       "public": true,
       "source_file": "game/GAME.java",
       "uses": [
-        "AssistantScript.java:61"
+        "AssistantScript.java:68"
       ],
       "parameter_types": [
         "snake2d.util.misc.ACTION"
@@ -286,8 +287,8 @@
       "public": true,
       "source_file": "game/VERSION.java",
       "uses": [
-        "AssistantScript.java:112",
-        "AssistantScript.java:120",
+        "AssistantScript.java:139",
+        "AssistantScript.java:147",
         "AssistantScript.java:29",
         "EntityReadRequest.java:104",
         "EntityReadRequest.java:163",
@@ -318,7 +319,7 @@
       "source_file": "game/battle/Armies.java",
       "uses": [
         "StateCollector.java:261",
-        "UiContextCollector.java:59"
+        "UiContextCollector.java:60"
       ],
       "parameter_types": [],
       "compiler_generated_enum": false,
@@ -344,7 +345,7 @@
       "source_file": "game/battle/Armies.java",
       "uses": [
         "StateCollector.java:261",
-        "UiContextCollector.java:59"
+        "UiContextCollector.java:60"
       ],
       "parameter_types": [],
       "compiler_generated_enum": false,
@@ -395,7 +396,7 @@
       "source_file": "game/battle/Army.java",
       "uses": [
         "StateCollector.java:113",
-        "UiContextCollector.java:59"
+        "UiContextCollector.java:60"
       ],
       "parameter_types": [],
       "compiler_generated_enum": false,
@@ -673,7 +674,7 @@
       "public": true,
       "source_file": "game/battle/state/BattleState.java",
       "uses": [
-        "UiContextCollector.java:57"
+        "UiContextCollector.java:58"
       ],
       "parameter_types": [],
       "compiler_generated_enum": false,
@@ -698,8 +699,8 @@
       "public": true,
       "source_file": "game/battle/state/BattleState.java",
       "uses": [
-        "UiContextCollector.java:60",
-        "UiContextCollector.java:61"
+        "UiContextCollector.java:61",
+        "UiContextCollector.java:62"
       ],
       "parameter_types": [],
       "compiler_generated_enum": false,
@@ -724,7 +725,7 @@
       "public": true,
       "source_file": "game/battle/state/BattleState.java",
       "uses": [
-        "UiContextCollector.java:57"
+        "UiContextCollector.java:58"
       ],
       "parameter_types": [],
       "compiler_generated_enum": false,
@@ -1444,7 +1445,7 @@
         "StateCollector.java:146",
         "StateCollector.java:196",
         "StateCollector.java:93",
-        "UiContextCollector.java:89"
+        "UiContextCollector.java:90"
       ],
       "parameter_types": [],
       "compiler_generated_enum": false,
@@ -1591,6 +1592,74 @@
         {
           "line": 177,
           "source_sha256": "95f41b46dd29c259df4fee151e73336b73a490069d4f80d2238857fbe06d3b1e",
+          "parameter_types": [],
+          "has_javadoc": false
+        }
+      ],
+      "source_match": "name_arity_and_simple_parameter_types",
+      "documentation_status": "human_review_required; Javadoc presence alone does not establish a stable mod contract"
+    },
+    {
+      "id": "init.sprite.UI.UI#FONT()",
+      "owner": "init.sprite.UI.UI",
+      "name": "FONT",
+      "kind": "METHOD",
+      "signature": "FONT()",
+      "public": true,
+      "source_file": "init/sprite/UI/UI.java",
+      "uses": [
+        "ChatPanel.java:115",
+        "ChatPanel.java:117",
+        "ChatPanel.java:124",
+        "ChatPanel.java:127",
+        "ChatPanel.java:133",
+        "ChatPanel.java:139",
+        "ChatPanel.java:140",
+        "ChatPanel.java:145",
+        "ChatPanel.java:39",
+        "ChatPanel.java:40"
+      ],
+      "parameter_types": [],
+      "compiler_generated_enum": false,
+      "arity": 0,
+      "source_candidates": [
+        {
+          "line": 27,
+          "source_sha256": "61c9d800de4e3dbd10ba88c282a396b13bc4aa006c8ced8f3c88d3f704377fca",
+          "parameter_types": [],
+          "has_javadoc": false
+        }
+      ],
+      "source_match": "name_arity_and_simple_parameter_types",
+      "documentation_status": "human_review_required; Javadoc presence alone does not establish a stable mod contract"
+    },
+    {
+      "id": "init.sprite.UI.UIFonts#S",
+      "owner": "init.sprite.UI.UIFonts",
+      "name": "S",
+      "kind": "FIELD",
+      "signature": "S",
+      "public": true,
+      "source_file": "init/sprite/UI/UIFonts.java",
+      "uses": [
+        "ChatPanel.java:115",
+        "ChatPanel.java:117",
+        "ChatPanel.java:124",
+        "ChatPanel.java:127",
+        "ChatPanel.java:133",
+        "ChatPanel.java:139",
+        "ChatPanel.java:140",
+        "ChatPanel.java:145",
+        "ChatPanel.java:39",
+        "ChatPanel.java:40"
+      ],
+      "parameter_types": [],
+      "compiler_generated_enum": false,
+      "arity": -1,
+      "source_candidates": [
+        {
+          "line": 21,
+          "source_sha256": "6b909591f9082bcf971c6dc7d3f72fb1257fd2f67ffff90d3989003433481d98",
           "parameter_types": [],
           "has_javadoc": false
         }
@@ -1878,7 +1947,7 @@
         "EntityReadRequest.java:145",
         "StateCollector.java:195",
         "StateCollector.java:93",
-        "UiContextCollector.java:89"
+        "UiContextCollector.java:90"
       ],
       "parameter_types": [],
       "compiler_generated_enum": false,
@@ -1906,7 +1975,7 @@
         "EntityReadRequest.java:131",
         "StateCollector.java:192",
         "StateCollector.java:86",
-        "UiContextCollector.java:88"
+        "UiContextCollector.java:89"
       ],
       "parameter_types": [],
       "compiler_generated_enum": false,
@@ -1936,7 +2005,7 @@
         "EntityReadRequest.java:148",
         "StateCollector.java:195",
         "StateCollector.java:94",
-        "UiContextCollector.java:89"
+        "UiContextCollector.java:90"
       ],
       "parameter_types": [],
       "compiler_generated_enum": false,
@@ -2022,7 +2091,7 @@
         "EntityReadRequest.java:149",
         "StateCollector.java:196",
         "StateCollector.java:93",
-        "UiContextCollector.java:89"
+        "UiContextCollector.java:90"
       ],
       "parameter_types": [],
       "compiler_generated_enum": false,
@@ -2185,7 +2254,7 @@
         "StateCollector.java:173",
         "TileReadRequest.java:107",
         "TileReadRequest.java:78",
-        "UiContextCollector.java:94"
+        "UiContextCollector.java:95"
       ],
       "parameter_types": [],
       "compiler_generated_enum": false,
@@ -2656,7 +2725,7 @@
       "public": true,
       "source_file": "settlement/room/main/ROOMS.java",
       "uses": [
-        "UiContextCollector.java:94"
+        "UiContextCollector.java:95"
       ],
       "parameter_types": [],
       "compiler_generated_enum": false,
@@ -2914,7 +2983,7 @@
         "StateCollector.java:70",
         "TileReadRequest.java:108",
         "TileReadRequest.java:80",
-        "UiContextCollector.java:95"
+        "UiContextCollector.java:96"
       ],
       "parameter_types": [],
       "compiler_generated_enum": false,
@@ -4218,6 +4287,56 @@
       "documentation_status": "human_review_required; Javadoc presence alone does not establish a stable mod contract"
     },
     {
+      "id": "snake2d.Mouse#currentClicked",
+      "owner": "snake2d.Mouse",
+      "name": "currentClicked",
+      "kind": "FIELD",
+      "signature": "currentClicked",
+      "public": true,
+      "source_file": "snake2d/Mouse.java",
+      "uses": [
+        "ChatPanel.java:99"
+      ],
+      "parameter_types": [],
+      "compiler_generated_enum": false,
+      "arity": -1,
+      "source_candidates": [
+        {
+          "line": 18,
+          "source_sha256": "4455715b0c26234ae78a7cea788c31bf8e4c0c7e9c66980f4a25a21884d68ee4",
+          "parameter_types": [],
+          "has_javadoc": false
+        }
+      ],
+      "source_match": "name_arity_and_simple_parameter_types",
+      "documentation_status": "human_review_required; Javadoc presence alone does not establish a stable mod contract"
+    },
+    {
+      "id": "snake2d.util.color.COLOR#BLACK",
+      "owner": "snake2d.util.color.COLOR",
+      "name": "BLACK",
+      "kind": "FIELD",
+      "signature": "BLACK",
+      "public": true,
+      "source_file": "snake2d/util/color/COLOR.java",
+      "uses": [
+        "ChatPanel.java:109"
+      ],
+      "parameter_types": [],
+      "compiler_generated_enum": false,
+      "arity": -1,
+      "source_candidates": [
+        {
+          "line": 32,
+          "source_sha256": "573d67380f2278b6be681fea4b689eb1fd95482fc0f07d3009515e38c654ae8a",
+          "parameter_types": [],
+          "has_javadoc": false
+        }
+      ],
+      "source_match": "name_arity_and_simple_parameter_types",
+      "documentation_status": "human_review_required; Javadoc presence alone does not establish a stable mod contract"
+    },
+    {
       "id": "snake2d.util.datatypes.BODY_HOLDERE#body()",
       "owner": "snake2d.util.datatypes.BODY_HOLDERE",
       "name": "body",
@@ -4256,7 +4375,7 @@
         "StateCollector.java:195",
         "StateCollector.java:74",
         "StateCollector.java:94",
-        "UiContextCollector.java:89"
+        "UiContextCollector.java:90"
       ],
       "parameter_types": [],
       "compiler_generated_enum": false,
@@ -4286,7 +4405,7 @@
         "StateCollector.java:195",
         "StateCollector.java:74",
         "StateCollector.java:94",
-        "UiContextCollector.java:89"
+        "UiContextCollector.java:90"
       ],
       "parameter_types": [],
       "compiler_generated_enum": false,
@@ -4312,7 +4431,7 @@
       "source_file": "snake2d/util/datatypes/RECTANGLE.java",
       "uses": [
         "UiContentCollector.java:32",
-        "UiContextCollector.java:60"
+        "UiContextCollector.java:61"
       ],
       "parameter_types": [],
       "compiler_generated_enum": false,
@@ -4338,7 +4457,7 @@
       "source_file": "snake2d/util/datatypes/RECTANGLE.java",
       "uses": [
         "UiContentCollector.java:32",
-        "UiContextCollector.java:60"
+        "UiContextCollector.java:61"
       ],
       "parameter_types": [],
       "compiler_generated_enum": false,
@@ -4364,7 +4483,7 @@
       "source_file": "snake2d/util/datatypes/RECTANGLE.java",
       "uses": [
         "UiContentCollector.java:32",
-        "UiContextCollector.java:61"
+        "UiContextCollector.java:62"
       ],
       "parameter_types": [],
       "compiler_generated_enum": false,
@@ -4390,7 +4509,7 @@
       "source_file": "snake2d/util/datatypes/RECTANGLE.java",
       "uses": [
         "UiContentCollector.java:32",
-        "UiContextCollector.java:61"
+        "UiContextCollector.java:62"
       ],
       "parameter_types": [],
       "compiler_generated_enum": false,
@@ -4399,6 +4518,157 @@
         {
           "line": 12,
           "source_sha256": "184240ef3ae9924d0f0a6d72082269df77b4f299534015b6b8b1dea0159f61fb",
+          "parameter_types": [],
+          "has_javadoc": false
+        }
+      ],
+      "source_match": "name_arity_and_simple_parameter_types",
+      "documentation_status": "human_review_required; Javadoc presence alone does not establish a stable mod contract"
+    },
+    {
+      "id": "snake2d.util.datatypes.Rec#setWidth(double)",
+      "owner": "snake2d.util.datatypes.Rec",
+      "name": "setWidth",
+      "kind": "METHOD",
+      "signature": "setWidth(double)",
+      "public": true,
+      "source_file": "snake2d/util/datatypes/Rec.java",
+      "uses": [
+        "ChatPanel.java:157"
+      ],
+      "parameter_types": [
+        "double"
+      ],
+      "compiler_generated_enum": false,
+      "arity": 1,
+      "source_candidates": [
+        {
+          "line": 129,
+          "source_sha256": "4d382767fcefba8dcff65fbcc9e11c37d489c3fa42e07b996b0a236bcb65516a",
+          "parameter_types": [
+            "double"
+          ],
+          "has_javadoc": false
+        }
+      ],
+      "source_match": "name_arity_and_simple_parameter_types",
+      "documentation_status": "human_review_required; Javadoc presence alone does not establish a stable mod contract"
+    },
+    {
+      "id": "snake2d.util.datatypes.Rec#width()",
+      "owner": "snake2d.util.datatypes.Rec",
+      "name": "width",
+      "kind": "METHOD",
+      "signature": "width()",
+      "public": true,
+      "source_file": "snake2d/util/datatypes/Rec.java",
+      "uses": [
+        "ChatPanel.java:157"
+      ],
+      "parameter_types": [],
+      "compiler_generated_enum": false,
+      "arity": 0,
+      "source_candidates": [
+        {
+          "line": 257,
+          "source_sha256": "4d382767fcefba8dcff65fbcc9e11c37d489c3fa42e07b996b0a236bcb65516a",
+          "parameter_types": [],
+          "has_javadoc": false
+        }
+      ],
+      "source_match": "name_arity_and_simple_parameter_types",
+      "documentation_status": "human_review_required; Javadoc presence alone does not establish a stable mod contract"
+    },
+    {
+      "id": "snake2d.util.gui.GuiSection#GuiSection()",
+      "owner": "snake2d.util.gui.GuiSection",
+      "name": "<init>",
+      "kind": "CONSTRUCTOR",
+      "signature": "GuiSection()",
+      "public": true,
+      "source_file": "snake2d/util/gui/GuiSection.java",
+      "uses": [
+        "ChatPanel.java:104",
+        "ChatPanel.java:107"
+      ],
+      "parameter_types": [],
+      "compiler_generated_enum": false,
+      "arity": 0,
+      "source_candidates": [
+        {
+          "line": 39,
+          "source_sha256": "a222f5a065902d3611599edb2fe2d47eafc2a6db96dbd685923db040efaee1a5",
+          "parameter_types": [],
+          "has_javadoc": false
+        }
+      ],
+      "source_match": "name_arity_and_simple_parameter_types",
+      "documentation_status": "human_review_required; Javadoc presence alone does not establish a stable mod contract"
+    },
+    {
+      "id": "snake2d.util.gui.GuiSection#add(snake2d.util.gui.renderable.RENDEROBJ,int,int)",
+      "owner": "snake2d.util.gui.GuiSection",
+      "name": "add",
+      "kind": "METHOD",
+      "signature": "add(snake2d.util.gui.renderable.RENDEROBJ,int,int)",
+      "public": true,
+      "source_file": "snake2d/util/gui/GuiSection.java",
+      "uses": [
+        "ChatPanel.java:104",
+        "ChatPanel.java:112",
+        "ChatPanel.java:113",
+        "ChatPanel.java:114",
+        "ChatPanel.java:115",
+        "ChatPanel.java:117",
+        "ChatPanel.java:125",
+        "ChatPanel.java:143",
+        "ChatPanel.java:144",
+        "ChatPanel.java:145",
+        "ChatPanel.java:146",
+        "ChatPanel.java:151",
+        "ChatPanel.java:156"
+      ],
+      "parameter_types": [
+        "snake2d.util.gui.renderable.RENDEROBJ",
+        "int",
+        "int"
+      ],
+      "compiler_generated_enum": false,
+      "arity": 3,
+      "source_candidates": [
+        {
+          "line": 206,
+          "source_sha256": "a222f5a065902d3611599edb2fe2d47eafc2a6db96dbd685923db040efaee1a5",
+          "parameter_types": [
+            "RENDEROBJ",
+            "int",
+            "int"
+          ],
+          "has_javadoc": false
+        }
+      ],
+      "source_match": "name_arity_and_simple_parameter_types",
+      "documentation_status": "human_review_required; Javadoc presence alone does not establish a stable mod contract"
+    },
+    {
+      "id": "snake2d.util.gui.GuiSection#body()",
+      "owner": "snake2d.util.gui.GuiSection",
+      "name": "body",
+      "kind": "METHOD",
+      "signature": "body()",
+      "public": true,
+      "source_file": "snake2d/util/gui/GuiSection.java",
+      "uses": [
+        "ChatPanel.java:109",
+        "ChatPanel.java:157"
+      ],
+      "parameter_types": [],
+      "compiler_generated_enum": false,
+      "arity": 0,
+      "source_candidates": [
+        {
+          "line": 527,
+          "source_sha256": "a222f5a065902d3611599edb2fe2d47eafc2a6db96dbd685923db040efaee1a5",
           "parameter_types": [],
           "has_javadoc": false
         }
@@ -4425,6 +4695,37 @@
           "line": 76,
           "source_sha256": "a222f5a065902d3611599edb2fe2d47eafc2a6db96dbd685923db040efaee1a5",
           "parameter_types": [],
+          "has_javadoc": false
+        }
+      ],
+      "source_match": "name_arity_and_simple_parameter_types",
+      "documentation_status": "human_review_required; Javadoc presence alone does not establish a stable mod contract"
+    },
+    {
+      "id": "snake2d.util.gui.GuiSection#render(snake2d.SPRITE_RENDERER,float)",
+      "owner": "snake2d.util.gui.GuiSection",
+      "name": "render",
+      "kind": "METHOD",
+      "signature": "render(snake2d.SPRITE_RENDERER,float)",
+      "public": true,
+      "source_file": "snake2d/util/gui/GuiSection.java",
+      "uses": [
+        "ChatPanel.java:109"
+      ],
+      "parameter_types": [
+        "snake2d.SPRITE_RENDERER",
+        "float"
+      ],
+      "compiler_generated_enum": false,
+      "arity": 2,
+      "source_candidates": [
+        {
+          "line": 169,
+          "source_sha256": "a222f5a065902d3611599edb2fe2d47eafc2a6db96dbd685923db040efaee1a5",
+          "parameter_types": [
+            "SPRITE_RENDERER",
+            "float"
+          ],
           "has_javadoc": false
         }
       ],
@@ -4500,6 +4801,35 @@
           "line": 314,
           "source_sha256": "a8753945cce36e0f63b0dba80d089e11b0810670f1569e2393e7ea1321e95c2c",
           "parameter_types": [],
+          "has_javadoc": false
+        }
+      ],
+      "source_match": "name_arity_and_simple_parameter_types",
+      "documentation_status": "human_review_required; Javadoc presence alone does not establish a stable mod contract"
+    },
+    {
+      "id": "snake2d.util.gui.clickable.CLICKABLE.ClickableAbs#clickActionSet(snake2d.util.misc.ACTION)",
+      "owner": "snake2d.util.gui.clickable.CLICKABLE.ClickableAbs",
+      "name": "clickActionSet",
+      "kind": "METHOD",
+      "signature": "clickActionSet(snake2d.util.misc.ACTION)",
+      "public": true,
+      "source_file": "snake2d/util/gui/clickable/CLICKABLE.java",
+      "uses": [
+        "ChatPanel.java:86"
+      ],
+      "parameter_types": [
+        "snake2d.util.misc.ACTION"
+      ],
+      "compiler_generated_enum": false,
+      "arity": 1,
+      "source_candidates": [
+        {
+          "line": 273,
+          "source_sha256": "a8753945cce36e0f63b0dba80d089e11b0810670f1569e2393e7ea1321e95c2c",
+          "parameter_types": [
+            "ACTION"
+          ],
           "has_javadoc": false
         }
       ],
@@ -4661,6 +4991,114 @@
       "documentation_status": "human_review_required; Javadoc presence alone does not establish a stable mod contract"
     },
     {
+      "id": "snake2d.util.sprite.SPRITE#render(snake2d.SPRITE_RENDERER,snake2d.util.datatypes.RECTANGLE)",
+      "owner": "snake2d.util.sprite.SPRITE",
+      "name": "render",
+      "kind": "METHOD",
+      "signature": "render(snake2d.SPRITE_RENDERER,snake2d.util.datatypes.RECTANGLE)",
+      "public": true,
+      "source_file": "snake2d/util/sprite/SPRITE.java",
+      "uses": [
+        "ChatPanel.java:109"
+      ],
+      "parameter_types": [
+        "snake2d.SPRITE_RENDERER",
+        "snake2d.util.datatypes.RECTANGLE"
+      ],
+      "compiler_generated_enum": false,
+      "arity": 2,
+      "source_candidates": [
+        {
+          "line": 23,
+          "source_sha256": "71e8ff47faeb2abb5af07204e08cab7b738908fbffc74152708cf264fc94095e",
+          "parameter_types": [
+            "SPRITE_RENDERER",
+            "RECTANGLE"
+          ],
+          "has_javadoc": false
+        }
+      ],
+      "source_match": "name_arity_and_simple_parameter_types",
+      "documentation_status": "human_review_required; Javadoc presence alone does not establish a stable mod contract"
+    },
+    {
+      "id": "snake2d.util.sprite.text.Font#maxCWidth",
+      "owner": "snake2d.util.sprite.text.Font",
+      "name": "maxCWidth",
+      "kind": "FIELD",
+      "signature": "maxCWidth",
+      "public": true,
+      "source_file": "snake2d/util/sprite/text/Font.java",
+      "uses": [
+        "ChatPanel.java:127",
+        "ChatPanel.java:39"
+      ],
+      "parameter_types": [],
+      "compiler_generated_enum": false,
+      "arity": -1,
+      "source_candidates": [
+        {
+          "line": 75,
+          "source_sha256": "9c1159965c8676cf979f0fe09b025dc1ed8b9968ad37e95a16937d23e2e9d7fd",
+          "parameter_types": [],
+          "has_javadoc": false
+        }
+      ],
+      "source_match": "name_arity_and_simple_parameter_types",
+      "documentation_status": "human_review_required; Javadoc presence alone does not establish a stable mod contract"
+    },
+    {
+      "id": "snake2d.util.sprite.text.Str#clear()",
+      "owner": "snake2d.util.sprite.text.Str",
+      "name": "clear",
+      "kind": "METHOD",
+      "signature": "clear()",
+      "public": true,
+      "source_file": "snake2d/util/sprite/text/Str.java",
+      "uses": [
+        "ChatPanel.java:149",
+        "ChatPanel.java:154"
+      ],
+      "parameter_types": [],
+      "compiler_generated_enum": false,
+      "arity": 0,
+      "source_candidates": [
+        {
+          "line": 241,
+          "source_sha256": "f4c82afb9fdb05544ad93c0d8304b71ce964fa022349fdbe95ad83b831a4bb63",
+          "parameter_types": [],
+          "has_javadoc": false
+        }
+      ],
+      "source_match": "name_arity_and_simple_parameter_types",
+      "documentation_status": "human_review_required; Javadoc presence alone does not establish a stable mod contract"
+    },
+    {
+      "id": "snake2d.util.sprite.text.Str#length()",
+      "owner": "snake2d.util.sprite.text.Str",
+      "name": "length",
+      "kind": "METHOD",
+      "signature": "length()",
+      "public": true,
+      "source_file": "snake2d/util/sprite/text/Str.java",
+      "uses": [
+        "ChatPanel.java:113"
+      ],
+      "parameter_types": [],
+      "compiler_generated_enum": false,
+      "arity": 0,
+      "source_candidates": [
+        {
+          "line": 54,
+          "source_sha256": "f4c82afb9fdb05544ad93c0d8304b71ce964fa022349fdbe95ad83b831a4bb63",
+          "parameter_types": [],
+          "has_javadoc": false
+        }
+      ],
+      "source_match": "name_arity_and_simple_parameter_types",
+      "documentation_status": "human_review_required; Javadoc presence alone does not establish a stable mod contract"
+    },
+    {
       "id": "snake2d.util.sprite.text.Str#toString()",
       "owner": "snake2d.util.sprite.text.Str",
       "name": "toString",
@@ -4669,6 +5107,8 @@
       "public": true,
       "source_file": "snake2d/util/sprite/text/Str.java",
       "uses": [
+        "ChatPanel.java:113",
+        "ChatPanel.java:147",
         "StateCollector.java:104",
         "StateCollector.java:177",
         "StateCollector.java:213",
@@ -4683,6 +5123,37 @@
           "line": 288,
           "source_sha256": "f4c82afb9fdb05544ad93c0d8304b71ce964fa022349fdbe95ad83b831a4bb63",
           "parameter_types": [],
+          "has_javadoc": false
+        }
+      ],
+      "source_match": "name_arity_and_simple_parameter_types",
+      "documentation_status": "human_review_required; Javadoc presence alone does not establish a stable mod contract"
+    },
+    {
+      "id": "snake2d.util.sprite.text.StringInputSprite#StringInputSprite(int,snake2d.util.sprite.text.Font)",
+      "owner": "snake2d.util.sprite.text.StringInputSprite",
+      "name": "<init>",
+      "kind": "CONSTRUCTOR",
+      "signature": "StringInputSprite(int,snake2d.util.sprite.text.Font)",
+      "public": true,
+      "source_file": "snake2d/util/sprite/text/StringInputSprite.java",
+      "uses": [
+        "ChatPanel.java:40"
+      ],
+      "parameter_types": [
+        "int",
+        "snake2d.util.sprite.text.Font"
+      ],
+      "compiler_generated_enum": false,
+      "arity": 2,
+      "source_candidates": [
+        {
+          "line": 24,
+          "source_sha256": "3c6c29ef30c817d65652bd063243b6cff1b17b789c31651f8c05fb8b99755b32",
+          "parameter_types": [
+            "int",
+            "Font"
+          ],
           "has_javadoc": false
         }
       ],
@@ -4711,6 +5182,60 @@
           "source_sha256": "f0fb81f87bb2feb2830c62d42cafabcdcceeb69db7bf9aa10ded0ab838ad8a81",
           "parameter_types": [
             "F"
+          ],
+          "has_javadoc": false
+        }
+      ],
+      "source_match": "name_arity_and_simple_parameter_types",
+      "documentation_status": "human_review_required; Javadoc presence alone does not establish a stable mod contract"
+    },
+    {
+      "id": "util.data.INT#get()",
+      "owner": "util.data.INT",
+      "name": "get",
+      "kind": "METHOD",
+      "signature": "get()",
+      "public": true,
+      "source_file": "util/data/INT.java",
+      "uses": [
+        "ChatPanel.java:141"
+      ],
+      "parameter_types": [],
+      "compiler_generated_enum": false,
+      "arity": 0,
+      "source_candidates": [
+        {
+          "line": 12,
+          "source_sha256": "3c4a8bb733a73cd279d17fc15b942a4a7c5d53093d0c921e0e4b493c9f55c4dd",
+          "parameter_types": [],
+          "has_javadoc": false
+        }
+      ],
+      "source_match": "name_arity_and_simple_parameter_types",
+      "documentation_status": "human_review_required; Javadoc presence alone does not establish a stable mod contract"
+    },
+    {
+      "id": "util.data.INT.INTE#set(int)",
+      "owner": "util.data.INT.INTE",
+      "name": "set",
+      "kind": "METHOD",
+      "signature": "set(int)",
+      "public": true,
+      "source_file": "util/data/INT.java",
+      "uses": [
+        "ChatPanel.java:142"
+      ],
+      "parameter_types": [
+        "int"
+      ],
+      "compiler_generated_enum": false,
+      "arity": 1,
+      "source_candidates": [
+        {
+          "line": 32,
+          "source_sha256": "3c4a8bb733a73cd279d17fc15b942a4a7c5d53093d0c921e0e4b493c9f55c4dd",
+          "parameter_types": [
+            "int"
           ],
           "has_javadoc": false
         }
@@ -4817,7 +5342,7 @@
       "public": true,
       "source_file": "util/gui/misc/GBox.java",
       "uses": [
-        "UiContextCollector.java:74"
+        "UiContextCollector.java:75"
       ],
       "parameter_types": [],
       "compiler_generated_enum": false,
@@ -4827,6 +5352,130 @@
           "line": 509,
           "source_sha256": "a623c7f7cf5f364becb657d5a4f0ff97c28244fc232ccf363efca2098e65ebac",
           "parameter_types": [],
+          "has_javadoc": false
+        }
+      ],
+      "source_match": "name_arity_and_simple_parameter_types",
+      "documentation_status": "human_review_required; Javadoc presence alone does not establish a stable mod contract"
+    },
+    {
+      "id": "util.gui.misc.GButt.ButtPanel#ButtPanel(java.lang.CharSequence)",
+      "owner": "util.gui.misc.GButt.ButtPanel",
+      "name": "<init>",
+      "kind": "CONSTRUCTOR",
+      "signature": "ButtPanel(java.lang.CharSequence)",
+      "public": true,
+      "source_file": "util/gui/misc/GButt.java",
+      "uses": [
+        "ChatPanel.java:85"
+      ],
+      "parameter_types": [
+        "java.lang.CharSequence"
+      ],
+      "compiler_generated_enum": false,
+      "arity": 1,
+      "source_candidates": [
+        {
+          "line": 447,
+          "source_sha256": "d5f410e5db7e9c12e51ea1c1ea60ddbdb579c55535bc3102d52ebdd5064e9e00",
+          "parameter_types": [
+            "CharSequence"
+          ],
+          "has_javadoc": false
+        }
+      ],
+      "source_match": "name_arity_and_simple_parameter_types",
+      "documentation_status": "human_review_required; Javadoc presence alone does not establish a stable mod contract"
+    },
+    {
+      "id": "util.gui.misc.GInput#GInput(snake2d.util.sprite.text.StringInputSprite)",
+      "owner": "util.gui.misc.GInput",
+      "name": "<init>",
+      "kind": "CONSTRUCTOR",
+      "signature": "GInput(snake2d.util.sprite.text.StringInputSprite)",
+      "public": true,
+      "source_file": "util/gui/misc/GInput.java",
+      "uses": [
+        "ChatPanel.java:40"
+      ],
+      "parameter_types": [
+        "snake2d.util.sprite.text.StringInputSprite"
+      ],
+      "compiler_generated_enum": false,
+      "arity": 1,
+      "source_candidates": [
+        {
+          "line": 17,
+          "source_sha256": "aa2779005b820ba968d6b8904382104f85205e7bd30d49097ea5dc416457378d",
+          "parameter_types": [
+            "StringInputSprite"
+          ],
+          "has_javadoc": false
+        }
+      ],
+      "source_match": "name_arity_and_simple_parameter_types",
+      "documentation_status": "human_review_required; Javadoc presence alone does not establish a stable mod contract"
+    },
+    {
+      "id": "util.gui.misc.GInput#text()",
+      "owner": "util.gui.misc.GInput",
+      "name": "text",
+      "kind": "METHOD",
+      "signature": "text()",
+      "public": true,
+      "source_file": "util/gui/misc/GInput.java",
+      "uses": [
+        "ChatPanel.java:113",
+        "ChatPanel.java:147",
+        "ChatPanel.java:149",
+        "ChatPanel.java:152",
+        "ChatPanel.java:154"
+      ],
+      "parameter_types": [],
+      "compiler_generated_enum": false,
+      "arity": 0,
+      "source_candidates": [
+        {
+          "line": 87,
+          "source_sha256": "aa2779005b820ba968d6b8904382104f85205e7bd30d49097ea5dc416457378d",
+          "parameter_types": [],
+          "has_javadoc": false
+        }
+      ],
+      "source_match": "name_arity_and_simple_parameter_types",
+      "documentation_status": "human_review_required; Javadoc presence alone does not establish a stable mod contract"
+    },
+    {
+      "id": "util.gui.misc.GTextR#GTextR(snake2d.util.sprite.text.Font,java.lang.CharSequence)",
+      "owner": "util.gui.misc.GTextR",
+      "name": "<init>",
+      "kind": "CONSTRUCTOR",
+      "signature": "GTextR(snake2d.util.sprite.text.Font,java.lang.CharSequence)",
+      "public": true,
+      "source_file": "util/gui/misc/GTextR.java",
+      "uses": [
+        "ChatPanel.java:115",
+        "ChatPanel.java:117",
+        "ChatPanel.java:124",
+        "ChatPanel.java:133",
+        "ChatPanel.java:139",
+        "ChatPanel.java:140",
+        "ChatPanel.java:145"
+      ],
+      "parameter_types": [
+        "snake2d.util.sprite.text.Font",
+        "java.lang.CharSequence"
+      ],
+      "compiler_generated_enum": false,
+      "arity": 2,
+      "source_candidates": [
+        {
+          "line": 15,
+          "source_sha256": "66784aacd0f98f75baba66a50cdad4a7f30c88a51c0a11c3fede460163f044ce",
+          "parameter_types": [
+            "Font",
+            "CharSequence"
+          ],
           "has_javadoc": false
         }
       ],
@@ -4851,6 +5500,90 @@
         {
           "line": 35,
           "source_sha256": "66784aacd0f98f75baba66a50cdad4a7f30c88a51c0a11c3fede460163f044ce",
+          "parameter_types": [],
+          "has_javadoc": false
+        }
+      ],
+      "source_match": "name_arity_and_simple_parameter_types",
+      "documentation_status": "human_review_required; Javadoc presence alone does not establish a stable mod contract"
+    },
+    {
+      "id": "util.gui.table.GScrollRows#GScrollRows(java.lang.Iterable<? extends snake2d.util.gui.renderable.RENDEROBJ>,int)",
+      "owner": "util.gui.table.GScrollRows",
+      "name": "<init>",
+      "kind": "CONSTRUCTOR",
+      "signature": "GScrollRows(java.lang.Iterable<? extends snake2d.util.gui.renderable.RENDEROBJ>,int)",
+      "public": true,
+      "source_file": "util/gui/table/GScrollRows.java",
+      "uses": [
+        "ChatPanel.java:125",
+        "ChatPanel.java:142"
+      ],
+      "parameter_types": [
+        "java.lang.Iterable<? extends snake2d.util.gui.renderable.RENDEROBJ>",
+        "int"
+      ],
+      "compiler_generated_enum": false,
+      "arity": 2,
+      "source_candidates": [
+        {
+          "line": 38,
+          "source_sha256": "ade1e3a41c370d95246edf2e3d00dd732c6a1171b3a3315b6cf77820265078fa",
+          "parameter_types": [
+            "Iterable<? extends RENDEROBJ>",
+            "int"
+          ],
+          "has_javadoc": false
+        }
+      ],
+      "source_match": "name_arity_and_simple_parameter_types",
+      "documentation_status": "human_review_required; Javadoc presence alone does not establish a stable mod contract"
+    },
+    {
+      "id": "util.gui.table.GScrollRows#target",
+      "owner": "util.gui.table.GScrollRows",
+      "name": "target",
+      "kind": "FIELD",
+      "signature": "target",
+      "public": true,
+      "source_file": "util/gui/table/GScrollRows.java",
+      "uses": [
+        "ChatPanel.java:141",
+        "ChatPanel.java:142"
+      ],
+      "parameter_types": [],
+      "compiler_generated_enum": false,
+      "arity": -1,
+      "source_candidates": [
+        {
+          "line": 125,
+          "source_sha256": "ade1e3a41c370d95246edf2e3d00dd732c6a1171b3a3315b6cf77820265078fa",
+          "parameter_types": [],
+          "has_javadoc": false
+        }
+      ],
+      "source_match": "name_arity_and_simple_parameter_types",
+      "documentation_status": "human_review_required; Javadoc presence alone does not establish a stable mod contract"
+    },
+    {
+      "id": "util.gui.table.GScrollRows#view()",
+      "owner": "util.gui.table.GScrollRows",
+      "name": "view",
+      "kind": "METHOD",
+      "signature": "view()",
+      "public": true,
+      "source_file": "util/gui/table/GScrollRows.java",
+      "uses": [
+        "ChatPanel.java:125",
+        "ChatPanel.java:143"
+      ],
+      "parameter_types": [],
+      "compiler_generated_enum": false,
+      "arity": 0,
+      "source_candidates": [
+        {
+          "line": 121,
+          "source_sha256": "ade1e3a41c370d95246edf2e3d00dd732c6a1171b3a3315b6cf77820265078fa",
           "parameter_types": [],
           "has_javadoc": false
         }
@@ -5036,7 +5769,7 @@
       "public": true,
       "source_file": "view/battle/BattleView.java",
       "uses": [
-        "UiContextCollector.java:55"
+        "UiContextCollector.java:56"
       ],
       "parameter_types": [],
       "compiler_generated_enum": false,
@@ -5087,7 +5820,7 @@
       "public": true,
       "source_file": "view/interrupter/IPopup.java",
       "uses": [
-        "UiContextCollector.java:67"
+        "UiContextCollector.java:68"
       ],
       "parameter_types": [],
       "compiler_generated_enum": false,
@@ -5112,7 +5845,7 @@
       "public": true,
       "source_file": "view/interrupter/ISidePanels.java",
       "uses": [
-        "UiContextCollector.java:92"
+        "UiContextCollector.java:93"
       ],
       "parameter_types": [
         "view.interrupter.ISidePanel"
@@ -5125,6 +5858,65 @@
           "source_sha256": "fae436013cc4620186746e7a4b4c9f6615d74ecb6121e7bc37c6e2d13bc3012d",
           "parameter_types": [
             "ISidePanel"
+          ],
+          "has_javadoc": false
+        }
+      ],
+      "source_match": "name_arity_and_simple_parameter_types",
+      "documentation_status": "human_review_required; Javadoc presence alone does not establish a stable mod contract"
+    },
+    {
+      "id": "view.interrupter.InterGuisection#InterGuisection(view.interrupter.InterManager)",
+      "owner": "view.interrupter.InterGuisection",
+      "name": "<init>",
+      "kind": "CONSTRUCTOR",
+      "signature": "InterGuisection(view.interrupter.InterManager)",
+      "public": true,
+      "source_file": "view/interrupter/InterGuisection.java",
+      "uses": [
+        "ChatPanel.java:37"
+      ],
+      "parameter_types": [
+        "view.interrupter.InterManager"
+      ],
+      "compiler_generated_enum": false,
+      "arity": 1,
+      "source_candidates": [
+        {
+          "line": 17,
+          "source_sha256": "727f7ddd3932cc7ddb460821e54d248b0cc41984649eff2c3770f4fc33065025",
+          "parameter_types": [
+            "InterManager"
+          ],
+          "has_javadoc": false
+        }
+      ],
+      "source_match": "name_arity_and_simple_parameter_types",
+      "documentation_status": "human_review_required; Javadoc presence alone does not establish a stable mod contract"
+    },
+    {
+      "id": "view.interrupter.InterGuisection#activate(snake2d.util.gui.GuiSection)",
+      "owner": "view.interrupter.InterGuisection",
+      "name": "activate",
+      "kind": "METHOD",
+      "signature": "activate(snake2d.util.gui.GuiSection)",
+      "public": true,
+      "source_file": "view/interrupter/InterGuisection.java",
+      "uses": [
+        "ChatPanel.java:105",
+        "ChatPanel.java:158"
+      ],
+      "parameter_types": [
+        "snake2d.util.gui.GuiSection"
+      ],
+      "compiler_generated_enum": false,
+      "arity": 1,
+      "source_candidates": [
+        {
+          "line": 70,
+          "source_sha256": "727f7ddd3932cc7ddb460821e54d248b0cc41984649eff2c3770f4fc33065025",
+          "parameter_types": [
+            "GuiSection"
           ],
           "has_javadoc": false
         }
@@ -5166,8 +5958,8 @@
       "public": true,
       "source_file": "view/interrupter/InterManager.java",
       "uses": [
-        "UiContextCollector.java:77",
-        "UiContextCollector.java:79"
+        "UiContextCollector.java:78",
+        "UiContextCollector.java:80"
       ],
       "parameter_types": [],
       "compiler_generated_enum": false,
@@ -5209,6 +6001,56 @@
       "documentation_status": "human_review_required; Javadoc presence alone does not establish a stable mod contract"
     },
     {
+      "id": "view.interrupter.Interrupter#persistantSet()",
+      "owner": "view.interrupter.Interrupter",
+      "name": "persistantSet",
+      "kind": "METHOD",
+      "signature": "persistantSet()",
+      "public": true,
+      "source_file": "view/interrupter/Interrupter.java",
+      "uses": [
+        "ChatPanel.java:41"
+      ],
+      "parameter_types": [],
+      "compiler_generated_enum": false,
+      "arity": 0,
+      "source_candidates": [
+        {
+          "line": 132,
+          "source_sha256": "3abe0d9e7da942c8a1a16925f3d8ec30e6bd86f96e99a072ae4407f9b1491bd6",
+          "parameter_types": [],
+          "has_javadoc": false
+        }
+      ],
+      "source_match": "name_arity_and_simple_parameter_types",
+      "documentation_status": "human_review_required; Javadoc presence alone does not establish a stable mod contract"
+    },
+    {
+      "id": "view.interrupter.Interrupter#pin()",
+      "owner": "view.interrupter.Interrupter",
+      "name": "pin",
+      "kind": "METHOD",
+      "signature": "pin()",
+      "public": true,
+      "source_file": "view/interrupter/Interrupter.java",
+      "uses": [
+        "ChatPanel.java:41"
+      ],
+      "parameter_types": [],
+      "compiler_generated_enum": false,
+      "arity": 0,
+      "source_candidates": [
+        {
+          "line": 150,
+          "source_sha256": "3abe0d9e7da942c8a1a16925f3d8ec30e6bd86f96e99a072ae4407f9b1491bd6",
+          "parameter_types": [],
+          "has_javadoc": false
+        }
+      ],
+      "source_match": "name_arity_and_simple_parameter_types",
+      "documentation_status": "human_review_required; Javadoc presence alone does not establish a stable mod contract"
+    },
+    {
       "id": "view.main.Interrupters#debugpanel",
       "owner": "view.main.Interrupters",
       "name": "debugpanel",
@@ -5217,7 +6059,7 @@
       "public": true,
       "source_file": "view/main/Interrupters.java",
       "uses": [
-        "UiContextCollector.java:68"
+        "UiContextCollector.java:69"
       ],
       "parameter_types": [],
       "compiler_generated_enum": false,
@@ -5242,7 +6084,7 @@
       "public": true,
       "source_file": "view/main/Interrupters.java",
       "uses": [
-        "UiContextCollector.java:66"
+        "UiContextCollector.java:67"
       ],
       "parameter_types": [],
       "compiler_generated_enum": false,
@@ -5267,7 +6109,7 @@
       "public": true,
       "source_file": "view/main/Interrupters.java",
       "uses": [
-        "UiContextCollector.java:66"
+        "UiContextCollector.java:67"
       ],
       "parameter_types": [],
       "compiler_generated_enum": false,
@@ -5292,7 +6134,7 @@
       "public": true,
       "source_file": "view/main/Interrupters.java",
       "uses": [
-        "UiContextCollector.java:68"
+        "UiContextCollector.java:69"
       ],
       "parameter_types": [],
       "compiler_generated_enum": false,
@@ -5317,7 +6159,8 @@
       "public": true,
       "source_file": "view/main/Interrupters.java",
       "uses": [
-        "UiContextCollector.java:77"
+        "ChatPanel.java:37",
+        "UiContextCollector.java:78"
       ],
       "parameter_types": [],
       "compiler_generated_enum": false,
@@ -5342,7 +6185,7 @@
       "public": true,
       "source_file": "view/main/Interrupters.java",
       "uses": [
-        "UiContextCollector.java:66"
+        "UiContextCollector.java:67"
       ],
       "parameter_types": [],
       "compiler_generated_enum": false,
@@ -5368,7 +6211,7 @@
       "source_file": "view/main/Interrupters.java",
       "uses": [
         "UiContentCollector.java:66",
-        "UiContextCollector.java:67"
+        "UiContextCollector.java:68"
       ],
       "parameter_types": [],
       "compiler_generated_enum": false,
@@ -5394,7 +6237,7 @@
       "source_file": "view/main/Interrupters.java",
       "uses": [
         "UiContentCollector.java:67",
-        "UiContextCollector.java:67"
+        "UiContextCollector.java:68"
       ],
       "parameter_types": [],
       "compiler_generated_enum": false,
@@ -5420,7 +6263,7 @@
       "source_file": "view/main/Interrupters.java",
       "uses": [
         "UiContentCollector.java:68",
-        "UiContextCollector.java:68"
+        "UiContextCollector.java:69"
       ],
       "parameter_types": [],
       "compiler_generated_enum": false,
@@ -5445,7 +6288,7 @@
       "public": true,
       "source_file": "view/main/Interrupters.java",
       "uses": [
-        "UiContextCollector.java:67"
+        "UiContextCollector.java:68"
       ],
       "parameter_types": [],
       "compiler_generated_enum": false,
@@ -5470,8 +6313,8 @@
       "public": true,
       "source_file": "view/main/VIEW.java",
       "uses": [
-        "UiContextCollector.java:69",
-        "UiContextCollector.java:70"
+        "UiContextCollector.java:70",
+        "UiContextCollector.java:71"
       ],
       "parameter_types": [],
       "compiler_generated_enum": false,
@@ -5498,7 +6341,7 @@
       "uses": [
         "UiContextCollector.java:24",
         "UiContextCollector.java:25",
-        "UiContextCollector.java:55"
+        "UiContextCollector.java:56"
       ],
       "parameter_types": [],
       "compiler_generated_enum": false,
@@ -5526,8 +6369,8 @@
         "UiContextCollector.java:19",
         "UiContextCollector.java:20",
         "UiContextCollector.java:47",
-        "UiContextCollector.java:63",
-        "UiContextCollector.java:79"
+        "UiContextCollector.java:64",
+        "UiContextCollector.java:80"
       ],
       "parameter_types": [],
       "compiler_generated_enum": false,
@@ -5579,7 +6422,7 @@
       "public": true,
       "source_file": "view/main/VIEW.java",
       "uses": [
-        "UiContextCollector.java:64"
+        "UiContextCollector.java:65"
       ],
       "parameter_types": [],
       "compiler_generated_enum": false,
@@ -5604,7 +6447,7 @@
       "public": true,
       "source_file": "view/main/VIEW.java",
       "uses": [
-        "UiContextCollector.java:74"
+        "UiContextCollector.java:75"
       ],
       "parameter_types": [],
       "compiler_generated_enum": false,
@@ -5629,11 +6472,12 @@
       "public": true,
       "source_file": "view/main/VIEW.java",
       "uses": [
+        "ChatPanel.java:37",
         "UiContentCollector.java:66",
         "UiContentCollector.java:67",
         "UiContentCollector.java:68",
-        "UiContextCollector.java:65",
-        "UiContextCollector.java:77"
+        "UiContextCollector.java:66",
+        "UiContextCollector.java:78"
       ],
       "parameter_types": [],
       "compiler_generated_enum": false,
@@ -5662,10 +6506,10 @@
         "StateCollector.java:85",
         "UiContextCollector.java:21",
         "UiContextCollector.java:22",
-        "UiContextCollector.java:87",
-        "UiContextCollector.java:91",
+        "UiContextCollector.java:88",
         "UiContextCollector.java:92",
-        "UiContextCollector.java:94"
+        "UiContextCollector.java:93",
+        "UiContextCollector.java:95"
       ],
       "parameter_types": [],
       "compiler_generated_enum": false,
@@ -5747,7 +6591,7 @@
       "public": true,
       "source_file": "view/main/VIEW.java",
       "uses": [
-        "UiContextCollector.java:79"
+        "UiContextCollector.java:80"
       ],
       "parameter_types": [],
       "compiler_generated_enum": false,
@@ -5797,7 +6641,7 @@
       "public": true,
       "source_file": "view/sett/SettView.java",
       "uses": [
-        "UiContextCollector.java:92"
+        "UiContextCollector.java:93"
       ],
       "parameter_types": [],
       "compiler_generated_enum": false,
@@ -5823,10 +6667,10 @@
       "source_file": "view/sett/SettView.java",
       "uses": [
         "StateCollector.java:85",
-        "UiContextCollector.java:87",
-        "UiContextCollector.java:91",
+        "UiContextCollector.java:88",
         "UiContextCollector.java:92",
-        "UiContextCollector.java:94"
+        "UiContextCollector.java:93",
+        "UiContextCollector.java:95"
       ],
       "parameter_types": [],
       "compiler_generated_enum": false,
@@ -5851,8 +6695,8 @@
       "public": true,
       "source_file": "view/sett/ui/SettUI.java",
       "uses": [
-        "UiContextCollector.java:92",
-        "UiContextCollector.java:94"
+        "UiContextCollector.java:93",
+        "UiContextCollector.java:95"
       ],
       "parameter_types": [],
       "compiler_generated_enum": false,
@@ -5878,8 +6722,8 @@
       "source_file": "view/sett/ui/SettUI.java",
       "uses": [
         "StateCollector.java:85",
-        "UiContextCollector.java:87",
-        "UiContextCollector.java:91"
+        "UiContextCollector.java:88",
+        "UiContextCollector.java:92"
       ],
       "parameter_types": [],
       "compiler_generated_enum": false,
@@ -5904,7 +6748,7 @@
       "public": true,
       "source_file": "view/sett/ui/room/UIRooms.java",
       "uses": [
-        "UiContextCollector.java:92"
+        "UiContextCollector.java:93"
       ],
       "parameter_types": [],
       "compiler_generated_enum": false,
@@ -5929,7 +6773,7 @@
       "public": true,
       "source_file": "view/sett/ui/room/UIRooms.java",
       "uses": [
-        "UiContextCollector.java:94"
+        "UiContextCollector.java:95"
       ],
       "parameter_types": [
         "settlement.room.main.RoomBlueprint"
@@ -5959,7 +6803,7 @@
       "source_file": "view/sett/ui/subject/UISubjects.java",
       "uses": [
         "StateCollector.java:85",
-        "UiContextCollector.java:87"
+        "UiContextCollector.java:88"
       ],
       "parameter_types": [],
       "compiler_generated_enum": false,
@@ -5984,7 +6828,7 @@
       "public": true,
       "source_file": "view/sett/ui/subject/UISubjects.java",
       "uses": [
-        "UiContextCollector.java:91"
+        "UiContextCollector.java:92"
       ],
       "parameter_types": [],
       "compiler_generated_enum": false,
@@ -6009,7 +6853,7 @@
       "public": true,
       "source_file": "view/ui/UIView.java",
       "uses": [
-        "UiContextCollector.java:70"
+        "UiContextCollector.java:71"
       ],
       "parameter_types": [],
       "compiler_generated_enum": false,
@@ -6034,7 +6878,7 @@
       "public": true,
       "source_file": "view/ui/UIView.java",
       "uses": [
-        "UiContextCollector.java:69"
+        "UiContextCollector.java:70"
       ],
       "parameter_types": [],
       "compiler_generated_enum": false,
@@ -6059,7 +6903,7 @@
       "public": true,
       "source_file": "view/ui/manage/IManager.java",
       "uses": [
-        "UiContextCollector.java:70"
+        "UiContextCollector.java:71"
       ],
       "parameter_types": [],
       "compiler_generated_enum": false,

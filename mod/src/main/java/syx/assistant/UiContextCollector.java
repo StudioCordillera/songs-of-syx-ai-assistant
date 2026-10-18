@@ -48,6 +48,7 @@ public final class UiContextCollector {
             result.put("available",false); result.put("reason","No initialized game view");return result;
         }
         result.put("available",true);
+        result.put("assistant_chat",AssistantScript.chatContext());
         String kind=activeView();
         result.put("active_view",kind);
         result.put("world_generation_step",object("available",false,"reason","Wizard staging fields are private; WorldGen flags describe preparation, not the exact visible step"));

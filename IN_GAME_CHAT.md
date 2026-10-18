@@ -1,6 +1,6 @@
 # Required in-game chat client and session history
 
-Added 2026-10-17 at the user's request. **Required feature; not implemented yet.** The user must have a usable chat client inside Songs of Syx for every supported provider and authentication choice. An API connection, MCP configuration or external terminal client alone does not complete provider support.
+Added 2026-10-17 at the user's request. **Required feature; experimental implementation in progress, acceptance gates remain open.** See [the development implementation](CHAT_BACKEND.md). The user must have a usable chat client inside Songs of Syx for every supported provider and authentication choice. An API connection, MCP configuration or external terminal client alone does not complete provider support.
 
 This includes DeepSeek: connecting a DeepSeek API account must lead to the same in-game conversation interface, without requiring the player to find a separate compatible client. Existing Claude Code/Codex configurations are development bridges, not the finished player experience. See [PROVIDERS.md](PROVIDERS.md) for authentication requirements and pending account tests.
 
@@ -41,7 +41,7 @@ Log events include a stable event/turn ID, chat ID, observed runtime session ID 
 
 ## Intended implementation boundary
 
-The game mod owns its chat panel and uses appropriate public game GUI/script APIs. Rendering and accepting player input in this panel are different from controlling the game's existing UI: no screenshots, native input, private UI traversal or gameplay automation is introduced. The current observation-only production implementation has no chat panel; the required own-panel hooks still need source review and runtime validation.
+The game mod owns its chat panel and uses appropriate public game GUI/script APIs. Rendering and accepting player input in this panel are different from controlling the game's existing UI: no screenshots, native input, private UI traversal or gameplay automation is introduced. An opt-in prototype now uses a separate source-verified public GUI section and widgets; broad input/lifecycle validation and product completion remain pending.
 
 A local chat coordinator should own conversation persistence, cancellation and provider adapters. It obtains game observations through the existing bounded MCP interface. Provider inference and supported SDK/client authentication belong there, outside the game update thread; credentials are excluded from game saves, snapshots, reference records and committed configuration. The game-state bridge and MCP remain observational and make no inference requests.
 

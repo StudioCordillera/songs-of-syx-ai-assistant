@@ -46,3 +46,7 @@ Checked 2026-10-17. [Anthropic's plan/Agent SDK notice](https://support.claude.c
 The MCP transport itself is provider independent. Provider-native hosted MCP support is not required for local tool orchestration; the local client/coordinator invokes the stdio server and returns selected tool results to its chosen model. Existing external clients remain development bridges until the in-game interface is implemented. No game-process access moves into a provider adapter.
 
 For the DeepSeek profile, Claude Code is the MCP/tool client and DeepSeek supplies inference. This is not Claude subscription usage. Embedded adapters must also preserve provider-required reasoning/continuation content and streaming tool-call assembly, without exposing internal reasoning in logs; these require provider-specific tests before release.
+
+## Native chat development implementation
+
+A [native DeepSeek transport, shared conversation/history engine and opt-in panel](CHAT_BACKEND.md) now exist. Mocked protocol and local GUI checks do not establish authenticated inference or complete provider support. OpenAI/Claude routes and in-game account setup remain pending.
