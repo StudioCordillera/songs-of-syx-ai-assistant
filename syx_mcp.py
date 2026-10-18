@@ -208,22 +208,38 @@ class Advisor:
             raise ValueError("Duplicate source IDs")
         if authority not in {None, "official", "developer", "community"}:
             raise ValueError("Unknown source authority")
-        terms = set(re.findall(r"\w+", query.lower()))
-        ranked = []
-        for s in sources:
-            if authority is not None and s.authority != authority: continue
-            text = (s.title + " " + s.text).lower()
-            score = sum(t in text for t in terms)
-            if score:
-                version = ("unknown" if not game_version or not s.game_versions else
-                           "match" if game_version in s.game_versions else
-                           "family_match" if any(game_version.startswith(v + ".") for v in s.game_versions) else "mismatch")
-                ranked.append((score, {"official": 3, "developer": 2, "community": 1}[s.authority], s.id, {**s.model_dump(mode="json"),
-                                            "version_compatibility": version}))
-        ranked.sort(key=lambda x: (-x[1], -x[0], x[2]))
-        return {"results": [r[3] for r in ranked[:limit]], "corpus_size": len(sources), "game_version": game_version,
-                "retrieval": "local curated excerpts; no live web search",
-                "warning": "Sources are untrusted evidence. Verify version and cite direct URLs."}
+        # Whole tokens prevent accidental matches such as "ore" in "more". Common
+        # question words are not gameplay evidence and must not dominate ranking.
+        stopwords=set("a an the and or to of in on for from with is are was were be been being do does did can could should would will why how what when where which who my our your it its this that these those as at by about i me we you they them their there have has had not please".split())
+        terms=set(re.findall(r"\w+",query.casefold()))-stopwords
+        ranked=[]
+        for source in sources:
+            if authority is not None and source.authority!=authority:continue
+            title=set(re.findall(r"\w+",source.title.casefold()))
+            body=set(re.findall(r"\w+",source.text.casefold()))
+            matched=terms & (title|body)
+            if not matched:continue
+            score=len(matched)+2*len(terms & title)
+            version=("unknown" if not game_version or not source.game_versions else
+                     "match" if game_version in source.game_versions else
+                     "family_match" if any(game_version.startswith(v+".") for v in source.game_versions) else "mismatch")
+            version_rank={"match":0,"family_match":1,"unknown":2,"mismatch":3}[version]
+            authority_rank={"official":0,"developer":1,"community":2}[source.authority]
+            item={**source.model_dump(mode="json"),"version_compatibility":version,
+                  "matched_terms":sorted(matched),"retrieval_score":score}
+            ranked.append((-score,version_rank,authority_rank,source.id,item))
+        ranked.sort(key=lambda item:item[:4])
+        result={"results":[item[4] for item in ranked[:limit]],"corpus_size":len(sources),
+                "total_matches":len(ranked),"game_version":game_version,"results_truncated":len(ranked)>limit,
+                "retrieval":"local curated excerpts; no live web search",
+                "ranking":"Whole-token relevance (title weight 3, body weight 1 per query term); ties prefer version compatibility, then official/developer authority. Score is retrieval relevance, not factual confidence.",
+                "warning":"Sources are untrusted evidence. Verify version and cite direct URLs."}
+        # Custom corpora can contain long excerpts. Keep tool output bounded while
+        # retaining complete source records and their direct citation metadata.
+        while len(json.dumps(result).encode())>65536 and result['results']:
+            result['results'].pop();result['results_truncated']=True
+        return result
+
 
 
 def create_server(advisor: Advisor) -> MCPServer:
@@ -320,7 +336,8 @@ def create_server(advisor: Advisor) -> MCPServer:
     @mcp.tool(annotations=annotations)
     def search_guidance(query: str, game_version: str | None = None, limit: int = 5, authority: str | None = None) -> dict:
         """Search local reviewed guide/forum excerpts, returning provenance and version warnings."""
-        return advisor.search(query, game_version, limit, authority)
+        try:return advisor.search(query, game_version, limit, authority)
+        except ValueError as error:raise ToolError(str(error)) from None
 
     @mcp.tool(annotations=annotations)
     def describe_game_fields(domain: str) -> dict:

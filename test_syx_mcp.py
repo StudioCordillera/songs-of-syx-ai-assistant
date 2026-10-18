@@ -239,3 +239,45 @@ def test_field_meanings_obey_response_budget(setup):
     save(advisor,state)
     with pytest.raises(ValueError,match='64 KiB'):
         advisor.describe('resources')
+
+
+def test_guidance_relevance_before_authority_and_whole_tokens(setup):
+    advisor,_=setup
+    def record(id,title,text,authority='community',versions=None):
+        return {'id':id,'title':title,'text':text,'authority':authority,'kind':'guide',
+            'url':'https://example.com/'+id,'retrieved_at':'2026-01-01T00:00:00Z',
+            'game_versions':versions or []}
+    sources=[record('official','Official announcement','Food and unrelated changes.','official'),
+             record('relevant','Food storage spoilage','Food storage spoilage in warehouses.'),
+             record('substring','Unrelated','There is more text here.')]
+    advisor.corpus_path.write_text(json.dumps(sources))
+    result=advisor.search('How can I reduce food storage spoilage?','0.71.44')
+    assert result['results'][0]['id']=='relevant'
+    assert result['results'][0]['matched_terms']==['food','spoilage','storage']
+    assert not advisor.search('ore')['results']
+    assert not advisor.search('how can I')['results']
+    assert advisor.search('food',authority='official')['results'][0]['id']=='official'
+
+
+def test_guidance_version_then_authority_breaks_relevance_ties(setup):
+    advisor,_=setup
+    sources=[]
+    for id,authority,versions in [('old','official',['0.60']),('community','community',['0.71']),
+                                   ('developer','developer',['0.71']),('exact','community',['0.71.44'])]:
+        sources.append({'id':id,'title':'Food','text':'Food','authority':authority,'kind':'guide',
+            'url':'https://example.com/'+id,'retrieved_at':'2026-01-01T00:00:00Z','game_versions':versions})
+    advisor.corpus_path.write_text(json.dumps(sources))
+    result=advisor.search('food','0.71.44')
+    assert [s['id'] for s in result['results']]==['exact','developer','community','old']
+    assert result['results'][-1]['version_compatibility']=='mismatch'
+
+
+def test_guidance_response_budget_preserves_complete_citations(setup):
+    advisor,_=setup
+    sources=[{'id':str(i),'title':'Food','text':'Food '+('x'*11990),'kind':'guide',
+        'url':'https://example.com/'+str(i),'retrieved_at':'2026-01-01T00:00:00Z'} for i in range(10)]
+    advisor.corpus_path.write_text(json.dumps(sources))
+    result=advisor.search('food',limit=10)
+    assert result['total_matches']==10 and result['results_truncated']
+    assert 0<len(result['results'])<10 and len(json.dumps(result).encode())<=65536
+    assert all(s['url']=='https://example.com/'+s['id'] and len(s['text'])==11995 for s in result['results'])

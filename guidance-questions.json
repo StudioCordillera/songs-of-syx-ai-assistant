@@ -1,0 +1,11 @@
+[
+  {"query":"How did V71 change trade tariffs and logistics?","expected_id":"official-v71-trade"},
+  {"query":"What changed about law punishments and loyalty in V71?","expected_id":"official-v71-law"},
+  {"query":"How do parents care for infants and what does a nursery do?","expected_id":"official-v71-families"},
+  {"query":"Why is the eatery overlay red or blue when people are hungry?","expected_id":"steam-developer-eatery-overlay-2022"},
+  {"query":"Why does the workload estimate differ from actual production?","expected_id":"developer-workload-estimate-2023"},
+  {"query":"Do pastures gain animal capacity from fertility?","expected_id":"developer-pasture-fertility-2021"},
+  {"query":"Where can I find release notes for previous versions?","expected_id":"developer-faq-reference-navigation"},
+  {"query":"How can I start food farms with moisture and hunting?","expected_id":"steam-v71-starting-economy"},
+  {"query":"quasar hyperdrive","expected_id":null}
+]

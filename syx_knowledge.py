@@ -59,6 +59,49 @@ for topic, text in {
     })
 
 
+# Developer posts checked directly, with speaker badges and historical context retained.
+# These are original short summaries, not forum mirrors or claims of current-patch behavior.
+SEEDS.extend([
+    {
+        'id':'developer-workload-estimate-2023',
+        'title':'Workload and actual production — developer explanation',
+        'url':'https://steamcommunity.com/app/1162750/discussions/0/3800525036429614132/',
+        'kind':'forum','authority':'developer','author':'Gamatron',
+        'retrieved_at':'2026-10-18T03:56:25Z','game_versions':[],
+        'version_notes':'Developer reply dated 12 July 2023, comment #2. Later commenters dispute displayed estimates; exact game build and applicability to 0.71.44 are not established.',
+        'text':'The developer distinguishes the displayed workload estimate from actual production. '
+               'An indicated idle-worker fraction is an estimate, while realized output depends on time actually worked, '
+               'production rate and bonuses. This historical explanation does not prove a current production bug '
+               'or that changing worker counts will increase output. Inspect present staffing, inputs and recorded '
+               'resource flows before advising the player.'
+    },
+    {
+        'id':'developer-pasture-fertility-2021',
+        'title':'Pasture fertility and animal capacity — historical developer answer',
+        'url':'https://steamcommunity.com/app/1162750/discussions/0/2954914688097551706/',
+        'kind':'forum','authority':'developer','author':'Gamatron',
+        'retrieved_at':'2026-10-18T03:56:25Z','game_versions':[],
+        'version_notes':'Developer answer dated 22 September 2021. Subsequent 2023 community comments discuss base fertility versus irrigation and disagree about some effects. No exact 0.71.44 compatibility established.',
+        'text':'The developer explains pasture animal capacity in terms of fertility and area, connecting more '
+               'animals with more workers and meat. This is historical evidence about capacity, not a current '
+               'per-worker yield formula or proof that irrigation improves every pasture. Check installed room '
+               'help and current-version evidence before applying it.'
+    },
+    {
+        'id':'developer-faq-reference-navigation',
+        'title':'Developer FAQ — finding game help and release notes',
+        'url':'https://steamcommunity.com/app/1162750/discussions/0/3388408347654953100/',
+        'kind':'forum','authority':'developer','author':'Gamatron',
+        'retrieved_at':'2026-10-18T03:56:25Z','game_versions':[],
+        'version_notes':'Opening developer post dated 28 May 2022, visibly edited 9 July 2023. Describes reference locations at that time; current launcher/Steam UI must be verified.',
+        'text':'The developer FAQ points players to the game wiki and the in-game encyclopedia. '
+               'It says launcher version numbers lead to release notes and describes selecting a previous '
+               'game version through Steam beta settings to continue older saves. These are historical '
+               'navigation instructions, not guarantees that old mechanics or saves work in the current build.'
+    }
+])
+
+
 def install_seed(directory: Path):
     from syx_mcp import Source, load_json
     directory.mkdir(parents=True, exist_ok=True)

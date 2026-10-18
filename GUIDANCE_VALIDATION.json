@@ -1,0 +1,85 @@
+{
+  "passed": true,
+  "cases": [
+    {
+      "source_id": "official-v71-trade",
+      "url": "https://steamcommunity.com/games/1162750/announcements/detail/529882384083977659",
+      "authority": "official",
+      "version_compatibility": "family_match",
+      "passed": true
+    },
+    {
+      "source_id": "official-v71-law",
+      "url": "https://steamcommunity.com/games/1162750/announcements/detail/529882384083977659",
+      "authority": "official",
+      "version_compatibility": "family_match",
+      "passed": true
+    },
+    {
+      "source_id": "official-v71-families",
+      "url": "https://steamcommunity.com/games/1162750/announcements/detail/529882384083977659",
+      "authority": "official",
+      "version_compatibility": "family_match",
+      "passed": true
+    },
+    {
+      "source_id": "steam-developer-eatery-overlay-2022",
+      "url": "https://steamcommunity.com/app/1162750/discussions/0/4841941418359552221/",
+      "authority": "developer",
+      "version_compatibility": "unknown",
+      "passed": true
+    },
+    {
+      "source_id": "developer-workload-estimate-2023",
+      "url": "https://steamcommunity.com/app/1162750/discussions/0/3800525036429614132/",
+      "authority": "developer",
+      "version_compatibility": "unknown",
+      "passed": true
+    },
+    {
+      "source_id": "developer-pasture-fertility-2021",
+      "url": "https://steamcommunity.com/app/1162750/discussions/0/2954914688097551706/",
+      "authority": "developer",
+      "version_compatibility": "unknown",
+      "passed": true
+    },
+    {
+      "source_id": "developer-faq-reference-navigation",
+      "url": "https://steamcommunity.com/app/1162750/discussions/0/3388408347654953100/",
+      "authority": "developer",
+      "version_compatibility": "unknown",
+      "passed": true
+    },
+    {
+      "source_id": "steam-v71-starting-economy",
+      "url": "https://steamcommunity.com/sharedfiles/filedetails/?id=3776333166",
+      "authority": "community",
+      "version_compatibility": "family_match",
+      "passed": true
+    },
+    {
+      "expected": null,
+      "passed": true
+    }
+  ],
+  "case_count": 9,
+  "inference_calls": 0,
+  "evaluated_game_version": "0.71.44",
+  "source_sha256": {
+    "syx_mcp.py": "111bb78f1add81b21c93b7e05ec9f928563357bccfe7288bd653bfe5bda102ac",
+    "syx_knowledge.py": "fdaa52f09409c16cc4bf66989cc8d1ca9581bbfd3f10dcba0d4e7a78444297df",
+    "guidance-questions.json": "90df016347618c40ca993f821aadc7800b377a94e698dd3cd03c7fae1e305355",
+    "dev/verify_guidance.py": "3d4b6e86d65d331bbecaf224d5da5150946500b84e97f82bdcd326e0ed374683"
+  },
+  "limits": [
+    "Nine authored retrieval cases, not comprehensive advice correctness or a semantic-search benchmark.",
+    "Historical developer explanations do not establish current-patch mechanics.",
+    "Starter corpus is locally reviewed and not automatically refreshed; no complete guide collection."
+  ],
+  "python_tests": {
+    "passed": 141
+  },
+  "seed_summary_count": 8,
+  "prior_core_checkpoint_commit": "807f6e6",
+  "runtime_game_checks": "Not rerun: no production Java changes in this guidance checkpoint. CORE_VALIDATION.json retains its exact build and Python hashes."
+}

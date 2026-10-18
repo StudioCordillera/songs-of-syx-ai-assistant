@@ -39,7 +39,7 @@ Acceptance: a context-dependent answer uses the same observation as its data que
 
 Goal: give the assistant easy access to official, developer and high-quality community material relevant to the user's question and game version.
 
-Implemented: installed game-help retrieval and a reviewed starter corpus of five original external-source summaries with direct URLs, authority and version caveats. This is a small foundation, not comprehensive guide coverage.
+Implemented: installed game-help retrieval and a reviewed starter corpus of eight original external-source summaries with direct URLs, authority and version caveats. This is a small foundation, not comprehensive guide coverage. Nine authored retrieval cases now pass through actual MCP; relevance ranks before version/authority tie-breakers (GUIDANCE_VALIDATION.json).
 
 Next work:
 

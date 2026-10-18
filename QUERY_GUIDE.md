@@ -47,7 +47,7 @@ Use `get_game_ui_context` for active view, known overlays and selected subject i
 1. `search_game_references` searches resource, technology and stat descriptions loaded by this exact game.
    Cite its reference ID and origin. Active mods can change this text; these are installed-data references.
 2. `search_guidance` searches reviewed excerpts with direct URLs, authors, authority, retrieval time,
-   version notes and compatibility labels. Prefer official/developer evidence; community guides are secondary.
+   version notes and compatibility labels. Results rank by whole-word relevance, with version compatibility and official/developer authority breaking ties. An authority filter restricts the search when needed. A retrieval score is not factual confidence.
 3. Combine observed state with supported mechanics and explain the inference. An old forum answer or a
    version-family match does not prove applicability to the current patch. Report gaps instead of inventing evidence.
 
@@ -174,3 +174,8 @@ After checking that `/selected_subject` and its available, non-null workplace ex
 ```
 
 This observes a recorded assignment. It does not prove the person is currently working, that this room is selected in the UI, or that the room meets production targets. A missing join is not evidence of unemployment if either source lacks coverage.
+
+
+## Reference retrieval checks
+
+The reviewed starter corpus has eight original summaries. Run `PYTHONPATH="$PWD" .venv/bin/python dev/verify_guidance.py --state-dir runtime/guidance-check` to exercise nine authored questions through actual MCP without a game or model call. The result records citation IDs/URLs and compatibility labels, including an unrelated no-match query. Search output reports total matches and truncation while retaining complete citation records within 64 KiB. This is lexical retrieval, so rephrase with relevant game terms when appropriate; no-result does not prove a mechanic does not exist.

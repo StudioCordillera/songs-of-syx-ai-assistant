@@ -29,6 +29,20 @@ Installed resource, technology and stat help text is indexed at runtime, with cu
 
 Five short authored summaries, checked 2026-10-17, can be installed with `syx-knowledge`: [v71 community guide](https://steamcommunity.com/sharedfiles/filedetails/?id=3776333166) , [official V71 law/family/trade release notes](https://steamcommunity.com/games/1162750/announcements/detail/529882384083977659), and [historical developer reply about eatery overlays](https://steamcommunity.com/app/1162750/discussions/0/4841941418359552221/). Source records retain authority and compatibility caveats. These do not establish exhaustive current mechanics.
 
+## Additional reviewed gameplay evidence (2026-10-18 UTC)
+
+The starter corpus now contains eight original summaries. Three added records were checked directly on their canonical Steam pages, including the developer badge and surrounding discussion:
+
+| Source | Authority | Scope / limitation |
+| --- | --- | --- |
+| [Workload versus production](https://steamcommunity.com/app/1162750/discussions/0/3800525036429614132/) | Gamatron, developer reply #2, 12 July 2023 | Distinguishes an estimate from realized output. Later participants dispute display behavior; no exact current-patch applicability is established. |
+| [Pasture fertility](https://steamcommunity.com/app/1162750/discussions/0/2954914688097551706/) | Gamatron, developer answer #1, 22 September 2021 | Historical animal-capacity explanation. Subsequent irrigation/base-fertility discussion is community commentary, not a new developer guarantee. |
+| [Developer FAQ](https://steamcommunity.com/app/1162750/discussions/0/3388408347654953100/) | Gamatron, opening post, edited 9 July 2023 | Historical navigation to wiki, installed help and release notes; current UI locations and old-save compatibility require verification. |
+
+These records retain unknown version compatibility rather than being labeled V71-compatible by assumption. Wiki.gg pages encountered during discovery returned access errors and were not added as newly reviewed evidence. Existing source timestamps are preserved when the corpus is reinstalled.
+
+Search uses whole-word relevance before version compatibility and authority tie-breakers. Matching terms and a retrieval score are returned for inspection; the score is not factual confidence. The response stays within 64 KiB and reports truncation. See GUIDANCE_VALIDATION.json for the nine authored local-MCP cases. This is a lexical starter retrieval check, not a comprehensive evaluation of model advice.
+
 ## API establishment audit (0.4.0)
 
 API_ESTABLISHMENT.md links the primary sources, reproducible compiler inventory and runtime coverage matrix. Individual member anchors and hashes are in api-audit.json. The online documentation getting-started page was rechecked on 2026-10-17 and does not provide member-level API contracts. No community SDK is used to claim official support.
