@@ -2,7 +2,7 @@
 
 The production reference audit proves only the public members used by our adapter. To identify remaining mapping work, `catalog_api.py` separately scans the entire shipped source archive and resolves its named types and public declared members against the installed game JAR with the Java compiler. It never starts the game, executes its classes, or uses reflection. This is development tooling, outside the packaged mod and MCP server.
 
-The current scan covers 2,443 source files, resolves every cataloged named top-level/member source type, and finds 2,052 public types with public enclosing types and 17,442 public declared member signatures. All 364 production reference IDs occur in this catalog. Matching game JAR/source archive hashes establish that the discovery run and production audit used the same reference pair. They do not attest the installed/running mod.
+The current scan covers 2,443 source files, resolves every cataloged named top-level/member source type, and finds 2,052 public types with public enclosing types and 17,442 public declared member signatures. All 369 production reference IDs occur in this catalog. Matching game JAR/source archive hashes establish that the discovery run and production audit used the same reference pair. They do not attest the installed/running mod.
 
 | Root package | Public declared member candidates | Production reference IDs |
 | --- | ---: | ---: |
@@ -12,7 +12,7 @@ The current scan covers 2,443 source files, resolves every cataloged named top-l
 | init | 1,726 | 33 |
 | util | 1,664 | 24 |
 | world | 1,212 | 25 |
-| view | 1,006 | 46 |
+| view | 1,006 | 51 |
 | launcher | 69 | 0 |
 | script | 28 | 0 |
 | menu | 11 | 0 |
@@ -63,3 +63,6 @@ The workforce checkpoint refreshes production-reference pairing against the reta
 
 
 The producer-degradation checkpoint pairs all 359 public production references against the same checksum-verified 17,442-member catalog. The full declaration scan is retained evidence, not a new scan or a count of supported state variables. The new public getter still requires its own semantics and finite runtime checks.
+
+
+The world-faction-context checkpoint pairs all 369 production references with this same retained declaration catalog. UI_LIFECYCLE_BOUNDARY_REVIEW.json reviews a compiling public faction-panel route and named inaccessible/mutating alternatives. Declaration presence alone still does not establish live reachability or observation safety.

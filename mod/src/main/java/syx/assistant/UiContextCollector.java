@@ -35,6 +35,33 @@ public final class UiContextCollector {
                 "flags_note","Workflow flags can persist after leaving an editor; use active_view for current UI mode"),
             "scope_note","Settlement getters refer to the currently instantiated scene, which can be a battlefield. Faction ledgers/technology/diplomacy refer to campaign/player resources.");
     }
+    /** Known underlying world faction panels, never a topmost-selection or full-tab claim. */
+    private static Map<String,Object> worldFactionPanels(String kind) {
+        if(!kind.equals("world") || !world.WORLD.GEN().isDone)
+            return object("coverage","unavailable","list_open",null,"detail_faction",null,
+                "reason","Requires the active completed-world view; hidden panels are not current UI context.");
+        var ui=VIEW.world().UI.factions;
+        boolean listOpen=ui.openIs();
+        int scanned=0,failed=0,matches=0;boolean truncated=false;Map<String,Object> detail=null;
+        for(game.faction.Faction faction:game.faction.FACTIONS.active()) {
+            if(scanned>=1000){truncated=true;break;}scanned++;
+            try {
+                if(ui.openIs(faction)) {
+                    // Publish each matched identity/tab observation atomically or omit it.
+                    Map<String,Object> row=object("faction_id",faction.index(),"diplomacy_tab",ui.diploIs(faction));
+                    detail=row;matches++;
+                }
+            } catch(RuntimeException failure){failed++;}
+        }
+        if(matches!=1)detail=null;
+        return object("coverage","partial","list_open",listOpen,"detail_faction",detail,
+            "scanned_factions",scanned,"faction_limit",1000,"failed_factions",failed,"truncated",truncated,
+            "matched_detail_factions",matches,"identity_search_complete",!truncated && failed==0,
+            "scope","Underlying world faction list/detail panels; a modal or hidden UI may obscure them. Diplomacy tab is the stored switch state, not a proposed/accepted deal or every subtab.",
+            "reason",matches>1?"Ambiguous detail identity; no single faction emitted":
+                truncated || failed>0?"Incomplete identity search; missing detail is unknown":
+                matches==0?"No active faction matched an open detail panel; this does not enumerate other world panels":null);
+    }
     @SuppressWarnings("unchecked")
     public static Map<String,Object> collect() {
         Map<String,Object> result=object("coverage","partial","source","public game API; sampled from GAME.addAfterUpdate on the game update thread",
@@ -51,6 +78,9 @@ public final class UiContextCollector {
         result.put("assistant_chat",AssistantScript.chatContext());
         String kind=activeView();
         result.put("active_view",kind);
+        try {result.put("world_faction_panels",worldFactionPanels(kind));}
+        catch(RuntimeException failure){result.put("world_faction_panels",object("coverage","unavailable",
+            "list_open",null,"detail_faction",null,"reason",failure.getClass().getSimpleName()));}
         result.put("world_generation_step",object("available",false,"reason","Wizard staging fields are private; WorldGen flags describe preparation, not the exact visible step"));
         if(kind.equals("battle")) {
             game.battle.state.BattleState battle=VIEW.b().state();

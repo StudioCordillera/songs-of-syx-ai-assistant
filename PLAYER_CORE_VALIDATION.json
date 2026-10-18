@@ -1,6 +1,6 @@
 {
   "passed": true,
-  "mod_jar_sha256": "692087724f2806bad557862c6423e79df99219c631e45d9b28e8956d8b816058",
+  "mod_jar_sha256": "d50072623dbd669cc7ae56c1ad6b022d0a860e344cc73328e9908a1c99dbd857",
   "production_source_sha256": {
     "syx/assistant/AssistantScript.java": "079b048597c373f88d8179d4f8e8fec576a82c5b13ad6c95fe6e672ba3722e3a",
     "syx/assistant/ChatPanel.java": "3138d3e863ccb36ad5b6b37a7e1f3486dd2d8c1dc43ab469b26af714548d8437",
@@ -9,14 +9,14 @@
     "syx/assistant/StateCollector.java": "073b965746f839b99432d062d157439a4f8c0911385627dd3aef14767fb5d258",
     "syx/assistant/TileReadRequest.java": "1a192cde61a7e1bdefa170390c00b17c74573b9c41de71700ebea466411ad3c5",
     "syx/assistant/UiContentCollector.java": "c0d20c7f9f2734a0bb625427875f06bfcd07edb20611248b39b6e8f480ef5a48",
-    "syx/assistant/UiContextCollector.java": "439604436fc98c478ade47682775ee55edb1688d76078e0602f7ab78db187157"
+    "syx/assistant/UiContextCollector.java": "398ab4931efb3451ad0d0dcf80e0c19651e9ffb20fd8b6e6377a9ca53358f7d5"
   },
   "python_source_sha256": {
-    "syx_mcp.py": "c296b07705c0e24a1eb1d6cf3c0b6562daf1b1ef9273a854c2d4f1fbbdef604a",
+    "syx_mcp.py": "7978d3c17dd0495cedcf162b0c2cbe0f2f0518ab0ccfb8641f8adc4e90f71b4e",
     "syx_knowledge.py": "f5d7dd6d387ad0fb8f2b024a3bd599ad1cec28f2906dfae27d9d2fdf56e4de7e",
     "syx_query.py": "039795c9c0e1a4f167ff7bb98afd5955c52814d4fcf40705d0c59cdf06b684b4",
     "syx_api_support.py": "ffcc8f9fad51de63d0edebe8982d0564cd78454f04f765fedf58d01d768b666f",
-    "syx_api_manifest.py": "7f6c0bc48d7424aa44cdbd23ce54ebfc4d37ddd8a6e7cd802312cf328447d584",
+    "syx_api_manifest.py": "c0fbabb826313aaf55393f3d5665af2510b3ba82ccc001a7d896c9e0ca33aedd",
     "syx_live.py": "8238cdfc021c8d43a02e9c9b304fe262f701ebd52a492c17ea9ce3e308e37885",
     "syx_capture.py": "506f18a5b55ea66cd38ac239bd7398fde597420e0363327629308098f23f82a9",
     "syx_tiles.py": "43024d10af917442d4d994f316db18fbd7cab388196682c471891135553c843f",
@@ -127,7 +127,7 @@
           "dev/verify_production.py": "c5f709e8ced215dfde81e6aeb55e60415babf65b9843775a456b9b1fd936fb79",
           "degradation-query-example.json": "35af3cb42d9ed6761d184ae2b03f51385ce1305d720de233e6754955de1c3cba",
           "syx_query.py": "039795c9c0e1a4f167ff7bb98afd5955c52814d4fcf40705d0c59cdf06b684b4",
-          "syx_mcp.py": "c296b07705c0e24a1eb1d6cf3c0b6562daf1b1ef9273a854c2d4f1fbbdef604a"
+          "syx_mcp.py": "7978d3c17dd0495cedcf162b0c2cbe0f2f0518ab0ccfb8641f8adc4e90f71b4e"
         },
         "limits": [
           "Paused copied city: observed room-value counts are reported, and a zero-only city does not establish nonzero room integration. Five synthetic public-decoder inputs exercise threshold/positive branches without writing room wear.",
@@ -158,7 +158,7 @@
           "dev/verify_production.py": "c5f709e8ced215dfde81e6aeb55e60415babf65b9843775a456b9b1fd936fb79",
           "workforce-query-example.json": "a3a5f019cbc0f28343eb7e6448aba801b3f7c1bd3d3a053d8456c55111298fff",
           "syx_query.py": "039795c9c0e1a4f167ff7bb98afd5955c52814d4fcf40705d0c59cdf06b684b4",
-          "syx_mcp.py": "c296b07705c0e24a1eb1d6cf3c0b6562daf1b1ef9273a854c2d4f1fbbdef604a"
+          "syx_mcp.py": "7978d3c17dd0495cedcf162b0c2cbe0f2f0518ab0ccfb8641f8adc4e90f71b4e"
         },
         "limits": [
           "Paused copied city with both countInput branches, not all room types or larger-city/cap/fault execution.",
@@ -491,7 +491,7 @@
   },
   "inference_calls": 0,
   "fixture_source_sha256": {
-    "mod/tests/LiveSmoke.java": "5f01ef6f2346b0ccea9da104be1fe328663c07c47ee782302f42caecb7bcce3f",
+    "mod/tests/LiveSmoke.java": "85582452e23db3e0aaae73cb61d1b9019309657e483ff43a00922d15df58a4db",
     "mod/tests/ServiceScenario.java": "7c721be7328e0b61749a925f37c5248983cb6ba42ad22f92369d0aac37776fb2",
     "mod/tests/TradeScenario.java": "c36a05d312ebea021495d4f49934c96973410b86f6f52d662ef281c6c2b81277",
     "mod/tests/WorldScenario.java": "d29a089875a5e740fbf746689daf055e4f4956b1166fc603d1d8a7c0f22cfc04",

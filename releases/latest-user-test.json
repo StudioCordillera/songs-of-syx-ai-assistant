@@ -1,17 +1,17 @@
 {
   "builder_source_sha256": "2c4f12d389e254f85d8996383b25ceacac01a1b49348d0e1b89849c8f694f40b",
   "packager_source_sha256": "58e88da6eae9ed17b86f42472c1b4c3b548922f57b712c28a6ad8918774d5ce8",
-  "built_at": "2026-10-18T21:06:23.495749+00:00",
+  "built_at": "2026-10-18T22:09:58.587950+00:00",
   "model": "deepseek-v4-pro",
   "platform": "Linux",
   "game_version": "0.71.44",
-  "mod_jar_sha256": "692087724f2806bad557862c6423e79df99219c631e45d9b28e8956d8b816058",
+  "mod_jar_sha256": "d50072623dbd669cc7ae56c1ad6b022d0a860e344cc73328e9908a1c99dbd857",
   "files": {
-    "syx_mcp.py": "c296b07705c0e24a1eb1d6cf3c0b6562daf1b1ef9273a854c2d4f1fbbdef604a",
+    "syx_mcp.py": "7978d3c17dd0495cedcf162b0c2cbe0f2f0518ab0ccfb8641f8adc4e90f71b4e",
     "syx_knowledge.py": "f5d7dd6d387ad0fb8f2b024a3bd599ad1cec28f2906dfae27d9d2fdf56e4de7e",
     "syx_query.py": "039795c9c0e1a4f167ff7bb98afd5955c52814d4fcf40705d0c59cdf06b684b4",
     "syx_api_support.py": "ffcc8f9fad51de63d0edebe8982d0564cd78454f04f765fedf58d01d768b666f",
-    "syx_api_manifest.py": "7f6c0bc48d7424aa44cdbd23ce54ebfc4d37ddd8a6e7cd802312cf328447d584",
+    "syx_api_manifest.py": "c0fbabb826313aaf55393f3d5665af2510b3ba82ccc001a7d896c9e0ca33aedd",
     "syx_live.py": "8238cdfc021c8d43a02e9c9b304fe262f701ebd52a492c17ea9ce3e308e37885",
     "syx_capture.py": "506f18a5b55ea66cd38ac239bd7398fde597420e0363327629308098f23f82a9",
     "syx_tiles.py": "43024d10af917442d4d994f316db18fbd7cab388196682c471891135553c843f",
@@ -26,7 +26,7 @@
     "install-mod.py": "55a24b0b3c85adf2e42181633bea832fb86bc6a10a671e1cf57a3c0d760d2d92",
     "requirements.txt": "8962ac1ba6867e3cd89e03fe7780ca36f0856c2a7263e6d8bbd4b0e4b085c7c2",
     "README.txt": "f7d03e0dd0fea915cfd6bfa5d0e1cc3e52b3bf2c2b8a340ba779e0aba576743a",
-    "mod/syx-ai-assistant/V71/script/syx-ai-assistant.jar": "692087724f2806bad557862c6423e79df99219c631e45d9b28e8956d8b816058",
+    "mod/syx-ai-assistant/V71/script/syx-ai-assistant.jar": "d50072623dbd669cc7ae56c1ad6b022d0a860e344cc73328e9908a1c99dbd857",
     "mod/syx-ai-assistant/_Info.txt": "0f18e1d58354c93eee5967a424dbb61c2ef0baa0346a057533365447275762d1"
   },
   "validation": {
@@ -46,7 +46,7 @@
     ],
     "cited_urls_match_retrieval": true,
     "simple_transcript_without_debug_events": true,
-    "mod_jar_sha256": "692087724f2806bad557862c6423e79df99219c631e45d9b28e8956d8b816058",
+    "mod_jar_sha256": "d50072623dbd669cc7ae56c1ad6b022d0a860e344cc73328e9908a1c99dbd857",
     "production_source_sha256": {
       "syx/assistant/AssistantScript.java": "079b048597c373f88d8179d4f8e8fec576a82c5b13ad6c95fe6e672ba3722e3a",
       "syx/assistant/ChatPanel.java": "3138d3e863ccb36ad5b6b37a7e1f3486dd2d8c1dc43ab469b26af714548d8437",
@@ -55,14 +55,14 @@
       "syx/assistant/StateCollector.java": "073b965746f839b99432d062d157439a4f8c0911385627dd3aef14767fb5d258",
       "syx/assistant/TileReadRequest.java": "1a192cde61a7e1bdefa170390c00b17c74573b9c41de71700ebea466411ad3c5",
       "syx/assistant/UiContentCollector.java": "c0d20c7f9f2734a0bb625427875f06bfcd07edb20611248b39b6e8f480ef5a48",
-      "syx/assistant/UiContextCollector.java": "439604436fc98c478ade47682775ee55edb1688d76078e0602f7ab78db187157"
+      "syx/assistant/UiContextCollector.java": "398ab4931efb3451ad0d0dcf80e0c19651e9ffb20fd8b6e6377a9ca53358f7d5"
     },
     "python_source_sha256": {
-      "syx_mcp.py": "c296b07705c0e24a1eb1d6cf3c0b6562daf1b1ef9273a854c2d4f1fbbdef604a",
+      "syx_mcp.py": "7978d3c17dd0495cedcf162b0c2cbe0f2f0518ab0ccfb8641f8adc4e90f71b4e",
       "syx_knowledge.py": "f5d7dd6d387ad0fb8f2b024a3bd599ad1cec28f2906dfae27d9d2fdf56e4de7e",
       "syx_query.py": "039795c9c0e1a4f167ff7bb98afd5955c52814d4fcf40705d0c59cdf06b684b4",
       "syx_api_support.py": "ffcc8f9fad51de63d0edebe8982d0564cd78454f04f765fedf58d01d768b666f",
-      "syx_api_manifest.py": "7f6c0bc48d7424aa44cdbd23ce54ebfc4d37ddd8a6e7cd802312cf328447d584",
+      "syx_api_manifest.py": "c0fbabb826313aaf55393f3d5665af2510b3ba82ccc001a7d896c9e0ca33aedd",
       "syx_live.py": "8238cdfc021c8d43a02e9c9b304fe262f701ebd52a492c17ea9ce3e308e37885",
       "syx_capture.py": "506f18a5b55ea66cd38ac239bd7398fde597420e0363327629308098f23f82a9",
       "syx_tiles.py": "43024d10af917442d4d994f316db18fbd7cab388196682c471891135553c843f",
@@ -77,19 +77,17 @@
       "Copied city; native own-widget text/click fixture, not physical keyboard or every screen size.",
       "No complete game-state/all-menu claim. Raw read-only tool evidence remains in the private local history.",
       "Linux user-test bundle; game and Python dependencies must be installed separately.",
-      "Retained tiles reuse one existing game callback: rectangle <=4096 scanned tiles, <=100 matches and <=64 KiB. Field failures remain unknown, and row-selection completeness is not full-map/all-variable/global-worker-transaction coverage. Three tile captures use a separate server-local 120-second pool. No game getter or gameplay-control route is added.",
-      "Copied-city tile checks retain 100 direct-getter rows across ten pages after time/view changes, check an empty 4096-tile selection, reject incomplete row-cap results and invalidate a token after actual session rotation. Native predicate/byte/fault injection, all-field/battlefield capture matrices, suspend behavior, larger captures and latency remain unestablished; synthetic guards are separately tested.",
-      "A separate current-build 1395-entity/70-page regression checks shared retention after added population and changed time/view. Stockpile DTO/MCP counters are rechecked on the exact same source/JAR. Earlier controlled degradation and collection-cost reports retain their own build scopes.",
-      "Nine supported capability probes plus two gaps and 37 guidance cases pass. Source review/retrieval dates are preserved, not refreshed by regression evaluation.",
-      "Normal installed mod files are not replaced while a player game is running. Install the complete tested bundle and restart for the paired update; no full menu or physical-input guarantee."
+      "World faction context is partial: active completed-world view only, at most 1000 active factions scanned, explicit failed/truncated/ambiguous identity state. Underlying panels may be obscured by a modal or hidden UI; inactive-world contexts are unavailable. Stored diplomacy tab is not a proposed/accepted deal or a complete tab hierarchy.",
+      "Eleven copied-game faction UI phases and same-observation MCP diplomacy joins pass. Returning to world clears panels; switching/reopening factions can preserve the stored diplomacy tab. Null detail paths are rejected. No full faction cap/fault, all-state, selected room/region, tooltip text or immediate unload-hook claim.",
+      "Earlier retained-tile/entity/stockpile and collection-cost reports retain their exact earlier JAR/source hashes. Current provider/core/context evidence is separate. No all-variable or exhaustive-menu completion is established."
     ],
     "game_exit_code": 0,
     "dev_runner_source_sha256": "407b30e67642d0efbb3863e0c65ca584391bfebe57af30c593f47c0871387e5c",
-    "validated_at": "2026-10-18T21:06:23.451086+00:00",
+    "validated_at": "2026-10-18T22:09:57.802987+00:00",
     "game_version": "0.71.44",
     "game_jar_sha256": "fe0137c05408e5ee9e31f06fc44fe37a5d4372d9c985b280f0852d1347c0224b",
-    "python_tests_passed": 221,
-    "public_production_members": 364,
+    "python_tests_passed": 236,
+    "public_production_members": 369,
     "non_public_production_members": 0,
     "core_check_groups_passed": [
       "services",
@@ -100,12 +98,11 @@
       "context",
       "extended"
     ],
-    "core_validation_report_sha256": "b59980d5eadce4361f6a91d6aad6a677bcd275f1e6c5cce853efb430474f5cfd",
-    "tile_capture_validation_report_sha256": "3036857e2610d73af1f449c86a3177564b43a1d485566556c31efff678c74395",
-    "entity_capture_regression_report_sha256": "3563590811bea9087ad4010f76273953d59caa3fc6d23eb18dda25545930ff6b",
-    "stockpile_bookkeeping_validation_report_sha256": "492f47248741f20d44d262705736155266db2b25901456eafde195b0745a54af",
-    "capability_discovery_report_sha256": "d7b3db1ccb92b3f156fbaa84fe09568f0b468a732a5a9ec55bdec8875e56c8d9",
-    "guidance_validation_report_sha256": "7bd39ac388efa618afd971caf7126492ca5c9c06155822f9a73171d33e407b4f",
+    "core_validation_report_sha256": "f1bc5d1c8d7aed9d69fe4daf36a22f2f7de38754e0e944cdf84e61ceb2c11f43",
+    "world_faction_context_validation_report_sha256": "44b16991e27a7f871fa345dc944834e161305c5b8b965a476690416d372c2448",
+    "ui_lifecycle_boundary_review_sha256": "4a8fe79379115bebd1aef680f46876c3a96abd31a224533982e7b3f51c3bc6e1",
+    "capability_discovery_report_sha256": "440c56f8a3d65b116410fae08e1e36fc3053a43e49e7e5c7d032e53dbcf14233",
+    "guidance_validation_report_sha256": "a252355f65c87fd13adf10aa0ab524794ab5da7a2afca80f1e2cc4885c000e94",
     "distribution_checks": {
       "passed": true,
       "fresh_dependency_environment": true,
@@ -150,5 +147,5 @@
     }
   },
   "run_instructions": "README.txt",
-  "download_sha256": "fc4e952326f10e940cb4dfd43b3843b2fc3a45568bdadfcb4dc12315eb69982b"
+  "download_sha256": "168992cc00d624843e5a1207b372d4a2dd7f647dddca97ac144268b29f22d49d"
 }

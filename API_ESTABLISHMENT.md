@@ -1,11 +1,11 @@
-# API establishment report — 0.12.0, game 0.71.44
+# API establishment report — game 0.71.44
 
 This report establishes what can be verified within the user's required in-process public-API boundary. It does not create an official guarantee on behalf of the game developer.
 
 ## Evidence levels
 
 1. **Documented script contract:** the shipped semi-official script guide and SCRIPT interface describe script creation, updates and persistence callbacks. They do not document every game statistic or menu.
-2. **Source-verified public API:** Java compiler attribution resolves each game member referenced by production mod code. The current inventory contains 364 members, all public. Of these, 363 match declaring type, name, arity and simple parameter types in shipped source; the remaining member is the compiler-generated enum `values()` method. Seven referenced members have their own Javadoc blocks; Javadoc presence does not establish semantics or stability. Script override contracts are reviewed separately from the member-reference inventory.
+2. **Source-verified public API:** Java compiler attribution resolves each game member referenced by production mod code. The current inventory contains 369 members, all public. Of these, 368 match declaring type, name, arity and simple parameter types in shipped source; the remaining member is the compiler-generated enum `values()` method. Seven referenced members have their own Javadoc blocks; Javadoc presence does not establish semantics or stability. Script override contracts are reviewed separately from the member-reference inventory.
 3. **Runtime evidence:** the isolated fixture exercises supported contexts using public game methods and a copied save. The production mod only observes. Test mutations and engine bootstrap code are never packaged into the mod.
 4. **Unavailable/unvalidated:** missing public accessors and untested transitions stay explicit. No reflection, screenshot, native-input or package-access workaround is added.
 
@@ -17,10 +17,11 @@ Runtime evidence spans the 0.12.0 spatial/scene fixtures, 0.11.0 retained-captur
 
 | Capability | Established access | Runtime scope / limits |
 | --- | --- | --- |
-| Exported state variables | 18 partial typed public-API domains; 359 referenced members in the audit | Existing copied save; not every variable or every entity attribute |
+| Exported state variables | 18 partial typed public-API domains; 369 referenced members in the audit | Existing copied save; not every variable or every entity attribute |
 | Active view | `VIEW.current`, subview `isActive` | Settlement, world, settlement tactical HUD, generated deployment/engagement and controlled victory/defeat restoration, plus initial/terrain world generation; editor activation checked on a copied completed world |
 | Selected subject | `UISubjects.current`, individual class/type and named `STAT.hasIndu` / `STAT.indu` getters | 58 individual statistics observed in the copied-save subject; values/min/max and installed-help reference IDs. Panel may remain behind a modal overlay |
 | Room context | `UIRooms.openIs` and room-list membership | Room blueprint/table/detail presence exercised; exact selected instance unavailable |
+| World faction panels | `UIFactions.openIs()` / `openIs(Faction)` / `diploIs(Faction)` | Active completed-world view only; bounded active-faction scan; underlying panel presence may be obscured by a modal. See WORLD_FACTION_CONTEXT.md |
 | Game menu / confirmation | Public known interrupters and `isActivated` | Both exercised; menu subpages not enumerated |
 | Management | `IManager.open` | Open/closed exercised; selected tab remains private |
 | Encyclopedia | Known public WIKI interrupter | Open/closed exercised |
@@ -148,3 +149,8 @@ The current workforce checkpoint has 358 compiler-resolved public references, al
 
 
 The producer-degradation mapping brings the current compiler inventory to 359 public references, all paired with the checksum-verified retained declaration catalog. One new production reference is `RoomInstance.getDegrade()`; private/package implementation details are inspected statically only to establish its limited call chain. The observer never obtains a degrader handle or invokes maintenance. ROOM_DEGRADATION.md and DEGRADATION_CONTRACT_REVIEW.json distinguish the normalized thresholded base read from excluded chamber/construction semantics. This is shipped-source verification, not a new documented stable contract, complete modifier model or exhaustive room/menu coverage.
+
+
+## Finite UI/lifecycle route review
+
+UI_LIFECYCLE_BOUNDARY_REVIEW.json adds paired source/binary fingerprints, an ordinary-mod positive faction-observer compilation probe and six negative named-access probes. It distinguishes public stored observers from panel-binding/text-builder mutations and inaccessible live-object routes. WORLD_FACTION_CONTEXT.md describes the supported bounded faction mapping; selected room/region, complete management tabs, tooltip text and immediate unload remain unestablished. This finite review is not a proof that no other public mechanism exists.

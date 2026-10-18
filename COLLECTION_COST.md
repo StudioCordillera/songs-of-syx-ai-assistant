@@ -2,18 +2,18 @@
 
 ## Current published collector — small copied city
 
-[CURRENT_COLLECTION_COST_VALIDATION.json](CURRENT_COLLECTION_COST_VALIDATION.json) measures the retained-tile player JAR (`692087724f2806bad557862c6423e79df99219c631e45d9b28e8956d8b816058`), including the current producer-degradation and stockpile-bookkeeping collector. The game/source hashes match the public API audit. The paused copied city has 295 entity-prefix rows, 36 scanned rooms, eight service rooms, 544 configured service-policy rows, 35 production flows, 203 regions, 42 stockpile resource rows and 834 installed references. Stockpile reads scan all 42 resources without failures/truncation; all 18 domains remain partial.
+[CURRENT_COLLECTION_COST_VALIDATION.json](CURRENT_COLLECTION_COST_VALIDATION.json) measures the world-faction-context player JAR (`d50072623dbd669cc7ae56c1ad6b022d0a860e344cc73328e9908a1c99dbd857`), including the current producer-degradation and stockpile-bookkeeping collector. The game/source hashes match the public API audit. The paused copied city has 295 entity-prefix rows, 36 scanned rooms, eight service rooms, 544 configured service-policy rows, 35 production flows, 203 regions, 42 stockpile resource rows and 834 installed references. Stockpile reads scan all 42 resources without failures/truncation; all 18 domains remain partial.
 
 | Work | Median ms | Sample p95 ms | Maximum ms |
 | --- | ---: | ---: | ---: |
-| Warm game-thread collection | 5.724 | 6.915 | 7.973 |
-| JSON and UTF-8 encoding | 5.745 | 6.380 | 6.403 |
-| Offline snapshot parsing | 12.419 | 14.638 | 79.301 |
-| Two offline service queries together | 41.303 | 48.638 | 52.131 |
+| Warm game-thread collection | 5.912 | 7.124 | 7.573 |
+| JSON and UTF-8 encoding | 5.771 | 7.162 | 8.647 |
+| Offline snapshot parsing | 12.576 | 14.652 | 58.326 |
+| Two offline service queries together | 43.774 | 48.339 | 50.358 |
 
-There are 31 warm samples and one cleared-mod-help-cache sample; the latter collection takes 7.473 ms. Production encodes on its background worker. The fixture's combined median of 11.496 ms measures collection plus encoding on its callback thread and is **not** a measured production game-thread stall. The retained snapshot is 946,299 bytes; the two service selections are 4,818 bytes before outer envelopes. Independent service-query parity and five existing selection examples pass. Raw timing samples and descriptive percentile methodology are retained in the report.
+There are 31 warm samples and one cleared-mod-help-cache sample; the latter collection takes 8.123 ms. Production encodes on its background worker. The fixture's combined median of 11.501 ms measures collection plus encoding on its callback thread and is **not** a measured production game-thread stall. The retained snapshot is 946,483 bytes; the two service selections are 4,818 bytes before outer envelopes. Independent service-query parity and five existing selection examples pass. Raw timing samples and descriptive percentile methodology are retained in the report.
 
-These are local descriptive elapsed timings, including host/GC noise. Differences from the historical run below cannot isolate the cost of any added getter: they are separate runs, not a controlled comparison. They establish neither a regression threshold nor large-city/FPS/worst-case acceptance. This run does not time live entity/tile requests or retained capture creation/paging. Source hashes, actual observation timestamp, zero game exit code, restored copied-profile mod and unchanged copied save are recorded; no provider inference occurs.
+These are local descriptive elapsed timings, including host/GC noise. Differences from the historical run below cannot isolate the cost of any added getter: they are separate runs, not a controlled comparison. They establish neither a regression threshold nor large-city/FPS/worst-case acceptance. This run does not time live entity/tile requests, retained capture creation/paging or the world-view faction-panel scan; the copied fixture is paused in its city. Source hashes, actual observation timestamp, zero game exit code, restored copied-profile mod and unchanged copied save are recorded; no provider inference occurs.
 
 Use the reproduction command below for the currently published build. The runner now rejects a mismatched licensed game/source pair, strips provider credentials case-insensitively, validates copied paths, backs up/restores only its copied mod JAR on success or failure and refuses a passing final report if copied-save integrity fails. Its private runtime directory is owner-only. Five offline regressions cover success, fixture failure, changed-save detection and direct/parent symlink escapes. The native fixture runs under the shared machine-wide lock and may be wrapped in `LIBGL_ALWAYS_SOFTWARE=1 xvfb-run -a -s '-screen 0 1280x960x24'` on this host. Normal saves and normal-profile mod files are untouched.
 

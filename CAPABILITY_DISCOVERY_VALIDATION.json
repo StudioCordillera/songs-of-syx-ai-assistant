@@ -1,6 +1,6 @@
 {
   "passed": true,
-  "evaluated_at": "2026-10-18T20:46:58.917678+00:00",
+  "evaluated_at": "2026-10-18T22:02:56.535372+00:00",
   "checks": [
     {
       "id": "retained_tile_selections",
@@ -123,14 +123,15 @@
     }
   ],
   "service_counter_member_anchors_checked": 3,
+  "faction_context_member_anchors_checked": 3,
   "no_game_snapshot_required": true,
   "inference_calls": 0,
-  "public_inventory_size": 364,
+  "public_inventory_size": 369,
   "source_sha256": {
-    "syx_mcp.py": "c296b07705c0e24a1eb1d6cf3c0b6562daf1b1ef9273a854c2d4f1fbbdef604a",
+    "syx_mcp.py": "7978d3c17dd0495cedcf162b0c2cbe0f2f0518ab0ccfb8641f8adc4e90f71b4e",
     "syx_api_support.py": "ffcc8f9fad51de63d0edebe8982d0564cd78454f04f765fedf58d01d768b666f",
-    "syx_api_manifest.py": "7f6c0bc48d7424aa44cdbd23ce54ebfc4d37ddd8a6e7cd802312cf328447d584",
-    "dev/verify_capability_discovery.py": "1fab123e58127b8f572e16e410c4bf0dda46e4770bc32ec7e49932c53a98513e"
+    "syx_api_manifest.py": "c0fbabb826313aaf55393f3d5665af2510b3ba82ccc001a7d896c9e0ca33aedd",
+    "dev/verify_capability_discovery.py": "8948a32467c1346beb1e5a52c8da1c030e46edf9e57c2bc54f1ac8660dee2efc"
   },
   "limits": [
     "Capability records summarize existing evidence; no new game getter/scene or official stable contract is established.",

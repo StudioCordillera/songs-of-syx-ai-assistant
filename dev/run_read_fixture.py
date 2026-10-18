@@ -1,4 +1,4 @@
-"""Run fixed tile/entity read regressions against an exact published/candidate player.
+"""Run fixed tile/entity/faction-context read regressions against an exact published/candidate player.
 
 Uses copied save/profile, shared fixture lock, public in-process fixtures and private
 logs. No provider request, native input, screenshot or normal game/profile changes.
@@ -22,7 +22,8 @@ from game_fixture_lock import exclusive_fixture
 from run_player_chat_check import native_environment
 
 CASES={'tiles':('tiles','verify_tiles.py','tile-capture-validation.json'),
-       'entities':('capture','verify_entity_captures.py','capture-validation.json')}
+       'entities':('capture','verify_entity_captures.py','capture-validation.json'),
+       'faction-ui':('factionUi','verify_faction_ui.py','faction-ui-validation.json')}
 
 
 def sha(path):return hashlib.sha256(path.read_bytes()).hexdigest()
@@ -70,7 +71,7 @@ def run(args):
             production_source_sha256=manifest['validation']['production_source_sha256'],
             python_source_sha256=manifest['validation']['python_source_sha256'],inference_calls=0)
         report['fixture_source_sha256']={n:sha(ROOT/n) for n in ['mod/tests/LiveSmoke.java','mod/tests/TileScenario.java',
-            'mod/tests/EntityScenario.java','mod/tests/SceneScenario.java','dev/'+verifier,'dev/run_read_fixture.py']}
+            'mod/tests/EntityScenario.java','mod/tests/SceneScenario.java','mod/tests/FactionUiScenario.java','dev/'+verifier,'dev/run_read_fixture.py']}
     finally:
         if process is not None and process.poll() is None:
             process.terminate()

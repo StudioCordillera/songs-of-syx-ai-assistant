@@ -1,0 +1,264 @@
+{
+  "passed": true,
+  "reviewed_at": "2026-10-18T22:01:47.916642+00:00",
+  "stage": "Finite static UI/lifecycle route review; runtime evidence is recorded separately",
+  "game_jar_sha256": "fe0137c05408e5ee9e31f06fc44fe37a5d4372d9c985b280f0852d1347c0224b",
+  "source_archive_sha256": "a3fc2aa9f4be31aec0616a5030a656ac49a6011343b7e91395c7bac0b9dfb0a5",
+  "catalog_sha256": "5b4b13770eb3251ce066e4f9cf57b5e6b1956687136b5be33a680b707a73b065",
+  "verifier_source_sha256": "468c3e07253da763b0551cb9ef03b95bc32b7aae197bf87f0f9ba67c564ed5ca",
+  "public_declaration_members": [
+    "view.main.VIEW#world()",
+    "view.world.WorldView#UI",
+    "view.world.WorldUI#factions",
+    "view.world.ui.faction.UIFactions#openIs()",
+    "view.world.ui.faction.UIFactions#openIs(game.faction.Faction)",
+    "view.world.ui.faction.UIFactions#diploIs(game.faction.Faction)",
+    "view.sett.ui.room.UIRoom#detailIns()",
+    "view.world.ui.region.UIRegions#get(world.map.regions.Region)",
+    "util.gui.misc.GBox#text()",
+    "snake2d.CORE#setCurrentState(snake2d.CORE_STATE.Constructor)",
+    "game.GameDisposable#GameDisposable()"
+  ],
+  "selected_method_checks": [
+    {
+      "owner": "view.world.ui.faction.UIFactions",
+      "signature": "public boolean openIs();",
+      "source_path": "view/world/ui/faction/UIFactions.java",
+      "source_sha256": "bb00f8c6109a3394bd8b6e56032eaacbc9ae6f676636f18b0fb667f188b509bf",
+      "normalized_disassembly_sha256": "4dc08267b3e11660b1e94c20e8272f058115fdcf68507817b6116d0f88dc4ca9",
+      "direct_reader_check": true
+    },
+    {
+      "owner": "view.world.ui.faction.UIFactions",
+      "signature": "public boolean openIs(game.faction.Faction);",
+      "source_path": "view/world/ui/faction/UIFactions.java",
+      "source_sha256": "bb00f8c6109a3394bd8b6e56032eaacbc9ae6f676636f18b0fb667f188b509bf",
+      "normalized_disassembly_sha256": "b2798bcb02cf68b993705da4c816b703ef25d1f0a0fc84358dceec8c04883b79",
+      "direct_reader_check": true
+    },
+    {
+      "owner": "view.world.ui.faction.UIFactions",
+      "signature": "public boolean diploIs(game.faction.Faction);",
+      "source_path": "view/world/ui/faction/UIFactions.java",
+      "source_sha256": "bb00f8c6109a3394bd8b6e56032eaacbc9ae6f676636f18b0fb667f188b509bf",
+      "normalized_disassembly_sha256": "fd0cd56cdb58c600685a7ae8197e949a564e52f0852f0cf056e39a3aeb532d71",
+      "direct_reader_check": true
+    },
+    {
+      "owner": "view.world.ui.faction.UIFaction",
+      "signature": "public game.faction.Faction f();",
+      "source_path": "view/world/ui/faction/UIFaction.java",
+      "source_sha256": "a0b9f53213a1c41626110c94b92f3a1866306addfb33f4105ed8f144800e1813",
+      "normalized_disassembly_sha256": "5f0af53386fbd5ebe026dadb4c74ac9dc02133f9235ecff5ac34ca1007f98eee",
+      "direct_reader_check": true
+    },
+    {
+      "owner": "view.world.ui.faction.UIFaction",
+      "signature": "public boolean dipIS();",
+      "source_path": "view/world/ui/faction/UIFaction.java",
+      "source_sha256": "a0b9f53213a1c41626110c94b92f3a1866306addfb33f4105ed8f144800e1813",
+      "normalized_disassembly_sha256": "9ab6f5e6d7d9fed914ec94d454563934ab7c112bb3b033429359964a8c300067",
+      "direct_reader_check": true
+    },
+    {
+      "owner": "view.interrupter.ISidePanels",
+      "signature": "public boolean added(view.interrupter.ISidePanel);",
+      "source_path": "view/interrupter/ISidePanels.java",
+      "source_sha256": "fae436013cc4620186746e7a4b4c9f6615d74ecb6121e7bc37c6e2d13bc3012d",
+      "normalized_disassembly_sha256": "f37ac26dc40543ca84c5db49a80ee767e8321d78cfdc8d783b5d259500a8088c",
+      "direct_reader_check": false
+    },
+    {
+      "owner": "view.sett.ui.room.UIRoom",
+      "signature": "public settlement.room.main.RoomInstance detailIns();",
+      "source_path": "view/sett/ui/room/UIRoom.java",
+      "source_sha256": "675640c7007527619e467d0b3935324cedbd2c9edcc68af95377cc321a8a6a45",
+      "normalized_disassembly_sha256": "5c880e012a9bf9baf12bd91d23d5f8c8e7dd3bed03f9f74e8227dc3b52b40204",
+      "direct_reader_check": true
+    },
+    {
+      "owner": "view.world.ui.region.Other",
+      "signature": "public view.interrupter.ISidePanel get(world.map.regions.Region);",
+      "source_path": "view/world/ui/region/Other.java",
+      "source_sha256": "ef65f1aea5994d150fa6315f4c5356cd438838065eafddf4f601bd941e2ca652",
+      "normalized_disassembly_sha256": "2f78200b530c8e41fb18e7d021c6b561348753b469b74ec53a992fedecfad8f5",
+      "direct_reader_check": false
+    },
+    {
+      "owner": "view.world.ui.region.Play",
+      "signature": "public view.interrupter.ISidePanel get(world.map.regions.Region);",
+      "source_path": "view/world/ui/region/Play.java",
+      "source_sha256": "4abc3689e46ee92dc7c340eb1ce0aa83e88a6a7519218263cb70df7af63f9720",
+      "normalized_disassembly_sha256": "5b8f28217712472a55799a7f053bdddba0c24d4050281d3759f53de0ca9997aa",
+      "direct_reader_check": false
+    },
+    {
+      "owner": "view.world.ui.region.PlayCapitol",
+      "signature": "public view.interrupter.ISidePanel get(world.map.regions.Region);",
+      "source_path": "view/world/ui/region/PlayCapitol.java",
+      "source_sha256": "3c67e7c3cdc859affbd65094dbd92733a2d1b76c1a08363fa7ccf23ec4cd3c6d",
+      "normalized_disassembly_sha256": "cbd058a7b595fe8580eeec949a16b0982301e83a6f67b1d0ea9f43a5f0ecccc2",
+      "direct_reader_check": false
+    },
+    {
+      "owner": "util.gui.misc.GBox",
+      "signature": "public util.gui.misc.GText text();",
+      "source_path": "util/gui/misc/GBox.java",
+      "source_sha256": "a623c7f7cf5f364becb657d5a4f0ff97c28244fc232ccf363efca2098e65ebac",
+      "normalized_disassembly_sha256": "edeaf454d13381eb165613af045ad2100ec1e97869c07c8c15de1e4018788d1d",
+      "direct_reader_check": false
+    },
+    {
+      "owner": "game.GAME",
+      "signature": "private game.GAME(game.GameSpec) throws java.io.IOException;",
+      "source_path": "game/GAME.java",
+      "source_sha256": "8077b7f01b7a0d4505b2e40c331754c1c4823142fc93b7d7d2493fda83d6aa81",
+      "normalized_disassembly_sha256": "397d78695f9408735b95e2133a6cdfc3793e667fed4f84b2e36b802691e156f4",
+      "direct_reader_check": false
+    },
+    {
+      "owner": "view.menu.IMenu",
+      "signature": "void exit2Menu();",
+      "source_path": "view/menu/IMenu.java",
+      "source_sha256": "607d2abeb387a637c365968c722f6f9941fbc5b015ca38bd5eb753e1fe8e60a8",
+      "normalized_disassembly_sha256": "717bda571a3a14fae154a160ee58d7b0ed2206309ba4e6b85868c6bb334c1011",
+      "direct_reader_check": false
+    },
+    {
+      "owner": "view.menu.IMenu$12",
+      "signature": "public snake2d.CORE_STATE getState();",
+      "source_path": "view/menu/IMenu.java",
+      "source_sha256": "607d2abeb387a637c365968c722f6f9941fbc5b015ca38bd5eb753e1fe8e60a8",
+      "normalized_disassembly_sha256": "5b49b153d071a27ebe8476d95ce6540351bc5b99de05f5c3a49b192e12faa4d3",
+      "direct_reader_check": false
+    }
+  ],
+  "additional_source_files": {
+    "script/SCRIPT.java": {
+      "sha256": "46f6e143105fb9c697c3a1fdefc8c40bfb274eb9c0f9352567d7ab835d9edb13"
+    },
+    "game/GameDisposable.java": {
+      "sha256": "00d9996bc596ef8123bccd15dd9d90d2d14cbf6d7b369e61559ce2b3d6a477b4"
+    },
+    "snake2d/CORE.java": {
+      "sha256": "2600fff5c0eef54701bc3988e7aec3457b565b75fffcb2c9ff4b19b87779ecdf"
+    },
+    "snake2d/CORE_RESOURCE.java": {
+      "sha256": "b79de000a95e9f8988a7814bb1fee40d459812f36c503448d5c1a6e4d4be6857"
+    },
+    "snake2d/CORE_STATE.java": {
+      "sha256": "b0eb924afedb986544aa98393229fd41bc07ca03f91955761429f02daf0a0b55"
+    },
+    "snake2d/Updater.java": {
+      "sha256": "9b5a35437779b6a017dc3b98744cf817a2419c92a35860af485686046f0f5dac"
+    },
+    "view/sett/ui/room/UIRooms.java": {
+      "sha256": "d7d2950c3812ebe8be9c19a602338dda4642884072e92eb25fb697dbed8d0020"
+    },
+    "view/ui/manage/IManager.java": {
+      "sha256": "f1e3f068fe96a28efde4a4b941113270eb0666f15a046d19f0874e414873d4b3"
+    },
+    "view/interrupter/InterManager.java": {
+      "sha256": "93bf95d5346e39dff8fdcf424a2b21587260340b4964e5d21fa7477591746da8"
+    },
+    "view/world/ui/region/UIRegions.java": {
+      "sha256": "91e964fccbf304133427216db631e3f2beb4aaa61dd8b898b1b959f210db650c"
+    }
+  },
+  "script_public_declarations": {
+    "script.SCRIPT": [
+      "createInstance",
+      "desc",
+      "forceInit",
+      "initBeforeGameCreated",
+      "initBeforeGameInited",
+      "isSelectable",
+      "name"
+    ],
+    "script.SCRIPT$SCRIPT_INSTANCE": [
+      "handleBrokenSavedState",
+      "hover",
+      "hoverTimer",
+      "keyPush",
+      "load",
+      "mouseClick",
+      "render",
+      "save",
+      "update"
+    ]
+  },
+  "compile_probes": [
+    {
+      "id": "FactionObservers",
+      "expected_compilation": "success",
+      "matched": true,
+      "diagnostic_category": null,
+      "probe_source_sha256": "1a3d4f5b6986c0e6e87caf63de81ca1efc061b446efe9c44eccd5c7cdd1b1a75",
+      "compiler_output_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "id": "LiveRoomAccess",
+      "expected_compilation": "rejected",
+      "matched": true,
+      "diagnostic_category": "compiler.err.not.def.public.cant.access",
+      "probe_source_sha256": "3783b668839f91475cfa8c7e5413317ff691f5f26b3d4f5e4fe28dd9fcaf9073",
+      "compiler_output_sha256": "cca662bcca3c1adc049036661b16a8a3cb41455820da639fdd130b70e36fdfce"
+    },
+    {
+      "id": "ManagementTabAccess",
+      "expected_compilation": "rejected",
+      "matched": true,
+      "diagnostic_category": "compiler.err.report.access",
+      "probe_source_sha256": "5637f8e7822099a53469c9aad791b31af961cab0d6a271adfac28eae3533d98f",
+      "compiler_output_sha256": "d6281d7b1c70124048acdda5e973f51d91d3a9dedd63137aa88967c356dac457"
+    },
+    {
+      "id": "GeneralPanelAccess",
+      "expected_compilation": "rejected",
+      "matched": true,
+      "diagnostic_category": "compiler.err.report.access",
+      "probe_source_sha256": "7db9b556167c49df7f59c11637fed252e12627806445664d36321df47956910c",
+      "compiler_output_sha256": "d7cbd7c1e1c329726dc38f43c357ada313c654e5676d61192a3c8c0d2a147127"
+    },
+    {
+      "id": "TooltipStorageAccess",
+      "expected_compilation": "rejected",
+      "matched": true,
+      "diagnostic_category": "compiler.err.report.access",
+      "probe_source_sha256": "f96bfe62cd20388c454c21c1ff467dfbeae2f4df0e24966e07029ed7d593426a",
+      "compiler_output_sha256": "d1da28959dd096dc2ef00303ba5cd344965b38fac4ef242c8a0eb5e8541f3b08"
+    },
+    {
+      "id": "RegionSelectionAccess",
+      "expected_compilation": "rejected",
+      "matched": true,
+      "diagnostic_category": "compiler.err.not.def.public.cant.access",
+      "probe_source_sha256": "9ec8909f6dbab0073a728454ffc8fb07c0d28fe4d10b18c362cb67985c652c58",
+      "compiler_output_sha256": "24cc5643c1f1cc334fd4742260fe72e17f5c5ad743df11f6baa3ef3fa266fea2"
+    },
+    {
+      "id": "EngineDisposalHook",
+      "expected_compilation": "rejected",
+      "matched": true,
+      "diagnostic_category": "compiler.err.does.not.override.abstract",
+      "probe_source_sha256": "1ff7a8da43862991b285e4f81c9a37f218389cef7223f7f3be099680741e4590",
+      "compiler_output_sha256": "42407071f5fc17c1ed722ed72e96bac57290baad3c3ce4243fdba8f553b4fb91"
+    }
+  ],
+  "inference_calls": 0,
+  "game_methods_executed": 0,
+  "conclusions": [
+    "Faction list presence, faction-specific detail presence and diplomacy-tab presence have a compiling public route. Selected bodies read stored panel/identity/switch state; panel membership loops over added panels. These findings alone do not establish native agreement, bounded faction enumeration, null/unavailable behavior or cost; inspect separate production/native evidence.",
+    "UIRoom.detailIns is a public stored getter, but the live UIRooms.rooms field is package-private. Constructing another UIRoom would not identify the actual selection. No selected-room mapping is established by this route.",
+    "UIRegions.get dispatches to panel-binding methods; all three reviewed implementations assign the region getter. Player/capital paths also install a tool and title. It is excluded from production observations. Region active is package-private.",
+    "GBox.text allocates/clears pooled text and advances its cursor; it is a builder, not enumeration of displayed tooltip text. Stored text collection is private.",
+    "Management current and general interrupter collection remain private. Known flags and bounded popup content do not establish their selected tab, ordering or full tree.",
+    "Reviewed SCRIPT declarations expose creation/update/persistence/input/render callbacks but no unload callback. GameDisposable disposal is called during GAME construction, not a proven immediate menu-unload notification. Engine disposal remains package-private and cannot be implemented by an ordinary external subclass. Updater current state is private; public state replacement is a mutation, not observation."
+  ],
+  "limits": [
+    "Shipped source/binary/accessibility evidence, not an official stable mod contract or exhaustive proof that no other public route exists.",
+    "Direct bytecode checks do not establish transitive purity, thread safety, runtime availability, boundedness of faction scans or full state/menu coverage.",
+    "Compiler probes compile against the licensed JAR with annotation processing disabled; they never load or run game classes. Negative probes cover only the named access paths.",
+    "No production source, runtime mapping or player payload is changed by this static review. No screenshots, native input, process memory or reflection are used."
+  ]
+}

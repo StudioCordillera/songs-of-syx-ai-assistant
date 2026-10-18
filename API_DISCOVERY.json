@@ -6,14 +6,14 @@
   "warning": "Offline declaration candidates only. Public enclosing types and member access are compiler checked. No purity, safe getter, live reachability, thread, units, runtime validation or official stability contract is inferred. Inherited members are declared under their owner. Missing/ambiguous anchors remain explicit; signatures are not proof of source/binary equivalence. No method bodies, Javadoc text or game values are included.",
   "catalog_sha256": "5b4b13770eb3251ce066e4f9cf57b5e6b1956687136b5be33a680b707a73b065",
   "production_audit_paired": true,
-  "production_reference_count": 364,
+  "production_reference_count": 369,
   "production_references_by_root_package": {
     "game": 63,
     "init": 33,
     "settlement": 135,
     "snake2d": 38,
     "util": 24,
-    "view": 46,
+    "view": 51,
     "world": 25
   },
   "public_type_count": 2052,
@@ -37,5 +37,5 @@
     "no_exact_source_anchor": 510
   },
   "unresolved_source_type_count": 0,
-  "production_references_found": 364
+  "production_references_found": 369
 }

@@ -1,0 +1,9 @@
+{
+  "queries": [{
+    "source": {"domain": "diplomacy", "path": "/factions"},
+    "where": {"eq": [{"field": "/id"}, {"context": "/world_faction_panels/detail_faction/faction_id"}]},
+    "select": {"faction_id": {"field": "/id"}, "name": {"field": "/name"}, "stance": {"field": "/stance"}},
+    "limit": 5
+  }],
+  "include_ui_context": true
+}
