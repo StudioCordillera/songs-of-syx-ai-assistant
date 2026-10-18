@@ -8,7 +8,7 @@
     "syx/assistant/ChatPanel.java": "29e43cc0794021fa864cd690cf703c85e6d01d2e9279a0fdb8c933401f625e20",
     "syx/assistant/EntityReadRequest.java": "deb0f86cad28da1c8677394a4aeb26913b0c80b4ee90c08cb882bedbc11f8a03",
     "syx/assistant/JsonWriter.java": "c525eb60d3224cab83ed3fd6b8594ec8652211f00bd947e873e1482f919e81dc",
-    "syx/assistant/StateCollector.java": "c54dd1b99b4538eb6e0bc8452464d7a515054950983bdeaecab400533c3cf1a6",
+    "syx/assistant/StateCollector.java": "51c8e5358e16687a6e55dfcfb06b98428144d0bf024d05aba95c8fa0959cf3a1",
     "syx/assistant/TileReadRequest.java": "1a192cde61a7e1bdefa170390c00b17c74573b9c41de71700ebea466411ad3c5",
     "syx/assistant/UiContentCollector.java": "c0d20c7f9f2734a0bb625427875f06bfcd07edb20611248b39b6e8f480ef5a48",
     "syx/assistant/UiContextCollector.java": "afada4ff94ebb8e6d9bcd401d91ce176f554eebd050e6c9e79e731f787ec84ae"
@@ -23,7 +23,7 @@
       "public": true,
       "source_file": "game/GAME.java",
       "uses": [
-        "StateCollector.java:290",
+        "StateCollector.java:336",
         "UiContextCollector.java:60"
       ],
       "parameter_types": [],
@@ -49,8 +49,8 @@
       "public": true,
       "source_file": "game/GAME.java",
       "uses": [
-        "StateCollector.java:256",
-        "StateCollector.java:258"
+        "StateCollector.java:302",
+        "StateCollector.java:304"
       ],
       "parameter_types": [],
       "compiler_generated_enum": false,
@@ -75,7 +75,7 @@
       "public": true,
       "source_file": "game/GAME.java",
       "uses": [
-        "StateCollector.java:260"
+        "StateCollector.java:306"
       ],
       "parameter_types": [],
       "compiler_generated_enum": false,
@@ -129,7 +129,7 @@
       "public": true,
       "source_file": "game/GAME.java",
       "uses": [
-        "StateCollector.java:255"
+        "StateCollector.java:301"
       ],
       "parameter_types": [],
       "compiler_generated_enum": false,
@@ -154,13 +154,13 @@
       "public": true,
       "source_file": "game/GAME.java",
       "uses": [
-        "StateCollector.java:165",
-        "StateCollector.java:166",
-        "StateCollector.java:187",
+        "StateCollector.java:205",
+        "StateCollector.java:206",
         "StateCollector.java:233",
-        "StateCollector.java:234",
-        "StateCollector.java:240",
-        "StateCollector.java:241"
+        "StateCollector.java:279",
+        "StateCollector.java:280",
+        "StateCollector.java:286",
+        "StateCollector.java:287"
       ],
       "parameter_types": [],
       "compiler_generated_enum": false,
@@ -186,7 +186,7 @@
       "source_file": "game/GAME.java",
       "uses": [
         "EntityReadRequest.java:164",
-        "StateCollector.java:133",
+        "StateCollector.java:173",
         "TileReadRequest.java:61"
       ],
       "parameter_types": [],
@@ -237,7 +237,7 @@
       "public": true,
       "source_file": "game/GameSpeed.java",
       "uses": [
-        "StateCollector.java:260"
+        "StateCollector.java:306"
       ],
       "parameter_types": [],
       "compiler_generated_enum": false,
@@ -262,7 +262,7 @@
       "public": true,
       "source_file": "game/GameSpeed.java",
       "uses": [
-        "StateCollector.java:260"
+        "StateCollector.java:306"
       ],
       "parameter_types": [],
       "compiler_generated_enum": false,
@@ -292,7 +292,7 @@
         "AssistantScript.java:29",
         "EntityReadRequest.java:104",
         "EntityReadRequest.java:163",
-        "StateCollector.java:133",
+        "StateCollector.java:173",
         "TileReadRequest.java:60"
       ],
       "parameter_types": [],
@@ -318,7 +318,7 @@
       "public": true,
       "source_file": "game/battle/Armies.java",
       "uses": [
-        "StateCollector.java:290",
+        "StateCollector.java:336",
         "UiContextCollector.java:60"
       ],
       "parameter_types": [],
@@ -344,7 +344,7 @@
       "public": true,
       "source_file": "game/battle/Armies.java",
       "uses": [
-        "StateCollector.java:290",
+        "StateCollector.java:336",
         "UiContextCollector.java:60"
       ],
       "parameter_types": [],
@@ -775,8 +775,8 @@
       "public": true,
       "source_file": "game/boosting/Boostable.java",
       "uses": [
-        "StateCollector.java:198",
-        "StateCollector.java:204"
+        "StateCollector.java:244",
+        "StateCollector.java:250"
       ],
       "parameter_types": [],
       "compiler_generated_enum": false,
@@ -801,7 +801,7 @@
       "public": true,
       "source_file": "game/event/engine/EVENT_HANDLER.java",
       "uses": [
-        "StateCollector.java:256"
+        "StateCollector.java:302"
       ],
       "parameter_types": [],
       "compiler_generated_enum": false,
@@ -826,7 +826,7 @@
       "public": true,
       "source_file": "game/event/engine/EVENT_HANDLER.java",
       "uses": [
-        "StateCollector.java:258"
+        "StateCollector.java:304"
       ],
       "parameter_types": [],
       "compiler_generated_enum": false,
@@ -851,7 +851,7 @@
       "public": true,
       "source_file": "game/event/engine/Event.java",
       "uses": [
-        "StateCollector.java:257"
+        "StateCollector.java:303"
       ],
       "parameter_types": [],
       "compiler_generated_enum": false,
@@ -876,7 +876,7 @@
       "public": true,
       "source_file": "game/events/EVENTS.java",
       "uses": [
-        "StateCollector.java:255"
+        "StateCollector.java:301"
       ],
       "parameter_types": [],
       "compiler_generated_enum": false,
@@ -901,7 +901,7 @@
       "public": true,
       "source_file": "game/events/EVENTS.java",
       "uses": [
-        "StateCollector.java:255"
+        "StateCollector.java:301"
       ],
       "parameter_types": [],
       "compiler_generated_enum": false,
@@ -926,7 +926,7 @@
       "public": true,
       "source_file": "game/faction/FACTIONS.java",
       "uses": [
-        "StateCollector.java:239"
+        "StateCollector.java:285"
       ],
       "parameter_types": [],
       "compiler_generated_enum": false,
@@ -951,7 +951,7 @@
       "public": true,
       "source_file": "game/faction/FResources.java",
       "uses": [
-        "StateCollector.java:165"
+        "StateCollector.java:205"
       ],
       "parameter_types": [
         "game.faction.FResources.RTYPE"
@@ -980,7 +980,7 @@
       "public": true,
       "source_file": "game/faction/FResources.java",
       "uses": [
-        "StateCollector.java:166"
+        "StateCollector.java:206"
       ],
       "parameter_types": [
         "game.faction.FResources.RTYPE"
@@ -1009,7 +1009,7 @@
       "public": true,
       "source_file": "game/faction/FResources.java",
       "uses": [
-        "StateCollector.java:165"
+        "StateCollector.java:205"
       ],
       "parameter_types": [],
       "compiler_generated_enum": true,
@@ -1027,8 +1027,8 @@
       "public": true,
       "source_file": "game/faction/Faction.java",
       "uses": [
-        "StateCollector.java:242",
-        "StateCollector.java:250"
+        "StateCollector.java:288",
+        "StateCollector.java:296"
       ],
       "parameter_types": [],
       "compiler_generated_enum": false,
@@ -1053,7 +1053,7 @@
       "public": true,
       "source_file": "game/faction/Faction.java",
       "uses": [
-        "StateCollector.java:242"
+        "StateCollector.java:288"
       ],
       "parameter_types": [],
       "compiler_generated_enum": false,
@@ -1078,7 +1078,7 @@
       "public": true,
       "source_file": "game/faction/diplomacy/DIP.java",
       "uses": [
-        "StateCollector.java:241"
+        "StateCollector.java:287"
       ],
       "parameter_types": [
         "game.faction.Faction",
@@ -1109,7 +1109,7 @@
       "public": true,
       "source_file": "game/faction/diplomacy/DipStance.java",
       "uses": [
-        "StateCollector.java:242"
+        "StateCollector.java:288"
       ],
       "parameter_types": [],
       "compiler_generated_enum": false,
@@ -1134,7 +1134,7 @@
       "public": true,
       "source_file": "game/faction/diplomacy/DipStance.java",
       "uses": [
-        "StateCollector.java:242"
+        "StateCollector.java:288"
       ],
       "parameter_types": [],
       "compiler_generated_enum": false,
@@ -1159,7 +1159,7 @@
       "public": true,
       "source_file": "game/faction/player/PTech.java",
       "uses": [
-        "StateCollector.java:200"
+        "StateCollector.java:246"
       ],
       "parameter_types": [
         "double",
@@ -1190,7 +1190,7 @@
       "public": true,
       "source_file": "game/faction/player/PTech.java",
       "uses": [
-        "StateCollector.java:199"
+        "StateCollector.java:245"
       ],
       "parameter_types": [
         "init.tech.TechCost",
@@ -1221,7 +1221,7 @@
       "public": true,
       "source_file": "game/faction/player/PTech.java",
       "uses": [
-        "StateCollector.java:202"
+        "StateCollector.java:248"
       ],
       "parameter_types": [],
       "compiler_generated_enum": false,
@@ -1246,8 +1246,8 @@
       "public": true,
       "source_file": "game/faction/player/PTech.java",
       "uses": [
-        "StateCollector.java:189",
-        "StateCollector.java:191"
+        "StateCollector.java:235",
+        "StateCollector.java:237"
       ],
       "parameter_types": [
         "init.tech.TECH"
@@ -1276,7 +1276,7 @@
       "public": true,
       "source_file": "game/faction/player/PTech.java",
       "uses": [
-        "StateCollector.java:205"
+        "StateCollector.java:251"
       ],
       "parameter_types": [],
       "compiler_generated_enum": false,
@@ -1301,7 +1301,7 @@
       "public": true,
       "source_file": "game/faction/player/PTech.java",
       "uses": [
-        "StateCollector.java:206"
+        "StateCollector.java:252"
       ],
       "parameter_types": [],
       "compiler_generated_enum": false,
@@ -1326,7 +1326,7 @@
       "public": true,
       "source_file": "game/faction/player/PTech.java",
       "uses": [
-        "StateCollector.java:204"
+        "StateCollector.java:250"
       ],
       "parameter_types": [],
       "compiler_generated_enum": false,
@@ -1351,7 +1351,7 @@
       "public": true,
       "source_file": "game/faction/player/PTech.java",
       "uses": [
-        "StateCollector.java:205"
+        "StateCollector.java:251"
       ],
       "parameter_types": [],
       "compiler_generated_enum": false,
@@ -1376,7 +1376,7 @@
       "public": true,
       "source_file": "game/faction/player/PTech.java",
       "uses": [
-        "StateCollector.java:203"
+        "StateCollector.java:249"
       ],
       "parameter_types": [],
       "compiler_generated_enum": false,
@@ -1401,7 +1401,7 @@
       "public": true,
       "source_file": "game/faction/player/PTech.java",
       "uses": [
-        "StateCollector.java:205"
+        "StateCollector.java:251"
       ],
       "parameter_types": [],
       "compiler_generated_enum": false,
@@ -1426,7 +1426,7 @@
       "public": true,
       "source_file": "game/faction/player/PTrade.java",
       "uses": [
-        "StateCollector.java:234"
+        "StateCollector.java:280"
       ],
       "parameter_types": [],
       "compiler_generated_enum": false,
@@ -1451,7 +1451,7 @@
       "public": true,
       "source_file": "game/faction/player/PTrade.java",
       "uses": [
-        "StateCollector.java:233"
+        "StateCollector.java:279"
       ],
       "parameter_types": [],
       "compiler_generated_enum": false,
@@ -1476,8 +1476,8 @@
       "public": true,
       "source_file": "game/faction/player/Player.java",
       "uses": [
-        "StateCollector.java:165",
-        "StateCollector.java:166"
+        "StateCollector.java:205",
+        "StateCollector.java:206"
       ],
       "parameter_types": [],
       "compiler_generated_enum": false,
@@ -1502,7 +1502,7 @@
       "public": true,
       "source_file": "game/faction/player/Player.java",
       "uses": [
-        "StateCollector.java:187"
+        "StateCollector.java:233"
       ],
       "parameter_types": [],
       "compiler_generated_enum": false,
@@ -1527,8 +1527,8 @@
       "public": true,
       "source_file": "game/faction/player/Player.java",
       "uses": [
-        "StateCollector.java:233",
-        "StateCollector.java:234"
+        "StateCollector.java:279",
+        "StateCollector.java:280"
       ],
       "parameter_types": [],
       "compiler_generated_enum": false,
@@ -1553,7 +1553,7 @@
       "public": true,
       "source_file": "game/time/TIME.java",
       "uses": [
-        "StateCollector.java:261"
+        "StateCollector.java:307"
       ],
       "parameter_types": [],
       "compiler_generated_enum": false,
@@ -1578,7 +1578,7 @@
       "public": true,
       "source_file": "game/time/TIME.java",
       "uses": [
-        "StateCollector.java:261"
+        "StateCollector.java:307"
       ],
       "parameter_types": [],
       "compiler_generated_enum": false,
@@ -1603,7 +1603,7 @@
       "public": true,
       "source_file": "init/paths/ModInfo.java",
       "uses": [
-        "StateCollector.java:131"
+        "StateCollector.java:171"
       ],
       "parameter_types": [],
       "compiler_generated_enum": false,
@@ -1628,7 +1628,7 @@
       "public": true,
       "source_file": "init/paths/PATHS.java",
       "uses": [
-        "StateCollector.java:131"
+        "StateCollector.java:171"
       ],
       "parameter_types": [],
       "compiler_generated_enum": false,
@@ -1653,7 +1653,7 @@
       "public": true,
       "source_file": "init/paths/PATHS.java",
       "uses": [
-        "StateCollector.java:131"
+        "StateCollector.java:171"
       ],
       "parameter_types": [],
       "compiler_generated_enum": false,
@@ -1678,7 +1678,7 @@
       "public": true,
       "source_file": "init/race/RACES.java",
       "uses": [
-        "StateCollector.java:145"
+        "StateCollector.java:185"
       ],
       "parameter_types": [],
       "compiler_generated_enum": false,
@@ -1706,8 +1706,8 @@
         "EntityReadRequest.java:135",
         "EntityReadRequest.java:149",
         "StateCollector.java:109",
-        "StateCollector.java:146",
-        "StateCollector.java:225",
+        "StateCollector.java:186",
+        "StateCollector.java:271",
         "StateCollector.java:93",
         "UiContextCollector.java:90"
       ],
@@ -1760,9 +1760,10 @@
       "public": true,
       "source_file": "init/resources/RESOURCE.java",
       "uses": [
-        "StateCollector.java:151",
-        "StateCollector.java:167",
-        "StateCollector.java:232",
+        "StateCollector.java:140",
+        "StateCollector.java:191",
+        "StateCollector.java:207",
+        "StateCollector.java:278",
         "StateCollector.java:37",
         "StateCollector.java:38",
         "TileReadRequest.java:113",
@@ -1791,7 +1792,7 @@
       "public": true,
       "source_file": "init/resources/RESOURCE.java",
       "uses": [
-        "StateCollector.java:152"
+        "StateCollector.java:192"
       ],
       "parameter_types": [],
       "compiler_generated_enum": false,
@@ -1816,10 +1817,10 @@
       "public": true,
       "source_file": "init/resources/RESOURCE.java",
       "uses": [
-        "StateCollector.java:165",
-        "StateCollector.java:166",
-        "StateCollector.java:233",
-        "StateCollector.java:234"
+        "StateCollector.java:205",
+        "StateCollector.java:206",
+        "StateCollector.java:279",
+        "StateCollector.java:280"
       ],
       "parameter_types": [],
       "compiler_generated_enum": false,
@@ -1844,9 +1845,9 @@
       "public": true,
       "source_file": "init/resources/RESOURCES.java",
       "uses": [
-        "StateCollector.java:151",
-        "StateCollector.java:163",
-        "StateCollector.java:232",
+        "StateCollector.java:191",
+        "StateCollector.java:203",
+        "StateCollector.java:278",
         "StateCollector.java:37"
       ],
       "parameter_types": [],
@@ -1940,7 +1941,7 @@
       "public": true,
       "source_file": "init/tech/TECH.java",
       "uses": [
-        "StateCollector.java:198"
+        "StateCollector.java:244"
       ],
       "parameter_types": [],
       "compiler_generated_enum": false,
@@ -1990,9 +1991,9 @@
       "public": true,
       "source_file": "init/tech/TECH.java",
       "uses": [
-        "StateCollector.java:193",
-        "StateCollector.java:196",
-        "StateCollector.java:198",
+        "StateCollector.java:239",
+        "StateCollector.java:242",
+        "StateCollector.java:244",
         "StateCollector.java:39",
         "StateCollector.java:40"
       ],
@@ -2019,8 +2020,8 @@
       "public": true,
       "source_file": "init/tech/TECH.java",
       "uses": [
-        "StateCollector.java:197",
-        "StateCollector.java:200"
+        "StateCollector.java:243",
+        "StateCollector.java:246"
       ],
       "parameter_types": [],
       "compiler_generated_enum": false,
@@ -2045,7 +2046,7 @@
       "public": true,
       "source_file": "init/tech/TECH.java",
       "uses": [
-        "StateCollector.java:196",
+        "StateCollector.java:242",
         "StateCollector.java:40"
       ],
       "parameter_types": [],
@@ -2071,7 +2072,7 @@
       "public": true,
       "source_file": "init/tech/TECH.java",
       "uses": [
-        "StateCollector.java:190"
+        "StateCollector.java:236"
       ],
       "parameter_types": [],
       "compiler_generated_enum": false,
@@ -2096,8 +2097,8 @@
       "public": true,
       "source_file": "init/tech/TECH.java",
       "uses": [
-        "StateCollector.java:191",
-        "StateCollector.java:194"
+        "StateCollector.java:237",
+        "StateCollector.java:240"
       ],
       "parameter_types": [],
       "compiler_generated_enum": false,
@@ -2122,8 +2123,8 @@
       "public": true,
       "source_file": "init/tech/TECH.java",
       "uses": [
-        "StateCollector.java:191",
-        "StateCollector.java:193"
+        "StateCollector.java:237",
+        "StateCollector.java:239"
       ],
       "parameter_types": [],
       "compiler_generated_enum": false,
@@ -2148,7 +2149,7 @@
       "public": true,
       "source_file": "init/tech/TECHS.java",
       "uses": [
-        "StateCollector.java:188",
+        "StateCollector.java:234",
         "StateCollector.java:39"
       ],
       "parameter_types": [],
@@ -2174,8 +2175,8 @@
       "public": true,
       "source_file": "init/tech/TechCost.java",
       "uses": [
-        "StateCollector.java:199",
-        "StateCollector.java:200"
+        "StateCollector.java:245",
+        "StateCollector.java:246"
       ],
       "parameter_types": [],
       "compiler_generated_enum": false,
@@ -2200,7 +2201,7 @@
       "public": true,
       "source_file": "init/tech/TechCost.java",
       "uses": [
-        "StateCollector.java:198"
+        "StateCollector.java:244"
       ],
       "parameter_types": [],
       "compiler_generated_enum": false,
@@ -2225,8 +2226,8 @@
       "public": true,
       "source_file": "init/tech/TechCurrency.java",
       "uses": [
-        "StateCollector.java:198",
-        "StateCollector.java:204"
+        "StateCollector.java:244",
+        "StateCollector.java:250"
       ],
       "parameter_types": [],
       "compiler_generated_enum": false,
@@ -2253,9 +2254,9 @@
       "uses": [
         "EntityReadRequest.java:136",
         "EntityReadRequest.java:150",
-        "StateCollector.java:146",
-        "StateCollector.java:281",
-        "StateCollector.java:283",
+        "StateCollector.java:186",
+        "StateCollector.java:327",
+        "StateCollector.java:329",
         "StateCollector.java:93"
       ],
       "parameter_types": [],
@@ -2281,8 +2282,8 @@
       "public": true,
       "source_file": "init/type/HCLASSES.java",
       "uses": [
-        "StateCollector.java:145",
-        "StateCollector.java:278"
+        "StateCollector.java:185",
+        "StateCollector.java:324"
       ],
       "parameter_types": [],
       "compiler_generated_enum": false,
@@ -2335,7 +2336,7 @@
       "source_file": "settlement/entity/ENTETIES.java",
       "uses": [
         "EntityReadRequest.java:122",
-        "StateCollector.java:220"
+        "StateCollector.java:266"
       ],
       "parameter_types": [],
       "compiler_generated_enum": false,
@@ -2391,7 +2392,7 @@
       "uses": [
         "EntityReadRequest.java:131",
         "EntityReadRequest.java:145",
-        "StateCollector.java:224",
+        "StateCollector.java:270",
         "StateCollector.java:93",
         "UiContextCollector.java:90"
       ],
@@ -2419,7 +2420,7 @@
       "source_file": "settlement/entity/ENTITY.java",
       "uses": [
         "EntityReadRequest.java:131",
-        "StateCollector.java:221",
+        "StateCollector.java:267",
         "StateCollector.java:86",
         "UiContextCollector.java:89"
       ],
@@ -2449,7 +2450,7 @@
         "EntityReadRequest.java:132",
         "EntityReadRequest.java:147",
         "EntityReadRequest.java:148",
-        "StateCollector.java:224",
+        "StateCollector.java:270",
         "StateCollector.java:94",
         "UiContextCollector.java:90"
       ],
@@ -2535,7 +2536,7 @@
       "uses": [
         "EntityReadRequest.java:135",
         "EntityReadRequest.java:149",
-        "StateCollector.java:225",
+        "StateCollector.java:271",
         "StateCollector.java:93",
         "UiContextCollector.java:90"
       ],
@@ -2589,7 +2590,7 @@
       "uses": [
         "EntityReadRequest.java:122",
         "EntityReadRequest.java:125",
-        "StateCollector.java:220"
+        "StateCollector.java:266"
       ],
       "parameter_types": [],
       "compiler_generated_enum": false,
@@ -2695,9 +2696,10 @@
       "public": true,
       "source_file": "settlement/main/SETT.java",
       "uses": [
-        "StateCollector.java:152",
-        "StateCollector.java:153",
-        "StateCollector.java:173",
+        "StateCollector.java:124",
+        "StateCollector.java:192",
+        "StateCollector.java:193",
+        "StateCollector.java:219",
         "TileReadRequest.java:107",
         "TileReadRequest.java:78",
         "UiContextCollector.java:95"
@@ -2751,7 +2753,7 @@
       "public": true,
       "source_file": "settlement/main/SETT.java",
       "uses": [
-        "StateCollector.java:262",
+        "StateCollector.java:308",
         "TileReadRequest.java:68"
       ],
       "parameter_types": [],
@@ -2777,7 +2779,7 @@
       "public": true,
       "source_file": "settlement/main/SETT.java",
       "uses": [
-        "StateCollector.java:262",
+        "StateCollector.java:308",
         "TileReadRequest.java:68"
       ],
       "parameter_types": [],
@@ -2829,7 +2831,8 @@
       "source_file": "settlement/main/SETT.java",
       "uses": [
         "EntityReadRequest.java:111",
-        "StateCollector.java:300",
+        "StateCollector.java:120",
+        "StateCollector.java:347",
         "TileReadRequest.java:67",
         "UiContextCollector.java:31",
         "UiContextCollector.java:32"
@@ -3031,6 +3034,283 @@
       "documentation_status": "human_review_required; Javadoc presence alone does not establish a stable mod contract"
     },
     {
+      "id": "settlement.room.industry.module.Industry#index()",
+      "owner": "settlement.room.industry.module.Industry",
+      "name": "index",
+      "kind": "METHOD",
+      "signature": "index()",
+      "public": true,
+      "source_file": "settlement/room/industry/module/Industry.java",
+      "uses": [
+        "StateCollector.java:139"
+      ],
+      "parameter_types": [],
+      "compiler_generated_enum": false,
+      "arity": 0,
+      "source_candidates": [
+        {
+          "line": 234,
+          "source_sha256": "a6b1ca6ac895c097fea4aa11cc23d2e7c10d8daa6a858c8d700448dacda6e66e",
+          "parameter_types": [],
+          "has_javadoc": false
+        }
+      ],
+      "source_match": "name_arity_and_simple_parameter_types",
+      "documentation_status": "human_review_required; Javadoc presence alone does not establish a stable mod contract"
+    },
+    {
+      "id": "settlement.room.industry.module.Industry#outs()",
+      "owner": "settlement.room.industry.module.Industry",
+      "name": "outs",
+      "kind": "METHOD",
+      "signature": "outs()",
+      "public": true,
+      "source_file": "settlement/room/industry/module/Industry.java",
+      "uses": [
+        "StateCollector.java:131",
+        "StateCollector.java:135"
+      ],
+      "parameter_types": [],
+      "compiler_generated_enum": false,
+      "arity": 0,
+      "source_candidates": [
+        {
+          "line": 183,
+          "source_sha256": "a6b1ca6ac895c097fea4aa11cc23d2e7c10d8daa6a858c8d700448dacda6e66e",
+          "parameter_types": [],
+          "has_javadoc": false
+        }
+      ],
+      "source_match": "name_arity_and_simple_parameter_types",
+      "documentation_status": "human_review_required; Javadoc presence alone does not establish a stable mod contract"
+    },
+    {
+      "id": "settlement.room.industry.module.IndustryResource#day",
+      "owner": "settlement.room.industry.module.IndustryResource",
+      "name": "day",
+      "kind": "FIELD",
+      "signature": "day",
+      "public": true,
+      "source_file": "settlement/room/industry/module/IndustryResource.java",
+      "uses": [
+        "StateCollector.java:137"
+      ],
+      "parameter_types": [],
+      "compiler_generated_enum": false,
+      "arity": -1,
+      "source_candidates": [
+        {
+          "line": 30,
+          "source_sha256": "41e3b5ae825e8654c3d544dab70b61be6ce474bf2bf6eb83c0d147f8484a27db",
+          "parameter_types": [],
+          "has_javadoc": false
+        }
+      ],
+      "source_match": "name_arity_and_simple_parameter_types",
+      "documentation_status": "human_review_required; Javadoc presence alone does not establish a stable mod contract"
+    },
+    {
+      "id": "settlement.room.industry.module.IndustryResource#dayPrev",
+      "owner": "settlement.room.industry.module.IndustryResource",
+      "name": "dayPrev",
+      "kind": "FIELD",
+      "signature": "dayPrev",
+      "public": true,
+      "source_file": "settlement/room/industry/module/IndustryResource.java",
+      "uses": [
+        "StateCollector.java:143"
+      ],
+      "parameter_types": [],
+      "compiler_generated_enum": false,
+      "arity": -1,
+      "source_candidates": [
+        {
+          "line": 31,
+          "source_sha256": "41e3b5ae825e8654c3d544dab70b61be6ce474bf2bf6eb83c0d147f8484a27db",
+          "parameter_types": [],
+          "has_javadoc": false
+        }
+      ],
+      "source_match": "name_arity_and_simple_parameter_types",
+      "documentation_status": "human_review_required; Javadoc presence alone does not establish a stable mod contract"
+    },
+    {
+      "id": "settlement.room.industry.module.IndustryResource#rate",
+      "owner": "settlement.room.industry.module.IndustryResource",
+      "name": "rate",
+      "kind": "FIELD",
+      "signature": "rate",
+      "public": true,
+      "source_file": "settlement/room/industry/module/IndustryResource.java",
+      "uses": [
+        "StateCollector.java:137"
+      ],
+      "parameter_types": [],
+      "compiler_generated_enum": false,
+      "arity": -1,
+      "source_candidates": [
+        {
+          "line": 21,
+          "source_sha256": "41e3b5ae825e8654c3d544dab70b61be6ce474bf2bf6eb83c0d147f8484a27db",
+          "parameter_types": [],
+          "has_javadoc": false
+        }
+      ],
+      "source_match": "name_arity_and_simple_parameter_types",
+      "documentation_status": "human_review_required; Javadoc presence alone does not establish a stable mod contract"
+    },
+    {
+      "id": "settlement.room.industry.module.IndustryResource#resource",
+      "owner": "settlement.room.industry.module.IndustryResource",
+      "name": "resource",
+      "kind": "FIELD",
+      "signature": "resource",
+      "public": true,
+      "source_file": "settlement/room/industry/module/IndustryResource.java",
+      "uses": [
+        "StateCollector.java:140"
+      ],
+      "parameter_types": [],
+      "compiler_generated_enum": false,
+      "arity": -1,
+      "source_candidates": [
+        {
+          "line": 20,
+          "source_sha256": "41e3b5ae825e8654c3d544dab70b61be6ce474bf2bf6eb83c0d147f8484a27db",
+          "parameter_types": [],
+          "has_javadoc": false
+        }
+      ],
+      "source_match": "name_arity_and_simple_parameter_types",
+      "documentation_status": "human_review_required; Javadoc presence alone does not establish a stable mod contract"
+    },
+    {
+      "id": "settlement.room.industry.module.IndustryResource#year",
+      "owner": "settlement.room.industry.module.IndustryResource",
+      "name": "year",
+      "kind": "FIELD",
+      "signature": "year",
+      "public": true,
+      "source_file": "settlement/room/industry/module/IndustryResource.java",
+      "uses": [
+        "StateCollector.java:144"
+      ],
+      "parameter_types": [],
+      "compiler_generated_enum": false,
+      "arity": -1,
+      "source_candidates": [
+        {
+          "line": 28,
+          "source_sha256": "41e3b5ae825e8654c3d544dab70b61be6ce474bf2bf6eb83c0d147f8484a27db",
+          "parameter_types": [],
+          "has_javadoc": false
+        }
+      ],
+      "source_match": "name_arity_and_simple_parameter_types",
+      "documentation_status": "human_review_required; Javadoc presence alone does not establish a stable mod contract"
+    },
+    {
+      "id": "settlement.room.industry.module.IndustryResource#yearPrev",
+      "owner": "settlement.room.industry.module.IndustryResource",
+      "name": "yearPrev",
+      "kind": "FIELD",
+      "signature": "yearPrev",
+      "public": true,
+      "source_file": "settlement/room/industry/module/IndustryResource.java",
+      "uses": [
+        "StateCollector.java:144"
+      ],
+      "parameter_types": [],
+      "compiler_generated_enum": false,
+      "arity": -1,
+      "source_candidates": [
+        {
+          "line": 29,
+          "source_sha256": "41e3b5ae825e8654c3d544dab70b61be6ce474bf2bf6eb83c0d147f8484a27db",
+          "parameter_types": [],
+          "has_javadoc": false
+        }
+      ],
+      "source_match": "name_arity_and_simple_parameter_types",
+      "documentation_status": "human_review_required; Javadoc presence alone does not establish a stable mod contract"
+    },
+    {
+      "id": "settlement.room.industry.module.ROOM_PRODUCER_INSTANCE#industry()",
+      "owner": "settlement.room.industry.module.ROOM_PRODUCER_INSTANCE",
+      "name": "industry",
+      "kind": "METHOD",
+      "signature": "industry()",
+      "public": true,
+      "source_file": "settlement/room/industry/module/ROOM_PRODUCER_INSTANCE.java",
+      "uses": [
+        "StateCollector.java:129"
+      ],
+      "parameter_types": [],
+      "compiler_generated_enum": false,
+      "arity": 0,
+      "source_candidates": [
+        {
+          "line": 9,
+          "source_sha256": "b819e8b9eaf9ec0843ee7afde010143d860144fe21c8ce9346b881ac14cd3e88",
+          "parameter_types": [],
+          "has_javadoc": false
+        }
+      ],
+      "source_match": "name_arity_and_simple_parameter_types",
+      "documentation_status": "human_review_required; Javadoc presence alone does not establish a stable mod contract"
+    },
+    {
+      "id": "settlement.room.industry.module.ROOM_PRODUCER_INSTANCE#industryI()",
+      "owner": "settlement.room.industry.module.ROOM_PRODUCER_INSTANCE",
+      "name": "industryI",
+      "kind": "METHOD",
+      "signature": "industryI()",
+      "public": true,
+      "source_file": "settlement/room/industry/module/ROOM_PRODUCER_INSTANCE.java",
+      "uses": [
+        "StateCollector.java:139"
+      ],
+      "parameter_types": [],
+      "compiler_generated_enum": false,
+      "arity": 0,
+      "source_candidates": [
+        {
+          "line": 10,
+          "source_sha256": "b819e8b9eaf9ec0843ee7afde010143d860144fe21c8ce9346b881ac14cd3e88",
+          "parameter_types": [],
+          "has_javadoc": false
+        }
+      ],
+      "source_match": "name_arity_and_simple_parameter_types",
+      "documentation_status": "human_review_required; Javadoc presence alone does not establish a stable mod contract"
+    },
+    {
+      "id": "settlement.room.industry.module.consumption.RoomConsumptionAbs#ins()",
+      "owner": "settlement.room.industry.module.consumption.RoomConsumptionAbs",
+      "name": "ins",
+      "kind": "METHOD",
+      "signature": "ins()",
+      "public": true,
+      "source_file": "settlement/room/industry/module/consumption/RoomConsumptionAbs.java",
+      "uses": [
+        "StateCollector.java:131",
+        "StateCollector.java:135"
+      ],
+      "parameter_types": [],
+      "compiler_generated_enum": false,
+      "arity": 0,
+      "source_candidates": [
+        {
+          "line": 85,
+          "source_sha256": "d253d93d2714a83176e8ae498ab8f5a200103a371c44a325cfd8f0d34aa73756",
+          "parameter_types": [],
+          "has_javadoc": false
+        }
+      ],
+      "source_match": "name_arity_and_simple_parameter_types",
+      "documentation_status": "human_review_required; Javadoc presence alone does not establish a stable mod contract"
+    },
+    {
       "id": "settlement.room.infra.stockpile.ROOM_STOCKPILE#tally()",
       "owner": "settlement.room.infra.stockpile.ROOM_STOCKPILE",
       "name": "tally",
@@ -3039,8 +3319,8 @@
       "public": true,
       "source_file": "settlement/room/infra/stockpile/ROOM_STOCKPILE.java",
       "uses": [
-        "StateCollector.java:152",
-        "StateCollector.java:153"
+        "StateCollector.java:192",
+        "StateCollector.java:193"
       ],
       "parameter_types": [],
       "compiler_generated_enum": false,
@@ -3065,7 +3345,7 @@
       "public": true,
       "source_file": "settlement/room/infra/stockpile/StockpileTally.java",
       "uses": [
-        "StateCollector.java:152"
+        "StateCollector.java:192"
       ],
       "parameter_types": [],
       "compiler_generated_enum": false,
@@ -3090,7 +3370,7 @@
       "public": true,
       "source_file": "settlement/room/infra/stockpile/StockpileTally.java",
       "uses": [
-        "StateCollector.java:153"
+        "StateCollector.java:193"
       ],
       "parameter_types": [],
       "compiler_generated_enum": false,
@@ -3115,8 +3395,8 @@
       "public": true,
       "source_file": "settlement/room/infra/stockpile/StockpileTally.java",
       "uses": [
-        "StateCollector.java:152",
-        "StateCollector.java:153"
+        "StateCollector.java:192",
+        "StateCollector.java:193"
       ],
       "parameter_types": [
         "init.resources.RESOURCE"
@@ -3145,8 +3425,8 @@
       "public": true,
       "source_file": "settlement/room/main/ROOMS.java",
       "uses": [
-        "StateCollector.java:152",
-        "StateCollector.java:153"
+        "StateCollector.java:192",
+        "StateCollector.java:193"
       ],
       "parameter_types": [],
       "compiler_generated_enum": false,
@@ -3196,7 +3476,8 @@
       "public": true,
       "source_file": "settlement/room/main/ROOMS.java",
       "uses": [
-        "StateCollector.java:173"
+        "StateCollector.java:124",
+        "StateCollector.java:219"
       ],
       "parameter_types": [],
       "compiler_generated_enum": false,
@@ -3305,7 +3586,9 @@
       "public": true,
       "source_file": "settlement/room/main/Room.java",
       "uses": [
-        "StateCollector.java:176",
+        "StateCollector.java:138",
+        "StateCollector.java:150",
+        "StateCollector.java:222",
         "StateCollector.java:65",
         "TileReadRequest.java:108"
       ],
@@ -3425,7 +3708,8 @@
       "public": true,
       "source_file": "settlement/room/main/RoomBlueprint.java",
       "uses": [
-        "StateCollector.java:176",
+        "StateCollector.java:138",
+        "StateCollector.java:222",
         "StateCollector.java:65",
         "StateCollector.java:70",
         "TileReadRequest.java:108",
@@ -3455,7 +3739,8 @@
       "public": true,
       "source_file": "settlement/room/main/RoomBlueprintIns.java",
       "uses": [
-        "StateCollector.java:173"
+        "StateCollector.java:124",
+        "StateCollector.java:219"
       ],
       "parameter_types": [],
       "compiler_generated_enum": false,
@@ -3480,7 +3765,7 @@
       "public": true,
       "source_file": "settlement/room/main/RoomBlueprintIns.java",
       "uses": [
-        "StateCollector.java:174"
+        "StateCollector.java:220"
       ],
       "parameter_types": [],
       "compiler_generated_enum": false,
@@ -3505,7 +3790,7 @@
       "public": true,
       "source_file": "settlement/room/main/RoomInstance.java",
       "uses": [
-        "StateCollector.java:178"
+        "StateCollector.java:224"
       ],
       "parameter_types": [],
       "compiler_generated_enum": false,
@@ -3530,9 +3815,9 @@
       "public": true,
       "source_file": "settlement/room/main/RoomInstance.java",
       "uses": [
-        "StateCollector.java:175",
-        "StateCollector.java:178",
-        "StateCollector.java:179"
+        "StateCollector.java:221",
+        "StateCollector.java:224",
+        "StateCollector.java:225"
       ],
       "parameter_types": [],
       "compiler_generated_enum": false,
@@ -3557,8 +3842,8 @@
       "public": true,
       "source_file": "settlement/room/main/RoomInstance.java",
       "uses": [
-        "StateCollector.java:176",
-        "StateCollector.java:177",
+        "StateCollector.java:222",
+        "StateCollector.java:223",
         "StateCollector.java:66"
       ],
       "parameter_types": [],
@@ -3584,8 +3869,8 @@
       "public": true,
       "source_file": "settlement/room/main/RoomInstance.java",
       "uses": [
-        "StateCollector.java:176",
-        "StateCollector.java:177",
+        "StateCollector.java:222",
+        "StateCollector.java:223",
         "StateCollector.java:66"
       ],
       "parameter_types": [],
@@ -3611,7 +3896,7 @@
       "public": true,
       "source_file": "settlement/room/main/RoomInstance.java",
       "uses": [
-        "StateCollector.java:177",
+        "StateCollector.java:223",
         "StateCollector.java:65"
       ],
       "parameter_types": [],
@@ -3669,7 +3954,7 @@
       "public": true,
       "source_file": "settlement/room/main/employment/RoomEmploymentIns.java",
       "uses": [
-        "StateCollector.java:178"
+        "StateCollector.java:224"
       ],
       "parameter_types": [],
       "compiler_generated_enum": false,
@@ -3694,7 +3979,7 @@
       "public": true,
       "source_file": "settlement/room/main/employment/RoomEmploymentIns.java",
       "uses": [
-        "StateCollector.java:179"
+        "StateCollector.java:225"
       ],
       "parameter_types": [],
       "compiler_generated_enum": false,
@@ -3719,7 +4004,7 @@
       "public": true,
       "source_file": "settlement/room/main/employment/RoomEmploymentIns.java",
       "uses": [
-        "StateCollector.java:178"
+        "StateCollector.java:224"
       ],
       "parameter_types": [],
       "compiler_generated_enum": false,
@@ -3744,7 +4029,7 @@
       "public": true,
       "source_file": "settlement/room/main/employment/RoomEmploymentIns.java",
       "uses": [
-        "StateCollector.java:179"
+        "StateCollector.java:225"
       ],
       "parameter_types": [],
       "compiler_generated_enum": false,
@@ -3823,7 +4108,7 @@
       "public": true,
       "source_file": "settlement/stats/STATS.java",
       "uses": [
-        "StateCollector.java:273"
+        "StateCollector.java:319"
       ],
       "parameter_types": [],
       "compiler_generated_enum": false,
@@ -3873,8 +4158,8 @@
       "public": true,
       "source_file": "settlement/stats/STATS.java",
       "uses": [
-        "StateCollector.java:146",
-        "StateCollector.java:147"
+        "StateCollector.java:186",
+        "StateCollector.java:187"
       ],
       "parameter_types": [],
       "compiler_generated_enum": false,
@@ -4006,8 +4291,8 @@
       "public": true,
       "source_file": "settlement/stats/colls/StatsPopulation.java",
       "uses": [
-        "StateCollector.java:146",
-        "StateCollector.java:147"
+        "StateCollector.java:186",
+        "StateCollector.java:187"
       ],
       "parameter_types": [],
       "compiler_generated_enum": false,
@@ -4082,7 +4367,7 @@
       "public": true,
       "source_file": "settlement/stats/stat/SETT_STATISTICS.java",
       "uses": [
-        "StateCollector.java:147"
+        "StateCollector.java:187"
       ],
       "parameter_types": [],
       "compiler_generated_enum": false,
@@ -4107,9 +4392,9 @@
       "public": true,
       "source_file": "settlement/stats/stat/SETT_STATISTICS.java",
       "uses": [
-        "StateCollector.java:146",
-        "StateCollector.java:280",
-        "StateCollector.java:281"
+        "StateCollector.java:186",
+        "StateCollector.java:326",
+        "StateCollector.java:327"
       ],
       "parameter_types": [
         "init.type.HCLASS"
@@ -4138,7 +4423,7 @@
       "public": true,
       "source_file": "settlement/stats/stat/SETT_STATISTICS.java",
       "uses": [
-        "StateCollector.java:286"
+        "StateCollector.java:332"
       ],
       "parameter_types": [],
       "compiler_generated_enum": false,
@@ -4248,7 +4533,7 @@
       "public": true,
       "source_file": "settlement/stats/stat/STAT.java",
       "uses": [
-        "StateCollector.java:285",
+        "StateCollector.java:331",
         "StateCollector.java:42"
       ],
       "parameter_types": [],
@@ -4274,7 +4559,7 @@
       "public": true,
       "source_file": "settlement/stats/stat/STAT.java",
       "uses": [
-        "StateCollector.java:285",
+        "StateCollector.java:331",
         "StateCollector.java:42",
         "StateCollector.java:46"
       ],
@@ -4301,7 +4586,7 @@
       "public": true,
       "source_file": "settlement/stats/stat/StatCollection.java",
       "uses": [
-        "StateCollector.java:276"
+        "StateCollector.java:322"
       ],
       "parameter_types": [],
       "compiler_generated_enum": false,
@@ -4326,8 +4611,8 @@
       "public": true,
       "source_file": "settlement/stats/stat/StatCollection.java",
       "uses": [
-        "StateCollector.java:274",
-        "StateCollector.java:285"
+        "StateCollector.java:320",
+        "StateCollector.java:331"
       ],
       "parameter_types": [],
       "compiler_generated_enum": false,
@@ -4819,7 +5104,7 @@
       "uses": [
         "EntityReadRequest.java:132",
         "EntityReadRequest.java:147",
-        "StateCollector.java:224",
+        "StateCollector.java:270",
         "StateCollector.java:74",
         "StateCollector.java:94",
         "UiContextCollector.java:90"
@@ -4849,7 +5134,7 @@
       "uses": [
         "EntityReadRequest.java:132",
         "EntityReadRequest.java:148",
-        "StateCollector.java:224",
+        "StateCollector.java:270",
         "StateCollector.java:74",
         "StateCollector.java:94",
         "UiContextCollector.java:90"
@@ -5444,6 +5729,31 @@
       "documentation_status": "human_review_required; Javadoc presence alone does not establish a stable mod contract"
     },
     {
+      "id": "snake2d.util.sets.LIST#size()",
+      "owner": "snake2d.util.sets.LIST",
+      "name": "size",
+      "kind": "METHOD",
+      "signature": "size()",
+      "public": true,
+      "source_file": "snake2d/util/sets/LIST.java",
+      "uses": [
+        "StateCollector.java:131"
+      ],
+      "parameter_types": [],
+      "compiler_generated_enum": false,
+      "arity": 0,
+      "source_candidates": [
+        {
+          "line": 49,
+          "source_sha256": "ea8ecb759b80f864a75331063a2697aa462f3577a167635f719c454e70224627",
+          "parameter_types": [],
+          "has_javadoc": true
+        }
+      ],
+      "source_match": "name_arity_and_simple_parameter_types",
+      "documentation_status": "human_review_required; Javadoc presence alone does not establish a stable mod contract"
+    },
+    {
       "id": "snake2d.util.sprite.SPRITE#render(snake2d.SPRITE_RENDERER,snake2d.util.datatypes.RECTANGLE)",
       "owner": "snake2d.util.sprite.SPRITE",
       "name": "render",
@@ -5570,9 +5880,9 @@
         "ChatPanel.java:179",
         "ChatPanel.java:181",
         "StateCollector.java:104",
-        "StateCollector.java:177",
-        "StateCollector.java:242",
-        "StateCollector.java:249",
+        "StateCollector.java:223",
+        "StateCollector.java:288",
+        "StateCollector.java:295",
         "StateCollector.java:65"
       ],
       "parameter_types": [],
@@ -5613,6 +5923,35 @@
           "parameter_types": [
             "int",
             "Font"
+          ],
+          "has_javadoc": false
+        }
+      ],
+      "source_match": "name_arity_and_simple_parameter_types",
+      "documentation_status": "human_review_required; Javadoc presence alone does not establish a stable mod contract"
+    },
+    {
+      "id": "util.data.DOUBLE_O#getD(T)",
+      "owner": "util.data.DOUBLE_O",
+      "name": "getD",
+      "kind": "METHOD",
+      "signature": "getD(T)",
+      "public": true,
+      "source_file": "util/data/DOUBLE_O.java",
+      "uses": [
+        "StateCollector.java:137"
+      ],
+      "parameter_types": [
+        "T"
+      ],
+      "compiler_generated_enum": false,
+      "arity": 1,
+      "source_candidates": [
+        {
+          "line": 8,
+          "source_sha256": "12c279c639af92f0d09ca31fbc2833ef3ada9b0caa04fb40594865db07fee522",
+          "parameter_types": [
+            "T"
           ],
           "has_javadoc": false
         }
@@ -5739,8 +6078,10 @@
       "source_file": "util/data/INT_O.java",
       "uses": [
         "EntityReadRequest.java:139",
-        "StateCollector.java:165",
-        "StateCollector.java:166",
+        "StateCollector.java:143",
+        "StateCollector.java:144",
+        "StateCollector.java:205",
+        "StateCollector.java:206",
         "StateCollector.java:51"
       ],
       "parameter_types": [
@@ -6118,9 +6459,9 @@
       "public": true,
       "source_file": "util/info/INFO.java",
       "uses": [
-        "StateCollector.java:151",
-        "StateCollector.java:204",
-        "StateCollector.java:285",
+        "StateCollector.java:191",
+        "StateCollector.java:250",
+        "StateCollector.java:331",
         "StateCollector.java:38",
         "StateCollector.java:42"
       ],
@@ -6147,9 +6488,9 @@
       "public": true,
       "source_file": "util/statistics/HISTORY_INT.java",
       "uses": [
-        "StateCollector.java:146",
-        "StateCollector.java:147",
-        "StateCollector.java:281"
+        "StateCollector.java:186",
+        "StateCollector.java:187",
+        "StateCollector.java:327"
       ],
       "parameter_types": [
         "T"
@@ -6178,7 +6519,7 @@
       "public": true,
       "source_file": "util/statistics/HISTORY_INT.java",
       "uses": [
-        "StateCollector.java:280"
+        "StateCollector.java:326"
       ],
       "parameter_types": [
         "T"
@@ -6207,8 +6548,8 @@
       "public": true,
       "source_file": "util/statistics/HistoryObject.java",
       "uses": [
-        "StateCollector.java:233",
-        "StateCollector.java:234"
+        "StateCollector.java:279",
+        "StateCollector.java:280"
       ],
       "parameter_types": [
         "T"
@@ -7446,7 +7787,7 @@
       "public": true,
       "source_file": "world/WORLD.java",
       "uses": [
-        "StateCollector.java:303",
+        "StateCollector.java:350",
         "UiContextCollector.java:30"
       ],
       "parameter_types": [],
@@ -7472,7 +7813,7 @@
       "public": true,
       "source_file": "world/WORLD.java",
       "uses": [
-        "StateCollector.java:248"
+        "StateCollector.java:294"
       ],
       "parameter_types": [],
       "compiler_generated_enum": false,
@@ -7497,7 +7838,7 @@
       "public": true,
       "source_file": "world/WORLD.java",
       "uses": [
-        "StateCollector.java:251"
+        "StateCollector.java:297"
       ],
       "parameter_types": [],
       "compiler_generated_enum": false,
@@ -7522,7 +7863,7 @@
       "public": true,
       "source_file": "world/WORLD.java",
       "uses": [
-        "StateCollector.java:251"
+        "StateCollector.java:297"
       ],
       "parameter_types": [],
       "compiler_generated_enum": false,
@@ -7572,7 +7913,7 @@
       "public": true,
       "source_file": "world/WorldGen.java",
       "uses": [
-        "StateCollector.java:303",
+        "StateCollector.java:350",
         "UiContextCollector.java:33"
       ],
       "parameter_types": [],
@@ -7673,7 +8014,7 @@
       "public": true,
       "source_file": "world/map/regions/Region.java",
       "uses": [
-        "StateCollector.java:250"
+        "StateCollector.java:296"
       ],
       "parameter_types": [],
       "compiler_generated_enum": false,
@@ -7698,7 +8039,7 @@
       "public": true,
       "source_file": "world/map/regions/Region.java",
       "uses": [
-        "StateCollector.java:249"
+        "StateCollector.java:295"
       ],
       "parameter_types": [],
       "compiler_generated_enum": false,
@@ -7723,7 +8064,7 @@
       "public": true,
       "source_file": "world/map/regions/Region.java",
       "uses": [
-        "StateCollector.java:249"
+        "StateCollector.java:295"
       ],
       "parameter_types": [],
       "compiler_generated_enum": false,
@@ -7748,7 +8089,7 @@
       "public": true,
       "source_file": "world/map/regions/Region.java",
       "uses": [
-        "StateCollector.java:250"
+        "StateCollector.java:296"
       ],
       "parameter_types": [],
       "compiler_generated_enum": false,
@@ -7773,7 +8114,7 @@
       "public": true,
       "source_file": "world/map/regions/Region.java",
       "uses": [
-        "StateCollector.java:249"
+        "StateCollector.java:295"
       ],
       "parameter_types": [],
       "compiler_generated_enum": false,
@@ -7798,7 +8139,7 @@
       "public": true,
       "source_file": "world/map/regions/Region.java",
       "uses": [
-        "StateCollector.java:249"
+        "StateCollector.java:295"
       ],
       "parameter_types": [],
       "compiler_generated_enum": false,
@@ -7823,7 +8164,7 @@
       "public": true,
       "source_file": "world/map/regions/RegionInfo.java",
       "uses": [
-        "StateCollector.java:249"
+        "StateCollector.java:295"
       ],
       "parameter_types": [],
       "compiler_generated_enum": false,
@@ -7848,7 +8189,7 @@
       "public": true,
       "source_file": "world/map/regions/WREGIONS.java",
       "uses": [
-        "StateCollector.java:248"
+        "StateCollector.java:294"
       ],
       "parameter_types": [],
       "compiler_generated_enum": false,

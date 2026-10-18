@@ -14,6 +14,7 @@ A local Java mod and MCP server that let an assistant inspect a loaded Songs of 
 - Discover explicitly exported fields and request selected public-API observations without dumping the whole snapshot into the model.
 - Filter, project, join, group, aggregate, sort and paginate normalized snapshot data. Batched queries share one snapshot.
 - Eighteen explicitly partial domain collectors: population, resources, production, employment, services, housing, health, law, happiness, research, trade, diplomacy, military, world, map, entities, events and settings.
+- Per-room current recipe input/output rows and stored production quantities, joinable to employment and resources; explicit caps, mixed scopes and stored-bucket caveats. See [production evidence](PRODUCTION_VALIDATION.json).
 - Research prerequisite relationships, per-currency next-level costs and point allocation through public getters; discover meanings before treating these as an unlock decision. See [core development evidence](CORE_VALIDATION.json) and [data coverage](DATA_COVERAGE.md).
 - Search resource, technology and stat descriptions loaded by the game. The copied-save test produced 720 reference records, tagged with the exact version and active mods.
 - Search a small reviewed external corpus with direct links, author/authority, retrieval date and compatibility warnings. Whole-word relevance ranks first; version compatibility and official/developer authority break ties. An authority filter is available.

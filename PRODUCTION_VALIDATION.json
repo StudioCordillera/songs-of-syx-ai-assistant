@@ -1,0 +1,135 @@
+{
+  "passed": true,
+  "game_version": "0.71.44",
+  "flow_rows_checked": 35,
+  "producer_rooms_checked": 16,
+  "public_getter_parity": true,
+  "input_and_output_cases": true,
+  "room_employment_resource_join": true,
+  "mixed_scopes_reported": true,
+  "installed_reference_link": true,
+  "stored_bucket_semantics_discoverable": true,
+  "limits": [
+    "Paused copied city only. No forecast, complete recipe unlock schema, all room types or large-city performance established.",
+    "2000 flow-row/10000 room-scan caps are reported; a cap-exceeding city is not exercised by this fixture.",
+    "Stored buckets are not refreshed by observer and can retain older values; day accumulator includes fractional carry."
+  ],
+  "checkpoint": "per-room production development after observation baseline 0.12.0",
+  "game_exit_code": 0,
+  "verifier_exit_code": 0,
+  "scene_game_exit_code": 0,
+  "scene_verifier_exit_code": 0,
+  "scene_regression": {
+    "passed": true,
+    "checks": {
+      "city": {
+        "passed": true,
+        "view": "settlement",
+        "scene_kind": "city",
+        "on_demand_read_available": true,
+        "tile_read_available": true,
+        "production_coverage": "partial",
+        "production_room_coverage": "partial"
+      },
+      "settlement_battle": {
+        "passed": true,
+        "view": "settlement_battle",
+        "scene_kind": "city",
+        "on_demand_read_available": true,
+        "tile_read_available": true,
+        "production_coverage": "partial",
+        "production_room_coverage": "partial"
+      },
+      "city_restored": {
+        "passed": true,
+        "view": "settlement",
+        "scene_kind": "city",
+        "on_demand_read_available": true,
+        "tile_read_available": true,
+        "production_coverage": "partial",
+        "production_room_coverage": "partial"
+      },
+      "battle_deployment": {
+        "passed": true,
+        "view": "battle",
+        "scene_kind": "battlefield",
+        "on_demand_read_available": true,
+        "tile_read_available": true,
+        "production_coverage": "partial",
+        "production_room_coverage": "partial"
+      },
+      "battle_menu": {
+        "passed": true,
+        "view": "battle",
+        "scene_kind": "battlefield",
+        "on_demand_read_available": true,
+        "tile_read_available": true,
+        "production_coverage": "partial",
+        "production_room_coverage": "partial"
+      },
+      "city_reloaded": {
+        "passed": true,
+        "view": "settlement",
+        "scene_kind": "city",
+        "on_demand_read_available": true,
+        "tile_read_available": true,
+        "production_coverage": "partial",
+        "production_room_coverage": "partial"
+      },
+      "world_generation": {
+        "passed": true,
+        "view": "world_generation",
+        "scene_kind": "unavailable",
+        "on_demand_read_available": false,
+        "tile_read_available": false,
+        "production_coverage": "unavailable",
+        "production_room_coverage": "unavailable"
+      },
+      "terrain_generated": {
+        "passed": true,
+        "view": "world_generation",
+        "scene_kind": "unavailable",
+        "on_demand_read_available": false,
+        "tile_read_available": false,
+        "production_coverage": "unavailable",
+        "production_room_coverage": "unavailable"
+      }
+    },
+    "missing": [],
+    "limits": [
+      "Battle is a generated deployment scene, not active fighting or a battle conclusion.",
+      "Generation checks initial setup and public terrain generation; exact private wizard step and full political-world completion remain unvalidated."
+    ]
+  },
+  "python_tests": {
+    "passed": 141
+  },
+  "game_jar_sha256": "fe0137c05408e5ee9e31f06fc44fe37a5d4372d9c985b280f0852d1347c0224b",
+  "source_archive_sha256": "a3fc2aa9f4be31aec0616a5030a656ac49a6011343b7e91395c7bac0b9dfb0a5",
+  "mod_jar_sha256": "14e090e9a07d17eb804ceb72674556e7f3f75c1f92b30de009be0ae5c2f4e82c",
+  "production_public_member_count": 306,
+  "production_non_public_member_count": 0,
+  "production_source_sha256": {
+    "syx/assistant/AssistantScript.java": "00e23af134a7a1d0d22ab270f285f043889e9c53a51fea2e458236f66a96fdf0",
+    "syx/assistant/ChatPanel.java": "29e43cc0794021fa864cd690cf703c85e6d01d2e9279a0fdb8c933401f625e20",
+    "syx/assistant/EntityReadRequest.java": "deb0f86cad28da1c8677394a4aeb26913b0c80b4ee90c08cb882bedbc11f8a03",
+    "syx/assistant/JsonWriter.java": "c525eb60d3224cab83ed3fd6b8594ec8652211f00bd947e873e1482f919e81dc",
+    "syx/assistant/StateCollector.java": "51c8e5358e16687a6e55dfcfb06b98428144d0bf024d05aba95c8fa0959cf3a1",
+    "syx/assistant/TileReadRequest.java": "1a192cde61a7e1bdefa170390c00b17c74573b9c41de71700ebea466411ad3c5",
+    "syx/assistant/UiContentCollector.java": "c0d20c7f9f2734a0bb625427875f06bfcd07edb20611248b39b6e8f480ef5a48",
+    "syx/assistant/UiContextCollector.java": "afada4ff94ebb8e6d9bcd401d91ce176f554eebd050e6c9e79e731f787ec84ae"
+  },
+  "python_source_sha256": {
+    "syx_mcp.py": "111bb78f1add81b21c93b7e05ec9f928563357bccfe7288bd653bfe5bda102ac",
+    "syx_query.py": "252ff9199e7ec566f0c0a91ea0afb0a8557f5ce51ef62be64abd6216a113b80e",
+    "syx_api_support.py": "a7a0eaab25c135ca9f4f09aa4e2800da0ce294d873af45460f88e66161bab61d"
+  },
+  "fixture_source_sha256": {
+    "mod/tests/ProductionScenario.java": "bebe80ccee4075ca02ce9538111513fd7b78954de9dd60546231d182f5e4a611",
+    "mod/tests/SceneScenario.java": "ae623566198d96c324ae911d14c9100da0ab73a6e7c49f1c877c675ec60b6a55",
+    "mod/tests/LiveSmoke.java": "3ef059a1e3c43bfa901cc598630679a6b3c50e1039f52a7b10563c18cac20f9b",
+    "dev/verify_production.py": "324a30fd385bff8a101fd7cb5db241a80901b55677a53e84c1b4ccdc39d990ee",
+    "dev/verify_scenes.py": "7599fc2722ab0610a23d379f357e03a79b822e1004c34f70f208d7f8ee121356"
+  },
+  "scope_note": "Exact getter/MCP production check and eight-scene observer regression on this JAR. Earlier research/chat/guidance evidence retains its own build hashes. No authenticated provider rerun or exhaustive lifecycle claim."
+}

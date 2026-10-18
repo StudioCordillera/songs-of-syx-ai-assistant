@@ -179,3 +179,17 @@ This observes a recorded assignment. It does not prove the person is currently w
 ## Reference retrieval checks
 
 The reviewed starter corpus has eight original summaries. Run `PYTHONPATH="$PWD" .venv/bin/python dev/verify_guidance.py --state-dir runtime/guidance-check` to exercise nine authored questions through actual MCP without a game or model call. The result records citation IDs/URLs and compatibility labels, including an unrelated no-match query. Search output reports total matches and truncation while retaining complete citation records within 64 KiB. This is lexical retrieval, so rephrase with relevant game terms when appropriate; no-result does not prove a mechanic does not exist.
+
+## Per-room current recipes and recorded quantities — development checkpoint
+
+Production now contains two scopes: `/resources` is the campaign/player resource ledger, while `/room_data/flows` is a bounded observation of the instantiated scene's current producer-room recipes. Inspect `/room_data/coverage`, `/room_data/truncated` and `/room_data/failed_rooms` before treating missing rows as meaningful. The observer scans at most 10,000 rooms and returns at most 2,000 flow rows, stopping before splitting a room's recipe. It records up to ten failure samples. Non-producer rooms are outside this mapping, not evidence of zero output.
+
+A flow has an observation-local `room_id`, runtime/load-scoped `industry_id` and `recipe_index`, a `direction` (`input` or `output`), and a `resource_id` with an installed-help `reference_id`. `base_rate_raw` is the configured recipe coefficient before modifiers. It is not realized output or a forecast. `day_accumulator_raw` can include fractional carry across day rollover; `previous_day_units`, `year_units` and `previous_year_units` are stored game ledger values. The observer does not refresh buckets. An inactive or paused room can retain an older bucket; do not assume every stored bucket is aligned with the global clock.
+
+For five output rows with current employment and warehouse storage in the same observation:
+
+```json
+{"include_ui_context":true,"queries":[{"source":{"domain":"production","path":"/room_data/flows"},"joins":[{"source":{"domain":"employment","path":"/rooms"},"left_key":"/room_id","right_key":"/room_id","as":"work","kind":"inner"},{"source":{"domain":"resources","path":"/stockpiles"},"left_key":"/resource_id","right_key":"/id","as":"stock","kind":"inner"}],"where":{"eq":[{"field":"/direction"},"output"]},"select":{"room":{"field":"/work/name"},"resource":{"field":"/resource_id"},"recorded_previous_day":{"field":"/previous_day_units"},"employed":{"field":"/work/employed"},"warehouse_stored":{"field":"/stock/stockpile_stored"}},"limit":5}]}
+```
+
+`source_scope` reports mixed scene production/campaign ledger for the production domain. Inspect its field definitions and the joined sources: warehouse storage is not the amount inside a producer's own storage, and a worker count does not establish actual time worked or causality. An inner join omits records absent from the joined mapping; use a left join when that distinction matters and handle null explicitly.

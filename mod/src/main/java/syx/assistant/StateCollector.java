@@ -115,6 +115,46 @@ public final class StateCollector {
             "status_note","engine_engagement_flag is the public DivStatus engagement flag from the latest published battle-worker buffer; it may lag simulation or remain stale when battle workers pause (including conclusion), and does not cover every form of damage/projectile activity",
             "units_note","Men are counts. configured_men minus present_men is not a general casualty measure. Morale is the raw game factor; range and interpretation are not established.");
     }
+    /** Fixed public recipe/ledger readers only. Never refresh buckets or retain game storage. */
+    private static Map<String,Object> roomProduction() {
+        if(!SETT.exists())return object("coverage","unavailable","scope","instantiated_settlement_scene",
+            "reason","No instantiated settlement scene","flows",null);
+        List<Object> flows=new ArrayList<>(),failures=new ArrayList<>();
+        int scanned=0,failed=0,producers=0;boolean truncated=false;
+        scan:for(RoomBlueprintIns<?> blueprint:SETT.ROOMS().ins())for(RoomInstance room:blueprint.all()) {
+            if(scanned>=10000){truncated=true;break scan;}scanned++;
+            if(!(room instanceof settlement.room.industry.module.ROOM_PRODUCER_INSTANCE))continue;
+            var producer=(settlement.room.industry.module.ROOM_PRODUCER_INSTANCE)room;
+            try {
+                var industry=producer.industry();
+                if(industry==null)throw new IllegalStateException("No current industry");
+                int needed=industry.ins().size()+industry.outs().size();
+                if(flows.size()+needed>2000){truncated=true;break scan;}
+                List<Object> pending=new ArrayList<>();
+                for(String direction:Arrays.asList("input","output")) {
+                    var resources=direction.equals("input")?industry.ins():industry.outs();
+                    for(var resource:resources) {
+                        double rate=resource.rate,day=resource.day.getD(producer);
+                        pending.add(object("room_id",room.index(),"blueprint_id",blueprint.key,
+                            "industry_id",industry.index(),"recipe_index",producer.industryI(),"direction",direction,
+                            "resource_id",resource.resource.key,"reference_id","resource:"+resource.resource.key,
+                            "base_rate_raw",Double.isFinite(rate)?rate:null,
+                            "day_accumulator_raw",Double.isFinite(day)?day:null,
+                            "previous_day_units",resource.dayPrev.get(producer),
+                            "year_units",resource.year.get(producer),"previous_year_units",resource.yearPrev.get(producer)));
+                    }
+                }
+                flows.addAll(pending);producers++;
+            } catch(RuntimeException error) {
+                failed++;
+                if(failures.size()<10)failures.add(object("room_id",room.index(),"reason",error.getClass().getSimpleName()));
+            }
+        }
+        return object("coverage","partial","scope","instantiated_settlement_scene","flows",flows,
+            "scanned_rooms",scanned,"read_producer_rooms",producers,"failed_rooms",failed,"failure_samples",failures,
+            "truncated",truncated,"row_limit",2000,"scan_room_limit",10000,
+            "reason","Current recipe only for public ROOM_PRODUCER_INSTANCE rooms. Stored ledger buckets are not refreshed by this observer; configured rates and recorded quantities are not output forecasts or a complete service/production schema.");
+    }
     private StateCollector() {}
     public static Map<String,Object> object(Object... pairs) {
         Map<String,Object> m = new LinkedHashMap<>();
@@ -166,8 +206,14 @@ public final class StateCollector {
                     "out_current_day", GAME.player().res().out(t).get(r.tr())));
                 rows.add(object("id", r.key, "flows", flow));
             }
-            return object("resources", rows, "unit", "resource units", "period", "current history bucket (game day)");
-        }, "Resource ledger categories; not recipe throughput forecasts or per-room production.");
+            return object("resources", rows, "unit", "resource units", "period", "current history bucket (game day)",
+                "room_data",roomProduction(),"field_definitions",object(
+                    "resources",object("scope","campaign_player_or_faction","definition","Player resource ledger categories, not a per-room forecast."),
+                    "room_data",object("scope","instantiated_settlement_scene","source","settlement/room/industry/module/IndustryResource.java; consumption/RoomConsumptionAbs.java; ROOM_PRODUCER_INSTANCE.java",
+                        "definition","Bounded current-recipe input/output rows. room_id joins employment in the same observation; industry_id and recipe_index are runtime/load scoped. resource_id joins resource keys. Non-producer rooms are not a claim of zero production.",
+                        "units","Stored day/year fields are resource quantities. base_rate_raw is the configured recipe coefficient before modifiers, not realized per-worker or per-room output.",
+                        "periods","day_accumulator_raw includes fractional carry across day rollovers. previous_day_units and year_units/previous_year_units are stored integer ledger buckets. The observer does not call updateRoom; paused or inactive rooms can retain an older bucket. Null nonfinite values stay unknown.")));
+        }, "Player resource ledger plus bounded scene-local current recipe inputs/outputs and stored per-room quantities; not throughput forecasts or all production mechanics.");
         run(domains, "employment", () -> {
             List<Object> rows = new ArrayList<>();
             for (RoomBlueprintIns<?> bp: SETT.ROOMS().ins()) for (RoomInstance room: bp.all()) {
@@ -296,6 +342,7 @@ public final class StateCollector {
             String scope=sceneDomains.contains(key)?"instantiated_settlement_scene":
                 Set.of("production","trade","research","diplomacy").contains(key)?"campaign_player_or_faction":"game_or_world";
             if(key.equals("resources"))scope="mixed_scene_logistics_and_player_trade_promises";
+            if(key.equals("production"))scope="mixed_scene_production_and_campaign_ledger";
             record.put("scope",scope);
             if(sceneDomains.contains(key) && !SETT.exists())domains.put(key,object("coverage","unavailable","data",null,"scope",scope,
                 "reason","No instantiated settlement scene; new-game preparation data is not a live city"));

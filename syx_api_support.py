@@ -1,5 +1,8 @@
 """Explicitly reviewed capability coverage; automation cannot turn public APIs into official contracts."""
 CAPABILITIES = [
+ {'id':'room_production_flows','support':'public_source_verified','validation':'Copied-city actual MCP getter parity for 35 input/output rows across 16 producer rooms; employment/resource join and installed help links. Scene follow-up is recorded in PRODUCTION_VALIDATION.json.',
+  'references':['settlement/room/industry/module/ROOM_PRODUCER_INSTANCE.java','settlement/room/industry/module/IndustryResource.java','settlement/room/industry/module/consumption/RoomConsumptionAbs.java','api-audit.json','PRODUCTION_VALIDATION.json'],
+  'limits':'Current recipe only, 2000 flow rows/10000 scanned rooms; no split recipe at truncation. Non-producer rooms are outside mapping. Configured raw coefficient is not realized output. Day accumulator includes fractional carry; stored buckets are not forcibly refreshed and may be old. Not complete modifiers, all room types, forecast, permanent IDs or large-city performance.'},
  {'id':'employment_workplace_join','support':'public_source_verified','validation':'Final copied-city core run checks 31 employment-room IDs/blueprints and a same-observation selected-worker MCP join. See CORE_VALIDATION.json.',
   'references':['settlement/room/main/Room.java','api-audit.json','QUERY_GUIDE.md','CORE_VALIDATION.json'],
   'limits':'room_id is the public instance index shared with workplace.room_id, distinct from the composite employment row id. Indexes can be reused; join only within the same observation. Recorded assignment does not prove current activity or production.'},

@@ -6,7 +6,7 @@ This is a routing inventory of the current adapter, not a complete game schema. 
 | --- | --- | --- | --- |
 | population | `/total`, `/by_race_class` | Scene counts by race/class | Growth factors, complete histories and individual attributes |
 | resources | `/stockpiles`, `/field_definitions` | Stored/capacity and mixed-logistics owned quantities | Reservations, transit and full storage relationships |
-| production | `/resources` | Current-day in/out ledger categories | Per-room recipes, inputs, outputs and production modifiers |
+| production | `/resources`, `/room_data/flows` | Campaign ledger plus bounded current scene recipe inputs/outputs and stored quantities | Production modifiers, bucket alignment, retained observations and forecasts |
 | employment | `/rooms` | Room identity, shared observed room-instance ID, position and worker counts/targets | Jobs, production relationships and modifiers |
 | services | `/statistics` | Selected public aggregate stat collections | Service capacity, demand, provider relationships and explanations |
 | housing | `/statistics` | HOME aggregate stats | Home availability, quality and occupancy relationships |
@@ -36,7 +36,7 @@ See QUERY_GUIDE.md for exact limits and query syntax. IDs must share a documente
 ## Mapping order
 
 1. Extend the established same-observation room-instance relationship key to production mappings. Employment/person workplace getter agreement and the selected-worker join now pass in the copied city; indexes are not permanent IDs.
-2. Add source-reviewed per-room production inputs/outputs and explicitly distinguish configured rates, realized ledger totals and forecasts.
+2. Current public producer-room inputs/outputs and recorded quantities are mapped with explicit rate/bucket caveats. Extend production modifiers and bucket-age semantics only where public getters can establish them; validate performance and cap behavior in a larger city.
 3. Extend world-region and trade fields where safe public getters and useful units can be established.
 4. Broaden UI-selected object/context mappings only through appropriate public accessors; preserve unavailable states when accessors do not exist.
 

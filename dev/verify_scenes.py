@@ -51,6 +51,13 @@ def verify(directory:Path,timeout:float=260,on_demand:bool=False,tiles:bool=Fals
                     assert domain.coverage=='unavailable' and domain.data is None,domain
                 assert scene['world_generation']['has_generated_terrain']==(name=='terrain_generated')
                 assert not context['world_generation_step']['available']
+            production=snapshot.domains['production']
+            if name not in {'world_generation','terrain_generated'}:
+                assert production.coverage=='partial',production.reason
+                assert production.scope=='mixed_scene_production_and_campaign_ledger'
+                assert production.data['room_data']['coverage']=='partial'
+                assert production.data['room_data']['scope']=='instantiated_settlement_scene'
+                assert production.data['room_data']['failed_rooms']==0
             read_available=None
             if on_demand:
                 from syx_live import query_entities
@@ -82,7 +89,9 @@ def verify(directory:Path,timeout:float=260,on_demand:bool=False,tiles:bool=Fals
                     assert tile['data']['next_cursor'] is None
                     tile_available=True
             checks[name]={'passed':True,'view':context['active_view'],'scene_kind':scene['settlement_scene_kind'],
-                          'on_demand_read_available':read_available,'tile_read_available':tile_available}
+                          'on_demand_read_available':read_available,'tile_read_available':tile_available,
+                          'production_coverage':production.coverage,
+                          'production_room_coverage':production.data['room_data']['coverage'] if production.data else 'unavailable'}
             print('PASS',name,flush=True)
             if required<=checks.keys():break
         except (FileNotFoundError,json.JSONDecodeError):pass

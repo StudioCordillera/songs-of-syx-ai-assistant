@@ -9,6 +9,7 @@ def test_game_source_stays_in_mod_namespace_without_bypass():
     assert {p.name for p in sources}=={'AssistantScript.java','StateCollector.java','JsonWriter.java','UiContextCollector.java','EntityReadRequest.java','UiContentCollector.java','TileReadRequest.java','ChatPanel.java'}
     forbidden=['java.lang.reflect','setAccessible(','trySetAccessible(', 'org.lwjgl',
                '.click(','.hover(','.kill(','.speedSet(','.attackMelee(',
+               '.setIndustry(','.updateRoom(','.incDay(','.productionData(',
                'java.awt.Robot','ProcessBuilder','Runtime.getRuntime().exec','copyFB(', 'CORE_RESOURCE']
     for source in sources:
         text=source.read_text()
