@@ -4,6 +4,7 @@ Requires the licensed installation, Java/JDK and copied runtime/smoke.save/profi
 No inference, screenshots, native input or normal saves. Does not change production.
 """
 import argparse
+from contextlib import contextmanager
 from datetime import datetime,timezone
 import hashlib
 import json
@@ -14,6 +15,7 @@ import statistics
 import subprocess
 import sys
 import time
+import tempfile
 import zipfile
 
 ROOT=Path(__file__).resolve().parent.parent
@@ -22,6 +24,7 @@ from check_user_test_release import check
 from benchmark_selective_queries import benchmark
 from syx_mcp import Snapshot
 from syx_query import QueryEngine
+from run_player_chat_check import native_environment
 
 
 def sha(path):return hashlib.sha256(path.read_bytes()).hexdigest()
@@ -91,43 +94,65 @@ def analyze(directory,manifest):
             'Selected result size excludes outer MCP/status/UI envelopes. Configured false flags do not count actually barred people.']}
 
 
+@contextmanager
+def copied_mod(home,save,jar,directory):
+    """Restore only our copied-profile JAR and refuse a passing save-integrity result."""
+    target=home/'.local/share/songsofsyx/mods/syx-ai-assistant/V71/script/syx-ai-assistant.jar'
+    if target.is_symlink() or not target.is_file() or not target.resolve().is_relative_to(home.resolve()):
+        raise ValueError('Copied-profile mod JAR must be regular and stay inside smoke-home')
+    backup=directory/'prior-mod.jar';shutil.copy2(target,backup);save_before=sha(save)
+    try:
+        shutil.copy2(jar,target)
+        yield
+    finally:
+        shutil.copy2(backup,target)
+        if sha(target)!=sha(backup) or sha(save)!=save_before:
+            raise RuntimeError('Copied mod restoration/save integrity check failed; no passing final report written')
+
+
 def profile(args):
-    manifest=check();runtime=ROOT/'runtime';save=args.save.resolve();home=runtime/'smoke-home'
-    if home.is_symlink() or not home.is_dir() or not save.is_relative_to(runtime.resolve()):
+    manifest=check();runtime=(ROOT/'runtime').resolve();save=args.save.resolve();home=runtime/'smoke-home'
+    if home.is_symlink() or not home.is_dir() or not save.is_file() or not save.is_relative_to(runtime):
         raise ValueError('Use the existing isolated smoke-home and a copied save under runtime/')
-    directory=runtime/('collection-cost-'+datetime.now(timezone.utc).strftime('%Y%m%d-%H%M%S'));directory.mkdir()
+    game=args.game_dir.resolve()
+    audit=json.loads((ROOT/'api-audit.json').read_text())
+    for key,path in [('game_jar_sha256',game/'SongsOfSyx.jar'),('source_archive_sha256',game/'info/SongsOfSyx-sources.jar')]:
+        if sha(path)!=audit[key]:raise ValueError('Game/source differs from current public API audit')
+    directory=Path(tempfile.mkdtemp(prefix='collection-cost-',dir=runtime));os.chmod(directory,0o700)
     jar=directory/'syx-ai-assistant.jar'
     with zipfile.ZipFile(ROOT/'releases/latest-user-test.zip') as archive:jar.write_bytes(archive.read('mod/syx-ai-assistant/V71/script/syx-ai-assistant.jar'))
     assert sha(jar)==manifest['mod_jar_sha256']
-    env={k:v for k,v in os.environ.items() if not any(s in k for s in ['API_KEY','ACCESS_TOKEN','REFRESH_TOKEN'])};env['PYTHONPATH']=str(ROOT)
-    game=args.game_dir.resolve();classes=directory/'classes';classes.mkdir()
+    env=native_environment(os.environ);env['PYTHONPATH']=str(ROOT)
+    classes=directory/'classes';classes.mkdir()
     subprocess.run(['java','-Djava.home='+str(args.jdk_home.resolve()),'-m','jdk.compiler/com.sun.tools.javac.Main',
-        '--release','16','-encoding','UTF-8','-cp',str(game/'SongsOfSyx.jar')+':'+str(jar),'-d',str(classes),
+        '--release','16','-encoding','UTF-8','-cp',str(game/'SongsOfSyx.jar')+os.pathsep+str(jar),'-d',str(classes),
         *[str(p) for p in (ROOT/'mod/tests').glob('*.java')]],env=env,check=True)
-    target=home/'.local/share/songsofsyx/mods/syx-ai-assistant/V71/script/syx-ai-assistant.jar'
-    assert target.parent.is_dir() and not target.is_symlink();shutil.copy2(jar,target)
-    cp=':'.join(map(str,[game/'SongsOfSyx.jar',game/'base/script/000_Tutorial.jar',game/'base/script/001_Tutorial.jar',jar,classes]))
+    cp=os.pathsep.join(map(str,[game/'SongsOfSyx.jar',game/'base/script/000_Tutorial.jar',game/'base/script/001_Tutorial.jar',jar,classes]))
     command=[str(args.java.resolve()),'-Xmx4g','-Duser.home='+str(home),'-Dsyx.assistant.stateDir='+str(directory),
         '-Dsyx.smoke.collectionCost=true','-cp',cp,'LiveSmoke',str(save)]
-    subprocess.run([*command[:-2],'-Dsyx.smoke.validateOnly=true',*command[-2:]],cwd=game,env=env,check=True)
-    with (directory/'game.log').open('w') as log:
-        process=subprocess.Popen(command,cwd=game,env=env,stdout=log,stderr=subprocess.STDOUT)
+    process=None
+    with copied_mod(home,save,jar,directory):
         try:
-            deadline=time.monotonic()+100
-            while time.monotonic()<deadline:
-                if (directory/'collection-cost-fixture.json').exists():break
-                if process.poll() is not None:raise AssertionError('Game exited before profile')
-                time.sleep(.2)
-            else:raise AssertionError('Collection profile timed out')
-            report=analyze(directory,manifest)
-            (directory/'verifier.done').write_text('profile complete\n')
-            process.wait(timeout=30);assert process.returncode==0
+            subprocess.run([*command[:-2],'-Dsyx.smoke.validateOnly=true',*command[-2:]],cwd=game,env=env,check=True)
+            with (directory/'game.log').open('w') as log:
+                process=subprocess.Popen(command,cwd=game,env=env,stdout=log,stderr=subprocess.STDOUT)
+                deadline=time.monotonic()+100
+                while time.monotonic()<deadline:
+                    if (directory/'collection-cost-fixture.json').exists():break
+                    if process.poll() is not None:raise AssertionError('Game exited before profile')
+                    time.sleep(.2)
+                else:raise AssertionError('Collection profile timed out')
+                report=analyze(directory,manifest)
+                (directory/'verifier.done').write_text('profile complete\n')
+                process.wait(timeout=30);assert process.returncode==0
         finally:
             (directory/'verifier.done').write_text('verifier finished\n')
-            if process.poll() is None:
-                try:process.wait(timeout=10)
-                except subprocess.TimeoutExpired:process.terminate();process.wait(timeout=15)
-    report['game_exit_code']=process.returncode
+            if process is not None and process.poll() is None:
+                process.terminate()
+                try:process.wait(timeout=15)
+                except subprocess.TimeoutExpired:process.kill();process.wait()
+    report.update(game_exit_code=process.returncode,copied_profile_mod_restored=True,copied_save_unchanged=True,
+        game_jar_sha256=audit['game_jar_sha256'],source_archive_sha256=audit['source_archive_sha256'])
     (directory/'collection-cost-validation.json').write_text(json.dumps(report,indent=2)+'\n')
     print('Collection cost evidence:',directory/'collection-cost-validation.json',flush=True)
 

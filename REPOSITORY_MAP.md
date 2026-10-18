@@ -56,7 +56,7 @@ Only these production classes are packaged. `mod/tests/` contains non-shipped bo
 | dev/run_player_chat_check.py | Explicit paid two-turn Pro test using a manually supplied key; builds/audits current source, isolates game/MCP credentials and restores copied-profile mod. |
 | dev/verify_user_test_chat.py | Verify an already executed native Pro chat/history; does not itself launch the game or provider. |
 | dev/verify_current_player_core.py | Exact published/candidate JAR through seven copied-save groups, no inference. |
-| dev/profile_collection_cost.py / benchmark_selective_queries.py | Descriptive collection/selection timings, separately scoped from correctness. Older timings are not benchmarks of changed collectors. |
+| dev/profile_collection_cost.py / benchmark_selective_queries.py | Descriptive collection/selection timings for exact published payload; audited game/source pair, copied mod restore/save integrity and shared lock. Current small-city evidence is separate from historical timings and larger-city acceptance. |
 | make_user_test.py | Package only our Java/Python/player assets from matching provider/source evidence; retain prior tested ZIP. |
 | dev/check_user_test_release.py | Standard-library freshness/hash checker for current production payload; CI/pre-push gate, not a game playtest. |
 | dev/game_fixture_lock.py | Machine-wide advisory lock for cooperating native runners on this shared device; core/chat/cost acquire it automatically. |
@@ -75,6 +75,7 @@ The release whitelist is `make_user_test.MODULES`, five files in `user_test/`, o
 - `DEGRADATION_*`, `WORKFORCE_*`, `SERVICE_VALIDATION.json`, `GUIDANCE_VALIDATION.json`, `CAPABILITY_DISCOVERY_VALIDATION.json`: read exact hashes/scopes and current parent links. Controlled/synthetic cases do not imply natural all-state coverage.
 - `STOCKPILE_BOUNDARY_REVIEW.json` / `STOCKPILE_BOUNDARY.md`: static candidate review; STOCKPILE_READER_VALIDATION.json pins the earlier reader-only JAR. STOCKPILE_BOOKKEEPING_VALIDATION.json checks current global reservation DTO/MCP exposure; per-room arrays remain fixture-only.
 - Other `*_VALIDATION.json`, `validation-evidence.json`, `provider-validation.json` and source-review reports may belong to older builds. Preserve them as historical evidence; current equivalents can be nested in PLAYER_CORE. The index distinguishes their roles.
+- `CURRENT_COLLECTION_COST_VALIDATION.json`: current published collector in a paused small copied city; COLLECTION_COST_VALIDATION.json preserves the older workforce build. Neither proves large-city/live-capture cost.
 - `COLLABORATION_VALIDATION.json`: the original developer-tool/docs checkpoint, separate from the player's test count/JAR; pinned hashes/counts remain historical as current guides evolve.
 
 ## Private/local and deferred material

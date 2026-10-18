@@ -14,13 +14,13 @@ The runnable player checkpoint now requires a source-matching `releases/latest-u
 
 Goal: let an assistant discover available variables and request a complex, bounded selection quickly, without receiving the entire state on each question.
 
-Implemented: 18 partial typed domains; snapshot filters, projections, joins, arithmetic and aggregates; on-demand person/stat reads with recorded-workplace filtering; retained entity captures for stable paging; finite terrain/floor/room/mineral/path reads plus small retained tile selections; stored producer-room degradation. Results identify their observation, session, coverage and scope. The compiler audit currently inventories 359 public production member references. The offline public-member catalog is a discovery backlog, not a count of supported variables.
+Implemented: 18 partial typed domains; snapshot filters, projections, joins, arithmetic and aggregates; on-demand person/stat reads with recorded-workplace filtering; retained entity captures for stable paging; finite terrain/floor/room/mineral/path reads plus small retained tile selections; stored producer-room degradation. Results identify their observation, session, coverage and scope. The compiler audit currently inventories 364 public production member references. The offline public-member catalog is a discovery backlog, not a count of supported variables.
 
 Next work:
 
 - Inventory the fields already exported against the public-member catalog. Prioritize missing settlement resource flows, workforce/production relationships, research and world-region data that help answer concrete player questions.
 - Extend explicit typed mappings with source anchors, meanings, units, null/unavailable behavior, relationships and scene applicability. Unknown units and mechanics must remain explicit.
-- Keep reads bounded and on the game thread. Establish consistent retained spatial selections where cross-page consistency is needed; validate costs in a large settlement.
+- Keep reads bounded and on the game thread. Establish consistent retained spatial selections where cross-page consistency is needed; validate costs in a large settlement. CURRENT_COLLECTION_COST_VALIDATION.json establishes only the current published collector in a small paused city, not larger-city or live request/capture costs.
 - For each added mapping, check direct getter agreement in an isolated copied game, update the compiler/source audit and add an agent-facing query example.
 
 Acceptance: the assistant can discover each supported field and retrieve only the requested rows/attributes, with truthful truncation, consistency and provenance. Unsupported fields remain discoverable as coverage gaps rather than invented values. Full game-state coverage is not yet established.

@@ -1,6 +1,12 @@
 # Validation evidence
 
-## Current producer-degradation player checkpoint
+## Current retained-tile player checkpoint
+
+[USER_TEST_VALIDATION.json](USER_TEST_VALIDATION.json) and [PLAYER_CORE_VALIDATION.json](PLAYER_CORE_VALIDATION.json) pin the current production JAR/Python pair: 221 Python tests, two actual Pro turns and seven finite native core groups. [TILE_CAPTURE_VALIDATION.json](TILE_CAPTURE_VALIDATION.json) records the new bounded retained selection and scene/session checks; [ENTITY_CAPTURE_REGRESSION_VALIDATION.json](ENTITY_CAPTURE_REGRESSION_VALIDATION.json) checks the shared retention path. Global stockpile parity has its own [report](STOCKPILE_BOOKKEEPING_VALIDATION.json). The compiler audit inventories 364 public references and zero non-public references. Read each report's exact hashes and limitations; none establishes all variables, menus or large-city cost. Later developer-only checks do not change the player bundle's historical test count.
+
+[CURRENT_COLLECTION_COST_VALIDATION.json](CURRENT_COLLECTION_COST_VALIDATION.json) separately measures the unchanged current player collector in a paused small copied city: 31 warm samples, 42 fully scanned stockpile resources, independent offline query parity and copied-mod restoration/save integrity. [COLLECTION_COST.md](COLLECTION_COST.md) explains the timing boundaries. Earlier collection measurements below remain historical; larger-city and live request/capture costs are open.
+
+## Producer-degradation player checkpoint — prior build
 
 The exact JAR/Python pair passes 177 Python tests, two actual DeepSeek Pro turns and all seven copied-save core groups. PLAYER_CORE_VALIDATION.json records current service/trade/world/production, eight scene, eleven UI/help lifecycle and sixteen extended phases. Seven supported capability probes, two explicit gaps and three member anchors pass actual MCP discovery; all 37 guidance cases still pass with 52 supporting fragments and 39 caveats. USER_TEST_VALIDATION.json pins current production/source/JAR and evidence hashes. Earlier sections retain their historical build scopes.
 
