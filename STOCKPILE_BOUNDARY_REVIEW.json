@@ -1,0 +1,116 @@
+{
+  "passed": true,
+  "stage": "static candidate review only; no new runtime mapping",
+  "method": "Licensed source plus selected javap bodies and paired public declaration metadata; no game execution, private runtime access or method invocation.",
+  "game_jar_sha256": "fe0137c05408e5ee9e31f06fc44fe37a5d4372d9c985b280f0852d1347c0224b",
+  "source_archive_sha256": "a3fc2aa9f4be31aec0616a5030a656ac49a6011343b7e91395c7bac0b9dfb0a5",
+  "catalog_sha256": "5b4b13770eb3251ce066e4f9cf57b5e6b1956687136b5be33a680b707a73b065",
+  "candidate_public_route_members": [
+    "settlement.room.infra.stockpile.ROOM_STOCKPILE#tally()",
+    "settlement.room.main.ROOMS#STOCKPILE",
+    "settlement.room.infra.stockpile.StockpileTally#crates",
+    "settlement.room.infra.stockpile.StockpileTally#space",
+    "settlement.room.infra.stockpile.StockpileTally#spaceReserved",
+    "settlement.room.infra.stockpile.StockpileTally#amount",
+    "settlement.room.infra.stockpile.StockpileTally#amountReserved",
+    "settlement.room.infra.stockpile.StockpileTally.TallyData#total(int)",
+    "settlement.room.infra.stockpile.StockpileTally.TallyData#get(int,settlement.room.infra.stockpile.StockpileInstance)"
+  ],
+  "checks": [
+    {
+      "owner": "settlement.room.infra.stockpile.ROOM_STOCKPILE",
+      "signature": "public settlement.room.infra.stockpile.StockpileTally tally();",
+      "source_path": "settlement/room/infra/stockpile/ROOM_STOCKPILE.java",
+      "source_sha256": "e03513544fe2f7b7f108b4909915dfa0992db978fea53669961fea5f3845da6e",
+      "normalized_disassembly_sha256": "f7ffea293e67791ee2058964eb5ccf583eaac67b203af241d1584aeb29890989",
+      "direct_write_allocation_backward_branch_absent": true
+    },
+    {
+      "owner": "settlement.room.infra.stockpile.StockpileTally$TallyData",
+      "signature": "public int total(int);",
+      "source_path": "settlement/room/infra/stockpile/StockpileTally.java",
+      "source_sha256": "7f13631fcd05d9b5360c3fe0c9c6cb8655040a492d60dd7775276c84c5422455",
+      "normalized_disassembly_sha256": "798c4021e5907f28fb31f4645347a17f7b884a3cdf29f306c2ccd0d0cfda16bc",
+      "direct_write_allocation_backward_branch_absent": true
+    },
+    {
+      "owner": "settlement.room.infra.stockpile.StockpileTally$TallyData",
+      "signature": "public int get(int, settlement.room.infra.stockpile.StockpileInstance);",
+      "source_path": "settlement/room/infra/stockpile/StockpileTally.java",
+      "source_sha256": "7f13631fcd05d9b5360c3fe0c9c6cb8655040a492d60dd7775276c84c5422455",
+      "normalized_disassembly_sha256": "f785b8e66f29107a81761a393fc8d08ed5a1ba31da5f8fbc7d2102522072a5f3",
+      "direct_write_allocation_backward_branch_absent": true
+    },
+    {
+      "owner": "settlement.room.infra.stockpile.StockpileTally$TallyData",
+      "signature": "public int total(init.resources.RESOURCE);",
+      "source_path": "settlement/room/infra/stockpile/StockpileTally.java",
+      "source_sha256": "7f13631fcd05d9b5360c3fe0c9c6cb8655040a492d60dd7775276c84c5422455",
+      "normalized_disassembly_sha256": "43167000bdcc30834468225debce744d05cf9009394e761f8b0a37b0d4c4e8f2",
+      "direct_write_allocation_backward_branch_absent": true
+    },
+    {
+      "owner": "settlement.room.infra.stockpile.StockpileTally$TallyData",
+      "signature": "public int get(init.resources.RESOURCE, settlement.room.infra.stockpile.StockpileInstance);",
+      "source_path": "settlement/room/infra/stockpile/StockpileTally.java",
+      "source_sha256": "7f13631fcd05d9b5360c3fe0c9c6cb8655040a492d60dd7775276c84c5422455",
+      "normalized_disassembly_sha256": "5cb3b4595eaebc353e71ad82113290dcd5317554178edb156ba95727b68ac729",
+      "direct_write_allocation_backward_branch_absent": true
+    },
+    {
+      "owner": "settlement.room.infra.stockpile.StockpileTally",
+      "signature": "public double load(init.resources.RESOURCE);",
+      "source_path": "settlement/room/infra/stockpile/StockpileTally.java",
+      "source_sha256": "7f13631fcd05d9b5360c3fe0c9c6cb8655040a492d60dd7775276c84c5422455",
+      "normalized_disassembly_sha256": "40e23de370f9feffcf3eda532572d7981b492c677c4be8ed06c2c567fe151fbb",
+      "direct_write_allocation_backward_branch_absent": true
+    },
+    {
+      "owner": "settlement.room.infra.stockpile.StockpileInstance",
+      "signature": "public double getUsedSpace();",
+      "source_path": "settlement/room/infra/stockpile/StockpileInstance.java",
+      "source_sha256": "a6557b7860d3205f22dca40c24a1372e28e33765fda9238e473943bb3edf4a85",
+      "normalized_disassembly_sha256": "2549edfbde8a895850b4ace844aca2decbaa8eac2d628dd63fa3b6c1c7be7e39",
+      "direct_write_allocation_backward_branch_absent": true
+    },
+    {
+      "owner": "settlement.room.infra.stockpile.StockpileInstance",
+      "signature": "public double storedD(init.resources.RESOURCE);",
+      "source_path": "settlement/room/infra/stockpile/StockpileInstance.java",
+      "source_sha256": "a6557b7860d3205f22dca40c24a1372e28e33765fda9238e473943bb3edf4a85",
+      "normalized_disassembly_sha256": "3769fb3881c582c155d31fd1a0832680f59a543322dc148aaff5efba90d2108f",
+      "direct_write_allocation_backward_branch_absent": true
+    },
+    {
+      "owner": "settlement.room.main.job.StorageCrate",
+      "signature": "get(int,int,RoomInstance,StorageData[])",
+      "source_path": "settlement/room/main/job/StorageCrate.java",
+      "source_sha256": "51c01de5dec88cb2e023c43f5c54e0b817a7783f0207ba78d8979422fd89d62e",
+      "normalized_disassembly_sha256": "8693d389a8de58e9ef5801c208a8ff38c7a5555920e2e872ee047f6ca1b254fc",
+      "scratch_field_write_count": 4,
+      "candidate_for_retained_handle": false
+    }
+  ],
+  "candidate_fields": {
+    "crates": "Assigned crate count for a resource, not capacity in resource items.",
+    "space": "Assigned capacity in resource items, from crate capacity bookkeeping.",
+    "spaceReserved": "Reserved incoming capacity in resource items, not physically stored goods.",
+    "amount": "Stored resource items in stockpile tally, including reserved stored items.",
+    "amountReserved": "Reserved stored resource items; separate from incoming space reservations."
+  },
+  "conclusions": [
+    "Prefer explicit integer-index tally reads on validated installed-resource indexes, inside one game after-update callback. Total reads use one array access; per-room reads use two. No reader traversal or direct write is present in these reviewed bodies.",
+    "Stockpile totals are not RESOURCE.owned(): the latter mixes additional logistics locations, incoming station goods and trade promises.",
+    "Room getUsedSpace returns zero at zero assigned capacity. Resource load and storedD return one at zero capacity; storedD subtracts reserved stored items. These getters are not interchangeable fullness percentages.",
+    "Crate coordinate reads bind four fields on a shared scratch object. Never retain or expose that live handle. The narrower tally route avoids invoking the crate binder.",
+    "Per-room totals and cross-room sums still need lifecycle, activation/deactivation and direct getter parity in an isolated city before production exposure."
+  ],
+  "verifier_source_sha256": "cdeab8295dd4f05a562d433815015262c5296a038a1aa54c26a7810c85867ef6",
+  "limits": [
+    "Shipped-source verification, not a documented stable official mod contract or complete call-graph proof.",
+    "Catalog access is compiler-checked discovery metadata, not runtime safety or a count of supported variables.",
+    "No runtime getter/MCP parity, observed reservations, cap/fault or cost measurements; no new public members added to production.",
+    "No claim about all warehouses, stock on the ground, goods in transit, reservations completing, food sufficiency, exact tally age or UI-selected room.",
+    "Future mappings must be city-only unless other scenes are established, bounded by resource/room/row budgets, detached and explicit about failures/truncation; never sum capacity across heterogeneous resources as a meaningful fullness ratio."
+  ]
+}

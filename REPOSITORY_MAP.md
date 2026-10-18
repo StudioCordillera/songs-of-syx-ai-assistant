@@ -48,7 +48,7 @@ Only these production classes are packaged. `mod/tests/` contains non-shipped bo
 | build_mod.py | Compile only our Java against a licensed game JAR, release 16; creates _Info and our own mod JAR. |
 | audit_api.py + dev/ApiAudit.java | Compiler-resolved production game members, public-access/source anchors and critical bytecode checks; regenerates api-audit.json/syx_api_manifest.py. |
 | catalog_api.py + dev/GameApiCatalog.java | Offline public declaration candidate catalog under ignored build/; API_DISCOVERY.json is the retained summary/current production pairing. No runtime getter safety is inferred. |
-| dev/verify_*_contract.py, verify_bytecode.py, review_production_modifier_boundary.py, verify_production_periods.py | Static licensed source/binary review without initializing game classes; publish metadata/hashes/conclusions only. |
+| dev/verify_*_contract.py, verify_bytecode.py, review_production_modifier_boundary.py, review_stockpile_boundary.py, verify_production_periods.py | Static licensed source/binary review without initializing game classes; publish metadata/hashes/conclusions only. |
 | test_*.py | Offline regression tests with mock providers/synthetic observations/local Git repos. No key or paid inference needed. |
 | mod/tests/ + dev/verify_*.py | Explicit licensed-game getter/MCP/context/cap/lifecycle fixtures and metadata-only reports. Read each verifier's scope. |
 | dev/run_player_chat_check.py | Explicit paid two-turn Pro test using a manually supplied key; builds/audits current source, isolates game/MCP credentials and restores copied-profile mod. |
@@ -71,6 +71,7 @@ The release whitelist is `make_user_test.MODULES`, five files in `user_test/`, o
 - `*-query-example.json` / `selective-query-examples.json`: executable selection examples; sort paths refer to projected result names.
 - `USER_TEST_VALIDATION.json`: published player JAR/Python/provider evidence; `PLAYER_CORE_VALIDATION.json`: its exact grouped native follow-up.
 - `DEGRADATION_*`, `WORKFORCE_*`, `SERVICE_VALIDATION.json`, `GUIDANCE_VALIDATION.json`, `CAPABILITY_DISCOVERY_VALIDATION.json`: read exact hashes/scopes and current parent links. Controlled/synthetic cases do not imply natural all-state coverage.
+- `STOCKPILE_BOUNDARY_REVIEW.json` / `STOCKPILE_BOUNDARY.md`: static candidate review only; no additional runtime fields or getter/MCP acceptance.
 - Other `*_VALIDATION.json`, `validation-evidence.json`, `provider-validation.json` and source-review reports may belong to older builds. Preserve them as historical evidence; current equivalents can be nested in PLAYER_CORE. The index distinguishes their roles.
 - `COLLABORATION_VALIDATION.json`: developer-tool/docs check evidence, separate from the published player's test count and JAR.
 
