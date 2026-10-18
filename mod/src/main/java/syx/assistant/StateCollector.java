@@ -124,6 +124,48 @@ public final class StateCollector {
             "status_note","engine_engagement_flag is the public DivStatus engagement flag from the latest published battle-worker buffer; it may lag simulation or remain stale when battle workers pause (including conclusion), and does not cover every form of damage/projectile activity",
             "units_note","Men are counts. configured_men minus present_men is not a general casualty measure. Morale is the raw game factor; range and interpretation are not established.");
     }
+    private static Object finiteFactor(double value) { return Double.isFinite(value)?value:null; }
+    /** Stored employment factors only: never reports work, enumerates employees or refreshes a room. */
+    private static Map<String,Object> roomEmployment() {
+        if(!SETT.exists())return object("coverage","unavailable","scope","instantiated_settlement_scene",
+            "reason","No instantiated settlement scene","rooms",null);
+        List<Object> rows=new ArrayList<>(),failures=new ArrayList<>();
+        int scanned=0,failed=0;boolean truncated=false;
+        scan:for(RoomBlueprintIns<?> bp:SETT.ROOMS().ins())for(RoomInstance room:bp.all()) {
+            if(scanned>=10000){truncated=true;break scan;}scanned++;
+            try {
+                if(bp.employment()==null || room.employees()==null)continue;
+                if(rows.size()>=2000){truncated=true;break scan;}
+                var staff=room.employees();
+                Map<String,Object> factors=object("efficiency_stored_raw",finiteFactor(staff.efficiency()),
+                    "proximity_stored_raw",finiteFactor(staff.proximity()),
+                    "fetch_proximity_stored_raw",finiteFactor(staff.fetchProximity()),
+                    "fetch_factor_applies",bp.employment().countInput(),
+                    "combined_efficiency_raw",finiteFactor(staff.totEfficiency()));
+                rows.add(object("id",bp.key+":"+room.mX()+":"+room.mY(),"room_id",room.index(),
+                    "blueprint_id",bp.key,"reference_id","room:"+bp.key,"name",room.name().toString(),
+                    "tile_x",room.mX(),"tile_y",room.mY(),"active",room.active(),
+                    "employed",staff.employed(),"needed",staff.needed(),"target",staff.target(),
+                    "capacity",staff.max(),"unit","workers","work_factors",factors));
+            }catch(RuntimeException error) {
+                failed++;if(failures.size()<10)failures.add(object("room_id",room.index(),"reason",error.getClass().getSimpleName()));
+            }
+        }
+        return object("coverage","partial","scope","instantiated_settlement_scene","rooms",rows,
+            "scanned_rooms",scanned,"failed_rooms",failed,"failure_samples",failures,"truncated",truncated,
+            "row_limit",2000,"scan_room_limit",10000,"field_definitions",object(
+                "room_id",object("definition","Public RoomInstance.index(), shared with person workplace and production flows in the same observation. Not a permanent campaign ID; indexes can be reused.",
+                    "scope","instantiated_settlement_scene","source","settlement/room/main/Room.java:index()"),
+                "work_factors",object("source","settlement/room/main/employment/RoomEmploymentIns.java:efficiency,proximity,fetchProximity,totEfficiency; RoomEmploymentSimple.java:countInput",
+                    "units","Dimensionless raw getter factors, not worker counts, current productivity percentages or output per day. No range clamping; nonfinite values are null.",
+                    "efficiency_stored_raw","Stored/smoothed work-report factor. Can reset to a default when staffing/activation changes; not instantaneous idle time or a staffing recommendation.",
+                    "proximity_stored_raw","Stored travel-related factor; not tile distance, minutes or a current path/reachability test.",
+                    "fetch_proximity_stored_raw","Stored fetch-related factor. Its presence does not prove that this room uses it; inspect fetch_factor_applies.",
+                    "fetch_factor_applies","Blueprint countInput() flag selects whether the fetch factor participates in totEfficiency(). Not proof of input stock or active fetching.",
+                    "combined_efficiency_raw","Public totEfficiency(): efficiency * proximity, additionally * fetchProximity only when countInput is true. Excludes room boosts, individual/race/technology bonuses and input supply. Does not establish current/future work duration; not a complete production multiplier or forecast.",
+                    "periods","Stored values can be smoothed, defaulted or reset. Exact sample age/reporting interval is not exposed; no update/report/refresh method is invoked.")),
+            "reason","Employing room instances only. Bounded stored workforce factors/counts, not every job, worker history, complete modifiers or throughput. Missing/skipped/failed rooms do not imply zero workforce.");
+    }
     /** Fixed public recipe/ledger readers only. Never refresh buckets or retain game storage. */
     private static Map<String,Object> roomProduction() {
         if(!SETT.exists())return object("coverage","unavailable","scope","instantiated_settlement_scene",
@@ -357,20 +399,8 @@ public final class StateCollector {
                         "units","Stored day/year fields are resource quantities. base_rate_raw is the configured recipe coefficient before modifiers, not realized per-worker or per-room output.",
                         "periods","day_accumulator_raw includes fractional carry across day rollovers. previous_day_units and year_units/previous_year_units are stored integer ledger buckets. The observer does not call updateRoom; paused or inactive rooms can retain an older bucket. Null nonfinite values stay unknown.")));
         }, "Player resource ledger plus bounded scene-local current recipe inputs/outputs and stored per-room quantities; not throughput forecasts or all production mechanics.");
-        run(domains, "employment", () -> {
-            List<Object> rows = new ArrayList<>();
-            for (RoomBlueprintIns<?> bp: SETT.ROOMS().ins()) for (RoomInstance room: bp.all()) {
-                if (bp.employment() == null) continue;
-                if (room.employees() == null) continue;
-                rows.add(object("id", bp.key+":"+room.mX()+":"+room.mY(), "room_id", room.index(), "blueprint_id", bp.key, "reference_id", "room:"+bp.key,
-                    "name", room.name().toString(), "tile_x", room.mX(), "tile_y", room.mY(),
-                    "active", room.active(), "employed", room.employees().employed(), "needed", room.employees().needed(),
-                    "target", room.employees().target(), "capacity", room.employees().max(), "unit", "workers"));
-            }
-            return object("rooms", rows,"field_definitions",object("room_id",object(
-                "definition","Public RoomInstance.index(), shared with person workplace.room_id in the same observation. Not the composite row id or a permanent campaign ID; indexes can be reused when rooms are replaced.",
-                "scope","instantiated_settlement_scene","source","settlement/room/main/Room.java:index() (inherited by RoomInstance)")));
-        }, "Room workforce counts/targets and same-observation workplace relationship key; job assignment histories are not collected.");
+        run(domains, "employment", () -> roomEmployment(),
+            "Bounded room workforce counts/targets, stored employment factors and same-observation room key; not complete modifiers or worker histories.");
         run(domains, "research", () -> {
             List<Object> rows = new ArrayList<>(), requirements = new ArrayList<>(), costs = new ArrayList<>(), currencies = new ArrayList<>();
             game.faction.player.PTech playerTech=GAME.player().tech();

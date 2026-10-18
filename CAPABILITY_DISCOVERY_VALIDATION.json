@@ -1,7 +1,19 @@
 {
   "passed": true,
-  "evaluated_at": "2026-10-18T14:13:05.443011+00:00",
+  "evaluated_at": "2026-10-18T15:16:57.498521+00:00",
   "checks": [
+    {
+      "id": "room_workforce_factors",
+      "support": "public_source_verified",
+      "references": [
+        "settlement/room/main/employment/RoomEmploymentIns.java",
+        "settlement/room/main/employment/RoomEmploymentSimple.java",
+        "WORKFORCE_FACTORS.md",
+        "WORKFORCE_VALIDATION.json",
+        "workforce-query-example.json"
+      ],
+      "passed": true
+    },
     {
       "id": "room_service_counters",
       "support": "public_source_verified",
@@ -67,16 +79,16 @@
   "service_counter_member_anchors_checked": 3,
   "no_game_snapshot_required": true,
   "inference_calls": 0,
-  "public_inventory_size": 353,
+  "public_inventory_size": 358,
   "source_sha256": {
     "syx_mcp.py": "e0d596a394865af6bdd6a2e6fce04e14e36d60281e93ab18e0cc6c54dea92a34",
-    "syx_api_support.py": "7d961cffdc09d46ae87ae220725cca6519588f77015cacde2514e79cbc68c8f7",
-    "syx_api_manifest.py": "206021fa5cc2fd6db53662e1440b5655ca47cc53d6d4002edaf5d09e48d273f4",
-    "dev/verify_capability_discovery.py": "50ddcd9ecd0b6e79e3f6e0e45441f12777cb33db3668eddfd6a26de087b8bf91"
+    "syx_api_support.py": "71025de73b132383b21731b958f1a79e9c54929c8e152078e75be5ee31161ec3",
+    "syx_api_manifest.py": "42a1b13ae6bc0ec7e80e4183285abea5c3e669d94c7af9e50fc8962f840c53e8",
+    "dev/verify_capability_discovery.py": "534fa966d189fea0e288fb8446328f5e2366c74c98e349cb4bba62547b4856ef"
   },
   "limits": [
     "Capability records summarize existing evidence; no new game getter/scene or official stable contract is established.",
     "Offline discovery is not an attestation of a separately installed game mod; pair source-matching builds.",
-    "Four supported capabilities and two explicit gaps sampled, not exhaustive metadata acceptance."
+    "Five supported capabilities and two explicit gaps sampled, not exhaustive metadata acceptance."
   ]
 }

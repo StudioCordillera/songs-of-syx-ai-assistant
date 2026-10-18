@@ -262,3 +262,9 @@ Ancestor flags keep their original names and scope. For example, `population_tru
 Diagnostics follow the source/pointer path; they do not scan all descendants of a projected container. Choose the actual table as a source or paged pointer when checking its collection limits. Selecting `/access_policy/cohort_rules` as a field from the whole services object does not automatically attach that nested table's diagnostics. This metadata does not bypass unavailable-source refusal, snapshot pinning or existing query budgets.
 
 `dev/verify_collection_diagnostics.py` exercises synthetic cap/failure observations through MCP and checks source/join/work limits. Synthetic flags are deliberately authored; this is not game collector cap/fault injection or large-city performance evidence. Native service checks separately compare flags/limits with the copied game's actual untruncated export.
+
+## Stored workforce factors and production records
+
+`employment /rooms` now includes `work_factors` with stored efficiency, travel/fetch factors, a blueprint flag selecting whether fetch participates, and the game's combined employment factor. Run workforce-query-example.json for a bounded staffed-room selection and a same-observation output/staffing left join. Projecting the whole staffing object preserves null when a join is unmatched; do not traverse a nested field through null without a guard.
+
+Inspect `describe_game_fields("employment")` for meanings and periods. These dimensionless values may be smoothed/defaulted/reset; exact sample age is unknown. They are not current productivity percentages, complete room/person/technology modifiers, input availability or future output. Production ledger buckets have their own age/carry limits. Employment root scan/row limits, failures and truncation follow `/rooms` into each query source's `collection_diagnostics`. A missing workforce row remains unknown. See WORKFORCE_FACTORS.md and WORKFORCE_VALIDATION.json.

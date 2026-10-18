@@ -8,6 +8,7 @@ import snake2d.CORE;
 
 /** TEST ONLY: public getter expectations in an isolated paused city. Never writes a save. */
 public final class ProductionScenario {
+    private static Object finite(double value) {return Double.isFinite(value)?value:null;}
     public static void install(Path output) {
         GAME.SPEED.speedSet(0);
         long began=System.currentTimeMillis();boolean[] ready={false};
@@ -30,7 +31,25 @@ public final class ProductionScenario {
                         }
                     }
                     if(producers==0 || expected.isEmpty())throw new IllegalStateException("No production fixture");
+                    List<Object> workforce=new ArrayList<>();int scanned=0;
+                    for(var blueprint:SETT.ROOMS().ins())for(var room:blueprint.all()) {
+                        scanned++;
+                        if(blueprint.employment()==null || room.employees()==null)continue;
+                        var staff=room.employees();
+                        Map<String,Object> row=new LinkedHashMap<>();
+                        row.put("room_id",room.index());row.put("active",room.active());
+                        row.put("employed",staff.employed());row.put("needed",staff.needed());
+                        row.put("target",staff.target());row.put("capacity",staff.max());
+                        Map<String,Object> factors=new LinkedHashMap<>();
+                        factors.put("efficiency_stored_raw",finite(staff.efficiency()));
+                        factors.put("proximity_stored_raw",finite(staff.proximity()));
+                        factors.put("fetch_proximity_stored_raw",finite(staff.fetchProximity()));
+                        factors.put("fetch_factor_applies",blueprint.employment().countInput());
+                        factors.put("combined_efficiency_raw",finite(staff.totEfficiency()));
+                        row.put("work_factors",factors);workforce.add(row);
+                    }
                     Files.createDirectories(output);
+                    Files.writeString(output.resolve("workforce-fixture.json"),JsonWriter.encode(Map.of("rooms",workforce,"scanned_rooms",scanned)));
                     Files.writeString(output.resolve("production-fixture.json"),JsonWriter.encode(Map.of("producer_rooms",producers,"flows",expected)));
                     System.err.println("PRODUCTION TEST: public-getter fixture ready");
                 }

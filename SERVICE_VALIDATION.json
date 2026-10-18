@@ -29,5 +29,262 @@
     "Raw reported service-point counters, not people/day, demand, individual access or guaranteed reachability.",
     "Observer performs no refresh/report/load, reservation or permission writes. Test-only policy setters establish two cases in a copied city; no save writes.",
     "Configured cohort rule is not effective eligibility: nobles/tourists and child-parent rules can differ. Registered services may have no built room."
-  ]
+  ],
+  "source_reader_contract_reviews": {
+    "counters": {
+      "passed": true,
+      "game_jar_sha256": "fe0137c05408e5ee9e31f06fc44fe37a5d4372d9c985b280f0852d1347c0224b",
+      "shipped_source_jar_sha256": "a3fc2aa9f4be31aec0616a5030a656ac49a6011343b7e91395c7bac0b9dfb0a5",
+      "method": "Static JDK disassembly and shipped-source anchor review. No game method execution.",
+      "checks": [
+        {
+          "member": "RoomServiceInstance#available()",
+          "passed": true,
+          "source_path": "settlement/room/service/module/RoomServiceInstance.java",
+          "source_line": 74,
+          "source_sha256": "2cb47f984f898410d690c5b0e3f22a8214c2ec09012f27e8b7b22d661fec445a",
+          "normalized_disassembly_sha256": "723d00c5000eb91aa25ce89a918b501f221e9452cec36467de2f88a4f663ab29",
+          "conclusion": "Public getter returns its stored short counter directly; no refresh, report, reservation or other call."
+        },
+        {
+          "member": "RoomServiceInstance#total()",
+          "passed": true,
+          "source_path": "settlement/room/service/module/RoomServiceInstance.java",
+          "source_line": 78,
+          "source_sha256": "2cb47f984f898410d690c5b0e3f22a8214c2ec09012f27e8b7b22d661fec445a",
+          "normalized_disassembly_sha256": "72603319e56a42b9ec87d858a21da55d4967f5790c7efce7f919a6fdd117fd71",
+          "conclusion": "Public getter returns its stored short counter directly; no refresh, report, reservation or other call."
+        },
+        {
+          "member": "RoomServiceInstance#reserved()",
+          "passed": true,
+          "source_path": "settlement/room/service/module/RoomServiceInstance.java",
+          "source_line": 82,
+          "source_sha256": "2cb47f984f898410d690c5b0e3f22a8214c2ec09012f27e8b7b22d661fec445a",
+          "normalized_disassembly_sha256": "ec838b0c21d8d636668503b084565e65d4eff467b3f4d8bc327abedf5958a92e",
+          "conclusion": "Public getter returns its stored short counter directly; no refresh, report, reservation or other call."
+        }
+      ],
+      "concrete_service_readers_source_scan": {
+        "count": 24,
+        "all_simple_stored_returns": true,
+        "declarations": [
+          {
+            "source_path": "settlement/room/health/hospital/HospitalInstance.java",
+            "source_line": 145,
+            "source_sha256": "6c550b99834c523ab6f042323d3b7a187496ad9df8631a47f29cbb4e157099a7",
+            "reader_body_sha256": "33656da654e5863fd8aad64246bc1e5023763d46e0405777fa979f74418503bb"
+          },
+          {
+            "source_path": "settlement/room/health/physician/Instance.java",
+            "source_line": 78,
+            "source_sha256": "12bc3e2e5989bdf81e4280ab6529b4a93a97a1e6663e8ff5411108bb928dc472",
+            "reader_body_sha256": "33656da654e5863fd8aad64246bc1e5023763d46e0405777fa979f74418503bb"
+          },
+          {
+            "source_path": "settlement/room/infra/inn/InnInstance.java",
+            "source_line": 130,
+            "source_sha256": "df9ac9f4e952f87988da9c024998ab4a54bda2b50296c260bfbe32df23e501a0",
+            "reader_body_sha256": "33656da654e5863fd8aad64246bc1e5023763d46e0405777fa979f74418503bb"
+          },
+          {
+            "source_path": "settlement/room/knowledge/school/SchoolInstance.java",
+            "source_line": 123,
+            "source_sha256": "1d952015023e331b87bb62863b3aebe435c62b708a59cb0601f01415f31d9be9",
+            "reader_body_sha256": "33656da654e5863fd8aad64246bc1e5023763d46e0405777fa979f74418503bb"
+          },
+          {
+            "source_path": "settlement/room/law/court/CourtInstance.java",
+            "source_line": 186,
+            "source_sha256": "068494b4790759c9307b9f8a264902557b18df82b26236d3e2b4642c912a0410",
+            "reader_body_sha256": "33656da654e5863fd8aad64246bc1e5023763d46e0405777fa979f74418503bb"
+          },
+          {
+            "source_path": "settlement/room/law/stocks/Instance.java",
+            "source_line": 85,
+            "source_sha256": "94a098d44af77fc1ad0fef827e8ac89177a29f6865ffa259fdf6b221ab796add",
+            "reader_body_sha256": "33656da654e5863fd8aad64246bc1e5023763d46e0405777fa979f74418503bb"
+          },
+          {
+            "source_path": "settlement/room/service/arena/grand/ArenaInstance.java",
+            "source_line": 90,
+            "source_sha256": "27e5477437665c50d07906631afd91fb865635f3f93e40046d2a932c8fcd1445",
+            "reader_body_sha256": "33656da654e5863fd8aad64246bc1e5023763d46e0405777fa979f74418503bb"
+          },
+          {
+            "source_path": "settlement/room/service/arena/pit/ArenaInstance.java",
+            "source_line": 108,
+            "source_sha256": "6513d7b19313206ea5aae98aa2868b827d6bb9e6d19f532f6c98e24a65aaabfb",
+            "reader_body_sha256": "33656da654e5863fd8aad64246bc1e5023763d46e0405777fa979f74418503bb"
+          },
+          {
+            "source_path": "settlement/room/service/barber/Instance.java",
+            "source_line": 84,
+            "source_sha256": "a858358f0a79a226f82b1f41df459c8942caa1122e67cfe9fc81df0fa3ed27c9",
+            "reader_body_sha256": "33656da654e5863fd8aad64246bc1e5023763d46e0405777fa979f74418503bb"
+          },
+          {
+            "source_path": "settlement/room/service/food/canteen/CanteenInstance.java",
+            "source_line": 268,
+            "source_sha256": "173d268e97ce6e294e1138479363a0f2b3c46caffe3754a49639e93b4997bd39",
+            "reader_body_sha256": "33656da654e5863fd8aad64246bc1e5023763d46e0405777fa979f74418503bb"
+          },
+          {
+            "source_path": "settlement/room/service/food/eatery/EateryInstance.java",
+            "source_line": 125,
+            "source_sha256": "8f6ecceb5ec98de83199c8c85bbc7a7f1f499a93902ea4d1a2962af98a3a1445",
+            "reader_body_sha256": "33656da654e5863fd8aad64246bc1e5023763d46e0405777fa979f74418503bb"
+          },
+          {
+            "source_path": "settlement/room/service/food/tavern/TavernInstance.java",
+            "source_line": 95,
+            "source_sha256": "8d190475a5cd7afa711068e4880e725c1cddc7d0e3a9623716096a4f102b1b6b",
+            "reader_body_sha256": "33656da654e5863fd8aad64246bc1e5023763d46e0405777fa979f74418503bb"
+          },
+          {
+            "source_path": "settlement/room/service/hearth/HearthInstance.java",
+            "source_line": 83,
+            "source_sha256": "36d5e087392524e7fd88c239d67ade84ced187bb3f23c37cf323fac3f71208bd",
+            "reader_body_sha256": "33656da654e5863fd8aad64246bc1e5023763d46e0405777fa979f74418503bb"
+          },
+          {
+            "source_path": "settlement/room/service/hygine/bath/BathInstance.java",
+            "source_line": 182,
+            "source_sha256": "78d7df0651c259bae4eff039874371a850a54e522cbe99009b06a69361f8802f",
+            "reader_body_sha256": "33656da654e5863fd8aad64246bc1e5023763d46e0405777fa979f74418503bb"
+          },
+          {
+            "source_path": "settlement/room/service/hygine/well/WellInstance.java",
+            "source_line": 74,
+            "source_sha256": "500997ca7b716e5c9191c7b84bb78a5b977d176dc417829185126bae272c8950",
+            "reader_body_sha256": "33656da654e5863fd8aad64246bc1e5023763d46e0405777fa979f74418503bb"
+          },
+          {
+            "source_path": "settlement/room/service/lavatory/LavatoryInstance.java",
+            "source_line": 138,
+            "source_sha256": "5db3b11d8644a59c192b99621b39b542bddfcd1c7e2dd42620c304f8983ed159",
+            "reader_body_sha256": "33656da654e5863fd8aad64246bc1e5023763d46e0405777fa979f74418503bb"
+          },
+          {
+            "source_path": "settlement/room/service/market/MarketInstance.java",
+            "source_line": 122,
+            "source_sha256": "c259b95cd9a33349432e64c4a179402801156ded7851b1f0477fc843eb01f21c",
+            "reader_body_sha256": "33656da654e5863fd8aad64246bc1e5023763d46e0405777fa979f74418503bb"
+          },
+          {
+            "source_path": "settlement/room/service/nursery/NurseryInstance.java",
+            "source_line": 104,
+            "source_sha256": "cf418792250b0c56a80a9e72384b65f3949cc06b2e95d7b8a11da8d924762d96",
+            "reader_body_sha256": "33656da654e5863fd8aad64246bc1e5023763d46e0405777fa979f74418503bb"
+          },
+          {
+            "source_path": "settlement/room/service/pleasure/PleasureInstance.java",
+            "source_line": 112,
+            "source_sha256": "4ddd590088cddd2b948a1f41569b996fad412d8898cd17b0b94481b93918e293",
+            "reader_body_sha256": "33656da654e5863fd8aad64246bc1e5023763d46e0405777fa979f74418503bb"
+          },
+          {
+            "source_path": "settlement/room/service/speaker/SpeakerInstance.java",
+            "source_line": 112,
+            "source_sha256": "933dfe680adbe4ba9b81361400fe557239bad5903f0055b4ade46544c8faefa5",
+            "reader_body_sha256": "33656da654e5863fd8aad64246bc1e5023763d46e0405777fa979f74418503bb"
+          },
+          {
+            "source_path": "settlement/room/service/stage/StageInstance.java",
+            "source_line": 116,
+            "source_sha256": "4feceb0a65e12d0a73b9f8be6a783e70b5e68a54e3563da1c62fb3e3243f1599",
+            "reader_body_sha256": "33656da654e5863fd8aad64246bc1e5023763d46e0405777fa979f74418503bb"
+          },
+          {
+            "source_path": "settlement/room/spirit/dump/DumpInstance.java",
+            "source_line": 95,
+            "source_sha256": "916cb2482bebf4b2bdf555fda010a9261bef0900de32990cf625d23510edd680",
+            "reader_body_sha256": "33656da654e5863fd8aad64246bc1e5023763d46e0405777fa979f74418503bb"
+          },
+          {
+            "source_path": "settlement/room/spirit/shrine/ShrineInstance.java",
+            "source_line": 82,
+            "source_sha256": "8d753b382ada5fd9a3b938cdb81635476726aa6d003d5d36888b3a242cc69d66",
+            "reader_body_sha256": "33656da654e5863fd8aad64246bc1e5023763d46e0405777fa979f74418503bb"
+          },
+          {
+            "source_path": "settlement/room/spirit/temple/TempleInstance.java",
+            "source_line": 145,
+            "source_sha256": "a1cd9d26a1997700736decabf89e9286c594ef1d3f422c4fa8c0df772c75d68b",
+            "reader_body_sha256": "33656da654e5863fd8aad64246bc1e5023763d46e0405777fa979f74418503bb"
+          }
+        ]
+      },
+      "limits": [
+        "Three counter getter bodies and 24 matching concrete service readers; not formal source/binary equivalence or a documented stable API contract.",
+        "The concrete source scan matches explicit public RoomServiceInstance service() declarations; it is not exhaustive inheritance/mod compatibility analysis.",
+        "Stored counters have room-specific meaning; this check does not prove daily capacity, demand, accessibility or refresh age."
+      ]
+    },
+    "configured_policy": {
+      "passed": true,
+      "game_jar_sha256": "fe0137c05408e5ee9e31f06fc44fe37a5d4372d9c985b280f0852d1347c0224b",
+      "source_archive_sha256": "a3fc2aa9f4be31aec0616a5030a656ac49a6011343b7e91395c7bac0b9dfb0a5",
+      "method": "Static source/binary reader inspection. No game execution, private reflection or private-instance access.",
+      "reader_checks": [
+        {
+          "owner": "settlement.room.service.module.RoomServiceAccess",
+          "signature": "public static snake2d.util.sets.LIST<settlement.room.service.module.RoomServiceAccess> ALL();",
+          "source_path": "settlement/room/service/module/RoomServiceAccess.java",
+          "source_sha256": "f842ae5ef3fa95bb6137dd8d7c293c6598bcce33962bc513a1ce1b092b865a8e",
+          "normalized_disassembly_sha256": "cc0ba3ab609de3edb653aed0cf582f33159c7c9533142702b7af178ca370ff75",
+          "no_write_opcode_in_reviewed_reader": true,
+          "static_implementation_only": false
+        },
+        {
+          "owner": "settlement.room.service.module.RoomServiceAccess",
+          "signature": "public final settlement.stats.service.StatServiceRoom stats();",
+          "source_path": "settlement/room/service/module/RoomServiceAccess.java",
+          "source_sha256": "f842ae5ef3fa95bb6137dd8d7c293c6598bcce33962bc513a1ce1b092b865a8e",
+          "normalized_disassembly_sha256": "bead067660d588ed048703fcd51466dbf65105c95142622082a5c726039a1f1f",
+          "no_write_opcode_in_reviewed_reader": true,
+          "static_implementation_only": false
+        },
+        {
+          "owner": "settlement.stats.service.StatServiceImp",
+          "signature": "public util.data.BOOLEANO$BOOLEAN_OE<init.type.HCLASS_RACE> permission();",
+          "source_path": "settlement/stats/service/StatServiceImp.java",
+          "source_sha256": "d8e595a7f8e421cd492ecb4f341e6514c911a333d10abb41ea85d866cbe06b43",
+          "normalized_disassembly_sha256": "bb5bd4dae832954e7e2909dcf3fd6f0e8ca1c9fd439c49504319fadc8a301f04",
+          "no_write_opcode_in_reviewed_reader": true,
+          "static_implementation_only": false
+        },
+        {
+          "owner": "init.type.HCLASS_RACE",
+          "signature": "public static init.type.HCLASS_RACE clP(init.race.Race, init.type.HCLASS);",
+          "source_path": "init/type/HCLASS_RACE.java",
+          "source_sha256": "657a5b5a3e7a02a34fc9dbe57068f0082990c69bdda58e3217c583bab4094944",
+          "normalized_disassembly_sha256": "9393fbc808579c722995dfb7976f72d499fd4c67d59b41a5acd8fb4ae630f1b2",
+          "no_write_opcode_in_reviewed_reader": true,
+          "static_implementation_only": false
+        },
+        {
+          "owner": "settlement.stats.service.StatServiceImp$Perm",
+          "signature": "public boolean is(init.type.HCLASS_RACE);",
+          "source_path": "settlement/stats/service/StatServiceImp.java",
+          "source_sha256": "d8e595a7f8e421cd492ecb4f341e6514c911a333d10abb41ea85d866cbe06b43",
+          "normalized_disassembly_sha256": "7130201fa62243fe253ee050f520f7b9d9b6c9417e4f7eed36b200d3e1e4ce10",
+          "no_write_opcode_in_reviewed_reader": true,
+          "static_implementation_only": true
+        }
+      ],
+      "configured_is_not_effective_access": true,
+      "effective_access_request_body_sha256": "fe1c6ba4b15b0c39a5fc48f4127b0e691a0520ec8457325c8b4c46145bf4f4ec",
+      "source_review_conclusion": "Configured concrete cohort flag is read through public BOOLEAN_OE.is. Individual accessRequest also considers nobility/tourism and child/parent conditions. It is not invoked or reimplemented by production.",
+      "limits": [
+        "No formal equivalence or stable official contract. No-write opcode checks are scoped static evidence, not a general purity proof.",
+        "The private implementation is inspected in shipped files only; no runtime cast, reflection, bitmap access or policy setter exists in production.",
+        "No full individual eligibility, reachability, service demand or permission-setter correctness established."
+      ]
+    }
+  },
+  "contract_verifier_source_sha256": {
+    "dev/verify_service_contract.py": "db644e57ccd3638c52bfc9dd462e2c208e84321935ffe4a2aabe3b3b2f2a1955",
+    "dev/verify_service_policy_contract.py": "dc79c39b037a56f7ca2ed8fb7238c981847ceb741ef217420985b5aa096cb447"
+  }
 }

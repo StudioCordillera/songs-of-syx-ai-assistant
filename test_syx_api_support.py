@@ -49,6 +49,7 @@ def test_critical_binary_evidence_is_explicit():
 
 
 @pytest.mark.parametrize('capability,warning', [
+    ('room_workforce_factors','not current productivity percentages'),
     ('room_service_counters','not people/day'),
     ('service_cohort_permissions','not effective individual eligibility'),
     ('city_trade_pipeline','Unavailable on battlefields'),

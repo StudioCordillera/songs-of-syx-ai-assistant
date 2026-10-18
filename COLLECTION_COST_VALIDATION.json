@@ -1,24 +1,24 @@
 {
   "passed": true,
-  "measured_at": "2026-10-18T13:23:55.941820+00:00",
+  "measured_at": "2026-10-18T15:25:33.269682+00:00",
   "game_version": "0.71.44",
-  "mod_jar_sha256": "ef2e9aa0362f9cb16cf7c7fc0ef7570012be51294c0f7296b3ae242bc9466540",
+  "mod_jar_sha256": "153f37ee51cb47c38ea568c589e3a642c43e1cfaf1a7911070730da0eacb2b1e",
   "production_source_sha256": {
     "syx/assistant/AssistantScript.java": "079b048597c373f88d8179d4f8e8fec576a82c5b13ad6c95fe6e672ba3722e3a",
     "syx/assistant/ChatPanel.java": "3138d3e863ccb36ad5b6b37a7e1f3486dd2d8c1dc43ab469b26af714548d8437",
     "syx/assistant/EntityReadRequest.java": "deb0f86cad28da1c8677394a4aeb26913b0c80b4ee90c08cb882bedbc11f8a03",
     "syx/assistant/JsonWriter.java": "c525eb60d3224cab83ed3fd6b8594ec8652211f00bd947e873e1482f919e81dc",
-    "syx/assistant/StateCollector.java": "4c322506a1c8797edc0da329c75bff2d1a770858d9dbd11edf1ab26891399638",
+    "syx/assistant/StateCollector.java": "bd26d226a650ce16c5710dce6b579322f916c79549c79ebf024bf356bf1a070d",
     "syx/assistant/TileReadRequest.java": "1a192cde61a7e1bdefa170390c00b17c74573b9c41de71700ebea466411ad3c5",
     "syx/assistant/UiContentCollector.java": "c0d20c7f9f2734a0bb625427875f06bfcd07edb20611248b39b6e8f480ef5a48",
     "syx/assistant/UiContextCollector.java": "439604436fc98c478ade47682775ee55edb1688d76078e0602f7ab78db187157"
   },
   "python_source_sha256": {
-    "syx_mcp.py": "f46d48e261c8a766a1a501a286ac288a1587a26baacbca54a970429e0c9ece8c",
-    "syx_knowledge.py": "8ba92826d9a9b27099b29d26c50b054a172c6d10ca755ee7f70d538a4573d17a",
-    "syx_query.py": "05b164574204a058b5a739f69be72e38bcb3b841c7f24a1e73b560090926d4f5",
-    "syx_api_support.py": "7d961cffdc09d46ae87ae220725cca6519588f77015cacde2514e79cbc68c8f7",
-    "syx_api_manifest.py": "206021fa5cc2fd6db53662e1440b5655ca47cc53d6d4002edaf5d09e48d273f4",
+    "syx_mcp.py": "e0d596a394865af6bdd6a2e6fce04e14e36d60281e93ab18e0cc6c54dea92a34",
+    "syx_knowledge.py": "f5d7dd6d387ad0fb8f2b024a3bd599ad1cec28f2906dfae27d9d2fdf56e4de7e",
+    "syx_query.py": "039795c9c0e1a4f167ff7bb98afd5955c52814d4fcf40705d0c59cdf06b684b4",
+    "syx_api_support.py": "71025de73b132383b21731b958f1a79e9c54929c8e152078e75be5ee31161ec3",
+    "syx_api_manifest.py": "42a1b13ae6bc0ec7e80e4183285abea5c3e669d94c7af9e50fc8962f840c53e8",
     "syx_live.py": "a7c5d5b457eeb2b8f8240079aed5183a736e6dee9f5c3c140122ade0bb21616a",
     "syx_capture.py": "fb27ec6c9278992d668bb54c85b34f17c625329a8d6f409df7fba1e3e56bcc55",
     "syx_tiles.py": "66d47fba905f9ab1ca5c13c60c314b5c4542fe09a36e74320495351e263e8493",
@@ -29,254 +29,254 @@
     "syx_claude.py": "3a850a645907f27b1a9cb15c3c5244b96b2da97d5d0dc37f5cd7d6f708cf92a8",
     "syx_claude_worker.py": "ab6638b2c4ef3a4a1548fde1c0739a48f4d47e468494dd7444019f3f330dea38"
   },
-  "private_observation_sha256": "96291ed2e648085cedcf5b2de9bf9fcff3e5a3fd123681f64602bb83e2a26d43",
-  "observed_at": "2026-10-18 13:23:54.363332+00:00",
+  "private_observation_sha256": "92e1c76d552cfb2edf27f0b0ab583702736ffa000c105adc1f33fc2703de46ce",
+  "observed_at": "2026-10-18 15:25:31.666426+00:00",
   "native_fixture": {
-    "java_version": "21.0.12.1",
-    "reference_count": 834,
-    "samples": [
-      {
-        "snapshot_bytes": 928492,
-        "collection_ns": 6069221,
-        "combined_ns": 11173416,
-        "encoding_utf8_ns": 5104195,
-        "cache": "cold_mod_help_cache"
-      },
-      {
-        "snapshot_bytes": 928492,
-        "collection_ns": 5337399,
-        "combined_ns": 10415069,
-        "encoding_utf8_ns": 5077670,
-        "cache": "warm_mod_help_cache"
-      },
-      {
-        "snapshot_bytes": 928492,
-        "collection_ns": 5585898,
-        "combined_ns": 10975449,
-        "encoding_utf8_ns": 5389551,
-        "cache": "warm_mod_help_cache"
-      },
-      {
-        "snapshot_bytes": 928492,
-        "collection_ns": 7654732,
-        "combined_ns": 14273666,
-        "encoding_utf8_ns": 6618934,
-        "cache": "warm_mod_help_cache"
-      },
-      {
-        "snapshot_bytes": 928492,
-        "collection_ns": 5128540,
-        "combined_ns": 10883785,
-        "encoding_utf8_ns": 5755245,
-        "cache": "warm_mod_help_cache"
-      },
-      {
-        "snapshot_bytes": 928492,
-        "collection_ns": 5507423,
-        "combined_ns": 10740557,
-        "encoding_utf8_ns": 5233134,
-        "cache": "warm_mod_help_cache"
-      },
-      {
-        "snapshot_bytes": 928492,
-        "collection_ns": 4856036,
-        "combined_ns": 10064826,
-        "encoding_utf8_ns": 5208790,
-        "cache": "warm_mod_help_cache"
-      },
-      {
-        "snapshot_bytes": 928492,
-        "collection_ns": 4855671,
-        "combined_ns": 12605688,
-        "encoding_utf8_ns": 7750017,
-        "cache": "warm_mod_help_cache"
-      },
-      {
-        "snapshot_bytes": 928492,
-        "collection_ns": 4660271,
-        "combined_ns": 9580841,
-        "encoding_utf8_ns": 4920570,
-        "cache": "warm_mod_help_cache"
-      },
-      {
-        "snapshot_bytes": 928493,
-        "collection_ns": 4686018,
-        "combined_ns": 9658446,
-        "encoding_utf8_ns": 4972428,
-        "cache": "warm_mod_help_cache"
-      },
-      {
-        "snapshot_bytes": 928493,
-        "collection_ns": 4351355,
-        "combined_ns": 9453920,
-        "encoding_utf8_ns": 5102565,
-        "cache": "warm_mod_help_cache"
-      },
-      {
-        "snapshot_bytes": 928493,
-        "collection_ns": 3980511,
-        "combined_ns": 8768529,
-        "encoding_utf8_ns": 4788018,
-        "cache": "warm_mod_help_cache"
-      },
-      {
-        "snapshot_bytes": 928493,
-        "collection_ns": 4669891,
-        "combined_ns": 9729190,
-        "encoding_utf8_ns": 5059299,
-        "cache": "warm_mod_help_cache"
-      },
-      {
-        "snapshot_bytes": 928493,
-        "collection_ns": 4378819,
-        "combined_ns": 9234550,
-        "encoding_utf8_ns": 4855731,
-        "cache": "warm_mod_help_cache"
-      },
-      {
-        "snapshot_bytes": 928493,
-        "collection_ns": 4479915,
-        "combined_ns": 9570062,
-        "encoding_utf8_ns": 5090147,
-        "cache": "warm_mod_help_cache"
-      },
-      {
-        "snapshot_bytes": 928493,
-        "collection_ns": 3726982,
-        "combined_ns": 9077289,
-        "encoding_utf8_ns": 5350307,
-        "cache": "warm_mod_help_cache"
-      },
-      {
-        "snapshot_bytes": 928493,
-        "collection_ns": 3706069,
-        "combined_ns": 9122989,
-        "encoding_utf8_ns": 5416920,
-        "cache": "warm_mod_help_cache"
-      },
-      {
-        "snapshot_bytes": 928493,
-        "collection_ns": 3982658,
-        "combined_ns": 8754322,
-        "encoding_utf8_ns": 4771664,
-        "cache": "warm_mod_help_cache"
-      },
-      {
-        "snapshot_bytes": 928493,
-        "collection_ns": 3892626,
-        "combined_ns": 8551206,
-        "encoding_utf8_ns": 4658580,
-        "cache": "warm_mod_help_cache"
-      },
-      {
-        "snapshot_bytes": 928493,
-        "collection_ns": 3694610,
-        "combined_ns": 8425107,
-        "encoding_utf8_ns": 4730497,
-        "cache": "warm_mod_help_cache"
-      },
-      {
-        "snapshot_bytes": 928493,
-        "collection_ns": 4143126,
-        "combined_ns": 9469277,
-        "encoding_utf8_ns": 5326151,
-        "cache": "warm_mod_help_cache"
-      },
-      {
-        "snapshot_bytes": 928493,
-        "collection_ns": 3983418,
-        "combined_ns": 8903042,
-        "encoding_utf8_ns": 4919624,
-        "cache": "warm_mod_help_cache"
-      },
-      {
-        "snapshot_bytes": 928493,
-        "collection_ns": 3683990,
-        "combined_ns": 8440389,
-        "encoding_utf8_ns": 4756399,
-        "cache": "warm_mod_help_cache"
-      },
-      {
-        "snapshot_bytes": 928493,
-        "collection_ns": 4776178,
-        "combined_ns": 10187704,
-        "encoding_utf8_ns": 5411526,
-        "cache": "warm_mod_help_cache"
-      },
-      {
-        "snapshot_bytes": 928493,
-        "collection_ns": 4286264,
-        "combined_ns": 9274826,
-        "encoding_utf8_ns": 4988562,
-        "cache": "warm_mod_help_cache"
-      },
-      {
-        "snapshot_bytes": 928493,
-        "collection_ns": 4538094,
-        "combined_ns": 9520995,
-        "encoding_utf8_ns": 4982901,
-        "cache": "warm_mod_help_cache"
-      },
-      {
-        "snapshot_bytes": 928493,
-        "collection_ns": 3684565,
-        "combined_ns": 8291601,
-        "encoding_utf8_ns": 4607036,
-        "cache": "warm_mod_help_cache"
-      },
-      {
-        "snapshot_bytes": 928493,
-        "collection_ns": 3467554,
-        "combined_ns": 12787412,
-        "encoding_utf8_ns": 9319858,
-        "cache": "warm_mod_help_cache"
-      },
-      {
-        "snapshot_bytes": 928493,
-        "collection_ns": 3528758,
-        "combined_ns": 8286761,
-        "encoding_utf8_ns": 4758003,
-        "cache": "warm_mod_help_cache"
-      },
-      {
-        "snapshot_bytes": 928493,
-        "collection_ns": 3460805,
-        "combined_ns": 8415998,
-        "encoding_utf8_ns": 4955193,
-        "cache": "warm_mod_help_cache"
-      },
-      {
-        "snapshot_bytes": 928493,
-        "collection_ns": 3293032,
-        "combined_ns": 7796103,
-        "encoding_utf8_ns": 4503071,
-        "cache": "warm_mod_help_cache"
-      },
-      {
-        "snapshot_bytes": 928493,
-        "collection_ns": 3416025,
-        "combined_ns": 8719038,
-        "encoding_utf8_ns": 5303013,
-        "cache": "warm_mod_help_cache"
-      }
-    ],
+    "passed": true,
+    "shape": {
+      "service_room_rows": 8,
+      "production_flow_rows": 35,
+      "scanned_rooms": 36,
+      "regional_rows": 203,
+      "service_policy_rows": 544,
+      "entity_prefix_rows": 295
+    },
+    "domain_count": 18,
+    "os": "Linux",
     "limits": [
       "Paused copied city only; no larger-city or worst-case/cap claim.",
       "Cold means this mod's reference cache only, not cold game/JVM/filesystem caches.",
       "Game-thread collection and JSON/UTF-8 encoding measured separately; disk I/O, MCP, model and game loading excluded.",
       "Profiling envelope is a separate real observation used offline, never the active bridge session."
     ],
-    "os": "Linux",
-    "domain_count": 18,
-    "shape": {
-      "entity_prefix_rows": 295,
-      "service_policy_rows": 544,
-      "regional_rows": 203,
-      "scanned_rooms": 36,
-      "production_flow_rows": 35,
-      "service_room_rows": 8
-    },
-    "passed": true
+    "samples": [
+      {
+        "cache": "cold_mod_help_cache",
+        "encoding_utf8_ns": 5472876,
+        "combined_ns": 11273244,
+        "collection_ns": 5800368,
+        "snapshot_bytes": 935489
+      },
+      {
+        "cache": "warm_mod_help_cache",
+        "encoding_utf8_ns": 5246419,
+        "combined_ns": 10373956,
+        "collection_ns": 5127537,
+        "snapshot_bytes": 935489
+      },
+      {
+        "cache": "warm_mod_help_cache",
+        "encoding_utf8_ns": 5679557,
+        "combined_ns": 10451807,
+        "collection_ns": 4772250,
+        "snapshot_bytes": 935489
+      },
+      {
+        "cache": "warm_mod_help_cache",
+        "encoding_utf8_ns": 4766518,
+        "combined_ns": 9702510,
+        "collection_ns": 4935992,
+        "snapshot_bytes": 935489
+      },
+      {
+        "cache": "warm_mod_help_cache",
+        "encoding_utf8_ns": 4789878,
+        "combined_ns": 9944080,
+        "collection_ns": 5154202,
+        "snapshot_bytes": 935489
+      },
+      {
+        "cache": "warm_mod_help_cache",
+        "encoding_utf8_ns": 5010865,
+        "combined_ns": 10192652,
+        "collection_ns": 5181787,
+        "snapshot_bytes": 935489
+      },
+      {
+        "cache": "warm_mod_help_cache",
+        "encoding_utf8_ns": 4798888,
+        "combined_ns": 9872246,
+        "collection_ns": 5073358,
+        "snapshot_bytes": 935489
+      },
+      {
+        "cache": "warm_mod_help_cache",
+        "encoding_utf8_ns": 5001784,
+        "combined_ns": 10441622,
+        "collection_ns": 5439838,
+        "snapshot_bytes": 935489
+      },
+      {
+        "cache": "warm_mod_help_cache",
+        "encoding_utf8_ns": 5641220,
+        "combined_ns": 10588374,
+        "collection_ns": 4947154,
+        "snapshot_bytes": 935489
+      },
+      {
+        "cache": "warm_mod_help_cache",
+        "encoding_utf8_ns": 5844035,
+        "combined_ns": 11025532,
+        "collection_ns": 5181497,
+        "snapshot_bytes": 935490
+      },
+      {
+        "cache": "warm_mod_help_cache",
+        "encoding_utf8_ns": 4846730,
+        "combined_ns": 8930533,
+        "collection_ns": 4083803,
+        "snapshot_bytes": 935490
+      },
+      {
+        "cache": "warm_mod_help_cache",
+        "encoding_utf8_ns": 4435152,
+        "combined_ns": 8443738,
+        "collection_ns": 4008586,
+        "snapshot_bytes": 935490
+      },
+      {
+        "cache": "warm_mod_help_cache",
+        "encoding_utf8_ns": 4853713,
+        "combined_ns": 9512167,
+        "collection_ns": 4658454,
+        "snapshot_bytes": 935490
+      },
+      {
+        "cache": "warm_mod_help_cache",
+        "encoding_utf8_ns": 5274945,
+        "combined_ns": 9670454,
+        "collection_ns": 4395509,
+        "snapshot_bytes": 935490
+      },
+      {
+        "cache": "warm_mod_help_cache",
+        "encoding_utf8_ns": 7399760,
+        "combined_ns": 12252735,
+        "collection_ns": 4852975,
+        "snapshot_bytes": 935490
+      },
+      {
+        "cache": "warm_mod_help_cache",
+        "encoding_utf8_ns": 5662149,
+        "combined_ns": 9694442,
+        "collection_ns": 4032293,
+        "snapshot_bytes": 935490
+      },
+      {
+        "cache": "warm_mod_help_cache",
+        "encoding_utf8_ns": 4983750,
+        "combined_ns": 8753845,
+        "collection_ns": 3770095,
+        "snapshot_bytes": 935490
+      },
+      {
+        "cache": "warm_mod_help_cache",
+        "encoding_utf8_ns": 4654554,
+        "combined_ns": 8832639,
+        "collection_ns": 4178085,
+        "snapshot_bytes": 935490
+      },
+      {
+        "cache": "warm_mod_help_cache",
+        "encoding_utf8_ns": 4870263,
+        "combined_ns": 8838680,
+        "collection_ns": 3968417,
+        "snapshot_bytes": 935490
+      },
+      {
+        "cache": "warm_mod_help_cache",
+        "encoding_utf8_ns": 4726580,
+        "combined_ns": 8402101,
+        "collection_ns": 3675521,
+        "snapshot_bytes": 935490
+      },
+      {
+        "cache": "warm_mod_help_cache",
+        "encoding_utf8_ns": 4756114,
+        "combined_ns": 9018330,
+        "collection_ns": 4262216,
+        "snapshot_bytes": 935490
+      },
+      {
+        "cache": "warm_mod_help_cache",
+        "encoding_utf8_ns": 4743925,
+        "combined_ns": 8439533,
+        "collection_ns": 3695608,
+        "snapshot_bytes": 935490
+      },
+      {
+        "cache": "warm_mod_help_cache",
+        "encoding_utf8_ns": 5212770,
+        "combined_ns": 8855760,
+        "collection_ns": 3642990,
+        "snapshot_bytes": 935490
+      },
+      {
+        "cache": "warm_mod_help_cache",
+        "encoding_utf8_ns": 5702381,
+        "combined_ns": 9883271,
+        "collection_ns": 4180890,
+        "snapshot_bytes": 935490
+      },
+      {
+        "cache": "warm_mod_help_cache",
+        "encoding_utf8_ns": 4991430,
+        "combined_ns": 9089684,
+        "collection_ns": 4098254,
+        "snapshot_bytes": 935490
+      },
+      {
+        "cache": "warm_mod_help_cache",
+        "encoding_utf8_ns": 4915796,
+        "combined_ns": 7790225,
+        "collection_ns": 2874429,
+        "snapshot_bytes": 935490
+      },
+      {
+        "cache": "warm_mod_help_cache",
+        "encoding_utf8_ns": 4845836,
+        "combined_ns": 8015896,
+        "collection_ns": 3170060,
+        "snapshot_bytes": 935490
+      },
+      {
+        "cache": "warm_mod_help_cache",
+        "encoding_utf8_ns": 4916453,
+        "combined_ns": 8013029,
+        "collection_ns": 3096576,
+        "snapshot_bytes": 935490
+      },
+      {
+        "cache": "warm_mod_help_cache",
+        "encoding_utf8_ns": 4825811,
+        "combined_ns": 7860068,
+        "collection_ns": 3034257,
+        "snapshot_bytes": 935490
+      },
+      {
+        "cache": "warm_mod_help_cache",
+        "encoding_utf8_ns": 4499547,
+        "combined_ns": 8211824,
+        "collection_ns": 3712277,
+        "snapshot_bytes": 935490
+      },
+      {
+        "cache": "warm_mod_help_cache",
+        "encoding_utf8_ns": 5069018,
+        "combined_ns": 8425532,
+        "collection_ns": 3356514,
+        "snapshot_bytes": 935490
+      },
+      {
+        "cache": "warm_mod_help_cache",
+        "encoding_utf8_ns": 4929914,
+        "combined_ns": 8308856,
+        "collection_ns": 3378942,
+        "snapshot_bytes": 935490
+      }
+    ],
+    "reference_count": 834,
+    "java_version": "21.0.12.1"
   },
   "sample_counts": {
     "cold_reference_cache": 1,
@@ -287,53 +287,53 @@
   "quantile_method": "Sorted samples, zero-based index floor(0.95*(n-1)); descriptive sample percentile, not a statistical bound.",
   "warm_native_ms": {
     "collection": {
-      "min": 3.293,
-      "median": 4.286,
-      "p95": 5.507,
-      "max": 7.655
+      "min": 2.874,
+      "median": 4.098,
+      "p95": 5.181,
+      "max": 5.44
     },
     "json_and_utf8_encoding": {
-      "min": 4.503,
-      "median": 5.059,
-      "p95": 6.619,
-      "max": 9.32
+      "min": 4.435,
+      "median": 4.916,
+      "p95": 5.702,
+      "max": 7.4
     },
     "combined_fixture_work": {
-      "min": 7.796,
-      "median": 9.454,
-      "p95": 12.606,
-      "max": 14.274
+      "min": 7.79,
+      "median": 9.018,
+      "p95": 10.588,
+      "max": 12.253
     }
   },
   "cold_native_ms": {
-    "collection": 6.069,
-    "json_and_utf8_encoding": 5.104,
-    "combined_fixture_work": 11.173
+    "collection": 5.8,
+    "json_and_utf8_encoding": 5.473,
+    "combined_fixture_work": 11.273
   },
-  "snapshot_bytes": 928493,
+  "snapshot_bytes": 935490,
   "offline_parse_ms": {
-    "min": 7.104,
-    "median": 8.515,
-    "p95": 9.477,
-    "max": 55.293
+    "min": 6.659,
+    "median": 8.857,
+    "p95": 11.934,
+    "max": 14.201
   },
   "offline_two_service_queries_ms": {
-    "min": 20.546,
-    "median": 21.456,
-    "p95": 22.866,
-    "max": 27.962
+    "min": 21.333,
+    "median": 22.177,
+    "p95": 23.096,
+    "max": 66.142
   },
   "two_service_queries_independent_parity": true,
   "five_existing_query_examples": {
     "passed": true,
     "method": "Offline QueryEngine only, on a preserved real snapshot. No game or inference calls.",
     "game_version": "0.71.44",
-    "source_snapshot_sha256": "96291ed2e648085cedcf5b2de9bf9fcff3e5a3fd123681f64602bb83e2a26d43",
-    "source_observed_at": "2026-10-18 13:23:54.363332+00:00",
+    "source_snapshot_sha256": "92e1c76d552cfb2edf27f0b0ab583702736ffa000c105adc1f33fc2703de46ce",
+    "source_observed_at": "2026-10-18 15:25:31.666426+00:00",
     "query_spec_sha256": "b9afe28bc8e95bed3a8de1daf6605becff89a05db4f0777529434662b0917fe8",
     "source_sha256": {
-      "syx_query.py": "05b164574204a058b5a739f69be72e38bcb3b841c7f24a1e73b560090926d4f5",
-      "syx_mcp.py": "f46d48e261c8a766a1a501a286ac288a1587a26baacbca54a970429e0c9ece8c",
+      "syx_query.py": "039795c9c0e1a4f167ff7bb98afd5955c52814d4fcf40705d0c59cdf06b684b4",
+      "syx_mcp.py": "e0d596a394865af6bdd6a2e6fce04e14e36d60281e93ab18e0cc6c54dea92a34",
       "dev/benchmark_selective_queries.py": "7d7877f7098a2389b609b0eb969151f68b402c96c50b83448cd0ca28f03b6412"
     },
     "independent_filter_join_aggregate_parity": true,
@@ -345,13 +345,13 @@
       1,
       0
     ],
-    "snapshot_bytes": 928493,
-    "selected_results_bytes": 5000,
+    "snapshot_bytes": 935490,
+    "selected_results_bytes": 6782,
     "repetitions": 31,
     "local_elapsed_ms": {
-      "median": 12.151,
-      "p95": 12.709,
-      "max": 12.721
+      "median": 12.259,
+      "p95": 12.531,
+      "max": 12.568
     },
     "limits": [
       "One copied city, no large-city latency or collection cost claim. Timings are local descriptive measurements, not a guarantee.",
@@ -360,7 +360,7 @@
       "Offline engine timing does not establish live API availability or refresh stale data."
     ]
   },
-  "selected_two_service_results_bytes": 3517,
+  "selected_two_service_results_bytes": 4818,
   "source_sha256": {
     "mod/tests/LiveSmoke.java": "cf293645ea419e1e5f190e494f813896d98c0fab964b553ea0b2a50bc0c0a6fa",
     "mod/tests/CollectionCostScenario.java": "4baac44c16ac9fb4bf6c72c8c704b10fca1b824b54d4aaca7ed924bcda0a5017",

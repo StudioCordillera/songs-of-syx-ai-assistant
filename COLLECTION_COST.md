@@ -4,22 +4,22 @@ COLLECTION_COST_VALIDATION.json records a native run of the exact shipped player
 
 ## Observed results
 
-The paused copied city had 295 entity-prefix rows, 36 scanned rooms, eight service-room rows, 544 configured service-policy rows, 35 production-flow rows, 203 regional rows and 834 installed references. All 18 domains reported partial coverage; service reads reported no truncation/failures. One sample cleared only the mod's detached help cache, then 31 warm samples followed at least 250 ms apart.
+The paused copied city had 295 entity-prefix rows, 36 scanned rooms, 31 employing-room rows with work factors, eight service-room rows, 544 configured service-policy rows, 35 production-flow rows, 203 regional rows and 834 installed references. All 18 domains reported partial coverage; service reads reported no truncation/failures. One sample cleared only the mod's detached help cache, then 31 warm samples followed at least 250 ms apart.
 
 | Work | Median ms | Sample p95 ms | Maximum ms |
 | --- | ---: | ---: | ---: |
-| Warm game-thread collection | 4.286 | 5.507 | 7.655 |
-| JSON and UTF-8 encoding | 5.059 | 6.619 | 9.320 |
-| Offline snapshot parsing | 8.515 | 9.477 | 55.293 |
-| Two offline service queries together | 21.456 | 22.866 | 27.962 |
+| Warm game-thread collection | 4.098 | 5.181 | 5.440 |
+| JSON and UTF-8 encoding | 4.916 | 5.702 | 7.400 |
+| Offline snapshot parsing | 8.857 | 11.934 | 14.201 |
+| Two offline service queries together | 22.177 | 23.096 | 66.142 |
 
-The single cleared-mod-cache collection took 6.069 ms. It does not represent cold game, JVM or filesystem caches. Percentiles use sorted index floor(0.95 × (n−1)); raw samples are retained, including outliers. Host scheduling and garbage collection can affect elapsed times.
+The single cleared-mod-cache collection took 5.800 ms. It does not represent cold game, JVM or filesystem caches. Percentiles use sorted index floor(0.95 × (n−1)); raw samples are retained, including outliers. Host scheduling and garbage collection can affect elapsed times.
 
-**Production encodes in its background export worker.** The fixture measures encoding on its callback thread to isolate the cost. Its combined collection/encoding median of 9.454 ms is not a measured production game-thread stall. Native timings exclude disk I/O, loading, MCP transport and model calls. Offline parsing excludes disk reads; offline query timing excludes parsing, freshness validation, MCP/status/UI envelopes and model latency.
+**Production encodes in its background export worker.** The fixture measures encoding on its callback thread to isolate the cost. Its combined collection/encoding median of 9.018 ms is not a measured production game-thread stall. Native timings exclude disk I/O, loading, MCP transport and model calls. Offline parsing excludes disk reads; offline query timing excludes parsing, freshness validation, MCP/status/UI envelopes and model latency.
 
-Two service selections independently matched expected filters, nullable staffing joins, configured-policy/population joins, row ordering and total counts. Five existing selection examples also matched independent filter/join/aggregate calculations across 31 repetitions. Those five together had a 12.151 ms median offline engine time. This checks query behavior on one retained observation, not current live API availability.
+Two service selections independently matched expected filters, nullable staffing joins, configured-policy/population joins, row ordering and total counts. Five existing selection examples also matched independent filter/join/aggregate calculations across 31 repetitions. Those five together had a 12.259 ms median offline engine time. This checks query behavior on one retained observation, not current live API availability.
 
-The full retained snapshot was 928,493 bytes, including installed reference material. The two service results were 3,517 bytes; the five other results were 5,000 bytes. Result counts include query metadata but exclude outer MCP/status/UI context, so these sizes do not establish end-to-end network savings.
+The full retained snapshot was 935,490 bytes, including installed reference material. The two service results were 4,818 bytes; the five other results were 6,782 bytes. Result counts include query metadata but exclude outer MCP/status/UI context, so these sizes do not establish end-to-end network savings.
 
 ## Reproduction and evidence boundary
 
@@ -35,6 +35,4 @@ The runner requires the licensed installation and existing isolated smoke profil
 
 The last observation retains its real timestamp and a separate profiling session/sequence. It is private runtime evidence, never substituted for the active bridge snapshot. Only timing/shape metadata and hashes are published; game binaries, saves, DTO values and installed help text are not published. The report pins fixture, query, production Java and Python source hashes and a zero game exit code.
 
-All 160 Python tests and release freshness checks pass. Production source and both tested ZIPs remain unchanged. Earlier player/core reports retain their historical fixture hashes; adding the profiling branch to LiveSmoke does not relabel those earlier runs. Larger settlements, cap/fault behavior, all scenes, sustained FPS and worst-case latency still require separate evidence.
-
-The subsequent collection-diagnostics change keeps this native collector/JAR unchanged but adds Python response metadata. This report retains its original Python hashes and offline timing scope; it is not a fresh timing acceptance of that later query layer.
+All 168 Python tests and player release freshness checks pass for the workforce build. This run measures the current collector/JAR and Python hashes recorded in the report; earlier measurements remain historical evidence in Git. An additional offline check of the SHA-matching retained observation confirms 31 employing-room rows with factors and no employment read failures/truncation. No timestamp is refreshed by this check. Larger settlements, cap/fault behavior, all scenes, sustained FPS and worst-case latency still require separate evidence.

@@ -1,0 +1,86 @@
+{
+  "queries": [
+    {
+      "name": "staffed_rooms_with_stored_factors",
+      "source": {
+        "domain": "employment",
+        "path": "/rooms"
+      },
+      "where": {
+        "gt": [
+          {
+            "field": "/employed"
+          },
+          0
+        ]
+      },
+      "select": {
+        "room": {
+          "field": "/room_id"
+        },
+        "name": {
+          "field": "/name"
+        },
+        "active": {
+          "field": "/active"
+        },
+        "employed": {
+          "field": "/employed"
+        },
+        "work_factors": {
+          "field": "/work_factors"
+        }
+      },
+      "sort": [
+        {
+          "field": "/work_factors/combined_efficiency_raw",
+          "direction": "asc"
+        }
+      ],
+      "limit": 5
+    },
+    {
+      "name": "recorded_outputs_and_stored_work_factors",
+      "source": {
+        "domain": "production",
+        "path": "/room_data/flows"
+      },
+      "joins": [
+        {
+          "source": {
+            "domain": "employment",
+            "path": "/rooms"
+          },
+          "left_key": "/room_id",
+          "right_key": "/room_id",
+          "as": "staffing",
+          "kind": "left"
+        }
+      ],
+      "where": {
+        "eq": [
+          {
+            "field": "/direction"
+          },
+          "output"
+        ]
+      },
+      "select": {
+        "room": {
+          "field": "/room_id"
+        },
+        "resource": {
+          "field": "/resource_id"
+        },
+        "recorded_previous_day": {
+          "field": "/previous_day_units"
+        },
+        "staffing": {
+          "field": "/staffing"
+        }
+      },
+      "limit": 5
+    }
+  ],
+  "include_ui_context": true
+}

@@ -1,0 +1,55 @@
+{
+  "passed": true,
+  "game_jar_sha256": "fe0137c05408e5ee9e31f06fc44fe37a5d4372d9c985b280f0852d1347c0224b",
+  "source_archive_sha256": "a3fc2aa9f4be31aec0616a5030a656ac49a6011343b7e91395c7bac0b9dfb0a5",
+  "method": "Static source/binary inspection of five public readers. No game class initialization, reflection, private runtime reads or reporting/reset calls.",
+  "reader_checks": [
+    {
+      "owner": "settlement.room.main.employment.RoomEmploymentIns",
+      "signature": "public double efficiency();",
+      "source_path": "settlement/room/main/employment/RoomEmploymentIns.java",
+      "source_sha256": "281ac10e22bc4a4766531b28418885c6127a9a30bfec339ce00d1448035be7d5",
+      "normalized_disassembly_sha256": "d167a63d1bafa08bf3d9160e2907ce21bba9b4a735e415b5b7cf001963530495",
+      "no_write_opcode_in_reviewed_reader": true
+    },
+    {
+      "owner": "settlement.room.main.employment.RoomEmploymentIns",
+      "signature": "public double proximity();",
+      "source_path": "settlement/room/main/employment/RoomEmploymentIns.java",
+      "source_sha256": "281ac10e22bc4a4766531b28418885c6127a9a30bfec339ce00d1448035be7d5",
+      "normalized_disassembly_sha256": "fa858849b28c0b1f39bf19c7090cf1f30b5d820d2908adb7187fdd5040a348d1",
+      "no_write_opcode_in_reviewed_reader": true
+    },
+    {
+      "owner": "settlement.room.main.employment.RoomEmploymentIns",
+      "signature": "public double fetchProximity();",
+      "source_path": "settlement/room/main/employment/RoomEmploymentIns.java",
+      "source_sha256": "281ac10e22bc4a4766531b28418885c6127a9a30bfec339ce00d1448035be7d5",
+      "normalized_disassembly_sha256": "096e107a84e4070bae7f8854e08028f9349879e34f0724f05634197d96c7b95f",
+      "no_write_opcode_in_reviewed_reader": true
+    },
+    {
+      "owner": "settlement.room.main.employment.RoomEmploymentIns",
+      "signature": "public double totEfficiency();",
+      "source_path": "settlement/room/main/employment/RoomEmploymentIns.java",
+      "source_sha256": "281ac10e22bc4a4766531b28418885c6127a9a30bfec339ce00d1448035be7d5",
+      "normalized_disassembly_sha256": "09e2687c9e9c072efc451eb0e8565e0dc7cf44823c4fc55d5594106f5ce5a976",
+      "no_write_opcode_in_reviewed_reader": true
+    },
+    {
+      "owner": "settlement.room.main.employment.RoomEmploymentSimple",
+      "signature": "public boolean countInput();",
+      "source_path": "settlement/room/main/employment/RoomEmploymentSimple.java",
+      "source_sha256": "63bf154bc4a91a3e9dde45ff900c0e12601ef1506e76bc8456abb27e4d6c42fb",
+      "normalized_disassembly_sha256": "5c31339e50867593373e274e2c34c63addb8c0a74ef37e2d308a64efe912a228",
+      "no_write_opcode_in_reviewed_reader": true
+    }
+  ],
+  "combined_fetch_factor_is_conditional": true,
+  "stored_values_can_be_smoothed_or_reset": true,
+  "limits": [
+    "Scoped reader/call-surface review, not formal purity/equivalence or an official stable mod contract.",
+    "Getters return stored factors without an observation timestamp. Exact age remains unknown; defaults/resets can appear on inactive or unstaffed rooms.",
+    "Not a complete production modifier, per-worker productivity percentage, input-supply test or throughput forecast."
+  ]
+}

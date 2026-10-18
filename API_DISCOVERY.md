@@ -2,17 +2,17 @@
 
 The production reference audit proves only the public members used by our adapter. To identify remaining mapping work, `catalog_api.py` separately scans the entire shipped source archive and resolves its named types and public declared members against the installed game JAR with the Java compiler. It never starts the game, executes its classes, or uses reflection. This is development tooling, outside the packaged mod and MCP server.
 
-The current scan covers 2,443 source files, resolves every cataloged named top-level/member source type, and finds 2,052 public types with public enclosing types and 17,442 public declared member signatures. All 246 production reference IDs occur in this catalog. Matching game JAR/source archive hashes establish that the discovery run and production audit used the same reference pair. They do not attest the installed/running mod.
+The current scan covers 2,443 source files, resolves every cataloged named top-level/member source type, and finds 2,052 public types with public enclosing types and 17,442 public declared member signatures. All 358 production reference IDs occur in this catalog. Matching game JAR/source archive hashes establish that the discovery run and production audit used the same reference pair. They do not attest the installed/running mod.
 
 | Root package | Public declared member candidates | Production reference IDs |
 | --- | ---: | ---: |
-| settlement | 6,606 | 90 |
-| snake2d | 2,817 | 17 |
-| game | 2,295 | 51 |
-| init | 1,726 | 18 |
-| util | 1,664 | 11 |
-| world | 1,212 | 17 |
-| view | 1,006 | 42 |
+| settlement | 6,606 | 130 |
+| snake2d | 2,817 | 38 |
+| game | 2,295 | 63 |
+| init | 1,726 | 32 |
+| util | 1,664 | 24 |
+| world | 1,212 | 25 |
+| view | 1,006 | 46 |
 | launcher | 69 | 0 |
 | script | 28 | 0 |
 | menu | 11 | 0 |
@@ -58,3 +58,5 @@ The current resource-trade checkpoint inventories 342 public production member r
 The service-counter checkpoint pairs the new 346-member public production audit with the unchanged pinned offline catalog. All 346 IDs occur in its 17,442 candidates. This rechecks audit membership against the existing catalog, not complete state coverage or a new game version.
 
 The configured service-policy checkpoint expands the public production audit to 353 references, all found in the unchanged pinned discovery catalog. This is an explicit mapping of cohort flags through public interfaces, not private bitmap access or a count of every game variable.
+
+The workforce checkpoint refreshes production-reference pairing against the retained full catalog after verifying its checksum and game/source hashes. All 358 current production references occur there. The full 17,442-declaration scan is retained evidence, not claimed as a new scan for this pairing update.

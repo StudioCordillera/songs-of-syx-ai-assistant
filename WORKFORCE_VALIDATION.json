@@ -1,0 +1,40 @@
+{
+  "passed": true,
+  "game_version": "0.71.44",
+  "employment_rooms_checked": 31,
+  "scanned_rooms": 36,
+  "public_getter_parity": true,
+  "conditional_combined_arithmetic": true,
+  "fetch_factor_true_rooms": 8,
+  "fetch_factor_false_rooms": 23,
+  "nondefault_factor_rooms": 27,
+  "first_page_and_selection_diagnostics": true,
+  "stored_factors_and_recorded_output_join": true,
+  "left_join_projects_staffing_object": true,
+  "same_observation_ui_context": true,
+  "field_meanings_discoverable": true,
+  "inference_calls": 0,
+  "source_sha256": {
+    "mod/src/main/java/syx/assistant/StateCollector.java": "bd26d226a650ce16c5710dce6b579322f916c79549c79ebf024bf356bf1a070d",
+    "mod/tests/ProductionScenario.java": "1e06e0b7685d64c7e8268f7e6bc71368f2eb7173a784580b7d291713b3a047bf",
+    "dev/verify_production.py": "6109754f68c53a0d9c4d93c0c35ccc8c7d0e7a18eaa8ee8708eb70f812293520",
+    "workforce-query-example.json": "a3a5f019cbc0f28343eb7e6448aba801b3f7c1bd3d3a053d8456c55111298fff",
+    "syx_query.py": "039795c9c0e1a4f167ff7bb98afd5955c52814d4fcf40705d0c59cdf06b684b4",
+    "syx_mcp.py": "e0d596a394865af6bdd6a2e6fce04e14e36d60281e93ab18e0cc6c54dea92a34"
+  },
+  "limits": [
+    "Paused copied city with both countInput branches, not all room types or larger-city/cap/fault execution.",
+    "Raw stored/defaulted/smoothed factors; exact age unknown. No complete bonus stack, instantaneous productivity or throughput forecast.",
+    "Observer and fixture invoke no work/fetch/travel report, staffing setter, factor reset/update or save."
+  ],
+  "validated_at": "2026-10-18T15:25:02.802916+00:00",
+  "game_exit_code": 0,
+  "mod_jar_sha256": "153f37ee51cb47c38ea568c589e3a642c43e1cfaf1a7911070730da0eacb2b1e",
+  "game_jar_sha256": "fe0137c05408e5ee9e31f06fc44fe37a5d4372d9c985b280f0852d1347c0224b",
+  "source_archive_sha256": "a3fc2aa9f4be31aec0616a5030a656ac49a6011343b7e91395c7bac0b9dfb0a5",
+  "parent_core_report_sha256": "1df403b947f2b7df2d194d517df689b18c8196374eb5e201dfaf992224be4392",
+  "static_reader_contract_review_sha256": "ec24f130c7837549bc10bedbce19ab4b46224823fc023dfbce6764c195a021d0",
+  "static_review_verifier_source_sha256": "b7f266ab4e95b54246696fcfc16f0d47f92160b0fe1a245c706ab46045e531e9",
+  "public_production_members": 358,
+  "non_public_production_members": 0
+}
