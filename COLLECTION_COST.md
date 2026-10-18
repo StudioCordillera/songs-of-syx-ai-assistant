@@ -2,16 +2,17 @@
 
 ## Current published collector — small copied city
 
-[CURRENT_COLLECTION_COST_VALIDATION.json](CURRENT_COLLECTION_COST_VALIDATION.json) measures the world-faction-context player JAR (`d50072623dbd669cc7ae56c1ad6b022d0a860e344cc73328e9908a1c99dbd857`), including the current producer-degradation and stockpile-bookkeeping collector. The game/source hashes match the public API audit. The paused copied city has 295 entity-prefix rows, 36 scanned rooms, eight service rooms, 544 configured service-policy rows, 35 production flows, 203 regions, 42 stockpile resource rows and 834 installed references. Stockpile reads scan all 42 resources without failures/truncation; all 18 domains remain partial.
+[CURRENT_COLLECTION_COST_VALIDATION.json](CURRENT_COLLECTION_COST_VALIDATION.json) measures the regional-output player JAR (`bf05945b3c75716fda4cf824a4edc03fd5e0159a463669ed18b93644ca4b7b23`), including the current producer-degradation and stockpile-bookkeeping collector. The game/source hashes match the public API audit. The paused copied city has 295 entity-prefix rows, 36 scanned rooms, eight service rooms, 544 configured service-policy rows, 35 production flows, 203 regions, 42 stockpile resource rows and 834 installed references. Stockpile reads scan all 42 resources without failures/truncation. The regional-output table contains 8,526 cells and 42 schedules, with no resource/cell failures or truncation; all 18 domains remain partial. The snapshot stays below the MCP input bound of 16 MiB in this finite fixture.
 
 | Work | Median ms | Sample p95 ms | Maximum ms |
 | --- | ---: | ---: | ---: |
-| Warm game-thread collection | 5.912 | 7.124 | 7.573 |
-| JSON and UTF-8 encoding | 5.771 | 7.162 | 8.647 |
-| Offline snapshot parsing | 12.576 | 14.652 | 58.326 |
-| Two offline service queries together | 43.774 | 48.339 | 50.358 |
+| Warm game-thread collection | 6.361 | 9.587 | 12.863 |
+| JSON and UTF-8 encoding | 10.280 | 12.010 | 14.215 |
+| Offline snapshot parsing | 22.493 | 24.913 | 73.881 |
+| Two offline service queries together | 42.100 | 51.471 | 52.196 |
+| Offline regional accrual/region/schedule query | 108.647 | 116.139 | 158.992 |
 
-There are 31 warm samples and one cleared-mod-help-cache sample; the latter collection takes 8.123 ms. Production encodes on its background worker. The fixture's combined median of 11.501 ms measures collection plus encoding on its callback thread and is **not** a measured production game-thread stall. The retained snapshot is 946,483 bytes; the two service selections are 4,818 bytes before outer envelopes. Independent service-query parity and five existing selection examples pass. Raw timing samples and descriptive percentile methodology are retained in the report.
+There are 31 warm samples and one cleared-mod-help-cache sample; the latter collection takes 11.317 ms. Production encodes on its background worker. The fixture's combined median of 16.835 ms measures collection plus encoding on its callback thread and is **not** a measured production game-thread stall. The retained snapshot is 1,797,402 bytes; the two service selections are 4,818 bytes before outer envelopes. Independent service-query parity, five existing selection examples and the regional accrual/region/schedule query pass. The regional query is timed separately for 31 repetitions, excluding parsing and transport. Raw timing samples and descriptive percentile methodology are retained in the report.
 
 These are local descriptive elapsed timings, including host/GC noise. Differences from the historical run below cannot isolate the cost of any added getter: they are separate runs, not a controlled comparison. They establish neither a regression threshold nor large-city/FPS/worst-case acceptance. This run does not time live entity/tile requests, retained capture creation/paging or the world-view faction-panel scan; the copied fixture is paused in its city. Source hashes, actual observation timestamp, zero game exit code, restored copied-profile mod and unchanged copied save are recorded; no provider inference occurs.
 

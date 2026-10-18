@@ -39,6 +39,10 @@ public final class CollectionCostScenario {
                        ((Number)stockpile.get("failed_resources")).intValue()!=0 ||
                        ((Number)stockpile.get("scanned_resources")).intValue()!=((Number)stockpile.get("resource_count_total")).intValue())
                         throw new IllegalStateException("Stockpile profile contains unavailable/truncated/failed reads");
+                    Map<String,Object> worldOutput=(Map<String,Object>)((Map<String,Object>)((Map<String,Object>)domains.get("world")).get("data")).get("regional_output_bookkeeping");
+                    if(!"partial".equals(worldOutput.get("coverage")) || Boolean.TRUE.equals(worldOutput.get("truncated")) ||
+                       ((Number)worldOutput.get("failed_cells")).intValue()!=0 || ((Number)worldOutput.get("failed_resources")).intValue()!=0 ||
+                       encoded.length>16*1024*1024)throw new IllegalStateException("Regional output failures/truncation or oversized MCP source snapshot");
                     timings.add(Map.of("cache",sample[0]==0?"cold_mod_help_cache":"warm_mod_help_cache",
                         "collection_ns",collected-start,"encoding_utf8_ns",serialized-collected,"combined_ns",serialized-start,
                         "snapshot_bytes",encoded.length));
@@ -57,7 +61,8 @@ public final class CollectionCostScenario {
                             "shape",Map.of("scanned_rooms",rooms.get("scanned_rooms"),"service_room_rows",((List<?>)rooms.get("rooms")).size(),
                                 "service_policy_rows",((List<?>)policy.get("cohort_rules")).size(),"production_flow_rows",((List<?>)productionRooms.get("flows")).size(),
                                 "regional_rows",((List<?>)world.get("regions")).size(),"entity_prefix_rows",((List<?>)entities.get("items")).size(),
-                                "stockpile_resource_rows",((List<?>)stockpile.get("rows")).size(),"stockpile_scanned_resources",stockpile.get("scanned_resources")),
+                                "stockpile_resource_rows",((List<?>)stockpile.get("rows")).size(),"stockpile_scanned_resources",stockpile.get("scanned_resources"),
+                                "regional_output_rows",((List<?>)worldOutput.get("rows")).size(),"regional_output_schedules",((List<?>)worldOutput.get("schedules")).size()),
                             "java_version",System.getProperty("java.version"),"os",System.getProperty("os.name"),
                             "limits",List.of("Paused copied city only; no larger-city or worst-case/cap claim.",
                                 "Cold means this mod's reference cache only, not cold game/JVM/filesystem caches.",

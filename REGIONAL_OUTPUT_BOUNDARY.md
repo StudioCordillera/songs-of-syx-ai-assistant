@@ -1,6 +1,6 @@
 # Regional scheduled-output candidate boundary
 
-This is a reviewed candidate for expanding the world domain, **not an implemented MCP counter table**. The current player remains the world-faction-context build. [REGIONAL_OUTPUT_BOUNDARY_REVIEW.json](REGIONAL_OUTPUT_BOUNDARY_REVIEW.json) pins the licensed game/source pair, public declaration catalog, selected method fingerprints and a successful ordinary-mod compilation probe. [REGIONAL_OUTPUT_READER_VALIDATION.json](REGIONAL_OUTPUT_READER_VALIDATION.json) adds finite copied-game reader evidence. Neither changes source-verified members into separately documented stable official contracts.
+This records the original candidate review for the world domain. The subsequent typed production mapping and its separate DTO/MCP evidence are described in [REGIONAL_OUTPUTS.md](REGIONAL_OUTPUTS.md). The original reader report below keeps its earlier build scope. [REGIONAL_OUTPUT_BOUNDARY_REVIEW.json](REGIONAL_OUTPUT_BOUNDARY_REVIEW.json) pins the licensed game/source pair, public declaration catalog, selected method fingerprints and a successful ordinary-mod compilation probe. [REGIONAL_OUTPUT_READER_VALIDATION.json](REGIONAL_OUTPUT_READER_VALIDATION.json) adds finite copied-game reader evidence. Neither changes source-verified members into separately documented stable official contracts.
 
 ## Public stored-reader route
 
@@ -26,7 +26,7 @@ Test-only public setters temporarily place 0, 37 and `Integer.MAX_VALUE` in one 
 
 Read-and-array-allocation timing across 32 warm samples is median 0.132 ms, descriptive p95 0.474 ms and maximum 0.789 ms. The percentile uses sorted index floor(0.95 × (n−1)). These samples follow initial/control reads and are not cold-start measurements. They exclude DTO maps, encoding, disk, MCP, model latency and normal game rendering. They are not a full collector, large-world, FPS or worst-case acceptance test.
 
-Actual MCP selections verify the existing region/resource identity rows that a future table could join. **They do not verify MCP access to these unimplemented counters.** The runner reports a zero game exit code, restores its copied-profile mod, checks copied-save integrity and pins the exact published player JAR/source used for the probe. Existing player production code and both tested ZIPs remain unchanged.
+The candidate checkpoint verified existing region/resource identity rows through MCP. **It did not verify counter exposure.** Subsequent counter DTO/MCP checks have their own report in REGIONAL_OUTPUTS.md. The runner reports a zero game exit code, restores its copied-profile mod, checks copied-save integrity and pins the exact published player JAR/source used for the probe. That candidate-only checkpoint left production code and both tested ZIPs unchanged; the subsequent exposure has separate player evidence.
 
 Reproduce the static check:
 
@@ -45,6 +45,6 @@ Then run the finite candidate probe with the copied-save/profile setup in CONTRI
 
 The runner requires the matching passing static review, shares the machine-wide fixture lock, strips provider credentials and restores only its own copied mod. On this host, the command can be wrapped in `LIBGL_ALWAYS_SOFTWARE=1 xvfb-run -a -s '-screen 0 1280x960x24'`. No provider call is made.
 
-## Production gate still open
+## Subsequent production gate
 
-Implement an explicit typed regional-output table or fixed selective request with bounded region/resource/cell scans, atomic rows, null/unavailable behavior, failures/truncation diagnostics, scope/units/age definitions and existing resource/region references. Check campaign applicability in city/battle/setup, actual DTO and MCP counter parity, selected joins and complete collector/payload cost before promotion. Keep unsupported non-resource outputs, boost forecasts, private timestamps and actual shipment/arrival claims excluded. A finite native reader probe alone does not complete this gate or prove all variables/states/menus.
+The subsequent REGIONAL_OUTPUTS.md checkpoint implements a typed table with bounded region/resource/cell scans, atomic rows, null/unavailable behavior, failures/truncation diagnostics, scope/units/age definitions and existing resource/region references. Campaign applicability in city/battle/setup, actual DTO/MCP counter parity, selected joins and full collector/payload cost belong to the new checkpoint reports, not the earlier candidate probe. Keep unsupported non-resource outputs, boost forecasts, private timestamps and actual shipment/arrival claims excluded. A finite native reader probe alone does not complete this gate or prove all variables/states/menus.

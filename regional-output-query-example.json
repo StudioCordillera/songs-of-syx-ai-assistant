@@ -1,0 +1,18 @@
+{
+  "queries": [{
+    "source": {"domain": "world", "path": "/regional_output_bookkeeping/rows"},
+    "joins": [
+      {"source": {"domain": "world", "path": "/regions"}, "left_key": "/region_id", "right_key": "/id", "as": "region"},
+      {"source": {"domain": "world", "path": "/regional_output_bookkeeping/schedules"}, "left_key": "/resource_id", "right_key": "/resource_id", "as": "schedule"}
+    ],
+    "where": {"gt": [{"field": "/accrued_output_raw"}, 0]},
+    "select": {
+      "region_id": {"field": "/region_id"}, "region": {"field": "/region/name"},
+      "faction_id": {"field": "/region/faction_id"}, "resource": {"field": "/resource_id"},
+      "accrued_output": {"field": "/accrued_output_raw"},
+      "configured_days": {"field": "/schedule/days_until_configured_output"}, "reference_id": {"field": "/reference_id"}
+    },
+    "sort": [{"field": "/accrued_output", "direction": "desc"}], "limit": 5
+  }],
+  "include_ui_context": true
+}

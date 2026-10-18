@@ -68,6 +68,19 @@ def analyze(directory,manifest):
         parsing.append((end-start)/1e6)
         start=time.perf_counter_ns();observed=QueryEngine(parsed).execute(spec);end=time.perf_counter_ns()
         assert observed==result;query.append((end-start)/1e6)
+    regional_spec=json.loads((ROOT/'regional-output-query-example.json').read_text())
+    world=snapshot.domains['world'].data;book=world['regional_output_bookkeeping']
+    region_map={r['id']:r for r in world['regions']};schedule_map={r['resource_id']:r for r in book['schedules']}
+    ranked=sorted([r for r in book['rows'] if r['accrued_output_raw']>0],key=lambda r:-r['accrued_output_raw'])[:5]
+    expected=[{'region_id':r['region_id'],'region':region_map[r['region_id']]['name'],
+        'faction_id':region_map[r['region_id']]['faction_id'],'resource':r['resource_id'],
+        'accrued_output':r['accrued_output_raw'],'configured_days':schedule_map[r['resource_id']]['days_until_configured_output'],
+        'reference_id':r['reference_id']} for r in ranked]
+    regional_times=[]
+    for _ in range(31):
+        start=time.perf_counter_ns();selected=QueryEngine(snapshot).execute({'queries':regional_spec['queries']});end=time.perf_counter_ns()
+        assert selected[0]['rows']==expected
+        regional_times.append((end-start)/1e6)
     return {'passed':True,'measured_at':datetime.now(timezone.utc).isoformat(),
         'game_version':snapshot.game_version,'mod_jar_sha256':manifest['mod_jar_sha256'],
         'production_source_sha256':manifest['validation']['production_source_sha256'],
@@ -80,12 +93,14 @@ def analyze(directory,manifest):
             [('collection_ns','collection'),('encoding_utf8_ns','json_and_utf8_encoding'),('combined_ns','combined_fixture_work')]},
         'cold_native_ms':{label:round(samples[0][key]/1e6,3) for key,label in
             [('collection_ns','collection'),('encoding_utf8_ns','json_and_utf8_encoding'),('combined_ns','combined_fixture_work')]},
+        'regional_output_query_independent_parity':True,'regional_output_query_ms':distribution(regional_times),
+        'regional_output_rows':len(book['rows']),'regional_output_schedule_rows':len(book['schedules']),
         'snapshot_bytes':len(raw),'offline_parse_ms':distribution(parsing),'offline_two_service_queries_ms':distribution(query),
         'two_service_queries_independent_parity':True,'five_existing_query_examples':five_queries,
         'selected_two_service_results_bytes':len(json.dumps(result).encode()),
         'source_sha256':{n:sha(ROOT/n) for n in ['mod/tests/LiveSmoke.java','mod/tests/CollectionCostScenario.java',
             'dev/profile_collection_cost.py','dev/benchmark_selective_queries.py','selective-query-examples.json',
-            'service-query-example.json','service-policy-query-example.json']},
+            'service-query-example.json','service-policy-query-example.json','regional-output-query-example.json']},
         'inference_calls':0,
         'limits':fixture['limits']+['The fixture encodes on its callback thread to isolate elapsed cost. Production encoding runs in the export worker; combined_fixture_work is not a measured production game-thread stall.',
             'Local descriptive timings include scheduling/GC/host noise; not an FPS/SLA/worst-case guarantee.',
@@ -111,7 +126,7 @@ def copied_mod(home,save,jar,directory):
 
 
 def profile(args):
-    manifest=check();runtime=(ROOT/'runtime').resolve();save=args.save.resolve();home=runtime/'smoke-home'
+    manifest=check(ROOT,args.candidate_dir,args.validation);runtime=(ROOT/'runtime').resolve();save=args.save.resolve();home=runtime/'smoke-home'
     if home.is_symlink() or not home.is_dir() or not save.is_file() or not save.is_relative_to(runtime):
         raise ValueError('Use the existing isolated smoke-home and a copied save under runtime/')
     game=args.game_dir.resolve()
@@ -120,7 +135,7 @@ def profile(args):
         if sha(path)!=audit[key]:raise ValueError('Game/source differs from current public API audit')
     directory=Path(tempfile.mkdtemp(prefix='collection-cost-',dir=runtime));os.chmod(directory,0o700)
     jar=directory/'syx-ai-assistant.jar'
-    with zipfile.ZipFile(ROOT/'releases/latest-user-test.zip') as archive:jar.write_bytes(archive.read('mod/syx-ai-assistant/V71/script/syx-ai-assistant.jar'))
+    with zipfile.ZipFile((args.candidate_dir or ROOT/'releases')/'latest-user-test.zip') as archive:jar.write_bytes(archive.read('mod/syx-ai-assistant/V71/script/syx-ai-assistant.jar'))
     assert sha(jar)==manifest['mod_jar_sha256']
     env=native_environment(os.environ);env['PYTHONPATH']=str(ROOT)
     classes=directory/'classes';classes.mkdir()
@@ -160,6 +175,7 @@ def profile(args):
 if __name__=='__main__':
     p=argparse.ArgumentParser(description=__doc__)
     for name in ['game-dir','save','java','jdk-home']:p.add_argument('--'+name,type=Path,required=True)
+    p.add_argument('--candidate-dir',type=Path);p.add_argument('--validation',type=Path)
     from game_fixture_lock import exclusive_fixture
     args=p.parse_args()
     with exclusive_fixture():profile(args)

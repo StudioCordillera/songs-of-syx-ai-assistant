@@ -24,7 +24,8 @@ from run_player_chat_check import native_environment
 CASES={'tiles':('tiles','verify_tiles.py','tile-capture-validation.json'),
        'entities':('capture','verify_entity_captures.py','capture-validation.json'),
        'faction-ui':('factionUi','verify_faction_ui.py','faction-ui-validation.json'),
-       'regional-output':('regionalOutput','verify_regional_output_readers.py','regional-output-reader-validation.json')}
+       'regional-output':('regionalOutput','verify_regional_output_readers.py','regional-output-reader-validation.json'),
+       'regional-output-export':('regionalExport','verify_regional_output_export.py','regional-output-validation.json')}
 
 
 def sha(path):return hashlib.sha256(path.read_bytes()).hexdigest()
@@ -39,7 +40,7 @@ def run(args):
     audit=json.loads((ROOT/'api-audit.json').read_text())
     for key,path in [('game_jar_sha256',game/'SongsOfSyx.jar'),('source_archive_sha256',game/'info/SongsOfSyx-sources.jar')]:
         if sha(path)!=audit[key]:raise ValueError('Game/source differs from current public API audit')
-    if args.case=='regional-output':
+    if args.case in {'regional-output','regional-output-export'}:
         review=json.loads((ROOT/'REGIONAL_OUTPUT_BOUNDARY_REVIEW.json').read_text())
         if not review['passed'] or any(review[k]!=audit[k] for k in ('game_jar_sha256','source_archive_sha256')):
             raise ValueError('Regional-output candidate requires a passing paired static review')
@@ -76,7 +77,7 @@ def run(args):
             production_source_sha256=manifest['validation']['production_source_sha256'],
             python_source_sha256=manifest['validation']['python_source_sha256'],inference_calls=0)
         report['fixture_source_sha256']={n:sha(ROOT/n) for n in ['mod/tests/LiveSmoke.java','mod/tests/TileScenario.java',
-            'mod/tests/EntityScenario.java','mod/tests/SceneScenario.java','mod/tests/FactionUiScenario.java','mod/tests/RegionalOutputScenario.java','dev/'+verifier,'dev/run_read_fixture.py']}
+            'mod/tests/EntityScenario.java','mod/tests/SceneScenario.java','mod/tests/FactionUiScenario.java','mod/tests/RegionalOutputScenario.java','mod/tests/RegionalOutputExportScenario.java','dev/'+verifier,'dev/run_read_fixture.py']}
     finally:
         if process is not None and process.poll() is None:
             process.terminate()
@@ -85,7 +86,7 @@ def run(args):
         shutil.copy2(backup,target)
         if sha(target)!=sha(backup) or sha(save)!=save_before:
             raise RuntimeError('Copied mod restoration/save integrity check failed; no passing final report written')
-    if args.case=='regional-output':
+    if args.case in {'regional-output','regional-output-export'}:
         report['candidate_boundary_review_sha256']=sha(ROOT/'REGIONAL_OUTPUT_BOUNDARY_REVIEW.json')
     report.update(copied_profile_mod_restored=True,copied_save_unchanged=True)
     output=state/'read-validation.json';output.write_text(json.dumps(report,indent=2)+'\n')

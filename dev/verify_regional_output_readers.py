@@ -38,9 +38,9 @@ async def verify(directory):
                 assert observed['matched_total']==len(expected)
                 assert all(row['id'] in expected for row in observed['rows'])
                 # Independent complete identity comparison uses the same local exported DTO,
-                # not a claim that the unimplemented candidate counters pass MCP parity.
+                # not a substitute for the separate production counter MCP verifier.
                 assert {row['id'] for row in snapshot.domains[domain].data[path[1:]]}==expected
-    report={'passed':True,'stage':'Native candidate-reader probe; regional-output counters are not exposed by MCP',
+    report={'passed':True,'stage':'Native reader-only probe; production counter MCP parity is validated separately',
         'shape':shape,'configured_day_offset_checks':fixture['configured_day_offset_checks'],
         'controlled_values':fixture['controlled_values'],'unrelated_cells_unchanged_during_controls':True,
         'controlled_counter_restored':True,'repeated_matrix_unchanged':True,'matrix_sha256':fixture['matrix_sha256'],

@@ -1,10 +1,16 @@
 # Validation evidence
 
-## Current world-faction-context player checkpoint
+## Current regional-output player checkpoint
+
+REGIONAL_OUTPUT_VALIDATION.json pins full native DTO agreement for 8,526 campaign resource counters and 42 cyclic schedules in the copied world. Actual MCP checks cover field-meaning discovery, installed references, positive filtering/sorting, region/schedule joins, aggregates and same-observation UI context, with natural values, held 37/max-int controls and restoration. Source semantics and excluded mutations are in REGIONAL_OUTPUT_BOUNDARY_REVIEW.json; original candidate reader evidence retains its earlier source/JAR scope. Synthetic query tests retain observed zero, refuse unavailable counts and preserve cell/resource cap/failure qualifiers.
+
+USER_TEST_VALIDATION.json and PLAYER_CORE_VALIDATION.json pin the current player and finite scene/lifecycle groups. The compiler audit contains 375 public references, zero non-public references. CURRENT_COLLECTION_COST_VALIDATION.json separately measures the whole expanded collector and offline regional query on this build; the fixture is small/paused and does not prove large-city/world FPS, worst-case latency, cap/fault injection, natural seasonal rollover, ownership transfers or actual shipping/arrival.
+
+## World-faction-context player checkpoint — prior build
 
 WORLD_FACTION_CONTEXT_VALIDATION.json pins eleven copied-game phases through the actual MCP context/select tools: inactive city; closed world; list; first faction; diplomacy tab; another faction with retained tab; modal over detail; city with hidden retained panels; world return clearing panels; reopened detail; closed panels. Confirmed identity joins diplomacy rows in the same snapshot. Null detail paths are rejected rather than silently selecting a faction. Source/compiler boundaries are in UI_LIFECYCLE_BOUNDARY_REVIEW.json and WORLD_FACTION_CONTEXT.md. Coverage remains partial with a 1,000-faction scan cap and explicit error/truncation/ambiguity handling. No cap/fault injection, all-faction or full tab/menu acceptance is claimed.
 
-USER_TEST_VALIDATION.json and PLAYER_CORE_VALIDATION.json pin the current JAR/Python pair and finite native groups. The compiler inventory has 369 public references and zero non-public references. Historical reports below retain their own source/JAR hashes.
+The world-faction checkpoint recorded 236 Python tests, two Pro turns and seven native groups with 369 public references and zero non-public references. Its release/core reports remain in Git history; current USER_TEST/PLAYER_CORE files belong to the newer checkpoint above. The separate faction report retains its exact older source/JAR hashes.
 
 ## Retained-tile player checkpoint — prior build
 

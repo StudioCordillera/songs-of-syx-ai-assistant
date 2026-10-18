@@ -53,7 +53,8 @@ COLLECTION_DIAGNOSTIC_KEYS = frozenset({
     'cohorts_per_service_type', 'region_count_total', 'region_truncated', 'region_limit',
     'population_truncated', 'population_row_limit', 'population_failed_regions',
     'resource_limit', 'flow_row_limit', 'trade_type_count', 'trade_type_scan_limit',
-    'failed_resources',
+    'failed_resources', 'scanned_resources', 'resource_count_total', 'resource_truncated',
+    'scanned_regions', 'scanned_cells', 'cell_limit', 'cell_truncated', 'failed_cells',
 })
 
 

@@ -291,6 +291,60 @@ public final class StateCollector {
             "cohorts_per_service_type",cohortCount,
             "reason","Registered RoomServiceAccess types, including types without built rooms. Configured race/class permission only; individual rules for nobles, tourists and children can differ. Not actual access, demand, visits, reachability or a complete eligibility decision. No permission setter or access request is invoked.");
     }
+    /** Stored campaign resource-output accrual only; never refresh boosts or ship goods. */
+    private static Map<String,Object> regionalOutputBookkeeping() {
+        if(!world.WORLD.GEN().isDone)return object("coverage","unavailable","scope","campaign_world_regions",
+            "rows",null,"schedules",null,"reason","No completed campaign world; setup defaults are not regional output observations.");
+        List<Object> rows=new ArrayList<>(),schedules=new ArrayList<>(),failures=new ArrayList<>();
+        List<RESOURCE> resources=new ArrayList<>();
+        List<world.region.RDOutputs.RDResource> outputs=new ArrayList<>();
+        int scannedResources=0,failedResources=0,scannedRegions=0,scannedCells=0,failedCells=0;
+        boolean resourceTruncated=false,regionTruncated=false,cellTruncated=false;
+        for(RESOURCE resource:RESOURCES.ALL()) {
+            if(scannedResources>=1000){resourceTruncated=true;break;}scannedResources++;
+            try {
+                var tradable=init.trade.TR.get(resource);var output=world.region.RD.OUTPUT().get(tradable);
+                if(output.res!=tradable)throw new IllegalStateException("Resource output identity mismatch");
+                int days=output.daysUntilDailydelivery();
+                if(days<0)throw new IllegalStateException("Negative configured day offset");
+                schedules.add(object("resource_id",resource.key,"reference_id","resource:"+resource.key,
+                    "days_until_configured_output",days));resources.add(resource);outputs.add(output);
+            } catch(RuntimeException error) {
+                failedResources++;if(failures.size()<10)failures.add(object("resource_id",resource.key,"reason",error.getClass().getSimpleName()));
+            }
+        }
+        var active=world.WORLD.REGIONS().active();
+        scan:for(var region:active) {
+            if(scannedRegions>=1023){regionTruncated=true;break;}scannedRegions++;
+            for(int i=0;i<resources.size();i++) {
+                if(scannedCells>=10000){cellTruncated=true;break scan;}scannedCells++;
+                RESOURCE resource=resources.get(i);
+                try {
+                    int value=outputs.get(i).yearlyAccumilation.get(region);
+                    if(value<0)throw new IllegalStateException("Negative stored output counter");
+                    rows.add(object("region_id",region.index(),"resource_id",resource.key,"reference_id","resource:"+resource.key,
+                        "accrued_output_raw",value));
+                } catch(RuntimeException error) {
+                    failedCells++;if(failures.size()<10)failures.add(object("region_id",region.index(),
+                        "resource_id",resource.key,"reason",error.getClass().getSimpleName()));
+                }
+            }
+        }
+        return object("coverage","partial","scope","campaign_world_regions","rows",rows,"schedules",schedules,
+            "scanned_resources",scannedResources,"resource_count_total",RESOURCES.ALL().size(),"failed_resources",failedResources,
+            "resource_limit",1000,"resource_truncated",resourceTruncated,
+            "scanned_regions",scannedRegions,"region_count_total",active.size(),"region_limit",1023,"region_truncated",regionTruncated,
+            "scanned_cells",scannedCells,"cell_limit",10000,"row_limit",10000,"failed_cells",failedCells,"cell_truncated",cellTruncated,
+            "truncated",resourceTruncated || regionTruncated || cellTruncated,"failure_samples",failures,
+            "field_definitions",object(
+                "accrued_output_raw",object("definition","Stored resource-backed scheduled-output accrual (public yearlyAccumilation). Not inventory, annual delivered output, daily production or income. Ownership changes can reset it; exact age is not exposed.",
+                    "unit","raw accrued resource items","scope","campaign_world_regions",
+                    "source","RD.OUTPUT().get(TR.get(resource)).yearlyAccumilation.get(region); world/region/RDOutputs.java and updating/Shipper.java"),
+                "days_until_configured_output",object("definition","Cyclic configured output-day offset, including a growable seasonal offset when present. Not actual departure/arrival ETA, shipping permission or guaranteed delivery.",
+                    "unit","game days in the configured yearly cycle","scope","loaded_resource_output_schedule",
+                    "source","world.region.RDOutputs.RDResource.daysUntilDailydelivery()")),
+            "reason","Bounded resource-backed campaign accruals, including zero values. Whole failed cells/resource bindings are omitted; missing rows are unknown. Non-resource tradables, MONEY, boosts/forecasts, shipping actions and private update timers are excluded.");
+    }
     /** Campaign regional counters, detached and bounded; never forces regional updates. */
     private static Map<String,Object> worldData() {
         List<Object> regions=new ArrayList<>(),population=new ArrayList<>(),failures=new ArrayList<>();
@@ -316,11 +370,15 @@ public final class StateCollector {
             }
             regions.add(row);
         }
-        return object("width",world.WORLD.TWIDTH(),"height",world.WORLD.THEIGHT(),"regions",regions,
+        Map<String,Object> output;
+        try {output=regionalOutputBookkeeping();}
+        catch(RuntimeException error){output=object("coverage","unavailable","scope","campaign_world_regions","rows",null,"schedules",null,"reason",error.getClass().getSimpleName());}
+        return object("width",world.WORLD.TWIDTH(),"height",world.WORLD.THEIGHT(),"regions",regions,"regional_output_bookkeeping",output,
             "population_by_race",population,"region_count_total",active.size(),"region_truncated",regionTruncated,
             "region_limit",1023,"population_truncated",populationTruncated,"population_row_limit",10000,
             "race_scan_limit",64,"population_failed_regions",failed,"population_failure_samples",failures,
             "field_definitions",object(
+                "regional_output_bookkeeping",output.get("field_definitions"),
                 "population_total",object("definition","Stored regional population counter, not the instantiated settlement citizen count or a forecast.",
                     "unit","regional inhabitants","scope","campaign_world_regions","source","world.region.RD.RACES().population -> world/region/RData.java:get(Region)",
                     "availability","Null when demographic reads fail or are skipped by a reported cap; not zero."),
@@ -517,7 +575,7 @@ public final class StateCollector {
             return object("factions",rows);
         }, "Current diplomatic stances; not treaties, relationship factors or hidden intentions.");
         run(domains, "world", StateCollector::worldData,
-            "Bounded campaign region identity, ownership, capital/area and stored regional population counters; not a complete economy, settlement census, growth forecast or UI selection.");
+            "Bounded campaign region identity, ownership, population and stored resource-output accrual/schedules; not a complete economy, settlement census, growth/shipping forecast or UI selection.");
         run(domains, "events", () -> {
             List<Object> definitions=new ArrayList<>();
             for(game.events.EVENTS.EventResource e: GAME.events().all()) definitions.add(e.key);

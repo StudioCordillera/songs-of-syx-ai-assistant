@@ -2,16 +2,16 @@
 
 The production reference audit proves only the public members used by our adapter. To identify remaining mapping work, `catalog_api.py` separately scans the entire shipped source archive and resolves its named types and public declared members against the installed game JAR with the Java compiler. It never starts the game, executes its classes, or uses reflection. This is development tooling, outside the packaged mod and MCP server.
 
-The current scan covers 2,443 source files, resolves every cataloged named top-level/member source type, and finds 2,052 public types with public enclosing types and 17,442 public declared member signatures. All 369 production reference IDs occur in this catalog. Matching game JAR/source archive hashes establish that the discovery run and production audit used the same reference pair. They do not attest the installed/running mod.
+The current scan covers 2,443 source files, resolves every cataloged named top-level/member source type, and finds 2,052 public types with public enclosing types and 17,442 public declared member signatures. All 375 production reference IDs occur in this catalog. Matching game JAR/source archive hashes establish that the discovery run and production audit used the same reference pair. They do not attest the installed/running mod.
 
 | Root package | Public declared member candidates | Production reference IDs |
 | --- | ---: | ---: |
 | settlement | 6,606 | 135 |
 | snake2d | 2,817 | 38 |
 | game | 2,295 | 63 |
-| init | 1,726 | 33 |
+| init | 1,726 | 34 |
 | util | 1,664 | 24 |
-| world | 1,212 | 25 |
+| world | 1,212 | 30 |
 | view | 1,006 | 51 |
 | launcher | 69 | 0 |
 | script | 28 | 0 |
@@ -66,3 +66,6 @@ The producer-degradation checkpoint pairs all 359 public production references a
 
 
 The world-faction-context checkpoint pairs all 369 production references with this same retained declaration catalog. UI_LIFECYCLE_BOUNDARY_REVIEW.json reviews a compiling public faction-panel route and named inaccessible/mutating alternatives. Declaration presence alone still does not establish live reachability or observation safety.
+
+
+The regional-output checkpoint pairs all 375 production references with this retained catalog. It maps resource-backed stored accruals and cyclic configured schedules through explicit typed rows; REGIONAL_OUTPUTS.md distinguishes these from inventory, delivered totals, forecasts and ETA. Candidate and production/cost reports keep separate JAR/source scopes.

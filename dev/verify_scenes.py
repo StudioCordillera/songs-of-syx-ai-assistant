@@ -154,10 +154,18 @@ def verify(directory:Path,timeout:float=260,on_demand:bool=False,tiles:bool=Fals
                     assert tile['data']['rows'][0]['terrain']['available']
                     assert tile['data']['next_cursor'] is None
                     tile_available=True
+            if name not in {'world_generation','terrain_generated'}:
+                output=regional.data['regional_output_bookkeeping']
+                assert output['coverage']=='partial' and output['scope']=='campaign_world_regions'
+                assert not output['truncated'] and output['failed_cells']==output['failed_resources']==0
+                assert len(output['rows'])==output['scanned_cells']<=output['cell_limit']==10000
+                assert len(output['schedules'])==output['scanned_resources']<=output['resource_limit']==1000
+                assert output['scanned_regions']<=output['region_limit']==1023
             checks[name]={'passed':True,'view':context['active_view'],'scene_kind':scene['settlement_scene_kind'],
                           'on_demand_read_available':read_available,'tile_read_available':tile_available,
                           'city_trade_pipeline_coverage':city_trade.data['settlement_pipeline']['coverage'] if city_trade.data else 'unavailable',
                           'world_population_coverage':regional.coverage,
+                          'regional_output_coverage':regional.data['regional_output_bookkeeping']['coverage'] if regional.data else 'unavailable',
                           'service_room_coverage':services.data['room_data']['coverage'] if services.data else 'unavailable',
                           'service_policy_coverage':services.data['access_policy']['coverage'] if services.data else 'unavailable',
                           'production_coverage':production.coverage,
