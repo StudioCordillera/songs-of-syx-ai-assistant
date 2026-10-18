@@ -1,0 +1,49 @@
+{
+  "reviewed_at": "2026-10-18T14:25:14Z",
+  "review_method": "Read canonical pages, verify original developer badges/post numbers and surrounding replies; author short original summaries. Quoted copies are not independent corroboration.",
+  "sources": [
+    {
+      "id": "developer-warehouse-fetch-routing-2023",
+      "canonical_url": "https://steamcommunity.com/app/1162750/discussions/2/3759977302534570731/",
+      "authority": "developer",
+      "author": "Gamatron",
+      "developer_badge_verified": true,
+      "original_reply_numbers": [
+        1,
+        9
+      ],
+      "visible_reply_dates": [
+        "2023-01-24",
+        "2023-01-25"
+      ],
+      "date_precision": "Visible dates only; timezone not established.",
+      "game_versions": [],
+      "body_sha256": "7f2df58f743ed122b47690dbb67ec478771d80236fec15d97652553ab5a22b4e",
+      "version_notes_sha256": "401410f667e3ff12c7fff7d6ad82c42a9b6e9f0d4c9013f1de31bc5dbe5a0731",
+      "review_limits": "Developer replies #1 and #9 dated 24 and 25 January 2023. Speaker developer badges and surrounding replies checked on the canonical page. Exact build, current UI controls and applicability to 0.71.44 are unknown."
+    },
+    {
+      "id": "developer-service-fulfilment-display-2022",
+      "canonical_url": "https://steamcommunity.com/app/1162750/discussions/0/3196993316890360111/",
+      "authority": "developer",
+      "author": "Gamatron",
+      "developer_badge_verified": true,
+      "original_reply_numbers": [
+        1
+      ],
+      "visible_reply_dates": [
+        "2022-01-16"
+      ],
+      "date_precision": "Visible dates only; timezone not established.",
+      "game_versions": [],
+      "body_sha256": "8027720c7957947b3f738746e3ed8c6b6b9fb99c5f9050e54114140fd26a87bd",
+      "version_notes_sha256": "564cdefb0fe551c22cf01d9a1ae2b9236411cabd232cb281c960ce519fbaf494",
+      "review_limits": "Developer answer #1 dated 16 January 2022, marked as the answer by the thread author. Speaker badge and original reply checked separately from its quoted copy. Exact build and applicability to 0.71.44 are unknown. The counter/permission caution is this project's evidence boundary, not a quoted current developer claim."
+    }
+  ],
+  "limits": [
+    "Historical source review, not current game-mechanic, public API or exact-patch validation.",
+    "No full forum/guide mirrors, formulas or current control guarantees. Prior source-review dates remain unchanged.",
+    "Web text extraction may use cached page content; review time does not establish continuous live availability or that a historical reply describes the current patch."
+  ]
+}

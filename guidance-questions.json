@@ -462,5 +462,140 @@
       "verify current room help"
     ],
     "authority": "official"
+  },
+  {
+    "case_id": "warehouse-historical-routing",
+    "query": "How should a collecting warehouse fetch from a source warehouse?",
+    "expected_id": "developer-warehouse-fetch-routing-2023",
+    "expected_url": "https://steamcommunity.com/app/1162750/discussions/2/3759977302534570731/",
+    "expected_authority": "developer",
+    "expected_author": "Gamatron",
+    "expected_compatibility": "unknown",
+    "reviewed_advice": "Historical developer routing advice can suggest checking collector fetch settings and source reach; verify current controls.",
+    "required_passages": [
+      "Fetch is enabled on the collector",
+      "radius must reach the source",
+      "source should not fetch"
+    ],
+    "required_caveats": [
+      "historical troubleshooting",
+      "not a guarantee of current control names"
+    ]
+  },
+  {
+    "case_id": "warehouse-developer-filter",
+    "query": "What did the developer clarify about warehouse fetch radius and source routing?",
+    "expected_id": "developer-warehouse-fetch-routing-2023",
+    "expected_url": "https://steamcommunity.com/app/1162750/discussions/2/3759977302534570731/",
+    "expected_authority": "developer",
+    "expected_author": "Gamatron",
+    "expected_compatibility": "unknown",
+    "reviewed_advice": "Attribute this historical clarification to the developer rather than treating community claims as their words.",
+    "required_passages": [
+      "separating a collecting warehouse from a source warehouse"
+    ],
+    "required_caveats": [
+      "applicability to 0.71.44 are unknown"
+    ],
+    "authority": "developer"
+  },
+  {
+    "case_id": "warehouse-percentage-feature-not-proven",
+    "query": "Does old warehouse shipping advice establish a percentage-triggered shipping feature?",
+    "expected_id": "developer-warehouse-fetch-routing-2023",
+    "expected_url": "https://steamcommunity.com/app/1162750/discussions/2/3759977302534570731/",
+    "expected_authority": "developer",
+    "expected_author": "Gamatron",
+    "expected_compatibility": "unknown",
+    "reviewed_advice": "Do not infer that a current automatic percentage-triggered shipping feature exists from the old discussion.",
+    "required_passages": [
+      "does not establish a present-day percentage-triggered shipping feature"
+    ],
+    "required_caveats": [
+      "historical troubleshooting"
+    ]
+  },
+  {
+    "case_id": "service-display-distinction",
+    "query": "Why do service fulfilment and room availability displays differ?",
+    "expected_id": "developer-service-fulfilment-display-2022",
+    "expected_url": "https://steamcommunity.com/app/1162750/discussions/0/3196993316890360111/",
+    "expected_authority": "developer",
+    "expected_author": "Gamatron",
+    "expected_compatibility": "unknown",
+    "reviewed_advice": "Distinguish historical population fulfilment from room availability; verify current installed help before interpreting colours.",
+    "required_passages": [
+      "distinguishes the room availability display from the population fulfilment display"
+    ],
+    "required_caveats": [
+      "not a verified current formula or current colour legend"
+    ]
+  },
+  {
+    "case_id": "service-counters-not-satisfaction",
+    "query": "Can raw room service-point counters and cohort permissions measure citizen satisfaction?",
+    "expected_id": "developer-service-fulfilment-display-2022",
+    "expected_url": "https://steamcommunity.com/app/1162750/discussions/0/3196993316890360111/",
+    "expected_authority": "developer",
+    "expected_author": "Gamatron",
+    "expected_compatibility": "unknown",
+    "reviewed_advice": "Do not convert raw service points or configured flags into measured citizen satisfaction.",
+    "required_passages": [
+      "does not justify treating raw room service-point counters or configured cohort permissions as measured citizen satisfaction"
+    ],
+    "required_caveats": [
+      "not a verified current formula"
+    ]
+  },
+  {
+    "case_id": "service-display-future-version",
+    "query": "Explain service fulfilment access quality proximity and room availability.",
+    "expected_id": "developer-service-fulfilment-display-2022",
+    "expected_url": "https://steamcommunity.com/app/1162750/discussions/0/3196993316890360111/",
+    "expected_authority": "developer",
+    "expected_author": "Gamatron",
+    "expected_compatibility": "unknown",
+    "reviewed_advice": "A historical source with no established version remains unknown even for a supplied later version.",
+    "required_passages": [
+      "service usage, quality and proximity as separate inputs"
+    ],
+    "required_caveats": [
+      "applicability to 0.71.44 are unknown"
+    ],
+    "game_version": "0.72.0"
+  },
+  {
+    "case_id": "service-display-family-version",
+    "query": "Explain service fulfilment access quality proximity and room availability.",
+    "expected_id": "developer-service-fulfilment-display-2022",
+    "expected_url": "https://steamcommunity.com/app/1162750/discussions/0/3196993316890360111/",
+    "expected_authority": "developer",
+    "expected_author": "Gamatron",
+    "expected_compatibility": "unknown",
+    "reviewed_advice": "Supplying a V71 family version must not upgrade undated-build historical evidence to a match.",
+    "required_passages": [
+      "service usage, quality and proximity as separate inputs"
+    ],
+    "required_caveats": [
+      "not a verified current formula"
+    ],
+    "game_version": "0.71"
+  },
+  {
+    "case_id": "service-display-developer-filter",
+    "query": "What did the developer explain about service fulfilment quality proximity?",
+    "expected_id": "developer-service-fulfilment-display-2022",
+    "expected_url": "https://steamcommunity.com/app/1162750/discussions/0/3196993316890360111/",
+    "expected_authority": "developer",
+    "expected_author": "Gamatron",
+    "expected_compatibility": "unknown",
+    "reviewed_advice": "Retrieve the developer historical answer with its author and caveat intact.",
+    "required_passages": [
+      "potential maximum from its current service contribution"
+    ],
+    "required_caveats": [
+      "current colour legend"
+    ],
+    "authority": "developer"
   }
 ]

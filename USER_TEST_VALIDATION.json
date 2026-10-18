@@ -28,7 +28,7 @@
   },
   "python_source_sha256": {
     "syx_mcp.py": "e0d596a394865af6bdd6a2e6fce04e14e36d60281e93ab18e0cc6c54dea92a34",
-    "syx_knowledge.py": "8ba92826d9a9b27099b29d26c50b054a172c6d10ca755ee7f70d538a4573d17a",
+    "syx_knowledge.py": "f5d7dd6d387ad0fb8f2b024a3bd599ad1cec28f2906dfae27d9d2fdf56e4de7e",
     "syx_query.py": "039795c9c0e1a4f167ff7bb98afd5955c52814d4fcf40705d0c59cdf06b684b4",
     "syx_api_support.py": "7d961cffdc09d46ae87ae220725cca6519588f77015cacde2514e79cbc68c8f7",
     "syx_api_manifest.py": "206021fa5cc2fd6db53662e1440b5655ca47cc53d6d4002edaf5d09e48d273f4",
@@ -46,13 +46,13 @@
     "Copied city; native own-widget text/click fixture, not physical keyboard or every screen size.",
     "No complete game-state/all-menu claim. Raw read-only tool evidence remains in the private local history.",
     "Linux user-test bundle; game and Python dependencies must be installed separately.",
-    "Actual cached-entity prefix cap checked separately in ENTITY_PREFIX_VALIDATION.json; synthetic service cap/failure flags are not game collector fault injection. Earlier collection/selection timing report retains its older Python hashes."
+    "Thirteen authored summaries; historical source additions remain compatibility-unknown. Prior core/scene reports retain their exact hashes and older knowledge module."
   ],
   "game_exit_code": 0,
-  "validated_at": "2026-10-18T14:22:11.686860+00:00",
+  "validated_at": "2026-10-18T14:29:18.646753+00:00",
   "game_version": "0.71.44",
   "game_jar_sha256": "fe0137c05408e5ee9e31f06fc44fe37a5d4372d9c985b280f0852d1347c0224b",
-  "python_tests_passed": 166,
+  "python_tests_passed": 167,
   "public_production_members": 353,
   "non_public_production_members": 0,
   "prior_unchanged_chat_focus_evidence": {
@@ -88,6 +88,12 @@
     },
     "scope": "Prior no-inference focus/wrapping fixture; ChatPanel class bytes verified identical in current candidate. Full current-build Pro geometry/send checks passed separately."
   },
+  "native_geometry_checks": {
+    "composer_width_pixels": 792,
+    "usable_characters": 240,
+    "composer_ends_before_hint": true,
+    "developer_controls_hidden": true
+  },
   "distribution_checks": {
     "fresh_dependency_environment_verified_this_checkpoint": true,
     "extracted_launcher_check": true,
@@ -97,27 +103,28 @@
     "dependency_install_retry_after_failure_unit_test": true,
     "dependency_setup_scope": "Fresh extracted candidate environment installed pinned requirements; --check, coordinator startup and isolated installer passed. No extra inference."
   },
-  "core_check_groups_passed": [
-    "services",
-    "trade",
-    "world",
-    "production",
-    "scenes",
-    "context",
-    "extended"
-  ],
-  "core_validation_report_sha256": "ddf0b7797b09370abf38b42af9aba963bea0c66fa3588a6638059ff25999e518",
-  "service_counter_report_sha256": "3f19d3998907de4759cb962742b3881a66c68eb8afd8a05909fcf8efb5b690d5",
-  "capability_discovery_report_sha256": "a824631e739d4282befce37a23252f48b95b778a3e840f60bb34f0e79f4c797c",
-  "guidance_validation_report_sha256": "86c1b38a30a3ef6b6e8cf26a88a314db65a4d82076f68589c015f3c31b042b0b",
-  "collection_diagnostics_report_sha256": "262397cbe49682a1a6d114ce2d7690a80dd94f6fb6d9ebac7dae77831d4763ec",
-  "entity_prefix_report_sha256": "94cf16bebd3a917952030770d63524e69f393516eec384d0d1aecc7beb679fdf",
-  "nested_unavailable_city_data_actual_mcp_guard": true,
-  "native_geometry_checks": {
-    "composer_width_pixels": 792,
-    "usable_characters": 240,
-    "composer_ends_before_hint": true,
-    "developer_controls_hidden": true
+  "guidance_validation_report_sha256": "d5b5c10e961c94d7149581b67584c63f953ee8f727c918d73bdd4a465f3f197c",
+  "historical_reference_validation_report_sha256": "41a718d00724c8140e59a3b5639f3ddd036e3d614ddad88a066c50b875a06c7c",
+  "prior_core_evidence": {
+    "report_sha256": "ddf0b7797b09370abf38b42af9aba963bea0c66fa3588a6638059ff25999e518",
+    "groups": [
+      "services",
+      "trade",
+      "world",
+      "production",
+      "scenes",
+      "context",
+      "extended"
+    ],
+    "same_java_jar": true,
+    "current_python_differences": [
+      "syx_knowledge.py"
+    ],
+    "scope": "Prior seven-group copied-save run. Only authored knowledge seed records changed; current unit/MCP/Pro checks are separate. Not a current full-suite run."
+  },
+  "prior_entity_prefix_evidence": {
+    "report_sha256": "94cf16bebd3a917952030770d63524e69f393516eec384d0d1aecc7beb679fdf",
+    "scope": "Earlier actual entity cap run; game collector and query engine unchanged. No fresh cap/fault/performance claim."
   },
   "test_fixture_sha256": {
     "mod/tests/ChatLiveScenario.java": "f60c366287fec1dea0e1fecdcc52074ee650a6db8e9fb86c628f94c8c3a9920e",

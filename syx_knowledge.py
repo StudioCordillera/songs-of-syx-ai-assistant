@@ -147,6 +147,35 @@ for topic,title,text,section in [
     })
 
 
+# Original historical developer summaries; compatibility is deliberately unknown.
+SEEDS.extend([
+    {
+        "id": "developer-warehouse-fetch-routing-2023",
+        "title": "Warehouse shipping — historical developer fetch routing clarification",
+        "url": "https://steamcommunity.com/app/1162750/discussions/2/3759977302534570731/",
+        "kind": "forum",
+        "authority": "developer",
+        "author": "Gamatron",
+        "game_versions": [],
+        "retrieved_at": "2026-10-18T14:25:14Z",
+        "version_notes": "Developer replies #1 and #9 dated 24 and 25 January 2023. Speaker developer badges and surrounding replies checked on the canonical page. Exact build, current UI controls and applicability to 0.71.44 are unknown.",
+        "text": "The 2023 developer replies describe separating a collecting warehouse from a source warehouse. Fetch is enabled on the collector, whose radius must reach the source; the source should not fetch. An earlier reply also mentions an empty-to command on the source. This is historical troubleshooting, not a guarantee of current control names, optimal layouts or delivery throughput. Inspect current installed room help and routing settings before applying the advice; the discussion does not establish a present-day percentage-triggered shipping feature."
+    },
+    {
+        "id": "developer-service-fulfilment-display-2022",
+        "title": "Service fulfilment, access, quality and proximity — historical developer display explanation",
+        "url": "https://steamcommunity.com/app/1162750/discussions/0/3196993316890360111/",
+        "kind": "forum",
+        "authority": "developer",
+        "author": "Gamatron",
+        "game_versions": [],
+        "retrieved_at": "2026-10-18T14:25:14Z",
+        "version_notes": "Developer answer #1 dated 16 January 2022, marked as the answer by the thread author. Speaker badge and original reply checked separately from its quoted copy. Exact build and applicability to 0.71.44 are unknown. The counter/permission caution is this project's evidence boundary, not a quoted current developer claim.",
+        "text": "A 2022 developer reply distinguishes a fulfilment panel's potential maximum from its current service contribution. It describes service usage, quality and proximity as separate inputs, and distinguishes the room availability display from the population fulfilment display. This is historical UI evidence, not a verified current formula or current colour legend. It does not justify treating raw room service-point counters or configured cohort permissions as measured citizen satisfaction. Verify current installed help before quantitative advice."
+    }
+])
+
+
 def install_seed(directory: Path):
     from syx_mcp import Source, load_json
     directory.mkdir(parents=True, exist_ok=True)
