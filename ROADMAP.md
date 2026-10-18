@@ -1,35 +1,62 @@
 # Roadmap
 
-Current boundary: an in-process SCRIPT mod, typed public-API observations, bounded snapshot selections and cited reference retrieval. No private reflection or native/OS UI automation. See API_BOUNDARY.md.
+## Current focus
 
-1. Expand explicit data mappings with primary-source provenance, meanings, units and per-version coverage. Leave inaccessible data unavailable.
-2. Extend the established partial UI context and evidence catalog. Selected subject/view/known-overlay/room-blueprint reads, named individual statistics and bounded exposed popup/section content are implemented. Exact selected room instances, tooltip text, management tabs and panel ordering require appropriate public APIs.
-3. Establish a documented unload-to-menu lifecycle hook or keep the freshness limitation explicit; test menus/transitions and large settlements.
-4. Extend reviewed official/developer reference coverage and version-aware search.
-5. Implement the shared in-game chat client, multiple separate chats, durable game-session/chat logs and provider-independent conversation loop described in IN_GAME_CHAT.md. Every supported subscription/API choice must use this interface. Prioritize a usable first-class DeepSeek API path alongside the shared UI/history; external coding-client profiles are development bridges, not completed product support. Follow PROVIDERS.md for official authentication, entitlements and provider-specific tool-call behavior.
+Return to the core mod objectives. Further provider integration, account binding and sign-in work are deferred while the game-data and guidance foundations advance. Existing chat implementations remain available experimentally; they are not evidence that the core mod is complete.
 
-Full game state, all-menu coverage and a fully documented stable mod API are not currently available.
+The game-facing boundary remains an in-process SCRIPT mod using explicit public APIs verified against the installed game and shipped source. Distinguish documented script contracts from source-verified public members. Do not use reflection, private fields, process-memory inspection, screenshots, native input or arbitrary method invocation to fill gaps.
 
-On-demand entity requests are implemented in 0.7.0: fixed public fields and named individual stats, bounded filters/cursors, update-thread evaluation and request/session/tick provenance. The isolated over-1,000-entity fixture passes. Next data-access work is broader typed non-entity schemas, attribute meanings/units and large-city performance. Legacy cursor paging is mutable across responses, and no complete game-state schema is claimed.
+## 1. Selective access to game state — first priority
 
-0.8.0 checks both editor activations and deployment-to-retreat restoration, and exposes bounded public popup/section content. Remaining UI work requires further typed public mappings and runtime evidence; private panel enumeration, exact room/tab/tooltip readers and lifecycle/result callbacks still need appropriate public APIs. At that release, stable multi-page data selection was separate unfinished work.
+Goal: let an assistant discover available variables and request a complex, bounded selection quickly, without receiving the entire state on each question.
 
-0.9.0 exposes scene division status and latest hover-consumption flags, and checks running battles plus controlled victory/defeat restoration through public game UI dispatch. Source/private result content remains unavailable; no action API is shipped. At that release, further work included stable bounded selection across pages, broader typed variable/relationship mappings, unit/mechanics evidence, full world/editor workflows and naturally occurring campaign transitions.
+Implemented: 18 partial typed domains; snapshot filters, projections, joins, arithmetic and aggregates; on-demand person/stat reads; retained entity captures for stable paging; finite terrain/floor/room/mineral/path reads. Results identify their observation, session, coverage and scope. The compiler audit currently inventories 276 public production member references. The offline public-member catalog is a discovery backlog, not a count of supported variables.
 
-Offline declaration discovery now covers the shipped source archive: 2,052 public types / 17,442 public declared member candidates, with all 246 production reference IDs present. See API_DISCOVERY.md and API_DISCOVERY.json. This creates a systematic mapping backlog, not a count of game variables or an official getter contract; mutation/rendering/utility APIs are deliberately not auto-exposed.
+Next work:
 
-0.10.0 adds four typed person relationships (workplace, profession, stored home coordinates and scene division), with source-backed meanings and copied-game validation of present/absent assignments. At that release, full state coverage, stable multi-page observations and all-menu/lifecycle coverage remained unfinished.
+- Inventory the fields already exported against the public-member catalog. Prioritize missing settlement resource flows, workforce/production relationships, research and world-region data that help answer concrete player questions.
+- Extend explicit typed mappings with source anchors, meanings, units, null/unavailable behavior, relationships and scene applicability. Unknown units and mechanics must remain explicit.
+- Keep reads bounded and on the game thread. Establish consistent retained spatial selections where cross-page consistency is needed; validate costs in a large settlement.
+- For each added mapping, check direct getter agreement in an isolated copied game, update the compiler/source audit and add an agent-facing query example.
 
-0.11.0 implements stable paging of bounded retained entity observations and public after-update sampling through UI pauses. Broader non-entity selection, worker synchronization, complete variable coverage and lifecycle/menu gaps remain objectives. Provider acceptance gates now explicitly include Claude subscription, Claude API and DeepSeek API; local Claude MCP health passes, while authenticated model/tool round-trips and in-game selection remain pending.
+Acceptance: the assistant can discover each supported field and retrieve only the requested rows/attributes, with truthful truncation, consistency and provenance. Unsupported fields remain discoverable as coverage gaps rather than invented values. Full game-state coverage is not yet established.
 
-0.12.0 adds bounded spatial selection of public terrain/floor/room/mineral/path data, with structured field meanings and explicit shared-room/component limits. Remaining map work includes broader typed fields, consistent retained spatial batches and performance validation. Full world-map/variable schemas, UI-selection/lifecycle contracts and comprehensive menu/combat coverage remain objectives.
+## 2. UI context and lifecycle accuracy
 
-The shared in-game client/session-history requirement was made explicit on 2026-10-17 after the user reported that DeepSeek API access lacked a usable client. It is a required feature for every provider, not an optional post-integration enhancement. No chat UI, transcript persistence or authenticated in-game provider flow is implemented yet.
+Goal: answer questions about the current view and selection, and remain truthful through pauses, menus, reloads and scene changes.
 
-### 2026-10-17 chat implementation checkpoint
+Implemented: active views, known overlay flags, selected person and individual stats, open room blueprints, bounded public popup/section content and save-session rotation. Public after-update sampling continues through UI pauses. Historical observation builds have isolated city/world/editor/battle and transition evidence; see the exact build scopes in VALIDATION.md and validation-evidence.json.
 
-Shared SQLite history, bounded read-only MCP conversation loop, native DeepSeek streaming/tool transport, file coordinator and opt-in public-widget panel are implemented experimentally. See [implementation and open gates](CHAT_BACKEND.md). Subscription adapters, authenticated end-to-end replies, in-game connection setup and broad menu/focus/lifecycle validation remain required.
+Next work:
 
-## Authenticated shared-chat checkpoint
+- Establish appropriate public getters for additional selected objects and management context before exposing them.
+- Investigate a documented unload-to-menu lifecycle hook. Until one is established, preserve the explicit freshness limitation: return-to-menu may leave the previous observation apparently current for up to 30 seconds, then current state becomes unknown.
+- Revalidate supported scenes and transitions whenever relevant collectors change. Test unsupported or ambiguous contexts as unavailable; do not infer a topmost panel from unordered overlay flags.
 
-DeepSeek API and Claude subscription now pass separate two-turn flows through the shared in-game panel with selective MCP queries and cited guides. Local rename/evidence/export/delete and reload attachment are tested. Claude API has an explicit SDK route and missing-key/no-plan-fallback tests; actual API-key inference remains pending. See [current evidence](CHAT_VALIDATION.json) and [execution/credential limits](CHAT_BACKEND.md). OpenAI sign-in, fully in-game account setup, physical keyboard/multiline behavior and exhaustive scene coverage remain required.
+Acceptance: a context-dependent answer uses the same observation as its data query, identifies ambiguity and refuses unavailable/stale context. Exact selected room instances, complete tooltip/tab/panel hierarchy, standalone main-menu identity and exhaustive all-menu coverage remain unestablished.
+
+## 3. Trustworthy, cited reference access
+
+Goal: give the assistant easy access to official, developer and high-quality community material relevant to the user's question and game version.
+
+Implemented: installed game-help retrieval and a reviewed starter corpus of five original external-source summaries with direct URLs, authority and version caveats. This is a small foundation, not comprehensive guide coverage.
+
+Next work:
+
+- Expand reviewed coverage around food/service problems, production/workforce, storage/logistics, research, trade and population needs.
+- Verify primary sources and retain author, URL, retrieval date, applicable versions and explicit uncertainty. Distinguish official/developer statements from community recommendations.
+- Evaluate retrieval using representative player questions and verify that returned passages actually support the proposed advice. Keep external guidance separate from live-state evidence.
+
+Acceptance: advice cites retrieved supporting material, explains version mismatches and separates observed facts from recommendations. No fabricated citations or unsupported mechanics claims.
+
+## 4. Shared in-game chat — retained requirement
+
+The user must have an in-game chat client with separate chats and durable session/chat logs, regardless of the eventual supported provider. DeepSeek API and Claude subscription have passed bounded two-turn in-game flows with selective reads and guide citations. Local rename/evidence/export/delete and reload attachment also have isolated evidence. See CHAT_BACKEND.md and CHAT_VALIDATION.json for build-specific limits.
+
+Remaining client work includes broader menu/focus/lifecycle checks, physical keyboard and multiline usability, model selection and connection setup. Further provider/account expansion is deferred by the current focus; OpenAI access and Claude API inference are not claimed complete.
+
+## Evidence and completion
+
+API_BOUNDARY.md and API_ESTABLISHMENT.md explain the API boundary and observation baseline. API_DISCOVERY.md/JSON describe public declaration discovery. QUERY_GUIDE.md describes selection and consistency limits. VALIDATION.md and validation-evidence.json retain historical observation evidence; CHAT_VALIDATION.json records the experimental shared-chat evidence. Passing an older build's fixture does not validate a newly changed build.
+
+The next implementation milestone is a source-backed data-coverage inventory and the next useful typed non-entity mapping, with getter agreement, a bounded query example and updated audit evidence. The mod is not finished: complete variables, complete menus and comprehensive reference coverage remain open objectives.
