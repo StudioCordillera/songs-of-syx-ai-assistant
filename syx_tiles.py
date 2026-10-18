@@ -46,6 +46,19 @@ class TileSelection(StrictModel):
         return text
 
 
+class TileCaptureSelection(TileSelection):
+    """A whole bounded rectangle must fit a single existing tile callback."""
+    cursor: Annotated[StrictInt,Field(ge=0,le=0)] = 0
+    limit: Annotated[StrictInt,Field(ge=1,le=100)] = Field(default=100,alias='max_rows')
+
+    @model_validator(mode='after')
+    def whole_rectangle_fits_scan(self):
+        x1,y1,x2,y2=self.tile_bounds
+        if (x2-x1)*(y2-y1)>self.scan_limit:
+            raise ValueError('Capture rectangle must fit scan_limit <=4096 in one update; narrow tile_bounds')
+        return self
+
+
 def query_tiles(advisor,spec,*,timeout=8):
     selection=TileSelection.model_validate(spec)
     result=_read_entities(advisor,selection,timeout=timeout,channel='tile')

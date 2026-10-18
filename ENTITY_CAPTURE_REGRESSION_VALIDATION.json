@@ -1,0 +1,63 @@
+{
+  "passed": true,
+  "game_version": "0.71.44",
+  "captured_entities": 1395,
+  "pages": 70,
+  "original_capture_tick": 2493743,
+  "later_game_tick": 2493781,
+  "all_pages_same_tick_and_time": true,
+  "new_entity_excluded_from_old_capture": true,
+  "new_capture_sees_new_entity": true,
+  "captured_ui_context_preserved": true,
+  "concurrent_mcp_pages": true,
+  "row_and_scan_bounds_rejected": true,
+  "mcp_text_cap_checked": true,
+  "ui_paused_nonzero_speed_refresh": true,
+  "observer_phase": "GAME.addAfterUpdate",
+  "limits": [
+    "One bounded game update-thread observation, not a global worker-thread transaction.",
+    "Copied city with temporary fixture citizens; not a large-city performance benchmark.",
+    "This run does not exhaust lifecycle/battle/menu states; unit tests cover token expiry/eviction/session invalidation."
+  ],
+  "validated_at": "2026-10-18T20:55:23.228584+00:00",
+  "game_exit_code": 0,
+  "mod_jar_sha256": "692087724f2806bad557862c6423e79df99219c631e45d9b28e8956d8b816058",
+  "game_jar_sha256": "fe0137c05408e5ee9e31f06fc44fe37a5d4372d9c985b280f0852d1347c0224b",
+  "production_source_sha256": {
+    "syx/assistant/AssistantScript.java": "079b048597c373f88d8179d4f8e8fec576a82c5b13ad6c95fe6e672ba3722e3a",
+    "syx/assistant/ChatPanel.java": "3138d3e863ccb36ad5b6b37a7e1f3486dd2d8c1dc43ab469b26af714548d8437",
+    "syx/assistant/EntityReadRequest.java": "e2d13aee21f399e8718382d5b43d5a6c85e5d78d2708d8105b9f1ecfe730edf8",
+    "syx/assistant/JsonWriter.java": "c525eb60d3224cab83ed3fd6b8594ec8652211f00bd947e873e1482f919e81dc",
+    "syx/assistant/StateCollector.java": "073b965746f839b99432d062d157439a4f8c0911385627dd3aef14767fb5d258",
+    "syx/assistant/TileReadRequest.java": "1a192cde61a7e1bdefa170390c00b17c74573b9c41de71700ebea466411ad3c5",
+    "syx/assistant/UiContentCollector.java": "c0d20c7f9f2734a0bb625427875f06bfcd07edb20611248b39b6e8f480ef5a48",
+    "syx/assistant/UiContextCollector.java": "439604436fc98c478ade47682775ee55edb1688d76078e0602f7ab78db187157"
+  },
+  "python_source_sha256": {
+    "syx_mcp.py": "c296b07705c0e24a1eb1d6cf3c0b6562daf1b1ef9273a854c2d4f1fbbdef604a",
+    "syx_knowledge.py": "f5d7dd6d387ad0fb8f2b024a3bd599ad1cec28f2906dfae27d9d2fdf56e4de7e",
+    "syx_query.py": "039795c9c0e1a4f167ff7bb98afd5955c52814d4fcf40705d0c59cdf06b684b4",
+    "syx_api_support.py": "ffcc8f9fad51de63d0edebe8982d0564cd78454f04f765fedf58d01d768b666f",
+    "syx_api_manifest.py": "7f6c0bc48d7424aa44cdbd23ce54ebfc4d37ddd8a6e7cd802312cf328447d584",
+    "syx_live.py": "8238cdfc021c8d43a02e9c9b304fe262f701ebd52a492c17ea9ce3e308e37885",
+    "syx_capture.py": "506f18a5b55ea66cd38ac239bd7398fde597420e0363327629308098f23f82a9",
+    "syx_tiles.py": "43024d10af917442d4d994f316db18fbd7cab388196682c471891135553c843f",
+    "syx_chat_store.py": "7344b35476096b680e0cf85958f97596b3c9cfe843072202f30e357b97dedbe5",
+    "syx_deepseek.py": "d58e21dbcfdeb1ef0f411dfbb4c0267234bdc5cc185e00d300821725ca1885e3",
+    "syx_chat.py": "2ebb914f8e517b742ddf851f8901c96b6f383c2112691e4f05031d7231c37e62",
+    "syx_chat_service.py": "8e311cc51bf686d70d466f7a31863b9cbf1905231066316eb492f2c7bd074b6b",
+    "syx_claude.py": "3a850a645907f27b1a9cb15c3c5244b96b2da97d5d0dc37f5cd7d6f708cf92a8",
+    "syx_claude_worker.py": "ab6638b2c4ef3a4a1548fde1c0739a48f4d47e468494dd7444019f3f330dea38"
+  },
+  "inference_calls": 0,
+  "fixture_source_sha256": {
+    "mod/tests/LiveSmoke.java": "5f01ef6f2346b0ccea9da104be1fe328663c07c47ee782302f42caecb7bcce3f",
+    "mod/tests/TileScenario.java": "cd9b03885f7e7e985191c3f45eb3c7a209dc3c670169aac339d13f20e2571f1e",
+    "mod/tests/EntityScenario.java": "df9b359332c391857857d93ed5d38e36f2029b3a066c3bcb540e74f3eda69f7d",
+    "mod/tests/SceneScenario.java": "ae623566198d96c324ae911d14c9100da0ab73a6e7c49f1c877c675ec60b6a55",
+    "dev/verify_entity_captures.py": "4801c518f869854c5a9f6e42cb070222809827fc1fde207822f359224ccc6eee",
+    "dev/run_read_fixture.py": "26c624d24445cb0aff264a4f3eca89d3fc22985e669869693979aa5cfa429d16"
+  },
+  "copied_profile_mod_restored": true,
+  "copied_save_unchanged": true
+}

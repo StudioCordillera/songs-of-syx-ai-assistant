@@ -14,7 +14,7 @@ The runnable player checkpoint now requires a source-matching `releases/latest-u
 
 Goal: let an assistant discover available variables and request a complex, bounded selection quickly, without receiving the entire state on each question.
 
-Implemented: 18 partial typed domains; snapshot filters, projections, joins, arithmetic and aggregates; on-demand person/stat reads with recorded-workplace filtering; retained entity captures for stable paging; finite terrain/floor/room/mineral/path reads; stored producer-room degradation. Results identify their observation, session, coverage and scope. The compiler audit currently inventories 359 public production member references. The offline public-member catalog is a discovery backlog, not a count of supported variables.
+Implemented: 18 partial typed domains; snapshot filters, projections, joins, arithmetic and aggregates; on-demand person/stat reads with recorded-workplace filtering; retained entity captures for stable paging; finite terrain/floor/room/mineral/path reads plus small retained tile selections; stored producer-room degradation. Results identify their observation, session, coverage and scope. The compiler audit currently inventories 359 public production member references. The offline public-member catalog is a discovery backlog, not a count of supported variables.
 
 Next work:
 
@@ -117,3 +117,6 @@ The stockpile reader follow-up checks 42 resources in one copied warehouse: 420 
 
 
 The city stockpile-bookkeeping checkpoint exposes five bounded global counters per resource, with separate stored/incoming reservations and explicit zero-capacity meaning. Atomic rows, a 1000-resource/row cap, failure samples and collection diagnostics preserve incomplete-selection truth. Actual copied-city getter/DTO/MCP reservation joins/counts and unavailable battle/setup checks are recorded separately from the earlier candidate-only reader report. The exact simple Pro player passes 206 tests, two Pro turns, seven core groups, eight supported discovery probes and 37 guidance cases before promotion. Per-room exposure, cap/fault injection, larger-city cost, retained spatial selections, broader references and missing UI APIs remain open.
+
+
+The retained-tile checkpoint adds two read-only MCP tools around one existing public tile callback: complete rectangle <=4096 scanned tiles, <=100 matches and <=64 KiB, with stable encoded paging and no incomplete-selection retention. The copied-city test checks direct getter rows, ten pages after time/view changes, an empty 4096-scan selection, row-cap refusal and actual session invalidation. A separate 1395-entity regression protects shared retention behavior. The exact Pro candidate passes 221 tests, two Pro turns, seven core groups, nine supported discovery probes and 37 guidance cases before promotion. Larger captures, native predicate/byte/fault cases, additional field/scene matrices, large-city costs, broader references and missing UI APIs remain open.

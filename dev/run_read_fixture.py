@@ -1,0 +1,93 @@
+"""Run fixed tile/entity read regressions against an exact published/candidate player.
+
+Uses copied save/profile, shared fixture lock, public in-process fixtures and private
+logs. No provider request, native input, screenshot or normal game/profile changes.
+"""
+import argparse
+from datetime import datetime,timezone
+import hashlib
+import json
+import os
+from pathlib import Path
+import shutil
+import subprocess
+import sys
+import tempfile
+import zipfile
+
+ROOT=Path(__file__).resolve().parent.parent
+sys.path[:0]=[str(ROOT),str(ROOT/'dev')]
+from check_user_test_release import check
+from game_fixture_lock import exclusive_fixture
+from run_player_chat_check import native_environment
+
+CASES={'tiles':('tiles','verify_tiles.py','tile-capture-validation.json'),
+       'entities':('capture','verify_entity_captures.py','capture-validation.json')}
+
+
+def sha(path):return hashlib.sha256(path.read_bytes()).hexdigest()
+
+
+def run(args):
+    manifest=check(ROOT,args.candidate_dir,args.validation)
+    runtime=(ROOT/'runtime').resolve();home=runtime/'smoke-home';save=args.save.resolve()
+    if home.is_symlink() or not home.is_dir() or not save.is_file() or not save.is_relative_to(runtime):
+        raise ValueError('Use isolated smoke-home and a copied save under runtime/')
+    game=args.game_dir.resolve();jdk=args.jdk_home.resolve();java=args.java.resolve()
+    audit=json.loads((ROOT/'api-audit.json').read_text())
+    for key,path in [('game_jar_sha256',game/'SongsOfSyx.jar'),('source_archive_sha256',game/'info/SongsOfSyx-sources.jar')]:
+        if sha(path)!=audit[key]:raise ValueError('Game/source differs from current public API audit')
+    state=Path(tempfile.mkdtemp(prefix='read-'+args.case+'-',dir=runtime));os.chmod(state,0o700)
+    jar=state/'syx-ai-assistant.jar'
+    with zipfile.ZipFile((args.candidate_dir or ROOT/'releases')/'latest-user-test.zip') as z:
+        jar.write_bytes(z.read('mod/syx-ai-assistant/V71/script/syx-ai-assistant.jar'))
+    assert sha(jar)==manifest['mod_jar_sha256']
+    classes=state/'classes';classes.mkdir()
+    env=native_environment(os.environ);env['PYTHONPATH']=str(ROOT)
+    subprocess.run(['java','-Djava.home='+str(jdk),'-m','jdk.compiler/com.sun.tools.javac.Main',
+        '--release','16','-encoding','UTF-8','-cp',str(game/'SongsOfSyx.jar')+os.pathsep+str(jar),'-d',str(classes),
+        *map(str,(ROOT/'mod/tests').glob('*.java'))],env=env,check=True)
+    target=home/'.local/share/songsofsyx/mods/syx-ai-assistant/V71/script/syx-ai-assistant.jar'
+    if target.is_symlink() or not target.is_file() or not target.resolve().is_relative_to(home.resolve()):
+        raise ValueError('Copied-profile mod JAR must be regular and stay inside smoke-home')
+    backup=state/'prior-mod.jar';shutil.copy2(target,backup);save_before=sha(save)
+    flag,verifier,report_name=CASES[args.case]
+    cp=os.pathsep.join(map(str,[game/'SongsOfSyx.jar',game/'base/script/000_Tutorial.jar',game/'base/script/001_Tutorial.jar',jar,classes]))
+    command=[str(java),'-Xmx4g','-Duser.home='+str(home),'-Dsyx.assistant.stateDir='+str(state),
+        '-Dsyx.smoke.'+flag+'=true','-cp',cp,'LiveSmoke',str(save)]
+    process=None
+    try:
+        shutil.copy2(jar,target)
+        subprocess.run([*command[:-2],'-Dsyx.smoke.validateOnly=true',*command[-2:]],cwd=game,env=env,check=True)
+        with (state/'game.log').open('w') as game_log,(state/'verifier.log').open('w') as verify_log:
+            process=subprocess.Popen(command,cwd=game,env=env,stdout=game_log,stderr=subprocess.STDOUT)
+            subprocess.run([sys.executable,str(ROOT/'dev'/verifier),'--state-dir',str(state)],cwd=ROOT,env=env,
+                stdout=verify_log,stderr=subprocess.STDOUT,check=True,timeout=330)
+            process.wait(timeout=30);assert process.returncode==0
+        report=json.loads((state/report_name).read_text());assert report['passed']
+        report.update(validated_at=datetime.now(timezone.utc).isoformat(),game_exit_code=process.returncode,
+            mod_jar_sha256=sha(jar),game_jar_sha256=audit['game_jar_sha256'],
+            production_source_sha256=manifest['validation']['production_source_sha256'],
+            python_source_sha256=manifest['validation']['python_source_sha256'],inference_calls=0)
+        report['fixture_source_sha256']={n:sha(ROOT/n) for n in ['mod/tests/LiveSmoke.java','mod/tests/TileScenario.java',
+            'mod/tests/EntityScenario.java','mod/tests/SceneScenario.java','dev/'+verifier,'dev/run_read_fixture.py']}
+    finally:
+        if process is not None and process.poll() is None:
+            process.terminate()
+            try:process.wait(timeout=15)
+            except subprocess.TimeoutExpired:process.kill();process.wait()
+        shutil.copy2(backup,target)
+        if sha(target)!=sha(backup) or sha(save)!=save_before:
+            raise RuntimeError('Copied mod restoration/save integrity check failed; no passing final report written')
+    report.update(copied_profile_mod_restored=True,copied_save_unchanged=True)
+    output=state/'read-validation.json';output.write_text(json.dumps(report,indent=2)+'\n')
+    print('Read fixture passed:',output)
+
+
+if __name__=='__main__':
+    p=argparse.ArgumentParser(description=__doc__)
+    p.add_argument('--case',choices=CASES,required=True)
+    for name in ('game-dir','jdk-home','java','save'):p.add_argument('--'+name,type=Path,required=True)
+    p.add_argument('--candidate-dir',type=Path);p.add_argument('--validation',type=Path)
+    args=p.parse_args()
+    with exclusive_fixture():run(args)

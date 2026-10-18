@@ -49,12 +49,33 @@ public final class TileScenario {
             for(int y=y1;y<y2;y++)for(int x=x1;x<x2;x++)
                 if(terrain.equals(SETT.TERRAIN().get(x,y).key()) && SETT.ROOMS().map.get(x,y)!=null)
                     matches.add(Arrays.asList(x,y));
+            int cx=Math.max(0,Math.min(anchor[0]-5,SETT.TWIDTH-10));
+            int cy=Math.max(0,Math.min(anchor[1]-5,SETT.THEIGHT-10));
+            List<Object> captureRows=new ArrayList<>();
+            for(int y=cy;y<cy+10;y++)for(int x=cx;x<cx+10;x++) {
+                var t=SETT.TERRAIN().get(x,y);Room r=SETT.ROOMS().map.get(x,y);
+                captureRows.add(object("tile_x",x,"tile_y",y,
+                    "terrain",object("available",true,"data",object("key",t.key(),"name",t.name().toString(),
+                        "roof_flag",t.roofIs(),"massive_wall_flag",t.isMassiveWall())),
+                    "room",object("available",true,"data",r==null?null:object("map_record_id",r.index(),
+                        "instance_room_id",r instanceof RoomInstance?r.index():null,"blueprint_id",r.blueprint().key,
+                        "name",r.name(x,y).toString(),"anchor_tile_x",r.mX(x,y),"anchor_tile_y",r.mY(x,y),"area_tiles",r.area(x,y)))));
+            }
             Files.writeString(output.resolve("tile-fixture.json"),JsonWriter.encode(object("points",points,
+                "capture_rectangle",Arrays.asList(cx,cy,cx+10,cy+10),"capture_rows",captureRows,
                 "rectangle",Arrays.asList(x1,y1,x2,y2),"terrain_filter",terrain,"matching_coordinates",matches,
                 "width",SETT.TWIDTH,"height",SETT.THEIGHT)));
-            long started=System.currentTimeMillis();boolean[] advanced={false};
+            long started=System.currentTimeMillis();boolean[] advanced={false},worldAdvance={false},cityRestore={false};
             GAME.addAfterUpdate(()->{
                 if(advanced[0])return;
+                try {
+                    if(!worldAdvance[0] && Files.exists(output.resolve("tile-capture-advance.request"))) {
+                        worldAdvance[0]=true;VIEW.world().activate();GAME.SPEED.speedSet(1);
+                    }
+                    if(!cityRestore[0] && Files.exists(output.resolve("tile-capture-city.request"))) {
+                        cityRestore[0]=true;GAME.SPEED.speedSet(0);VIEW.s().activate();
+                    }
+                }catch(Exception error){throw new IllegalStateException(error);}
                 if(Files.exists(output.resolve("tile-verifier.done"))) {
                     advanced[0]=true;SceneScenario.install(output,save);return;
                 }

@@ -1,9 +1,9 @@
 {
   "passed": true,
-  "evaluated_at": "2026-10-18T19:43:43.244797+00:00",
+  "evaluated_at": "2026-10-18T21:04:39.861424+00:00",
   "stage": "Production global stockpile bookkeeping getter/DTO/MCP parity; per-room readers remain fixture-only.",
   "game_version": "0.71.44",
-  "mod_jar_sha256": "feec3d0abea69df3833214af330fba2f4edbf560dd46853e98574e8cc9ea28ae",
+  "mod_jar_sha256": "692087724f2806bad557862c6423e79df99219c631e45d9b28e8956d8b816058",
   "production_source_sha256": {
     "syx/assistant/AssistantScript.java": "079b048597c373f88d8179d4f8e8fec576a82c5b13ad6c95fe6e672ba3722e3a",
     "syx/assistant/ChatPanel.java": "3138d3e863ccb36ad5b6b37a7e1f3486dd2d8c1dc43ab469b26af714548d8437",
@@ -15,23 +15,23 @@
     "syx/assistant/UiContextCollector.java": "439604436fc98c478ade47682775ee55edb1688d76078e0602f7ab78db187157"
   },
   "python_source_sha256": {
-    "syx_mcp.py": "e0d596a394865af6bdd6a2e6fce04e14e36d60281e93ab18e0cc6c54dea92a34",
+    "syx_mcp.py": "c296b07705c0e24a1eb1d6cf3c0b6562daf1b1ef9273a854c2d4f1fbbdef604a",
     "syx_knowledge.py": "f5d7dd6d387ad0fb8f2b024a3bd599ad1cec28f2906dfae27d9d2fdf56e4de7e",
     "syx_query.py": "039795c9c0e1a4f167ff7bb98afd5955c52814d4fcf40705d0c59cdf06b684b4",
-    "syx_api_support.py": "681d860651bdc4f6e4c4135cc38004c1d58dc125f856ecaa74e4f384ded3bbf0",
+    "syx_api_support.py": "ffcc8f9fad51de63d0edebe8982d0564cd78454f04f765fedf58d01d768b666f",
     "syx_api_manifest.py": "7f6c0bc48d7424aa44cdbd23ce54ebfc4d37ddd8a6e7cd802312cf328447d584",
     "syx_live.py": "8238cdfc021c8d43a02e9c9b304fe262f701ebd52a492c17ea9ce3e308e37885",
-    "syx_capture.py": "fb27ec6c9278992d668bb54c85b34f17c625329a8d6f409df7fba1e3e56bcc55",
-    "syx_tiles.py": "66d47fba905f9ab1ca5c13c60c314b5c4542fe09a36e74320495351e263e8493",
+    "syx_capture.py": "506f18a5b55ea66cd38ac239bd7398fde597420e0363327629308098f23f82a9",
+    "syx_tiles.py": "43024d10af917442d4d994f316db18fbd7cab388196682c471891135553c843f",
     "syx_chat_store.py": "7344b35476096b680e0cf85958f97596b3c9cfe843072202f30e357b97dedbe5",
     "syx_deepseek.py": "d58e21dbcfdeb1ef0f411dfbb4c0267234bdc5cc185e00d300821725ca1885e3",
-    "syx_chat.py": "42af11ba1c03bb54f21549b6b24d456079fdc0a76948a22f263cdf5d50f423f1",
+    "syx_chat.py": "2ebb914f8e517b742ddf851f8901c96b6f383c2112691e4f05031d7231c37e62",
     "syx_chat_service.py": "8e311cc51bf686d70d466f7a31863b9cbf1905231066316eb492f2c7bd074b6b",
     "syx_claude.py": "3a850a645907f27b1a9cb15c3c5244b96b2da97d5d0dc37f5cd7d6f708cf92a8",
     "syx_claude_worker.py": "ab6638b2c4ef3a4a1548fde1c0739a48f4d47e468494dd7444019f3f330dea38"
   },
-  "observed_at": "2026-10-18T19:43:42.221333+00:00",
-  "private_observation_sha256": "1662234a78426aa5ef5fe0494c9933d2c22aed4a709235f952de216972364e93",
+  "observed_at": "2026-10-18T21:04:38.688491+00:00",
+  "private_observation_sha256": "2730d96f08e0c6d07f4c6b4e215fad006da3ed2fa696a770e3ed214cc65aa151",
   "private_getter_fixture_sha256": "b8f995861abf245970d9bb0a1bddd2cd6a5bd41ddc4ad37770e9b4c5908343c6",
   "native_checks": {
     "resource_count": 42,

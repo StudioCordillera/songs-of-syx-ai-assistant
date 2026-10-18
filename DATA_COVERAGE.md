@@ -64,3 +64,8 @@ The workplace-filter checkpoint selects assigned humanoids through the existing 
 ## City stockpile reservation bookkeeping
 
 `resources /stockpile_bookkeeping/rows` adds five bounded global counters per resource: assigned crates, stored items, assigned item capacity, reserved stored items and reserved incoming capacity. It is city-only, not per-room or ground/in-transit coverage. Zero capacity is retained without a fullness default; failures/truncation qualify missing rows. RESOURCE.owned keeps its broader scope. See [field meanings, query and validation](STOCKPILE_BOOKKEEPING.md). The earlier stockpile reader report is a pre-mapping checkpoint, not current release evidence.
+
+
+## Retained spatial selections
+
+Small tile selections can now be retained in one callback through `capture_live_tiles`, then paged with `read_tile_capture`. Rectangle area <=4096, max_rows <=100 and payload <=64 KiB; incomplete/predicate/byte failures retain nothing. This improves cross-page consistency for that finite selection, not full-map/all-variable coverage or UI-selected-room identity. [TILE_CAPTURES.md](TILE_CAPTURES.md) records original-context/token/lifecycle limits and city-only value-parity evidence.

@@ -29,6 +29,7 @@ def scope(path):
                 'DEGRADATION_VALIDATION.json','DEGRADATION_POSITIVE_VALIDATION.json','GUIDANCE_VALIDATION.json',
                 'CAPABILITY_DISCOVERY_VALIDATION.json'}:
         return 'Current linked player/feature evidence; inspect exact source/JAR hashes and case scope'
+    if name in {'TILE_CAPTURE_VALIDATION.json','ENTITY_CAPTURE_REGRESSION_VALIDATION.json'}:return 'Current retained-read native evidence; inspect bounded selection and source/JAR scope'
     if name=='STOCKPILE_BOOKKEEPING_VALIDATION.json':return 'Current global stockpile DTO/MCP evidence; per-room arrays are fixture-only'
     if name=='STOCKPILE_READER_VALIDATION.json':return 'Candidate native-reader checks and existing aggregate MCP parity; additional production fields pending'
     if name=='COLLABORATION_VALIDATION.json':return 'Historical collaboration/dev-doc checkpoint; inspect pinned hashes, separate from player evidence'

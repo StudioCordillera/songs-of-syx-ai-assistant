@@ -1,5 +1,6 @@
 """Actual MCP spatial selections checked against independent public-getter fixture expectations."""
 import argparse
+import hashlib
 import asyncio
 import json
 import os
@@ -88,6 +89,69 @@ async def verify(directory):
                 session.call_tool('query_live_tiles',{'spec':{'tile_bounds':[x,y,x+1,y+1]}}),
                 session.call_tool('query_live_entities',{'spec':{'fields':['id'],'limit':1}}))
             assert not tile_result.is_error and not entity_result.is_error
+            async def tool(name,args,error=None):
+                response=await session.call_tool(name,args)
+                text=next(c.text for c in response.content if c.type=='text')
+                if error:
+                    assert response.is_error and error.lower() in text.lower(),text
+                    return
+                assert not response.is_error and len(text.encode())<=65536,text
+                return json.loads(text)
+            help_result=await tool('game_query_help',{})
+            assert help_result['retained_tiles']['create_tool']=='capture_live_tiles'
+            spec={'tile_bounds':fixture['capture_rectangle'],'fields':['terrain','room'],'max_rows':100}
+            made=await tool('capture_live_tiles',{'spec':spec});cap=made['capture'];token=cap['capture_id']
+            assert cap['row_count']==100 and cap['scanned_tiles']==100 and cap['selection_complete']
+            assert cap['capture_kind']=='tile' and 'rows' not in made
+            await tool('capture_live_tiles',{'spec':{'tile_bounds':[0,0,11,10],'fields':['terrain'],'max_rows':100}},error='Incomplete tile capture')
+            empty_capture=await tool('capture_live_tiles',{'spec':{'tile_bounds':[0,0,64,64],
+                'fields':['terrain'],'terrain_id':'syx-fixture-unknown-terrain'}})
+            assert empty_capture['capture']['row_count']==0 and empty_capture['capture']['scanned_tiles']==4096
+            empty_page=await tool('read_tile_capture',{'capture_id':empty_capture['capture']['capture_id']})
+            assert empty_page['rows']==[] and empty_page['next_offset'] is None
+            await tool('read_entity_capture',{'capture_id':token},error='missing')
+            first=await tool('read_tile_capture',{'capture_id':token,'limit':11,'include_ui_context':True})
+            assert first['rows']==fixture['capture_rows'][:11]
+            assert first['captured_ui_context']['active_view']=='settlement'
+            (directory/'tile-capture-advance.request').write_text('test-only public view/speed change\n')
+            began=time.monotonic()
+            while time.monotonic()-began<30:
+                current=advisor.snapshot()
+                if current.tick>cap['tick'] and current.scene['active_view']=='world':break
+                await asyncio.sleep(.2)
+            else:raise AssertionError('Copied tile scene did not advance/change view')
+            wire=(directory/'tile-request.txt').read_bytes();captured=[];offset=0;retained_pages=0
+            while True:
+                page=await tool('read_tile_capture',{'capture_id':token,'offset':offset,'limit':11,'include_ui_context':True})
+                assert page['capture']['tick']==cap['tick'] and page['capture']['captured_at']==cap['captured_at']
+                assert page['capture']['request_id']==cap['request_id'] and page['captured_ui_context']==first['captured_ui_context']
+                assert page['current_state']['scene']['active_view']=='world'
+                captured.extend(page['rows']);retained_pages+=1;offset=page['next_offset']
+                if offset is None:break
+            assert captured==fixture['capture_rows']
+            left,right=await asyncio.gather(*[tool('read_tile_capture',{'capture_id':token,'limit':11}) for _ in range(2)])
+            assert left['rows']==right['rows']==first['rows']
+            assert (directory/'tile-request.txt').read_bytes()==wire
+            (directory/'tile-capture-city.request').write_text('test-only public city/pause restore\n')
+            began=time.monotonic()
+            while time.monotonic()-began<20:
+                if advisor.snapshot().scene['active_view']=='settlement':break
+                await asyncio.sleep(.2)
+            else:raise AssertionError('Copied tile city was not restored')
+            fresh=await tool('capture_live_tiles',{'spec':{'tile_bounds':[x,y,x+1,y+1],'fields':['terrain']}})
+            tile_capture_report={'passed':True,'game_version':snapshot.game_version,'retained_rows':len(captured),
+                'retained_pages':retained_pages,'direct_public_getter_row_parity':True,'original_request_tick_time_scene_and_ui_preserved':True,
+                'active_simulation_and_view_change':True,'paging_did_not_write_game_request_mailbox':True,
+                'complete_empty_selection_scanned_tiles':4096,'incomplete_row_cap_rejected':True,'concurrent_pages':True,
+                'wrong_kind_token_rejected':True,'help_discoverable':True,'inference_calls':0,
+                'controlled_fixture_actions':['VIEW.world().activate()','VIEW.s().activate()','GAME.SPEED.speedSet(...)'],
+                'source_sha256':{name:hashlib.sha256((root/name).read_bytes()).hexdigest() for name in
+                    ['syx_capture.py','syx_tiles.py','syx_mcp.py','mod/tests/TileScenario.java','dev/verify_tiles.py']},
+                'limits':['Copied city; at most 4096 scanned tiles, 100 matches and 64 KiB. No full-map/large-city latency or all-field/all-scene capture acceptance.',
+                    'Field getter failures remain explicit unknowns; synthetic tests separately cover predicate-error, byte, expiry and eviction failures.',
+                    'No global worker transaction, UI-selected room, route/construction or complete game-state claim.',
+                    'Only the copied fixture changes view/speed. Production capture/read tools remain read-only and never pause or control the game.']}
+            print('PASS retained 100-tile public getter parity, ten pages after simulation/view change, empty 4096-tile capture and incomplete-row refusal',flush=True)
             report={'passed':True,'game_version':'0.71.44','point_cases':len(fixture['points']),
                 'case_labels':[v['case'] for v in fixture['points']], 'pages':pages,'matching_tiles':len(rows),
                 'field_parity':True,'null_presence_distinguished':True,'combined_filters':True,
@@ -98,8 +162,18 @@ async def verify(directory):
                     'Room map record IDs can be shared; no UI-selected room, construction suitability, particular-agent route or yield forecast established.']}
             (directory/'tile-validation.json').write_text(json.dumps(report,indent=2)+'\n')
             (directory/'tile-verifier.done').write_text('passed\n')
-    # The fixture advances into the existing public scene scenario after tile checks finish.
-    return await asyncio.to_thread(verify_scenes,directory,220,True,True)
+            scenes=asyncio.create_task(asyncio.to_thread(verify_scenes,directory,220,True,True))
+            began=time.monotonic()
+            while time.monotonic()-began<110:
+                if advisor.snapshot().session_id!=fresh['capture']['session_id']:break
+                await asyncio.sleep(.2)
+            else:raise AssertionError('No copied-game session rotation before retained-token expiry')
+            await tool('read_tile_capture',{'capture_id':fresh['capture']['capture_id']},error='session/version')
+            tile_capture_report['actual_session_rotation_invalidates_token']=True
+            await scenes
+            (directory/'tile-capture-validation.json').write_text(json.dumps(tile_capture_report,indent=2)+'\n')
+            return tile_capture_report
+    # The fixture advances through public scene tests while the original MCP token store stays alive.
 
 
 if __name__=='__main__':

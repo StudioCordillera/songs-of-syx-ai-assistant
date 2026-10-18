@@ -1,4 +1,4 @@
-"""Retain bounded, encoded entity observations; paging never rereads game objects."""
+"""Retain bounded, encoded entity/tile observations; paging never rereads game objects."""
 from collections import OrderedDict
 from datetime import datetime, timezone
 import json
@@ -61,15 +61,18 @@ class EntityCaptures:
         ids = [row.get('id') for row in rows]
         if any(type(entity_id) is not int or not -(2**31) <= entity_id < 2**31 for entity_id in ids) or len(set(ids)) != len(ids):
             raise ValueError('Capture lacks unique integer entity identities')
+        return self._retain(payload,selection,PAYLOAD_CAP,'2 MiB','read_entity_capture')
+
+    def _retain(self,payload,selection,payload_cap,cap_label,read_tool):
         payload['selection'] = selection.model_dump(mode='json', by_alias=True)
         raw = encoded(payload)
-        if len(raw) > PAYLOAD_CAP:
-            raise ValueError('Capture exceeds 2 MiB; select fewer fields, stats or entities')
+        if len(raw) > payload_cap:
+            raise ValueError('Capture exceeds '+cap_label+'; narrow selection')
         current = self._current(payload)
         token = str(uuid4())
         now = time.monotonic()
         result = {'capture': self._metadata(token, now, payload, now), 'current_state': current,
-                  'next_step': 'Call read_entity_capture with capture_id and row offset; no game reads occur while paging.'}
+                  'next_step': 'Call '+read_tool+' with capture_id and row offset; no game reads occur while paging.'}
         if len(to_json(result, fallback=str, indent=2)) > 65536:
             raise ValueError('Capture metadata exceeds 64 KiB; narrow selection')
         with self._lock:
@@ -115,6 +118,30 @@ class EntityCaptures:
         return result
 
 
+class TileCaptures(EntityCaptures):
+    """Separate bounded pool; reuse encoded storage, freshness, TTL and paging guards."""
+    def _metadata(self,token,created,payload,now):
+        result=super()._metadata(token,created,payload,now)
+        result.update(capture_kind='tile',selection_complete=True,request_id=payload['request_id'],
+            bounds=payload['data']['bounds'],scanned_tiles=payload['data']['scanned_tiles'],
+            predicate_errors=payload['data']['predicate_errors'],
+            warning='Pages retain original tile coordinates, fields, scene and time, not current values or UI selection. Other observations/captures are separate. No full-map, global worker transaction, construction or route guarantee.')
+        return result
+
+    def create(self,spec):
+        from syx_tiles import TileCaptureSelection,query_tiles
+        selection=TileCaptureSelection.model_validate(spec)
+        payload=query_tiles(self.advisor,selection.model_dump(mode='json'))
+        data=payload['data'];x1,y1,x2,y2=selection.tile_bounds
+        if (len(data['rows'])>selection.limit or 'next_cursor' not in data or data['next_cursor'] is not None or
+            data.get('scanned_tiles')!=(x2-x1)*(y2-y1) or
+            type(data.get('predicate_errors')) is not int or data['predicate_errors']!=0):
+            raise ValueError('Incomplete tile capture; no selection retained. Narrow bounds or filters/max_rows.')
+        payload['source_consistency']=payload['consistency']
+        payload['consistency']='One complete bounded selection from one game after-update callback, paged from encoded detached rows. No global simulation/worker transaction.'
+        return self._retain(payload,selection,65536,'64 KiB','read_tile_capture')
+
+
 CAPTURE_HELP = {
     'create_tool': 'capture_live_entities', 'read_tool': 'read_entity_capture',
     'selection': EntityCaptureSelection.model_json_schema(),
@@ -123,3 +150,14 @@ CAPTURE_HELP = {
     'paging': 'Creation returns metadata only. read_entity_capture uses offset/limit over retained rows, at most 100 rows and 64 KiB per response; reduce limit for wide projections. include_ui_context returns the original captured UI context, not current UI. Pages keep original tick/time/session. A fresh loaded same-session/version game observation is required; expired, missing or changed-session captures fail explicitly.',
     'boundary': 'Fixed public entity projections/filters only, id required. Existing live cursor reads remain separate mutable observations. Capture queries do not freeze or pause the game and do not add native/OS control. Requires paired updated mod and MCP builds.',
 }
+
+
+TILE_CAPTURE_HELP = {
+    'create_tool':'capture_live_tiles','read_tool':'read_tile_capture',
+    'semantics':'Retains one complete matching tile selection from one existing public after-update callback; never combines cursor pages. Original request/session/tick/time/bounds/scene/UI context are preserved. Not a global simulation/worker transaction.',
+    'limits':'Rectangle area <= scan_limit <=4096; max_rows 1..100 (default 100); 64 KiB local wire and retained payload limits. A remaining cursor, incomplete scan, predicate error or byte overflow retains nothing. Narrow bounds, filters or fields. No full-map capture.',
+    'paging':'Three tile captures per MCP server, in a separate pool from the three entity captures; 120 seconds, oldest eviction. read_tile_capture uses row offset/limit, max 100 rows and 64 KiB response. Tokens are server-local, not persistent/shared. Paging never rereads game objects; fresh same-session/version loaded status is still required. include_ui_context returns original captured context; current_state is separate.',
+    'fields':'Same fixed tile projections/AND predicates as query_live_tiles. Field-level available=false remains explicit unknown data; predicate errors invalidate the entire selection. Room-at-coordinate is not UI-selected room; coordinate identities are scene/load scoped. No setters, screenshots, native input or arbitrary calls.',
+}
+from syx_tiles import TileCaptureSelection
+TILE_CAPTURE_HELP['selection']=TileCaptureSelection.model_json_schema()
