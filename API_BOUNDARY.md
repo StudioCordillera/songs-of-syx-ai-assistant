@@ -105,3 +105,7 @@ Room descriptions use public `RoomBlueprintImp.info.name/desc` from mapped bluep
 ## Regional population checkpoint
 
 World data adds public `RD.RACES`, `RDRaces.population/all`, `RDRace.race/pop`, inherited `RData.get`, `Region.capitol` and `RegionInfo.area`. The stored getters do not force regional simulation updates. Demographic batches are bounded and detached; no backing-array layout, protected fields, population setter or private state is accessed. WORLD_VALIDATION.json pins the getter/MCP comparison and source review. These are source-verified public members, not separately documented stable SCRIPT contracts.
+
+## Resource trade pipeline checkpoint
+
+The adapter uses public Player.buyer/seller routes, PBuyer/PSeller counter accessors and public configuration readers, with TRADE_TYPE identifiers. Resource adapters are reached through their public base API; no inaccessible implementation field is accessed. The observer never calls reserve/deliver/remove/extract/set to obtain data. Those public mutations appear only in the isolated copied-game fixture to establish nonzero read cases. The staged city data is suppressed on battlefields and distinguished from the campaign ledger. TRADE_VALIDATION.json pins source review, compiler access and copied-game MCP checks; no separately documented stable getter contract is claimed.

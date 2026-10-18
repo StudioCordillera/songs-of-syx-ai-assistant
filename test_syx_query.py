@@ -84,3 +84,23 @@ def test_context_expression_uses_same_snapshot(snapshot):
     with pytest.raises(ValueError,match='does not exist'):run(snapshot,q)
     with pytest.raises(ValueError,match='boolean'):
         QueryEngine(snapshot).execute({'queries':[q],'include_ui_context':'yes'})
+
+
+def test_unavailable_subtree_cannot_be_counted_or_joined_as_zero(snapshot):
+    from syx_mcp import Domain
+    snapshot.domains['trade']=Domain(coverage='partial',reason='mixed domain',data={
+        'pipeline':{'coverage':'unavailable','scope':'city','reason':'Battlefield','rows':[]}})
+    nested={'domain':'trade','path':'/pipeline/rows'}
+    projected=run(snapshot,{'source':{'domain':'trade'},'select':{'stages':field('/pipeline/rows')}})
+    assert projected['rows']==[{'stages':None}]
+    with pytest.raises(ValueError,match='observation is unavailable'):
+        run(snapshot,{'source':nested,'aggregates':{'n':{'op':'count'}}})
+    with pytest.raises(ValueError,match='observation is unavailable'):
+        run(snapshot,{'source':source(),'joins':[{'source':nested,'left_key':'/id','right_key':'/id','as':'trade','kind':'left'}]})
+    snapshot.domains['trade'].data['pipeline']['nested']={'coverage':'partial','rows':[]}
+    with pytest.raises(ValueError,match='observation is unavailable'):
+        run(snapshot,{'source':{'domain':'trade','path':'/pipeline/nested/rows'}})
+    snapshot.domains['trade'].data['pipeline']['coverage']='partial'
+    assert run(snapshot,{'source':nested,'aggregates':{'n':{'op':'count'}}})['rows']==[{'n':0}]
+    meta=run(snapshot,{'source':nested})['sources'][0]
+    assert meta['subtree_scope']=='city' and meta['subtree_coverage']=='partial'

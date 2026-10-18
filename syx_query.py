@@ -30,6 +30,20 @@ def pointer(value, path: str):
     return value
 
 
+def observation(value, path: str):
+    """Resolve a pointer and retain explicit coverage from its enclosing observations."""
+    resolved=pointer(value,path)
+    context={}
+    def inherit(node):
+        if isinstance(node,dict) and isinstance(node.get('coverage'),str) and node['coverage'] in {'partial','complete','unavailable'} and context.get('coverage')!='unavailable':
+            context.update({k:node[k] for k in ('coverage','scope','reason') if k in node})
+    inherit(value)
+    if path:
+        for token in path[1:].split('/'):
+            value=pointer(value,'/'+token);inherit(value)
+    return resolved,context
+
+
 def keys(value, allowed, label):
     if not isinstance(value, dict) or set(value)-set(allowed):
         raise ValueError(f'Invalid {label} fields')
@@ -55,7 +69,8 @@ class QueryEngine:
             raise ValueError('An expression must have exactly one operator')
         op, args = next(iter(spec.items()))
         if op=='field':
-            return pointer(row, args)
+            value,context=observation(row,args)
+            return None if context.get('coverage')=='unavailable' and isinstance(value,(list,dict)) else value
         if op=='literal':
             return args
         if op=='context':
@@ -98,7 +113,9 @@ class QueryEngine:
         domain = self.snapshot.domains.get(spec.get('domain'))
         if domain is None or domain.coverage=='unavailable':
             raise ValueError('Requested domain is unavailable')
-        value = pointer(domain.data, spec.get('path',''))
+        value,context = observation(domain.data, spec.get('path',''))
+        if context.get('coverage')=='unavailable':
+            raise ValueError('Requested observation is unavailable: '+str(context.get('reason','Inspect coverage')))
         rows = value if isinstance(value,list) else [value]
         if len(rows)>MAX_ROWS:
             raise ValueError('Source exceeds row budget; use a more specific source')
@@ -107,8 +124,10 @@ class QueryEngine:
 
     def source_metadata(self, spec):
         domain=self.snapshot.domains[spec['domain']]
+        _,context=observation(domain.data,spec.get('path',''))
         return {'domain':spec['domain'],'path':spec.get('path',''),
-                'coverage':domain.coverage,'scope':domain.scope}
+                'coverage':domain.coverage,'scope':domain.scope,
+                **{'subtree_'+k:v for k,v in context.items()}}
 
     def query(self, spec):
         keys(spec, {'name','source','where','joins','select','group_by','aggregates','sort','offset','limit'}, 'query')

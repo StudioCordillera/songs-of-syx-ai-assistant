@@ -203,7 +203,7 @@ Descriptions come from this installation's public data and can be changed by mod
 
 ## Reproducible selective-query examples and timing
 
-`selective-query-examples.json` batches four bounded selections: the five least positive warehouse stocks, five recorded output rows joined to current workforce/storage, output buckets grouped by resource, and the largest positive populations in player-owned regions. `dev/benchmark_selective_queries.py` checks each result against independent filter/join/group calculations on a preserved real copied-city snapshot and measures the local query engine without refreshing its timestamp. SELECTIVE_QUERY_VALIDATION.json records exact hashes, row counts and byte/timing measurements.
+`selective-query-examples.json` batches five bounded selections: the five least positive warehouse stocks, five recorded output rows joined to current workforce/storage, output buckets grouped by resource, the largest positive populations in player-owned regions, and incoming city goods joined to storage and configured buy caps. `dev/benchmark_selective_queries.py` checks each result against independent filter/join/group calculations on a preserved real copied-city snapshot and measures the local query engine without refreshing its timestamp. SELECTIVE_QUERY_VALIDATION.json records exact hashes, row counts and byte/timing measurements.
 
 These are examples of reducing returned data, not a live performance guarantee. Timings exclude collection, file parsing, MCP transport and inference; the full snapshot also includes installed references. The grouped stored buckets are not guaranteed calendar-aligned daily production. A live MCP call still requires a fresh loaded game and proper coverage, even though this offline developer benchmark can inspect preserved evidence.
 
@@ -222,3 +222,19 @@ For the five largest positive race populations in player-owned regions, with reg
 Inspect `region_truncated`, `population_truncated`, `population_failed_regions` and each region's `population_coverage`. The region cap is 1,023; demographic reads accept at most 64 race entries per region and 10,000 rows in total, without splitting a region across that row cap. On a demographic getter failure or cap skip, its total is null and no partial race batch is emitted. This is not zero population. `capital` is a realm relationship, not a selected-region UI flag. `area_world_tiles` is neither settlement tiles nor farmland.
 
 WORLD_VALIDATION.json checks public-getter agreement and actual MCP paging/joining for a copied campaign; cap-exceeding mods and large-world performance remain untested.
+
+## City resource trade stages and configured limits
+
+Inspect `describe_game_fields("trade")` and `/settlement_pipeline/coverage`. The campaign daily ledger remains at `/resources`; city stage counters and policies have a distinct scope and are unavailable on battlefields. See TRADE_PIPELINE.md for precise public getter meanings, caps and remaining gaps.
+
+For up to five incoming resource/reason rows joined to warehouse storage and the configured buy cap:
+
+```json
+{"include_ui_context":true,"queries":[{"source":{"domain":"trade","path":"/settlement_pipeline/flows"},"where":{"gt":[{"field":"/inbound_total_units"},0]},"joins":[{"source":{"domain":"resources","path":"/stockpiles"},"left_key":"/resource_id","right_key":"/id","as":"stock","kind":"inner"},{"source":{"domain":"trade","path":"/settlement_pipeline/policies"},"left_key":"/resource_id","right_key":"/resource_id","as":"policy","kind":"inner"}],"select":{"resource":{"field":"/resource_id"},"reason":{"field":"/trade_type_name"},"incoming":{"field":"/inbound_total_units"},"warehouse_stored":{"field":"/stock/stockpile_stored"},"configured_buy_cap":{"field":"/policy/buy_price_cap_raw"}},"limit":5}]}
+```
+
+All trade reasons are retained. If the question concerns market trade only, first inspect the installed reason IDs/names and filter the observed ID; do not assume a translated label or index is permanent. Incoming stage counters are not completed imports and must not be summed with daily ledger quantities as independent arrivals. A configured price cap is not an executable quote. Inspect resource help using the policy's returned `reference_id` when an explanation needs installed descriptions.
+
+### Nested unavailable observations
+
+An enclosing observation can be unavailable even when its overall domain is partial. A battlefield's city-trade pipeline is one example. `select_game_state` refuses an unavailable nested source or join, so aggregating it cannot produce a misleading zero. Field projections of its container return null. `query_game_state` reports the effective unavailable coverage and reason, with null data/total for a container, while scalar diagnostic metadata remains readable. Replies and source records retain `subtree_coverage`, `subtree_scope` and `subtree_reason` where supplied; the existing domain scope remains separate. An observed, available empty table can still legitimately count as zero.

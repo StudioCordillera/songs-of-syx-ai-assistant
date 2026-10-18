@@ -148,18 +148,11 @@ class Advisor:
         d = s.domains[domain]
         if d.coverage == "unavailable":
             raise ValueError("Domain unavailable: " + d.reason)
-        value = d.data
-        if pointer:
-            if not pointer.startswith("/"):
-                raise ValueError("Use an RFC 6901 JSON pointer")
-            for token in pointer[1:].split("/"):
-                token = token.replace("~1", "/").replace("~0", "~")
-                if isinstance(value, dict):
-                    value = value[token]
-                elif isinstance(value, list) and token.isdigit():
-                    value = value[int(token)]
-                else:
-                    raise ValueError("Pointer does not exist")
+        from syx_query import observation
+        value,subtree=observation(d.data,pointer)
+        # Do not turn an unavailable nested table into an empty successful page.
+        if subtree.get('coverage')=='unavailable' and isinstance(value,(list,dict)):
+            value=None
         total = len(value) if isinstance(value, list) else None
         if total is not None:
             value = value[offset:offset + limit]
@@ -168,7 +161,8 @@ class Advisor:
         if len(json.dumps(value).encode()) > 65536:
             raise ValueError("Result too large; use a narrower pointer or smaller page")
         return {"state": meta, "domain": domain, "pointer": pointer,
-                "coverage": d.coverage, "coverage_reason": d.reason, "scope": d.scope, "data": value,
+                "coverage": subtree.get("coverage",d.coverage), "coverage_reason": subtree.get("reason",d.reason), "scope": d.scope, "data": value,
+                **{"subtree_"+k:v for k,v in subtree.items()},
                 "offset": offset, "total": total,
                 "next_offset": offset + limit if total is not None and offset + limit < total else None}
 

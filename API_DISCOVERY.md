@@ -52,3 +52,5 @@ The current shared-chat audit inventories 276 public production game members, al
 The current simplified player build inventories 314 public production member references, all present in the offline catalog; zero non-public production references. See USER_TEST_VALIDATION.json for this build’s exact hashes and two-turn Pro check. Earlier inventories above remain historical.
 
 The regional-population checkpoint brings the production audit to 322 public member references, all present in the same pinned offline catalog. The eight added public references support stored regional counts and realm-capital/area reads. WORLD_VALIDATION.json records scoped copied-campaign evidence; the catalog still does not enumerate supported variables or establish an official stability contract.
+
+The current resource-trade checkpoint inventories 342 public production member references, all present in the same offline catalog, with zero non-public production references. This expands explicit typed mapping, not arbitrary variable discovery or a completion percentage.

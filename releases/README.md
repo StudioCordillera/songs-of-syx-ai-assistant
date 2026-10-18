@@ -13,3 +13,5 @@ Dependencies install on first launch, so an internet connection and supported Py
 The launcher checks dependency imports at each start and retries installation when a previous attempt failed. This is exercised by a two-attempt failure/retry test; network availability and provider service availability remain external requirements.
 
 To validate a candidate while keeping the public ZIP intact, package into a runtime directory and pass `--candidate-dir` plus its `--validation` report to `dev/verify_current_player_core.py`. Its default remains the published bundle. The core suite includes copied-game regional getter checks before scene/UI regressions. Promote only after the relevant checks pass.
+
+The current core suite also checks nonzero city trade bookkeeping in a copied save and verifies that battlefield-unavailable city logistics cannot be queried/count-aggregated as zero. This is a scoped evidence checkpoint, not a complete trading or all-menu acceptance claim.

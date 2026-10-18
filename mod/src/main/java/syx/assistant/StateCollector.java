@@ -205,6 +205,43 @@ public final class StateCollector {
                 "area_world_tiles",object("unit","world tiles","source","world/map/regions/RegionInfo.java:area()","definition","Stored area counted from region membership during map initialization; not settlement tiles or farmland area."),
                 "capital",object("source","world/map/regions/Region.java:capitol()","definition","This region is its realm capital; false when there is no realm. It is not a UI-selection flag.")));
     }
+    /** Read-only public city trade bookkeeping. No reservation/delivery/quote mutator is invoked. */
+    private static Map<String,Object> tradePipeline() {
+        if(!SETT.exists() || SETT.WORLD_AREA().isBattle)return object("coverage","unavailable",
+            "scope","instantiated_city_trade","policies",new ArrayList<>(),"flows",new ArrayList<>(),
+            "reason","No instantiated campaign city; battlefield trade placeholders are not city logistics.");
+        List<Object> policies=new ArrayList<>(),flows=new ArrayList<>(),failures=new ArrayList<>();
+        var types=init.trade.TRADE_TYPE.all;
+        if(types.size()>16)return object("coverage","unavailable","scope","instantiated_city_trade",
+            "policies",policies,"flows",flows,"truncated",true,"reason","Trade-type scan limit of 16 exceeded");
+        int failed=0;boolean truncated=false;
+        for(RESOURCE resource:RESOURCES.ALL()) {
+            if(policies.size()+failed>=1000 || flows.size()+types.size()>4000){truncated=true;break;}
+            try {
+                var buyer=GAME.player().buyer(resource.tr());var seller=GAME.player().seller(resource.tr());
+                List<Object> pending=new ArrayList<>();
+                for(var type:types)pending.add(object("resource_id",resource.key,"trade_type_id",type.index,
+                    "trade_type_name",type.name.toString(),
+                    "inbound_reserved_units",buyer.toBeAdded().get(type),
+                    "inbound_pending_placement_units",buyer.toBeStored().get(type),
+                    "inbound_caravan_units",buyer.attempting(type),"inbound_total_units",buyer.incoming.get(type),
+                    "outbound_reserved_units",seller.promised().get(type),
+                    "outbound_caravan_units",seller.attempting(type),"outbound_total_units",seller.outbound.get(type)));
+                Map<String,Object> policy=object("resource_id",resource.key,"reference_id","resource:"+resource.key,
+                    "buy_price_cap_raw",buyer.priceCapsI.get(),"import_treasury_floor_credits",buyer.minMoney.get(),
+                    "import_level_raw",buyer.limit.get(),"sell_price_floor_raw",seller.priceCapsI.get(),
+                    "export_level_raw",seller.limit.get());
+                policies.add(policy);flows.addAll(pending);
+            } catch(RuntimeException error) {
+                failed++;if(failures.size()<10)failures.add(object("resource_id",resource.key,"reason",error.getClass().getSimpleName()));
+            }
+        }
+        return object("coverage","partial","scope","instantiated_city_trade","policies",policies,"flows",flows,
+            "city_entry_closed",SETT.ENTRY().isClosed(),"resource_count_total",RESOURCES.ALL().size(),
+            "resource_limit",1000,"flow_row_limit",4000,"trade_type_count",types.size(),"trade_type_scan_limit",16,
+            "truncated",truncated,"failed_resources",failed,"failure_samples",failures,
+            "reason","Resource tradables only. Aggregate staged bookkeeping for all mapped trade reasons, not a complete order list, caravan position/ETA or guaranteed ability to trade.");
+    }
     private StateCollector() {}
     public static Map<String,Object> object(Object... pairs) {
         Map<String,Object> m = new LinkedHashMap<>();
@@ -329,8 +366,19 @@ public final class StateCollector {
             for(RESOURCE r: RESOURCES.ALL()) rows.add(object("id",r.key,
                 "imported_units_current_day",GAME.player().trade.unitsImported.get(r.tr()),
                 "exported_units_current_day",GAME.player().trade.unitsExported.get(r.tr())));
-            return object("resources",rows,"period","current game-day bucket","unit","resource units");
-        }, "Import/export ledger totals; not pending shipments, price quotes or trading policy.");
+            return object("resources",rows,"period","current game-day bucket","unit","resource units",
+                "settlement_pipeline",tradePipeline(),"field_definitions",object(
+                    "resources",object("scope","campaign_player_or_faction","definition","Recorded current-day import/export ledger totals; not the staged settlement pipeline."),
+                    "settlement_pipeline",object("scope","instantiated_city_trade","unit","resource units unless otherwise specified",
+                        "source","settlement/trade/PBuyer.java; PSeller.java; PBuyerRes.java; PSellerRes.java; Player.buyer/seller -> SETT.TRADE()",
+                        "relationships","resource_id joins resources.stockpiles[].id in the same observation. trade_type_id is the installed TRADE_TYPE.index; names are display labels, not permanent IDs.",
+                        "stages","inbound_reserved_units reads toBeAdded; inbound_pending_placement_units reads toBeStored; inbound_caravan_units reads attempting. inbound_total_units is their public incoming sum. outbound_reserved_units reads promised; outbound_caravan_units reads attempting; outbound_total_units is their public outbound sum. All trade reasons are retained, including tax, trade, spoils and diplomacy; these are not all market purchases.",
+                        "limits","At most 1000 resource tradables, 4000 stage rows and 16 trade reasons; a resource batch is never split. Failed resources emit no partial policy/stage batch. Missing or unavailable rows are not zero. No trade updater is invoked."),
+                    "trade_policy",object("scope","instantiated_city_trade","source","PBuyer.priceCapsI/minMoney/limit; PSeller.priceCapsI/limit (public IntImp.get)",
+                        "prices","Configured per-unit buy cap/sell floor in game credits, not a current executable quote, tariff-inclusive price or profit forecast. import_treasury_floor_credits is the configured buyer floor.",
+                        "levels","import_level_raw/export_level_raw are resource configuration integers (0..100 in the shipped resource adapters). Import 100 has special fill-capacity behavior; do not interpret it as a simple warehouse-only target. These settings alone do not prove an order can execute.")));
+
+        }, "Campaign current-day resource ledgers plus bounded city resource trade stages and configured limits; no full order list, executable quote or ETA.");
         run(domains, "diplomacy", () -> {
             List<Object> rows=new ArrayList<>();
             for(game.faction.Faction f: game.faction.FACTIONS.active()) {
@@ -389,6 +437,7 @@ public final class StateCollector {
                 Set.of("production","trade","research","diplomacy").contains(key)?"campaign_player_or_faction":"game_or_world";
             if(key.equals("resources"))scope="mixed_scene_logistics_and_player_trade_promises";
             if(key.equals("production"))scope="mixed_scene_production_and_campaign_ledger";
+            if(key.equals("trade"))scope="mixed_city_trade_pipeline_and_campaign_ledger";
             record.put("scope",scope);
             if(sceneDomains.contains(key) && !SETT.exists())domains.put(key,object("coverage","unavailable","data",null,"scope",scope,
                 "reason","No instantiated settlement scene; new-game preparation data is not a live city"));

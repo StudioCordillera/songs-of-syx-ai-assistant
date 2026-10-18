@@ -292,3 +292,18 @@ def test_guidance_response_budget_preserves_complete_citations(setup):
     assert result['total_matches']==10 and result['results_truncated']
     assert 0<len(result['results'])<10 and len(json.dumps(result).encode())<=65536
     assert all(s['url']=='https://example.com/'+s['id'] and len(s['text'])==11995 for s in result['results'])
+
+
+def test_direct_nested_unavailable_page_is_unknown_not_empty(setup):
+    advisor,state=setup
+    state['domains']['trade']={'coverage':'partial','reason':'mixed domain','data':{
+        'pipeline':{'coverage':'unavailable','scope':'city','reason':'Battlefield','rows':[]}}}
+    advisor.snapshot_path.write_text(json.dumps(state))
+    result=advisor.query('trade','/pipeline/rows')
+    assert result['coverage']=='unavailable' and result['data'] is None and result['total'] is None
+    assert result['subtree_scope']=='city' and result['coverage_reason']=='Battlefield'
+    assert advisor.query('trade','/pipeline/coverage')['data']=='unavailable'
+    state['domains']['trade']['data']['pipeline']['coverage']='partial'
+    advisor.snapshot_path.write_text(json.dumps(state))
+    result=advisor.query('trade','/pipeline/rows')
+    assert result['coverage']=='partial' and result['data']==[] and result['total']==0

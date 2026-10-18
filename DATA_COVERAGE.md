@@ -14,7 +14,7 @@ This is a routing inventory of the current adapter, not a complete game schema. 
 | law | `/statistics` | LAW aggregate stats | Individual cases and complete enforcement/punishment factors |
 | happiness | `/statistics` | Public collection aggregates | Expectations and causal contribution schemas; individual stats remain separate |
 | research | `/technologies`, `/requirements`, `/costs`, `/currencies`, `/field_definitions` | Levels, expanded prerequisite closure, per-currency costs and allocation | Non-technology unlock conditions, effects and forecasts |
-| trade | `/resources` | Current-day imported/exported units | Orders, pending shipments, prices, tariffs and policy |
+| trade | `/resources`, `/settlement_pipeline/policies`, `/settlement_pipeline/flows` | Campaign current-day ledger; bounded city resource stages by trade reason and raw configured limits | Full order records, non-resource tradables, executable quotes/tariffs, routes/ETA and large-city cost |
 | diplomacy | `/factions` | Active faction identities and stance | Treaties and relationship factors |
 | military | `/statistics`, `/scene_armies` | BATTLE aggregates and instantiated scene divisions | Full world-army/order schemas and combat history |
 | world | `/regions`, `/population_by_race`, `/field_definitions` | Region IDs, owners, coordinates, capital/area and bounded stored regional population by playable race | Regional economy/army relationships, non-playable counters and world-scale cost validation |

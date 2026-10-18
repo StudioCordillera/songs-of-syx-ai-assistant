@@ -188,6 +188,61 @@
         }
       ],
       "limit": 5
+    },
+    {
+      "name": "incoming_city_goods_with_storage_and_policy",
+      "source": {
+        "domain": "trade",
+        "path": "/settlement_pipeline/flows"
+      },
+      "where": {
+        "gt": [
+          {
+            "field": "/inbound_total_units"
+          },
+          0
+        ]
+      },
+      "joins": [
+        {
+          "source": {
+            "domain": "resources",
+            "path": "/stockpiles"
+          },
+          "left_key": "/resource_id",
+          "right_key": "/id",
+          "as": "stock",
+          "kind": "inner"
+        },
+        {
+          "source": {
+            "domain": "trade",
+            "path": "/settlement_pipeline/policies"
+          },
+          "left_key": "/resource_id",
+          "right_key": "/resource_id",
+          "as": "policy",
+          "kind": "inner"
+        }
+      ],
+      "select": {
+        "resource": {
+          "field": "/resource_id"
+        },
+        "reason": {
+          "field": "/trade_type_id"
+        },
+        "incoming": {
+          "field": "/inbound_total_units"
+        },
+        "stored": {
+          "field": "/stock/stockpile_stored"
+        },
+        "buy_cap": {
+          "field": "/policy/buy_price_cap_raw"
+        }
+      },
+      "limit": 5
     }
   ]
 }

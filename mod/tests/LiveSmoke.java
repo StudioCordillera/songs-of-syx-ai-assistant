@@ -41,6 +41,10 @@ public final class LiveSmoke {
                                 public void doAfterSet() {
                                     GAME.SPEED.speedSet(0);
                                     view.main.VIEW.inters().load.deactivate();
+                                    if (Boolean.getBoolean("syx.smoke.trade")) {
+                                        TradeScenario.install(Paths.get(System.getProperty("syx.assistant.stateDir")));
+                                        return;
+                                    }
                                     if (Boolean.getBoolean("syx.smoke.world")) {
                                         WorldScenario.install(Paths.get(System.getProperty("syx.assistant.stateDir")));
                                         return;

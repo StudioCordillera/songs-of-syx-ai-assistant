@@ -38,10 +38,14 @@ def benchmark(path,repetitions):
     regions={r['id']:r for r in snapshot.domains['world'].data['regions']}
     fourth=sorted([{'region':r['region_id'],'race':r['race_id'],'regional_inhabitants':r['population'],'area':regions[r['region_id']]['area_world_tiles']}
         for r in snapshot.domains['world'].data['population_by_race'] if r['population']>0 and regions[r['region_id']]['player_owned']],key=lambda r:r['regional_inhabitants'],reverse=True)
-    expected=[first[:5],second[:5],third[:20],fourth[:5]]
+    pipeline=snapshot.domains['trade'].data['settlement_pipeline'];assert pipeline['coverage']=='partial' and not pipeline['truncated'] and pipeline['failed_resources']==0
+    policies={r['resource_id']:r for r in pipeline['policies']}
+    fifth=[{'resource':r['resource_id'],'reason':r['trade_type_id'],'incoming':r['inbound_total_units'],'stored':resources[r['resource_id']]['stockpile_stored'],'buy_cap':policies[r['resource_id']]['buy_price_cap_raw']}
+        for r in pipeline['flows'] if r['inbound_total_units']>0 and r['resource_id'] in resources and r['resource_id'] in policies]
+    expected=[first[:5],second[:5],third[:20],fourth[:5],fifth[:5]]
     results=QueryEngine(snapshot).execute(spec)
     assert [r['rows'] for r in results]==expected
-    assert [r['matched_total'] for r in results]==[len(first),len(second),len(third),len(fourth)]
+    assert [r['matched_total'] for r in results]==[len(first),len(second),len(third),len(fourth),len(fifth)]
     durations=[]
     for _ in range(repetitions):
         began=time.perf_counter();actual=QueryEngine(snapshot).execute(spec);durations.append((time.perf_counter()-began)*1000)

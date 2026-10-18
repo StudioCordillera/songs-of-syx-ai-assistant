@@ -2,29 +2,30 @@
   "passed": true,
   "method": "Offline QueryEngine only, on a preserved real snapshot. No game or inference calls.",
   "game_version": "0.71.44",
-  "source_snapshot_sha256": "a08c878a989b172824bc63318038dc109a0acc478c08261acf16c5b87cbfe563",
-  "source_observed_at": "2026-10-18 07:17:12.810399+00:00",
-  "query_spec_sha256": "1d764a949a255934721cfe2ecb11baff2e346fd80b30496f5fe60f8e1cd99064",
+  "source_snapshot_sha256": "76c7d8491a2a5536e6e8c58324a0efc75187a3f89ce7159135dffd89f2207945",
+  "source_observed_at": "2026-10-18 08:32:19.364296+00:00",
+  "query_spec_sha256": "b9afe28bc8e95bed3a8de1daf6605becff89a05db4f0777529434662b0917fe8",
   "source_sha256": {
-    "syx_query.py": "252ff9199e7ec566f0c0a91ea0afb0a8557f5ce51ef62be64abd6216a113b80e",
-    "syx_mcp.py": "42b92b7af68558136a3aea7355459826c0de7e23029258a68580bf86b769d2e8",
-    "dev/benchmark_selective_queries.py": "5156d3319bd8c48eb7229d70c7bba5d7295a666c62123026debfb0e2c42985cf"
+    "syx_query.py": "05b164574204a058b5a739f69be72e38bcb3b841c7f24a1e73b560090926d4f5",
+    "syx_mcp.py": "f46d48e261c8a766a1a501a286ac288a1587a26baacbca54a970429e0c9ece8c",
+    "dev/benchmark_selective_queries.py": "7d7877f7098a2389b609b0eb969151f68b402c96c50b83448cd0ca28f03b6412"
   },
   "independent_filter_join_aggregate_parity": true,
-  "query_count": 4,
+  "query_count": 5,
   "returned_row_counts": [
     5,
     5,
     13,
-    1
+    1,
+    0
   ],
-  "snapshot_bytes": 801086,
-  "selected_results_bytes": 3170,
+  "snapshot_bytes": 856291,
+  "selected_results_bytes": 5000,
   "repetitions": 101,
   "local_elapsed_ms": {
-    "median": 7.175,
-    "p95": 7.328,
-    "max": 7.608
+    "median": 12.484,
+    "p95": 22.138,
+    "max": 24.754
   },
   "limits": [
     "One copied city, no large-city latency or collection cost claim. Timings are local descriptive measurements, not a guarantee.",

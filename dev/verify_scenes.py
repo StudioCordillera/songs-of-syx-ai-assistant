@@ -1,11 +1,31 @@
 """Read exported snapshots during SceneScenario; no UI/process control."""
 import argparse
+import asyncio
+import os
+import sys
 from datetime import datetime,timezone
 import json
 from pathlib import Path
 import time
 from syx_mcp import Advisor
 
+
+async def unavailable_trade_mcp(directory):
+    from mcp import ClientSession,StdioServerParameters
+    from mcp.client.stdio import stdio_client
+    root=Path(__file__).resolve().parent.parent
+    env={k:v for k,v in os.environ.items() if not any(t in k for t in ('API_KEY','ACCESS_TOKEN','REFRESH_TOKEN'))}
+    env['SYX_STATE_DIR']=str(directory.resolve())
+    params=StdioServerParameters(command=sys.executable,args=['-m','syx_mcp'],cwd=str(root),env=env)
+    async with stdio_client(params) as streams:
+        async with ClientSession(*streams) as session:
+            await session.initialize()
+            page=await session.call_tool('query_game_state',{'domain':'trade','pointer':'/settlement_pipeline/flows'})
+            assert not page.is_error
+            body=json.loads(next(c.text for c in page.content if c.type=='text'))
+            assert body['coverage']=='unavailable' and body['data'] is None and body['total'] is None
+            denied=await session.call_tool('select_game_state',{'spec':{'queries':[{'source':{'domain':'trade','path':'/settlement_pipeline/flows'},'aggregates':{'n':{'op':'count'}}}]}})
+            assert denied.is_error and 'observation is unavailable' in next(c.text for c in denied.content if c.type=='text')
 
 def verify(directory:Path,timeout:float=260,on_demand:bool=False,tiles:bool=False):
     advisor=Advisor(directory/'snapshot.json',directory/'corpus.json')
@@ -28,7 +48,7 @@ def verify(directory:Path,timeout:float=260,on_demand:bool=False,tiles:bool=Fals
                 assert snapshot.domains['resources'].scope=='mixed_scene_logistics_and_player_trade_promises'
                 assert snapshot.domains['resources'].data['field_definitions']['owned']['scope']=='mixed_scene_logistics_and_player_trade_promises'
                 assert snapshot.domains['resources'].data['field_definitions']['stockpile_stored']['scope']=='instantiated_settlement_scene'
-                assert snapshot.domains['trade'].scope=='campaign_player_or_faction'
+                assert snapshot.domains['trade'].scope=='mixed_city_trade_pipeline_and_campaign_ledger'
                 if name=='city_reloaded':assert snapshot.session_id!=sessions['city']
             if name=='settlement_battle':
                 assert context['active_view']=='settlement_battle'
@@ -68,6 +88,17 @@ def verify(directory:Path,timeout:float=260,on_demand:bool=False,tiles:bool=Fals
                 ids={r['id'] for r in data['regions']}
                 assert data['population_by_race'] and all(r['region_id'] in ids for r in data['population_by_race'])
                 assert len(data['population_by_race'])<=data['population_row_limit']
+            city_trade=snapshot.domains['trade']
+            if name not in {'world_generation','terrain_generated'}:
+                assert city_trade.coverage=='partial' and city_trade.scope=='mixed_city_trade_pipeline_and_campaign_ledger'
+                pipeline=city_trade.data['settlement_pipeline']
+                assert pipeline['scope']=='instantiated_city_trade'
+                if scene['settlement_scene_kind']=='battlefield':
+                    assert pipeline['coverage']=='unavailable' and pipeline['policies']==[] and pipeline['flows']==[]
+                    asyncio.run(unavailable_trade_mcp(directory))
+                else:
+                    assert pipeline['coverage']=='partial' and pipeline['failed_resources']==0 and not pipeline['truncated']
+                    assert len(pipeline['flows'])<=pipeline['flow_row_limit'] and len(pipeline['policies'])<=pipeline['resource_limit']
             read_available=None
             if on_demand:
                 from syx_live import query_entities
@@ -100,6 +131,7 @@ def verify(directory:Path,timeout:float=260,on_demand:bool=False,tiles:bool=Fals
                     tile_available=True
             checks[name]={'passed':True,'view':context['active_view'],'scene_kind':scene['settlement_scene_kind'],
                           'on_demand_read_available':read_available,'tile_read_available':tile_available,
+                          'city_trade_pipeline_coverage':city_trade.data['settlement_pipeline']['coverage'] if city_trade.data else 'unavailable',
                           'world_population_coverage':regional.coverage,
                           'production_coverage':production.coverage,
                           'production_room_coverage':production.data['room_data']['coverage'] if production.data else 'unavailable'}

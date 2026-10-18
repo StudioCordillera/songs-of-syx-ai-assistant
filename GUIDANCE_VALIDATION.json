@@ -80,7 +80,7 @@
   "inference_calls": 0,
   "evaluated_game_version": "0.71.44",
   "source_sha256": {
-    "syx_mcp.py": "42b92b7af68558136a3aea7355459826c0de7e23029258a68580bf86b769d2e8",
+    "syx_mcp.py": "f46d48e261c8a766a1a501a286ac288a1587a26baacbca54a970429e0c9ece8c",
     "syx_knowledge.py": "7947aac1cea46f450fe56ee91efa11e9871f86085a90939f0d0c2007327896c0",
     "guidance-questions.json": "e3a0c29ab043ef3924db1af185d21a37655a56ce9f662c97e92e7a4f214622d6",
     "dev/verify_guidance.py": "9271844da57ed0494242903980fc7a6d31aac3b0573d7699975015e2b4fb1f8d"
@@ -88,13 +88,6 @@
   "limits": [
     "11 authored retrieval cases, not comprehensive advice correctness or a semantic-search benchmark.",
     "Historical developer explanations do not establish current-patch mechanics.",
-    "Starter corpus is locally reviewed and not automatically refreshed; no complete guide collection.",
-    "One V71 logistics community guide supplements historical developer evidence; patch compatibility remains unverified."
-  ],
-  "python_tests": {
-    "passed": 141
-  },
-  "seed_summary_count": 9,
-  "prior_core_checkpoint_commit": "807f6e6",
-  "related_installed_help_checkpoint": "INSTALLED_HELP_VALIDATION.json"
+    "Starter corpus is locally reviewed and not automatically refreshed; no complete guide collection."
+  ]
 }
