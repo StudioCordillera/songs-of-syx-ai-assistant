@@ -10,7 +10,7 @@ import time
 from syx_mcp import Advisor
 
 
-async def unavailable_trade_mcp(directory):
+async def unavailable_city_data_mcp(directory):
     from mcp import ClientSession,StdioServerParameters
     from mcp.client.stdio import stdio_client
     root=Path(__file__).resolve().parent.parent
@@ -20,12 +20,13 @@ async def unavailable_trade_mcp(directory):
     async with stdio_client(params) as streams:
         async with ClientSession(*streams) as session:
             await session.initialize()
-            page=await session.call_tool('query_game_state',{'domain':'trade','pointer':'/settlement_pipeline/flows'})
-            assert not page.is_error
-            body=json.loads(next(c.text for c in page.content if c.type=='text'))
-            assert body['coverage']=='unavailable' and body['data'] is None and body['total'] is None
-            denied=await session.call_tool('select_game_state',{'spec':{'queries':[{'source':{'domain':'trade','path':'/settlement_pipeline/flows'},'aggregates':{'n':{'op':'count'}}}]}})
-            assert denied.is_error and 'observation is unavailable' in next(c.text for c in denied.content if c.type=='text')
+            for domain,path in [('trade','/settlement_pipeline/flows'),('services','/access_policy/cohort_rules')]:
+                page=await session.call_tool('query_game_state',{'domain':domain,'pointer':path})
+                assert not page.is_error
+                body=json.loads(next(c.text for c in page.content if c.type=='text'))
+                assert body['coverage']=='unavailable' and body['data'] is None and body['total'] is None
+                denied=await session.call_tool('select_game_state',{'spec':{'queries':[{'source':{'domain':domain,'path':path},'aggregates':{'n':{'op':'count'}}}]}})
+                assert denied.is_error and 'observation is unavailable' in next(c.text for c in denied.content if c.type=='text')
 
 def verify(directory:Path,timeout:float=260,on_demand:bool=False,tiles:bool=False):
     advisor=Advisor(directory/'snapshot.json',directory/'corpus.json')
@@ -85,6 +86,14 @@ def verify(directory:Path,timeout:float=260,on_demand:bool=False,tiles:bool=Fals
                 assert rooms['coverage']=='partial' and rooms['scope']=='instantiated_settlement_scene'
                 assert rooms['failed_rooms']==0 and not rooms['truncated']
                 assert len(rooms['rooms'])<=rooms['row_limit'] and rooms['scanned_rooms']<=rooms['scan_room_limit']
+                policy=services.data['access_policy']
+                assert policy['scope']=='instantiated_city_service_configuration'
+                if scene['settlement_scene_kind']=='battlefield':
+                    assert policy['coverage']=='unavailable' and policy['service_types']==[] and policy['cohort_rules']==[]
+                else:
+                    assert policy['coverage']=='partial' and policy['failed_service_types']==0 and not policy['truncated']
+                    assert len(policy['cohort_rules'])==len(policy['service_types'])*policy['cohorts_per_service_type']<=policy['rule_row_limit']
+
             regional=snapshot.domains['world']
             if name not in {'world_generation','terrain_generated'}:
                 assert regional.coverage=='partial'
@@ -102,7 +111,7 @@ def verify(directory:Path,timeout:float=260,on_demand:bool=False,tiles:bool=Fals
                 assert pipeline['scope']=='instantiated_city_trade'
                 if scene['settlement_scene_kind']=='battlefield':
                     assert pipeline['coverage']=='unavailable' and pipeline['policies']==[] and pipeline['flows']==[]
-                    asyncio.run(unavailable_trade_mcp(directory))
+                    asyncio.run(unavailable_city_data_mcp(directory))
                 else:
                     assert pipeline['coverage']=='partial' and pipeline['failed_resources']==0 and not pipeline['truncated']
                     assert len(pipeline['flows'])<=pipeline['flow_row_limit'] and len(pipeline['policies'])<=pipeline['resource_limit']
@@ -141,6 +150,7 @@ def verify(directory:Path,timeout:float=260,on_demand:bool=False,tiles:bool=Fals
                           'city_trade_pipeline_coverage':city_trade.data['settlement_pipeline']['coverage'] if city_trade.data else 'unavailable',
                           'world_population_coverage':regional.coverage,
                           'service_room_coverage':services.data['room_data']['coverage'] if services.data else 'unavailable',
+                          'service_policy_coverage':services.data['access_policy']['coverage'] if services.data else 'unavailable',
                           'production_coverage':production.coverage,
                           'production_room_coverage':production.data['room_data']['coverage'] if production.data else 'unavailable'}
             print('PASS',name,flush=True)

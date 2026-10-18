@@ -190,6 +190,37 @@ public final class StateCollector {
             "row_limit",2000,"scan_room_limit",10000,
             "reason","ROOM_SERVICER instances only. Stored raw service-point counters, not people served per day, demand, reachability, citizen permissions or a complete service schema. Unimplemented room interfaces do not mean zero service.");
     }
+    /** Configured cohort rules, not effective individual access or actual service visits. */
+    private static Map<String,Object> servicePolicies() {
+        if(!SETT.exists() || SETT.WORLD_AREA().isBattle || !world.WORLD.GEN().isDone)return object("coverage","unavailable",
+            "scope","instantiated_city_service_configuration","service_types",new ArrayList<>(),"cohort_rules",new ArrayList<>(),
+            "reason","No completed instantiated campaign city; battlefield/setup defaults are not city service policy.");
+        List<Object> types=new ArrayList<>(),rules=new ArrayList<>(),failures=new ArrayList<>();
+        var races=RACES.all();var classes=HCLASSES.ALL();
+        if(races.size()>64 || classes.size()>64)return object("coverage","unavailable",
+            "scope","instantiated_city_service_configuration","service_types",types,"cohort_rules",rules,
+            "truncated",true,"reason","Race/class scan limit of 64 exceeded");
+        int failed=0,scanned=0;boolean truncated=false;int cohortCount=races.size()*classes.size();
+        for(var service:settlement.room.service.module.RoomServiceAccess.ALL()) {
+            if(scanned>=256 || rules.size()+cohortCount>10000){truncated=true;break;}scanned++;
+            try {
+                var blueprint=service.room();var permission=service.stats().permission();
+                List<Object> pending=new ArrayList<>();
+                for(Race race:races)for(HCLASS cl:classes)pending.add(object("service_id",service.index(),
+                    "blueprint_id",blueprint.key,"race_id",race.key,"class_id",cl.key,
+                    "allowed_by_configured_rule",permission.is(init.type.HCLASS_RACE.clP(race,cl))));
+                types.add(object("service_id",service.index(),"blueprint_id",blueprint.key,"reference_id","room:"+blueprint.key));
+                rules.addAll(pending);
+            }catch(RuntimeException error) {
+                failed++;if(failures.size()<10)failures.add(object("service_id",service.index(),"reason",error.getClass().getSimpleName()));
+            }
+        }
+        return object("coverage","partial","scope","instantiated_city_service_configuration","service_types",types,"cohort_rules",rules,
+            "scanned_service_types",scanned,"failed_service_types",failed,"failure_samples",failures,"truncated",truncated,
+            "service_type_limit",256,"rule_row_limit",10000,"race_scan_limit",64,"class_scan_limit",64,
+            "cohorts_per_service_type",cohortCount,
+            "reason","Registered RoomServiceAccess types, including types without built rooms. Configured race/class permission only; individual rules for nobles, tourists and children can differ. Not actual access, demand, visits, reachability or a complete eligibility decision. No permission setter or access request is invoked.");
+    }
     /** Campaign regional counters, detached and bounded; never forces regional updates. */
     private static Map<String,Object> worldData() {
         List<Object> regions=new ArrayList<>(),population=new ArrayList<>(),failures=new ArrayList<>();
@@ -454,6 +485,7 @@ public final class StateCollector {
             Map<String,Object> data=object("statistics", rows);
             if(group.getKey().equals("services")) {
                 data.put("room_data",roomServices());
+                data.put("access_policy",servicePolicies());
                 data.put("field_definitions",object("room_data",object(
                     "scope","instantiated_settlement_scene","source","settlement/room/service/module/ROOM_SERVICER.java; RoomServiceInstance.java",
                     "room_id","Public RoomInstance.index(), joins employment.room_id in the same observation; not a permanent identity or selected room.",
@@ -461,11 +493,16 @@ public final class StateCollector {
                     "available_slots_raw","Stored RoomServiceInstance.available(): reported reservable service-point count; not proof a particular citizen can reach or use it.",
                     "reserved_slots_raw","Stored RoomServiceInstance.reserved(): reported reserved service-point count; total minus available need not equal reserved.",
                     "active","Public room activation flag. Inactive rooms can still retain stored counters; no refresh is performed.",
-                    "missing","Only instances implementing public ROOM_SERVICER are included. Other rooms, failures and truncation are not zero counts.")));
+                    "missing","Only instances implementing public ROOM_SERVICER are included. Other rooms, failures and truncation are not zero counts."),
+                    "access_policy",object("scope","instantiated_city_service_configuration",
+                        "source","settlement/room/service/module/RoomServiceAccess.java; settlement/stats/service/StatServiceImp.java; init/type/HCLASS_RACE.java",
+                        "allowed_by_configured_rule","Public permission().is(HCLASS_RACE.clP(race,class)): configured cohort flag only, not effective individual eligibility. Nobles/tourists and child-parent rules can override or add conditions.",
+                        "relationships","service_id joins service_types in this observation; blueprint_id joins room_data/rooms.blueprint_id, including one-to-many instances. A registered type need not have a built room. Race/class keys join population cohorts; do not join by translated names.",
+                        "limits","At most 256 service types, 10000 rule rows and 64 races/classes. Each service type is emitted with its entire cohort batch, or omitted on failure/cap. Missing rules are not denial. No aggregate null-race/class settings are exported.")));
             }
             if(group.getKey().equals("military"))data.put("scene_armies",Arrays.asList(sceneArmy("player",GAME.ARMIES().player()),sceneArmy("enemy",GAME.ARMIES().enemy())));
             return data;
-        }, group.getKey().equals("military")?"Public battle aggregates and scene division rows; not every campaign army, private order state or combat history":group.getKey().equals("services")?"Public service aggregates and bounded per-room stored service-point counters; not demand, daily capacity, citizen access or complete service mechanics.":"Public aggregate statistics only; no causal/historical completeness is claimed.");
+        }, group.getKey().equals("military")?"Public battle aggregates and scene division rows; not every campaign army, private order state or combat history":group.getKey().equals("services")?"Public service aggregates, bounded per-room stored service-point counters and city cohort permission configuration; not demand, daily capacity, effective individual access or complete service mechanics.":"Public aggregate statistics only; no causal/historical completeness is claimed.");
         Set<String> sceneDomains=Set.of("population","resources","employment","services","housing","health","law","happiness","military","map","entities");
         for(String key:DOMAINS) {
             Map<String,Object> record=(Map<String,Object>)domains.get(key);

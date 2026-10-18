@@ -56,3 +56,5 @@ The regional-population checkpoint brings the production audit to 322 public mem
 The current resource-trade checkpoint inventories 342 public production member references, all present in the same offline catalog, with zero non-public production references. This expands explicit typed mapping, not arbitrary variable discovery or a completion percentage.
 
 The service-counter checkpoint pairs the new 346-member public production audit with the unchanged pinned offline catalog. All 346 IDs occur in its 17,442 candidates. This rechecks audit membership against the existing catalog, not complete state coverage or a new game version.
+
+The configured service-policy checkpoint expands the public production audit to 353 references, all found in the unchanged pinned discovery catalog. This is an explicit mapping of cohort flags through public interfaces, not private bitmap access or a count of every game variable.

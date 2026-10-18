@@ -70,15 +70,43 @@ async def verify(directory):
             for reference in {r['reference_id'] for r in observed}:
                 response=await call('search_game_references',{'query':reference})
                 assert any(r['id']==reference for r in response['results'])
+            policy=snapshot.domains['services'].data['access_policy']
+            assert policy['coverage']=='partial' and policy['scope']=='instantiated_city_service_configuration'
+            assert not policy['truncated'] and policy['failed_service_types']==0
+            types=await rows('services','/access_policy/service_types')
+            rules=await rows('services','/access_policy/cohort_rules')
+            assert types==fixture['service_types'] and rules==fixture['cohort_rules']
+            assert len(types)==policy['scanned_service_types']<=policy['service_type_limit']==256
+            assert len(rules)==len(types)*policy['cohorts_per_service_type']<=policy['rule_row_limit']==10000
+            assert len({(r['service_id'],r['race_id'],r['class_id']) for r in rules})==len(rules)
+            assert {r['allowed_by_configured_rule'] for r in rules}=={False,True}
+            for cl,expected in [(fixture['seeded_denied_class'],False),(fixture['seeded_allowed_class'],True)]:
+                seeded=next(r for r in rules if r['service_id']==fixture['seeded_service'] and r['race_id']==fixture['seeded_race'] and r['class_id']==cl)
+                assert seeded['allowed_by_configured_rule'] is expected
+            cohorts={(r['race_id'],r['class_id']):r['count'] for r in await rows('population','/by_race_class')}
+            denied=[r for r in rules if not r['allowed_by_configured_rule'] and (r['race_id'],r['class_id']) in cohorts]
+            chosen=await call('select_game_state',{'spec':json.loads((ROOT/'service-policy-query-example.json').read_text())})
+            expected=[{'service':r['service_id'],'blueprint':r['blueprint_id'],'race':r['race_id'],'class':r['class_id'],
+                'configured_allow':False,'scene_population':cohorts[r['race_id'],r['class_id']]} for r in denied[:5]]
+            assert chosen['results'][0]['rows']==expected and chosen['results'][0]['matched_total']==len(denied)
+            assert chosen['ui_context']==snapshot.ui_context
+            meanings=(await call('describe_game_fields',{'domain':'services'}))['field_definitions']['access_policy']
+            assert 'not effective individual eligibility' in meanings['allowed_by_configured_rule']
+            assert 'Missing rules are not denial' in meanings['limits']
+            for reference in {r['reference_id'] for r in types}:
+                response=await call('search_game_references',{'query':reference})
+                assert any(r['id']==reference for r in response['results'])
             report={'passed':True,'game_version':snapshot.game_version,'service_rooms_checked':len(observed),
-                'scanned_rooms':fixture['scanned_rooms'],'public_getter_parity':True,'room_staffing_left_join':True,
+                'scanned_rooms':fixture['scanned_rooms'],'service_types_checked':len(types),'cohort_rules_checked':len(rules),
+                'configured_policy_getter_parity':True,'controlled_true_false_policy_cases':True,'policy_population_join':True,'public_getter_parity':True,'room_staffing_left_join':True,
                 'same_observation_ui_context':True,'installed_room_reference_links':True,
                 'positive_counter_rows':{k:sum(r[k]>0 for r in observed) for k in ('total_slots_raw','available_slots_raw','reserved_slots_raw')},
                 'source_sha256':{n:hashlib.sha256((ROOT/n).read_bytes()).hexdigest() for n in
-                    ('service-query-example.json','dev/verify_services.py','mod/tests/ServiceScenario.java')},
+                    ('service-query-example.json','service-policy-query-example.json','dev/verify_services.py','mod/tests/ServiceScenario.java')},
                 'limits':['Paused copied city only; no every-service-type or cap/failure injection coverage.',
                     'Raw reported service-point counters, not people/day, demand, individual access or guaranteed reachability.',
-                    'No observer refresh/report/load, reservation writes or save writes. Counter equality is not a throughput proof.']}
+                    'Observer performs no refresh/report/load, reservation or permission writes. Test-only policy setters establish two cases in a copied city; no save writes.',
+                    'Configured cohort rule is not effective eligibility: nobles/tourists and child-parent rules can differ. Registered services may have no built room.']}
             (directory/'service-validation.json').write_text(json.dumps(report,indent=2)+'\n')
             (directory/'verifier.done').write_text('passed\n');print(json.dumps(report),flush=True)
             return report

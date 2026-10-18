@@ -3,6 +3,11 @@
   "game_version": "0.71.44",
   "service_rooms_checked": 8,
   "scanned_rooms": 36,
+  "service_types_checked": 17,
+  "cohort_rules_checked": 544,
+  "configured_policy_getter_parity": true,
+  "controlled_true_false_policy_cases": true,
+  "policy_population_join": true,
   "public_getter_parity": true,
   "room_staffing_left_join": true,
   "same_observation_ui_context": true,
@@ -14,16 +19,18 @@
   },
   "source_sha256": {
     "service-query-example.json": "c39d52bffb35c829dbd788ec2d16edfa2c604b33d166483a2be71d4697c1ed11",
-    "dev/verify_services.py": "a88086d7783a198d46bc169b027cd2315f9b957f98474a63219fd88311e38532",
-    "mod/tests/ServiceScenario.java": "927c3a55dd249da70ea55fc946927c0712f98225e0109493d162c7881d239ee6"
+    "service-policy-query-example.json": "245e614eab9d773ad7646e003f27e00295cd74dbf0f8c0a34a46754a832ab38b",
+    "dev/verify_services.py": "a610dc0c52002f0457fa4432c47ba8dcf166b4b1798e2d7f33c4d377c002e22e",
+    "mod/tests/ServiceScenario.java": "7c721be7328e0b61749a925f37c5248983cb6ba42ad22f92369d0aac37776fb2"
   },
   "limits": [
     "Paused copied city only; no every-service-type or cap/failure injection coverage.",
     "Raw reported service-point counters, not people/day, demand, individual access or guaranteed reachability.",
-    "No observer refresh/report/load, reservation writes or save writes. Counter equality is not a throughput proof."
+    "Observer performs no refresh/report/load, reservation or permission writes. Test-only policy setters establish two cases in a copied city; no save writes.",
+    "Configured cohort rule is not effective eligibility: nobles/tourists and child-parent rules can differ. Registered services may have no built room."
   ],
-  "evaluated_at": "2026-10-18T10:35:12.606947+00:00",
-  "mod_jar_sha256": "e93b031e96032bf8cc20dc42e3b1d37c4d261901c2c0f1d0779055454d711a78",
+  "evaluated_at": "2026-10-18T12:28:24.052692+00:00",
+  "mod_jar_sha256": "ef2e9aa0362f9cb16cf7c7fc0ef7570012be51294c0f7296b3ae242bc9466540",
   "game_jar_sha256": "fe0137c05408e5ee9e31f06fc44fe37a5d4372d9c985b280f0852d1347c0224b",
   "source_archive_sha256": "a3fc2aa9f4be31aec0616a5030a656ac49a6011343b7e91395c7bac0b9dfb0a5",
   "production_source_sha256": {
@@ -31,17 +38,17 @@
     "syx/assistant/ChatPanel.java": "3138d3e863ccb36ad5b6b37a7e1f3486dd2d8c1dc43ab469b26af714548d8437",
     "syx/assistant/EntityReadRequest.java": "deb0f86cad28da1c8677394a4aeb26913b0c80b4ee90c08cb882bedbc11f8a03",
     "syx/assistant/JsonWriter.java": "c525eb60d3224cab83ed3fd6b8594ec8652211f00bd947e873e1482f919e81dc",
-    "syx/assistant/StateCollector.java": "e19a1bd9cd708c7431fa6667cdab3e87a4507af50adb4779ca15aa0558708140",
+    "syx/assistant/StateCollector.java": "4c322506a1c8797edc0da329c75bff2d1a770858d9dbd11edf1ab26891399638",
     "syx/assistant/TileReadRequest.java": "1a192cde61a7e1bdefa170390c00b17c74573b9c41de71700ebea466411ad3c5",
     "syx/assistant/UiContentCollector.java": "c0d20c7f9f2734a0bb625427875f06bfcd07edb20611248b39b6e8f480ef5a48",
     "syx/assistant/UiContextCollector.java": "439604436fc98c478ade47682775ee55edb1688d76078e0602f7ab78db187157"
   },
   "python_source_sha256": {
     "syx_mcp.py": "f46d48e261c8a766a1a501a286ac288a1587a26baacbca54a970429e0c9ece8c",
-    "syx_knowledge.py": "7947aac1cea46f450fe56ee91efa11e9871f86085a90939f0d0c2007327896c0",
+    "syx_knowledge.py": "8ba92826d9a9b27099b29d26c50b054a172c6d10ca755ee7f70d538a4573d17a",
     "syx_query.py": "05b164574204a058b5a739f69be72e38bcb3b841c7f24a1e73b560090926d4f5",
-    "syx_api_support.py": "d6058456dcd5468c025bdc04975042476db8d82c7362ce1b7249969607e12ff6",
-    "syx_api_manifest.py": "b8ae7dfe560785f083ef609df36b4138d05be3bac16ca001f6bd9b61c8bdb820",
+    "syx_api_support.py": "7d961cffdc09d46ae87ae220725cca6519588f77015cacde2514e79cbc68c8f7",
+    "syx_api_manifest.py": "206021fa5cc2fd6db53662e1440b5655ca47cc53d6d4002edaf5d09e48d273f4",
     "syx_live.py": "a7c5d5b457eeb2b8f8240079aed5183a736e6dee9f5c3c140122ade0bb21616a",
     "syx_capture.py": "fb27ec6c9278992d668bb54c85b34f17c625329a8d6f409df7fba1e3e56bcc55",
     "syx_tiles.py": "66d47fba905f9ab1ca5c13c60c314b5c4542fe09a36e74320495351e263e8493",
@@ -52,9 +59,9 @@
     "syx_claude.py": "3a850a645907f27b1a9cb15c3c5244b96b2da97d5d0dc37f5cd7d6f708cf92a8",
     "syx_claude_worker.py": "ab6638b2c4ef3a4a1548fde1c0739a48f4d47e468494dd7444019f3f330dea38"
   },
-  "public_production_members": 346,
+  "public_production_members": 353,
   "non_public_production_members": 0,
-  "python_tests_passed": 155,
+  "python_tests_passed": 160,
   "inference_calls": 0,
   "static_contract_review": {
     "passed": true,
@@ -247,6 +254,68 @@
     ]
   },
   "contract_verifier_sha256": "db644e57ccd3638c52bfc9dd462e2c208e84321935ffe4a2aabe3b3b2f2a1955",
+  "policy_contract_review": {
+    "passed": true,
+    "game_jar_sha256": "fe0137c05408e5ee9e31f06fc44fe37a5d4372d9c985b280f0852d1347c0224b",
+    "source_archive_sha256": "a3fc2aa9f4be31aec0616a5030a656ac49a6011343b7e91395c7bac0b9dfb0a5",
+    "method": "Static source/binary reader inspection. No game execution, private reflection or private-instance access.",
+    "reader_checks": [
+      {
+        "owner": "settlement.room.service.module.RoomServiceAccess",
+        "signature": "public static snake2d.util.sets.LIST<settlement.room.service.module.RoomServiceAccess> ALL();",
+        "source_path": "settlement/room/service/module/RoomServiceAccess.java",
+        "source_sha256": "f842ae5ef3fa95bb6137dd8d7c293c6598bcce33962bc513a1ce1b092b865a8e",
+        "normalized_disassembly_sha256": "cc0ba3ab609de3edb653aed0cf582f33159c7c9533142702b7af178ca370ff75",
+        "no_write_opcode_in_reviewed_reader": true,
+        "static_implementation_only": false
+      },
+      {
+        "owner": "settlement.room.service.module.RoomServiceAccess",
+        "signature": "public final settlement.stats.service.StatServiceRoom stats();",
+        "source_path": "settlement/room/service/module/RoomServiceAccess.java",
+        "source_sha256": "f842ae5ef3fa95bb6137dd8d7c293c6598bcce33962bc513a1ce1b092b865a8e",
+        "normalized_disassembly_sha256": "bead067660d588ed048703fcd51466dbf65105c95142622082a5c726039a1f1f",
+        "no_write_opcode_in_reviewed_reader": true,
+        "static_implementation_only": false
+      },
+      {
+        "owner": "settlement.stats.service.StatServiceImp",
+        "signature": "public util.data.BOOLEANO$BOOLEAN_OE<init.type.HCLASS_RACE> permission();",
+        "source_path": "settlement/stats/service/StatServiceImp.java",
+        "source_sha256": "d8e595a7f8e421cd492ecb4f341e6514c911a333d10abb41ea85d866cbe06b43",
+        "normalized_disassembly_sha256": "bb5bd4dae832954e7e2909dcf3fd6f0e8ca1c9fd439c49504319fadc8a301f04",
+        "no_write_opcode_in_reviewed_reader": true,
+        "static_implementation_only": false
+      },
+      {
+        "owner": "init.type.HCLASS_RACE",
+        "signature": "public static init.type.HCLASS_RACE clP(init.race.Race, init.type.HCLASS);",
+        "source_path": "init/type/HCLASS_RACE.java",
+        "source_sha256": "657a5b5a3e7a02a34fc9dbe57068f0082990c69bdda58e3217c583bab4094944",
+        "normalized_disassembly_sha256": "9393fbc808579c722995dfb7976f72d499fd4c67d59b41a5acd8fb4ae630f1b2",
+        "no_write_opcode_in_reviewed_reader": true,
+        "static_implementation_only": false
+      },
+      {
+        "owner": "settlement.stats.service.StatServiceImp$Perm",
+        "signature": "public boolean is(init.type.HCLASS_RACE);",
+        "source_path": "settlement/stats/service/StatServiceImp.java",
+        "source_sha256": "d8e595a7f8e421cd492ecb4f341e6514c911a333d10abb41ea85d866cbe06b43",
+        "normalized_disassembly_sha256": "7130201fa62243fe253ee050f520f7b9d9b6c9417e4f7eed36b200d3e1e4ce10",
+        "no_write_opcode_in_reviewed_reader": true,
+        "static_implementation_only": true
+      }
+    ],
+    "configured_is_not_effective_access": true,
+    "effective_access_request_body_sha256": "fe1c6ba4b15b0c39a5fc48f4127b0e691a0520ec8457325c8b4c46145bf4f4ec",
+    "source_review_conclusion": "Configured concrete cohort flag is read through public BOOLEAN_OE.is. Individual accessRequest also considers nobility/tourism and child/parent conditions. It is not invoked or reimplemented by production.",
+    "limits": [
+      "No formal equivalence or stable official contract. No-write opcode checks are scoped static evidence, not a general purity proof.",
+      "The private implementation is inspected in shipped files only; no runtime cast, reflection, bitmap access or policy setter exists in production.",
+      "No full individual eligibility, reachability, service demand or permission-setter correctness established."
+    ]
+  },
+  "policy_contract_verifier_sha256": "dc79c39b037a56f7ca2ed8fb7238c981847ceb741ef217420985b5aa096cb447",
   "scene_regression": {
     "passed": true,
     "checks": {
@@ -259,6 +328,7 @@
         "city_trade_pipeline_coverage": "partial",
         "world_population_coverage": "partial",
         "service_room_coverage": "partial",
+        "service_policy_coverage": "partial",
         "production_coverage": "partial",
         "production_room_coverage": "partial"
       },
@@ -271,6 +341,7 @@
         "city_trade_pipeline_coverage": "partial",
         "world_population_coverage": "partial",
         "service_room_coverage": "partial",
+        "service_policy_coverage": "partial",
         "production_coverage": "partial",
         "production_room_coverage": "partial"
       },
@@ -283,6 +354,7 @@
         "city_trade_pipeline_coverage": "partial",
         "world_population_coverage": "partial",
         "service_room_coverage": "partial",
+        "service_policy_coverage": "partial",
         "production_coverage": "partial",
         "production_room_coverage": "partial"
       },
@@ -295,6 +367,7 @@
         "city_trade_pipeline_coverage": "unavailable",
         "world_population_coverage": "partial",
         "service_room_coverage": "partial",
+        "service_policy_coverage": "unavailable",
         "production_coverage": "partial",
         "production_room_coverage": "partial"
       },
@@ -307,6 +380,7 @@
         "city_trade_pipeline_coverage": "unavailable",
         "world_population_coverage": "partial",
         "service_room_coverage": "partial",
+        "service_policy_coverage": "unavailable",
         "production_coverage": "partial",
         "production_room_coverage": "partial"
       },
@@ -319,6 +393,7 @@
         "city_trade_pipeline_coverage": "partial",
         "world_population_coverage": "partial",
         "service_room_coverage": "partial",
+        "service_policy_coverage": "partial",
         "production_coverage": "partial",
         "production_room_coverage": "partial"
       },
@@ -331,6 +406,7 @@
         "city_trade_pipeline_coverage": "unavailable",
         "world_population_coverage": "unavailable",
         "service_room_coverage": "unavailable",
+        "service_policy_coverage": "unavailable",
         "production_coverage": "unavailable",
         "production_room_coverage": "unavailable"
       },
@@ -343,6 +419,7 @@
         "city_trade_pipeline_coverage": "unavailable",
         "world_population_coverage": "unavailable",
         "service_room_coverage": "unavailable",
+        "service_policy_coverage": "unavailable",
         "production_coverage": "unavailable",
         "production_room_coverage": "unavailable"
       }
@@ -353,5 +430,5 @@
       "Generation checks initial setup and public terrain generation; exact private wizard step and full political-world completion remain unvalidated."
     ]
   },
-  "core_report_sha256": "a9392159d41c95d83ae77177d5c29e4d9bd74ae13ea79c5e256380ecdd710f92"
+  "core_report_sha256": "c6cc65c90db6bdeed0b5ffe91d41c2d358db93cd47880d393d50716df923de94"
 }

@@ -11,6 +11,7 @@ def test_game_source_stays_in_mod_namespace_without_bypass():
                '.click(','.hover(','.kill(','.speedSet(','.attackMelee(',
                '.setIndustry(','.updateRoom(','.incDay(','.productionData(',
                '.loadFix(','.updateDay(','.clearLoad(','.increServices(',
+               '.reportAccess(','.reportContent(','.setAccess(', 'permission.set(',
                'java.awt.Robot','ProcessBuilder','Runtime.getRuntime().exec','copyFB(', 'CORE_RESOURCE']
     for source in sources:
         text=source.read_text()

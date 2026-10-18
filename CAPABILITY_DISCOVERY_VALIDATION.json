@@ -1,6 +1,6 @@
 {
   "passed": true,
-  "evaluated_at": "2026-10-18T11:17:40.575647+00:00",
+  "evaluated_at": "2026-10-18T12:20:05.885477+00:00",
   "checks": [
     {
       "id": "room_service_counters",
@@ -11,6 +11,19 @@
         "SERVICE_COUNTERS.md",
         "SERVICE_VALIDATION.json",
         "service-query-example.json"
+      ],
+      "passed": true
+    },
+    {
+      "id": "service_cohort_permissions",
+      "support": "public_source_verified",
+      "references": [
+        "settlement/room/service/module/RoomServiceAccess.java",
+        "settlement/stats/service/StatServiceImp.java",
+        "init/type/HCLASS_RACE.java",
+        "SERVICE_PERMISSIONS.md",
+        "SERVICE_VALIDATION.json",
+        "service-policy-query-example.json"
       ],
       "passed": true
     },
@@ -54,16 +67,16 @@
   "service_counter_member_anchors_checked": 3,
   "no_game_snapshot_required": true,
   "inference_calls": 0,
-  "public_inventory_size": 346,
+  "public_inventory_size": 353,
   "source_sha256": {
     "syx_mcp.py": "f46d48e261c8a766a1a501a286ac288a1587a26baacbca54a970429e0c9ece8c",
-    "syx_api_support.py": "edd652f645e9d425f06192ee33b262620ca2b43a2a2c4f49311b464f9570597a",
-    "syx_api_manifest.py": "b8ae7dfe560785f083ef609df36b4138d05be3bac16ca001f6bd9b61c8bdb820",
-    "dev/verify_capability_discovery.py": "3699442c1dd9bdcbec9827019e4c0dc8c4d9ad25525b7b0fe7faac67ead5dc16"
+    "syx_api_support.py": "7d961cffdc09d46ae87ae220725cca6519588f77015cacde2514e79cbc68c8f7",
+    "syx_api_manifest.py": "206021fa5cc2fd6db53662e1440b5655ca47cc53d6d4002edaf5d09e48d273f4",
+    "dev/verify_capability_discovery.py": "50ddcd9ecd0b6e79e3f6e0e45441f12777cb33db3668eddfd6a26de087b8bf91"
   },
   "limits": [
     "Capability records summarize existing evidence; no new game getter/scene or official stable contract is established.",
     "Offline discovery is not an attestation of a separately installed game mod; pair source-matching builds.",
-    "Three supported capabilities and two explicit gaps sampled, not exhaustive metadata acceptance."
+    "Four supported capabilities and two explicit gaps sampled, not exhaustive metadata acceptance."
   ]
 }

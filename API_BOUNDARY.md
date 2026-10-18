@@ -113,3 +113,7 @@ The adapter uses public Player.buyer/seller routes, PBuyer/PSeller counter acces
 ## Per-room service counters
 
 Only public `ROOM_SERVICER.service` and `RoomServiceInstance.total/available/reserved` are added. The three counter readers are checked as direct stored-field returns against the installed binary, with shipped-source anchors. No service reporting, finder query, reservation write, load/refresh or private implementation cast is used. The current compiler audit contains 346 public references and zero non-public references. The counters retain room-specific raw meanings, with no people/day or individual-access inference. See SERVICE_COUNTERS.md and SERVICE_VALIDATION.json.
+
+## Configured cohort service permissions
+
+The collector adds public RoomServiceAccess.ALL/stats/index, RoomService.room, StatServiceImp.permission, BOOLEANO.is and HCLASS_RACE.clP readers. Production uses the returned public boolean interface, never the private permission implementation or bitmap, and calls no setter or accessRequest. The configured flag is explicitly distinct from the individual eligibility rules found in shipped accessRequest source. Static source/binary review is scoped evidence, not an official stable contract or a general purity proof. City policy is unavailable on battlefields and incomplete setup. The compiler audit contains 353 public members and zero non-public references. See SERVICE_PERMISSIONS.md and SERVICE_VALIDATION.json.

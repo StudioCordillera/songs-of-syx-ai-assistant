@@ -1,0 +1,21 @@
+{
+  "include_ui_context": true,
+  "queries": [{
+    "name": "configured_service_denials_with_cohort_population",
+    "source": {"domain": "services", "path": "/access_policy/cohort_rules"},
+    "joins": [{"source": {"domain": "population", "path": "/by_race_class"}, "left_key": "/race_id", "right_key": "/race_id", "as": "cohort", "kind": "inner"}],
+    "where": {"and": [
+      {"eq": [{"field": "/class_id"}, {"field": "/cohort/class_id"}]},
+      {"eq": [{"field": "/allowed_by_configured_rule"}, false]}
+    ]},
+    "select": {
+      "service": {"field": "/service_id"},
+      "blueprint": {"field": "/blueprint_id"},
+      "race": {"field": "/race_id"},
+      "class": {"field": "/class_id"},
+      "configured_allow": {"field": "/allowed_by_configured_rule"},
+      "scene_population": {"field": "/cohort/count"}
+    },
+    "limit": 5
+  }]
+}
