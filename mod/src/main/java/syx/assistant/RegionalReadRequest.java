@@ -16,7 +16,7 @@ import static syx.assistant.StateCollector.object;
 /** Fixed resource-output request, parsed off-thread and read only on GAME.addAfterUpdate. */
 public final class RegionalReadRequest {
     public final String id,session;
-    final long expires;final int cursor,scanLimit,limit;
+    final long expires;final int cursor,scanLimit,limit;final boolean capture;
     final List<Integer> regionIds;final List<String> resourceIds;final Set<String> fields;
     final Integer minimum,maximum,faction;
     private static final Set<String> KEYS=Set.of("protocol","request_id","session","expires","regions","resources","fields","cursor","scan_limit","limit","minimum","maximum","faction");
@@ -42,11 +42,11 @@ public final class RegionalReadRequest {
             String k=line.substring(0,at);
             if(!KEYS.contains(k) || values.put(k,line.substring(at+1))!=null)throw new IllegalArgumentException("Unknown or duplicate request field");
         }
-        if(!values.keySet().equals(KEYS) || !"1".equals(values.get("protocol")))throw new IllegalArgumentException("Unsupported regional protocol");
+        if(!values.keySet().equals(KEYS) || !Set.of("1","2").contains(values.get("protocol")))throw new IllegalArgumentException("Unsupported regional protocol");
         return new RegionalReadRequest(values);
     }
     private RegionalReadRequest(Map<String,String> p) {
-        id=uuid(p.get("request_id"));session=uuid(p.get("session"));
+        id=uuid(p.get("request_id"));session=uuid(p.get("session"));capture="2".equals(p.get("protocol"));
         if(!p.get("expires").matches("[0-9]{13}"))throw new IllegalArgumentException("Invalid deadline");
         expires=Long.parseLong(p.get("expires"));if(expires-System.currentTimeMillis()>15000)throw new IllegalArgumentException("Deadline too far ahead");
         regionIds=new ArrayList<>();resourceIds=new ArrayList<>();
@@ -60,7 +60,8 @@ public final class RegionalReadRequest {
         fields=new LinkedHashSet<>(Arrays.asList(p.get("fields").split(",",-1)));
         if(!FIELDS.containsAll(fields) || fields.size()!=p.get("fields").split(",",-1).length)throw new IllegalArgumentException("Invalid projection");
         cursor=integer(p.get("cursor"),0,regionIds.size()*resourceIds.size());
-        scanLimit=integer(p.get("scan_limit"),1,4096);limit=integer(p.get("limit"),1,100);
+        scanLimit=integer(p.get("scan_limit"),1,capture?10000:4096);limit=integer(p.get("limit"),1,capture?2000:100);
+        if(capture && (cursor!=0 || regionIds.size()*resourceIds.size()>scanLimit))throw new IllegalArgumentException("Capture matrix must fit one bounded callback from cursor zero");
         minimum=optional(p.get("minimum"));maximum=optional(p.get("maximum"));faction=optional(p.get("faction"));
         if(minimum!=null && maximum!=null && minimum>maximum)throw new IllegalArgumentException("Invalid accrued range");
     }
@@ -87,7 +88,7 @@ public final class RegionalReadRequest {
             if(regionMap.size()!=regionIds.size())throw new IllegalArgumentException("Unknown or inactive requested region");
             if(outputMap.size()!=resourceIds.size())throw new IllegalArgumentException("Unknown requested resource key");
             int next=cursor,scanned=0,errors=0,area=regionIds.size()*resourceIds.size();List<Object> rows=new ArrayList<>();
-            while(next<area && scanned<scanLimit && rows.size()<limit) {
+            while(next<area && scanned<scanLimit && (capture || rows.size()<limit)) {
                 int rid=regionIds.get(next/resourceIds.size());String resource=resourceIds.get(next%resourceIds.size());next++;scanned++;
                 try {
                     Region region=regionMap.get(rid);RDResource output=outputMap.get(resource);
@@ -106,11 +107,13 @@ public final class RegionalReadRequest {
                         case "faction_id":row.put(field,owner);break;
                         default:throw new IllegalArgumentException("Unknown field");
                     }
+                    if(capture && rows.size()>=limit)return error(actual,"Regional capture exceeds max_rows; no selection retained. Narrow IDs/filters or increase max_rows within limits.");
                     rows.add(row);
                 } catch(RuntimeException failure){errors++;}
             }
+            if(capture && (next<area || errors!=0))return error(actual,"Incomplete regional capture; no selection retained. Narrow IDs/filters or increase max_rows within limits.");
             return object("request_id",id,"session_id",actual,"game_version",VERSION.VERSION_STRING,"captured_at",Instant.now().toString(),
-                "tick",Math.max(0,GAME.updateI()),"observer_phase","GAME.addAfterUpdate","read_mode","regional_page","available",true,
+                "tick",Math.max(0,GAME.updateI()),"observer_phase","GAME.addAfterUpdate","read_mode",capture?"regional_capture":"regional_page","available",true,
                 "scope","campaign_world_regions","coverage","partial","scene",UiContextCollector.scene(),"ui_context",UiContextCollector.collect(),
                 "data",object("rows",rows,"scanned_cells",scanned,"cell_errors",errors,"next_cursor",next<area?next:null,
                     "cursor_kind","requested_region_resource_matrix","region_ids",regionIds,"resource_ids",resourceIds,

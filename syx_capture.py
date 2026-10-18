@@ -142,6 +142,29 @@ class TileCaptures(EntityCaptures):
         return self._retain(payload,selection,65536,'64 KiB','read_tile_capture')
 
 
+class RegionalCaptures(EntityCaptures):
+    """Separate regional pool; a complete matrix selection comes from one callback."""
+    def _metadata(self,token,created,payload,now):
+        result=super()._metadata(token,created,payload,now)
+        result.update(capture_kind='regional_output',selection_complete=True,request_id=payload['request_id'],
+            scanned_cells=payload['data']['scanned_cells'],cell_errors=payload['data']['cell_errors'],
+            warning='Pages retain original campaign accruals, ownership, configured offsets, scene and time. They are not current values, inventory, forecasts or UI-selected regions. Other observations/captures are separate; no global worker transaction.')
+        return result
+
+    def create(self,spec):
+        from syx_regions import RegionalCaptureSelection,query_regional_outputs
+        selection=RegionalCaptureSelection.model_validate(spec)
+        payload=query_regional_outputs(self.advisor,selection.model_dump(mode='json',by_alias=True),capture=True)
+        data=payload['data']
+        if (len(data['rows'])>selection.limit or 'next_cursor' not in data or data['next_cursor'] is not None or
+            data.get('scanned_cells')!=len(selection.region_ids)*len(selection.resource_ids) or
+            type(data.get('cell_errors')) is not int or data['cell_errors']!=0):
+            raise ValueError('Incomplete regional capture; no selection retained')
+        payload['source_consistency']=payload['consistency']
+        payload['consistency']='One complete bounded regional selection from one after-update callback, paged from encoded detached rows. No global simulation/worker transaction.'
+        return self._retain(payload,selection,PAYLOAD_CAP,'2 MiB','read_regional_output_capture')
+
+
 CAPTURE_HELP = {
     'create_tool': 'capture_live_entities', 'read_tool': 'read_entity_capture',
     'selection': EntityCaptureSelection.model_json_schema(),
@@ -161,3 +184,13 @@ TILE_CAPTURE_HELP = {
 }
 from syx_tiles import TileCaptureSelection
 TILE_CAPTURE_HELP['selection']=TileCaptureSelection.model_json_schema()
+
+
+from syx_regions import RegionalCaptureSelection
+REGIONAL_CAPTURE_HELP = {
+    'create_tool':'capture_live_regional_outputs','read_tool':'read_regional_output_capture',
+    'selection':RegionalCaptureSelection.model_json_schema(),
+    'semantics':'Complete matching ordered active-region/resource matrix selection from one public after-update callback. Never stitches live pages. Original request/session/tick/time/scene/UI remain immutable while paging; current_state is separate. No global worker transaction.',
+    'limits':'100 region IDs/100 exact loaded resource keys, scan_limit <=10000, max_rows <=2000, cursor zero, whole matrix must fit scan_limit. 8 KiB request, 2 MiB raw response and retained payload. Scan/row/cell-error/byte failures retain nothing; narrow IDs/fields/filters.',
+    'paging':'Separate pool of three regional captures per MCP process, 120-second retention, oldest eviction; tokens do not survive restart or cross servers/pools. At most 100 rows/64 KiB per page; reduce limit for wide rows. Fresh loaded same-session/version observation required; include_ui_context returns original historical context.',
+    'meaning':'Same fixed projections, inclusive accrued range and owner filter as query_live_regional_outputs. Stored resource-backed accrual and cyclic configured offset only; not inventory, delivered totals, forecast, arrival ETA or UI selection. No gameplay writes, cache refresh action or arbitrary calls. Requires paired updated mod/helper.'}

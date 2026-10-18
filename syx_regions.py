@@ -34,7 +34,7 @@ class RegionalSelection(StrictModel):
     def wire(self,request_id,session,expires):
         def optional(value):return '' if value is None else str(value)
         keys=[base64.urlsafe_b64encode(k.encode()).decode().rstrip('=') for k in self.resource_ids]
-        values={'protocol':'1','request_id':request_id,'session':session,'expires':expires,
+        values={'protocol':'2' if isinstance(self,RegionalCaptureSelection) else '1','request_id':request_id,'session':session,'expires':expires,
             'regions':','.join(map(str,self.region_ids)),'resources':','.join(keys),'fields':','.join(self.fields),
             'cursor':self.cursor,'scan_limit':self.scan_limit,'limit':self.limit,
             'minimum':optional(self.min_accrued_output),'maximum':optional(self.max_accrued_output),'faction':optional(self.faction_id)}
@@ -43,11 +43,23 @@ class RegionalSelection(StrictModel):
         return text
 
 
-def query_regional_outputs(advisor,spec,*,timeout=8):
-    selection=RegionalSelection.model_validate(spec)
-    result=_read_entities(advisor,selection,timeout=timeout,channel='regional')
+class RegionalCaptureSelection(RegionalSelection):
+    cursor:Annotated[StrictInt,Field(ge=0,le=0)]=0
+    scan_limit:Annotated[StrictInt,Field(ge=1,le=10000)]=10000
+    limit:Annotated[StrictInt,Field(ge=1,le=2000)]=Field(default=2000,alias='max_rows')
+
+    @model_validator(mode='after')
+    def complete_matrix(self):
+        if len(self.region_ids)*len(self.resource_ids)>self.scan_limit:
+            raise ValueError('Capture matrix must fit scan_limit <=10000 in one callback')
+        return self
+
+
+def query_regional_outputs(advisor,spec,*,timeout=8,capture=False):
+    selection=(RegionalCaptureSelection if capture else RegionalSelection).model_validate(spec)
+    result=_read_entities(advisor,selection,timeout=timeout,channel='regional',capture=capture)
     data=result['data'];area=len(selection.region_ids)*len(selection.resource_ids)
-    if (result.get('read_mode')!='regional_page' or result.get('observer_phase')!='GAME.addAfterUpdate' or
+    if (result.get('read_mode')!=('regional_capture' if capture else 'regional_page') or result.get('observer_phase')!='GAME.addAfterUpdate' or
         result.get('scope')!='campaign_world_regions' or result.get('coverage')!='partial' or
         data.get('cursor_kind')!='requested_region_resource_matrix' or
         data.get('region_ids')!=selection.region_ids or data.get('resource_ids')!=selection.resource_ids):
@@ -59,6 +71,8 @@ def query_regional_outputs(advisor,spec,*,timeout=8):
     errors=data.get('cell_errors')
     if type(errors) is not int or not 0<=errors<=scanned or len(data['rows'])+errors>scanned:
         raise ValueError('Invalid regional cell/error counts')
+    if selection.min_accrued_output is None and selection.max_accrued_output is None and selection.faction_id is None and len(data['rows'])+errors!=scanned:
+        raise ValueError('Unfiltered regional response omitted scanned cells')
     if data.get('region_scan_limit')!=1023 or data.get('resource_scan_limit')!=1000:raise ValueError('Invalid registry scan limits')
     for key,bound in [('scanned_regions',1023),('scanned_resources',1000)]:
         if type(data.get(key)) is not int or not 0<=data[key]<=bound:raise ValueError('Invalid registry scan bound')
@@ -86,8 +100,9 @@ def query_regional_outputs(advisor,spec,*,timeout=8):
         if 'faction_id' in row and selection.faction_id is not None and row['faction_id']!=selection.faction_id:
             raise ValueError('Regional row violates faction predicate')
         if 'reference_id' in selection.fields and row['reference_id']!='resource:'+res:raise ValueError('Invalid regional resource reference')
+    if capture and (end!=area or cursor is not None or errors!=0):raise ValueError('Incomplete regional capture; no selection retained')
     from pydantic_core import to_json
-    if len(to_json(result,indent=2,fallback=str))>65536:raise ValueError('Regional tool text exceeds 64 KiB; narrow fields/limit')
+    if not capture and len(to_json(result,indent=2,fallback=str))>65536:raise ValueError('Regional tool text exceeds 64 KiB; narrow fields/limit')
     return result
 
 
@@ -95,7 +110,7 @@ REGIONAL_QUERY_HELP={
     'tool':'query_live_regional_outputs','selection':RegionalSelection.model_json_schema(),
     'boundary':'Fixed public campaign resource-output getters in GAME.addAfterUpdate, detached DTOs only. No cached row source, private reflection, boost/cache refresh, shipping action or arbitrary member invocation.',
     'identities':'Explicit active region IDs and exact loaded resource keys; unknown/inactive identities fail the request, never become zero counters. Same session required; no UI-selected region inference.',
-    'paging':'Cursor is a position in the requested region_ids x resource_ids ordered matrix, not a global game slot or matching-row count. Supply the same ordered IDs/predicates/fields for continuation. Follow next_cursor even after empty filtered pages. Every page has its own request/tick/time/scene/UI; no multi-page consistency or retained capture is established.',
+    'paging':'Cursor is a position in the requested region_ids x resource_ids ordered matrix, not a global game slot or matching-row count. Supply the same ordered IDs/predicates/fields for continuation. Follow next_cursor even after empty filtered pages. Every page has its own request/tick/time/scene/UI; no multi-page consistency is established by this live tool. Use capture_live_regional_outputs/read_regional_output_capture for a complete bounded selection from one callback.',
     'limits':'100 region IDs/100 resource keys, at most 1023 region and 1000 resource registry bindings, 4096 cells scanned/100 returned rows per page, 8 KiB request/64 KiB response, eight-second deadline. Cell errors qualify absence/count. POSIX transport serializes this with entity/tile requests.',
     'semantics':'accrued_output_raw is stored resource-backed campaign accrual, not inventory, annual delivered totals, income/production forecast. days_until_configured_output is a cyclic schedule offset, not departure/arrival ETA or shipping permission. Exact age is unknown. faction_id is current campaign ownership in this response, not cached UI selection. Non-resource/MONEY outputs remain excluded. Public source verified, not documented stable contracts.',
     'provenance':['REGIONAL_OUTPUT_BOUNDARY_REVIEW.json','REGIONAL_OUTPUTS.md','REGIONAL_LIVE_READS.md']}

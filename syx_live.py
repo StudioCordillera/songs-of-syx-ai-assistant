@@ -143,14 +143,14 @@ def _read_entities(advisor,selection,*,timeout:float,capture=False,channel='enti
                 if captured.tzinfo is None or not -2<=(datetime.now(timezone.utc)-captured).total_seconds()<=10:
                     raise ValueError('Read response timestamp is not recent')
                 if result.get('available') is not True:raise ValueError(result.get('reason','Game read unavailable'))
-                if capture and result.get("read_mode")!="capture":raise ValueError("Exporter did not return capture mode")
+                if capture and result.get("read_mode")!=("regional_capture" if channel=="regional" else "capture"):raise ValueError("Exporter did not return capture mode")
                 data=result.get('data')
                 if not isinstance(data,dict) or not isinstance(data.get('rows'),list) or len(data['rows'])>selection.limit:
                     raise ValueError('Invalid bounded entity response')
                 scanned_key={'tile':'scanned_tiles','regional':'scanned_cells'}.get(channel,'scanned_slots')
                 if type(data.get(scanned_key)) is not int or not 0<=data[scanned_key]<=selection.scan_limit:
                     raise ValueError('Invalid scan bound')
-                if capture and (data.get("next_cursor") is not None or data.get("predicate_errors")!=0):
+                if capture and (data.get("next_cursor") is not None or data.get("cell_errors" if channel=="regional" else "predicate_errors")!=0):
                     raise ValueError("Incomplete capture; no selection retained")
                 return result
             time.sleep(.05)

@@ -1,10 +1,18 @@
 # Validation evidence
 
-## Current live-regional player checkpoint
+## Current regional-capture player checkpoint
+
+REGIONAL_CAPTURE_VALIDATION.json pins complete single-callback regional selections and immutable MCP paging after a copied counter/view change, no request while paging, exact matching-row limits, row/scan refusal, empty capture, concurrent pages, separate pools and real reload invalidation. The finite copied campaign supplies 4,200 selected cells/166 positive rows and a separate 1,974-row capture larger than 64 KiB. Sixty-four native collector/encoding samples agree with independent public getters. REGIONAL_CAPTURES.md describes the 10,000-cell/2,000-row/2-MiB protocol, historical provenance, TTL/freshness and explicit unsupported scopes.
+
+The exact source/JAR/Python pair passes 296 offline tests, 22 pure Java codec rejection checks, two real DeepSeek Pro turns, all seven finite native core groups, the existing live-regional matrix/prefix/concurrency/scene regression, twelve supported capability probes plus two gaps/six member anchors, all 37 guidance cases and fresh extracted dependency/startup/install/key-exclusion checks. USER_TEST_VALIDATION.json links the source-pinned current evidence. ChatPanel class bytes directly match retained focus/wrapping evidence; physical keyboard/all-display tests remain open. The simple Pro UI and previous tested ZIP are preserved.
+
+CURRENT_COLLECTION_COST_VALIDATION.json refreshes the regular small paused-city baseline for this exact build (31 warm samples, collection median 6.749 ms, max 12.158 ms; encoding separate, snapshot 1,797,402 bytes). The earlier REGIONAL_REQUEST_COST_VALIDATION.json retains its earlier live-page JAR and sequential MCP timings. Neither these measurements nor finite capture costs establish largest-world/city, concurrent load, native fault/2-MiB overflow, 10,000-cell/2,000-row worst-case, natural rollover/ownership transfer, FPS, every game variable/menu or a global worker transaction. Normal saves/credentials remain untouched.
+
+## Live-regional checkpoint — separate observations
 
 REGIONAL_LIVE_VALIDATION.json records actual MCP/direct-getter parity for 4,200 selected cells over 42 pages, an empty filtered 4,096-cell scan followed by the target, combined predicates/projections, unknown/inactive refusal, concurrent callers, restored test controls and eight scene phases. The separate authored partial-cache MCP server proves a target absent from 100 copied cached rows is still returned by the real live callback. Its timestamp/session are not refreshed; this is not an actual production 10,000-cell cap or large-world fixture. REGIONAL_LIVE_READS.md describes matrix cursors, source/byte budgets and separate page observations. The Java codec accepts the valid/end-cursor frame and rejects 19 malformed variants without game bootstrap.
 
-The current source passes 267 Python tests and two real Pro turns; USER_TEST_VALIDATION.json and PLAYER_CORE_VALIDATION.json pin the paired player/core scope. There are sixteen read-only tools and 375 public game references, zero non-public references. Source verification remains distinct from documented stable contracts. Native registry/cell faults, real large-world export truncation, retained regional capture, all-variable/menu coverage and remaining UI/lifecycle getters are open.
+The live-page checkpoint passed 267 Python tests/two Pro turns with sixteen tools and 375 public game references. Its source-specific reports remain in Git history. REGIONAL_LIVE_VALIDATION.json has a fresh same-scope native follow-up for the newer regional-capture build; its current source/JAR hashes are explicit. Native registry/cell faults, real large-world export truncation and all-variable/menu coverage remain open.
 
 ## Regional-output player checkpoint — prior build
 

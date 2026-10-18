@@ -15,31 +15,31 @@
   ],
   "cited_urls_match_retrieval": true,
   "simple_transcript_without_debug_events": true,
-  "mod_jar_sha256": "61f88110b48d65add52e94bef3becccac18dde7e52cbd56b4678f3b9521f2ff0",
+  "mod_jar_sha256": "2c7726b84b07a76f913191f2b4bb83f0506273c7d46f4cc742a2d253efdadddb",
   "production_source_sha256": {
-    "syx/assistant/AssistantScript.java": "06f05cec9472fba5155f903362223e2e246aae361fc667623f23008427b82c2b",
+    "syx/assistant/AssistantScript.java": "82fa2395aa96e7ae9cee612b32171fb495ca289dc7f99269c1ad7a2d417cca55",
     "syx/assistant/ChatPanel.java": "3138d3e863ccb36ad5b6b37a7e1f3486dd2d8c1dc43ab469b26af714548d8437",
     "syx/assistant/EntityReadRequest.java": "e2d13aee21f399e8718382d5b43d5a6c85e5d78d2708d8105b9f1ecfe730edf8",
     "syx/assistant/JsonWriter.java": "c525eb60d3224cab83ed3fd6b8594ec8652211f00bd947e873e1482f919e81dc",
-    "syx/assistant/RegionalReadRequest.java": "5ecc77cae6e36118f1e78f938b80ee16833fdc5b95fc2aed256fd12769416204",
+    "syx/assistant/RegionalReadRequest.java": "4d1da800e6f2ecf6b036f188693ac1095329321bc569c82f34be9918768ef2b3",
     "syx/assistant/StateCollector.java": "8437066a95ce197cb93ddc5f23004694bfdc080ccd28dd1d297b4946bcef2af6",
     "syx/assistant/TileReadRequest.java": "1a192cde61a7e1bdefa170390c00b17c74573b9c41de71700ebea466411ad3c5",
     "syx/assistant/UiContentCollector.java": "c0d20c7f9f2734a0bb625427875f06bfcd07edb20611248b39b6e8f480ef5a48",
     "syx/assistant/UiContextCollector.java": "398ab4931efb3451ad0d0dcf80e0c19651e9ffb20fd8b6e6377a9ca53358f7d5"
   },
   "python_source_sha256": {
-    "syx_mcp.py": "424dea0d4c75469ef2b3080d8832ab8467c99851dde0882dea05b842ad4fb501",
+    "syx_mcp.py": "ab5d53726431e7d19c24f25e98160d27b93f9017f8170ac6fb544c827edf430f",
     "syx_knowledge.py": "f5d7dd6d387ad0fb8f2b024a3bd599ad1cec28f2906dfae27d9d2fdf56e4de7e",
     "syx_query.py": "ae9c4537093952510e6536810c065b6e07f7bfc2d78d3bc02ccd0d21f4d12c07",
-    "syx_api_support.py": "17c43d8b7fba42e0561370d61bcdeb4eae31a05e7305b773376b28252ad21765",
-    "syx_api_manifest.py": "a98677c596b8fdb493132fa33b3578f479158f812d0a163e34f656372bf4fb74",
-    "syx_live.py": "879bc4fb97e638ec238a8553c6b217560ea2c09af42880d2a07b8e22b5208e9d",
-    "syx_capture.py": "506f18a5b55ea66cd38ac239bd7398fde597420e0363327629308098f23f82a9",
+    "syx_api_support.py": "c35f7db5f1136d5f37ddae275b6f4ac1719ce47b4aa40dbe17a88a41c847b5aa",
+    "syx_api_manifest.py": "48b2c0a2e80c476bc2a7d5e0d94b48efe5251a4444e9a13ec7b102edeb3d3ebe",
+    "syx_live.py": "2f29a2d828fc5c512075fa6a2082dd5fae9d4a39fb22ae847765533dc5628c75",
+    "syx_capture.py": "32778d9f5f217119ba45b114ba2a710bdd0ce4333efa672c31c690dcc3f3c3ec",
     "syx_tiles.py": "43024d10af917442d4d994f316db18fbd7cab388196682c471891135553c843f",
-    "syx_regions.py": "9150fa3eb049561866242e5e6f046d7176d24b32867a3484688a1773e46f632b",
+    "syx_regions.py": "96dd3355f50279c7c748d866019f889bd9889ef00c7cf97bf4fa582fede7ffb5",
     "syx_chat_store.py": "7344b35476096b680e0cf85958f97596b3c9cfe843072202f30e357b97dedbe5",
     "syx_deepseek.py": "d58e21dbcfdeb1ef0f411dfbb4c0267234bdc5cc185e00d300821725ca1885e3",
-    "syx_chat.py": "42c69909706a75289476aa1161d1fe59e4d8a32e852cd76cd41c2e0757e991cf",
+    "syx_chat.py": "bb201ed9e6a0ed84f6dbddd583304e3c9b655f3e3c563f6a48f60e9669775714",
     "syx_chat_service.py": "8e311cc51bf686d70d466f7a31863b9cbf1905231066316eb492f2c7bd074b6b",
     "syx_claude.py": "3a850a645907f27b1a9cb15c3c5244b96b2da97d5d0dc37f5cd7d6f708cf92a8",
     "syx_claude_worker.py": "ab6638b2c4ef3a4a1548fde1c0739a48f4d47e468494dd7444019f3f330dea38"
@@ -48,33 +48,23 @@
     "Copied city; native own-widget text/click fixture, not physical keyboard or every screen size.",
     "No complete game-state/all-menu claim. Raw read-only tool evidence remains in the private local history.",
     "Linux user-test bundle; game and Python dependencies must be installed separately.",
-    "query_live_regional_outputs reads explicit active-region/resource matrices directly from the callback, not cached table rows. 100 IDs/100 keys, 1023/1000 registry scan bounds, 4096 scanned cells/100 rows, 8 KiB request/64 KiB response and eight-second deadline. Unknown/inactive bindings fail; cell errors qualify matching absence. No arbitrary calls or gameplay writes.",
-    "Live pages have their own request/session/tick/time/scene/UI, no cached snapshot ID, retained regional capture or global worker transaction. Fixed accrual/faction predicates and projections only; stored accrual/configured offsets are not inventory, delivered totals, income/production forecast, selected-region identity or actual departure/arrival ETA.",
-    "Native copied-game checks cover 4200 cells/42 pages, empty filtered 4096-cell scan followed by a held/restored target, combined predicates/projections, unknown/inactive refusal, concurrent callers and eight scene phases. The partial-cache MCP view is an authored 100-row clone retaining real timestamp/session, not a real production 10000-cell cap or larger-world test.",
-    "The regular collector/offline selection cost is separately pinned; no live-query/large-world latency, FPS, fault-injection, all-mod/menu or full-variable acceptance. Earlier regional table/entity/tile/faction reports retain their own whole-build hashes."
+    "Regional capture and timing checks are finite copied-campaign evidence. No native registry/cell faults, native 2 MiB overflow, worst-case 10000 cells/2000 rows, natural rollover/ownership transfers, full game variables/menus or global worker transaction established. Captured rows/context/time stay historical."
   ],
   "game_exit_code": 0,
   "dev_runner_source_sha256": "407b30e67642d0efbb3863e0c65ca584391bfebe57af30c593f47c0871387e5c",
-  "validated_at": "2026-10-18T23:12:38.666519+00:00",
+  "followup_completed_at": "2026-10-18T23:38:46.473953+00:00",
   "game_version": "0.71.44",
   "game_jar_sha256": "fe0137c05408e5ee9e31f06fc44fe37a5d4372d9c985b280f0852d1347c0224b",
-  "python_tests_passed": 267,
+  "python_tests_passed": 296,
   "public_production_members": 375,
   "non_public_production_members": 0,
-  "core_check_groups_passed": [
-    "services",
-    "trade",
-    "world",
-    "production",
-    "scenes",
-    "context",
-    "extended"
-  ],
-  "core_validation_report_sha256": "d2d97753de33269ea23bddd3c4ffd92abcd3d5ad8a10285768ddfe700178c445",
-  "regional_live_validation_report_sha256": "15c11e79749e3e65bcf42c51c3c99b8c39d62910a49a3b3714cc9bd97236a0f5",
-  "collection_cost_validation_report_sha256": "c39b6d54caef55e6afe44163e1cfdd70cf34d583a6a011a2d8d25e4c00b3519d",
-  "capability_discovery_report_sha256": "7d0f509b4af7969fa689063b8df791dd3cdfea3f44716231529e7b5f0d79e025",
-  "guidance_validation_report_sha256": "96b0deda0e92853f0e80cfe5850e657f68998216fc35ac16bebcac288718167a",
+  "core_check_groups_passed": 7,
+  "core_validation_report_sha256": "5c226035890cc68b2904e0905cd678a212378bcbd770eed7824bc9056287e28d",
+  "regional_live_validation_report_sha256": "9fdd04288a21935f1393d4e70d5ac72c139c353574f4deaa779c245537a384ce",
+  "regional_capture_validation_report_sha256": "a502a04956134ceec7e3aefa5d82c4edc6aa8bea630d3a34b02c26b7c3849e50",
+  "collection_cost_validation_report_sha256": "6b8dd02aa485511cc145eef5f2e053f61cb9673d2fd9e88df95da5ba33902f2c",
+  "capability_discovery_report_sha256": "edc8c7983f0ead3a0042ef42f6b0f31618abb8c8ffd84eb1ef50263eb0836043",
+  "guidance_validation_report_sha256": "d55cbafc0b4f81f76e717106375c9c6017cbf40f1dade96250388ba14cd7ef89",
   "distribution_checks": {
     "passed": true,
     "fresh_dependency_environment": true,
@@ -82,7 +72,8 @@
     "extracted_helper_startup_no_inference": true,
     "isolated_installer_jar_hash": true,
     "provided_key_literal_absent_from_archive": true,
-    "provider_calls": 0
+    "provider_calls": 0,
+    "candidate_zip_sha256": "a5391e335859b3e13aa6e121e4700d7d9f789c8758cf60fe049309fe7c5eebf7"
   },
   "prior_unchanged_chat_focus_evidence": {
     "prior_mod_jar_sha256": "5a1f3fa413e4776e9d7f03e7d3af306cae4ecd59a0b07b6bb8d9509c39e9d397",
@@ -119,7 +110,7 @@
   },
   "regional_protocol_codec": {
     "passed": true,
-    "malformed_frames_rejected": 19,
-    "source_sha256": "02bb65c9e7d37c1db80c4305ee94b3a697fe206f9c1d8dedd10eedcfc6ed18ac"
+    "malformed_frames_rejected": 22,
+    "source_sha256": "78eedd1da4b5660e1563ccb9cee788d350a6bb6c33a45074d944789f5c4bf98c"
   }
 }

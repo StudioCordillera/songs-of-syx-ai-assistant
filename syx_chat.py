@@ -11,7 +11,7 @@ from syx_mcp import INSTRUCTIONS
 TOOLS=frozenset({'game_status','game_query_help','query_game_state','select_game_state',
     'describe_game_fields','get_game_ui_context','get_game_api_support','search_guidance',
     'search_game_references','query_live_entities','capture_live_entities',
-    'read_entity_capture','query_live_regional_outputs','query_live_tiles','capture_live_tiles','read_tile_capture'})
+    'read_entity_capture','query_live_regional_outputs','capture_live_regional_outputs','read_regional_output_capture','query_live_tiles','capture_live_tiles','read_tile_capture'})
 
 
 def encoded(value):

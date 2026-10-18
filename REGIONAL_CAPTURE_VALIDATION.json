@@ -1,0 +1,853 @@
+{
+  "passed": true,
+  "filtered_rows": 166,
+  "filtered_matrix_cells": 4200,
+  "filtered_pages": 2,
+  "unfiltered_rows": 1974,
+  "unfiltered_pages": 20,
+  "larger_than_live_response_64k": true,
+  "exact_max_rows_complete": true,
+  "row_overflow_and_scan_refusal": true,
+  "empty_complete_selection": true,
+  "counter_restored": true,
+  "new_live_read_sees_restored_value": true,
+  "original_capture_values_context_time_preserved": true,
+  "no_game_request_while_paging": true,
+  "concurrent_identical_pages": true,
+  "cross_pool_token_refusal": true,
+  "real_changed_session_token_invalidated": true,
+  "scene_followup": {
+    "passed": true,
+    "checks": {
+      "city": {
+        "passed": true,
+        "view": "settlement",
+        "scene_kind": "city",
+        "on_demand_read_available": true,
+        "tile_read_available": true,
+        "regional_live_read_available": true,
+        "city_trade_pipeline_coverage": "partial",
+        "world_population_coverage": "partial",
+        "regional_output_coverage": "partial",
+        "service_room_coverage": "partial",
+        "service_policy_coverage": "partial",
+        "production_coverage": "partial",
+        "production_room_coverage": "partial",
+        "stockpile_bookkeeping_coverage": "partial"
+      },
+      "settlement_battle": {
+        "passed": true,
+        "view": "settlement_battle",
+        "scene_kind": "city",
+        "on_demand_read_available": true,
+        "tile_read_available": true,
+        "regional_live_read_available": true,
+        "city_trade_pipeline_coverage": "partial",
+        "world_population_coverage": "partial",
+        "regional_output_coverage": "partial",
+        "service_room_coverage": "partial",
+        "service_policy_coverage": "partial",
+        "production_coverage": "partial",
+        "production_room_coverage": "partial",
+        "stockpile_bookkeeping_coverage": "partial"
+      },
+      "city_restored": {
+        "passed": true,
+        "view": "settlement",
+        "scene_kind": "city",
+        "on_demand_read_available": true,
+        "tile_read_available": true,
+        "regional_live_read_available": true,
+        "city_trade_pipeline_coverage": "partial",
+        "world_population_coverage": "partial",
+        "regional_output_coverage": "partial",
+        "service_room_coverage": "partial",
+        "service_policy_coverage": "partial",
+        "production_coverage": "partial",
+        "production_room_coverage": "partial",
+        "stockpile_bookkeeping_coverage": "partial"
+      },
+      "battle_deployment": {
+        "passed": true,
+        "view": "battle",
+        "scene_kind": "battlefield",
+        "on_demand_read_available": true,
+        "tile_read_available": true,
+        "regional_live_read_available": true,
+        "city_trade_pipeline_coverage": "unavailable",
+        "world_population_coverage": "partial",
+        "regional_output_coverage": "partial",
+        "service_room_coverage": "partial",
+        "service_policy_coverage": "unavailable",
+        "production_coverage": "partial",
+        "production_room_coverage": "partial",
+        "stockpile_bookkeeping_coverage": "unavailable"
+      },
+      "battle_menu": {
+        "passed": true,
+        "view": "battle",
+        "scene_kind": "battlefield",
+        "on_demand_read_available": true,
+        "tile_read_available": true,
+        "regional_live_read_available": true,
+        "city_trade_pipeline_coverage": "unavailable",
+        "world_population_coverage": "partial",
+        "regional_output_coverage": "partial",
+        "service_room_coverage": "partial",
+        "service_policy_coverage": "unavailable",
+        "production_coverage": "partial",
+        "production_room_coverage": "partial",
+        "stockpile_bookkeeping_coverage": "unavailable"
+      },
+      "city_reloaded": {
+        "passed": true,
+        "view": "settlement",
+        "scene_kind": "city",
+        "on_demand_read_available": true,
+        "tile_read_available": true,
+        "regional_live_read_available": true,
+        "city_trade_pipeline_coverage": "partial",
+        "world_population_coverage": "partial",
+        "regional_output_coverage": "partial",
+        "service_room_coverage": "partial",
+        "service_policy_coverage": "partial",
+        "production_coverage": "partial",
+        "production_room_coverage": "partial",
+        "stockpile_bookkeeping_coverage": "partial"
+      },
+      "world_generation": {
+        "passed": true,
+        "view": "world_generation",
+        "scene_kind": "unavailable",
+        "on_demand_read_available": false,
+        "tile_read_available": false,
+        "regional_live_read_available": false,
+        "city_trade_pipeline_coverage": "unavailable",
+        "world_population_coverage": "unavailable",
+        "regional_output_coverage": "unavailable",
+        "service_room_coverage": "unavailable",
+        "service_policy_coverage": "unavailable",
+        "production_coverage": "unavailable",
+        "production_room_coverage": "unavailable",
+        "stockpile_bookkeeping_coverage": "unavailable"
+      },
+      "terrain_generated": {
+        "passed": true,
+        "view": "world_generation",
+        "scene_kind": "unavailable",
+        "on_demand_read_available": false,
+        "tile_read_available": false,
+        "regional_live_read_available": false,
+        "city_trade_pipeline_coverage": "unavailable",
+        "world_population_coverage": "unavailable",
+        "regional_output_coverage": "unavailable",
+        "service_room_coverage": "unavailable",
+        "service_policy_coverage": "unavailable",
+        "production_coverage": "unavailable",
+        "production_room_coverage": "unavailable",
+        "stockpile_bookkeeping_coverage": "unavailable"
+      }
+    },
+    "missing": [],
+    "limits": [
+      "Battle is a generated deployment scene, not active fighting or a battle conclusion.",
+      "Generation checks initial setup and public terrain generation; exact private wizard step and full political-world completion remain unvalidated."
+    ]
+  },
+  "native_samples": [
+    {
+      "sample": 0,
+      "encoding_utf8_ns": 182777,
+      "collector_ns": 3216588,
+      "response_bytes": 29500,
+      "case": "filtered_matrix",
+      "rows": 166,
+      "scanned_cells": 4200
+    },
+    {
+      "sample": 0,
+      "encoding_utf8_ns": 1803775,
+      "collector_ns": 4132157,
+      "response_bytes": 297625,
+      "case": "near_row_bound",
+      "rows": 1974,
+      "scanned_cells": 1974
+    },
+    {
+      "sample": 1,
+      "encoding_utf8_ns": 265742,
+      "collector_ns": 4052409,
+      "response_bytes": 29500,
+      "case": "filtered_matrix",
+      "rows": 166,
+      "scanned_cells": 4200
+    },
+    {
+      "sample": 1,
+      "encoding_utf8_ns": 1685483,
+      "collector_ns": 3706293,
+      "response_bytes": 297625,
+      "case": "near_row_bound",
+      "rows": 1974,
+      "scanned_cells": 1974
+    },
+    {
+      "sample": 2,
+      "encoding_utf8_ns": 173537,
+      "collector_ns": 3055748,
+      "response_bytes": 29500,
+      "case": "filtered_matrix",
+      "rows": 166,
+      "scanned_cells": 4200
+    },
+    {
+      "sample": 2,
+      "encoding_utf8_ns": 1663049,
+      "collector_ns": 3046580,
+      "response_bytes": 297625,
+      "case": "near_row_bound",
+      "rows": 1974,
+      "scanned_cells": 1974
+    },
+    {
+      "sample": 3,
+      "encoding_utf8_ns": 194993,
+      "collector_ns": 2954285,
+      "response_bytes": 29500,
+      "case": "filtered_matrix",
+      "rows": 166,
+      "scanned_cells": 4200
+    },
+    {
+      "sample": 3,
+      "encoding_utf8_ns": 2552164,
+      "collector_ns": 3800440,
+      "response_bytes": 297625,
+      "case": "near_row_bound",
+      "rows": 1974,
+      "scanned_cells": 1974
+    },
+    {
+      "sample": 4,
+      "encoding_utf8_ns": 176038,
+      "collector_ns": 1239679,
+      "response_bytes": 29500,
+      "case": "filtered_matrix",
+      "rows": 166,
+      "scanned_cells": 4200
+    },
+    {
+      "sample": 4,
+      "encoding_utf8_ns": 1744539,
+      "collector_ns": 1625528,
+      "response_bytes": 297625,
+      "case": "near_row_bound",
+      "rows": 1974,
+      "scanned_cells": 1974
+    },
+    {
+      "sample": 5,
+      "encoding_utf8_ns": 189617,
+      "collector_ns": 717653,
+      "response_bytes": 29500,
+      "case": "filtered_matrix",
+      "rows": 166,
+      "scanned_cells": 4200
+    },
+    {
+      "sample": 5,
+      "encoding_utf8_ns": 4762764,
+      "collector_ns": 1131539,
+      "response_bytes": 297625,
+      "case": "near_row_bound",
+      "rows": 1974,
+      "scanned_cells": 1974
+    },
+    {
+      "sample": 6,
+      "encoding_utf8_ns": 180462,
+      "collector_ns": 746196,
+      "response_bytes": 29500,
+      "case": "filtered_matrix",
+      "rows": 166,
+      "scanned_cells": 4200
+    },
+    {
+      "sample": 6,
+      "encoding_utf8_ns": 1902978,
+      "collector_ns": 1385586,
+      "response_bytes": 297625,
+      "case": "near_row_bound",
+      "rows": 1974,
+      "scanned_cells": 1974
+    },
+    {
+      "sample": 7,
+      "encoding_utf8_ns": 220224,
+      "collector_ns": 977339,
+      "response_bytes": 29500,
+      "case": "filtered_matrix",
+      "rows": 166,
+      "scanned_cells": 4200
+    },
+    {
+      "sample": 7,
+      "encoding_utf8_ns": 1816836,
+      "collector_ns": 1612147,
+      "response_bytes": 297625,
+      "case": "near_row_bound",
+      "rows": 1974,
+      "scanned_cells": 1974
+    },
+    {
+      "sample": 8,
+      "encoding_utf8_ns": 185305,
+      "collector_ns": 589249,
+      "response_bytes": 29500,
+      "case": "filtered_matrix",
+      "rows": 166,
+      "scanned_cells": 4200
+    },
+    {
+      "sample": 8,
+      "encoding_utf8_ns": 1657716,
+      "collector_ns": 612823,
+      "response_bytes": 297625,
+      "case": "near_row_bound",
+      "rows": 1974,
+      "scanned_cells": 1974
+    },
+    {
+      "sample": 9,
+      "encoding_utf8_ns": 187281,
+      "collector_ns": 452693,
+      "response_bytes": 29500,
+      "case": "filtered_matrix",
+      "rows": 166,
+      "scanned_cells": 4200
+    },
+    {
+      "sample": 9,
+      "encoding_utf8_ns": 1840701,
+      "collector_ns": 723041,
+      "response_bytes": 297625,
+      "case": "near_row_bound",
+      "rows": 1974,
+      "scanned_cells": 1974
+    },
+    {
+      "sample": 10,
+      "encoding_utf8_ns": 182120,
+      "collector_ns": 432809,
+      "response_bytes": 29500,
+      "case": "filtered_matrix",
+      "rows": 166,
+      "scanned_cells": 4200
+    },
+    {
+      "sample": 10,
+      "encoding_utf8_ns": 2714616,
+      "collector_ns": 762828,
+      "response_bytes": 297625,
+      "case": "near_row_bound",
+      "rows": 1974,
+      "scanned_cells": 1974
+    },
+    {
+      "sample": 11,
+      "encoding_utf8_ns": 187168,
+      "collector_ns": 403552,
+      "response_bytes": 29500,
+      "case": "filtered_matrix",
+      "rows": 166,
+      "scanned_cells": 4200
+    },
+    {
+      "sample": 11,
+      "encoding_utf8_ns": 1894214,
+      "collector_ns": 614709,
+      "response_bytes": 297625,
+      "case": "near_row_bound",
+      "rows": 1974,
+      "scanned_cells": 1974
+    },
+    {
+      "sample": 12,
+      "encoding_utf8_ns": 202939,
+      "collector_ns": 481745,
+      "response_bytes": 29500,
+      "case": "filtered_matrix",
+      "rows": 166,
+      "scanned_cells": 4200
+    },
+    {
+      "sample": 12,
+      "encoding_utf8_ns": 1810367,
+      "collector_ns": 1121136,
+      "response_bytes": 297625,
+      "case": "near_row_bound",
+      "rows": 1974,
+      "scanned_cells": 1974
+    },
+    {
+      "sample": 13,
+      "encoding_utf8_ns": 194841,
+      "collector_ns": 498613,
+      "response_bytes": 29500,
+      "case": "filtered_matrix",
+      "rows": 166,
+      "scanned_cells": 4200
+    },
+    {
+      "sample": 13,
+      "encoding_utf8_ns": 1789266,
+      "collector_ns": 735388,
+      "response_bytes": 297625,
+      "case": "near_row_bound",
+      "rows": 1974,
+      "scanned_cells": 1974
+    },
+    {
+      "sample": 14,
+      "encoding_utf8_ns": 175197,
+      "collector_ns": 389646,
+      "response_bytes": 29500,
+      "case": "filtered_matrix",
+      "rows": 166,
+      "scanned_cells": 4200
+    },
+    {
+      "sample": 14,
+      "encoding_utf8_ns": 1816470,
+      "collector_ns": 680717,
+      "response_bytes": 297625,
+      "case": "near_row_bound",
+      "rows": 1974,
+      "scanned_cells": 1974
+    },
+    {
+      "sample": 15,
+      "encoding_utf8_ns": 210295,
+      "collector_ns": 414011,
+      "response_bytes": 29500,
+      "case": "filtered_matrix",
+      "rows": 166,
+      "scanned_cells": 4200
+    },
+    {
+      "sample": 15,
+      "encoding_utf8_ns": 1884070,
+      "collector_ns": 782759,
+      "response_bytes": 297625,
+      "case": "near_row_bound",
+      "rows": 1974,
+      "scanned_cells": 1974
+    },
+    {
+      "sample": 16,
+      "encoding_utf8_ns": 386849,
+      "collector_ns": 765576,
+      "response_bytes": 29500,
+      "case": "filtered_matrix",
+      "rows": 166,
+      "scanned_cells": 4200
+    },
+    {
+      "sample": 16,
+      "encoding_utf8_ns": 1901598,
+      "collector_ns": 719241,
+      "response_bytes": 297625,
+      "case": "near_row_bound",
+      "rows": 1974,
+      "scanned_cells": 1974
+    },
+    {
+      "sample": 17,
+      "encoding_utf8_ns": 204911,
+      "collector_ns": 428490,
+      "response_bytes": 29500,
+      "case": "filtered_matrix",
+      "rows": 166,
+      "scanned_cells": 4200
+    },
+    {
+      "sample": 17,
+      "encoding_utf8_ns": 1947347,
+      "collector_ns": 603379,
+      "response_bytes": 297625,
+      "case": "near_row_bound",
+      "rows": 1974,
+      "scanned_cells": 1974
+    },
+    {
+      "sample": 18,
+      "encoding_utf8_ns": 225537,
+      "collector_ns": 663141,
+      "response_bytes": 29500,
+      "case": "filtered_matrix",
+      "rows": 166,
+      "scanned_cells": 4200
+    },
+    {
+      "sample": 18,
+      "encoding_utf8_ns": 1832814,
+      "collector_ns": 1127352,
+      "response_bytes": 297625,
+      "case": "near_row_bound",
+      "rows": 1974,
+      "scanned_cells": 1974
+    },
+    {
+      "sample": 19,
+      "encoding_utf8_ns": 435067,
+      "collector_ns": 394902,
+      "response_bytes": 29500,
+      "case": "filtered_matrix",
+      "rows": 166,
+      "scanned_cells": 4200
+    },
+    {
+      "sample": 19,
+      "encoding_utf8_ns": 1761903,
+      "collector_ns": 1043404,
+      "response_bytes": 297625,
+      "case": "near_row_bound",
+      "rows": 1974,
+      "scanned_cells": 1974
+    },
+    {
+      "sample": 20,
+      "encoding_utf8_ns": 209395,
+      "collector_ns": 643169,
+      "response_bytes": 29500,
+      "case": "filtered_matrix",
+      "rows": 166,
+      "scanned_cells": 4200
+    },
+    {
+      "sample": 20,
+      "encoding_utf8_ns": 2397295,
+      "collector_ns": 1121283,
+      "response_bytes": 297625,
+      "case": "near_row_bound",
+      "rows": 1974,
+      "scanned_cells": 1974
+    },
+    {
+      "sample": 21,
+      "encoding_utf8_ns": 213646,
+      "collector_ns": 602185,
+      "response_bytes": 29500,
+      "case": "filtered_matrix",
+      "rows": 166,
+      "scanned_cells": 4200
+    },
+    {
+      "sample": 21,
+      "encoding_utf8_ns": 1851641,
+      "collector_ns": 1427248,
+      "response_bytes": 297625,
+      "case": "near_row_bound",
+      "rows": 1974,
+      "scanned_cells": 1974
+    },
+    {
+      "sample": 22,
+      "encoding_utf8_ns": 170660,
+      "collector_ns": 383034,
+      "response_bytes": 29500,
+      "case": "filtered_matrix",
+      "rows": 166,
+      "scanned_cells": 4200
+    },
+    {
+      "sample": 22,
+      "encoding_utf8_ns": 1877917,
+      "collector_ns": 785548,
+      "response_bytes": 297625,
+      "case": "near_row_bound",
+      "rows": 1974,
+      "scanned_cells": 1974
+    },
+    {
+      "sample": 23,
+      "encoding_utf8_ns": 200232,
+      "collector_ns": 476219,
+      "response_bytes": 29500,
+      "case": "filtered_matrix",
+      "rows": 166,
+      "scanned_cells": 4200
+    },
+    {
+      "sample": 23,
+      "encoding_utf8_ns": 1788089,
+      "collector_ns": 733905,
+      "response_bytes": 297625,
+      "case": "near_row_bound",
+      "rows": 1974,
+      "scanned_cells": 1974
+    },
+    {
+      "sample": 24,
+      "encoding_utf8_ns": 187363,
+      "collector_ns": 386790,
+      "response_bytes": 29500,
+      "case": "filtered_matrix",
+      "rows": 166,
+      "scanned_cells": 4200
+    },
+    {
+      "sample": 24,
+      "encoding_utf8_ns": 1862999,
+      "collector_ns": 729422,
+      "response_bytes": 297625,
+      "case": "near_row_bound",
+      "rows": 1974,
+      "scanned_cells": 1974
+    },
+    {
+      "sample": 25,
+      "encoding_utf8_ns": 180926,
+      "collector_ns": 392153,
+      "response_bytes": 29500,
+      "case": "filtered_matrix",
+      "rows": 166,
+      "scanned_cells": 4200
+    },
+    {
+      "sample": 25,
+      "encoding_utf8_ns": 2216895,
+      "collector_ns": 1234264,
+      "response_bytes": 297625,
+      "case": "near_row_bound",
+      "rows": 1974,
+      "scanned_cells": 1974
+    },
+    {
+      "sample": 26,
+      "encoding_utf8_ns": 186411,
+      "collector_ns": 428141,
+      "response_bytes": 29500,
+      "case": "filtered_matrix",
+      "rows": 166,
+      "scanned_cells": 4200
+    },
+    {
+      "sample": 26,
+      "encoding_utf8_ns": 1833466,
+      "collector_ns": 758027,
+      "response_bytes": 297625,
+      "case": "near_row_bound",
+      "rows": 1974,
+      "scanned_cells": 1974
+    },
+    {
+      "sample": 27,
+      "encoding_utf8_ns": 236533,
+      "collector_ns": 475259,
+      "response_bytes": 29500,
+      "case": "filtered_matrix",
+      "rows": 166,
+      "scanned_cells": 4200
+    },
+    {
+      "sample": 27,
+      "encoding_utf8_ns": 1826687,
+      "collector_ns": 669528,
+      "response_bytes": 297625,
+      "case": "near_row_bound",
+      "rows": 1974,
+      "scanned_cells": 1974
+    },
+    {
+      "sample": 28,
+      "encoding_utf8_ns": 385713,
+      "collector_ns": 620195,
+      "response_bytes": 29500,
+      "case": "filtered_matrix",
+      "rows": 166,
+      "scanned_cells": 4200
+    },
+    {
+      "sample": 28,
+      "encoding_utf8_ns": 2009727,
+      "collector_ns": 793242,
+      "response_bytes": 297625,
+      "case": "near_row_bound",
+      "rows": 1974,
+      "scanned_cells": 1974
+    },
+    {
+      "sample": 29,
+      "encoding_utf8_ns": 194775,
+      "collector_ns": 498518,
+      "response_bytes": 29500,
+      "case": "filtered_matrix",
+      "rows": 166,
+      "scanned_cells": 4200
+    },
+    {
+      "sample": 29,
+      "encoding_utf8_ns": 1873250,
+      "collector_ns": 769301,
+      "response_bytes": 297625,
+      "case": "near_row_bound",
+      "rows": 1974,
+      "scanned_cells": 1974
+    },
+    {
+      "sample": 30,
+      "encoding_utf8_ns": 346091,
+      "collector_ns": 724505,
+      "response_bytes": 29500,
+      "case": "filtered_matrix",
+      "rows": 166,
+      "scanned_cells": 4200
+    },
+    {
+      "sample": 30,
+      "encoding_utf8_ns": 1899409,
+      "collector_ns": 789630,
+      "response_bytes": 297625,
+      "case": "near_row_bound",
+      "rows": 1974,
+      "scanned_cells": 1974
+    },
+    {
+      "sample": 31,
+      "encoding_utf8_ns": 178125,
+      "collector_ns": 413876,
+      "response_bytes": 29500,
+      "case": "filtered_matrix",
+      "rows": 166,
+      "scanned_cells": 4200
+    },
+    {
+      "sample": 31,
+      "encoding_utf8_ns": 1859440,
+      "collector_ns": 693644,
+      "response_bytes": 297625,
+      "case": "near_row_bound",
+      "rows": 1974,
+      "scanned_cells": 1974
+    }
+  ],
+  "native_cost_summary": {
+    "filtered_matrix": {
+      "first_sample": {
+        "sample": 0,
+        "encoding_utf8_ns": 182777,
+        "collector_ns": 3216588,
+        "response_bytes": 29500,
+        "case": "filtered_matrix",
+        "rows": 166,
+        "scanned_cells": 4200
+      },
+      "warm_collector_ms": {
+        "count": 31,
+        "min": 0.383034,
+        "median": 0.498518,
+        "p95": 3.055748,
+        "max": 4.052409
+      },
+      "warm_encoding_utf8_ms": {
+        "count": 31,
+        "min": 0.17066,
+        "median": 0.194841,
+        "p95": 0.386849,
+        "max": 0.435067
+      },
+      "max_response_bytes": 29500
+    },
+    "near_row_bound": {
+      "first_sample": {
+        "sample": 0,
+        "encoding_utf8_ns": 1803775,
+        "collector_ns": 4132157,
+        "response_bytes": 297625,
+        "case": "near_row_bound",
+        "rows": 1974,
+        "scanned_cells": 1974
+      },
+      "warm_collector_ms": {
+        "count": 31,
+        "min": 0.603379,
+        "median": 0.785548,
+        "p95": 3.706293,
+        "max": 3.80044
+      },
+      "warm_encoding_utf8_ms": {
+        "count": 31,
+        "min": 1.657716,
+        "median": 1.85944,
+        "p95": 2.714616,
+        "max": 4.762764
+      },
+      "max_response_bytes": 297625
+    }
+  },
+  "limits": [
+    "Finite copied paused campaign. Held max-int resource accrual restored before scene/battle/reload follow-up; no normal save writes.",
+    "64 native collector/encoding samples with independent getter parity, 31 warm samples per shape. Not cold JVM/cache, largest-world/city, 10000-cell/2000-row worst-case cost or FPS acceptance.",
+    "Scene follow-up covers existing finite live regional availability; new capture success sampled in city and retained paging in later world view, with refusal after real reload. Not capture creation in every menu/battle/generation state.",
+    "No native registry/cell fault injection, 2 MiB native overflow or natural rollover/ownership change proof. Those overflow/fault/lifetime branches have distinct synthetic guards.",
+    "A single callback does not freeze worker threads or establish a global game transaction. Stored accrual/schedule/owner meanings and exact-age limits remain unchanged."
+  ],
+  "validated_at": "2026-10-18T23:27:45.620053+00:00",
+  "game_exit_code": 0,
+  "mod_jar_sha256": "2c7726b84b07a76f913191f2b4bb83f0506273c7d46f4cc742a2d253efdadddb",
+  "game_jar_sha256": "fe0137c05408e5ee9e31f06fc44fe37a5d4372d9c985b280f0852d1347c0224b",
+  "production_source_sha256": {
+    "syx/assistant/AssistantScript.java": "82fa2395aa96e7ae9cee612b32171fb495ca289dc7f99269c1ad7a2d417cca55",
+    "syx/assistant/ChatPanel.java": "3138d3e863ccb36ad5b6b37a7e1f3486dd2d8c1dc43ab469b26af714548d8437",
+    "syx/assistant/EntityReadRequest.java": "e2d13aee21f399e8718382d5b43d5a6c85e5d78d2708d8105b9f1ecfe730edf8",
+    "syx/assistant/JsonWriter.java": "c525eb60d3224cab83ed3fd6b8594ec8652211f00bd947e873e1482f919e81dc",
+    "syx/assistant/RegionalReadRequest.java": "4d1da800e6f2ecf6b036f188693ac1095329321bc569c82f34be9918768ef2b3",
+    "syx/assistant/StateCollector.java": "8437066a95ce197cb93ddc5f23004694bfdc080ccd28dd1d297b4946bcef2af6",
+    "syx/assistant/TileReadRequest.java": "1a192cde61a7e1bdefa170390c00b17c74573b9c41de71700ebea466411ad3c5",
+    "syx/assistant/UiContentCollector.java": "c0d20c7f9f2734a0bb625427875f06bfcd07edb20611248b39b6e8f480ef5a48",
+    "syx/assistant/UiContextCollector.java": "398ab4931efb3451ad0d0dcf80e0c19651e9ffb20fd8b6e6377a9ca53358f7d5"
+  },
+  "python_source_sha256": {
+    "syx_mcp.py": "ab5d53726431e7d19c24f25e98160d27b93f9017f8170ac6fb544c827edf430f",
+    "syx_knowledge.py": "f5d7dd6d387ad0fb8f2b024a3bd599ad1cec28f2906dfae27d9d2fdf56e4de7e",
+    "syx_query.py": "ae9c4537093952510e6536810c065b6e07f7bfc2d78d3bc02ccd0d21f4d12c07",
+    "syx_api_support.py": "c35f7db5f1136d5f37ddae275b6f4ac1719ce47b4aa40dbe17a88a41c847b5aa",
+    "syx_api_manifest.py": "48b2c0a2e80c476bc2a7d5e0d94b48efe5251a4444e9a13ec7b102edeb3d3ebe",
+    "syx_live.py": "2f29a2d828fc5c512075fa6a2082dd5fae9d4a39fb22ae847765533dc5628c75",
+    "syx_capture.py": "32778d9f5f217119ba45b114ba2a710bdd0ce4333efa672c31c690dcc3f3c3ec",
+    "syx_tiles.py": "43024d10af917442d4d994f316db18fbd7cab388196682c471891135553c843f",
+    "syx_regions.py": "96dd3355f50279c7c748d866019f889bd9889ef00c7cf97bf4fa582fede7ffb5",
+    "syx_chat_store.py": "7344b35476096b680e0cf85958f97596b3c9cfe843072202f30e357b97dedbe5",
+    "syx_deepseek.py": "d58e21dbcfdeb1ef0f411dfbb4c0267234bdc5cc185e00d300821725ca1885e3",
+    "syx_chat.py": "bb201ed9e6a0ed84f6dbddd583304e3c9b655f3e3c563f6a48f60e9669775714",
+    "syx_chat_service.py": "8e311cc51bf686d70d466f7a31863b9cbf1905231066316eb492f2c7bd074b6b",
+    "syx_claude.py": "3a850a645907f27b1a9cb15c3c5244b96b2da97d5d0dc37f5cd7d6f708cf92a8",
+    "syx_claude_worker.py": "ab6638b2c4ef3a4a1548fde1c0739a48f4d47e468494dd7444019f3f330dea38"
+  },
+  "inference_calls": 0,
+  "fixture_source_sha256": {
+    "mod/tests/LiveSmoke.java": "5b4395ff444f67cf698f0afc9ac1a2b408242bbc051c06528c5b5d41e585133a",
+    "mod/tests/TileScenario.java": "cd9b03885f7e7e985191c3f45eb3c7a209dc3c670169aac339d13f20e2571f1e",
+    "mod/tests/EntityScenario.java": "df9b359332c391857857d93ed5d38e36f2029b3a066c3bcb540e74f3eda69f7d",
+    "mod/tests/SceneScenario.java": "ae623566198d96c324ae911d14c9100da0ab73a6e7c49f1c877c675ec60b6a55",
+    "mod/tests/FactionUiScenario.java": "b0c2afc70c0620039f263770789c27a63167938fd6c1258b4ca73b7454eb7463",
+    "mod/tests/RegionalOutputScenario.java": "7aced23bff4580d883542c9a8c9b8b6df2d206be80942f83c2ab82c183783096",
+    "mod/tests/RegionalOutputExportScenario.java": "bf637e23ba1023c250bb615f60c04d28b807695e4af2bcf6f3797c73aae93a66",
+    "mod/tests/RegionalLiveScenario.java": "f5a759f5137ceadd858dfabc02d785738618214df541288421e21fa6771f48fc",
+    "mod/tests/RegionalCostScenario.java": "2e0256d98ad39d0f34e2f8080f8e1a04e9f93bc77ffa0b3995c82639dc86fbf7",
+    "mod/tests/RegionalCaptureScenario.java": "bfba6148a55eef4cf48c615ed9b55aada047da2f2a164d55efc78be169cb2d5b",
+    "dev/verify_regional_captures.py": "2880e58a1d0154ce5c252cef442da89271602a651b289103dfcecf0b1497cc59",
+    "dev/run_read_fixture.py": "25b23fc95b9abc77c9a6f17bb1f3c9a249cad76d6889fb7c953ebc12ab2ac49b",
+    "dev/regional_partial_cache_server.py": "e7dfff0c9f9c8fba7f21fb25bdd642a61155bc58a03434d4915adfa14da1f1da",
+    "dev/verify_scenes.py": "7ece5a7d4abdb26f514239c2548f97147b6cf6a1931a83f93e2da6896e8422de",
+    "dev/verify_regional_cost.py": "9181e0cdc11d09c1e16b5686c1b0b043907ebaa6725e3ac34ef4d79057a65705"
+  },
+  "copied_profile_mod_restored": true,
+  "copied_save_unchanged": true,
+  "source_archive_sha256": "a3fc2aa9f4be31aec0616a5030a656ac49a6011343b7e91395c7bac0b9dfb0a5",
+  "raw_private_report": "runtime/read-regional-capture-5l2r7txg/read-validation.json",
+  "java_codec_rejections": 22,
+  "java_codec_source_sha256": "78eedd1da4b5660e1563ccb9cee788d350a6bb6c33a45074d944789f5c4bf98c",
+  "offline_tests": 296
+}

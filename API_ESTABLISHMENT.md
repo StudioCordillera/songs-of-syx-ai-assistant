@@ -156,3 +156,5 @@ The producer-degradation mapping brings the current compiler inventory to 359 pu
 ## Finite UI/lifecycle route review
 
 UI_LIFECYCLE_BOUNDARY_REVIEW.json adds paired source/binary fingerprints, an ordinary-mod positive faction-observer compilation probe and six negative named-access probes. It distinguishes public stored observers from panel-binding/text-builder mutations and inaccessible live-object routes. WORLD_FACTION_CONTEXT.md describes the supported bounded faction mapping; selected room/region, complete management tabs, tooltip text and immediate unload remain unestablished. This finite review is not a proof that no other public mechanism exists.
+
+The regional capture protocol reuses those same 375 public references with separate complete-selection/row/error/byte rules; it adds no game getter or official stable contract. REGIONAL_CAPTURES.md and REGIONAL_CAPTURE_VALIDATION.json establish finite single-callback capture/paging/counter-restoration/reload and timing evidence. No reflection, arbitrary invocation or gameplay mutation is added to the production observer.

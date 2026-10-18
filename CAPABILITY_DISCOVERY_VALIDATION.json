@@ -1,7 +1,19 @@
 {
   "passed": true,
-  "evaluated_at": "2026-10-18T22:59:26.665435+00:00",
+  "evaluated_at": "2026-10-18T23:25:34.259764+00:00",
   "checks": [
+    {
+      "id": "retained_regional_output_selections",
+      "support": "public_source_verified",
+      "references": [
+        "REGIONAL_CAPTURES.md",
+        "REGIONAL_CAPTURE_VALIDATION.json",
+        "REGIONAL_OUTPUT_BOUNDARY_REVIEW.json",
+        "syx_regions.py",
+        "syx_capture.py"
+      ],
+      "passed": true
+    },
     {
       "id": "live_regional_output_selections",
       "support": "public_source_verified",
@@ -152,14 +164,14 @@
   "inference_calls": 0,
   "public_inventory_size": 375,
   "source_sha256": {
-    "syx_mcp.py": "424dea0d4c75469ef2b3080d8832ab8467c99851dde0882dea05b842ad4fb501",
-    "syx_api_support.py": "17c43d8b7fba42e0561370d61bcdeb4eae31a05e7305b773376b28252ad21765",
-    "syx_api_manifest.py": "a98677c596b8fdb493132fa33b3578f479158f812d0a163e34f656372bf4fb74",
-    "dev/verify_capability_discovery.py": "bce2282082e93edced443abae748a62dadc3a339932a4c066a48df6304fd50d8"
+    "syx_mcp.py": "ab5d53726431e7d19c24f25e98160d27b93f9017f8170ac6fb544c827edf430f",
+    "syx_api_support.py": "c35f7db5f1136d5f37ddae275b6f4ac1719ce47b4aa40dbe17a88a41c847b5aa",
+    "syx_api_manifest.py": "48b2c0a2e80c476bc2a7d5e0d94b48efe5251a4444e9a13ec7b102edeb3d3ebe",
+    "dev/verify_capability_discovery.py": "cf57695c4bc13bac776ea60681f5968e0d5eddc88e6479bee645ff800fd16cb2"
   },
   "limits": [
     "Capability records summarize existing evidence; no new game getter/scene or official stable contract is established.",
     "Offline discovery is not an attestation of a separately installed game mod; pair source-matching builds.",
-    "Eleven supported capabilities and two explicit gaps sampled, not exhaustive metadata acceptance."
+    "Twelve supported capabilities and two explicit gaps sampled, not exhaustive metadata acceptance."
   ]
 }

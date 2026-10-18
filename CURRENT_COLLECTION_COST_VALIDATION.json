@@ -1,288 +1,288 @@
 {
   "passed": true,
-  "measured_at": "2026-10-18T23:10:04.380281+00:00",
+  "measured_at": "2026-10-18T23:38:18.277502+00:00",
   "game_version": "0.71.44",
-  "mod_jar_sha256": "61f88110b48d65add52e94bef3becccac18dde7e52cbd56b4678f3b9521f2ff0",
+  "mod_jar_sha256": "2c7726b84b07a76f913191f2b4bb83f0506273c7d46f4cc742a2d253efdadddb",
   "production_source_sha256": {
-    "syx/assistant/AssistantScript.java": "06f05cec9472fba5155f903362223e2e246aae361fc667623f23008427b82c2b",
+    "syx/assistant/AssistantScript.java": "82fa2395aa96e7ae9cee612b32171fb495ca289dc7f99269c1ad7a2d417cca55",
     "syx/assistant/ChatPanel.java": "3138d3e863ccb36ad5b6b37a7e1f3486dd2d8c1dc43ab469b26af714548d8437",
     "syx/assistant/EntityReadRequest.java": "e2d13aee21f399e8718382d5b43d5a6c85e5d78d2708d8105b9f1ecfe730edf8",
     "syx/assistant/JsonWriter.java": "c525eb60d3224cab83ed3fd6b8594ec8652211f00bd947e873e1482f919e81dc",
-    "syx/assistant/RegionalReadRequest.java": "5ecc77cae6e36118f1e78f938b80ee16833fdc5b95fc2aed256fd12769416204",
+    "syx/assistant/RegionalReadRequest.java": "4d1da800e6f2ecf6b036f188693ac1095329321bc569c82f34be9918768ef2b3",
     "syx/assistant/StateCollector.java": "8437066a95ce197cb93ddc5f23004694bfdc080ccd28dd1d297b4946bcef2af6",
     "syx/assistant/TileReadRequest.java": "1a192cde61a7e1bdefa170390c00b17c74573b9c41de71700ebea466411ad3c5",
     "syx/assistant/UiContentCollector.java": "c0d20c7f9f2734a0bb625427875f06bfcd07edb20611248b39b6e8f480ef5a48",
     "syx/assistant/UiContextCollector.java": "398ab4931efb3451ad0d0dcf80e0c19651e9ffb20fd8b6e6377a9ca53358f7d5"
   },
   "python_source_sha256": {
-    "syx_mcp.py": "424dea0d4c75469ef2b3080d8832ab8467c99851dde0882dea05b842ad4fb501",
+    "syx_mcp.py": "ab5d53726431e7d19c24f25e98160d27b93f9017f8170ac6fb544c827edf430f",
     "syx_knowledge.py": "f5d7dd6d387ad0fb8f2b024a3bd599ad1cec28f2906dfae27d9d2fdf56e4de7e",
     "syx_query.py": "ae9c4537093952510e6536810c065b6e07f7bfc2d78d3bc02ccd0d21f4d12c07",
-    "syx_api_support.py": "17c43d8b7fba42e0561370d61bcdeb4eae31a05e7305b773376b28252ad21765",
-    "syx_api_manifest.py": "a98677c596b8fdb493132fa33b3578f479158f812d0a163e34f656372bf4fb74",
-    "syx_live.py": "879bc4fb97e638ec238a8553c6b217560ea2c09af42880d2a07b8e22b5208e9d",
-    "syx_capture.py": "506f18a5b55ea66cd38ac239bd7398fde597420e0363327629308098f23f82a9",
+    "syx_api_support.py": "c35f7db5f1136d5f37ddae275b6f4ac1719ce47b4aa40dbe17a88a41c847b5aa",
+    "syx_api_manifest.py": "48b2c0a2e80c476bc2a7d5e0d94b48efe5251a4444e9a13ec7b102edeb3d3ebe",
+    "syx_live.py": "2f29a2d828fc5c512075fa6a2082dd5fae9d4a39fb22ae847765533dc5628c75",
+    "syx_capture.py": "32778d9f5f217119ba45b114ba2a710bdd0ce4333efa672c31c690dcc3f3c3ec",
     "syx_tiles.py": "43024d10af917442d4d994f316db18fbd7cab388196682c471891135553c843f",
-    "syx_regions.py": "9150fa3eb049561866242e5e6f046d7176d24b32867a3484688a1773e46f632b",
+    "syx_regions.py": "96dd3355f50279c7c748d866019f889bd9889ef00c7cf97bf4fa582fede7ffb5",
     "syx_chat_store.py": "7344b35476096b680e0cf85958f97596b3c9cfe843072202f30e357b97dedbe5",
     "syx_deepseek.py": "d58e21dbcfdeb1ef0f411dfbb4c0267234bdc5cc185e00d300821725ca1885e3",
-    "syx_chat.py": "42c69909706a75289476aa1161d1fe59e4d8a32e852cd76cd41c2e0757e991cf",
+    "syx_chat.py": "bb201ed9e6a0ed84f6dbddd583304e3c9b655f3e3c563f6a48f60e9669775714",
     "syx_chat_service.py": "8e311cc51bf686d70d466f7a31863b9cbf1905231066316eb492f2c7bd074b6b",
     "syx_claude.py": "3a850a645907f27b1a9cb15c3c5244b96b2da97d5d0dc37f5cd7d6f708cf92a8",
     "syx_claude_worker.py": "ab6638b2c4ef3a4a1548fde1c0739a48f4d47e468494dd7444019f3f330dea38"
   },
-  "private_observation_sha256": "9715007c1c0e5f6fde875232a31981f5f5574ea5a7a39d22a23ae78acd9db578",
-  "observed_at": "2026-10-18 23:09:58.046970+00:00",
+  "private_observation_sha256": "d3fe2e164fb2ea9e9f3cec88c84144a9cb7c5c9672f97d67e4b58a0399757559",
+  "observed_at": "2026-10-18 23:38:11.780159+00:00",
   "native_fixture": {
-    "passed": true,
-    "shape": {
-      "scanned_rooms": 36,
-      "stockpile_scanned_resources": 42,
-      "regional_output_rows": 8526,
-      "regional_output_schedules": 42,
-      "service_room_rows": 8,
-      "entity_prefix_rows": 295,
-      "regional_rows": 203,
-      "stockpile_resource_rows": 42,
-      "production_flow_rows": 35,
-      "service_policy_rows": 544
-    },
-    "domain_count": 18,
-    "os": "Linux",
+    "samples": [
+      {
+        "snapshot_bytes": 1797401,
+        "collection_ns": 12259470,
+        "combined_ns": 21773658,
+        "encoding_utf8_ns": 9514188,
+        "cache": "cold_mod_help_cache"
+      },
+      {
+        "snapshot_bytes": 1797401,
+        "collection_ns": 12157503,
+        "combined_ns": 27456366,
+        "encoding_utf8_ns": 15298863,
+        "cache": "warm_mod_help_cache"
+      },
+      {
+        "snapshot_bytes": 1797401,
+        "collection_ns": 9054348,
+        "combined_ns": 21588867,
+        "encoding_utf8_ns": 12534519,
+        "cache": "warm_mod_help_cache"
+      },
+      {
+        "snapshot_bytes": 1797401,
+        "collection_ns": 8788532,
+        "combined_ns": 19056575,
+        "encoding_utf8_ns": 10268043,
+        "cache": "warm_mod_help_cache"
+      },
+      {
+        "snapshot_bytes": 1797401,
+        "collection_ns": 8639766,
+        "combined_ns": 18876353,
+        "encoding_utf8_ns": 10236587,
+        "cache": "warm_mod_help_cache"
+      },
+      {
+        "snapshot_bytes": 1797401,
+        "collection_ns": 9513261,
+        "combined_ns": 19733297,
+        "encoding_utf8_ns": 10220036,
+        "cache": "warm_mod_help_cache"
+      },
+      {
+        "snapshot_bytes": 1797401,
+        "collection_ns": 8465923,
+        "combined_ns": 18858126,
+        "encoding_utf8_ns": 10392203,
+        "cache": "warm_mod_help_cache"
+      },
+      {
+        "snapshot_bytes": 1797401,
+        "collection_ns": 8314233,
+        "combined_ns": 19120349,
+        "encoding_utf8_ns": 10806116,
+        "cache": "warm_mod_help_cache"
+      },
+      {
+        "snapshot_bytes": 1797401,
+        "collection_ns": 7804348,
+        "combined_ns": 20399724,
+        "encoding_utf8_ns": 12595376,
+        "cache": "warm_mod_help_cache"
+      },
+      {
+        "snapshot_bytes": 1797402,
+        "collection_ns": 7160479,
+        "combined_ns": 16821932,
+        "encoding_utf8_ns": 9661453,
+        "cache": "warm_mod_help_cache"
+      },
+      {
+        "snapshot_bytes": 1797402,
+        "collection_ns": 6891831,
+        "combined_ns": 16907965,
+        "encoding_utf8_ns": 10016134,
+        "cache": "warm_mod_help_cache"
+      },
+      {
+        "snapshot_bytes": 1797402,
+        "collection_ns": 5142514,
+        "combined_ns": 15221281,
+        "encoding_utf8_ns": 10078767,
+        "cache": "warm_mod_help_cache"
+      },
+      {
+        "snapshot_bytes": 1797402,
+        "collection_ns": 5718237,
+        "combined_ns": 15927208,
+        "encoding_utf8_ns": 10208971,
+        "cache": "warm_mod_help_cache"
+      },
+      {
+        "snapshot_bytes": 1797402,
+        "collection_ns": 7643307,
+        "combined_ns": 17763358,
+        "encoding_utf8_ns": 10120051,
+        "cache": "warm_mod_help_cache"
+      },
+      {
+        "snapshot_bytes": 1797402,
+        "collection_ns": 6122680,
+        "combined_ns": 16751710,
+        "encoding_utf8_ns": 10629030,
+        "cache": "warm_mod_help_cache"
+      },
+      {
+        "snapshot_bytes": 1797402,
+        "collection_ns": 6096509,
+        "combined_ns": 18338288,
+        "encoding_utf8_ns": 12241779,
+        "cache": "warm_mod_help_cache"
+      },
+      {
+        "snapshot_bytes": 1797402,
+        "collection_ns": 6847956,
+        "combined_ns": 18271562,
+        "encoding_utf8_ns": 11423606,
+        "cache": "warm_mod_help_cache"
+      },
+      {
+        "snapshot_bytes": 1797402,
+        "collection_ns": 5862525,
+        "combined_ns": 15884130,
+        "encoding_utf8_ns": 10021605,
+        "cache": "warm_mod_help_cache"
+      },
+      {
+        "snapshot_bytes": 1797402,
+        "collection_ns": 6504355,
+        "combined_ns": 16578363,
+        "encoding_utf8_ns": 10074008,
+        "cache": "warm_mod_help_cache"
+      },
+      {
+        "snapshot_bytes": 1797402,
+        "collection_ns": 6052008,
+        "combined_ns": 18261841,
+        "encoding_utf8_ns": 12209833,
+        "cache": "warm_mod_help_cache"
+      },
+      {
+        "snapshot_bytes": 1797402,
+        "collection_ns": 6044521,
+        "combined_ns": 16707854,
+        "encoding_utf8_ns": 10663333,
+        "cache": "warm_mod_help_cache"
+      },
+      {
+        "snapshot_bytes": 1797402,
+        "collection_ns": 5959456,
+        "combined_ns": 17496240,
+        "encoding_utf8_ns": 11536784,
+        "cache": "warm_mod_help_cache"
+      },
+      {
+        "snapshot_bytes": 1797402,
+        "collection_ns": 7530084,
+        "combined_ns": 18251771,
+        "encoding_utf8_ns": 10721687,
+        "cache": "warm_mod_help_cache"
+      },
+      {
+        "snapshot_bytes": 1797402,
+        "collection_ns": 9362682,
+        "combined_ns": 20616182,
+        "encoding_utf8_ns": 11253500,
+        "cache": "warm_mod_help_cache"
+      },
+      {
+        "snapshot_bytes": 1797402,
+        "collection_ns": 5663968,
+        "combined_ns": 15946507,
+        "encoding_utf8_ns": 10282539,
+        "cache": "warm_mod_help_cache"
+      },
+      {
+        "snapshot_bytes": 1797402,
+        "collection_ns": 5791700,
+        "combined_ns": 16496492,
+        "encoding_utf8_ns": 10704792,
+        "cache": "warm_mod_help_cache"
+      },
+      {
+        "snapshot_bytes": 1797402,
+        "collection_ns": 5074178,
+        "combined_ns": 16307749,
+        "encoding_utf8_ns": 11233571,
+        "cache": "warm_mod_help_cache"
+      },
+      {
+        "snapshot_bytes": 1797402,
+        "collection_ns": 4925656,
+        "combined_ns": 17957181,
+        "encoding_utf8_ns": 13031525,
+        "cache": "warm_mod_help_cache"
+      },
+      {
+        "snapshot_bytes": 1797402,
+        "collection_ns": 5600939,
+        "combined_ns": 15704188,
+        "encoding_utf8_ns": 10103249,
+        "cache": "warm_mod_help_cache"
+      },
+      {
+        "snapshot_bytes": 1797402,
+        "collection_ns": 7840798,
+        "combined_ns": 22894043,
+        "encoding_utf8_ns": 15053245,
+        "cache": "warm_mod_help_cache"
+      },
+      {
+        "snapshot_bytes": 1797402,
+        "collection_ns": 6748882,
+        "combined_ns": 17676057,
+        "encoding_utf8_ns": 10927175,
+        "cache": "warm_mod_help_cache"
+      },
+      {
+        "snapshot_bytes": 1797402,
+        "collection_ns": 5330682,
+        "combined_ns": 15718433,
+        "encoding_utf8_ns": 10387751,
+        "cache": "warm_mod_help_cache"
+      }
+    ],
     "limits": [
       "Paused copied city only; no larger-city or worst-case/cap claim.",
       "Cold means this mod's reference cache only, not cold game/JVM/filesystem caches.",
       "Game-thread collection and JSON/UTF-8 encoding measured separately; disk I/O, MCP, model and game loading excluded.",
       "Profiling envelope is a separate real observation used offline, never the active bridge session."
     ],
-    "samples": [
-      {
-        "cache": "cold_mod_help_cache",
-        "encoding_utf8_ns": 9839121,
-        "combined_ns": 20814747,
-        "collection_ns": 10975626,
-        "snapshot_bytes": 1797401
-      },
-      {
-        "cache": "warm_mod_help_cache",
-        "encoding_utf8_ns": 16102120,
-        "combined_ns": 28258901,
-        "collection_ns": 12156781,
-        "snapshot_bytes": 1797401
-      },
-      {
-        "cache": "warm_mod_help_cache",
-        "encoding_utf8_ns": 10417594,
-        "combined_ns": 19011935,
-        "collection_ns": 8594341,
-        "snapshot_bytes": 1797401
-      },
-      {
-        "cache": "warm_mod_help_cache",
-        "encoding_utf8_ns": 10121136,
-        "combined_ns": 17390349,
-        "collection_ns": 7269213,
-        "snapshot_bytes": 1797401
-      },
-      {
-        "cache": "warm_mod_help_cache",
-        "encoding_utf8_ns": 10055073,
-        "combined_ns": 17612586,
-        "collection_ns": 7557513,
-        "snapshot_bytes": 1797401
-      },
-      {
-        "cache": "warm_mod_help_cache",
-        "encoding_utf8_ns": 9991562,
-        "combined_ns": 17591423,
-        "collection_ns": 7599861,
-        "snapshot_bytes": 1797401
-      },
-      {
-        "cache": "warm_mod_help_cache",
-        "encoding_utf8_ns": 10372120,
-        "combined_ns": 18043012,
-        "collection_ns": 7670892,
-        "snapshot_bytes": 1797401
-      },
-      {
-        "cache": "warm_mod_help_cache",
-        "encoding_utf8_ns": 17829278,
-        "combined_ns": 25194560,
-        "collection_ns": 7365282,
-        "snapshot_bytes": 1797401
-      },
-      {
-        "cache": "warm_mod_help_cache",
-        "encoding_utf8_ns": 10534183,
-        "combined_ns": 17636185,
-        "collection_ns": 7102002,
-        "snapshot_bytes": 1797401
-      },
-      {
-        "cache": "warm_mod_help_cache",
-        "encoding_utf8_ns": 11092504,
-        "combined_ns": 19573930,
-        "collection_ns": 8481426,
-        "snapshot_bytes": 1797402
-      },
-      {
-        "cache": "warm_mod_help_cache",
-        "encoding_utf8_ns": 10445669,
-        "combined_ns": 16441543,
-        "collection_ns": 5995874,
-        "snapshot_bytes": 1797402
-      },
-      {
-        "cache": "warm_mod_help_cache",
-        "encoding_utf8_ns": 10419623,
-        "combined_ns": 16906875,
-        "collection_ns": 6487252,
-        "snapshot_bytes": 1797402
-      },
-      {
-        "cache": "warm_mod_help_cache",
-        "encoding_utf8_ns": 12614524,
-        "combined_ns": 18931941,
-        "collection_ns": 6317417,
-        "snapshot_bytes": 1797402
-      },
-      {
-        "cache": "warm_mod_help_cache",
-        "encoding_utf8_ns": 10342832,
-        "combined_ns": 16531654,
-        "collection_ns": 6188822,
-        "snapshot_bytes": 1797402
-      },
-      {
-        "cache": "warm_mod_help_cache",
-        "encoding_utf8_ns": 10085935,
-        "combined_ns": 16216995,
-        "collection_ns": 6131060,
-        "snapshot_bytes": 1797402
-      },
-      {
-        "cache": "warm_mod_help_cache",
-        "encoding_utf8_ns": 10679546,
-        "combined_ns": 16414768,
-        "collection_ns": 5735222,
-        "snapshot_bytes": 1797402
-      },
-      {
-        "cache": "warm_mod_help_cache",
-        "encoding_utf8_ns": 10418879,
-        "combined_ns": 17743075,
-        "collection_ns": 7324196,
-        "snapshot_bytes": 1797402
-      },
-      {
-        "cache": "warm_mod_help_cache",
-        "encoding_utf8_ns": 10122653,
-        "combined_ns": 15450367,
-        "collection_ns": 5327714,
-        "snapshot_bytes": 1797402
-      },
-      {
-        "cache": "warm_mod_help_cache",
-        "encoding_utf8_ns": 10275635,
-        "combined_ns": 15832036,
-        "collection_ns": 5556401,
-        "snapshot_bytes": 1797402
-      },
-      {
-        "cache": "warm_mod_help_cache",
-        "encoding_utf8_ns": 11929477,
-        "combined_ns": 21081186,
-        "collection_ns": 9151709,
-        "snapshot_bytes": 1797402
-      },
-      {
-        "cache": "warm_mod_help_cache",
-        "encoding_utf8_ns": 10310120,
-        "combined_ns": 17336031,
-        "collection_ns": 7025911,
-        "snapshot_bytes": 1797402
-      },
-      {
-        "cache": "warm_mod_help_cache",
-        "encoding_utf8_ns": 9523216,
-        "combined_ns": 14135036,
-        "collection_ns": 4611820,
-        "snapshot_bytes": 1797402
-      },
-      {
-        "cache": "warm_mod_help_cache",
-        "encoding_utf8_ns": 10485203,
-        "combined_ns": 16114285,
-        "collection_ns": 5629082,
-        "snapshot_bytes": 1797402
-      },
-      {
-        "cache": "warm_mod_help_cache",
-        "encoding_utf8_ns": 11252300,
-        "combined_ns": 18196791,
-        "collection_ns": 6944491,
-        "snapshot_bytes": 1797402
-      },
-      {
-        "cache": "warm_mod_help_cache",
-        "encoding_utf8_ns": 11500038,
-        "combined_ns": 17874007,
-        "collection_ns": 6373969,
-        "snapshot_bytes": 1797402
-      },
-      {
-        "cache": "warm_mod_help_cache",
-        "encoding_utf8_ns": 16259827,
-        "combined_ns": 22231110,
-        "collection_ns": 5971283,
-        "snapshot_bytes": 1797402
-      },
-      {
-        "cache": "warm_mod_help_cache",
-        "encoding_utf8_ns": 10675671,
-        "combined_ns": 16010595,
-        "collection_ns": 5334924,
-        "snapshot_bytes": 1797402
-      },
-      {
-        "cache": "warm_mod_help_cache",
-        "encoding_utf8_ns": 10549989,
-        "combined_ns": 14886807,
-        "collection_ns": 4336818,
-        "snapshot_bytes": 1797402
-      },
-      {
-        "cache": "warm_mod_help_cache",
-        "encoding_utf8_ns": 10190313,
-        "combined_ns": 15210140,
-        "collection_ns": 5019827,
-        "snapshot_bytes": 1797402
-      },
-      {
-        "cache": "warm_mod_help_cache",
-        "encoding_utf8_ns": 10298263,
-        "combined_ns": 15780319,
-        "collection_ns": 5482056,
-        "snapshot_bytes": 1797402
-      },
-      {
-        "cache": "warm_mod_help_cache",
-        "encoding_utf8_ns": 12920500,
-        "combined_ns": 18281404,
-        "collection_ns": 5360904,
-        "snapshot_bytes": 1797402
-      },
-      {
-        "cache": "warm_mod_help_cache",
-        "encoding_utf8_ns": 11996202,
-        "combined_ns": 16776206,
-        "collection_ns": 4780004,
-        "snapshot_bytes": 1797402
-      }
-    ],
-    "reference_count": 834,
-    "java_version": "21.0.12.1"
+    "os": "Linux",
+    "domain_count": 18,
+    "shape": {
+      "production_flow_rows": 35,
+      "stockpile_resource_rows": 42,
+      "regional_rows": 203,
+      "entity_prefix_rows": 295,
+      "service_room_rows": 8,
+      "regional_output_schedules": 42,
+      "regional_output_rows": 8526,
+      "stockpile_scanned_resources": 42,
+      "scanned_rooms": 36,
+      "service_policy_rows": 544
+    },
+    "passed": true,
+    "java_version": "21.0.12.1",
+    "reference_count": 834
   },
   "sample_counts": {
     "cold_reference_cache": 1,
@@ -293,62 +293,62 @@
   "quantile_method": "Sorted samples, zero-based index floor(0.95*(n-1)); descriptive sample percentile, not a statistical bound.",
   "warm_native_ms": {
     "collection": {
-      "min": 4.337,
-      "median": 6.317,
-      "p95": 8.594,
-      "max": 12.157
+      "min": 4.926,
+      "median": 6.749,
+      "p95": 9.363,
+      "max": 12.158
     },
     "json_and_utf8_encoding": {
-      "min": 9.523,
-      "median": 10.446,
-      "p95": 16.102,
-      "max": 17.829
+      "min": 9.661,
+      "median": 10.663,
+      "p95": 13.032,
+      "max": 15.299
     },
     "combined_fixture_work": {
-      "min": 14.135,
-      "median": 17.39,
-      "p95": 22.231,
-      "max": 28.259
+      "min": 15.221,
+      "median": 17.763,
+      "p95": 21.589,
+      "max": 27.456
     }
   },
   "cold_native_ms": {
-    "collection": 10.976,
-    "json_and_utf8_encoding": 9.839,
-    "combined_fixture_work": 20.815
+    "collection": 12.259,
+    "json_and_utf8_encoding": 9.514,
+    "combined_fixture_work": 21.774
   },
   "regional_output_query_independent_parity": true,
   "regional_output_query_ms": {
-    "min": 104.2,
-    "median": 111.999,
-    "p95": 119.65,
-    "max": 155.834
+    "min": 108.662,
+    "median": 116.319,
+    "p95": 123.354,
+    "max": 166.026
   },
   "regional_output_rows": 8526,
   "regional_output_schedule_rows": 42,
   "snapshot_bytes": 1797402,
   "offline_parse_ms": {
-    "min": 15.687,
-    "median": 21.542,
-    "p95": 25.955,
-    "max": 76.294
+    "min": 15.944,
+    "median": 21.813,
+    "p95": 26.244,
+    "max": 85.578
   },
   "offline_two_service_queries_ms": {
-    "min": 30.87,
-    "median": 40.455,
-    "p95": 44.801,
-    "max": 54.72
+    "min": 29.149,
+    "median": 43.766,
+    "p95": 51.021,
+    "max": 60.843
   },
   "two_service_queries_independent_parity": true,
   "five_existing_query_examples": {
     "passed": true,
     "method": "Offline QueryEngine only, on a preserved real snapshot. No game or inference calls.",
     "game_version": "0.71.44",
-    "source_snapshot_sha256": "9715007c1c0e5f6fde875232a31981f5f5574ea5a7a39d22a23ae78acd9db578",
-    "source_observed_at": "2026-10-18 23:09:58.046970+00:00",
+    "source_snapshot_sha256": "d3fe2e164fb2ea9e9f3cec88c84144a9cb7c5c9672f97d67e4b58a0399757559",
+    "source_observed_at": "2026-10-18 23:38:11.780159+00:00",
     "query_spec_sha256": "b9afe28bc8e95bed3a8de1daf6605becff89a05db4f0777529434662b0917fe8",
     "source_sha256": {
       "syx_query.py": "ae9c4537093952510e6536810c065b6e07f7bfc2d78d3bc02ccd0d21f4d12c07",
-      "syx_mcp.py": "424dea0d4c75469ef2b3080d8832ab8467c99851dde0882dea05b842ad4fb501",
+      "syx_mcp.py": "ab5d53726431e7d19c24f25e98160d27b93f9017f8170ac6fb544c827edf430f",
       "dev/benchmark_selective_queries.py": "7d7877f7098a2389b609b0eb969151f68b402c96c50b83448cd0ca28f03b6412"
     },
     "independent_filter_join_aggregate_parity": true,
@@ -364,9 +364,9 @@
     "selected_results_bytes": 6838,
     "repetitions": 31,
     "local_elapsed_ms": {
-      "median": 23.704,
-      "p95": 26.312,
-      "max": 33.889
+      "median": 23.682,
+      "p95": 28.027,
+      "max": 30.251
     },
     "limits": [
       "One copied city, no large-city latency or collection cost claim. Timings are local descriptive measurements, not a guarantee.",
@@ -377,7 +377,7 @@
   },
   "selected_two_service_results_bytes": 4818,
   "source_sha256": {
-    "mod/tests/LiveSmoke.java": "d4b7ce951835eaa5c680ee023e25cbb7833b05a952b59c13682f6adbbc1dc231",
+    "mod/tests/LiveSmoke.java": "5b4395ff444f67cf698f0afc9ac1a2b408242bbc051c06528c5b5d41e585133a",
     "mod/tests/CollectionCostScenario.java": "61eba2bb53ae64ba63b7733e79164c4f210a8f1e4fa9c24fe9cec13831baf321",
     "dev/profile_collection_cost.py": "41e01f98a61ae9d129c08e41e197e9e23da7dd5677c7d42bf370667d3e87c738",
     "dev/benchmark_selective_queries.py": "7d7877f7098a2389b609b0eb969151f68b402c96c50b83448cd0ca28f03b6412",

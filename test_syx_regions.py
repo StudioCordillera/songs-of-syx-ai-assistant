@@ -40,7 +40,8 @@ def responder(directory,stop,transform):
             if parts['request_id'] not in seen:
                 seen.add(parts['request_id'])
                 result={'request_id':parts['request_id'],'session_id':parts['session'],'game_version':'0.71.44',
-                    'captured_at':datetime.now(timezone.utc).isoformat(),'available':True,'read_mode':'regional_page',
+                    'captured_at':datetime.now(timezone.utc).isoformat(),'available':True,'read_mode':'regional_capture' if parts['protocol']=='2' else 'regional_page',
+                    'consistency':'one callback fixture',
                     'observer_phase':'GAME.addAfterUpdate','scope':'campaign_world_regions','coverage':'partial','tick':3,
                     'scene':{'active_view':'world'},'ui_context':{'available':True,'active_view':'world'},
                     'data':{'rows':[{'region_id':17,'resource_id':'grain','accrued_output_raw':0,'days_until_configured_output':0}],
@@ -51,11 +52,11 @@ def responder(directory,stop,transform):
         time.sleep(.005)
 
 
-def response(advisor,transform=lambda r:r):
+def response(advisor,transform=lambda r:r,*,capture=False):
     stop=threading.Event()
     with ThreadPoolExecutor(max_workers=1) as pool:
         future=pool.submit(responder,advisor.snapshot_path.parent,stop,transform)
-        try:return query_regional_outputs(advisor,{'region_ids':[17],'resource_ids':['grain']},timeout=1)
+        try:return query_regional_outputs(advisor,{'region_ids':[17],'resource_ids':['grain']},timeout=1,capture=capture)
         finally:stop.set();future.result(timeout=1)
 
 

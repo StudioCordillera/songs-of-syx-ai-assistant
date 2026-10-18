@@ -14,7 +14,7 @@ Game process public after-update callback → detached Java DTOs → local snaps
 | StateCollector.java | Eighteen partial domains, installed help, typed field definitions and bounded room/resource/region relationships. New fields require provenance, bounds and getter/MCP validation. |
 | UiContextCollector.java | Scene/view/overlay/subject/room-blueprint and bounded world-faction-panel context through mapped public getters. No private selected-room fallback. |
 | UiContentCollector.java | Bounded exposed popup/section labels/controls, ancestry and opaque/error/truncation markers. |
-| RegionalReadRequest.java | Fixed active-region/resource matrix request, bounded range/faction predicates and projections on the update thread; independent of cached row prefix. |
+| RegionalReadRequest.java | Fixed live/complete-capture active-region/resource matrix protocols, bounded range/faction predicates and projections on the update thread; independent of cached row prefix. |
 | EntityReadRequest.java | Strict live/capture protocol parsing, finite predicates/projections, public entity/stat/workplace reads on the update thread. |
 | TileReadRequest.java | Strict rectangle/filter/projection protocol and bounded terrain/floor/room/mineral/path reads. |
 | ChatPanel.java | Our own simple/advanced public GUI widgets, text/focus, chat list/transcript/composer; no gameplay-control dispatch. |
@@ -26,11 +26,11 @@ Only these production classes are packaged. `mod/tests/` contains non-shipped bo
 
 | Module | Responsibility |
 | --- | --- |
-| syx_mcp.py | Snapshot/domain models, freshness/cache, Advisor and sixteen tool registrations; stdio entry point. |
+| syx_mcp.py | Snapshot/domain models, freshness/cache, Advisor and eighteen tool registrations; stdio entry point. |
 | syx_query.py | Fixed snapshot selection language, joins/arithmetic/grouping/sort, shared work/row/source budgets and collection diagnostics. |
 | syx_live.py | Strict entity selections, live/capture wire transport and agent-facing schema/help. |
-| syx_capture.py | Immutable encoded retained entity/tile observations in separate bounded pools, server-local tokens, shared paging/freshness guards and original provenance. |
-| syx_regions.py | Strict regional output selections/wire, shared guarded transport and response matrix/projection/identity/cap checks. |
+| syx_capture.py | Immutable encoded retained entity/tile/regional observations in separate bounded pools, server-local tokens, shared paging/freshness guards and original provenance. |
+| syx_regions.py | Strict regional live/capture selections/wire, shared guarded transport and response matrix/projection/identity/completeness/cap checks. |
 | syx_tiles.py | Strict live/capture tile selection schemas, fixed mailbox and same-response context checks; captures must fit one callback. |
 | syx_knowledge.py | Reviewed SEEDS, non-destructive corpus merge and knowledge CLI. Search/ranking lives in Advisor in syx_mcp.py. |
 | syx_api_support.py | Curated capability routing, source/evidence/limit descriptions and explicit gaps; not arbitrary invocation. |
@@ -79,7 +79,8 @@ The release whitelist is `make_user_test.MODULES`, five files in `user_test/`, o
 - Other `*_VALIDATION.json`, `validation-evidence.json`, `provider-validation.json` and source-review reports may belong to older builds. Preserve them as historical evidence; current equivalents can be nested in PLAYER_CORE. The index distinguishes their roles.
 - `REGIONAL_OUTPUT_BOUNDARY_REVIEW.json` / `REGIONAL_OUTPUT_BOUNDARY.md` / `REGIONAL_OUTPUT_READER_VALIDATION.json`: original candidate stored-reader/offset evidence and excluded mutating helpers; its earlier JAR/hashes remain historical. REGIONAL_OUTPUTS.md / REGIONAL_OUTPUT_VALIDATION.json describe the subsequent bounded DTO/MCP mapping.
 - `UI_LIFECYCLE_BOUNDARY_REVIEW.json` / `WORLD_FACTION_CONTEXT.md`: finite source/compiler route checks, public faction panel observations and explicit inaccessible/mutating alternatives; WORLD_FACTION_CONTEXT_VALIDATION.json pins eleven copied-game/MCP phases. Not exhaustive API absence proof.
-- `REGIONAL_REQUEST_COST_VALIDATION.json`: exact published JAR regional collector/encoding samples plus sequential actual MCP latency; finite paused campaign, separate from regular collector cost. Reproduce with the `regional-cost` read-fixture case.
+- `REGIONAL_CAPTURE_VALIDATION.json`: complete single-callback regional selections, retained pages after counter/context changes, real reload invalidation and finite capture timings; REGIONAL_CAPTURES.md describes protocol and limits.
+- `REGIONAL_REQUEST_COST_VALIDATION.json`: earlier live-page JAR regional collector/encoding samples plus sequential actual MCP latency; finite paused campaign, separate from regular collector cost. Reproduce with the `regional-cost` read-fixture case.
 - `CURRENT_COLLECTION_COST_VALIDATION.json`: current published collector in a paused small copied city; COLLECTION_COST_VALIDATION.json preserves the older workforce build. Neither proves large-city/live-capture cost.
 - `COLLABORATION_VALIDATION.json`: the original developer-tool/docs checkpoint, separate from the player's test count/JAR; pinned hashes/counts remain historical as current guides evolve.
 

@@ -30,7 +30,8 @@ def scope(path):
                 'CAPABILITY_DISCOVERY_VALIDATION.json'}:
         return 'Current linked player/feature evidence; inspect exact source/JAR hashes and case scope'
     if name in {'TILE_CAPTURE_VALIDATION.json','ENTITY_CAPTURE_REGRESSION_VALIDATION.json'}:return 'Current retained-read native evidence; inspect bounded selection and source/JAR scope'
-    if name=='REGIONAL_REQUEST_COST_VALIDATION.json':return 'Native regional collector/encoding and actual sequential MCP timings; finite paused campaign, not worst-case acceptance'
+    if name=='REGIONAL_REQUEST_COST_VALIDATION.json':return 'Earlier live-page build regional collector/encoding and sequential MCP timings; finite paused campaign, not worst-case acceptance'
+    if name=='REGIONAL_CAPTURE_VALIDATION.json':return 'Native regional capture/paging/restoration/reload and finite cost samples; inspect exact source/JAR and limits'
     if name=='REGIONAL_LIVE_VALIDATION.json':return 'Live regional MCP protocol/matrix/scene checks; partial-cache case is explicitly authored'
     if name=='REGIONAL_OUTPUT_VALIDATION.json':return 'Native regional output DTO/MCP exposure; inspect bounded matrix/control and source/JAR scope'
     if name=='REGIONAL_OUTPUT_READER_VALIDATION.json':return 'Candidate native regional stored-reader probe only; no production MCP counter exposure'

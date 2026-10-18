@@ -167,10 +167,11 @@ public final class AssistantScript implements SCRIPT {
             } catch(Exception error) {System.err.println("Syx assistant read response: "+error);}
             Map<String,Object> region=regionalResponse.getAndSet(null);
             if(region!=null)try {
-                if(JsonWriter.encode(region).getBytes(StandardCharsets.UTF_8).length>65536)
+                int cap="regional_capture".equals(region.get("read_mode"))?2*1024*1024:65536;
+                if(JsonWriter.encode(region).getBytes(StandardCharsets.UTF_8).length>cap)
                     region=StateCollector.object("request_id",region.get("request_id"),"session_id",session,"game_version",VERSION.VERSION_STRING,
-                        "captured_at",java.time.Instant.now().toString(),"available",false,"reason","Regional response exceeds 64 KiB; narrow fields or limit","data",null);
-                writeDto("regional-response",region,65536);
+                        "captured_at",java.time.Instant.now().toString(),"available",false,"reason","Regional response exceeds read mode byte budget; narrow fields or rows","data",null);
+                writeDto("regional-response",region,cap);
             } catch(Exception error){System.err.println("Syx assistant regional response: "+error);}
             Map<String,Object> dto = pending.getAndSet(null);
             if (dto == null) return;

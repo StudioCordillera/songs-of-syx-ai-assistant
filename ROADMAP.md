@@ -14,7 +14,7 @@ The runnable player checkpoint now requires a source-matching `releases/latest-u
 
 Goal: let an assistant discover available variables and request a complex, bounded selection quickly, without receiving the entire state on each question.
 
-Implemented: 18 partial typed domains; snapshot filters, projections, joins, arithmetic and aggregates; on-demand person/stat reads with recorded-workplace filtering; retained entity captures for stable paging; finite terrain/floor/room/mineral/path reads plus small retained tile selections; stored producer-room degradation; bounded regional resource accruals/configured schedules and direct active-region/resource matrix reads independent of the cached prefix. Results identify their observation, session, coverage and scope. The compiler audit currently inventories 375 public production member references. The offline public-member catalog is a discovery backlog, not a count of supported variables.
+Implemented: 18 partial typed domains; snapshot filters, projections, joins, arithmetic and aggregates; on-demand person/stat reads with recorded-workplace filtering; retained entity captures for stable paging; finite terrain/floor/room/mineral/path reads plus small retained tile selections; stored producer-room degradation; bounded regional resource accruals/configured schedules and direct active-region/resource matrix reads independent of the cached prefix, plus complete bounded retained regional selections from one callback (10,000 cells/2,000 matches/2 MiB). Results identify their observation, session, coverage and scope. The compiler audit currently inventories 375 public production member references. The offline public-member catalog is a discovery backlog, not a count of supported variables.
 
 Next work:
 

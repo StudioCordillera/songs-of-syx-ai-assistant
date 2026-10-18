@@ -43,7 +43,7 @@ A separate **test-only authored partial-cache view** clones real snapshots, keep
 
 The pure Java codec accepts the valid frame/end cursor and rejects 19 malformed/unsupported variants without game bootstrap. Offline transport tests reject mismatched/tampered responses and demonstrate observed zeros despite missing cached rows. Current player/core reports pin the paired build; earlier regional table/candidate reports keep their own whole-build scopes.
 
-Public getter implementations are verified against shipped source/binaries and compiler declarations, not separate official stable contracts. Native registry/cell faults, an actual larger-world export-cap case, all mods/menu combinations, retained regional captures and large-world latency/FPS remain open. The live route does not establish every game variable or every lifecycle/menu state.
+Public getter implementations are verified against shipped source/binaries and compiler declarations, not separate official stable contracts. Native registry/cell faults, an actual larger-world export-cap case, all mods/menu combinations, larger-world/capture cap/fault coverage and large-world latency/FPS remain open. The live route does not establish every game variable or every lifecycle/menu state.
 
 Reproduce with the isolated copied setup in CONTRIBUTING.md:
 
@@ -57,7 +57,7 @@ The runner uses the shared fixture lock, restores its copied mod and checks copi
 
 ## Reproduce request timings
 
-The separate [request-cost report](REGIONAL_REQUEST_COST_VALIDATION.json) records exact published-JAR timings for single-cell reads, full 100-row pages, an empty amount filter scanning 4,096 cells and an empty faction filter scanning 4,096 cells. Every native sample checks independently read public-getter rows and cursor/error counts. It also checks 44 actual sequential stdio MCP calls against those rows. Native collector timing includes the scene/UI DTO; JSON/UTF-8 encoding and end-to-end MCP latency have separate distributions.
+The separate [request-cost report](REGIONAL_REQUEST_COST_VALIDATION.json) records pinned earlier live-page-build JAR timings for single-cell reads, full 100-row pages, an empty amount filter scanning 4,096 cells and an empty faction filter scanning 4,096 cells. Every native sample checks independently read public-getter rows and cursor/error counts. It also checks 44 actual sequential stdio MCP calls against those rows. Native collector timing includes the scene/UI DTO; JSON/UTF-8 encoding and end-to-end MCP latency have separate distributions.
 
 The sampled campaign has 203 active regions and 42 loaded resources; requests select 100 regions. After excluding one initial sample per case, 31 native samples give these collector medians/maxima (milliseconds): single cell 0.241/0.762, 100-row page 0.298/0.713, empty 4,096-cell amount scan 0.505/3.065, and empty 4,096-cell faction scan 0.379/3.946. Separate warm encoding medians are 0.044–0.139 ms. Ten warm MCP samples per case have 208.7–211.1 ms medians, including polling/scheduling/IPC, with a 364.2 ms maximum across those samples. This is not evidence that collection accounts for the full round trip or that these maxima are worst-case bounds.
 

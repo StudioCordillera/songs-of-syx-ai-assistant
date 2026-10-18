@@ -72,3 +72,5 @@ The workplace-filter checkpoint selects assigned humanoids through the existing 
 ## Retained spatial selections
 
 Small tile selections can now be retained in one callback through `capture_live_tiles`, then paged with `read_tile_capture`. Rectangle area <=4096, max_rows <=100 and payload <=64 KiB; incomplete/predicate/byte failures retain nothing. This improves cross-page consistency for that finite selection, not full-map/all-variable coverage or UI-selected-room identity. [TILE_CAPTURES.md](TILE_CAPTURES.md) records original-context/token/lifecycle limits and city-only value-parity evidence.
+
+Regional outputs additionally support complete bounded retained selections through `capture_live_regional_outputs` / `read_regional_output_capture`. This adds consistency across pages, not new game variables: the same explicit public output/owner getters and meaning limits apply. Matrix <=10,000 cells, matches <=2,000, payload <=2 MiB; any incomplete/error/overflow result retains nothing. See REGIONAL_CAPTURES.md and its exact source/JAR evidence. Native faults/largest-world cost and full UI/lifecycle coverage remain unestablished.
