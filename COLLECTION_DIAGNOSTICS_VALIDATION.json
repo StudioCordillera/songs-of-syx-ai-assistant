@@ -1,0 +1,27 @@
+{
+  "passed": true,
+  "evaluated_at": "2026-10-18T14:12:10.308086+00:00",
+  "fixture": "synthetic demo only",
+  "checks": [
+    "paged_reads_retain_collection_flags_across_pages",
+    "aggregate_counts_exported_rows_with_explicit_truncation_and_failures",
+    "joined_source_retains_own_collection_diagnostics",
+    "unavailable_source_refused_instead_of_counted_zero",
+    "source_budget_accepts_10000_refuses_10001",
+    "duplicate_join_row_cap_applies_before_limit",
+    "batch_shares_work_budget"
+  ],
+  "inference_calls": 0,
+  "game_processes": 0,
+  "source_sha256": {
+    "syx_query.py": "039795c9c0e1a4f167ff7bb98afd5955c52814d4fcf40705d0c59cdf06b684b4",
+    "syx_mcp.py": "e0d596a394865af6bdd6a2e6fce04e14e36d60281e93ab18e0cc6c54dea92a34",
+    "dev/verify_collection_diagnostics.py": "661b978f225eecfb5a35a74f71e7e78b45c8447431fcc4cf4b81b36bcee14313"
+  },
+  "limits": [
+    "Synthetic observations deliberately contain cap/failure flags; not runtime game collector cap or fault injection.",
+    "No large-city, all-scene, live-game availability or provider advice acceptance.",
+    "Collection diagnostics retain original ancestor paths and flag names; totals/aggregates cover exported rows only.",
+    "Diagnostics do not scan descendants of projected containers; choose the table itself as a source/pointer."
+  ]
+}

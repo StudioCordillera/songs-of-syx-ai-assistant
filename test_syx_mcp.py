@@ -307,3 +307,17 @@ def test_direct_nested_unavailable_page_is_unknown_not_empty(setup):
     advisor.snapshot_path.write_text(json.dumps(state))
     result=advisor.query('trade','/pipeline/rows')
     assert result['coverage']=='partial' and result['data']==[] and result['total']==0
+
+
+def test_paged_read_keeps_collection_limits_failures_and_truncation(setup):
+    a,s=setup
+    s['domains']['services']={'coverage':'partial','reason':'synthetic','data':{
+        'access_policy':{'coverage':'partial','truncated':True,'failed_service_types':1,
+            'rule_row_limit':10000,'cohort_rules':[{'id':i} for i in range(3)]}}}
+    save(a,s)
+    first=a.query('services','/access_policy/cohort_rules',limit=2)
+    second=a.query('services','/access_policy/cohort_rules',offset=2,limit=2)
+    expected=[{'path':'/access_policy','truncated':True,'failed_service_types':1,'rule_row_limit':10000}]
+    assert first['total']==second['total']==3
+    assert first['collection_diagnostics']==second['collection_diagnostics']==expected
+    assert first['next_offset']==2 and second['next_offset'] is None

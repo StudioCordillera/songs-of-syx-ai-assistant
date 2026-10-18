@@ -104,3 +104,48 @@ def test_unavailable_subtree_cannot_be_counted_or_joined_as_zero(snapshot):
     assert run(snapshot,{'source':nested,'aggregates':{'n':{'op':'count'}}})['rows']==[{'n':0}]
     meta=run(snapshot,{'source':nested})['sources'][0]
     assert meta['subtree_scope']=='city' and meta['subtree_coverage']=='partial'
+
+
+def test_collection_diagnostics_keep_ancestor_flags_and_join_provenance(snapshot):
+    from syx_mcp import Domain
+    snapshot.domains['services']=Domain(coverage='partial',reason='synthetic cap/failure case',data={
+        'truncated':True,'row_limit':10000,'access/policy':{
+            'coverage':'partial','scope':'city','truncated':False,'failed_service_types':2,
+            'rule_row_limit':10000,'failure_samples':[{'reason':'not copied'}],
+            'cohort_rules':[{'id':'grain','allowed':False}]}})
+    src={'domain':'services','path':'/access~1policy/cohort_rules'}
+    q={'source':src,'aggregates':{'observed':{'op':'count'}}}
+    result=run(snapshot,q)
+    expected=[{'path':'','truncated':True,'row_limit':10000},
+        {'path':'/access~1policy','truncated':False,'failed_service_types':2,'rule_row_limit':10000}]
+    assert result['rows']==[{'observed':1}]
+    assert result['sources'][0]['collection_diagnostics']==expected
+    joined=run(snapshot,{'source':source(),'joins':[{'source':src,'left_key':'/id','right_key':'/id','as':'policy'}]})
+    assert joined['sources'][1]['collection_diagnostics']==expected
+    assert joined['sources'][0]['collection_diagnostics']==[]
+
+
+@pytest.mark.parametrize('rows,accepted',[(10000,True),(10001,False)])
+def test_source_row_budget_boundary(snapshot,rows,accepted):
+    snapshot.domains['resources'].data={'rows':[{'id':i} for i in range(rows)]}
+    q={'source':source(),'aggregates':{'observed':{'op':'count'}}}
+    if accepted:assert run(snapshot,q)['rows']==[{'observed':10000}]
+    else:
+        with pytest.raises(ValueError,match='Source exceeds row budget'):run(snapshot,q)
+
+
+def test_duplicate_join_cannot_evade_row_cap_with_small_page(snapshot):
+    snapshot.domains['resources'].data={'rows':[{'id':0} for _ in range(101)]}
+    snapshot.domains['production'].data={'rows':[{'id':0} for _ in range(100)]}
+    with pytest.raises(ValueError,match='Join result exceeds row budget'):
+        run(snapshot,{'source':source(),'joins':[{'source':{'domain':'production','path':'/rows'},
+            'left_key':'/id','right_key':'/id','as':'flow'}],'limit':1})
+
+
+def test_batch_work_budget_is_shared(snapshot):
+    snapshot.domains['resources'].data={'rows':[{'id':i} for i in range(10000)]}
+    q={'source':source(),'select':{'id':field('/id')},'limit':1}
+    assert len(QueryEngine(snapshot).execute({'queries':[q]*10}))==10
+    q['select']['copy']=field('/id')
+    with pytest.raises(ValueError,match='work budget'):
+        QueryEngine(snapshot).execute({'queries':[q]*10})

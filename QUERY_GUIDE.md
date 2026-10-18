@@ -250,3 +250,15 @@ Use `describe_game_fields("services")`, then select `/room_data/rooms`. The runn
 `services /access_policy/service_types` identifies registered service types and installed room help; `/access_policy/cohort_rules` holds concrete race/class configuration flags. Inspect field definitions before using them: these are not effective individual permissions or visits, and a registered type can have no built instance. Battlefield city-policy defaults are unavailable, so nested table pages/counts cannot be interpreted as an empty valid city policy.
 
 [service-policy-query-example.json](service-policy-query-example.json) selects configured false flags and joins population on race, then explicitly filters class equality. Both conditions are needed to match the cohort; matching race alone multiplies other classes. The returned `scene_population` is a cohort count, not a count of individuals actually denied service. The same observation supplies UI context. See SERVICE_PERMISSIONS.md for caps, batch/failure behavior and individual-rule exceptions.
+
+## Collection diagnostics on table reads
+
+`query_game_state` now includes `collection_diagnostics`. Each selective result's `sources` includes the same field for its main source and every join. It carries a small allowlist of scalar collector flags, counts and limits from the requested node and its ancestors. Each entry's `path` is relative to that domain's data root; an empty path means the root. Failure sample text and unrelated game values are not copied.
+
+For example, a source at `/access_policy/cohort_rules` retains its parent's `truncated`, `failed_service_types`, scan counts and row/type/race/class limits. Paging to the end does not clear those collection flags. `total`, `matched_total`, aggregate counts and pagination describe the **exported rows**, even if collection omitted rows. A missing configured policy after truncation/failure is unknown. Joins retain diagnostics separately for each input; a successful join cannot restore omitted source rows.
+
+Ancestor flags keep their original names and scope. For example, `population_truncated` does not assert that the separate region table was truncated. A false truncation flag does not establish complete coverage: inspect failed-read counts, coverage, source meaning and known API gaps as well.
+
+Diagnostics follow the source/pointer path; they do not scan all descendants of a projected container. Choose the actual table as a source or paged pointer when checking its collection limits. Selecting `/access_policy/cohort_rules` as a field from the whole services object does not automatically attach that nested table's diagnostics. This metadata does not bypass unavailable-source refusal, snapshot pinning or existing query budgets.
+
+`dev/verify_collection_diagnostics.py` exercises synthetic cap/failure observations through MCP and checks source/join/work limits. Synthetic flags are deliberately authored; this is not game collector cap/fault injection or large-city performance evidence. Native service checks separately compare flags/limits with the copied game's actual untruncated export.

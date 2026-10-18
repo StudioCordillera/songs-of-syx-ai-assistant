@@ -44,6 +44,42 @@ def observation(value, path: str):
     return resolved,context
 
 
+
+# Scalar collector diagnostics only: never copy row values, failure text or help bodies.
+COLLECTION_DIAGNOSTIC_KEYS = frozenset({
+    'truncated', 'total', 'scanned_rooms', 'read_producer_rooms', 'failed_rooms',
+    'row_limit', 'scan_room_limit', 'scanned_service_types', 'failed_service_types',
+    'service_type_limit', 'rule_row_limit', 'race_scan_limit', 'class_scan_limit',
+    'cohorts_per_service_type', 'region_count_total', 'region_truncated', 'region_limit',
+    'population_truncated', 'population_row_limit', 'population_failed_regions',
+    'resource_limit', 'flow_row_limit', 'trade_type_count', 'trade_type_scan_limit',
+    'failed_resources',
+})
+
+
+def collection_diagnostics(value, path):
+    """Retain bounded-read diagnostics from the requested node and its ancestors.
+
+    Paths refer to the domain data root. Flags retain their original names and
+    scope: e.g. population_truncated does not assert that regions are truncated.
+    This deliberately does not scan descendants of a projected container.
+    """
+    pointer(value, path)  # Validate the entire pointer before returning diagnostics.
+    result=[]
+    def append(node, node_path):
+        if isinstance(node,dict):
+            fields={k:v for k,v in node.items() if k in COLLECTION_DIAGNOSTIC_KEYS and type(v) in (bool,int)}
+            if fields: result.append({'path':node_path, **fields})
+    append(value, '')
+    current=''
+    if path:
+        for token in path[1:].split('/'):
+            current+='/'+token
+            value=pointer(value,'/'+token)
+            append(value,current)
+    return result
+
+
 def keys(value, allowed, label):
     if not isinstance(value, dict) or set(value)-set(allowed):
         raise ValueError(f'Invalid {label} fields')
@@ -127,6 +163,7 @@ class QueryEngine:
         _,context=observation(domain.data,spec.get('path',''))
         return {'domain':spec['domain'],'path':spec.get('path',''),
                 'coverage':domain.coverage,'scope':domain.scope,
+                'collection_diagnostics':collection_diagnostics(domain.data,spec.get('path','')),
                 **{'subtree_'+k:v for k,v in context.items()}}
 
     def query(self, spec):

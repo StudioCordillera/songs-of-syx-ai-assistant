@@ -1,6 +1,6 @@
 {
   "passed": true,
-  "evaluated_at": "2026-10-18T12:18:43.709764+00:00",
+  "evaluated_at": "2026-10-18T14:13:04.158056+00:00",
   "cases": [
     {
       "case_id": "player-question-01",
@@ -430,7 +430,7 @@
   "support_checks": 42,
   "caveat_checks": 30,
   "source_sha256": {
-    "syx_mcp.py": "f46d48e261c8a766a1a501a286ac288a1587a26baacbca54a970429e0c9ece8c",
+    "syx_mcp.py": "e0d596a394865af6bdd6a2e6fce04e14e36d60281e93ab18e0cc6c54dea92a34",
     "syx_knowledge.py": "8ba92826d9a9b27099b29d26c50b054a172c6d10ca755ee7f70d538a4573d17a",
     "guidance-questions.json": "0dd39004b358ed3b2d26c497c27dc14791a46082282d529d0285390755dd690e",
     "dev/verify_guidance.py": "fb1030fe3efdbdbe3edb5893e353e7fdc5484b72ec59c7076ca5e264d47bccb6"

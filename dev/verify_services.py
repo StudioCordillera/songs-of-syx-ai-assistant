@@ -39,10 +39,19 @@ async def verify(directory):
                 result=json.loads(text)
                 if 'state' in result:assert result['state']['session_id']==snapshot.session_id
                 return result
+            expected_diagnostics={
+                '/room_data':[{'path':'/room_data',**{k:snapshot.domains['services'].data['room_data'][k]
+                    for k in ['scanned_rooms','failed_rooms','truncated','row_limit','scan_room_limit']}}],
+                '/access_policy':[{'path':'/access_policy',**{k:snapshot.domains['services'].data['access_policy'][k]
+                    for k in ['scanned_service_types','failed_service_types','truncated','service_type_limit',
+                        'rule_row_limit','race_scan_limit','class_scan_limit','cohorts_per_service_type']}}]}
             async def rows(domain,path):
                 values=[];offset=0
                 while True:
                     result=await call('query_game_state',{'domain':domain,'pointer':path,'offset':offset,'limit':100})
+                    if domain=='services':
+                        parent='/'+path.split('/')[1]
+                        assert result['collection_diagnostics']==expected_diagnostics[parent]
                     values.extend(result['data']);offset=result['next_offset']
                     if offset is None:return values
             observed=await rows('services','/room_data/rooms')
@@ -61,6 +70,7 @@ async def verify(directory):
             expected=[{'room':r['room_id'],'blueprint':r['blueprint_id'],'active':r['active'],
                 'total_slots':r['total_slots_raw'],'available_slots':r['available_slots_raw'],
                 'reserved_slots':r['reserved_slots_raw'],'staffing':employment.get(r['room_id'])} for r in eligible[:5]]
+            assert selected['results'][0]['sources'][0]['collection_diagnostics']==expected_diagnostics['/room_data']
             assert selected['results'][0]['rows']==expected
             assert selected['results'][0]['matched_total']==len(eligible)
             assert selected['ui_context']==snapshot.ui_context
@@ -88,6 +98,7 @@ async def verify(directory):
             chosen=await call('select_game_state',{'spec':json.loads((ROOT/'service-policy-query-example.json').read_text())})
             expected=[{'service':r['service_id'],'blueprint':r['blueprint_id'],'race':r['race_id'],'class':r['class_id'],
                 'configured_allow':False,'scene_population':cohorts[r['race_id'],r['class_id']]} for r in denied[:5]]
+            assert chosen['results'][0]['sources'][0]['collection_diagnostics']==expected_diagnostics['/access_policy']
             assert chosen['results'][0]['rows']==expected and chosen['results'][0]['matched_total']==len(denied)
             assert chosen['ui_context']==snapshot.ui_context
             meanings=(await call('describe_game_fields',{'domain':'services'}))['field_definitions']['access_policy']
@@ -99,7 +110,7 @@ async def verify(directory):
             report={'passed':True,'game_version':snapshot.game_version,'service_rooms_checked':len(observed),
                 'scanned_rooms':fixture['scanned_rooms'],'service_types_checked':len(types),'cohort_rules_checked':len(rules),
                 'configured_policy_getter_parity':True,'controlled_true_false_policy_cases':True,'policy_population_join':True,'public_getter_parity':True,'room_staffing_left_join':True,
-                'same_observation_ui_context':True,'installed_room_reference_links':True,
+                'same_observation_ui_context':True,'collection_diagnostics_on_every_service_page_and_selection':True,'installed_room_reference_links':True,
                 'positive_counter_rows':{k:sum(r[k]>0 for r in observed) for k in ('total_slots_raw','available_slots_raw','reserved_slots_raw')},
                 'source_sha256':{n:hashlib.sha256((ROOT/n).read_bytes()).hexdigest() for n in
                     ('service-query-example.json','service-policy-query-example.json','dev/verify_services.py','mod/tests/ServiceScenario.java')},

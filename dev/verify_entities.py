@@ -3,6 +3,7 @@ import argparse
 import asyncio
 from datetime import datetime,timezone
 import json
+import hashlib
 import os
 from pathlib import Path
 import sys
@@ -80,7 +81,7 @@ def verify(directory:Path,timeout=200):
     else:raise AssertionError('Unknown stat was accepted')
     async def mcp_check():
         params=StdioServerParameters(command=sys.executable,args=['-m','syx_mcp'],cwd=str(Path(__file__).resolve().parent.parent),
-            env={**os.environ,'SYX_STATE_DIR':str(directory)})
+            env={**{k:v for k,v in os.environ.items() if not any(t in k for t in ('API_KEY','ACCESS_TOKEN','REFRESH_TOKEN'))},'SYX_STATE_DIR':str(directory)})
         async with stdio_client(params) as streams:
             async with ClientSession(*streams) as session:
                 await session.initialize()
@@ -94,15 +95,37 @@ def verify(directory:Path,timeout=200):
                         assert row['relationships'][key]['available'] and row['relationships'][key]['data']==wanted
                     return value['request_id']
                 first,second=await asyncio.gather(read(),read());assert first!=second
+                diagnostics=[{'path':'','total':expected['total'],'truncated':True}]
+                for offset in [0,900]:
+                    result=await session.call_tool('query_game_state',{'domain':'entities','pointer':'/items','offset':offset,'limit':100})
+                    assert not result.is_error,result
+                    value=json.loads(next(x.text for x in result.content if x.type=='text'))
+                    assert value['state']['live'] and value['state']['session_id']==snapshot.session_id
+                    assert value['total']==1000 and len(value['data'])==100
+                    assert value['collection_diagnostics']==diagnostics
+                    assert value['next_offset']==(100 if offset==0 else None)
+                result=await session.call_tool('select_game_state',{'spec':{'queries':[{
+                    'source':{'domain':'entities','path':'/items'},'aggregates':{'exported_entities':{'op':'count'}}}]}})
+                assert not result.is_error,result
+                value=json.loads(next(x.text for x in result.content if x.type=='text'))
+                assert value['state']['live'] and value['state']['session_id']==snapshot.session_id
+                group=value['results'][0]
+                assert group['rows']==[{'exported_entities':1000}]
+                assert group['sources'][0]['collection_diagnostics']==diagnostics
     asyncio.run(mcp_check())
     print('PASS unknown-stat rejection and concurrent read-only MCP requests',flush=True)
     current=advisor.snapshot()
     assert current.domains['entities'].data['total']==expected['total']
     assert current.ui_context['selected_subject']['entity_id']==expected['entity_id']
-    report={'passed':True,'game_version':snapshot.game_version,'live_entities':expected['total'],'prefix_limit':1000,
-        'target_beyond_prefix':True,'pages':pages,'combined_filters':True,'concurrent_mcp_requests':True,
+    report={'passed':True,'evaluated_at':datetime.now(timezone.utc).isoformat(),'game_version':snapshot.game_version,'live_entities':expected['total'],'prefix_limit':1000,
+        'target_beyond_prefix':True,'actual_prefix_truncation_diagnostics_over_mcp':True,'exported_aggregate_count':1000,'pages':pages,'combined_filters':True,'concurrent_mcp_requests':True,
         'unknown_stat_rejected':True,'same_response_context':True,'relationship_nonnull_cases':relation_counts,'selected_relationship_parity':True,'relationships_over_mcp':True,
-        'limits':['Paused isolated copied game; not a performance benchmark.','Cursor pages are separate observations, not a stable multi-page snapshot.','No private attributes or arbitrary field/method invocation.']}
+        'source_sha256':{n:hashlib.sha256((Path(__file__).resolve().parent.parent/n).read_bytes()).hexdigest() for n in
+            ['dev/verify_entities.py','mod/tests/EntityScenario.java','mod/tests/LiveSmoke.java','syx_query.py','syx_mcp.py','syx_live.py']},
+        'inference_calls':0,
+        'limits':['The fixture adds 1100 temporary citizens through public constructors in a copied game and never saves; this crosses the actual entity prefix cap, not room/service/world caps.',
+            'Collection flags are compared on first/last cached pages and aggregate sources; no collector read-failure injection.',
+            'Paused isolated copied game; not a performance benchmark.','Cursor pages are separate observations, not a stable multi-page snapshot.','No private attributes or arbitrary field/method invocation.']}
     (directory/'entity-validation.json').write_text(json.dumps(report,indent=2)+'\n')
     (directory/'verifier.done').write_text('passed\n')
     return report

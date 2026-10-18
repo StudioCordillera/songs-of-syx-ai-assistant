@@ -1,0 +1,42 @@
+{
+  "passed": true,
+  "evaluated_at": "2026-10-18T14:21:22.557826+00:00",
+  "game_version": "0.71.44",
+  "live_entities": 1395,
+  "prefix_limit": 1000,
+  "target_beyond_prefix": true,
+  "actual_prefix_truncation_diagnostics_over_mcp": true,
+  "exported_aggregate_count": 1000,
+  "pages": 18,
+  "combined_filters": true,
+  "concurrent_mcp_requests": true,
+  "unknown_stat_rejected": true,
+  "same_response_context": true,
+  "relationship_nonnull_cases": {
+    "workplace": 2,
+    "profession": 2,
+    "home_assignment": 2,
+    "division": 1
+  },
+  "selected_relationship_parity": true,
+  "relationships_over_mcp": true,
+  "source_sha256": {
+    "dev/verify_entities.py": "6f9fe830478fa11247c4bda78b3ccbfcc999b8c6e8c97c7f8487519d82c86699",
+    "mod/tests/EntityScenario.java": "33622c30acc59b3519b683fb1bd127f10521694a4b54ac659f08f7ecc08306fc",
+    "mod/tests/LiveSmoke.java": "cf293645ea419e1e5f190e494f813896d98c0fab964b553ea0b2a50bc0c0a6fa",
+    "syx_query.py": "039795c9c0e1a4f167ff7bb98afd5955c52814d4fcf40705d0c59cdf06b684b4",
+    "syx_mcp.py": "e0d596a394865af6bdd6a2e6fce04e14e36d60281e93ab18e0cc6c54dea92a34",
+    "syx_live.py": "a7c5d5b457eeb2b8f8240079aed5183a736e6dee9f5c3c140122ade0bb21616a"
+  },
+  "inference_calls": 0,
+  "limits": [
+    "The fixture adds 1100 temporary citizens through public constructors in a copied game and never saves; this crosses the actual entity prefix cap, not room/service/world caps.",
+    "Collection flags are compared on first/last cached pages and aggregate sources; no collector read-failure injection.",
+    "Paused isolated copied game; not a performance benchmark.",
+    "Cursor pages are separate observations, not a stable multi-page snapshot.",
+    "No private attributes or arbitrary field/method invocation."
+  ],
+  "game_exit_code": 0,
+  "mod_jar_sha256": "ef2e9aa0362f9cb16cf7c7fc0ef7570012be51294c0f7296b3ae242bc9466540",
+  "game_jar_sha256": "fe0137c05408e5ee9e31f06fc44fe37a5d4372d9c985b280f0852d1347c0224b"
+}

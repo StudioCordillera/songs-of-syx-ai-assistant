@@ -36,3 +36,5 @@ The runner requires the licensed installation and existing isolated smoke profil
 The last observation retains its real timestamp and a separate profiling session/sequence. It is private runtime evidence, never substituted for the active bridge snapshot. Only timing/shape metadata and hashes are published; game binaries, saves, DTO values and installed help text are not published. The report pins fixture, query, production Java and Python source hashes and a zero game exit code.
 
 All 160 Python tests and release freshness checks pass. Production source and both tested ZIPs remain unchanged. Earlier player/core reports retain their historical fixture hashes; adding the profiling branch to LiveSmoke does not relabel those earlier runs. Larger settlements, cap/fault behavior, all scenes, sustained FPS and worst-case latency still require separate evidence.
+
+The subsequent collection-diagnostics change keeps this native collector/JAR unchanged but adds Python response metadata. This report retains its original Python hashes and offline timing scope; it is not a fresh timing acceptance of that later query layer.

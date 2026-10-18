@@ -12,9 +12,9 @@
     "syx/assistant/UiContextCollector.java": "439604436fc98c478ade47682775ee55edb1688d76078e0602f7ab78db187157"
   },
   "python_source_sha256": {
-    "syx_mcp.py": "f46d48e261c8a766a1a501a286ac288a1587a26baacbca54a970429e0c9ece8c",
+    "syx_mcp.py": "e0d596a394865af6bdd6a2e6fce04e14e36d60281e93ab18e0cc6c54dea92a34",
     "syx_knowledge.py": "8ba92826d9a9b27099b29d26c50b054a172c6d10ca755ee7f70d538a4573d17a",
-    "syx_query.py": "05b164574204a058b5a739f69be72e38bcb3b841c7f24a1e73b560090926d4f5",
+    "syx_query.py": "039795c9c0e1a4f167ff7bb98afd5955c52814d4fcf40705d0c59cdf06b684b4",
     "syx_api_support.py": "7d961cffdc09d46ae87ae220725cca6519588f77015cacde2514e79cbc68c8f7",
     "syx_api_manifest.py": "206021fa5cc2fd6db53662e1440b5655ca47cc53d6d4002edaf5d09e48d273f4",
     "syx_live.py": "a7c5d5b457eeb2b8f8240079aed5183a736e6dee9f5c3c140122ade0bb21616a",
@@ -41,6 +41,7 @@
       "public_getter_parity": true,
       "room_staffing_left_join": true,
       "same_observation_ui_context": true,
+      "collection_diagnostics_on_every_service_page_and_selection": true,
       "installed_room_reference_links": true,
       "positive_counter_rows": {
         "total_slots_raw": 8,
@@ -50,7 +51,7 @@
       "source_sha256": {
         "service-query-example.json": "c39d52bffb35c829dbd788ec2d16edfa2c604b33d166483a2be71d4697c1ed11",
         "service-policy-query-example.json": "245e614eab9d773ad7646e003f27e00295cd74dbf0f8c0a34a46754a832ab38b",
-        "dev/verify_services.py": "a610dc0c52002f0457fa4432c47ba8dcf166b4b1798e2d7f33c4d377c002e22e",
+        "dev/verify_services.py": "9b7590ad33da54667309e37f73d22a4aff9837a88c5174e683f8076eb33bbef6",
         "mod/tests/ServiceScenario.java": "7c721be7328e0b61749a925f37c5248983cb6ba42ad22f92369d0aac37776fb2"
       },
       "limits": [
@@ -421,7 +422,7 @@
   },
   "inference_calls": 0,
   "fixture_source_sha256": {
-    "mod/tests/LiveSmoke.java": "5ee04486cb0364b896b75af9bf237cdbfeb76dd9d62de06a6e48abd704a01949",
+    "mod/tests/LiveSmoke.java": "cf293645ea419e1e5f190e494f813896d98c0fab964b553ea0b2a50bc0c0a6fa",
     "mod/tests/ServiceScenario.java": "7c721be7328e0b61749a925f37c5248983cb6ba42ad22f92369d0aac37776fb2",
     "mod/tests/TradeScenario.java": "c36a05d312ebea021495d4f49934c96973410b86f6f52d662ef281c6c2b81277",
     "mod/tests/WorldScenario.java": "d29a089875a5e740fbf746689daf055e4f4956b1166fc603d1d8a7c0f22cfc04",
@@ -431,7 +432,7 @@
     "mod/tests/ExtendedContextScenario.java": "5a0647a114bae5c14fbe2e943ece2016f0f5e015156cc385b82beaf4a65d8a0c"
   },
   "verifier_source_sha256": {
-    "dev/verify_services.py": "a610dc0c52002f0457fa4432c47ba8dcf166b4b1798e2d7f33c4d377c002e22e",
+    "dev/verify_services.py": "9b7590ad33da54667309e37f73d22a4aff9837a88c5174e683f8076eb33bbef6",
     "dev/verify_trade.py": "fb3706253767d6a66e3ba0742c865e489e041a630df77976ebddf583fb76a3d6",
     "dev/verify_world.py": "764215f1af2e8e6f8505d25ab31426da9b964d52fc176e44239f0f09ebb281af",
     "dev/verify_production.py": "4d29900967c794c5a4284ab302fb82d9e37ac6d3171d11199c74e0eb768b99ed",
