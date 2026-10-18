@@ -57,3 +57,5 @@ Required provider expansion: Claude subscription, Claude API and DeepSeek API, a
 0.11.0 adds retained bounded entity selections (`capture_live_entities` / `read_entity_capture`) and refreshes observations through public `GAME.addAfterUpdate`, including UI-paused nonzero-speed menus. The copied-game run retained 1,395 entities across 70 pages while simulation advanced. Full state/schema and all-menu coverage remain unfinished.
 
 0.12.0 adds bounded spatial queries for terrain, floors, coordinate-aware rooms, minerals and path flags. Request a rectangle, combine fixed filters and project just the needed groups with `query_live_tiles`; read the meanings and limits in QUERY_GUIDE.md. All domains remain partial.
+
+**Required player interface:** every supported subscription/API option must provide the same [in-game chat client and session/chat history](IN_GAME_CHAT.md). DeepSeek needs a first-class API path in that interface; external client profiles are development aids. The chat UI and persistent logs are planned requirements and are not implemented in 0.12.0.

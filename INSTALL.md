@@ -49,3 +49,5 @@ For a synthetic offline demonstration, copy `snapshot.example.json` to a separat
 ## Claude subscription/API and DeepSeek API
 
 Use the official-client profiles and shared stdio configuration in [PROVIDERS.md](PROVIDERS.md). `claude.mcp.example.json` contains no provider credentials. These setup examples do not install, authenticate or start a provider client automatically.
+
+The finished mod must include the common in-game chat and per-session/per-chat history for all providers, including DeepSeek API. See [IN_GAME_CHAT.md](IN_GAME_CHAT.md). The current version supplies observation tools and development connection examples; it does not yet include that player-facing client.

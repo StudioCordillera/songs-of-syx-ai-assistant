@@ -44,7 +44,7 @@ The optional person relationships projection and selected-person snapshot share 
 
 ## Multi-provider requirement
 
-PROVIDERS.md adds Claude subscription, Claude API and DeepSeek API support alongside OpenAI. The initial design connects an existing client to the same local MCP; provider/account credentials and inference stay in that client. Future in-game adapters must preserve query bounds, context/freshness semantics, tool-call IDs and cited references across providers, and must never switch provider or billing route silently. Configuration templates do not constitute authenticated integration tests.
+PROVIDERS.md adds Claude subscription, Claude API and DeepSeek API support alongside OpenAI. The required product design provides the common in-game chat/session-history interface in IN_GAME_CHAT.md, backed by a local conversation coordinator and provider adapters. Existing external clients are development bridges; their configurations alone do not complete provider support. Provider/account credentials and inference stay outside the observational game bridge/MCP. Future in-game adapters must preserve query bounds, context/freshness semantics, tool-call IDs and cited references across providers, and must never switch provider or billing route silently. Configuration templates do not constitute authenticated integration tests.
 
 ## Retained entity selections and observer phase — 0.11.0
 
@@ -61,3 +61,9 @@ Each SCRIPT instance registers its sampler with public `GAME.addAfterUpdate`; it
 Coordinates are rectangular, with exclusive upper bounds and row-major rectangle offsets. Each page is a separate mutable observation; entity capture tokens do not retain tile pages. Group-level available/data distinguish missing floor/room/mineral values from getter failures. Predicate errors make matching absence/count unknown. The schema and structured field definitions are exposed through game_query_help.on_demand_tiles. No arbitrary member path, setter, input or rendering call is added.
 
 Public RoomSingleton coordinate getters refresh internal scratch caches. Scalar/string values are copied immediately on the game update thread. Shared room-map records do not identify unique room instances; instance_room_id is populated only for RoomInstance. These are map observations, not UI selection. Path component flags do not establish a route for a specific agent or construction suitability; mineral amounts do not establish production yield or deposit lifetime.
+
+## Required common chat interface and local history
+
+IN_GAME_CHAT.md establishes one in-game composer/transcript/chat list/session log across every supported provider and subscription/API route. A local coordinator should handle durable conversation IDs, event history, asynchronous provider requests and bounded MCP tool orchestration. The exporter session UUID is a runtime observation identity, not a stable save GUID; cross-load continuation must be explicit and historical evidence must retain its original identity/time. DeepSeek requires a first-class API path behind this interface, without making an external coding client a player prerequisite.
+
+This is a required design, not implemented functionality. Public GUI hooks for the mod's own panel still need review/validation; accepting input in that panel does not authorize native input, screenshots, private game UI traversal or gameplay control. Current observation tests do not validate chat/history or authenticated inference.

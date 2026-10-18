@@ -6,7 +6,7 @@ Current boundary: an in-process SCRIPT mod, typed public-API observations, bound
 2. Extend the established partial UI context and evidence catalog. Selected subject/view/known-overlay/room-blueprint reads, named individual statistics and bounded exposed popup/section content are implemented. Exact selected room instances, tooltip text, management tabs and panel ordering require appropriate public APIs.
 3. Establish a documented unload-to-menu lifecycle hook or keep the freshness limitation explicit; test menus/transitions and large settlements.
 4. Extend reviewed official/developer reference coverage and version-aware search.
-5. Build an in-game chat client with explicit OpenAI, Claude subscription, Claude API and DeepSeek API choices. Follow the numbered requirements and acceptance gates in PROVIDERS.md; use official client/SDK authentication and provider-specific tool-call adapters.
+5. Implement the shared in-game chat client, multiple separate chats, durable game-session/chat logs and provider-independent conversation loop described in IN_GAME_CHAT.md. Every supported subscription/API choice must use this interface. Prioritize a usable first-class DeepSeek API path alongside the shared UI/history; external coding-client profiles are development bridges, not completed product support. Follow PROVIDERS.md for official authentication, entitlements and provider-specific tool-call behavior.
 
 Full game state, all-menu coverage and a fully documented stable mod API are not currently available.
 
@@ -23,3 +23,5 @@ Offline declaration discovery now covers the shipped source archive: 2,052 publi
 0.11.0 implements stable paging of bounded retained entity observations and public after-update sampling through UI pauses. Broader non-entity selection, worker synchronization, complete variable coverage and lifecycle/menu gaps remain objectives. Provider acceptance gates now explicitly include Claude subscription, Claude API and DeepSeek API; local Claude MCP health passes, while authenticated model/tool round-trips and in-game selection remain pending.
 
 0.12.0 adds bounded spatial selection of public terrain/floor/room/mineral/path data, with structured field meanings and explicit shared-room/component limits. Remaining map work includes broader typed fields, consistent retained spatial batches and performance validation. Full world-map/variable schemas, UI-selection/lifecycle contracts and comprehensive menu/combat coverage remain objectives.
+
+The shared in-game client/session-history requirement was made explicit on 2026-10-17 after the user reported that DeepSeek API access lacked a usable client. It is a required feature for every provider, not an optional post-integration enhancement. No chat UI, transcript persistence or authenticated in-game provider flow is implemented yet.
