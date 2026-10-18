@@ -58,7 +58,7 @@ For current published-player core checks, no provider key is used:
   --java "$SYX_GAME_JAVA" --jdk-home "$SYX_JAVA_HOME"
 ```
 
-This extracts the published JAR and runs services, trade, world, production, scenes, UI/help lifecycle and extended UI fixtures. Additional dev verifiers cover entities/captures/tiles/battles, source/binary contracts and controlled positive degradation. See [map and evidence](REPOSITORY_MAP.md). Synthetic cases, controlled public mutations and unmodified observations are distinct evidence.
+This extracts the published JAR and runs services, trade, world, production, scenes, UI/help lifecycle and extended UI fixtures. Additional dev verifiers cover entities/captures/tiles/battles, source/binary contracts and controlled positive degradation. `dev/run_read_fixture.py --case regional-cost` measures regional collector/encoding and sequential actual MCP latency without inference; see REGIONAL_LIVE_READS.md for the full command and exclusions. See [map and evidence](REPOSITORY_MAP.md). Synthetic cases, controlled public mutations and unmodified observations are distinct evidence.
 
 ## Local .env for Claude's paid development test
 

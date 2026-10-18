@@ -54,3 +54,19 @@ Reproduce with the isolated copied setup in CONTRIBUTING.md:
 ```
 
 The runner uses the shared fixture lock, restores its copied mod and checks copied-save integrity. It makes no provider requests. Its public in-process test controls/scene actions are never packaged or exposed through MCP. No private reflection, process memory, screenshot or native input/automation is used.
+
+## Reproduce request timings
+
+The separate [request-cost report](REGIONAL_REQUEST_COST_VALIDATION.json) records exact published-JAR timings for single-cell reads, full 100-row pages, an empty amount filter scanning 4,096 cells and an empty faction filter scanning 4,096 cells. Every native sample checks independently read public-getter rows and cursor/error counts. It also checks 44 actual sequential stdio MCP calls against those rows. Native collector timing includes the scene/UI DTO; JSON/UTF-8 encoding and end-to-end MCP latency have separate distributions.
+
+The sampled campaign has 203 active regions and 42 loaded resources; requests select 100 regions. After excluding one initial sample per case, 31 native samples give these collector medians/maxima (milliseconds): single cell 0.241/0.762, 100-row page 0.298/0.713, empty 4,096-cell amount scan 0.505/3.065, and empty 4,096-cell faction scan 0.379/3.946. Separate warm encoding medians are 0.044–0.139 ms. Ten warm MCP samples per case have 208.7–211.1 ms medians, including polling/scheduling/IPC, with a 364.2 ms maximum across those samples. This is not evidence that collection accounts for the full round trip or that these maxima are worst-case bounds.
+
+With the copied-save/profile and licensed-game variables from [CONTRIBUTING.md](CONTRIBUTING.md), run:
+
+```sh
+.venv/bin/python dev/run_read_fixture.py --case regional-cost \
+  --game-dir "$SYX_GAME_DIR" --save runtime/smoke.save \
+  --java "$SYX_GAME_JAVA" --jdk-home "$SYX_JAVA_HOME"
+```
+
+The runner uses the shared fixture lock, validates the published bundle and audited game/source pair, restores the copied-profile mod and checks copied-save integrity. No provider credential or inference is required. It pauses the copied city and activates its settlement view; it never writes economic counters or ownership. Raw timings remain under ignored runtime/. Inspect the report's exact hashes, workload and exclusions. First samples are excluded from warm summaries, not claimed as cold JVM/cache measurements. These descriptive local samples establish neither larger-world/city acceptance, concurrent-load latency, FPS nor a retained-capture cost budget.

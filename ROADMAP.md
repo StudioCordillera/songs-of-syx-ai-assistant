@@ -20,7 +20,7 @@ Next work:
 
 - Inventory the fields already exported against the public-member catalog. Prioritize missing settlement resource flows, workforce/production relationships, research and world-region data that help answer concrete player questions.
 - Extend explicit typed mappings with source anchors, meanings, units, null/unavailable behavior, relationships and scene applicability. Unknown units and mechanics must remain explicit.
-- Keep reads bounded and on the game thread. Establish consistent retained spatial selections where cross-page consistency is needed; validate costs in a large settlement. CURRENT_COLLECTION_COST_VALIDATION.json establishes only the current published collector in a small paused city, not larger-city or live request/capture costs.
+- Keep reads bounded and on the game thread. Establish consistent retained spatial selections where cross-page consistency is needed; validate costs in a large settlement. CURRENT_COLLECTION_COST_VALIDATION.json establishes only the current published collector in a small paused city, not larger-city or capture costs. REGIONAL_REQUEST_COST_VALIDATION.json separately measures four finite paused regional query shapes and sequential actual MCP latency; it is not concurrent-load or worst-case acceptance.
 - For each added mapping, check direct getter agreement in an isolated copied game, update the compiler/source audit and add an agent-facing query example.
 
 Acceptance: the assistant can discover each supported field and retrieve only the requested rows/attributes, with truthful truncation, consistency and provenance. Unsupported fields remain discoverable as coverage gaps rather than invented values. Full game-state coverage is not yet established.

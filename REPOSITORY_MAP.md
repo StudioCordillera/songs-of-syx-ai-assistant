@@ -53,7 +53,7 @@ Only these production classes are packaged. `mod/tests/` contains non-shipped bo
 | dev/verify_*_contract.py, verify_bytecode.py, review_production_modifier_boundary.py, review_stockpile_boundary.py, review_ui_lifecycle_boundary.py, review_regional_output_boundary.py, verify_production_periods.py | Static licensed source/binary review without initializing game classes; publish metadata/hashes/conclusions only. |
 | test_*.py | Offline regression tests with mock providers/synthetic observations/local Git repos. No key or paid inference needed. |
 | mod/tests/ + dev/verify_*.py | Explicit licensed-game getter/MCP/context/cap/lifecycle fixtures and metadata-only reports. Read each verifier's scope. |
-| dev/run_read_fixture.py | Fixed tile/entity/world-faction-context regressions and a regional-output candidate-reader probe against published/candidate player; locks/restores copied mod and checks copied-save integrity. |
+| dev/run_read_fixture.py | Fixed tile/entity/world-faction-context/regional regressions and regional collector/MCP timing samples against published/candidate player; locks/restores copied mod and checks copied-save integrity. |
 | dev/run_stockpile_probe.py | Published/candidate JAR copied-city stockpile readers, overload/sum/lifecycle checks and global reservation DTO/MCP parity; locks/restores copied mod, no provider calls. |
 | dev/run_player_chat_check.py | Explicit paid two-turn Pro test using a manually supplied key; builds/audits current source, isolates game/MCP credentials and restores copied-profile mod. |
 | dev/verify_user_test_chat.py | Verify an already executed native Pro chat/history; does not itself launch the game or provider. |
@@ -79,6 +79,7 @@ The release whitelist is `make_user_test.MODULES`, five files in `user_test/`, o
 - Other `*_VALIDATION.json`, `validation-evidence.json`, `provider-validation.json` and source-review reports may belong to older builds. Preserve them as historical evidence; current equivalents can be nested in PLAYER_CORE. The index distinguishes their roles.
 - `REGIONAL_OUTPUT_BOUNDARY_REVIEW.json` / `REGIONAL_OUTPUT_BOUNDARY.md` / `REGIONAL_OUTPUT_READER_VALIDATION.json`: original candidate stored-reader/offset evidence and excluded mutating helpers; its earlier JAR/hashes remain historical. REGIONAL_OUTPUTS.md / REGIONAL_OUTPUT_VALIDATION.json describe the subsequent bounded DTO/MCP mapping.
 - `UI_LIFECYCLE_BOUNDARY_REVIEW.json` / `WORLD_FACTION_CONTEXT.md`: finite source/compiler route checks, public faction panel observations and explicit inaccessible/mutating alternatives; WORLD_FACTION_CONTEXT_VALIDATION.json pins eleven copied-game/MCP phases. Not exhaustive API absence proof.
+- `REGIONAL_REQUEST_COST_VALIDATION.json`: exact published JAR regional collector/encoding samples plus sequential actual MCP latency; finite paused campaign, separate from regular collector cost. Reproduce with the `regional-cost` read-fixture case.
 - `CURRENT_COLLECTION_COST_VALIDATION.json`: current published collector in a paused small copied city; COLLECTION_COST_VALIDATION.json preserves the older workforce build. Neither proves large-city/live-capture cost.
 - `COLLABORATION_VALIDATION.json`: the original developer-tool/docs checkpoint, separate from the player's test count/JAR; pinned hashes/counts remain historical as current guides evolve.
 
