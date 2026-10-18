@@ -1,0 +1,13 @@
+{
+  "queries": [
+    {
+      "source": {"domain": "resources", "path": "/stockpile_bookkeeping/rows"},
+      "where": {"gt": [{"field": "/reserved_stored_raw"}, 0]},
+      "joins": [{"source": {"domain": "resources", "path": "/stockpiles"}, "left_key": "/resource_id", "right_key": "/id", "as": "legacy", "kind": "left"}],
+      "select": {"resource": {"field": "/resource_id"}, "stored": {"field": "/stored_raw"}, "reserved_stored": {"field": "/reserved_stored_raw"}, "reserved_incoming": {"field": "/reserved_incoming_raw"}, "capacity": {"field": "/capacity_raw"}, "assigned_crates": {"field": "/assigned_crates"}, "broader_owned": {"field": "/legacy/owned"}},
+      "sort": [{"field": "/reserved_stored", "direction": "desc"}],
+      "limit": 5
+    }
+  ],
+  "include_ui_context": true
+}

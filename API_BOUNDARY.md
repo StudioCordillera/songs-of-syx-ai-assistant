@@ -1,6 +1,6 @@
 # Game API boundary — 0.12.0
 
-Current compiler inventory: 359 public production references, zero non-public references (api-audit.json). Checkpoint notes below retain their original inventory counts and evidence scopes; they are not separate claims about the latest build.
+Current compiler inventory: 364 public production references, zero non-public references (api-audit.json). Checkpoint notes below retain their original inventory counts and evidence scopes; they are not separate claims about the latest build.
 
 The game-facing plugin runs inside Songs of Syx using `script.SCRIPT` and `SCRIPT_INSTANCE`. All gameplay observations originate from direct public game API calls on the game update thread via public `GAME.addAfterUpdate`. The Python MCP reads detached local exports; it does not inspect or control the game process itself.
 

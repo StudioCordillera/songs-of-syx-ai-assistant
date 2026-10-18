@@ -166,6 +166,33 @@ public final class StateCollector {
                     "periods","Stored values can be smoothed, defaulted or reset. Exact sample age/reporting interval is not exposed; no update/report/refresh method is invoked.")),
             "reason","Employing room instances only. Bounded stored workforce factors/counts, not every job, worker history, complete modifiers or throughput. Missing/skipped/failed rooms do not imply zero workforce.");
     }
+    /** Stored city stockpile bookkeeping; no crate handles, refresh or reservation actions. */
+    private static Map<String,Object> stockpileBookkeeping() {
+        if(!SETT.exists() || SETT.WORLD_AREA().isBattle || !world.WORLD.GEN().isDone)
+            return object("coverage","unavailable","scope","instantiated_city_stockpile_bookkeeping","rows",null,
+                "reason","No completed instantiated campaign city; battlefield/setup defaults are not city stockpile bookkeeping.");
+        List<Object> rows=new ArrayList<>(),failures=new ArrayList<>();
+        int scanned=0,failed=0;boolean truncated=false;
+        var tally=SETT.ROOMS().STOCKPILE.tally();
+        for(RESOURCE resource:RESOURCES.ALL()) {
+            if(scanned>=1000){truncated=true;break;}scanned++;
+            try {
+                int ri=resource.index();
+                if(ri<0 || ri>=RESOURCES.ALL().size())throw new IllegalStateException("Resource index out of range");
+                // Each entire resource row is emitted or omitted; never replace a failed getter with zero.
+                rows.add(object("resource_id",resource.key,"reference_id","resource:"+resource.key,
+                    "assigned_crates",tally.crates.total(ri),"stored_raw",tally.amount.total(ri),
+                    "capacity_raw",tally.space.total(ri),"reserved_stored_raw",tally.amountReserved.total(ri),
+                    "reserved_incoming_raw",tally.spaceReserved.total(ri)));
+            } catch(RuntimeException error) {
+                failed++;if(failures.size()<10)failures.add(object("resource_id",resource.key,"reason",error.getClass().getSimpleName()));
+            }
+        }
+        return object("coverage","partial","scope","instantiated_city_stockpile_bookkeeping","rows",rows,
+            "scanned_resources",scanned,"resource_count_total",RESOURCES.ALL().size(),"resource_limit",1000,"row_limit",1000,
+            "failed_resources",failed,"failure_samples",failures,"truncated",truncated,
+            "reason","Stored resource-specific warehouse tallies including reservations. Exact age, ground/in-transit goods, per-room/crate detail and future delivery/reachability are not established; missing rows are not zero.");
+    }
     /** Fixed public recipe/ledger readers only. Never refresh buckets or retain game storage. */
     private static Map<String,Object> roomProduction() {
         if(!SETT.exists())return object("coverage","unavailable","scope","instantiated_settlement_scene",
@@ -377,13 +404,23 @@ public final class StateCollector {
             for (RESOURCE r: RESOURCES.ALL()) rows.add(object("id", r.key, "name", r.name.toString(),
                 "owned", r.owned(), "stockpile_stored", SETT.ROOMS().STOCKPILE.tally().amount.total(r),
                 "stockpile_capacity", SETT.ROOMS().STOCKPILE.tally().space.total(r), "unit", "resource units"));
-            return object("stockpiles", rows,"field_definitions",object(
+            return object("stockpiles", rows,"stockpile_bookkeeping",stockpileBookkeeping(),"field_definitions",object(
                 "owned",object("unit","resource units","scope","mixed_scene_logistics_and_player_trade_promises",
                     "definition","Game RESOURCE.owned(): reservable warehouse/hauler goods plus import/export/station goods and incoming station goods, minus player trade promises; not a warehouse-only count",
                     "source","init/resources/RESOURCE.java:537"),
                 "stockpile_stored",object("unit","resource units","scope","instantiated_settlement_scene","source","SETT.ROOMS().STOCKPILE.tally().amount.total(resource)"),
-                "stockpile_capacity",object("unit","resource units","scope","instantiated_settlement_scene","source","SETT.ROOMS().STOCKPILE.tally().space.total(resource)")));
-        }, "Owned resources and warehouse totals; excludes per-crate and in-transit breakdowns.");
+                "stockpile_capacity",object("unit","resource units","scope","instantiated_settlement_scene","source","SETT.ROOMS().STOCKPILE.tally().space.total(resource)"),
+                "stockpile_bookkeeping",object("scope","instantiated_city_stockpile_bookkeeping",
+                    "source","settlement/room/infra/stockpile/StockpileTally.java:TallyData.total(int); public crates,amount,space,amountReserved,spaceReserved",
+                    "relationships","resource_id joins stockpiles[].id and production/trade resource keys in this same observation; reference_id links installed resource help. Aggregate stockpile tallies only, not a room identity or UI selection.",
+                    "assigned_crates","Resource-assigned crate count, not resource-item capacity or unassigned crates.",
+                    "stored_raw","Stored resource items including reserved stored items; not free-to-use goods or all settlement inventory.",
+                    "capacity_raw","Resource-specific assigned item capacity, not free capacity or physical floor area.",
+                    "reserved_stored_raw","Reserved stored resource items; distinct from incoming capacity reservations.",
+                    "reserved_incoming_raw","Reserved incoming capacity in resource items; not physically stored goods or guaranteed deliveries.",
+                    "units","All quantity fields are resource items except assigned_crates (crates). Zero capacity is retained as zero; no fullness ratio/default/clamping is supplied. RESOURCE.owned has a broader mixed logistics/trade meaning.",
+                    "limits","City-only. At most 1000 scanned resources/rows, ten failure samples. A failed resource emits no row; source diagnostics retain truncation/failures. Exact age and completion of reservations are unknown. No per-room/crate mapping, refresh, reservation action or cross-resource physical-fullness claim.")));
+        }, "Owned resources, existing warehouse totals and bounded city stockpile reservation bookkeeping; excludes per-room/crate and in-transit breakdowns.");
         run(domains, "production", () -> {
             List<Object> rows = new ArrayList<>();
             for (RESOURCE r: RESOURCES.ALL()) {

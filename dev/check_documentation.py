@@ -29,8 +29,9 @@ def scope(path):
                 'DEGRADATION_VALIDATION.json','DEGRADATION_POSITIVE_VALIDATION.json','GUIDANCE_VALIDATION.json',
                 'CAPABILITY_DISCOVERY_VALIDATION.json'}:
         return 'Current linked player/feature evidence; inspect exact source/JAR hashes and case scope'
+    if name=='STOCKPILE_BOOKKEEPING_VALIDATION.json':return 'Current global stockpile DTO/MCP evidence; per-room arrays are fixture-only'
     if name=='STOCKPILE_READER_VALIDATION.json':return 'Candidate native-reader checks and existing aggregate MCP parity; additional production fields pending'
-    if name=='COLLABORATION_VALIDATION.json':return 'Developer/docs follow-up; separate from published player evidence'
+    if name=='COLLABORATION_VALIDATION.json':return 'Historical collaboration/dev-doc checkpoint; inspect pinned hashes, separate from player evidence'
     if name in {'api-audit.json','API_DISCOVERY.json'}:return 'Generated current audit/pairing; declaration candidates are not runtime variables'
     if name.endswith('_REVIEW.json') or name=='REFERENCE_SOURCE_REVIEW.json':return 'Pinned source review; exact date/hash/scope, not an automatic refresh'
     if name.endswith('_VALIDATION.json') or name in {'provider-validation.json','validation-evidence.json'}:

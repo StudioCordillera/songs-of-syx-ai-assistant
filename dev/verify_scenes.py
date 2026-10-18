@@ -20,7 +20,7 @@ async def unavailable_city_data_mcp(directory):
     async with stdio_client(params) as streams:
         async with ClientSession(*streams) as session:
             await session.initialize()
-            for domain,path in [('trade','/settlement_pipeline/flows'),('services','/access_policy/cohort_rules')]:
+            for domain,path in [('trade','/settlement_pipeline/flows'),('services','/access_policy/cohort_rules'),('resources','/stockpile_bookkeeping/rows')]:
                 page=await session.call_tool('query_game_state',{'domain':domain,'pointer':path})
                 assert not page.is_error
                 body=json.loads(next(c.text for c in page.content if c.type=='text'))
@@ -104,6 +104,15 @@ def verify(directory:Path,timeout:float=260,on_demand:bool=False,tiles:bool=Fals
                 ids={r['id'] for r in data['regions']}
                 assert data['population_by_race'] and all(r['region_id'] in ids for r in data['population_by_race'])
                 assert len(data['population_by_race'])<=data['population_row_limit']
+            stockpiles=snapshot.domains['resources']
+            if stockpiles.data is not None:
+                books=stockpiles.data['stockpile_bookkeeping']
+                assert books['scope']=='instantiated_city_stockpile_bookkeeping'
+                if name in {'world_generation','terrain_generated'} or scene['settlement_scene_kind']=='battlefield':
+                    assert books['coverage']=='unavailable' and books['rows'] is None
+                else:
+                    assert books['coverage']=='partial' and not books['truncated'] and books['failed_resources']==0
+                    assert len(books['rows'])==books['scanned_resources']<=books['resource_limit']==1000
             city_trade=snapshot.domains['trade']
             if name not in {'world_generation','terrain_generated'}:
                 assert city_trade.coverage=='partial' and city_trade.scope=='mixed_city_trade_pipeline_and_campaign_ledger'
@@ -152,7 +161,8 @@ def verify(directory:Path,timeout:float=260,on_demand:bool=False,tiles:bool=Fals
                           'service_room_coverage':services.data['room_data']['coverage'] if services.data else 'unavailable',
                           'service_policy_coverage':services.data['access_policy']['coverage'] if services.data else 'unavailable',
                           'production_coverage':production.coverage,
-                          'production_room_coverage':production.data['room_data']['coverage'] if production.data else 'unavailable'}
+                          'production_room_coverage':production.data['room_data']['coverage'] if production.data else 'unavailable',
+                          'stockpile_bookkeeping_coverage':stockpiles.data['stockpile_bookkeeping']['coverage'] if stockpiles.data else 'unavailable'}
             print('PASS',name,flush=True)
             if required<=checks.keys():break
         except (FileNotFoundError,json.JSONDecodeError):pass

@@ -59,3 +59,8 @@ The workplace-filter checkpoint selects assigned humanoids through the existing 
 
 
 [Producer-room degradation](ROOM_DEGRADATION.md) adds a thresholded stored room value to each current recipe flow, with same-observation staffing joins and explicit zero/age/row-grain limits. It does not establish instantaneous productivity, maintenance cost or a full bonus stack. Non-producer chamber and construction semantics remain outside this producer mapping. Larger-city costs and cap/fault cases remain open.
+
+
+## City stockpile reservation bookkeeping
+
+`resources /stockpile_bookkeeping/rows` adds five bounded global counters per resource: assigned crates, stored items, assigned item capacity, reserved stored items and reserved incoming capacity. It is city-only, not per-room or ground/in-transit coverage. Zero capacity is retained without a fullness default; failures/truncation qualify missing rows. RESOURCE.owned keeps its broader scope. See [field meanings, query and validation](STOCKPILE_BOOKKEEPING.md). The earlier stockpile reader report is a pre-mapping checkpoint, not current release evidence.

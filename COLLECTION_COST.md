@@ -42,3 +42,6 @@ The subsequent workplace-filter checkpoint changes on-demand entity selection, n
 
 
 The later producer-degradation checkpoint changes `StateCollector` itself. These older measurements are not timings of that new collector/JAR. Correctness and bounded reads are checked separately, with no refreshed performance or large-city claim.
+
+
+The subsequent city stockpile-bookkeeping collector adds bounded stored/reservation reads. This older timing report is not a benchmark of that collector/JAR; the new checkpoint establishes finite correctness and scene availability, not refreshed collection or large-city latency.

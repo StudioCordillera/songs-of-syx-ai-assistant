@@ -1,7 +1,19 @@
 {
   "passed": true,
-  "evaluated_at": "2026-10-18T16:00:46.009802+00:00",
+  "evaluated_at": "2026-10-18T19:43:23.578904+00:00",
   "checks": [
+    {
+      "id": "city_stockpile_bookkeeping",
+      "support": "public_source_verified",
+      "references": [
+        "settlement/room/infra/stockpile/StockpileTally.java",
+        "STOCKPILE_BOOKKEEPING.md",
+        "STOCKPILE_BOUNDARY_REVIEW.json",
+        "STOCKPILE_BOOKKEEPING_VALIDATION.json",
+        "stockpile-query-example.json"
+      ],
+      "passed": true
+    },
     {
       "id": "room_producer_degradation",
       "support": "public_source_verified",
@@ -101,16 +113,16 @@
   "service_counter_member_anchors_checked": 3,
   "no_game_snapshot_required": true,
   "inference_calls": 0,
-  "public_inventory_size": 359,
+  "public_inventory_size": 364,
   "source_sha256": {
     "syx_mcp.py": "e0d596a394865af6bdd6a2e6fce04e14e36d60281e93ab18e0cc6c54dea92a34",
-    "syx_api_support.py": "4ce2b6b41b666dc46536045ff645fa9c090f2b433681a72772e7f04e2de54f06",
-    "syx_api_manifest.py": "06a7f6b41b33a91ec02520dd401916277c4a82d33a2f72dee6fa9c8f0eaebe09",
-    "dev/verify_capability_discovery.py": "18c28439db46075533afebf4df02db48514fa268e25aef3ced84a13190b01d81"
+    "syx_api_support.py": "681d860651bdc4f6e4c4135cc38004c1d58dc125f856ecaa74e4f384ded3bbf0",
+    "syx_api_manifest.py": "7f6c0bc48d7424aa44cdbd23ce54ebfc4d37ddd8a6e7cd802312cf328447d584",
+    "dev/verify_capability_discovery.py": "0677c9dc986913e79ee08192fafdf024a567279bf736adf83015ead709a4094a"
   },
   "limits": [
     "Capability records summarize existing evidence; no new game getter/scene or official stable contract is established.",
     "Offline discovery is not an attestation of a separately installed game mod; pair source-matching builds.",
-    "Seven supported capabilities and two explicit gaps sampled, not exhaustive metadata acceptance."
+    "Eight supported capabilities and two explicit gaps sampled, not exhaustive metadata acceptance."
   ]
 }

@@ -27,7 +27,7 @@ It fetches remote branches/tags and reports remote changes, overlapping unpublis
 - On-demand person/stat/relationship reads beyond the exported prefix, recorded-workplace filtering and retained entity captures for consistent bounded paging. Separate live cursor pages remain different observations.
 - Bounded terrain/floor/room/mineral/path queries. Tile pages are not retained captures or UI-selected room identities.
 - Recipe/recorded-flow and staffing joins, stored workforce factors and producer degradation with explicit units, threshold, age and completeness limits. Configured service permissions and stored service-point counters are distinct from individual access/daily capacity.
-- Bounded city trade bookkeeping, regional population and research relationships. [Data coverage](DATA_COVERAGE.md) describes fields and missing mappings.
+- Bounded city stockpile reservations and assigned capacity, city trade bookkeeping, regional population and research relationships. [Stockpile counters](STOCKPILE_BOOKKEEPING.md) distinguish reserved goods from incoming capacity and keep zero capacity/unavailable scenes explicit. [Data coverage](DATA_COVERAGE.md) describes fields and missing mappings.
 - Installed help (834 references in the copied-game fixture) and 13 reviewed external summaries, with direct URLs, authority and version caveats. Lexical relevance ranks before compatibility/authority tie-breakers. See [reference register](REFERENCES.md) and [retrieval evaluation](GUIDANCE_EVALUATION.md).
 - Partial public-API UI context: active views, known overlays, selected person, open room blueprint and bounded exposed popup/section content. [UI/API limits](API_ESTABLISHMENT.md) remain explicit.
 
