@@ -135,7 +135,7 @@ def test_mcp_transport(setup):
                 listing = await session.list_tools()
                 assert {t.name for t in listing.tools} == {
                     'game_query_help', 'game_status', 'query_game_state', 'search_guidance',
-                    'describe_game_fields', 'select_game_state', 'search_game_references', 'get_game_ui_context', 'get_game_api_support', 'query_live_entities', 'capture_live_entities', 'read_entity_capture','query_live_tiles','capture_live_tiles','read_tile_capture'}
+                    'describe_game_fields', 'select_game_state', 'search_game_references', 'get_game_ui_context', 'get_game_api_support', 'query_live_entities', 'capture_live_entities', 'read_entity_capture','query_live_tiles','capture_live_tiles','read_tile_capture','query_live_regional_outputs'}
                 assert all(t.annotations.read_only_hint for t in listing.tools)
                 assert next(t for t in listing.tools if t.name=="capture_live_entities").annotations.idempotent_hint is False
                 result = await session.call_tool('game_status', {})

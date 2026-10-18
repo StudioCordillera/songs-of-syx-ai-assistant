@@ -14,7 +14,7 @@ The runnable player checkpoint now requires a source-matching `releases/latest-u
 
 Goal: let an assistant discover available variables and request a complex, bounded selection quickly, without receiving the entire state on each question.
 
-Implemented: 18 partial typed domains; snapshot filters, projections, joins, arithmetic and aggregates; on-demand person/stat reads with recorded-workplace filtering; retained entity captures for stable paging; finite terrain/floor/room/mineral/path reads plus small retained tile selections; stored producer-room degradation; bounded regional resource accruals/configured schedules. Results identify their observation, session, coverage and scope. The compiler audit currently inventories 375 public production member references. The offline public-member catalog is a discovery backlog, not a count of supported variables.
+Implemented: 18 partial typed domains; snapshot filters, projections, joins, arithmetic and aggregates; on-demand person/stat reads with recorded-workplace filtering; retained entity captures for stable paging; finite terrain/floor/room/mineral/path reads plus small retained tile selections; stored producer-room degradation; bounded regional resource accruals/configured schedules and direct active-region/resource matrix reads independent of the cached prefix. Results identify their observation, session, coverage and scope. The compiler audit currently inventories 375 public production member references. The offline public-member catalog is a discovery backlog, not a count of supported variables.
 
 Next work:
 
@@ -123,3 +123,6 @@ The retained-tile checkpoint adds two read-only MCP tools around one existing pu
 
 
 The regional-output candidate follow-up reviews the stored resource accumulator and configured cyclic scheduling offset, excluding broad boost/cache/shipping actions. REGIONAL_OUTPUT_READER_VALIDATION.json records 8,526 finite reader cells, 42 resource routes/offsets, natural positive values and restored test-only controls. That earlier probe did not implement a production DTO/MCP counter route. The subsequent REGIONAL_OUTPUTS.md checkpoint adds bounded atomic resource bindings/cells, explicit diagnostics and campaign/setup scope, native DTO/MCP counter/meaning/join parity and full collector/payload measurements. Earlier candidate timings retain their own scope; cap/fault injection, rollover/ownership transfer and larger-world acceptance remain open.
+
+
+The live-regional checkpoint adds query_live_regional_outputs: explicit active IDs/resource keys, fixed accrual/faction predicates and projections, bounded matrix cursors and fresh per-response context. It bypasses cached output rows without increasing snapshot caps or adding game getters. Native checks cover 4,200 cells/42 pages, an actual 4,096-cell empty filtered page then target, concurrent requests and scenes. The partial-cache case is an authored 100-row snapshot clone, not a real 10,000-cell export-cap/huge-world test. Retained regional reads, registry/cell fault injection and larger-world latency remain open.

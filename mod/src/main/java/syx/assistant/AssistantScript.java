@@ -48,6 +48,9 @@ public final class AssistantScript implements SCRIPT {
         final AtomicReference<Map<String,Object>> readResponse = new AtomicReference<>();
         final AtomicReference<TileReadRequest> tileRequest = new AtomicReference<>();
         final AtomicReference<Map<String,Object>> tileResponse = new AtomicReference<>();
+        final AtomicReference<RegionalReadRequest> regionalRequest=new AtomicReference<>();
+        final AtomicReference<Map<String,Object>> regionalResponse=new AtomicReference<>();
+        String lastRegionalRequestText;
         String lastTileRequestText;
         String lastRequestText;
         final ScheduledExecutorService io;
@@ -78,6 +81,8 @@ public final class AssistantScript implements SCRIPT {
             if(request!=null) readResponse.set(request.collect(session));
             TileReadRequest tiles=tileRequest.getAndSet(null);
             if(tiles!=null)tileResponse.set(tiles.collect(session));
+            RegionalReadRequest regional=regionalRequest.getAndSet(null);
+            if(regional!=null)regionalResponse.set(regional.collect(session));
             long now = System.nanoTime();
             if (now-lastCapture < 2_000_000_000L) return;
             lastCapture = now;
@@ -115,6 +120,18 @@ public final class AssistantScript implements SCRIPT {
                 lastTileRequestText=text;tileRequest.set(TileReadRequest.parse(text));
             } catch(Exception error){System.err.println("Syx assistant tile request: "+error);}
         }
+        private void pollRegionalRequest() {
+            Path file=dir.resolve("regional-request.txt");
+            try {
+                if(!Files.isRegularFile(file,LinkOption.NOFOLLOW_LINKS))return;
+                byte[] raw;
+                try(java.io.InputStream input=Files.newInputStream(file)){raw=input.readNBytes(8193);}
+                if(raw.length>8192)throw new IOException("Regional request exceeds 8 KiB");
+                String text=new String(raw,StandardCharsets.UTF_8);
+                if(text.equals(lastRegionalRequestText))return;
+                lastRegionalRequestText=text;regionalRequest.set(RegionalReadRequest.parse(text));
+            } catch(Exception error){System.err.println("Syx assistant regional request: "+error);}
+        }
         private void pollChat() {
             try {
                 Path file=dir.resolve("chat-ui.txt");
@@ -132,7 +149,7 @@ public final class AssistantScript implements SCRIPT {
             }catch(Exception error){System.err.println("Syx assistant chat IPC failed");}
         }
         private synchronized void flush() {
-            if(!closed){pollReadRequest();pollTileRequest();if(Boolean.parseBoolean(System.getProperty("syx.assistant.chat","true")))pollChat();}
+            if(!closed){pollReadRequest();pollTileRequest();pollRegionalRequest();if(Boolean.parseBoolean(System.getProperty("syx.assistant.chat","true")))pollChat();}
             Map<String,Object> tiles=tileResponse.getAndSet(null);
             if(tiles!=null)try {
                 if(JsonWriter.encode(tiles).getBytes(StandardCharsets.UTF_8).length>65536)
@@ -148,6 +165,13 @@ public final class AssistantScript implements SCRIPT {
                         "captured_at",java.time.Instant.now().toString(),"available",false,"reason","Response exceeds the read mode byte budget; select fewer fields, stats or rows","data",null);
                 writeDto("entity-response",response,cap);
             } catch(Exception error) {System.err.println("Syx assistant read response: "+error);}
+            Map<String,Object> region=regionalResponse.getAndSet(null);
+            if(region!=null)try {
+                if(JsonWriter.encode(region).getBytes(StandardCharsets.UTF_8).length>65536)
+                    region=StateCollector.object("request_id",region.get("request_id"),"session_id",session,"game_version",VERSION.VERSION_STRING,
+                        "captured_at",java.time.Instant.now().toString(),"available",false,"reason","Regional response exceeds 64 KiB; narrow fields or limit","data",null);
+                writeDto("regional-response",region,65536);
+            } catch(Exception error){System.err.println("Syx assistant regional response: "+error);}
             Map<String,Object> dto = pending.getAndSet(null);
             if (dto == null) return;
             try { writeDto("snapshot",dto,16*1024*1024); }
@@ -156,7 +180,7 @@ public final class AssistantScript implements SCRIPT {
         synchronized void close() {
             if (closed) return;
             closed = true;
-            readRequest.set(null);readResponse.set(null);tileRequest.set(null);tileResponse.set(null);
+            readRequest.set(null);readResponse.set(null);tileRequest.set(null);tileResponse.set(null);regionalRequest.set(null);regionalResponse.set(null);
             pending.set(StateCollector.envelope(session, ++sequence, false));
             flush(); io.shutdown();
         }

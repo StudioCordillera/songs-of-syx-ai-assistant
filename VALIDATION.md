@@ -1,10 +1,16 @@
 # Validation evidence
 
-## Current regional-output player checkpoint
+## Current live-regional player checkpoint
+
+REGIONAL_LIVE_VALIDATION.json records actual MCP/direct-getter parity for 4,200 selected cells over 42 pages, an empty filtered 4,096-cell scan followed by the target, combined predicates/projections, unknown/inactive refusal, concurrent callers, restored test controls and eight scene phases. The separate authored partial-cache MCP server proves a target absent from 100 copied cached rows is still returned by the real live callback. Its timestamp/session are not refreshed; this is not an actual production 10,000-cell cap or large-world fixture. REGIONAL_LIVE_READS.md describes matrix cursors, source/byte budgets and separate page observations. The Java codec accepts the valid/end-cursor frame and rejects 19 malformed variants without game bootstrap.
+
+The current source passes 267 Python tests and two real Pro turns; USER_TEST_VALIDATION.json and PLAYER_CORE_VALIDATION.json pin the paired player/core scope. There are sixteen read-only tools and 375 public game references, zero non-public references. Source verification remains distinct from documented stable contracts. Native registry/cell faults, real large-world export truncation, retained regional capture, all-variable/menu coverage and remaining UI/lifecycle getters are open.
+
+## Regional-output player checkpoint — prior build
 
 REGIONAL_OUTPUT_VALIDATION.json pins full native DTO agreement for 8,526 campaign resource counters and 42 cyclic schedules in the copied world. Actual MCP checks cover field-meaning discovery, installed references, positive filtering/sorting, region/schedule joins, aggregates and same-observation UI context, with natural values, held 37/max-int controls and restoration. Source semantics and excluded mutations are in REGIONAL_OUTPUT_BOUNDARY_REVIEW.json; original candidate reader evidence retains its earlier source/JAR scope. Synthetic query tests retain observed zero, refuse unavailable counts and preserve cell/resource cap/failure qualifiers.
 
-USER_TEST_VALIDATION.json and PLAYER_CORE_VALIDATION.json pin the current player and finite scene/lifecycle groups. The compiler audit contains 375 public references, zero non-public references. CURRENT_COLLECTION_COST_VALIDATION.json separately measures the whole expanded collector and offline regional query on this build; the fixture is small/paused and does not prove large-city/world FPS, worst-case latency, cap/fault injection, natural seasonal rollover, ownership transfers or actual shipping/arrival.
+The regional-table checkpoint recorded 244 Python tests, two Pro turns and seven native groups with 375 public references and zero non-public references. Its release/core/cost reports remain in Git history; current parent reports belong to the newer checkpoint. The original REGIONAL_OUTPUT_VALIDATION.json retains the table-build scope; the fixture is small/paused and does not prove large-city/world FPS, worst-case latency, cap/fault injection, natural seasonal rollover, ownership transfers or actual shipping/arrival.
 
 ## World-faction-context player checkpoint — prior build
 

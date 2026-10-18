@@ -147,7 +147,7 @@ def _read_entities(advisor,selection,*,timeout:float,capture=False,channel='enti
                 data=result.get('data')
                 if not isinstance(data,dict) or not isinstance(data.get('rows'),list) or len(data['rows'])>selection.limit:
                     raise ValueError('Invalid bounded entity response')
-                scanned_key='scanned_tiles' if channel=='tile' else 'scanned_slots'
+                scanned_key={'tile':'scanned_tiles','regional':'scanned_cells'}.get(channel,'scanned_slots')
                 if type(data.get(scanned_key)) is not int or not 0<=data[scanned_key]<=selection.scan_limit:
                     raise ValueError('Invalid scan bound')
                 if capture and (data.get("next_cursor") is not None or data.get("predicate_errors")!=0):

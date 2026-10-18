@@ -17,7 +17,7 @@ This is a routing inventory of the current adapter, not a complete game schema. 
 | trade | `/resources`, `/settlement_pipeline/policies`, `/settlement_pipeline/flows` | Campaign current-day ledger; bounded city resource stages by trade reason and raw configured limits | Full order records, non-resource tradables, executable quotes/tariffs, routes/ETA and large-city cost |
 | diplomacy | `/factions` | Active faction identities and stance | Treaties and relationship factors |
 | military | `/statistics`, `/scene_armies` | BATTLE aggregates and instantiated scene divisions | Full world-army/order schemas and combat history |
-| world | `/regions`, `/population_by_race`, `/regional_output_bookkeeping/rows`, `/regional_output_bookkeeping/schedules`, `/field_definitions` | Region identity/ownership/population plus bounded resource-backed stored accruals and cyclic configured offsets | Beyond-prefix output access, other economy/army relationships, actual shipping/arrival, exact counter age, non-resource output and large-world/cap/fault validation |
+| world | `/regions`, `/population_by_race`, `/regional_output_bookkeeping/rows`, `/regional_output_bookkeeping/schedules`, `/field_definitions` | Region identity/ownership/population plus bounded resource-backed stored accruals and cyclic configured offsets | Retained regional selections, other economy/army relationships, actual shipping/arrival, exact counter age, non-resource output and large-world/cap/fault validation |
 | map | dimensions and on-demand tool description | Scene dimensions, finite tile reads and bounded retained tile selections | Broader spatial fields, larger retained batches and all-field/scene/fault costs |
 | entities | `/items`, `/selected_subject` | Prefix IDs/positions and dedicated selected-person public stats | More typed attributes and relationship filters beyond recorded workplace |
 | events | `/registered_event_types`, current event ID/elapsed fields | Registered event types and current scripted event | Complete incidents/history and future-event claims |
@@ -31,6 +31,8 @@ Aggregate stat collections are intentionally left in game-defined units until th
 - `capture_live_entities` / `read_entity_capture`: bounded detached observations retained for stable paging, with original session/tick/context. Not a global worker transaction.
 - `query_live_tiles`: terrain/floor/room/mineral/path fields in a bounded rectangle, with fixed filters. Coordinate room data does not identify a UI-selected room. Cursor pages remain separate observations.
 - `capture_live_tiles` / `read_tile_capture`: a complete <=4096-tile scan with <=100 matches/64 KiB from one callback, then retained historical pages; incomplete selections retain nothing.
+
+- `query_live_regional_outputs`: explicit active-region/resource matrix with fixed accrued-range/faction filters and projections, independent of cached output rows. Each page is a separate live campaign observation; not a retained/global transaction.
 
 See QUERY_GUIDE.md for exact limits and query syntax. IDs must share a documented mapping before joins are used: similarly named labels or different composite IDs are not proof of a relationship.
 

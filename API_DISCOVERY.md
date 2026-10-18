@@ -69,3 +69,6 @@ The world-faction-context checkpoint pairs all 369 production references with th
 
 
 The regional-output checkpoint pairs all 375 production references with this retained catalog. It maps resource-backed stored accruals and cyclic configured schedules through explicit typed rows; REGIONAL_OUTPUTS.md distinguishes these from inventory, delivered totals, forecasts and ETA. Candidate and production/cost reports keep separate JAR/source scopes.
+
+
+The live-regional checkpoint reuses these same 375 public references through a fixed update-thread request protocol and adds no game getter. Registry bindings, selected cells and live response provenance are reviewed separately from cached table rows; REGIONAL_LIVE_READS.md / REGIONAL_LIVE_VALIDATION.json describe the native matrix, authored partial-cache and scene evidence. This does not create a full schema or stable official contract.

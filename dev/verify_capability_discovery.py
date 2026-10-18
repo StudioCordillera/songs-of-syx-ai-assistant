@@ -31,7 +31,7 @@ async def verify(directory):
                 assert result['game_version']=='0.71.44' and result['inventory_size']==len(json.loads((ROOT/'api-audit.json').read_text())['members'])
                 assert 'not an attestation' in result['warning']
                 return result
-            for identifier in ['regional_output_bookkeeping','retained_tile_selections','city_stockpile_bookkeeping','room_producer_degradation','entity_workplace_filter','room_workforce_factors','room_service_counters','service_cohort_permissions','city_trade_pipeline','regional_population_counters']:
+            for identifier in ['live_regional_output_selections','regional_output_bookkeeping','retained_tile_selections','city_stockpile_bookkeeping','room_producer_degradation','entity_workplace_filter','room_workforce_factors','room_service_counters','service_cohort_permissions','city_trade_pipeline','regional_population_counters']:
                 result=await call(identifier)
                 assert len(result['capabilities'])==1
                 record=result['capabilities'][0]
@@ -60,9 +60,9 @@ async def verify(directory):
                     ['syx_mcp.py','syx_api_support.py','syx_api_manifest.py','dev/verify_capability_discovery.py']},
                 'limits':['Capability records summarize existing evidence; no new game getter/scene or official stable contract is established.',
                     'Offline discovery is not an attestation of a separately installed game mod; pair source-matching builds.',
-                    'Ten supported capabilities and two explicit gaps sampled, not exhaustive metadata acceptance.']}
+                    'Eleven supported capabilities and two explicit gaps sampled, not exhaustive metadata acceptance.']}
             (directory/'capability-discovery-validation.json').write_text(json.dumps(report,indent=2)+'\n')
-            print('Ten data capabilities, two coverage gaps and three service and three faction member anchors verified through MCP.')
+            print('Eleven data capabilities, two coverage gaps and three service and three faction member anchors verified through MCP.')
             return report
 
 

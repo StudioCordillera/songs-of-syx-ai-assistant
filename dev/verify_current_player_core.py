@@ -50,7 +50,7 @@ def verify(args):
            ('trade','verify_trade.py',[],'trade-validation.json'),
            ('world','verify_world.py',[],'world-validation.json'),
            ('production','verify_production.py',[], 'production-validation.json'),
-           ('scenes','verify_scenes.py',['--on-demand','--tiles'],'scene-validation.json'),
+           ('scenes','verify_scenes.py',['--on-demand','--tiles','--regional-live'],'scene-validation.json'),
            ('context','verify_installed_help.py',[],'installed-help-validation.json'),
            ('extended','verify_extended_context.py',[],'extended-validation.json')]
     results={}

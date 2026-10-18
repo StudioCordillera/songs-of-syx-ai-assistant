@@ -14,6 +14,7 @@ Game process public after-update callback → detached Java DTOs → local snaps
 | StateCollector.java | Eighteen partial domains, installed help, typed field definitions and bounded room/resource/region relationships. New fields require provenance, bounds and getter/MCP validation. |
 | UiContextCollector.java | Scene/view/overlay/subject/room-blueprint and bounded world-faction-panel context through mapped public getters. No private selected-room fallback. |
 | UiContentCollector.java | Bounded exposed popup/section labels/controls, ancestry and opaque/error/truncation markers. |
+| RegionalReadRequest.java | Fixed active-region/resource matrix request, bounded range/faction predicates and projections on the update thread; independent of cached row prefix. |
 | EntityReadRequest.java | Strict live/capture protocol parsing, finite predicates/projections, public entity/stat/workplace reads on the update thread. |
 | TileReadRequest.java | Strict rectangle/filter/projection protocol and bounded terrain/floor/room/mineral/path reads. |
 | ChatPanel.java | Our own simple/advanced public GUI widgets, text/focus, chat list/transcript/composer; no gameplay-control dispatch. |
@@ -25,10 +26,11 @@ Only these production classes are packaged. `mod/tests/` contains non-shipped bo
 
 | Module | Responsibility |
 | --- | --- |
-| syx_mcp.py | Snapshot/domain models, freshness/cache, Advisor and fifteen tool registrations; stdio entry point. |
+| syx_mcp.py | Snapshot/domain models, freshness/cache, Advisor and sixteen tool registrations; stdio entry point. |
 | syx_query.py | Fixed snapshot selection language, joins/arithmetic/grouping/sort, shared work/row/source budgets and collection diagnostics. |
 | syx_live.py | Strict entity selections, live/capture wire transport and agent-facing schema/help. |
 | syx_capture.py | Immutable encoded retained entity/tile observations in separate bounded pools, server-local tokens, shared paging/freshness guards and original provenance. |
+| syx_regions.py | Strict regional output selections/wire, shared guarded transport and response matrix/projection/identity/cap checks. |
 | syx_tiles.py | Strict live/capture tile selection schemas, fixed mailbox and same-response context checks; captures must fit one callback. |
 | syx_knowledge.py | Reviewed SEEDS, non-destructive corpus merge and knowledge CLI. Search/ranking lives in Advisor in syx_mcp.py. |
 | syx_api_support.py | Curated capability routing, source/evidence/limit descriptions and explicit gaps; not arbitrary invocation. |

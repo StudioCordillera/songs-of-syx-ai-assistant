@@ -25,7 +25,8 @@ CASES={'tiles':('tiles','verify_tiles.py','tile-capture-validation.json'),
        'entities':('capture','verify_entity_captures.py','capture-validation.json'),
        'faction-ui':('factionUi','verify_faction_ui.py','faction-ui-validation.json'),
        'regional-output':('regionalOutput','verify_regional_output_readers.py','regional-output-reader-validation.json'),
-       'regional-output-export':('regionalExport','verify_regional_output_export.py','regional-output-validation.json')}
+       'regional-output-export':('regionalExport','verify_regional_output_export.py','regional-output-validation.json'),
+       'regional-live':('regionalLive','verify_live_regional.py','regional-live-validation.json')}
 
 
 def sha(path):return hashlib.sha256(path.read_bytes()).hexdigest()
@@ -77,7 +78,7 @@ def run(args):
             production_source_sha256=manifest['validation']['production_source_sha256'],
             python_source_sha256=manifest['validation']['python_source_sha256'],inference_calls=0)
         report['fixture_source_sha256']={n:sha(ROOT/n) for n in ['mod/tests/LiveSmoke.java','mod/tests/TileScenario.java',
-            'mod/tests/EntityScenario.java','mod/tests/SceneScenario.java','mod/tests/FactionUiScenario.java','mod/tests/RegionalOutputScenario.java','mod/tests/RegionalOutputExportScenario.java','dev/'+verifier,'dev/run_read_fixture.py']}
+            'mod/tests/EntityScenario.java','mod/tests/SceneScenario.java','mod/tests/FactionUiScenario.java','mod/tests/RegionalOutputScenario.java','mod/tests/RegionalOutputExportScenario.java','mod/tests/RegionalLiveScenario.java','dev/'+verifier,'dev/run_read_fixture.py']}
     finally:
         if process is not None and process.poll() is None:
             process.terminate()
@@ -86,6 +87,9 @@ def run(args):
         shutil.copy2(backup,target)
         if sha(target)!=sha(backup) or sha(save)!=save_before:
             raise RuntimeError('Copied mod restoration/save integrity check failed; no passing final report written')
+    if args.case=='regional-live':
+        report['fixture_source_sha256']['dev/regional_partial_cache_server.py']=sha(ROOT/'dev/regional_partial_cache_server.py')
+        report['fixture_source_sha256']['dev/verify_scenes.py']=sha(ROOT/'dev/verify_scenes.py')
     if args.case in {'regional-output','regional-output-export'}:
         report['candidate_boundary_review_sha256']=sha(ROOT/'REGIONAL_OUTPUT_BOUNDARY_REVIEW.json')
     report.update(copied_profile_mod_restored=True,copied_save_unchanged=True)

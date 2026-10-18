@@ -28,10 +28,10 @@ async def unavailable_city_data_mcp(directory):
                 denied=await session.call_tool('select_game_state',{'spec':{'queries':[{'source':{'domain':domain,'path':path},'aggregates':{'n':{'op':'count'}}}]}})
                 assert denied.is_error and 'observation is unavailable' in next(c.text for c in denied.content if c.type=='text')
 
-def verify(directory:Path,timeout:float=260,on_demand:bool=False,tiles:bool=False):
+def verify(directory:Path,timeout:float=260,on_demand:bool=False,tiles:bool=False,regional_live:bool=False):
     advisor=Advisor(directory/'snapshot.json',directory/'corpus.json')
     required={'city','settlement_battle','city_restored','battle_deployment','battle_menu','city_reloaded','world_generation','terrain_generated'}
-    checks={};sessions={};began=time.monotonic()
+    checks={};sessions={};began=time.monotonic();known_regional=None
     while time.monotonic()-began<timeout:
         try:
             phase=json.loads((directory/'phase.json').read_text());name=phase['phase']
@@ -161,8 +161,28 @@ def verify(directory:Path,timeout:float=260,on_demand:bool=False,tiles:bool=Fals
                 assert len(output['rows'])==output['scanned_cells']<=output['cell_limit']==10000
                 assert len(output['schedules'])==output['scanned_resources']<=output['resource_limit']==1000
                 assert output['scanned_regions']<=output['region_limit']==1023
+            regional_available=None
+            if regional_live:
+                from syx_regions import query_regional_outputs
+                if name not in {'world_generation','terrain_generated'}:
+                    first=regional.data['regional_output_bookkeeping']['rows'][0]
+                    known_regional=(first['region_id'],first['resource_id'])
+                assert known_regional is not None
+                spec={'region_ids':[known_regional[0]],'resource_ids':[known_regional[1]],
+                    'fields':['accrued_output_raw'],'expected_session_id':snapshot.session_id}
+                if name in {'world_generation','terrain_generated'}:
+                    try:query_regional_outputs(advisor,spec)
+                    except ValueError as error:assert 'No completed campaign world' in str(error),error
+                    else:raise AssertionError('Generation must reject campaign regional reads')
+                    regional_available=False
+                else:
+                    live=query_regional_outputs(advisor,spec)
+                    assert live['scope']=='campaign_world_regions' and live['scene']['active_view']==context['active_view']
+                    assert live['data']['rows'][0]['region_id']==known_regional[0]
+                    assert live['data']['rows'][0]['resource_id']==known_regional[1]
+                    regional_available=True
             checks[name]={'passed':True,'view':context['active_view'],'scene_kind':scene['settlement_scene_kind'],
-                          'on_demand_read_available':read_available,'tile_read_available':tile_available,
+                          'on_demand_read_available':read_available,'tile_read_available':tile_available,'regional_live_read_available':regional_available,
                           'city_trade_pipeline_coverage':city_trade.data['settlement_pipeline']['coverage'] if city_trade.data else 'unavailable',
                           'world_population_coverage':regional.coverage,
                           'regional_output_coverage':regional.data['regional_output_bookkeeping']['coverage'] if regional.data else 'unavailable',
@@ -187,4 +207,5 @@ if __name__=='__main__':
     p=argparse.ArgumentParser(description=__doc__);p.add_argument('--state-dir',type=Path,required=True);p.add_argument('--timeout',type=float,default=260)
     p.add_argument('--on-demand',action='store_true')
     p.add_argument('--tiles',action='store_true')
-    args=p.parse_args();verify(args.state_dir,args.timeout,args.on_demand,args.tiles)
+    p.add_argument('--regional-live',action='store_true')
+    args=p.parse_args();verify(args.state_dir,args.timeout,args.on_demand,args.tiles,args.regional_live)
