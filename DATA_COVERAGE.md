@@ -17,7 +17,7 @@ This is a routing inventory of the current adapter, not a complete game schema. 
 | trade | `/resources` | Current-day imported/exported units | Orders, pending shipments, prices, tariffs and policy |
 | diplomacy | `/factions` | Active faction identities and stance | Treaties and relationship factors |
 | military | `/statistics`, `/scene_armies` | BATTLE aggregates and instantiated scene divisions | Full world-army/order schemas and combat history |
-| world | `/regions` | Region IDs, owners, coordinates and siege flags | Typed regional population/economy/army relationships |
+| world | `/regions`, `/population_by_race`, `/field_definitions` | Region IDs, owners, coordinates, capital/area and bounded stored regional population by playable race | Regional economy/army relationships, non-playable counters and world-scale cost validation |
 | map | dimensions and on-demand tool description | Scene dimensions plus finite tile reads | Broader spatial fields and retained spatial batches |
 | entities | `/items`, `/selected_subject` | Prefix IDs/positions and dedicated selected-person public stats | More typed attributes and relationship filtering |
 | events | `/registered_event_types`, current event ID/elapsed fields | Registered event types and current scripted event | Complete incidents/history and future-event claims |

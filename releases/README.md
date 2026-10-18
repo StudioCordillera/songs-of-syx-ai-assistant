@@ -11,3 +11,5 @@ For maintainers: build against the licensed supported game, audit public referen
 Dependencies install on first launch, so an internet connection and supported Python environment are needed. This is a Linux test build, not an installer for every platform. Full game-state coverage and exhaustive UI/lifecycle acceptance remain open in ROADMAP.md.
 
 The launcher checks dependency imports at each start and retries installation when a previous attempt failed. This is exercised by a two-attempt failure/retry test; network availability and provider service availability remain external requirements.
+
+To validate a candidate while keeping the public ZIP intact, package into a runtime directory and pass `--candidate-dir` plus its `--validation` report to `dev/verify_current_player_core.py`. Its default remains the published bundle. The core suite includes copied-game regional getter checks before scene/UI regressions. Promote only after the relevant checks pass.

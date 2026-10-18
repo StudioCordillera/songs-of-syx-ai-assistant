@@ -10,9 +10,10 @@ sys.path.insert(0,str(ROOT))
 from make_user_test import MODULES, digest
 
 
-def check(root=ROOT):
-    archive=root/'releases/latest-user-test.zip'
-    metadata=json.loads((root/'releases/latest-user-test.json').read_text())
+def check(root=ROOT,release_dir=None,validation_path=None):
+    release_dir=release_dir or root/'releases'
+    archive=release_dir/'latest-user-test.zip'
+    metadata=json.loads((release_dir/'latest-user-test.json').read_text())
     assert metadata['download_sha256']==digest(archive),'Download hash differs'
     with zipfile.ZipFile(archive) as bundle:
         manifest=json.loads(bundle.read('BUILD.json'))
@@ -30,7 +31,7 @@ def check(root=ROOT):
         assert manifest['builder_source_sha256']==digest(root/'build_mod.py'),'Builder changed'
         assert manifest['packager_source_sha256']==digest(root/'make_user_test.py'),'Packager changed'
         report=manifest['validation']
-        assert report==json.loads((root/'USER_TEST_VALIDATION.json').read_text()),'Validation report differs'
+        assert report==json.loads((validation_path or root/'USER_TEST_VALIDATION.json').read_text()),'Validation report differs'
         assert report['passed'] and report['real_provider_round_trip'] and report['requested_model']=='deepseek-v4-pro'
         sources={str(p.relative_to(root/'mod/src/main/java')):digest(p) for p in (root/'mod/src/main/java').rglob('*.java')}
         assert report['production_source_sha256']==sources,'Rebuild and validate changed game source'

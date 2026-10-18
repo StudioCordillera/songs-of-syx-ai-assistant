@@ -50,3 +50,5 @@ The chat-development audit now contains 275 production public-member references,
 The current shared-chat audit inventories 276 public production game members, all source/compiler matched and present in the offline catalog. Earlier 275/246-member inventories belong to their stated builds. No private game API reference was added. Current hashes and per-provider evidence are in CHAT_VALIDATION.json.
 
 The current simplified player build inventories 314 public production member references, all present in the offline catalog; zero non-public production references. See USER_TEST_VALIDATION.json for this build’s exact hashes and two-turn Pro check. Earlier inventories above remain historical.
+
+The regional-population checkpoint brings the production audit to 322 public member references, all present in the same pinned offline catalog. The eight added public references support stored regional counts and realm-capital/area reads. WORLD_VALIDATION.json records scoped copied-campaign evidence; the catalog still does not enumerate supported variables or establish an official stability contract.

@@ -2,32 +2,192 @@
   "queries": [
     {
       "name": "least_positive_warehouse_stocks",
-      "source": {"domain": "resources", "path": "/stockpiles"},
-      "where": {"gt": [{"field": "/stockpile_stored"}, 0]},
-      "select": {"resource": {"field": "/id"}, "stored": {"field": "/stockpile_stored"}},
-      "sort": [{"field": "/stored", "direction": "asc"}],
+      "source": {
+        "domain": "resources",
+        "path": "/stockpiles"
+      },
+      "where": {
+        "gt": [
+          {
+            "field": "/stockpile_stored"
+          },
+          0
+        ]
+      },
+      "select": {
+        "resource": {
+          "field": "/id"
+        },
+        "stored": {
+          "field": "/stockpile_stored"
+        }
+      },
+      "sort": [
+        {
+          "field": "/stored",
+          "direction": "asc"
+        }
+      ],
       "limit": 5
     },
     {
       "name": "recorded_outputs_with_current_workforce_and_storage",
-      "source": {"domain": "production", "path": "/room_data/flows"},
-      "where": {"eq": [{"field": "/direction"}, "output"]},
+      "source": {
+        "domain": "production",
+        "path": "/room_data/flows"
+      },
+      "where": {
+        "eq": [
+          {
+            "field": "/direction"
+          },
+          "output"
+        ]
+      },
       "joins": [
-        {"source": {"domain": "employment", "path": "/rooms"}, "left_key": "/room_id", "right_key": "/room_id", "as": "work", "kind": "inner"},
-        {"source": {"domain": "resources", "path": "/stockpiles"}, "left_key": "/resource_id", "right_key": "/id", "as": "stock", "kind": "inner"}
+        {
+          "source": {
+            "domain": "employment",
+            "path": "/rooms"
+          },
+          "left_key": "/room_id",
+          "right_key": "/room_id",
+          "as": "work",
+          "kind": "inner"
+        },
+        {
+          "source": {
+            "domain": "resources",
+            "path": "/stockpiles"
+          },
+          "left_key": "/resource_id",
+          "right_key": "/id",
+          "as": "stock",
+          "kind": "inner"
+        }
       ],
-      "select": {"room": {"field": "/room_id"}, "resource": {"field": "/resource_id"}, "recorded": {"field": "/previous_day_units"}, "employed": {"field": "/work/employed"}, "stored": {"field": "/stock/stockpile_stored"}},
-      "sort": [{"field": "/stored", "direction": "asc"}],
+      "select": {
+        "room": {
+          "field": "/room_id"
+        },
+        "resource": {
+          "field": "/resource_id"
+        },
+        "recorded": {
+          "field": "/previous_day_units"
+        },
+        "employed": {
+          "field": "/work/employed"
+        },
+        "stored": {
+          "field": "/stock/stockpile_stored"
+        }
+      },
+      "sort": [
+        {
+          "field": "/stored",
+          "direction": "asc"
+        }
+      ],
       "limit": 5
     },
     {
       "name": "recorded_output_buckets_by_resource",
-      "source": {"domain": "production", "path": "/room_data/flows"},
-      "where": {"eq": [{"field": "/direction"}, "output"]},
-      "group_by": {"resource": {"field": "/resource_id"}},
-      "aggregates": {"flow_count": {"op": "count"}, "recorded_sum": {"op": "sum", "value": {"field": "/previous_day_units"}}},
-      "sort": [{"field": "/resource", "direction": "asc"}],
+      "source": {
+        "domain": "production",
+        "path": "/room_data/flows"
+      },
+      "where": {
+        "eq": [
+          {
+            "field": "/direction"
+          },
+          "output"
+        ]
+      },
+      "group_by": {
+        "resource": {
+          "field": "/resource_id"
+        }
+      },
+      "aggregates": {
+        "flow_count": {
+          "op": "count"
+        },
+        "recorded_sum": {
+          "op": "sum",
+          "value": {
+            "field": "/previous_day_units"
+          }
+        }
+      },
+      "sort": [
+        {
+          "field": "/resource",
+          "direction": "asc"
+        }
+      ],
       "limit": 20
+    },
+    {
+      "name": "largest_owned_region_populations",
+      "source": {
+        "domain": "world",
+        "path": "/population_by_race"
+      },
+      "joins": [
+        {
+          "source": {
+            "domain": "world",
+            "path": "/regions"
+          },
+          "left_key": "/region_id",
+          "right_key": "/id",
+          "as": "region",
+          "kind": "inner"
+        }
+      ],
+      "where": {
+        "and": [
+          {
+            "gt": [
+              {
+                "field": "/population"
+              },
+              0
+            ]
+          },
+          {
+            "eq": [
+              {
+                "field": "/region/player_owned"
+              },
+              true
+            ]
+          }
+        ]
+      },
+      "select": {
+        "region": {
+          "field": "/region_id"
+        },
+        "race": {
+          "field": "/race_id"
+        },
+        "regional_inhabitants": {
+          "field": "/population"
+        },
+        "area": {
+          "field": "/region/area_world_tiles"
+        }
+      },
+      "sort": [
+        {
+          "field": "/regional_inhabitants",
+          "direction": "desc"
+        }
+      ],
+      "limit": 5
     }
   ]
 }

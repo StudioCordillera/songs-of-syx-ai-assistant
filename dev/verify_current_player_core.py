@@ -23,7 +23,7 @@ def sha(path):return hashlib.sha256(path.read_bytes()).hexdigest()
 
 
 def verify(args):
-    manifest=check(ROOT)
+    manifest=check(ROOT,args.candidate_dir,args.validation)
     runtime=ROOT/'runtime';save=args.save.resolve();home=runtime/'smoke-home'
     if home.is_symlink():raise ValueError('smoke-home must not be a symlink')
     home=home.resolve()
@@ -32,7 +32,7 @@ def verify(args):
     run=runtime/('player-core-'+datetime.now(timezone.utc).strftime('%Y%m%d-%H%M%S'))
     run.mkdir()
     jar=run/'syx-ai-assistant.jar'
-    with zipfile.ZipFile(ROOT/'releases/latest-user-test.zip') as archive:
+    with zipfile.ZipFile((args.candidate_dir or ROOT/'releases')/'latest-user-test.zip') as archive:
         jar.write_bytes(archive.read('mod/syx-ai-assistant/V71/script/syx-ai-assistant.jar'))
     assert sha(jar)==manifest['mod_jar_sha256']
     game=args.game_dir.resolve();env={k:v for k,v in os.environ.items() if not any(s in k for s in ('API_KEY','ACCESS_TOKEN','REFRESH_TOKEN'))}
@@ -41,11 +41,12 @@ def verify(args):
     classes=run/'classes';classes.mkdir()
     subprocess.run([*compiler,'--release','16','-encoding','UTF-8','-cp',str(game/'SongsOfSyx.jar')+':'+str(jar),'-d',str(classes),*[str(p) for p in (ROOT/'mod/tests').glob('*.java')]],check=True,env=env)
     profile_mod=home/'.local/share/songsofsyx/mods/syx-ai-assistant/V71/script/syx-ai-assistant.jar'
-    assert profile_mod.parent.is_dir();shutil.copy2(jar,profile_mod)
+    assert profile_mod.parent.is_dir() and not profile_mod.is_symlink();shutil.copy2(jar,profile_mod)
     classpath=':'.join(map(str,[game/'SongsOfSyx.jar',game/'base/script/000_Tutorial.jar',game/'base/script/001_Tutorial.jar',jar,classes]))
-    used_fixtures=['LiveSmoke.java','ProductionScenario.java','SceneScenario.java','ContextScenario.java','ExtendedContextScenario.java']
+    used_fixtures=['LiveSmoke.java','WorldScenario.java','ProductionScenario.java','SceneScenario.java','ContextScenario.java','ExtendedContextScenario.java']
     fixture_hashes={'mod/tests/'+n:sha(ROOT/'mod/tests'/n) for n in used_fixtures}
-    cases=[('production','verify_production.py',[], 'production-validation.json'),
+    cases=[('world','verify_world.py',[],'world-validation.json'),
+           ('production','verify_production.py',[], 'production-validation.json'),
            ('scenes','verify_scenes.py',['--on-demand','--tiles'],'scene-validation.json'),
            ('context','verify_installed_help.py',[],'installed-help-validation.json'),
            ('extended','verify_extended_context.py',[],'extended-validation.json')]
@@ -82,4 +83,6 @@ def verify(args):
 if __name__=='__main__':
     p=argparse.ArgumentParser(description=__doc__)
     for name in ('game-dir','save','java','jdk-home'):p.add_argument('--'+name,type=Path,required=True)
+    p.add_argument('--candidate-dir',type=Path,help='Validate a candidate without replacing the published bundle')
+    p.add_argument('--validation',type=Path,help='Matching candidate provider-check report')
     verify(p.parse_args())

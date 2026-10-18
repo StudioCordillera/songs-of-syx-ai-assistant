@@ -101,3 +101,7 @@ The production domain explicitly mixes campaign ledger and scene room data; nest
 ## Installed room/currency references
 
 Room descriptions use public `RoomBlueprintImp.info.name/desc` from mapped blueprint types. Research-currency descriptions use public `TECHS.COSTS` and `TechCurrency.bo` info fields. The 308-member compiler inventory remains entirely public. Fixed namespace IDs connect these installed descriptions to employment, current producer recipes, research currencies and known open room-blueprint panels; they are reference IDs, not game control handles. No private wiki/tooltip extraction or UI activation is performed in production. Active mods can override the installed descriptions. Exact runtime scope is in INSTALLED_HELP_VALIDATION.json.
+
+## Regional population checkpoint
+
+World data adds public `RD.RACES`, `RDRaces.population/all`, `RDRace.race/pop`, inherited `RData.get`, `Region.capitol` and `RegionInfo.area`. The stored getters do not force regional simulation updates. Demographic batches are bounded and detached; no backing-array layout, protected fields, population setter or private state is accessed. WORLD_VALIDATION.json pins the getter/MCP comparison and source review. These are source-verified public members, not separately documented stable SCRIPT contracts.

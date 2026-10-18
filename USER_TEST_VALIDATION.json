@@ -15,13 +15,13 @@
   ],
   "cited_urls_match_retrieval": true,
   "simple_transcript_without_debug_events": true,
-  "mod_jar_sha256": "5a1f3fa413e4776e9d7f03e7d3af306cae4ecd59a0b07b6bb8d9509c39e9d397",
+  "mod_jar_sha256": "0b913d177c96ce0c195fd41a496d5a5f9d915ece83bac8a5cd320d233fc873a8",
   "production_source_sha256": {
     "syx/assistant/AssistantScript.java": "079b048597c373f88d8179d4f8e8fec576a82c5b13ad6c95fe6e672ba3722e3a",
     "syx/assistant/ChatPanel.java": "3138d3e863ccb36ad5b6b37a7e1f3486dd2d8c1dc43ab469b26af714548d8437",
     "syx/assistant/EntityReadRequest.java": "deb0f86cad28da1c8677394a4aeb26913b0c80b4ee90c08cb882bedbc11f8a03",
     "syx/assistant/JsonWriter.java": "c525eb60d3224cab83ed3fd6b8594ec8652211f00bd947e873e1482f919e81dc",
-    "syx/assistant/StateCollector.java": "9051bdc9bfe283e60d7939a757198b527a4df21907dde58a10e85996e4baf498",
+    "syx/assistant/StateCollector.java": "90b04d9d3333e2659bb032b46d640b9e799a5f17f81f1f5c7499b0e3196a1746",
     "syx/assistant/TileReadRequest.java": "1a192cde61a7e1bdefa170390c00b17c74573b9c41de71700ebea466411ad3c5",
     "syx/assistant/UiContentCollector.java": "c0d20c7f9f2734a0bb625427875f06bfcd07edb20611248b39b6e8f480ef5a48",
     "syx/assistant/UiContextCollector.java": "439604436fc98c478ade47682775ee55edb1688d76078e0602f7ab78db187157"
@@ -31,7 +31,7 @@
     "syx_knowledge.py": "7947aac1cea46f450fe56ee91efa11e9871f86085a90939f0d0c2007327896c0",
     "syx_query.py": "252ff9199e7ec566f0c0a91ea0afb0a8557f5ce51ef62be64abd6216a113b80e",
     "syx_api_support.py": "d6058456dcd5468c025bdc04975042476db8d82c7362ce1b7249969607e12ff6",
-    "syx_api_manifest.py": "85299e12294ace20bcda789f5558b197d0173707ae96ec3870cd352863a3c356",
+    "syx_api_manifest.py": "e3d5636862fc5939352fe0b2f5d19cd58bb5ad1d832c22ce4a7b2e8e3e616ba6",
     "syx_live.py": "a7c5d5b457eeb2b8f8240079aed5183a736e6dee9f5c3c140122ade0bb21616a",
     "syx_capture.py": "fb27ec6c9278992d668bb54c85b34f17c625329a8d6f409df7fba1e3e56bcc55",
     "syx_tiles.py": "66d47fba905f9ab1ca5c13c60c314b5c4542fe09a36e74320495351e263e8493",
@@ -48,51 +48,68 @@
     "Linux user-test bundle; game and Python dependencies must be installed separately."
   ],
   "game_version": "0.71.44",
-  "game_jar_sha256": "fe0137c05408e5ee9e31f06fc44fe37a5d4372d9c985b280f0852d1347c0224b",
   "python_tests_passed": 146,
-  "public_production_members": 314,
+  "public_production_members": 322,
   "non_public_production_members": 0,
+  "game_jar_sha256": "fe0137c05408e5ee9e31f06fc44fe37a5d4372d9c985b280f0852d1347c0224b",
+  "distribution_checks": {
+    "fresh_venv_dependency_install": true,
+    "extracted_launcher_check": true,
+    "extracted_launcher_bridge_startup_no_inference": true,
+    "installer_copy_isolated_profile": true,
+    "provided_key_literal_absent_from_archive": true,
+    "dependency_install_retry_after_failure_unit_test": true
+  },
+  "prior_unchanged_chat_focus_evidence": {
+    "prior_mod_jar_sha256": "5a1f3fa413e4776e9d7f03e7d3af306cae4ecd59a0b07b6bb8d9509c39e9d397",
+    "chat_panel_class_sha256": {
+      "syx/assistant/ChatPanel$1.class": "e1bdfe76d9bd5f9472297a21bafa16e85a66b28f1b9c839d5555bb88bd6e46ae",
+      "syx/assistant/ChatPanel$2.class": "81c98aa2beb7f855da27b273539685ef2e97e8043c4b3f7e72af6c06d0e2b8d1",
+      "syx/assistant/ChatPanel.class": "0dbd7a42d4a5fc9af52443d8fd0f252a83be4f627e715d0e92999196a37380e3"
+    },
+    "same_class_bytes_in_candidate": true,
+    "fixture": {
+      "limitations": [
+        "No real provider inference",
+        "No physical keyboard test",
+        "No full menu/modal/reload coverage",
+        "Default simple player panel"
+      ],
+      "passed": true,
+      "checks": [
+        "public GUI own-panel click consumed",
+        "open and close",
+        "create chat via file coordinator",
+        "composer focus",
+        "240 maximum-width characters fit wrapped input",
+        "simple Pro interface",
+        "missing-key send rejection",
+        "reopen chat identity",
+        "world and city panel persistence"
+      ],
+      "inference_calls": 0,
+      "no_provider_turns_created": true,
+      "fixture_sha256": "93a3984a6e6563247564190711d10861c69a3c7a6631a3bcf7ed0e7fc9f047de"
+    },
+    "scope": "Prior no-inference focus/wrapping fixture; ChatPanel class bytes verified identical in current candidate. Full current-build Pro geometry/send checks passed separately."
+  },
+  "core_check_groups_passed": [
+    "world",
+    "production",
+    "scenes",
+    "context",
+    "extended"
+  ],
+  "core_validation_report_sha256": "def0c8068f592fc8b30af1f9af7695072d5102fcb1213c56362673c417697171",
   "native_geometry_checks": {
     "composer_width_pixels": 792,
     "usable_characters": 240,
     "composer_ends_before_hint": true,
     "developer_controls_hidden": true
   },
+  "game_exit_code": 0,
   "test_fixture_sha256": {
     "mod/tests/ChatLiveScenario.java": "f60c366287fec1dea0e1fecdcc52074ee650a6db8e9fb86c628f94c8c3a9920e",
     "dev/verify_user_test_chat.py": "a56c840e37eea744830f27f58e6a9734d0e452f7d486834686fa141630975cd0"
-  },
-  "distribution_checks": {
-    "fresh_venv_dependency_install": true,
-    "extracted_launcher_check": true,
-    "extracted_launcher_bridge_startup_no_inference": true,
-    "installer_copy_isolated_profile": true,
-    "installer_copy_local_profile": true,
-    "provided_key_literal_absent_from_archive": true,
-    "installer_copy_failure_rollback_unit_test": true,
-    "dependency_install_retry_after_failure_unit_test": true
-  },
-  "own_widget_focus_and_wrapping": {
-    "limitations": [
-      "No real provider inference",
-      "No physical keyboard test",
-      "No full menu/modal/reload coverage",
-      "Default simple player panel"
-    ],
-    "passed": true,
-    "checks": [
-      "public GUI own-panel click consumed",
-      "open and close",
-      "create chat via file coordinator",
-      "composer focus",
-      "240 maximum-width characters fit wrapped input",
-      "simple Pro interface",
-      "missing-key send rejection",
-      "reopen chat identity",
-      "world and city panel persistence"
-    ],
-    "inference_calls": 0,
-    "no_provider_turns_created": true,
-    "fixture_sha256": "93a3984a6e6563247564190711d10861c69a3c7a6631a3bcf7ed0e7fc9f047de"
   }
 }

@@ -58,6 +58,16 @@ def verify(directory:Path,timeout:float=260,on_demand:bool=False,tiles:bool=Fals
                 assert production.data['room_data']['coverage']=='partial'
                 assert production.data['room_data']['scope']=='instantiated_settlement_scene'
                 assert production.data['room_data']['failed_rooms']==0
+            regional=snapshot.domains['world']
+            if name not in {'world_generation','terrain_generated'}:
+                assert regional.coverage=='partial'
+                assert regional.scope=='game_or_world' # Established domain scope; field meanings narrow counts to campaign regions.
+                data=regional.data
+                assert not data['region_truncated'] and not data['population_truncated'] and data['population_failed_regions']==0
+                assert data['region_count_total']==len(data['regions'])<=data['region_limit']
+                ids={r['id'] for r in data['regions']}
+                assert data['population_by_race'] and all(r['region_id'] in ids for r in data['population_by_race'])
+                assert len(data['population_by_race'])<=data['population_row_limit']
             read_available=None
             if on_demand:
                 from syx_live import query_entities
@@ -90,6 +100,7 @@ def verify(directory:Path,timeout:float=260,on_demand:bool=False,tiles:bool=Fals
                     tile_available=True
             checks[name]={'passed':True,'view':context['active_view'],'scene_kind':scene['settlement_scene_kind'],
                           'on_demand_read_available':read_available,'tile_read_available':tile_available,
+                          'world_population_coverage':regional.coverage,
                           'production_coverage':production.coverage,
                           'production_room_coverage':production.data['room_data']['coverage'] if production.data else 'unavailable'}
             print('PASS',name,flush=True)

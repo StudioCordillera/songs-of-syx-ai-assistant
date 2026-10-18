@@ -35,10 +35,13 @@ def benchmark(path,repetitions):
     grouped=defaultdict(list)
     for r in outputs:grouped[r['resource_id']].append(r)
     third=[{'resource':key,'flow_count':len(rows),'recorded_sum':sum(r['previous_day_units'] for r in rows)} for key,rows in sorted(grouped.items())]
-    expected=[first[:5],second[:5],third[:20]]
+    regions={r['id']:r for r in snapshot.domains['world'].data['regions']}
+    fourth=sorted([{'region':r['region_id'],'race':r['race_id'],'regional_inhabitants':r['population'],'area':regions[r['region_id']]['area_world_tiles']}
+        for r in snapshot.domains['world'].data['population_by_race'] if r['population']>0 and regions[r['region_id']]['player_owned']],key=lambda r:r['regional_inhabitants'],reverse=True)
+    expected=[first[:5],second[:5],third[:20],fourth[:5]]
     results=QueryEngine(snapshot).execute(spec)
     assert [r['rows'] for r in results]==expected
-    assert [r['matched_total'] for r in results]==[len(first),len(second),len(third)]
+    assert [r['matched_total'] for r in results]==[len(first),len(second),len(third),len(fourth)]
     durations=[]
     for _ in range(repetitions):
         began=time.perf_counter();actual=QueryEngine(snapshot).execute(spec);durations.append((time.perf_counter()-began)*1000)
@@ -47,7 +50,7 @@ def benchmark(path,repetitions):
         'game_version':snapshot.game_version,'source_snapshot_sha256':hashlib.sha256(raw).hexdigest(),
         'source_observed_at':str(snapshot.captured_at),'query_spec_sha256':hashlib.sha256((ROOT/'selective-query-examples.json').read_bytes()).hexdigest(),
         'source_sha256':{n:hashlib.sha256((ROOT/n).read_bytes()).hexdigest() for n in ['syx_query.py','syx_mcp.py','dev/benchmark_selective_queries.py']},
-        'independent_filter_join_aggregate_parity':True,'query_count':3,'returned_row_counts':[len(r['rows']) for r in results],
+        'independent_filter_join_aggregate_parity':True,'query_count':len(spec['queries']),'returned_row_counts':[len(r['rows']) for r in results],
         'snapshot_bytes':len(raw),'selected_results_bytes':len(json.dumps(results).encode()),'repetitions':repetitions,
         'local_elapsed_ms':{'median':round(statistics.median(durations),3),'p95':round(sorted(durations)[int(.95*(len(durations)-1))],3),'max':round(max(durations),3)},
         'limits':['One copied city, no large-city latency or collection cost claim. Timings are local descriptive measurements, not a guarantee.',

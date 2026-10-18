@@ -203,8 +203,22 @@ Descriptions come from this installation's public data and can be changed by mod
 
 ## Reproducible selective-query examples and timing
 
-`selective-query-examples.json` batches three bounded selections: the five least positive warehouse stocks, five recorded output rows joined to current workforce/storage, and output buckets grouped by resource. `dev/benchmark_selective_queries.py` checks each result against independent filter/join/group calculations on a preserved real copied-city snapshot and measures the local query engine without refreshing its timestamp. SELECTIVE_QUERY_VALIDATION.json records exact hashes, row counts and byte/timing measurements.
+`selective-query-examples.json` batches four bounded selections: the five least positive warehouse stocks, five recorded output rows joined to current workforce/storage, output buckets grouped by resource, and the largest positive populations in player-owned regions. `dev/benchmark_selective_queries.py` checks each result against independent filter/join/group calculations on a preserved real copied-city snapshot and measures the local query engine without refreshing its timestamp. SELECTIVE_QUERY_VALIDATION.json records exact hashes, row counts and byte/timing measurements.
 
 These are examples of reducing returned data, not a live performance guarantee. Timings exclude collection, file parsing, MCP transport and inference; the full snapshot also includes installed references. The grouped stored buckets are not guaranteed calendar-aligned daily production. A live MCP call still requires a fresh loaded game and proper coverage, even though this offline developer benchmark can inspect preserved evidence.
 
 See PRODUCTION_PERIODS.md for the source/binary review of stored production periods and the remaining exact-age limitation.
+
+## Campaign region population
+
+The world domain now exposes `regions[].population_total`, `population_coverage`, `player_owned`, `capital` and `area_world_tiles`. `population_by_race` is a flat table of `{region_id,race_id,population}` for the game's playable regional race counters, including zeros. Discover meanings with `describe_game_fields("world")` before using them. These are stored **regional** inhabitants; they are not the instantiated settlement census or a forecast. Population update timing can differ from the current observation time. A shared `race_id` establishes race identity, not interchangeable population scopes.
+
+For the five largest positive race populations in player-owned regions, with region names:
+
+```json
+{"include_ui_context":true,"queries":[{"source":{"domain":"world","path":"/population_by_race"},"joins":[{"source":{"domain":"world","path":"/regions"},"left_key":"/region_id","right_key":"/id","as":"region","kind":"inner"}],"where":{"and":[{"gt":[{"field":"/population"},0]},{"eq":[{"field":"/region/player_owned"},true]}]},"select":{"region":{"field":"/region/name"},"race":{"field":"/race_id"},"regional_inhabitants":{"field":"/population"}},"sort":[{"field":"/regional_inhabitants","direction":"desc"}],"limit":5}]}
+```
+
+Inspect `region_truncated`, `population_truncated`, `population_failed_regions` and each region's `population_coverage`. The region cap is 1,023; demographic reads accept at most 64 race entries per region and 10,000 rows in total, without splitting a region across that row cap. On a demographic getter failure or cap skip, its total is null and no partial race batch is emitted. This is not zero population. `capital` is a realm relationship, not a selected-region UI flag. `area_world_tiles` is neither settlement tiles nor farmland.
+
+WORLD_VALIDATION.json checks public-getter agreement and actual MCP paging/joining for a copied campaign; cap-exceeding mods and large-world performance remain untested.

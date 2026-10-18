@@ -17,6 +17,7 @@ The current build passed two actual in-game Pro turns: a selective state query a
 - Filter, project, join, group, aggregate, sort and paginate normalized snapshot data. Batched queries share one snapshot.
 - Eighteen explicitly partial domain collectors: population, resources, production, employment, services, housing, health, law, happiness, research, trade, diplomacy, military, world, map, entities, events and settings.
 - Per-room current recipe input/output rows and stored production quantities, joinable to employment and resources; explicit caps, mixed scopes and stored-bucket caveats. See [production evidence](PRODUCTION_VALIDATION.json).
+- Campaign region populations by playable race, joinable to region ownership, capital and area, with explicit caps and stored-count semantics. See [world evidence](WORLD_VALIDATION.json).
 - Research prerequisite relationships, per-currency next-level costs and point allocation through public getters; discover meanings before treating these as an unlock decision. See [core development evidence](CORE_VALIDATION.json) and [data coverage](DATA_COVERAGE.md).
 - Search resource, technology, stat, room and research-currency descriptions loaded by the game. The latest copied-save test produced 834 reference records, tagged with the exact version and active mods.
 - Search a small reviewed external corpus with direct links, author/authority, retrieval date and compatibility warnings. Whole-word relevance ranks first; version compatibility and official/developer authority break ties. An authority filter is available.

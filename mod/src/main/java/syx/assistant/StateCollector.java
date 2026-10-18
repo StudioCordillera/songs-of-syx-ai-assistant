@@ -165,6 +165,46 @@ public final class StateCollector {
             "truncated",truncated,"row_limit",2000,"scan_room_limit",10000,
             "reason","Current recipe only for public ROOM_PRODUCER_INSTANCE rooms. Stored ledger buckets are not refreshed by this observer; configured rates and recorded quantities are not output forecasts or a complete service/production schema.");
     }
+    /** Campaign regional counters, detached and bounded; never forces regional updates. */
+    private static Map<String,Object> worldData() {
+        List<Object> regions=new ArrayList<>(),population=new ArrayList<>(),failures=new ArrayList<>();
+        var active=world.WORLD.REGIONS().active();var races=world.region.RD.RACES().all;
+        boolean regionTruncated=false,populationTruncated=false;int failed=0;
+        for(var region:active) {
+            if(regions.size()>=1023){regionTruncated=true;break;}
+            var faction=region.faction();
+            Map<String,Object> row=object("id",region.index(),"name",region.info.name().toString(),
+                "x",region.cx(),"y",region.cy(),"faction_id",faction==null?null:faction.index(),
+                "player_owned",faction==GAME.player(),"besieged",region.besieged(),"capital",region.capitol(),
+                "area_world_tiles",region.info.area(),"population_total",null,"population_coverage","unavailable");
+            if(races.size()>64 || population.size()+races.size()>10000) {
+                populationTruncated=true;row.put("population_reason","Regional race scan or population-row limit reached; no population inferred");
+            } else try {
+                int total=world.region.RD.RACES().population.get(region);
+                List<Object> pending=new ArrayList<>();
+                for(var race:races)pending.add(object("region_id",region.index(),"race_id",race.race.key,"population",race.pop.get(region)));
+                population.addAll(pending);row.put("population_total",total);row.put("population_coverage","partial");
+            } catch(RuntimeException error) {
+                failed++;row.put("population_reason",error.getClass().getSimpleName());
+                if(failures.size()<10)failures.add(object("region_id",region.index(),"reason",error.getClass().getSimpleName()));
+            }
+            regions.add(row);
+        }
+        return object("width",world.WORLD.TWIDTH(),"height",world.WORLD.THEIGHT(),"regions",regions,
+            "population_by_race",population,"region_count_total",active.size(),"region_truncated",regionTruncated,
+            "region_limit",1023,"population_truncated",populationTruncated,"population_row_limit",10000,
+            "race_scan_limit",64,"population_failed_regions",failed,"population_failure_samples",failures,
+            "field_definitions",object(
+                "population_total",object("definition","Stored regional population counter, not the instantiated settlement citizen count or a forecast.",
+                    "unit","regional inhabitants","scope","campaign_world_regions","source","world.region.RD.RACES().population -> world/region/RData.java:get(Region)",
+                    "availability","Null when demographic reads fail or are skipped by a reported cap; not zero."),
+                "population_by_race",object("definition","Stored regional counts for public RDRaces.all entries (playable races in this installed build). Zero counts are retained; no hidden or non-playable race census is claimed.",
+                    "unit","regional inhabitants","scope","campaign_world_regions","source","world/region/pop/RDRace.java:pop -> RData.get(Region)",
+                    "relationships","region_id joins regions.id in the same observation. race_id is the installed Race.key; shared race identity does not make regional and settlement populations interchangeable.",
+                    "limits","At most 64 race entries per region and 10000 population rows; a region is never split across the row cap. Inspect region population_coverage and population_truncated/failed counts."),
+                "area_world_tiles",object("unit","world tiles","source","world/map/regions/RegionInfo.java:area()","definition","Stored area counted from region membership during map initialization; not settlement tiles or farmland area."),
+                "capital",object("source","world/map/regions/Region.java:capitol()","definition","This region is its realm capital; false when there is no realm. It is not a UI-selection flag.")));
+    }
     private StateCollector() {}
     public static Map<String,Object> object(Object... pairs) {
         Map<String,Object> m = new LinkedHashMap<>();
@@ -300,13 +340,8 @@ public final class StateCollector {
             }
             return object("factions",rows);
         }, "Current diplomatic stances; not treaties, relationship factors or hidden intentions.");
-        run(domains, "world", () -> {
-            List<Object> rows=new ArrayList<>();
-            for(world.map.regions.Region region: world.WORLD.REGIONS().active()) rows.add(object(
-                "id",region.index(),"name",region.info.name().toString(),"x",region.cx(),"y",region.cy(),
-                "faction_id",region.faction()==null?null:region.faction().index(),"besieged",region.besieged()));
-            return object("width",world.WORLD.TWIDTH(),"height",world.WORLD.THEIGHT(),"regions",rows);
-        }, "Region identities, owners and siege flags; not complete regional economy or map tiles.");
+        run(domains, "world", StateCollector::worldData,
+            "Bounded campaign region identity, ownership, capital/area and stored regional population counters; not a complete economy, settlement census, growth forecast or UI selection.");
         run(domains, "events", () -> {
             List<Object> definitions=new ArrayList<>();
             for(game.events.EVENTS.EventResource e: GAME.events().all()) definitions.add(e.key);
