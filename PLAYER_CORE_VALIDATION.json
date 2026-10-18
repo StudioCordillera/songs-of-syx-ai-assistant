@@ -1,0 +1,343 @@
+{
+  "passed": true,
+  "mod_jar_sha256": "5a1f3fa413e4776e9d7f03e7d3af306cae4ecd59a0b07b6bb8d9509c39e9d397",
+  "production_source_sha256": {
+    "syx/assistant/AssistantScript.java": "079b048597c373f88d8179d4f8e8fec576a82c5b13ad6c95fe6e672ba3722e3a",
+    "syx/assistant/ChatPanel.java": "3138d3e863ccb36ad5b6b37a7e1f3486dd2d8c1dc43ab469b26af714548d8437",
+    "syx/assistant/EntityReadRequest.java": "deb0f86cad28da1c8677394a4aeb26913b0c80b4ee90c08cb882bedbc11f8a03",
+    "syx/assistant/JsonWriter.java": "c525eb60d3224cab83ed3fd6b8594ec8652211f00bd947e873e1482f919e81dc",
+    "syx/assistant/StateCollector.java": "9051bdc9bfe283e60d7939a757198b527a4df21907dde58a10e85996e4baf498",
+    "syx/assistant/TileReadRequest.java": "1a192cde61a7e1bdefa170390c00b17c74573b9c41de71700ebea466411ad3c5",
+    "syx/assistant/UiContentCollector.java": "c0d20c7f9f2734a0bb625427875f06bfcd07edb20611248b39b6e8f480ef5a48",
+    "syx/assistant/UiContextCollector.java": "439604436fc98c478ade47682775ee55edb1688d76078e0602f7ab78db187157"
+  },
+  "python_source_sha256": {
+    "syx_mcp.py": "42b92b7af68558136a3aea7355459826c0de7e23029258a68580bf86b769d2e8",
+    "syx_knowledge.py": "7947aac1cea46f450fe56ee91efa11e9871f86085a90939f0d0c2007327896c0",
+    "syx_query.py": "252ff9199e7ec566f0c0a91ea0afb0a8557f5ce51ef62be64abd6216a113b80e",
+    "syx_api_support.py": "d6058456dcd5468c025bdc04975042476db8d82c7362ce1b7249969607e12ff6",
+    "syx_api_manifest.py": "85299e12294ace20bcda789f5558b197d0173707ae96ec3870cd352863a3c356",
+    "syx_live.py": "a7c5d5b457eeb2b8f8240079aed5183a736e6dee9f5c3c140122ade0bb21616a",
+    "syx_capture.py": "fb27ec6c9278992d668bb54c85b34f17c625329a8d6f409df7fba1e3e56bcc55",
+    "syx_tiles.py": "66d47fba905f9ab1ca5c13c60c314b5c4542fe09a36e74320495351e263e8493",
+    "syx_chat_store.py": "7344b35476096b680e0cf85958f97596b3c9cfe843072202f30e357b97dedbe5",
+    "syx_deepseek.py": "d58e21dbcfdeb1ef0f411dfbb4c0267234bdc5cc185e00d300821725ca1885e3",
+    "syx_chat.py": "42af11ba1c03bb54f21549b6b24d456079fdc0a76948a22f263cdf5d50f423f1",
+    "syx_chat_service.py": "8e311cc51bf686d70d466f7a31863b9cbf1905231066316eb492f2c7bd074b6b",
+    "syx_claude.py": "3a850a645907f27b1a9cb15c3c5244b96b2da97d5d0dc37f5cd7d6f708cf92a8",
+    "syx_claude_worker.py": "ab6638b2c4ef3a4a1548fde1c0739a48f4d47e468494dd7444019f3f330dea38"
+  },
+  "checks": {
+    "production": {
+      "passed": true,
+      "game_version": "0.71.44",
+      "flow_rows_checked": 35,
+      "producer_rooms_checked": 16,
+      "public_getter_parity": true,
+      "input_and_output_cases": true,
+      "room_employment_resource_join": true,
+      "mixed_scopes_reported": true,
+      "installed_reference_link": true,
+      "stored_bucket_semantics_discoverable": true,
+      "limits": [
+        "Paused copied city only. No forecast, complete recipe unlock schema, all room types or large-city performance established.",
+        "2000 flow-row/10000 room-scan caps are reported; a cap-exceeding city is not exercised by this fixture.",
+        "Stored buckets are not refreshed by observer and can retain older values; day accumulator includes fractional carry."
+      ]
+    },
+    "scenes": {
+      "passed": true,
+      "checks": {
+        "city": {
+          "passed": true,
+          "view": "settlement",
+          "scene_kind": "city",
+          "on_demand_read_available": true,
+          "tile_read_available": true,
+          "production_coverage": "partial",
+          "production_room_coverage": "partial"
+        },
+        "settlement_battle": {
+          "passed": true,
+          "view": "settlement_battle",
+          "scene_kind": "city",
+          "on_demand_read_available": true,
+          "tile_read_available": true,
+          "production_coverage": "partial",
+          "production_room_coverage": "partial"
+        },
+        "city_restored": {
+          "passed": true,
+          "view": "settlement",
+          "scene_kind": "city",
+          "on_demand_read_available": true,
+          "tile_read_available": true,
+          "production_coverage": "partial",
+          "production_room_coverage": "partial"
+        },
+        "battle_deployment": {
+          "passed": true,
+          "view": "battle",
+          "scene_kind": "battlefield",
+          "on_demand_read_available": true,
+          "tile_read_available": true,
+          "production_coverage": "partial",
+          "production_room_coverage": "partial"
+        },
+        "battle_menu": {
+          "passed": true,
+          "view": "battle",
+          "scene_kind": "battlefield",
+          "on_demand_read_available": true,
+          "tile_read_available": true,
+          "production_coverage": "partial",
+          "production_room_coverage": "partial"
+        },
+        "city_reloaded": {
+          "passed": true,
+          "view": "settlement",
+          "scene_kind": "city",
+          "on_demand_read_available": true,
+          "tile_read_available": true,
+          "production_coverage": "partial",
+          "production_room_coverage": "partial"
+        },
+        "world_generation": {
+          "passed": true,
+          "view": "world_generation",
+          "scene_kind": "unavailable",
+          "on_demand_read_available": false,
+          "tile_read_available": false,
+          "production_coverage": "unavailable",
+          "production_room_coverage": "unavailable"
+        },
+        "terrain_generated": {
+          "passed": true,
+          "view": "world_generation",
+          "scene_kind": "unavailable",
+          "on_demand_read_available": false,
+          "tile_read_available": false,
+          "production_coverage": "unavailable",
+          "production_room_coverage": "unavailable"
+        }
+      },
+      "missing": [],
+      "limits": [
+        "Battle is a generated deployment scene, not active fighting or a battle conclusion.",
+        "Generation checks initial setup and public terrain generation; exact private wizard step and full political-world completion remain unvalidated."
+      ]
+    },
+    "context": {
+      "passed": true,
+      "game_version": "0.71.44",
+      "catalog_size": 834,
+      "new_categories_checked": {
+        "room": 111,
+        "research_currency": 3
+      },
+      "public_title_description_hash_parity": true,
+      "actual_mcp_exact_id_and_category_lookup": true,
+      "version_mod_provenance": true,
+      "employment_production_currency_reference_links": true,
+      "ui_context_regression": {
+        "passed": true,
+        "checks": {
+          "settlement": {
+            "passed": true,
+            "snapshot_fresh": true,
+            "ui_context_available": true
+          },
+          "subject": {
+            "passed": true,
+            "snapshot_fresh": true,
+            "ui_context_available": true
+          },
+          "game_menu": {
+            "passed": true,
+            "snapshot_fresh": true,
+            "ui_context_available": true
+          },
+          "confirmation": {
+            "passed": true,
+            "snapshot_fresh": true,
+            "ui_context_available": true
+          },
+          "world": {
+            "passed": true,
+            "snapshot_fresh": true,
+            "ui_context_available": true
+          },
+          "management": {
+            "passed": true,
+            "snapshot_fresh": true,
+            "ui_context_available": true
+          },
+          "encyclopedia": {
+            "passed": true,
+            "snapshot_fresh": true,
+            "ui_context_available": true
+          },
+          "loading_overlay": {
+            "passed": true,
+            "snapshot_fresh": true,
+            "ui_context_available": true
+          },
+          "room": {
+            "passed": true,
+            "snapshot_fresh": true,
+            "ui_context_available": true
+          },
+          "reloaded": {
+            "passed": true,
+            "snapshot_fresh": true,
+            "ui_context_available": true
+          },
+          "main_menu": {
+            "passed": true,
+            "snapshot_fresh": false,
+            "ui_context_available": false
+          }
+        },
+        "missing": [],
+        "limits": [
+          "Main menu is inferred only as unknown/stale after updates stop; no menu identification API established.",
+          "Room references identify blueprint help, not a selected instance or a complete tooltip.",
+          "Loading-overlay flag test is separate from the real save reload transition.",
+          "Battle, world generation and other menu subpages remain untested."
+        ]
+      },
+      "limits": [
+        "Descriptions are installed data; active mods can override them, and empty descriptions do not establish mechanics.",
+        "Room context links blueprint help, not a UI-selected instance, tooltip or complete topmost panel.",
+        "Eleven sampled UI/lifecycle phases, with main menu unknown only after expiry; not all menus or all game states."
+      ]
+    },
+    "extended": {
+      "passed": true,
+      "checks": {
+        "city": {
+          "passed": true,
+          "view": "settlement",
+          "known_nodes": 0,
+          "truncated": false
+        },
+        "popup": {
+          "passed": true,
+          "view": "settlement",
+          "known_nodes": 10,
+          "truncated": false
+        },
+        "popup_secondary": {
+          "passed": true,
+          "view": "settlement",
+          "known_nodes": 10,
+          "truncated": false
+        },
+        "section": {
+          "passed": true,
+          "view": "settlement",
+          "known_nodes": 10,
+          "truncated": false
+        },
+        "content_budget": {
+          "passed": true,
+          "view": "settlement",
+          "known_nodes": 80,
+          "truncated": true
+        },
+        "content_depth": {
+          "passed": true,
+          "view": "settlement",
+          "known_nodes": 7,
+          "truncated": true
+        },
+        "content_closed": {
+          "passed": true,
+          "view": "settlement",
+          "known_nodes": 0,
+          "truncated": false
+        },
+        "text_input": {
+          "passed": true,
+          "view": "settlement",
+          "known_nodes": 0,
+          "truncated": false
+        },
+        "full_screen_prompt": {
+          "passed": true,
+          "view": "settlement",
+          "known_nodes": 0,
+          "truncated": false
+        },
+        "city_reloaded": {
+          "passed": true,
+          "view": "settlement",
+          "known_nodes": 0,
+          "truncated": false
+        },
+        "world_editor": {
+          "passed": true,
+          "view": "world_editor",
+          "known_nodes": 0,
+          "truncated": false
+        },
+        "after_world_editor": {
+          "passed": true,
+          "view": "settlement",
+          "known_nodes": 0,
+          "truncated": false
+        },
+        "battle_setup": {
+          "passed": true,
+          "view": "battle_setup",
+          "known_nodes": 0,
+          "truncated": false
+        },
+        "after_battle_setup": {
+          "passed": true,
+          "view": "settlement",
+          "known_nodes": 0,
+          "truncated": false
+        },
+        "battle_deployment": {
+          "passed": true,
+          "view": "battle",
+          "known_nodes": 0,
+          "truncated": false
+        },
+        "after_retreat": {
+          "passed": true,
+          "view": "settlement",
+          "known_nodes": 0,
+          "truncated": false
+        }
+      },
+      "missing": [],
+      "limits": [
+        "Content tests use public game widgets built by the isolated fixture, not every native game dialog.",
+        "Only three exposed roots and mapped widget types; no complete panel tree, final rendered visibility or global overlay order.",
+        "Retreat is invoked from generated deployment. Active combat and victory/defeat UI are not validated.",
+        "Editor activation is checked on a copied completed world, not every editing workflow or full new-world generation."
+      ]
+    }
+  },
+  "inference_calls": 0,
+  "fixture_source_sha256": {
+    "mod/tests/ContextScenario.java": "d401a54e62c489c898cbd9d69045f971eba7c743caecfc996268bb6e98593d51",
+    "mod/tests/ExtendedContextScenario.java": "5a0647a114bae5c14fbe2e943ece2016f0f5e015156cc385b82beaf4a65d8a0c",
+    "mod/tests/LiveSmoke.java": "3ef059a1e3c43bfa901cc598630679a6b3c50e1039f52a7b10563c18cac20f9b",
+    "mod/tests/ProductionScenario.java": "4647df2f053d2a51cb52437f6755d4fc4f77807ceb61fa360c34bae5d3590193",
+    "mod/tests/SceneScenario.java": "ae623566198d96c324ae911d14c9100da0ab73a6e7c49f1c877c675ec60b6a55"
+  },
+  "verifier_source_sha256": {
+    "dev/verify_production.py": "4d29900967c794c5a4284ab302fb82d9e37ac6d3171d11199c74e0eb768b99ed",
+    "dev/verify_scenes.py": "7599fc2722ab0610a23d379f357e03a79b822e1004c34f70f208d7f8ee121356",
+    "dev/verify_installed_help.py": "531efe504e65bebadad112c305094a97b1c055993291056fa2b14fbaaf728c1c",
+    "dev/verify_extended_context.py": "ce03cf795f7be8c1e6d6a9d318752b045e0b4cabaef66554dab1fdc9513102b3"
+  },
+  "limits": [
+    "Finite sampled scenarios and copied city; no exhaustive menu/keyboard/display or large-city acceptance.",
+    "Main-menu identity is unknown after expiry, not positively detected. Current simple chat stays closed during core scene checks."
+  ],
+  "fixture_hash_scope": "Only fixtures exercised by these four core scenarios; unrelated compiled fixtures are excluded."
+}

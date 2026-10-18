@@ -3,6 +3,7 @@ package syx.assistant;
 import java.nio.file.*;
 import java.util.*;
 import game.GAME;
+import init.sprite.UI.UI;
 import snake2d.CORE;
 import snake2d.MButt;
 import snake2d.Mouse;
@@ -36,12 +37,21 @@ public final class ChatUiScenario {
                         GInput input=null;
                         for(RENDEROBJ row:panel.section().elements())if(row instanceof GInput)input=(GInput)row;
                         require(input!=null,"No composer");
+                        require("simple".equals(panel.context().get("interface")),"Expected player interface");
+                        require("deepseek-v4-pro".equals(panel.context().get("model")),"Expected Pro chat");
+                        require(input.text().length()+input.text().spaceLeft()==240,"Expected 240 usable characters");
+                        input.text().clear().add("W".repeat(240));
+                        require(input.text().length()==240,"Maximum-length question was truncated");
+                        require(UI.FONT().S.getDim(input.text().toString()+"|",780).y()<=input.body().height()-12,"Maximum-width question overflows composer");
                         press(input);require(Mouse.currentClicked==input,"Input did not receive focus");
                         input.text().clear().add("Fixture question; no credentials configured");
                         int count=panel.section().elements().size();
                         press(panel.section().elements().get(count-2));phase=3;break;
                     case 3:
                         require(firstChat.equals(panel.context().get("chat_id")),"Chat identity changed");
+                        String notice="";
+                        for(String line:Files.readAllLines(directory.resolve("chat-ui.txt")))if(line.startsWith("notice="))notice=new String(Base64.getDecoder().decode(line.substring(7)),java.nio.charset.StandardCharsets.UTF_8);
+                        require(notice.contains("DeepSeek API key is missing"),"Missing-key refusal was not surfaced");
                         press(panel.section().elements().get(0));phase=4;break;
                     case 4:
                         require(Boolean.FALSE.equals(panel.context().get("panel_open")),"Panel did not close");
@@ -59,8 +69,8 @@ public final class ChatUiScenario {
                         Files.copy(directory.resolve("snapshot.json"),directory.resolve("chat-observation.json"),StandardCopyOption.REPLACE_EXISTING);
                         Files.writeString(directory.resolve("chat-gui-validation.json"),JsonWriter.encode(Map.of(
                             "passed",true,"checks",List.of("public GUI own-panel click consumed","open and close","create chat via file coordinator",
-                            "composer focus","missing-key send rejection","reopen chat identity","world and city panel persistence"),
-                            "limitations",List.of("No real provider inference","No physical keyboard test","No full menu/modal/reload coverage","Experimental opt-in panel"))));
+                            "composer focus","240 maximum-width characters fit wrapped input","simple Pro interface","missing-key send rejection","reopen chat identity","world and city panel persistence"),
+                            "limitations",List.of("No real provider inference","No physical keyboard test","No full menu/modal/reload coverage","Default simple player panel"))));
                         System.err.println("CHAT GUI TEST PASS");CORE.annihilate();return;
                 }
                 last=System.currentTimeMillis();

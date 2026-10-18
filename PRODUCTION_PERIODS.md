@@ -1,0 +1,11 @@
+# Production history interpretation
+
+The mapped `previous_day_units` field is the game's stored previous-day bucket. It does not independently establish output during the previous calendar day. `year_units` and `previous_year_units` are likewise stored quantities; the mod does not refresh or forecast them.
+
+The source/binary review in [PRODUCTION_PERIOD_REVIEW.json](PRODUCTION_PERIOD_REVIEW.json) checks the installed 0.71.44 pair without executing game classes. The public `IndustryResource.day` accessor reads stored float data. Rollover occurs separately inside `RoomConsumptionAbs.updateRoom`, which mutates the room's records. At rollover, the integer portion of the day accumulator becomes the previous-day bucket and is subtracted from the accumulator, preserving a fractional remainder. A conditional year-boundary branch copies and clears the year bucket. These statements are implementation evidence for the pinned build, not a documented stable mod contract.
+
+The inspected rollover marker is protected. It is also a four-bit marker rather than a publicly exposed absolute timestamp. The public `productionData()` array supplies opaque backing storage, not a documented age/layout contract. The adapter does not decode that storage, access the protected marker, or call `updateRoom` to make an observation appear current. Exact bucket age remains unknown through the inspected APIs. This finding does not prove that another public route cannot exist.
+
+For player advice, describe a value as recorded production/consumption, keep its scene and observation provenance, and avoid labeling it a guaranteed daily throughput. Do not divide it by current employees to infer productivity without establishing compatible periods, worker history and modifiers. A zero bucket does not by itself establish an idle, broken or unsupplied room. Compare workforce, active status, current recipe, resource storage and the appropriate installed help; explain what remains unobserved.
+
+The existing `field_definitions` returned by `describe_game_fields(domain="production")` carries the stored-period and fractional-carry caveat. The developer review adds precise source/binary anchors without changing runtime behavior. Large-city cap/performance tests and a controlled missed-day/year-rollover fixture remain open.

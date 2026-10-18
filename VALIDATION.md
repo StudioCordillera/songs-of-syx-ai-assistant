@@ -122,3 +122,9 @@ The external starter corpus now has nine original summaries. A freshly reviewed 
 ## Simplified DeepSeek Pro player checkpoint
 
 USER_TEST_VALIDATION.json pins the compiled mod, all production Java/Python hashes and two completed real Pro turns in an isolated copied city. Own-widget controls verified simple mode, hidden developer buttons, a wrapped 792-pixel composer and 240 usable characters; physical keyboard and all display scales were not tested. Three selected rows and retrieved citation URLs were independently checked in private history. The bundle freshness check and installer rollback tests complement this scoped game check. Older scene/transition reports retain their historical hashes; they do not establish all-menu behavior for the new default chat panel.
+
+## Current player core revalidation
+
+PLAYER_CORE_VALIDATION.json pins the shipped player JAR and unchanged production sources to four completed copied-save fixture groups: production getter/MCP equality, eight scene phases, eleven UI/lifecycle phases and 834 installed references, plus extended public popup/content/editor/retreat checks. No inference was used. The default simple chat stayed closed during these core checks, so this does not establish chat usability over every modal. PRODUCTION_PERIOD_REVIEW.json adds static source/binary period semantics; SELECTIVE_QUERY_VALIDATION.json records independent bounded filter/join/group parity and descriptive offline timing. All three retain explicit limits.
+
+An additional own-widget check in USER_TEST_VALIDATION.json confirms a 240-character maximum-width sample fits the wrapped composer, focus clears on close, selection survives reopening, missing-key sends are refused without creating provider turns, and the panel persists across city/world transitions. It does not simulate physical keyboard input.

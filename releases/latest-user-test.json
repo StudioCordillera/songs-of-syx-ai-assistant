@@ -1,7 +1,7 @@
 {
   "builder_source_sha256": "2c4f12d389e254f85d8996383b25ceacac01a1b49348d0e1b89849c8f694f40b",
   "packager_source_sha256": "58e88da6eae9ed17b86f42472c1b4c3b548922f57b712c28a6ad8918774d5ce8",
-  "built_at": "2026-10-18T07:02:52.831247+00:00",
+  "built_at": "2026-10-18T07:11:58.292718+00:00",
   "model": "deepseek-v4-pro",
   "platform": "Linux",
   "game_version": "0.71.44",
@@ -21,7 +21,7 @@
     "syx_chat_service.py": "8e311cc51bf686d70d466f7a31863b9cbf1905231066316eb492f2c7bd074b6b",
     "syx_claude.py": "3a850a645907f27b1a9cb15c3c5244b96b2da97d5d0dc37f5cd7d6f708cf92a8",
     "syx_claude_worker.py": "ab6638b2c4ef3a4a1548fde1c0739a48f4d47e468494dd7444019f3f330dea38",
-    "start-chat.sh": "fcc776cc46c693acab0a6718b90398a7a184b6b30dce2f45514407c6f9951ad3",
+    "start-chat.sh": "2586bf71939affcad88947dc9c17c8104172436d9f92ca46dc85c0561bb8e4ec",
     "player.py": "545e93ff99b7018fd1726acb53766e15bf1d43403572d9b96db2d741e8067604",
     "install-mod.py": "55a24b0b3c85adf2e42181633bea832fb86bc6a10a671e1cf57a3c0d760d2d92",
     "requirements.txt": "8962ac1ba6867e3cd89e03fe7780ca36f0856c2a7263e6d8bbd4b0e4b085c7c2",
@@ -80,7 +80,7 @@
     ],
     "game_version": "0.71.44",
     "game_jar_sha256": "fe0137c05408e5ee9e31f06fc44fe37a5d4372d9c985b280f0852d1347c0224b",
-    "python_tests_passed": 145,
+    "python_tests_passed": 146,
     "public_production_members": 314,
     "non_public_production_members": 0,
     "native_geometry_checks": {
@@ -100,9 +100,33 @@
       "installer_copy_isolated_profile": true,
       "installer_copy_local_profile": true,
       "provided_key_literal_absent_from_archive": true,
-      "installer_copy_failure_rollback_unit_test": true
+      "installer_copy_failure_rollback_unit_test": true,
+      "dependency_install_retry_after_failure_unit_test": true
+    },
+    "own_widget_focus_and_wrapping": {
+      "limitations": [
+        "No real provider inference",
+        "No physical keyboard test",
+        "No full menu/modal/reload coverage",
+        "Default simple player panel"
+      ],
+      "passed": true,
+      "checks": [
+        "public GUI own-panel click consumed",
+        "open and close",
+        "create chat via file coordinator",
+        "composer focus",
+        "240 maximum-width characters fit wrapped input",
+        "simple Pro interface",
+        "missing-key send rejection",
+        "reopen chat identity",
+        "world and city panel persistence"
+      ],
+      "inference_calls": 0,
+      "no_provider_turns_created": true,
+      "fixture_sha256": "93a3984a6e6563247564190711d10861c69a3c7a6631a3bcf7ed0e7fc9f047de"
     }
   },
   "run_instructions": "README.txt",
-  "download_sha256": "13162cd189b0406b833f39e99b275403cfd34ff1cde0556f3fb5ec5b9dda8d16"
+  "download_sha256": "8c20abbd113e9a5f96ba4fd7ebff3b8cc564e05d5cc1c550f301975e54519a9a"
 }

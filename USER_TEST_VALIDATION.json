@@ -49,7 +49,7 @@
   ],
   "game_version": "0.71.44",
   "game_jar_sha256": "fe0137c05408e5ee9e31f06fc44fe37a5d4372d9c985b280f0852d1347c0224b",
-  "python_tests_passed": 145,
+  "python_tests_passed": 146,
   "public_production_members": 314,
   "non_public_production_members": 0,
   "native_geometry_checks": {
@@ -69,6 +69,30 @@
     "installer_copy_isolated_profile": true,
     "installer_copy_local_profile": true,
     "provided_key_literal_absent_from_archive": true,
-    "installer_copy_failure_rollback_unit_test": true
+    "installer_copy_failure_rollback_unit_test": true,
+    "dependency_install_retry_after_failure_unit_test": true
+  },
+  "own_widget_focus_and_wrapping": {
+    "limitations": [
+      "No real provider inference",
+      "No physical keyboard test",
+      "No full menu/modal/reload coverage",
+      "Default simple player panel"
+    ],
+    "passed": true,
+    "checks": [
+      "public GUI own-panel click consumed",
+      "open and close",
+      "create chat via file coordinator",
+      "composer focus",
+      "240 maximum-width characters fit wrapped input",
+      "simple Pro interface",
+      "missing-key send rejection",
+      "reopen chat identity",
+      "world and city panel persistence"
+    ],
+    "inference_calls": 0,
+    "no_provider_turns_created": true,
+    "fixture_sha256": "93a3984a6e6563247564190711d10861c69a3c7a6631a3bcf7ed0e7fc9f047de"
   }
 }

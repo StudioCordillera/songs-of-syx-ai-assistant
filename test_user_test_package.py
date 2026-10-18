@@ -47,3 +47,24 @@ def test_mod_installer_rolls_back_copy_failure_without_touching_saves(tmp_path,m
     monkeypatch.setattr(module.shutil,'copytree',fail)
     with pytest.raises(OSError):module.main()
     assert (old/'old.txt').read_text()=='working' and save.read_text()=='untouched'
+
+
+def test_launcher_retries_dependencies_after_interrupted_first_setup(tmp_path):
+    import subprocess
+    bundle=tmp_path/'bundle';(bundle/'.venv/bin').mkdir(parents=True)
+    (bundle/'start-chat.sh').write_bytes((release.ROOT/'user_test/start-chat.sh').read_bytes())
+    (bundle/'requirements.txt').write_text('fixture dependencies')
+    python=bundle/'.venv/bin/python'
+    python.write_text("""#!/bin/sh
+if [ \"$1\" = player.py ]; then test -f dependencies-ready; exit $?; fi
+if [ \"$1\" = -m ]; then
+    if [ ! -f attempted ]; then touch attempted; exit 1; fi
+    touch dependencies-ready; exit 0
+fi
+exit 2
+""".replace('\\"','"'))
+    python.chmod(0o755)
+    assert subprocess.run(['sh',str(bundle/'start-chat.sh'),'--check']).returncode==1
+    assert not (bundle/'dependencies-ready').exists()
+    assert subprocess.run(['sh',str(bundle/'start-chat.sh'),'--check']).returncode==0
+    assert (bundle/'dependencies-ready').exists()

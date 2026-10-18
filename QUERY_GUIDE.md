@@ -200,3 +200,11 @@ For five output rows with current employment and warehouse storage in the same o
 Employment `reference_id`, production `room_reference_id`, research currency `reference_id` and supported `ui_context.open_room_blueprints[].reference_id` link directly to the installed help catalog. Pass the returned ID to `search_game_references`, optionally restricting `category` to `room` or `research_currency`. IDs beginning `room:` identify blueprint descriptions; they do not resolve an exact selected instance or hidden tooltip. A null room reference means no mapped description was established for that blueprint type.
 
 Descriptions come from this installation's public data and can be changed by mods or translation. Empty text is not evidence that a mechanic does not exist. Keep the returned game-version/mod provenance with the citation. Reference lookup is bounded to 64 KiB and reports truncation without cutting individual citation records. The latest copied-city run verifies 111 room and three currency titles/descriptions against public-getter hashes, plus the eleven sampled UI/lifecycle phases in INSTALLED_HELP_VALIDATION.json.
+
+## Reproducible selective-query examples and timing
+
+`selective-query-examples.json` batches three bounded selections: the five least positive warehouse stocks, five recorded output rows joined to current workforce/storage, and output buckets grouped by resource. `dev/benchmark_selective_queries.py` checks each result against independent filter/join/group calculations on a preserved real copied-city snapshot and measures the local query engine without refreshing its timestamp. SELECTIVE_QUERY_VALIDATION.json records exact hashes, row counts and byte/timing measurements.
+
+These are examples of reducing returned data, not a live performance guarantee. Timings exclude collection, file parsing, MCP transport and inference; the full snapshot also includes installed references. The grouped stored buckets are not guaranteed calendar-aligned daily production. A live MCP call still requires a fresh loaded game and proper coverage, even though this offline developer benchmark can inspect preserved evidence.
+
+See PRODUCTION_PERIODS.md for the source/binary review of stored production periods and the remaining exact-age limitation.

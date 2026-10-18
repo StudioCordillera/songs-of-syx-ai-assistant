@@ -41,3 +41,7 @@ See QUERY_GUIDE.md for exact limits and query syntax. IDs must share a documente
 4. Broaden UI-selected object/context mappings only through appropriate public accessors; preserve unavailable states when accessors do not exist.
 
 Each mapping needs source semantics, compiler/public access verification, bounded detached output, scene applicability, copied-game getter checks and a small agent-facing selection example. The public declaration catalog is a discovery aid; it does not automatically expose members or count supported variables.
+
+## Stored production periods
+
+[Production-period review](PRODUCTION_PERIODS.md) establishes the pinned source/binary rollover behavior and the absence of an exact public age getter in the inspected classes. The protected marker and opaque storage are not used by the adapter. Existing stored-bucket caveats remain required; this review does not convert a bucket into a calendar-aligned rate.

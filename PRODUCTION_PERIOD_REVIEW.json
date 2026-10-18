@@ -1,0 +1,70 @@
+{
+  "passed": true,
+  "game_jar_sha256": "fe0137c05408e5ee9e31f06fc44fe37a5d4372d9c985b280f0852d1347c0224b",
+  "source_archive_sha256": "a3fc2aa9f4be31aec0616a5030a656ac49a6011343b7e91395c7bac0b9dfb0a5",
+  "method": "Selected shipped-source and javap reference/control-flow review; no game execution, reflection or private runtime access. Not complete binary/source equivalence.",
+  "source_evidence": {
+    "settlement/room/industry/module/consumption/RoomConsumptionAbs.java": {
+      "sha256": "d253d93d2714a83176e8ae498ab8f5a200103a371c44a325cfd8f0d34aa73756",
+      "anchors": [
+        {
+          "line": 41,
+          "kind": "protected_day_marker"
+        },
+        {
+          "line": 68,
+          "kind": "mutating_rollover"
+        },
+        {
+          "line": 75,
+          "kind": "previous_day_write"
+        },
+        {
+          "line": 76,
+          "kind": "fractional_carry_preserved"
+        },
+        {
+          "line": 78,
+          "kind": "previous_year_write"
+        }
+      ]
+    },
+    "settlement/room/industry/module/IndustryResource.java": {
+      "sha256": "41e3b5ae825e8654c3d544dab70b61be6ce474bf2bf6eb83c0d147f8484a27db",
+      "anchors": []
+    },
+    "settlement/room/industry/module/ROOM_IDATA_INSTANCE.java": {
+      "sha256": "2ad195cc069d507419037369ef9853c3c1363a681f07a75dad6dafeca183d874",
+      "anchors": [
+        {
+          "line": 7,
+          "kind": "opaque_storage_contract"
+        }
+      ]
+    },
+    "util/data/DataOSimple.java": {
+      "sha256": "af813bbaf8a3f8e256cc097056b92e022c67e7dd91c3eefe4025ecde2f5efdbc",
+      "anchors": [
+        {
+          "line": 337,
+          "kind": "float_read_no_rollover"
+        }
+      ]
+    }
+  },
+  "binary_fingerprints": {
+    "rollover": "da5fae9130c9b4e8f41067fbfa3c092d563a31984156eca65f0232dd844a5978",
+    "float_getter": "f85f3c7ee3b5ac120de6506107f8d80efcdb2d5d0055c7c2108095f928dee668"
+  },
+  "conclusions": [
+    "Day rollover is a mutator guarded by a four-bit day marker, not performed by the public day float getter.",
+    "Rollover copies the integer part of the day accumulator to the previous-day bucket and subtracts it, retaining the fractional remainder.",
+    "Year rollover is conditional on a year-boundary test inside day rollover; the observer does not call this mutator.",
+    "The marker is protected, not an established public exact-age getter. The opaque public productionData array does not document its layout or provide an age contract.",
+    "previous_day_units labels a stored bucket, not independently verified calendar-yesterday output. Exact bucket age remains unavailable through the inspected public APIs."
+  ],
+  "limits": [
+    "Static review of these classes on the pinned game only; not a proof that no other public getter exists.",
+    "No delayed/missed-day/year-rollover runtime fixture or full production forecast established."
+  ]
+}

@@ -1,0 +1,34 @@
+{
+  "passed": true,
+  "method": "Offline QueryEngine only, on a preserved real snapshot. No game or inference calls.",
+  "game_version": "0.71.44",
+  "source_snapshot_sha256": "f63fdd4c29432c87eb5f974b553494260d8ba43744d5a7911483fd3be0bde7de",
+  "source_observed_at": "2026-10-18 07:01:02.431458+00:00",
+  "query_spec_sha256": "58aafac21a15a1dc1b1a4a12a32241c66c411ac0b07fbed3fcaf134092466f5d",
+  "source_sha256": {
+    "syx_query.py": "252ff9199e7ec566f0c0a91ea0afb0a8557f5ce51ef62be64abd6216a113b80e",
+    "syx_mcp.py": "42b92b7af68558136a3aea7355459826c0de7e23029258a68580bf86b769d2e8",
+    "dev/benchmark_selective_queries.py": "ca2be73842fc492ede3d9856c2a99bf61bc3160ba917f004751e402efa438bf3"
+  },
+  "independent_filter_join_aggregate_parity": true,
+  "query_count": 3,
+  "returned_row_counts": [
+    5,
+    5,
+    13
+  ],
+  "snapshot_bytes": 709613,
+  "selected_results_bytes": 2710,
+  "repetitions": 101,
+  "local_elapsed_ms": {
+    "median": 0.845,
+    "p95": 1.063,
+    "max": 1.865
+  },
+  "limits": [
+    "One copied city, no large-city latency or collection cost claim. Timings are local descriptive measurements, not a guarantee.",
+    "Selected byte count includes query result metadata but excludes outer MCP/status/UI context envelopes; snapshot contains installed references too.",
+    "Recorded output sums combine stored buckets with unknown exact age; no calendar alignment, productivity or future throughput claim.",
+    "Offline engine timing does not establish live API availability or refresh stale data."
+  ]
+}
