@@ -50,3 +50,7 @@ For the DeepSeek profile, Claude Code is the MCP/tool client and DeepSeek suppli
 ## Native chat development implementation
 
 A [native DeepSeek transport, shared conversation/history engine and opt-in panel](CHAT_BACKEND.md) now exist. Authenticated DeepSeek API and Claude subscription flows now pass in separate chats through that interface. Claude API is implemented with offline/missing-key tests but lacks a real Anthropic key test. OpenAI and in-game account setup remain pending. See CHAT_VALIDATION.json for current evidence.
+
+## Prepared OpenAI connection
+
+Independent PKCE/identity/permission validation and a mocked Responses transport now exist. The official profile/plan grant was reached but has not been approved/completed. No OpenAI token or inference success is claimed. [OPENAI_CONNECTION.md](OPENAI_CONNECTION.md) records implementation limits and remaining account/model/UI work.

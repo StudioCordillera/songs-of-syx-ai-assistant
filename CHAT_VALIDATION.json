@@ -3,7 +3,7 @@
   "passed": true,
   "implementation": "Experimental shared in-game chat: DeepSeek API and Claude subscription",
   "python_tests": {
-    "passed": 115
+    "passed": 134
   },
   "authenticated_providers": {
     "deepseek": {
@@ -214,5 +214,11 @@
     "syx_claude_worker.py": "ab6638b2c4ef3a4a1548fde1c0739a48f4d47e468494dd7444019f3f330dea38",
     "syx_mcp.py": "2de9db040e478790b6f85570315cce2e60ca70802c76febda292e7b4fcaa3d2b",
     "syx_query.py": "252ff9199e7ec566f0c0a91ea0afb0a8557f5ce51ef62be64abd6216a113b80e"
+  },
+  "openai_preparation": {
+    "authenticated_inference_tested": false,
+    "sign_in_security_tests": 11,
+    "mocked_transport_tests": 8,
+    "browser_grant_approved": false
   }
 }

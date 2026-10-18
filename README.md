@@ -61,3 +61,5 @@ Required provider expansion: Claude subscription, Claude API and DeepSeek API, a
 0.12.0 adds bounded spatial queries for terrain, floors, coordinate-aware rooms, minerals and path flags. Request a rectangle, combine fixed filters and project just the needed groups with `query_live_tiles`; read the meanings and limits in QUERY_GUIDE.md. All domains remain partial.
 
 **Required player interface:** every supported subscription/API option must provide the same [in-game chat client and session/chat history](IN_GAME_CHAT.md). DeepSeek needs a first-class API path in that interface; external client profiles are development aids. The chat UI and persistent logs are planned requirements and are not implemented in 0.12.0.
+
+OpenAI subscription sign-in and transport are [prepared separately](OPENAI_CONNECTION.md); final account-access approval and authenticated integration remain pending.
