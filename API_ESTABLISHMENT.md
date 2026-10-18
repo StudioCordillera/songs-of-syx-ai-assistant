@@ -5,7 +5,7 @@ This report establishes what can be verified within the user's required in-proce
 ## Evidence levels
 
 1. **Documented script contract:** the shipped semi-official script guide and SCRIPT interface describe script creation, updates and persistence callbacks. They do not document every game statistic or menu.
-2. **Source-verified public API:** Java compiler attribution resolves each game member referenced by production mod code. The current inventory contains 358 members, all public. Of these, 357 match declaring type, name, arity and simple parameter types in shipped source; the remaining member is the compiler-generated enum `values()` method. Seven referenced members have their own Javadoc blocks; Javadoc presence does not establish semantics or stability. Script override contracts are reviewed separately from the member-reference inventory.
+2. **Source-verified public API:** Java compiler attribution resolves each game member referenced by production mod code. The current inventory contains 359 members, all public. Of these, 358 match declaring type, name, arity and simple parameter types in shipped source; the remaining member is the compiler-generated enum `values()` method. Seven referenced members have their own Javadoc blocks; Javadoc presence does not establish semantics or stability. Script override contracts are reviewed separately from the member-reference inventory.
 3. **Runtime evidence:** the isolated fixture exercises supported contexts using public game methods and a copied save. The production mod only observes. Test mutations and engine bootstrap code are never packaged into the mod.
 4. **Unavailable/unvalidated:** missing public accessors and untested transitions stay explicit. No reflection, screenshot, native-input or package-access workaround is added.
 
@@ -17,7 +17,7 @@ Runtime evidence spans the 0.12.0 spatial/scene fixtures, 0.11.0 retained-captur
 
 | Capability | Established access | Runtime scope / limits |
 | --- | --- | --- |
-| Exported state variables | 18 partial typed public-API domains; 358 referenced members in the audit | Existing copied save; not every variable or every entity attribute |
+| Exported state variables | 18 partial typed public-API domains; 359 referenced members in the audit | Existing copied save; not every variable or every entity attribute |
 | Active view | `VIEW.current`, subview `isActive` | Settlement, world, settlement tactical HUD, generated deployment/engagement and controlled victory/defeat restoration, plus initial/terrain world generation; editor activation checked on a copied completed world |
 | Selected subject | `UISubjects.current`, individual class/type and named `STAT.hasIndu` / `STAT.indu` getters | 58 individual statistics observed in the copied-save subject; values/min/max and installed-help reference IDs. Panel may remain behind a modal overlay |
 | Room context | `UIRooms.openIs` and room-list membership | Room blueprint/table/detail presence exercised; exact selected instance unavailable |
@@ -145,3 +145,6 @@ Coordinate-aware singleton getters may update internal scratch caches; values ar
 The 0.12.0 clean run passes sixteen direct-getter point cases, 306 matching tiles across 33 paused-city pages, and all eight scene phases with both tile and legacy entity requests. Both game and verifier exit zero. Main-menu identity, arbitrary native dialogs, full active-combat tile semantics, complete world generation/editor workflows and performance remain unestablished.
 
 The current workforce checkpoint has 358 compiler-resolved public references, all paired with the retained declaration catalog. WORKFORCE_CONTRACT_REVIEW.json and WORKFORCE_VALIDATION.json distinguish stored public-reader semantics from finite copied-game getter/arithmetic/join checks. PLAYER_CORE_VALIDATION.json pins the current full seven-group follow-up. These additions do not establish complete variables, exact selected-room identity or exhaustive menus.
+
+
+The producer-degradation mapping brings the current compiler inventory to 359 public references, all paired with the checksum-verified retained declaration catalog. One new production reference is `RoomInstance.getDegrade()`; private/package implementation details are inspected statically only to establish its limited call chain. The observer never obtains a degrader handle or invokes maintenance. ROOM_DEGRADATION.md and DEGRADATION_CONTRACT_REVIEW.json distinguish the normalized thresholded base read from excluded chamber/construction semantics. This is shipped-source verification, not a new documented stable contract, complete modifier model or exhaustive room/menu coverage.

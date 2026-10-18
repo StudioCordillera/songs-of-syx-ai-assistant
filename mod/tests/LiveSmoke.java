@@ -57,6 +57,10 @@ public final class LiveSmoke {
                                         WorldScenario.install(Paths.get(System.getProperty("syx.assistant.stateDir")));
                                         return;
                                     }
+                                    if (Boolean.getBoolean("syx.smoke.degradationPositive")) {
+                                        DegradationPositiveScenario.install(Paths.get(System.getProperty("syx.assistant.stateDir")));
+                                        return;
+                                    }
                                     if (Boolean.getBoolean("syx.smoke.production")) {
                                         ProductionScenario.install(Paths.get(System.getProperty("syx.assistant.stateDir")));
                                         return;

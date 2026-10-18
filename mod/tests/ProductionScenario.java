@@ -19,11 +19,13 @@ public final class ProductionScenario {
                     for(var blueprint:SETT.ROOMS().ins())for(var room:blueprint.all()) {
                         if(!(room instanceof ROOM_PRODUCER_INSTANCE))continue;
                         var instance=(ROOM_PRODUCER_INSTANCE)room;var industry=instance.industry();producers++;
+                        Object degradation=finite(room.getDegrade());
                         for(String direction:List.of("input","output"))for(var resource:direction.equals("input")?industry.ins():industry.outs()) {
                             Map<String,Object> row=new LinkedHashMap<>();
                             row.put("room_id",room.index());row.put("blueprint_id",blueprint.key);
                             row.put("industry_id",industry.index());row.put("recipe_index",instance.industryI());
                             row.put("direction",direction);row.put("resource_id",resource.resource.key);
+                            row.put("room_degradation_raw",degradation);
                             row.put("reference_id","resource:"+resource.resource.key);row.put("room_reference_id","room:"+blueprint.key);row.put("base_rate_raw",resource.rate);
                             row.put("day_accumulator_raw",resource.day.getD(instance));row.put("previous_day_units",resource.dayPrev.get(instance));
                             row.put("year_units",resource.year.get(instance));row.put("previous_year_units",resource.yearPrev.get(instance));
@@ -48,9 +50,13 @@ public final class ProductionScenario {
                         factors.put("combined_efficiency_raw",finite(staff.totEfficiency()));
                         row.put("work_factors",factors);workforce.add(row);
                     }
+                    // Synthetic inputs to a public decoder only; never write encoded wear into a room.
+                    List<Object> decoderCases=new ArrayList<>();
+                    for(int data:new int[]{0,0x003FFFF0,0x00400000,0x009FFFF0,0x00FFFFF0})
+                        decoderCases.add(Map.of("encoded_data",data,"value",settlement.maintenance.ROOM_DEGRADER.get(data)));
                     Files.createDirectories(output);
                     Files.writeString(output.resolve("workforce-fixture.json"),JsonWriter.encode(Map.of("rooms",workforce,"scanned_rooms",scanned)));
-                    Files.writeString(output.resolve("production-fixture.json"),JsonWriter.encode(Map.of("producer_rooms",producers,"flows",expected)));
+                    Files.writeString(output.resolve("production-fixture.json"),JsonWriter.encode(Map.of("producer_rooms",producers,"flows",expected,"synthetic_degradation_decoder",decoderCases)));
                     System.err.println("PRODUCTION TEST: public-getter fixture ready");
                 }
                 if(Files.exists(output.resolve("verifier.done")) || System.currentTimeMillis()-began>120000)CORE.annihilate();

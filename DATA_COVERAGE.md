@@ -6,7 +6,7 @@ This is a routing inventory of the current adapter, not a complete game schema. 
 | --- | --- | --- | --- |
 | population | `/total`, `/by_race_class` | Scene counts by race/class | Growth factors, complete histories and individual attributes |
 | resources | `/stockpiles`, `/field_definitions` | Stored/capacity and mixed-logistics owned quantities | Reservations, transit and full storage relationships |
-| production | `/resources`, `/room_data/flows` | Campaign ledger plus bounded current scene recipe inputs/outputs and stored quantities | Production modifiers, bucket alignment, retained observations and forecasts |
+| production | `/resources`, `/room_data/flows` | Campaign ledger plus bounded current scene recipe inputs/outputs, stored quantities and producer-room degradation | Production modifiers, bucket alignment, retained observations and forecasts |
 | employment | `/rooms`, `/field_definitions` | Bounded room identity, workforce counts/targets and stored work/travel/fetch/combined factors; shared room-instance key | Jobs/history, exact factor age and complete production modifiers |
 | services | `/statistics`, `/room_data/rooms`, `/access_policy`, `/field_definitions` | Aggregate stats, per-room raw service points and configured race/class permission flags, linked to staffing/population/help | Daily capacity, demand, effective individual access/reachability, full provider types and explanations |
 | housing | `/statistics` | HOME aggregate stats | Home availability, quality and occupancy relationships |
@@ -56,3 +56,6 @@ Configured city permissions now have a separate bounded [policy mapping](SERVICE
 
 
 The workplace-filter checkpoint selects assigned humanoids through the existing public recorded-workplace getter, including stable retained-capture paging. WORKPLACE_FILTER_VALIDATION.json compares 14 matching workers with native getters in a paused copied scene containing 1,395 entities, checks other-room/unassigned exclusions and combined ID/race/stat predicates, and repeats actual prefix-cap diagnostics. It does not establish current activity or permanent room identities. PRODUCTION_MODIFIER_BOUNDARIES.md records why generic employee-cache/production-rate helpers remain outside the bounded observer; the full modifier stack remains open.
+
+
+[Producer-room degradation](ROOM_DEGRADATION.md) adds a thresholded stored room value to each current recipe flow, with same-observation staffing joins and explicit zero/age/row-grain limits. It does not establish instantaneous productivity, maintenance cost or a full bonus stack. Non-producer chamber and construction semantics remain outside this producer mapping. Larger-city costs and cap/fault cases remain open.

@@ -1,17 +1,17 @@
 {
   "builder_source_sha256": "2c4f12d389e254f85d8996383b25ceacac01a1b49348d0e1b89849c8f694f40b",
   "packager_source_sha256": "58e88da6eae9ed17b86f42472c1b4c3b548922f57b712c28a6ad8918774d5ce8",
-  "built_at": "2026-10-18T15:51:27.532535+00:00",
+  "built_at": "2026-10-18T16:12:59.801813+00:00",
   "model": "deepseek-v4-pro",
   "platform": "Linux",
   "game_version": "0.71.44",
-  "mod_jar_sha256": "6338655aea84e310cf2e19e1abe652235b8c544be5e8e790e27403e336dfc200",
+  "mod_jar_sha256": "334daf6dbacd930fcfc0fea3ac99d366a015273ee353b8b036aab3e8522a11c4",
   "files": {
     "syx_mcp.py": "e0d596a394865af6bdd6a2e6fce04e14e36d60281e93ab18e0cc6c54dea92a34",
     "syx_knowledge.py": "f5d7dd6d387ad0fb8f2b024a3bd599ad1cec28f2906dfae27d9d2fdf56e4de7e",
     "syx_query.py": "039795c9c0e1a4f167ff7bb98afd5955c52814d4fcf40705d0c59cdf06b684b4",
-    "syx_api_support.py": "c21249884900d1c1028dfef9f431e43be7ecf088344fafca4ae5593f5bb9ce3a",
-    "syx_api_manifest.py": "89fa14af72b14fa5715e11c5deb11b24cb70350d0bfbcdc975c2451d6772c247",
+    "syx_api_support.py": "4ce2b6b41b666dc46536045ff645fa9c090f2b433681a72772e7f04e2de54f06",
+    "syx_api_manifest.py": "06a7f6b41b33a91ec02520dd401916277c4a82d33a2f72dee6fa9c8f0eaebe09",
     "syx_live.py": "8238cdfc021c8d43a02e9c9b304fe262f701ebd52a492c17ea9ce3e308e37885",
     "syx_capture.py": "fb27ec6c9278992d668bb54c85b34f17c625329a8d6f409df7fba1e3e56bcc55",
     "syx_tiles.py": "66d47fba905f9ab1ca5c13c60c314b5c4542fe09a36e74320495351e263e8493",
@@ -26,7 +26,7 @@
     "install-mod.py": "55a24b0b3c85adf2e42181633bea832fb86bc6a10a671e1cf57a3c0d760d2d92",
     "requirements.txt": "8962ac1ba6867e3cd89e03fe7780ca36f0856c2a7263e6d8bbd4b0e4b085c7c2",
     "README.txt": "f7d03e0dd0fea915cfd6bfa5d0e1cc3e52b3bf2c2b8a340ba779e0aba576743a",
-    "mod/syx-ai-assistant/V71/script/syx-ai-assistant.jar": "6338655aea84e310cf2e19e1abe652235b8c544be5e8e790e27403e336dfc200",
+    "mod/syx-ai-assistant/V71/script/syx-ai-assistant.jar": "334daf6dbacd930fcfc0fea3ac99d366a015273ee353b8b036aab3e8522a11c4",
     "mod/syx-ai-assistant/_Info.txt": "0f18e1d58354c93eee5967a424dbb61c2ef0baa0346a057533365447275762d1"
   },
   "validation": {
@@ -46,13 +46,13 @@
     ],
     "cited_urls_match_retrieval": true,
     "simple_transcript_without_debug_events": true,
-    "mod_jar_sha256": "6338655aea84e310cf2e19e1abe652235b8c544be5e8e790e27403e336dfc200",
+    "mod_jar_sha256": "334daf6dbacd930fcfc0fea3ac99d366a015273ee353b8b036aab3e8522a11c4",
     "production_source_sha256": {
       "syx/assistant/AssistantScript.java": "079b048597c373f88d8179d4f8e8fec576a82c5b13ad6c95fe6e672ba3722e3a",
       "syx/assistant/ChatPanel.java": "3138d3e863ccb36ad5b6b37a7e1f3486dd2d8c1dc43ab469b26af714548d8437",
       "syx/assistant/EntityReadRequest.java": "e2d13aee21f399e8718382d5b43d5a6c85e5d78d2708d8105b9f1ecfe730edf8",
       "syx/assistant/JsonWriter.java": "c525eb60d3224cab83ed3fd6b8594ec8652211f00bd947e873e1482f919e81dc",
-      "syx/assistant/StateCollector.java": "bd26d226a650ce16c5710dce6b579322f916c79549c79ebf024bf356bf1a070d",
+      "syx/assistant/StateCollector.java": "80f8d6dc9c79d7397373ee942d4693fbb20699657f95d2fb2858d7273c39cd0a",
       "syx/assistant/TileReadRequest.java": "1a192cde61a7e1bdefa170390c00b17c74573b9c41de71700ebea466411ad3c5",
       "syx/assistant/UiContentCollector.java": "c0d20c7f9f2734a0bb625427875f06bfcd07edb20611248b39b6e8f480ef5a48",
       "syx/assistant/UiContextCollector.java": "439604436fc98c478ade47682775ee55edb1688d76078e0602f7ab78db187157"
@@ -61,8 +61,8 @@
       "syx_mcp.py": "e0d596a394865af6bdd6a2e6fce04e14e36d60281e93ab18e0cc6c54dea92a34",
       "syx_knowledge.py": "f5d7dd6d387ad0fb8f2b024a3bd599ad1cec28f2906dfae27d9d2fdf56e4de7e",
       "syx_query.py": "039795c9c0e1a4f167ff7bb98afd5955c52814d4fcf40705d0c59cdf06b684b4",
-      "syx_api_support.py": "c21249884900d1c1028dfef9f431e43be7ecf088344fafca4ae5593f5bb9ce3a",
-      "syx_api_manifest.py": "89fa14af72b14fa5715e11c5deb11b24cb70350d0bfbcdc975c2451d6772c247",
+      "syx_api_support.py": "4ce2b6b41b666dc46536045ff645fa9c090f2b433681a72772e7f04e2de54f06",
+      "syx_api_manifest.py": "06a7f6b41b33a91ec02520dd401916277c4a82d33a2f72dee6fa9c8f0eaebe09",
       "syx_live.py": "8238cdfc021c8d43a02e9c9b304fe262f701ebd52a492c17ea9ce3e308e37885",
       "syx_capture.py": "fb27ec6c9278992d668bb54c85b34f17c625329a8d6f409df7fba1e3e56bcc55",
       "syx_tiles.py": "66d47fba905f9ab1ca5c13c60c314b5c4542fe09a36e74320495351e263e8493",
@@ -77,14 +77,14 @@
       "Copied city; native own-widget text/click fixture, not physical keyboard or every screen size.",
       "No complete game-state/all-menu claim. Raw read-only tool evidence remains in the private local history.",
       "Linux user-test bundle; game and Python dependencies must be installed separately.",
-      "Recorded-workplace filtering and retained entity pages are checked separately against 14 workers in a paused copied scene with 1395 entities. Assignment is not current activity, and room indexes can be reused within a session. No full production, all-menu, fault or large-city cost acceptance. Previous standalone entity-prefix and collection-cost reports retain their earlier build hashes; current follow-up is the grouped core and workplace reports."
+      "Producer degradation checked on 16 rooms/35 flows, all observed room values zero. Five synthetic decoder cases and an authored query regression are separate from an additional copied-game check that deliberately creates one positive room value through a test-only public maintenance action and verifies actual getter/MCP parity. This is controlled integration, not natural deterioration or every room type. No complete modifier stack, exact age, all-menu, cap/fault or large-city cost acceptance. Earlier workplace/entity-prefix and collection-cost reports retain their build hashes."
     ],
     "game_exit_code": 0,
-    "validated_at": "2026-10-18T15:51:27.471383+00:00",
+    "validated_at": "2026-10-18T16:12:59.721814+00:00",
     "game_version": "0.71.44",
     "game_jar_sha256": "fe0137c05408e5ee9e31f06fc44fe37a5d4372d9c985b280f0852d1347c0224b",
-    "python_tests_passed": 175,
-    "public_production_members": 358,
+    "python_tests_passed": 177,
+    "public_production_members": 359,
     "non_public_production_members": 0,
     "prior_unchanged_chat_focus_evidence": {
       "prior_mod_jar_sha256": "5a1f3fa413e4776e9d7f03e7d3af306cae4ecd59a0b07b6bb8d9509c39e9d397",
@@ -143,12 +143,14 @@
       "context",
       "extended"
     ],
-    "core_validation_report_sha256": "af12711961f44d6b82f55ab901d23ca8145cb98ff3050118096a2e07a4fb9556",
+    "core_validation_report_sha256": "97da47333633372c0f63b14fbcc1a0cd6f964b065a7bf142b79079bc678dcbd3",
     "service_counter_report_sha256": "64a02e1d658bef1c83e1ef445458dca081209236c2657d04d81e4caeaec8aaf3",
-    "workforce_validation_report_sha256": "a13c1bd6def18952e84a16936a18421927e6d910a790118cb49fb5cf2e4d4af7",
-    "capability_discovery_report_sha256": "121862eaae03381b223127ff4bbfad0d9a041df5f00ba8355649efaaac739c27",
-    "guidance_validation_report_sha256": "ac10d2e158cf35e3948c2c90ed7db340c8ab6af25912c018af3634b45eb9613d",
+    "workforce_validation_report_sha256": "82cf94c609676156a8f47d368c726cde397566e905d8e37090995d92415ab060",
+    "capability_discovery_report_sha256": "c343905563a521a104dd8100df9ebbfe0dcfa6295714950c90eccf0db9b03b9d",
+    "guidance_validation_report_sha256": "e9c12d5c4ee47371c7b832e263ccec0246233083cab4c824fefc2a72844b2e27",
     "workplace_filter_validation_report_sha256": "a77fb5bd9dcc3c909ccecb5721321b3807f0f2785b70418bb6a86c407c89e1a3",
+    "degradation_validation_report_sha256": "e0b9fb94118eab9c4626bcaf74f87e7fc56b85057921976998c8d39beeff657a",
+    "controlled_positive_degradation_report_sha256": "674795fabb4e26ffeaaabfc7c4beca9122a943a2afcc3d6c2cd8c07a5b6a12a5",
     "production_helper_static_review_sha256": "ebf7a939806c26a8d534583fd162f85084a04c9c1f476a4191d60aa7a2ca19bd",
     "test_fixture_sha256": {
       "mod/tests/ChatLiveScenario.java": "f60c366287fec1dea0e1fecdcc52074ee650a6db8e9fb86c628f94c8c3a9920e",
@@ -156,5 +158,5 @@
     }
   },
   "run_instructions": "README.txt",
-  "download_sha256": "2e7ca5f7d5d5a059f39339e6e82e371188326ae46d4c3b89a2cfb63f59b75a99"
+  "download_sha256": "6ffe169ec12538f1f554c62c0ac7a211154f3978b32fa4bbac15a38560bbd9a1"
 }

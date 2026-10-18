@@ -1,0 +1,37 @@
+{
+  "passed": true,
+  "validated_at": "2026-10-18T16:11:58.602892+00:00",
+  "game_version": "0.71.44",
+  "controlled_room_before": 0.0,
+  "controlled_room_after": 0.004693349202473958,
+  "bounded_public_action_calls": 59,
+  "controlled_room_flow_rows_checked": 1,
+  "producer_rooms_checked": 16,
+  "positive_rooms": 1,
+  "zero_rooms": 15,
+  "public_getter_and_actual_mcp_parity": true,
+  "sorted_output_and_nullable_staffing_join": true,
+  "test_only_public_action": "MAINTENANCE.vandalise(int,int)",
+  "save_written": false,
+  "inference_calls": 0,
+  "production_verification_report_sha256": "5440796e870b8ef112b401c849b398984caf5110433d9ea54204c790e57a2921",
+  "source_sha256": {
+    "mod/tests/DegradationPositiveScenario.java": "81b6f4ef1f020ed85d973b457e0b67a12dd9869a37e2f3a563ea0a853168c9b1",
+    "mod/tests/LiveSmoke.java": "ed0aa6c07d05c69c7c37e176dcd4464e30508c8d6a1ae744593b4672d3cc9603",
+    "mod/tests/ProductionScenario.java": "d5a305c0ca3c3a23deb25947b124ca5bb8e8b3e196d6992609d633cd7a508af3",
+    "dev/verify_degradation_positive.py": "f37bfbacb51552685b5fd5761ae882f93a9cdb7284b24daa3b545b5578dbed9b",
+    "dev/verify_production.py": "c5f709e8ced215dfde81e6aeb55e60415babf65b9843775a456b9b1fd936fb79",
+    "mod/src/main/java/syx/assistant/StateCollector.java": "80f8d6dc9c79d7397373ee942d4693fbb20699657f95d2fb2858d7273c39cd0a",
+    "degradation-query-example.json": "35af3cb42d9ed6761d184ae2b03f51385ce1305d720de233e6754955de1c3cba"
+  },
+  "limits": [
+    "One deliberately worn producer in a paused disposable copied game, not natural deterioration or all room types.",
+    "Only the test fixture invokes the public maintenance action; the production observer remains read-only and never obtains a degrader handle.",
+    "Controlled maintenance mutates only copied in-process state; no save, normal profile, private field, reflection or native input is used.",
+    "No actual output effect, full modifier/age/resource-cost model, large-city/cap/fault or exhaustive menu acceptance."
+  ],
+  "game_exit_code": 0,
+  "mod_jar_sha256": "334daf6dbacd930fcfc0fea3ac99d366a015273ee353b8b036aab3e8522a11c4",
+  "game_jar_sha256": "fe0137c05408e5ee9e31f06fc44fe37a5d4372d9c985b280f0852d1347c0224b",
+  "test_action_and_test_classes_absent_from_production_mod": true
+}

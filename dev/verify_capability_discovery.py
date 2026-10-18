@@ -28,10 +28,10 @@ async def verify(directory):
                 text=next(c.text for c in response.content if c.type=='text')
                 assert not response.is_error and len(text.encode())<=65536,text
                 result=json.loads(text)
-                assert result['game_version']=='0.71.44' and result['inventory_size']==358
+                assert result['game_version']=='0.71.44' and result['inventory_size']==359
                 assert 'not an attestation' in result['warning']
                 return result
-            for identifier in ['entity_workplace_filter','room_workforce_factors','room_service_counters','service_cohort_permissions','city_trade_pipeline','regional_population_counters']:
+            for identifier in ['room_producer_degradation','entity_workplace_filter','room_workforce_factors','room_service_counters','service_cohort_permissions','city_trade_pipeline','regional_population_counters']:
                 result=await call(identifier)
                 assert len(result['capabilities'])==1
                 record=result['capabilities'][0]
@@ -56,9 +56,9 @@ async def verify(directory):
                     ['syx_mcp.py','syx_api_support.py','syx_api_manifest.py','dev/verify_capability_discovery.py']},
                 'limits':['Capability records summarize existing evidence; no new game getter/scene or official stable contract is established.',
                     'Offline discovery is not an attestation of a separately installed game mod; pair source-matching builds.',
-                    'Six supported capabilities and two explicit gaps sampled, not exhaustive metadata acceptance.']}
+                    'Seven supported capabilities and two explicit gaps sampled, not exhaustive metadata acceptance.']}
             (directory/'capability-discovery-validation.json').write_text(json.dumps(report,indent=2)+'\n')
-            print('Six data capabilities, two coverage gaps and three member anchors verified through MCP.')
+            print('Seven data capabilities, two coverage gaps and three member anchors verified through MCP.')
             return report
 
 

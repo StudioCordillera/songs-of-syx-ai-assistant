@@ -1,0 +1,45 @@
+{
+  "passed": true,
+  "game_version": "0.71.44",
+  "producer_rooms_checked": 16,
+  "flow_rows_checked": 35,
+  "finite_rooms": 16,
+  "positive_rooms": 0,
+  "zero_rooms": 16,
+  "public_getter_parity": true,
+  "synthetic_public_decoder_cases_checked": 5,
+  "threshold_and_positive_decoder_branches": true,
+  "repeated_flow_value_parity": true,
+  "sorted_output_and_nullable_staffing_join": true,
+  "same_observation_ui_context": true,
+  "field_meanings_discoverable": true,
+  "inference_calls": 0,
+  "source_sha256": {
+    "mod/src/main/java/syx/assistant/StateCollector.java": "80f8d6dc9c79d7397373ee942d4693fbb20699657f95d2fb2858d7273c39cd0a",
+    "mod/tests/ProductionScenario.java": "d5a305c0ca3c3a23deb25947b124ca5bb8e8b3e196d6992609d633cd7a508af3",
+    "dev/verify_production.py": "c5f709e8ced215dfde81e6aeb55e60415babf65b9843775a456b9b1fd936fb79",
+    "degradation-query-example.json": "35af3cb42d9ed6761d184ae2b03f51385ce1305d720de233e6754955de1c3cba",
+    "syx_query.py": "039795c9c0e1a4f167ff7bb98afd5955c52814d4fcf40705d0c59cdf06b684b4",
+    "syx_mcp.py": "e0d596a394865af6bdd6a2e6fce04e14e36d60281e93ab18e0cc6c54dea92a34"
+  },
+  "limits": [
+    "Paused copied city: observed room-value counts are reported, and a zero-only city does not establish nonzero room integration. Five synthetic public-decoder inputs exercise threshold/positive branches without writing room wear.",
+    "No forced room wear, all room types, external overrides, cap/fault injection or large-city cost acceptance.",
+    "Producer rooms only; zero can conceal initial wear. Exact wear/maintenance age, maintenance resources and complete bonus stack remain unknown.",
+    "Flow rows repeat a room value; summing them is not a meaningful room degradation statistic."
+  ],
+  "validated_at": "2026-10-18T16:12:59.721584+00:00",
+  "game_exit_code": 0,
+  "mod_jar_sha256": "334daf6dbacd930fcfc0fea3ac99d366a015273ee353b8b036aab3e8522a11c4",
+  "game_jar_sha256": "fe0137c05408e5ee9e31f06fc44fe37a5d4372d9c985b280f0852d1347c0224b",
+  "source_archive_sha256": "a3fc2aa9f4be31aec0616a5030a656ac49a6011343b7e91395c7bac0b9dfb0a5",
+  "parent_core_report_sha256": "97da47333633372c0f63b14fbcc1a0cd6f964b065a7bf142b79079bc678dcbd3",
+  "static_reader_contract_review_sha256": "6bbb51fdaf6cf2315a36a9d1bafc09ba3d63ecc5bbd2764f6921265fe93b6702",
+  "synthetic_query_example_regression": {
+    "passed": true,
+    "test_source_sha256": "65b03538267577c2d67746ecbb42b191412e73351edb03df8027b2dff289d2e5",
+    "test_name": "test_degradation_example_sorts_projected_values_and_keeps_null_staffing",
+    "scope": "Authored DTO values test nonzero ordering and null staffing; not nonzero in-game room integration."
+  },
+  "controlled_positive_report_sha256": "674795fabb4e26ffeaaabfc7c4beca9122a943a2afcc3d6c2cd8c07a5b6a12a5"
+}

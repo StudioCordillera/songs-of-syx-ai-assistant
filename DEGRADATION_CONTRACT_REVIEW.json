@@ -1,0 +1,76 @@
+{
+  "passed": true,
+  "game_jar_sha256": "fe0137c05408e5ee9e31f06fc44fe37a5d4372d9c985b280f0852d1347c0224b",
+  "source_archive_sha256": "a3fc2aa9f4be31aec0616a5030a656ac49a6011343b7e91395c7bac0b9dfb0a5",
+  "method": "Static source/binary review only; no game initialization, reflection, private runtime reads or maintenance calls.",
+  "checks": [
+    {
+      "owner": "settlement.room.main.RoomInstance",
+      "signature": "public double getDegrade();",
+      "source_path": "settlement/room/main/RoomInstance.java",
+      "source_sha256": "5a2cd2bb21b33e0461efcea619998ea6a139782f80702f360de6d7584bdf6f07",
+      "normalized_disassembly_sha256": "ef0d2ed9d4900330378241d4c00fdff5735b6395b6905a822decfe64606dcf41"
+    },
+    {
+      "owner": "settlement.maintenance.ROOM_DEGRADER",
+      "signature": "public static double get(int);",
+      "source_path": "settlement/maintenance/ROOM_DEGRADER.java",
+      "source_sha256": "1f1319199e851e70f5aabd2e1ebeae7466a08f9ec977c90079635b565e6937d1",
+      "normalized_disassembly_sha256": "8e09c7964b5865f77e57c27c70fb9e13a01905e3832ae74e6dc67b492f4e4f96"
+    },
+    {
+      "owner": "settlement.maintenance.MRoom",
+      "signature": "public static double degrade(int);",
+      "source_path": "settlement/maintenance/MRoom.java",
+      "source_sha256": "81a93c32cebaed3f1da558910e9523bc7ed60d80df864b6e06fa01e760feee6b",
+      "normalized_disassembly_sha256": "c16d21e1909f06e5f26bb2f6025d3b0be805fcefe78c716adbe8456ecc007e03"
+    },
+    {
+      "owner": "snake2d.util.bit.Bits",
+      "signature": "public int get(int);",
+      "source_path": "snake2d/util/bit/Bits.java",
+      "source_sha256": "2c39a8d885a7a62d928cc869551706d7c9a3cc8f4d8182ebc99baeb245606037",
+      "normalized_disassembly_sha256": "a03e89cc12c2b73dada92ea9e2db29d56245120ae91ac121c49eb2624bd39594"
+    },
+    {
+      "owner": "settlement.room.home.chamber.ChamberInstance",
+      "signature": "public double getDegrade();",
+      "source_path": "settlement/room/home/chamber/ChamberInstance.java",
+      "source_sha256": "f381246099489fb47dd231c9d823208948237224c542737335d385d385392b49",
+      "normalized_disassembly_sha256": "8e64101937b0a6c9ee3121769b69e1f335c12fec38eb5e5b06ebf19907b7bf62"
+    },
+    {
+      "owner": "settlement.room.main.construction.ConstructionInstance",
+      "signature": "public double getDegrade();",
+      "source_path": "settlement/room/main/construction/ConstructionInstance.java",
+      "source_sha256": "def436ae890f09292989093161cfa1b967e933d665b02cf4475273796bef0884",
+      "normalized_disassembly_sha256": "c3e25ae0690eab63fda25854a918e8e3f4ebb79265479b02c9c02ee82f57152b"
+    }
+  ],
+  "getDegrade_declarations_in_shipped_source": [
+    {
+      "source_path": "settlement/room/home/chamber/ChamberInstance.java",
+      "source_sha256": "f381246099489fb47dd231c9d823208948237224c542737335d385d385392b49"
+    },
+    {
+      "source_path": "settlement/room/main/RoomInstance.java",
+      "source_sha256": "5a2cd2bb21b33e0461efcea619998ea6a139782f80702f360de6d7584bdf6f07"
+    },
+    {
+      "source_path": "settlement/room/main/construction/ConstructionInstance.java",
+      "source_sha256": "def436ae890f09292989093161cfa1b967e933d665b02cf4475273796bef0884"
+    }
+  ],
+  "reviewed_base_decoder_is_thresholded_normalized_stored_value": true,
+  "reviewed_base_reader_chain_has_no_write_opcode": true,
+  "construction_sibling_delegate_mutation_is_outside_RoomInstance_producer_traversal": true,
+  "chamber_final_nonproducer_override_not_used_by_production_mapping": true,
+  "verifier_source_sha256": "68fc708968243ffd062bafe8897b840eb0edde59b52cb263184351d2f67b1af1",
+  "limits": [
+    "Scoped shipped-source/binary reader-chain review, not a formal purity proof or documented stable contract.",
+    "Construction getter writes a delegate, and chamber getter represents a fixed working-state display. Neither is a producer RoomInstance mapped here.",
+    "Zero from the base decoder can hide below-threshold stored wear. Exact last wear/maintenance time and resource cost are not established.",
+    "Unknown third-party overrides may change behavior, meaning or cost. No runtime method discovery or arbitrary access is introduced.",
+    "No complete production modifier, current output, forced-value, cap/fault or large-city acceptance."
+  ]
+}

@@ -149,3 +149,20 @@ def test_batch_work_budget_is_shared(snapshot):
     q['select']['copy']=field('/id')
     with pytest.raises(ValueError,match='work budget'):
         QueryEngine(snapshot).execute({'queries':[q]*10})
+
+
+def test_degradation_example_sorts_projected_values_and_keeps_null_staffing(snapshot):
+    from syx_mcp import Domain
+    rows=[{'room_id':room,'direction':'output','resource_id':'wood','room_degradation_raw':value,'previous_day_units':10}
+          for room,value in [(1,.2),(2,.8),(3,0),(4,None)]]
+    rows.append({'room_id':5,'direction':'input','resource_id':'wood','room_degradation_raw':1,'previous_day_units':10})
+    snapshot.domains['production']=Domain(coverage='partial',reason='Synthetic example regression; not room integration.',
+        data={'room_data':{'flows':rows}})
+    worker={'room_id':1,'employed':9}
+    snapshot.domains['employment']=Domain(coverage='partial',reason='Synthetic staffing fixture.',data={'rooms':[worker]})
+    spec=json.loads(Path('degradation-query-example.json').read_text())
+    result=QueryEngine(snapshot).execute(spec)[0]
+    assert result['matched_total']==4
+    assert result['rows']==[
+        {'room':room,'resource':'wood','degradation':value,'recorded_previous_day':10,'staffing':worker if room==1 else None}
+        for room,value in [(2,.8),(1,.2),(3,0),(4,None)]]

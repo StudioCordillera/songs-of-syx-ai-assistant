@@ -1,0 +1,56 @@
+{
+  "queries": [
+    {
+      "name": "producer_degradation_and_recorded_outputs",
+      "source": {
+        "domain": "production",
+        "path": "/room_data/flows"
+      },
+      "where": {
+        "eq": [
+          {
+            "field": "/direction"
+          },
+          "output"
+        ]
+      },
+      "joins": [
+        {
+          "source": {
+            "domain": "employment",
+            "path": "/rooms"
+          },
+          "left_key": "/room_id",
+          "right_key": "/room_id",
+          "as": "staffing",
+          "kind": "left"
+        }
+      ],
+      "select": {
+        "room": {
+          "field": "/room_id"
+        },
+        "resource": {
+          "field": "/resource_id"
+        },
+        "degradation": {
+          "field": "/room_degradation_raw"
+        },
+        "recorded_previous_day": {
+          "field": "/previous_day_units"
+        },
+        "staffing": {
+          "field": "/staffing"
+        }
+      },
+      "sort": [
+        {
+          "field": "/degradation",
+          "direction": "desc"
+        }
+      ],
+      "limit": 5
+    }
+  ],
+  "include_ui_context": true
+}

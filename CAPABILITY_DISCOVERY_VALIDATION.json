@@ -1,7 +1,19 @@
 {
   "passed": true,
-  "evaluated_at": "2026-10-18T15:43:03.454161+00:00",
+  "evaluated_at": "2026-10-18T16:00:46.009802+00:00",
   "checks": [
+    {
+      "id": "room_producer_degradation",
+      "support": "public_source_verified",
+      "references": [
+        "settlement/room/main/RoomInstance.java",
+        "ROOM_DEGRADATION.md",
+        "DEGRADATION_CONTRACT_REVIEW.json",
+        "DEGRADATION_VALIDATION.json",
+        "degradation-query-example.json"
+      ],
+      "passed": true
+    },
     {
       "id": "entity_workplace_filter",
       "support": "public_source_verified",
@@ -89,16 +101,16 @@
   "service_counter_member_anchors_checked": 3,
   "no_game_snapshot_required": true,
   "inference_calls": 0,
-  "public_inventory_size": 358,
+  "public_inventory_size": 359,
   "source_sha256": {
     "syx_mcp.py": "e0d596a394865af6bdd6a2e6fce04e14e36d60281e93ab18e0cc6c54dea92a34",
-    "syx_api_support.py": "c21249884900d1c1028dfef9f431e43be7ecf088344fafca4ae5593f5bb9ce3a",
-    "syx_api_manifest.py": "89fa14af72b14fa5715e11c5deb11b24cb70350d0bfbcdc975c2451d6772c247",
-    "dev/verify_capability_discovery.py": "ed12f215caec413f49e963d848a3a1a7917b52dd684e95a24348aa465425fb19"
+    "syx_api_support.py": "4ce2b6b41b666dc46536045ff645fa9c090f2b433681a72772e7f04e2de54f06",
+    "syx_api_manifest.py": "06a7f6b41b33a91ec02520dd401916277c4a82d33a2f72dee6fa9c8f0eaebe09",
+    "dev/verify_capability_discovery.py": "18c28439db46075533afebf4df02db48514fa268e25aef3ced84a13190b01d81"
   },
   "limits": [
     "Capability records summarize existing evidence; no new game getter/scene or official stable contract is established.",
     "Offline discovery is not an attestation of a separately installed game mod; pair source-matching builds.",
-    "Six supported capabilities and two explicit gaps sampled, not exhaustive metadata acceptance."
+    "Seven supported capabilities and two explicit gaps sampled, not exhaustive metadata acceptance."
   ]
 }

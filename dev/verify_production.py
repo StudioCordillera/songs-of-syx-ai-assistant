@@ -124,12 +124,52 @@ async def verify(directory):
             assert selected['results'][0]['rows']==expected and selected['results'][0]['mixed_scopes']
             meanings=await call('describe_game_fields',{'domain':'production'})
             assert 'fractional carry' in meanings['field_definitions']['room_data']['periods']
+            degradation_meanings=meanings['field_definitions']['room_data']['room_degradation_raw']
+            assert 'Dimensionless' in degradation_meanings['unit']
+            assert 'zero does not prove no wear' in degradation_meanings['definition']
+            assert 'Exact last wear/maintenance time is unavailable' in degradation_meanings['age']
+            per_room={}
+            for row in observed:
+                value=row['room_degradation_raw']
+                assert value is None or (type(value) in (int,float) and math.isfinite(value))
+                if row['room_id'] in per_room:assert per_room[row['room_id']]==value
+                per_room[row['room_id']]=value
+            output_rows=[row for row in observed if row['direction']=='output']
+            assert output_rows and all(row['room_degradation_raw'] is not None for row in output_rows)
+            output_rows.sort(key=lambda row:row['room_degradation_raw'],reverse=True)
+            degradation_selection=await call('select_game_state',{'spec':json.loads((root/'degradation-query-example.json').read_text())})
+            assert degradation_selection['results'][0]['rows']==[
+                {'room':row['room_id'],'resource':row['resource_id'],'degradation':row['room_degradation_raw'],
+                 'recorded_previous_day':row['previous_day_units'],'staffing':employment.get(row['room_id'])}
+                for row in output_rows[:5]]
+            assert degradation_selection['results'][0]['matched_total']==len(output_rows)
+            assert degradation_selection['ui_context']==snapshot.ui_context
+            decoder_cases=fixture['synthetic_degradation_decoder']
+            decoder_expected=[(0,0),(0x003FFFF0,0),(0x00400000,1/786432),(0x009FFFF0,0.5),(0x00FFFFF0,1)]
+            assert len(decoder_cases)==len(decoder_expected)
+            for case,(data,value) in zip(decoder_cases,decoder_expected):
+                assert case['encoded_data']==data and math.isclose(case['value'],value,rel_tol=1e-12,abs_tol=1e-15)
+            degradation_report={'passed':True,'game_version':snapshot.game_version,'producer_rooms_checked':len(per_room),
+                'flow_rows_checked':len(observed),'finite_rooms':sum(value is not None for value in per_room.values()),
+                'positive_rooms':sum(value is not None and value>0 for value in per_room.values()),
+                'zero_rooms':sum(value==0 for value in per_room.values()),'public_getter_parity':True,
+                'synthetic_public_decoder_cases_checked':len(decoder_cases),'threshold_and_positive_decoder_branches':True,
+                'repeated_flow_value_parity':True,'sorted_output_and_nullable_staffing_join':True,
+                'same_observation_ui_context':True,'field_meanings_discoverable':True,'inference_calls':0,
+                'source_sha256':{n:hashlib.sha256((root/n).read_bytes()).hexdigest() for n in
+                    ['mod/src/main/java/syx/assistant/StateCollector.java','mod/tests/ProductionScenario.java',
+                     'dev/verify_production.py','degradation-query-example.json','syx_query.py','syx_mcp.py']},
+                'limits':['Paused copied city: observed room-value counts are reported, and a zero-only city does not establish nonzero room integration. Five synthetic public-decoder inputs exercise threshold/positive branches without writing room wear.',
+                    'No forced room wear, all room types, external overrides, cap/fault injection or large-city cost acceptance.',
+                    'Producer rooms only; zero can conceal initial wear. Exact wear/maintenance age, maintenance resources and complete bonus stack remain unknown.',
+                    'Flow rows repeat a room value; summing them is not a meaningful room degradation statistic.']}
+            (directory/'degradation-validation.json').write_text(json.dumps(degradation_report,indent=2)+'\n')
             reference=await call('search_game_references',{'query':observed[0]['reference_id']})
             assert any(r['id']==observed[0]['reference_id'] for r in reference['results'])
             report={'passed':True,'game_version':snapshot.game_version,'flow_rows_checked':len(observed),
                 'producer_rooms_checked':fixture['producer_rooms'],'public_getter_parity':True,
                 'input_and_output_cases':True,'room_employment_resource_join':True,'mixed_scopes_reported':True,
-                'installed_reference_link':True,'workforce_factors':workforce_report,'stored_bucket_semantics_discoverable':True,
+                'installed_reference_link':True,'degradation':degradation_report,'workforce_factors':workforce_report,'stored_bucket_semantics_discoverable':True,
                 'limits':['Paused copied city only. No forecast, complete recipe unlock schema, all room types or large-city performance established.',
                     '2000 flow-row/10000 room-scan caps are reported; a cap-exceeding city is not exercised by this fixture.',
                     'Stored buckets are not refreshed by observer and can retain older values; day accumulator includes fractional carry.']}

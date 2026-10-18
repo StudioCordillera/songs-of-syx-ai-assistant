@@ -49,6 +49,7 @@ def test_critical_binary_evidence_is_explicit():
 
 
 @pytest.mark.parametrize('capability,warning', [
+    ('room_producer_degradation','Zero does not prove no wear'),
     ('entity_workplace_filter','Not present activity'),
     ('room_workforce_factors','not current productivity percentages'),
     ('room_service_counters','not people/day'),

@@ -39,3 +39,6 @@ All 168 Python tests and player release freshness checks pass for the workforce 
 
 
 The subsequent workplace-filter checkpoint changes on-demand entity selection, not `StateCollector`. Its JAR and paired Python hashes differ. The timing report retains the earlier whole-build hashes and is not relabeled as a new benchmark. Workplace-filter correctness evidence does not establish its cost in a large city.
+
+
+The later producer-degradation checkpoint changes `StateCollector` itself. These older measurements are not timings of that new collector/JAR. Correctness and bounded reads are checked separately, with no refreshed performance or large-city claim.

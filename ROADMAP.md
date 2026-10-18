@@ -12,7 +12,7 @@ The runnable player checkpoint now requires a source-matching `releases/latest-u
 
 Goal: let an assistant discover available variables and request a complex, bounded selection quickly, without receiving the entire state on each question.
 
-Implemented: 18 partial typed domains; snapshot filters, projections, joins, arithmetic and aggregates; on-demand person/stat reads with recorded-workplace filtering; retained entity captures for stable paging; finite terrain/floor/room/mineral/path reads. Results identify their observation, session, coverage and scope. The compiler audit currently inventories 358 public production member references. The offline public-member catalog is a discovery backlog, not a count of supported variables.
+Implemented: 18 partial typed domains; snapshot filters, projections, joins, arithmetic and aggregates; on-demand person/stat reads with recorded-workplace filtering; retained entity captures for stable paging; finite terrain/floor/room/mineral/path reads; stored producer-room degradation. Results identify their observation, session, coverage and scope. The compiler audit currently inventories 359 public production member references. The offline public-member catalog is a discovery backlog, not a count of supported variables.
 
 Next work:
 
@@ -100,3 +100,9 @@ The workplace-filter checkpoint adds an optional AND predicate shared by live re
 
 
 This exact workplace-filter JAR/Python pair passes 175 tests, Java codec checks, two actual Pro turns, all seven copied-save core groups, six supported capability probes, 37 guidance cases and fresh extracted-client checks before promotion. The simple Pro interface is preserved and the previous tested ZIP retained. The older workforce collection-cost report keeps its original hashes; no new performance claim is made. Core objectives remain in progress.
+
+
+The producer-degradation checkpoint adds `production /room_data/flows.room_degradation_raw` through one public getter per included producer, keeping recipe batches and scan/row/failure bounds. The thresholded stored value is repeated per resource flow and must not be summed. Zero can hide initial wear; exact age, maintenance resources and the full modifier stack remain unknown. Static review distinguishes the base decoder from the non-producer chamber override and construction sibling's mutable delegate. Neither excluded path is invoked by this mapping. ROOM_DEGRADATION.md, DEGRADATION_CONTRACT_REVIEW.json and degradation-query-example.json establish the typed meaning and intended query; runtime value counts and zero/nonzero limitations belong to DEGRADATION_VALIDATION.json. Larger-city/cap/fault tests, retained spatial reads, broader current-version references and missing UI accessors remain priorities.
+
+
+The exact producer-degradation candidate passes 177 tests, two actual Pro turns, all seven core groups, seven supported capability probes, 37 guidance cases and fresh extracted-client checks before promotion. All 16 baseline producer rooms are zero-valued. Five synthetic decoder cases and an authored query test remain separate from an additional controlled copied-game action that creates one positive room value and verifies getter/MCP parity without saving. Natural deterioration, all room types and actual output effects remain unestablished. The simple Pro build is promoted with its tested predecessor retained. Larger-city costs, other cap/fault paths, complete bonus mappings, retained spatial selections, missing UI getters and broader references remain open.

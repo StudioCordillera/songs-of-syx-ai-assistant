@@ -2,7 +2,7 @@
 
 The production reference audit proves only the public members used by our adapter. To identify remaining mapping work, `catalog_api.py` separately scans the entire shipped source archive and resolves its named types and public declared members against the installed game JAR with the Java compiler. It never starts the game, executes its classes, or uses reflection. This is development tooling, outside the packaged mod and MCP server.
 
-The current scan covers 2,443 source files, resolves every cataloged named top-level/member source type, and finds 2,052 public types with public enclosing types and 17,442 public declared member signatures. All 358 production reference IDs occur in this catalog. Matching game JAR/source archive hashes establish that the discovery run and production audit used the same reference pair. They do not attest the installed/running mod.
+The current scan covers 2,443 source files, resolves every cataloged named top-level/member source type, and finds 2,052 public types with public enclosing types and 17,442 public declared member signatures. All 359 production reference IDs occur in this catalog. Matching game JAR/source archive hashes establish that the discovery run and production audit used the same reference pair. They do not attest the installed/running mod.
 
 | Root package | Public declared member candidates | Production reference IDs |
 | --- | ---: | ---: |
@@ -60,3 +60,6 @@ The service-counter checkpoint pairs the new 346-member public production audit 
 The configured service-policy checkpoint expands the public production audit to 353 references, all found in the unchanged pinned discovery catalog. This is an explicit mapping of cohort flags through public interfaces, not private bitmap access or a count of every game variable.
 
 The workforce checkpoint refreshes production-reference pairing against the retained full catalog after verifying its checksum and game/source hashes. All 358 current production references occur there. The full 17,442-declaration scan is retained evidence, not claimed as a new scan for this pairing update.
+
+
+The producer-degradation checkpoint pairs all 359 public production references against the same checksum-verified 17,442-member catalog. The full declaration scan is retained evidence, not a new scan or a count of supported state variables. The new public getter still requires its own semantics and finite runtime checks.

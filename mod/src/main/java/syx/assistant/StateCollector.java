@@ -182,6 +182,7 @@ public final class StateCollector {
                 int needed=industry.ins().size()+industry.outs().size();
                 if(flows.size()+needed>2000){truncated=true;break scan;}
                 List<Object> pending=new ArrayList<>();
+                Object degradation=finiteFactor(room.getDegrade());
                 for(String direction:Arrays.asList("input","output")) {
                     var resources=direction.equals("input")?industry.ins():industry.outs();
                     for(var resource:resources) {
@@ -189,7 +190,7 @@ public final class StateCollector {
                         pending.add(object("room_id",room.index(),"blueprint_id",blueprint.key,
                             "industry_id",industry.index(),"recipe_index",producer.industryI(),"direction",direction,
                             "resource_id",resource.resource.key,"reference_id","resource:"+resource.resource.key,
-                            "room_reference_id","room:"+blueprint.key,
+                            "room_reference_id","room:"+blueprint.key,"room_degradation_raw",degradation,
                             "base_rate_raw",Double.isFinite(rate)?rate:null,
                             "day_accumulator_raw",Double.isFinite(day)?day:null,
                             "previous_day_units",resource.dayPrev.get(producer),
@@ -396,6 +397,10 @@ public final class StateCollector {
                     "resources",object("scope","campaign_player_or_faction","definition","Player resource ledger categories, not a per-room forecast."),
                     "room_data",object("scope","instantiated_settlement_scene","source","settlement/room/industry/module/IndustryResource.java; consumption/RoomConsumptionAbs.java; ROOM_PRODUCER_INSTANCE.java",
                         "definition","Bounded current-recipe input/output rows. room_id joins employment in the same observation; industry_id and recipe_index are runtime/load scoped. resource_id joins resource keys. Non-producer rooms are not a claim of zero production.",
+                        "room_degradation_raw",object("source","settlement/room/main/RoomInstance.java:getDegrade; settlement/maintenance/ROOM_DEGRADER.java:get; MRoom.java:degrade",
+                            "unit","Dimensionless stored normalized degradation; finite raw getter value, no clamping. Nonfinite values are null.",
+                            "definition","One public getter read per included producer room, repeated on its recipe resource-flow rows. Do not sum this factor across flows. The shipped base decoder suppresses initial wear below its threshold: zero does not prove no wear or no maintenance need. Not remaining durability, present productivity, required maintenance resources or a complete production modifier.",
+                            "age","Exact last wear/maintenance time is unavailable. This is a current read of a stored value, not a fresh wear calculation. No degrader handle, reporting, refresh or maintenance action is invoked. Non-producer rooms are outside this mapping; third-party overrides may change semantics."),
                         "units","Stored day/year fields are resource quantities. base_rate_raw is the configured recipe coefficient before modifiers, not realized per-worker or per-room output.",
                         "periods","day_accumulator_raw includes fractional carry across day rollovers. previous_day_units and year_units/previous_year_units are stored integer ledger buckets. The observer does not call updateRoom; paused or inactive rooms can retain an older bucket. Null nonfinite values stay unknown.")));
         }, "Player resource ledger plus bounded scene-local current recipe inputs/outputs and stored per-room quantities; not throughput forecasts or all production mechanics.");
