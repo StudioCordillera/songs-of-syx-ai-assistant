@@ -189,9 +189,12 @@ class Advisor:
         if domain not in snapshot.domains: raise ValueError('Unknown domain')
         data=snapshot.domains[domain]
         fields=describe(data.data)
-        return {'state':self.status(snapshot),'domain':domain,'coverage':data.coverage,
+        result={'state':self.status(snapshot),'domain':domain,'coverage':data.coverage,
                 'coverage_reason':data.reason,'scope':data.scope,'fields':fields,'schema_truncated':len(fields)>=300,
+                'field_definitions':data.data.get('field_definitions',{}) if isinstance(data.data,dict) else {},
                 'note':'Observed shape; arrays sample the first row. Missing fields are not zero values.'}
+        if len(json.dumps(result).encode())>65536:raise ValueError('Field discovery response exceeds 64 KiB')
+        return result
 
     def search(self, query: str, game_version: str | None = None, limit: int = 5, authority: str | None = None) -> dict:
         if not query.strip() or len(query) > 500 or not 1 <= limit <= 10:
@@ -321,8 +324,9 @@ def create_server(advisor: Advisor) -> MCPServer:
 
     @mcp.tool(annotations=annotations)
     def describe_game_fields(domain: str) -> dict:
-        """Discover queryable field paths, observed types and coverage without dumping rows."""
-        return advisor.describe(domain)
+        """Discover observed field paths/types, coverage and available field meanings without dumping rows."""
+        try:return advisor.describe(domain)
+        except ValueError as error:raise ToolError(str(error)) from None
 
     @mcp.tool(annotations=annotations)
     def select_game_state(spec: dict) -> dict:

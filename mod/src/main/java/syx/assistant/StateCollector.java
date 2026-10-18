@@ -173,18 +173,47 @@ public final class StateCollector {
             for (RoomBlueprintIns<?> bp: SETT.ROOMS().ins()) for (RoomInstance room: bp.all()) {
                 if (bp.employment() == null) continue;
                 if (room.employees() == null) continue;
-                rows.add(object("id", bp.key+":"+room.mX()+":"+room.mY(), "blueprint_id", bp.key,
+                rows.add(object("id", bp.key+":"+room.mX()+":"+room.mY(), "room_id", room.index(), "blueprint_id", bp.key,
                     "name", room.name().toString(), "tile_x", room.mX(), "tile_y", room.mY(),
                     "active", room.active(), "employed", room.employees().employed(), "needed", room.employees().needed(),
                     "target", room.employees().target(), "capacity", room.employees().max(), "unit", "workers"));
             }
-            return object("rooms", rows);
-        }, "Room workforce counts/targets; job assignment histories are not collected.");
+            return object("rooms", rows,"field_definitions",object("room_id",object(
+                "definition","Public RoomInstance.index(), shared with person workplace.room_id in the same observation. Not the composite row id or a permanent campaign ID; indexes can be reused when rooms are replaced.",
+                "scope","instantiated_settlement_scene","source","settlement/room/main/Room.java:index() (inherited by RoomInstance)")));
+        }, "Room workforce counts/targets and same-observation workplace relationship key; job assignment histories are not collected.");
         run(domains, "research", () -> {
-            List<Object> rows = new ArrayList<>();
-            for (TECH t: TECHS.ALL()) rows.add(object("id", t.key, "name", t.name().toString(), "level", GAME.player().tech().level(t), "max_level", t.levelMax));
-            return object("technologies", rows);
-        }, "Technology levels; currencies and unlock dependencies are not collected.");
+            List<Object> rows = new ArrayList<>(), requirements = new ArrayList<>(), costs = new ArrayList<>(), currencies = new ArrayList<>();
+            game.faction.player.PTech playerTech=GAME.player().tech();
+            for (TECH t: TECHS.ALL()) {
+                int level=playerTech.level(t); boolean requirementsMet=true;
+                for (TECH.TechRequirement requirement:t.requires()) {
+                    int current=playerTech.level(requirement.tech); boolean met=current>=requirement.level;
+                    requirementsMet &= met;
+                    requirements.add(object("technology_id",t.key,"required_technology_id",requirement.tech.key,
+                        "required_level",requirement.level,"current_level",current,"met",met));
+                }
+                rows.add(object("id",t.key,"name",t.name().toString(),"reference_id","technology:"+t.key,
+                    "level",level,"max_level",t.levelMax,"technology_requirements_met",requirementsMet));
+                for (init.tech.TechCost cost:t.costs) costs.add(object("technology_id",t.key,"currency_id",cost.cu.bo.key,
+                    "base_amount",cost.amount,"allocated_for_current_level",playerTech.costTotal(cost,t),
+                    "next_level_cost",level<t.levelMax?playerTech.costLevelNext(cost.amount,t):null));
+            }
+            for(game.faction.player.PTech.TechCurr currency:playerTech.currs()) {
+                double penalty=currency.penalty();
+                currencies.add(object("id",currency.cu.bo.key,"name",currency.cu.bo.name.toString(),
+                    "total",currency.total(),"allocated",currency.allocated(),"frozen",currency.frozen(),
+                    "available",currency.available(),"penalty_raw",Double.isFinite(penalty)?penalty:null));
+            }
+            return object("technologies",rows,"requirements",requirements,"costs",costs,"currencies",currencies,
+                "field_definitions",object(
+                    "requirements",object("definition","Expanded prerequisite closure returned by TECH.requires(), not only direct tree edges; technology_requirements_met checks these levels only and does not establish other unlock conditions or affordability.",
+                        "source","init/tech/TECHS.java; init/tech/TECH.java"),
+                    "costs",object("unit","points of the identified currency", "definition","Base cost and public PTech cost getters. next_level_cost is null at maximum level and excludes missing prerequisites; allocated_for_current_level is the total allocation for this technology, not currency availability.",
+                        "source","game/faction/player/PTech.java; init/tech/TechCost.java"),
+                    "currencies",object("unit","points of each identified currency", "definition","Current public TechCurr values. available = total - frozen - allocated, and can be negative; frozen is rounded upward by the game. penalty_raw is the stored game penalty factor, not a forecast or recalculated per-technology penalty.",
+                        "source","game/faction/player/PTech.java:TechCurr")));
+        }, "Technology levels, expanded prerequisite levels, currency allocation and next-level cost getters; not a full unlock decision, effect schema, research forecast or history.");
         run(domains, "entities", () -> {
             List<Object> rows = new ArrayList<>();
             int total = 0;

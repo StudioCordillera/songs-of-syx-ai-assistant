@@ -1,0 +1,60 @@
+{
+  "passed": true,
+  "game_version": "0.71.44",
+  "rows_checked": {
+    "technologies": 402,
+    "requirements": 1132,
+    "costs": 402,
+    "currencies": 3
+  },
+  "public_getter_parity": true,
+  "prerequisite_level_invariants": true,
+  "currency_balance_invariant": true,
+  "mcp_relational_selection": true,
+  "same_observation_ui_context": true,
+  "max_level_cost_null": true,
+  "field_meanings_discoverable": true,
+  "employment_room_rows_checked": 31,
+  "selected_worker_room_join": true,
+  "room_id_unique_in_observation": true,
+  "limits": [
+    "Paused copied city, then one test-only technology capped; original save is never written.",
+    "No full unlock decision, future production, all-menu or comprehensive game-variable coverage established."
+  ],
+  "checkpoint": "core research and employment relationships after observation baseline 0.12.0",
+  "game_exit_code": 0,
+  "verifier_exit_code": 0,
+  "python_tests": {
+    "passed": 136
+  },
+  "game_jar_sha256": "fe0137c05408e5ee9e31f06fc44fe37a5d4372d9c985b280f0852d1347c0224b",
+  "source_archive_sha256": "a3fc2aa9f4be31aec0616a5030a656ac49a6011343b7e91395c7bac0b9dfb0a5",
+  "mod_jar_sha256": "7ceaf5f149ec511a929ffe2b2b043056e9da0aaf6ab2cf01e5c6b4e0caa5f053",
+  "production_public_member_count": 293,
+  "production_non_public_member_count": 0,
+  "production_source_sha256": {
+    "syx/assistant/AssistantScript.java": "00e23af134a7a1d0d22ab270f285f043889e9c53a51fea2e458236f66a96fdf0",
+    "syx/assistant/ChatPanel.java": "29e43cc0794021fa864cd690cf703c85e6d01d2e9279a0fdb8c933401f625e20",
+    "syx/assistant/EntityReadRequest.java": "deb0f86cad28da1c8677394a4aeb26913b0c80b4ee90c08cb882bedbc11f8a03",
+    "syx/assistant/JsonWriter.java": "c525eb60d3224cab83ed3fd6b8594ec8652211f00bd947e873e1482f919e81dc",
+    "syx/assistant/StateCollector.java": "c54dd1b99b4538eb6e0bc8452464d7a515054950983bdeaecab400533c3cf1a6",
+    "syx/assistant/TileReadRequest.java": "1a192cde61a7e1bdefa170390c00b17c74573b9c41de71700ebea466411ad3c5",
+    "syx/assistant/UiContentCollector.java": "c0d20c7f9f2734a0bb625427875f06bfcd07edb20611248b39b6e8f480ef5a48",
+    "syx/assistant/UiContextCollector.java": "afada4ff94ebb8e6d9bcd401d91ce176f554eebd050e6c9e79e731f787ec84ae"
+  },
+  "python_source_sha256": {
+    "syx_mcp.py": "dce776e543986d34a1bb169bb35e47579af92c0bd8c6e018d062206c2aa00564",
+    "syx_query.py": "252ff9199e7ec566f0c0a91ea0afb0a8557f5ce51ef62be64abd6216a113b80e",
+    "syx_api_support.py": "31e274ac396256c847c26d1b890cb10228a6020e22a9a95f7a46d43762acb963"
+  },
+  "fixture_source_sha256": {
+    "mod/tests/ResearchScenario.java": "20c548aeb60c3ff7165bd986297454c4f025fcd75c657f76edd1869a8d8a3e59",
+    "mod/tests/LiveSmoke.java": "b2c17eeabfd04f6a5747468c808cf8c8049b9d32fcc23729cc0bcc3514f8f110",
+    "dev/verify_research.py": "a90fb18a19926f029037e84dfb428b7955eb662bf2dd80ad0bf4ba6bf6a89515"
+  },
+  "rejected_exploratory_run": {
+    "reason": "Currency totals changed during initial load initialization; expectations taken too early. Subsequent runs delay expectations by ten seconds.",
+    "accepted_as_validation": false
+  },
+  "scope_note": "Public-getter/MCP runtime checks cover the listed core collectors. API-support metadata and response-budget checks are additionally unit tested. Existing chat acceptance is historical to its own pinned builds."
+}

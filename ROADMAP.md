@@ -10,7 +10,7 @@ The game-facing boundary remains an in-process SCRIPT mod using explicit public 
 
 Goal: let an assistant discover available variables and request a complex, bounded selection quickly, without receiving the entire state on each question.
 
-Implemented: 18 partial typed domains; snapshot filters, projections, joins, arithmetic and aggregates; on-demand person/stat reads; retained entity captures for stable paging; finite terrain/floor/room/mineral/path reads. Results identify their observation, session, coverage and scope. The compiler audit currently inventories 276 public production member references. The offline public-member catalog is a discovery backlog, not a count of supported variables.
+Implemented: 18 partial typed domains; snapshot filters, projections, joins, arithmetic and aggregates; on-demand person/stat reads; retained entity captures for stable paging; finite terrain/floor/room/mineral/path reads. Results identify their observation, session, coverage and scope. The compiler audit currently inventories 293 public production member references. The offline public-member catalog is a discovery backlog, not a count of supported variables.
 
 Next work:
 
@@ -59,4 +59,4 @@ Remaining client work includes broader menu/focus/lifecycle checks, physical key
 
 API_BOUNDARY.md and API_ESTABLISHMENT.md explain the API boundary and observation baseline. API_DISCOVERY.md/JSON describe public declaration discovery. QUERY_GUIDE.md describes selection and consistency limits. VALIDATION.md and validation-evidence.json retain historical observation evidence; CHAT_VALIDATION.json records the experimental shared-chat evidence. Passing an older build's fixture does not validate a newly changed build.
 
-The next implementation milestone is a source-backed data-coverage inventory and the next useful typed non-entity mapping, with getter agreement, a bounded query example and updated audit evidence. The mod is not finished: complete variables, complete menus and comprehensive reference coverage remain open objectives.
+The first core checkpoint adds the [data-coverage inventory](DATA_COVERAGE.md) and expanded research prerequisites/currencies/costs with copied-game getter agreement and an MCP relational query (CORE_VALIDATION.json). The same checkpoint establishes the shared observed room-instance key across employment and individual workplace records, including a selected-worker MCP join. The next mapping milestone is source-backed production relationships. The mod is not finished: complete variables, complete menus and comprehensive reference coverage remain open objectives.

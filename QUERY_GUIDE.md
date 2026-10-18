@@ -148,3 +148,29 @@ At most 4,096 tiles are scanned and 100 rows returned per request. Input is capp
 Every row includes tile_x/tile_y, plus requested groups as `{available,data}`. True/null means no floor/room/deposit reported; false means a getter failure. Nonzero predicate_errors prevents treating matching absence/count as established. Room data belongs to the supplied coordinate, not the UI-selected room. map_record_id may be shared by singleton rooms; instance_room_id exists only for RoomInstance. Anchors and singleton bounding area are engine values, not guaranteed geometric center or usable area. IDs expire with scene/session changes.
 
 Terrain roof/wall flags and floor road/degradation values are engine observations. Mineral amount_raw is a stored 6-bit value, amount_fraction is amount_raw/63, and richness_flag_raw is a stored one-bit flag; retrieve the associated installed resource description using reference_id. These values do not establish extraction yield or lifetime. Path factors and throne-component reachability include adjacent components and do not establish a route for a particular agent, final visibility or construction suitability. Full tile state, fertility, world-map state, global worker consistency and large-city performance remain unestablished.
+
+## Research prerequisites and currency allocation — development checkpoint
+
+The research domain now has four related arrays: `technologies`, `requirements`, `costs` and `currencies`. `describe_game_fields("research")` returns their available field meanings. `requirements` is the game's expanded prerequisite closure, including indirect dependencies; it is not only the visible tree edges.
+
+For up to five unmet prerequisite relationships, with readable prerequisite names:
+
+```json
+{"queries":[{"source":{"domain":"research","path":"/requirements"},"joins":[{"source":{"domain":"research","path":"/technologies"},"left_key":"/required_technology_id","right_key":"/id","as":"required","kind":"inner"}],"where":{"eq":[{"field":"/met"},false]},"select":{"technology":{"field":"/technology_id"},"requires":{"field":"/required/name"},"missing_levels":{"subtract":[{"field":"/required_level"},{"field":"/current_level"}]}},"limit":5}]}
+```
+
+`technology_requirements_met` checks technology levels only. It does not prove every non-technology unlock condition passes or that the player can afford the research. Cost rows join technology `id` through `technology_id` and currency `id` through `currency_id`. `next_level_cost` excludes missing prerequisites and becomes null at maximum level. Currency `available` is `total - frozen - allocated` and may be negative. The stored `penalty_raw` is not a forecast or a recalculated per-technology penalty. Technology `reference_id` links to installed help via `search_game_references`.
+
+The [coverage inventory](DATA_COVERAGE.md) lists current routes and the next typed mappings. It is not a full game-variable catalog.
+
+## Join a selected worker to employment
+
+Employment rows now include `room_id`, the public room-instance index also used by a person's recorded workplace. The existing composite `id` is retained. Join these numeric `room_id` values only within the same observation; they may be reused when a room is replaced and are not permanent campaign identifiers.
+
+After checking that `/selected_subject` and its available, non-null workplace exist:
+
+```json
+{"include_ui_context":true,"queries":[{"source":{"domain":"entities","path":"/selected_subject"},"joins":[{"source":{"domain":"employment","path":"/rooms"},"left_key":"/relationships/workplace/data/room_id","right_key":"/room_id","as":"work","kind":"inner"}],"select":{"person":{"field":"/entity_id"},"workplace":{"field":"/work/name"},"employed":{"field":"/work/employed"},"target":{"field":"/work/target"}},"limit":1}]}
+```
+
+This observes a recorded assignment. It does not prove the person is currently working, that this room is selected in the UI, or that the room meets production targets. A missing join is not evidence of unemployment if either source lacks coverage.

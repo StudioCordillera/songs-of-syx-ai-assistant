@@ -8,7 +8,7 @@
     "syx/assistant/ChatPanel.java": "29e43cc0794021fa864cd690cf703c85e6d01d2e9279a0fdb8c933401f625e20",
     "syx/assistant/EntityReadRequest.java": "deb0f86cad28da1c8677394a4aeb26913b0c80b4ee90c08cb882bedbc11f8a03",
     "syx/assistant/JsonWriter.java": "c525eb60d3224cab83ed3fd6b8594ec8652211f00bd947e873e1482f919e81dc",
-    "syx/assistant/StateCollector.java": "dc5d25f18cb75b7e432e73482b23ae52405d791dc1d4f9c6c386f6242e901458",
+    "syx/assistant/StateCollector.java": "c54dd1b99b4538eb6e0bc8452464d7a515054950983bdeaecab400533c3cf1a6",
     "syx/assistant/TileReadRequest.java": "1a192cde61a7e1bdefa170390c00b17c74573b9c41de71700ebea466411ad3c5",
     "syx/assistant/UiContentCollector.java": "c0d20c7f9f2734a0bb625427875f06bfcd07edb20611248b39b6e8f480ef5a48",
     "syx/assistant/UiContextCollector.java": "afada4ff94ebb8e6d9bcd401d91ce176f554eebd050e6c9e79e731f787ec84ae"
@@ -23,7 +23,7 @@
       "public": true,
       "source_file": "game/GAME.java",
       "uses": [
-        "StateCollector.java:261",
+        "StateCollector.java:290",
         "UiContextCollector.java:60"
       ],
       "parameter_types": [],
@@ -49,8 +49,8 @@
       "public": true,
       "source_file": "game/GAME.java",
       "uses": [
-        "StateCollector.java:227",
-        "StateCollector.java:229"
+        "StateCollector.java:256",
+        "StateCollector.java:258"
       ],
       "parameter_types": [],
       "compiler_generated_enum": false,
@@ -75,7 +75,7 @@
       "public": true,
       "source_file": "game/GAME.java",
       "uses": [
-        "StateCollector.java:231"
+        "StateCollector.java:260"
       ],
       "parameter_types": [],
       "compiler_generated_enum": false,
@@ -129,7 +129,7 @@
       "public": true,
       "source_file": "game/GAME.java",
       "uses": [
-        "StateCollector.java:226"
+        "StateCollector.java:255"
       ],
       "parameter_types": [],
       "compiler_generated_enum": false,
@@ -156,11 +156,11 @@
       "uses": [
         "StateCollector.java:165",
         "StateCollector.java:166",
-        "StateCollector.java:185",
-        "StateCollector.java:204",
-        "StateCollector.java:205",
-        "StateCollector.java:211",
-        "StateCollector.java:212"
+        "StateCollector.java:187",
+        "StateCollector.java:233",
+        "StateCollector.java:234",
+        "StateCollector.java:240",
+        "StateCollector.java:241"
       ],
       "parameter_types": [],
       "compiler_generated_enum": false,
@@ -237,7 +237,7 @@
       "public": true,
       "source_file": "game/GameSpeed.java",
       "uses": [
-        "StateCollector.java:231"
+        "StateCollector.java:260"
       ],
       "parameter_types": [],
       "compiler_generated_enum": false,
@@ -262,7 +262,7 @@
       "public": true,
       "source_file": "game/GameSpeed.java",
       "uses": [
-        "StateCollector.java:231"
+        "StateCollector.java:260"
       ],
       "parameter_types": [],
       "compiler_generated_enum": false,
@@ -318,7 +318,7 @@
       "public": true,
       "source_file": "game/battle/Armies.java",
       "uses": [
-        "StateCollector.java:261",
+        "StateCollector.java:290",
         "UiContextCollector.java:60"
       ],
       "parameter_types": [],
@@ -344,7 +344,7 @@
       "public": true,
       "source_file": "game/battle/Armies.java",
       "uses": [
-        "StateCollector.java:261",
+        "StateCollector.java:290",
         "UiContextCollector.java:60"
       ],
       "parameter_types": [],
@@ -767,6 +767,32 @@
       "documentation_status": "human_review_required; Javadoc presence alone does not establish a stable mod contract"
     },
     {
+      "id": "game.boosting.Boostable#key",
+      "owner": "game.boosting.Boostable",
+      "name": "key",
+      "kind": "FIELD",
+      "signature": "key",
+      "public": true,
+      "source_file": "game/boosting/Boostable.java",
+      "uses": [
+        "StateCollector.java:198",
+        "StateCollector.java:204"
+      ],
+      "parameter_types": [],
+      "compiler_generated_enum": false,
+      "arity": -1,
+      "source_candidates": [
+        {
+          "line": 24,
+          "source_sha256": "753e94efc4c0ab578a3acbb9bd2c37731110e13eedffc1a77d7278c0fd32be2f",
+          "parameter_types": [],
+          "has_javadoc": false
+        }
+      ],
+      "source_match": "name_arity_and_simple_parameter_types",
+      "documentation_status": "human_review_required; Javadoc presence alone does not establish a stable mod contract"
+    },
+    {
       "id": "game.event.engine.EVENT_HANDLER#current()",
       "owner": "game.event.engine.EVENT_HANDLER",
       "name": "current",
@@ -775,7 +801,7 @@
       "public": true,
       "source_file": "game/event/engine/EVENT_HANDLER.java",
       "uses": [
-        "StateCollector.java:227"
+        "StateCollector.java:256"
       ],
       "parameter_types": [],
       "compiler_generated_enum": false,
@@ -800,7 +826,7 @@
       "public": true,
       "source_file": "game/event/engine/EVENT_HANDLER.java",
       "uses": [
-        "StateCollector.java:229"
+        "StateCollector.java:258"
       ],
       "parameter_types": [],
       "compiler_generated_enum": false,
@@ -825,7 +851,7 @@
       "public": true,
       "source_file": "game/event/engine/Event.java",
       "uses": [
-        "StateCollector.java:228"
+        "StateCollector.java:257"
       ],
       "parameter_types": [],
       "compiler_generated_enum": false,
@@ -850,7 +876,7 @@
       "public": true,
       "source_file": "game/events/EVENTS.java",
       "uses": [
-        "StateCollector.java:226"
+        "StateCollector.java:255"
       ],
       "parameter_types": [],
       "compiler_generated_enum": false,
@@ -875,7 +901,7 @@
       "public": true,
       "source_file": "game/events/EVENTS.java",
       "uses": [
-        "StateCollector.java:226"
+        "StateCollector.java:255"
       ],
       "parameter_types": [],
       "compiler_generated_enum": false,
@@ -900,7 +926,7 @@
       "public": true,
       "source_file": "game/faction/FACTIONS.java",
       "uses": [
-        "StateCollector.java:210"
+        "StateCollector.java:239"
       ],
       "parameter_types": [],
       "compiler_generated_enum": false,
@@ -1001,8 +1027,8 @@
       "public": true,
       "source_file": "game/faction/Faction.java",
       "uses": [
-        "StateCollector.java:213",
-        "StateCollector.java:221"
+        "StateCollector.java:242",
+        "StateCollector.java:250"
       ],
       "parameter_types": [],
       "compiler_generated_enum": false,
@@ -1027,7 +1053,7 @@
       "public": true,
       "source_file": "game/faction/Faction.java",
       "uses": [
-        "StateCollector.java:213"
+        "StateCollector.java:242"
       ],
       "parameter_types": [],
       "compiler_generated_enum": false,
@@ -1052,7 +1078,7 @@
       "public": true,
       "source_file": "game/faction/diplomacy/DIP.java",
       "uses": [
-        "StateCollector.java:212"
+        "StateCollector.java:241"
       ],
       "parameter_types": [
         "game.faction.Faction",
@@ -1083,7 +1109,7 @@
       "public": true,
       "source_file": "game/faction/diplomacy/DipStance.java",
       "uses": [
-        "StateCollector.java:213"
+        "StateCollector.java:242"
       ],
       "parameter_types": [],
       "compiler_generated_enum": false,
@@ -1108,7 +1134,7 @@
       "public": true,
       "source_file": "game/faction/diplomacy/DipStance.java",
       "uses": [
-        "StateCollector.java:213"
+        "StateCollector.java:242"
       ],
       "parameter_types": [],
       "compiler_generated_enum": false,
@@ -1125,6 +1151,93 @@
       "documentation_status": "human_review_required; Javadoc presence alone does not establish a stable mod contract"
     },
     {
+      "id": "game.faction.player.PTech#costLevelNext(double,init.tech.TECH)",
+      "owner": "game.faction.player.PTech",
+      "name": "costLevelNext",
+      "kind": "METHOD",
+      "signature": "costLevelNext(double,init.tech.TECH)",
+      "public": true,
+      "source_file": "game/faction/player/PTech.java",
+      "uses": [
+        "StateCollector.java:200"
+      ],
+      "parameter_types": [
+        "double",
+        "init.tech.TECH"
+      ],
+      "compiler_generated_enum": false,
+      "arity": 2,
+      "source_candidates": [
+        {
+          "line": 372,
+          "source_sha256": "d7e139f18715829f83520b22d80bb4c0bb79fc92a7249ab794a37213808e974a",
+          "parameter_types": [
+            "double",
+            "TECH"
+          ],
+          "has_javadoc": false
+        }
+      ],
+      "source_match": "name_arity_and_simple_parameter_types",
+      "documentation_status": "human_review_required; Javadoc presence alone does not establish a stable mod contract"
+    },
+    {
+      "id": "game.faction.player.PTech#costTotal(init.tech.TechCost,init.tech.TECH)",
+      "owner": "game.faction.player.PTech",
+      "name": "costTotal",
+      "kind": "METHOD",
+      "signature": "costTotal(init.tech.TechCost,init.tech.TECH)",
+      "public": true,
+      "source_file": "game/faction/player/PTech.java",
+      "uses": [
+        "StateCollector.java:199"
+      ],
+      "parameter_types": [
+        "init.tech.TechCost",
+        "init.tech.TECH"
+      ],
+      "compiler_generated_enum": false,
+      "arity": 2,
+      "source_candidates": [
+        {
+          "line": 386,
+          "source_sha256": "d7e139f18715829f83520b22d80bb4c0bb79fc92a7249ab794a37213808e974a",
+          "parameter_types": [
+            "TechCost",
+            "TECH"
+          ],
+          "has_javadoc": false
+        }
+      ],
+      "source_match": "name_arity_and_simple_parameter_types",
+      "documentation_status": "human_review_required; Javadoc presence alone does not establish a stable mod contract"
+    },
+    {
+      "id": "game.faction.player.PTech#currs()",
+      "owner": "game.faction.player.PTech",
+      "name": "currs",
+      "kind": "METHOD",
+      "signature": "currs()",
+      "public": true,
+      "source_file": "game/faction/player/PTech.java",
+      "uses": [
+        "StateCollector.java:202"
+      ],
+      "parameter_types": [],
+      "compiler_generated_enum": false,
+      "arity": 0,
+      "source_candidates": [
+        {
+          "line": 460,
+          "source_sha256": "d7e139f18715829f83520b22d80bb4c0bb79fc92a7249ab794a37213808e974a",
+          "parameter_types": [],
+          "has_javadoc": false
+        }
+      ],
+      "source_match": "name_arity_and_simple_parameter_types",
+      "documentation_status": "human_review_required; Javadoc presence alone does not establish a stable mod contract"
+    },
+    {
       "id": "game.faction.player.PTech#level(init.tech.TECH)",
       "owner": "game.faction.player.PTech",
       "name": "level",
@@ -1133,7 +1246,8 @@
       "public": true,
       "source_file": "game/faction/player/PTech.java",
       "uses": [
-        "StateCollector.java:185"
+        "StateCollector.java:189",
+        "StateCollector.java:191"
       ],
       "parameter_types": [
         "init.tech.TECH"
@@ -1154,6 +1268,156 @@
       "documentation_status": "human_review_required; Javadoc presence alone does not establish a stable mod contract"
     },
     {
+      "id": "game.faction.player.PTech.TechCurr#allocated()",
+      "owner": "game.faction.player.PTech.TechCurr",
+      "name": "allocated",
+      "kind": "METHOD",
+      "signature": "allocated()",
+      "public": true,
+      "source_file": "game/faction/player/PTech.java",
+      "uses": [
+        "StateCollector.java:205"
+      ],
+      "parameter_types": [],
+      "compiler_generated_enum": false,
+      "arity": 0,
+      "source_candidates": [
+        {
+          "line": 479,
+          "source_sha256": "d7e139f18715829f83520b22d80bb4c0bb79fc92a7249ab794a37213808e974a",
+          "parameter_types": [],
+          "has_javadoc": false
+        }
+      ],
+      "source_match": "name_arity_and_simple_parameter_types",
+      "documentation_status": "human_review_required; Javadoc presence alone does not establish a stable mod contract"
+    },
+    {
+      "id": "game.faction.player.PTech.TechCurr#available()",
+      "owner": "game.faction.player.PTech.TechCurr",
+      "name": "available",
+      "kind": "METHOD",
+      "signature": "available()",
+      "public": true,
+      "source_file": "game/faction/player/PTech.java",
+      "uses": [
+        "StateCollector.java:206"
+      ],
+      "parameter_types": [],
+      "compiler_generated_enum": false,
+      "arity": 0,
+      "source_candidates": [
+        {
+          "line": 491,
+          "source_sha256": "d7e139f18715829f83520b22d80bb4c0bb79fc92a7249ab794a37213808e974a",
+          "parameter_types": [],
+          "has_javadoc": false
+        }
+      ],
+      "source_match": "name_arity_and_simple_parameter_types",
+      "documentation_status": "human_review_required; Javadoc presence alone does not establish a stable mod contract"
+    },
+    {
+      "id": "game.faction.player.PTech.TechCurr#cu",
+      "owner": "game.faction.player.PTech.TechCurr",
+      "name": "cu",
+      "kind": "FIELD",
+      "signature": "cu",
+      "public": true,
+      "source_file": "game/faction/player/PTech.java",
+      "uses": [
+        "StateCollector.java:204"
+      ],
+      "parameter_types": [],
+      "compiler_generated_enum": false,
+      "arity": -1,
+      "source_candidates": [
+        {
+          "line": 466,
+          "source_sha256": "d7e139f18715829f83520b22d80bb4c0bb79fc92a7249ab794a37213808e974a",
+          "parameter_types": [],
+          "has_javadoc": false
+        }
+      ],
+      "source_match": "name_arity_and_simple_parameter_types",
+      "documentation_status": "human_review_required; Javadoc presence alone does not establish a stable mod contract"
+    },
+    {
+      "id": "game.faction.player.PTech.TechCurr#frozen()",
+      "owner": "game.faction.player.PTech.TechCurr",
+      "name": "frozen",
+      "kind": "METHOD",
+      "signature": "frozen()",
+      "public": true,
+      "source_file": "game/faction/player/PTech.java",
+      "uses": [
+        "StateCollector.java:205"
+      ],
+      "parameter_types": [],
+      "compiler_generated_enum": false,
+      "arity": 0,
+      "source_candidates": [
+        {
+          "line": 483,
+          "source_sha256": "d7e139f18715829f83520b22d80bb4c0bb79fc92a7249ab794a37213808e974a",
+          "parameter_types": [],
+          "has_javadoc": false
+        }
+      ],
+      "source_match": "name_arity_and_simple_parameter_types",
+      "documentation_status": "human_review_required; Javadoc presence alone does not establish a stable mod contract"
+    },
+    {
+      "id": "game.faction.player.PTech.TechCurr#penalty()",
+      "owner": "game.faction.player.PTech.TechCurr",
+      "name": "penalty",
+      "kind": "METHOD",
+      "signature": "penalty()",
+      "public": true,
+      "source_file": "game/faction/player/PTech.java",
+      "uses": [
+        "StateCollector.java:203"
+      ],
+      "parameter_types": [],
+      "compiler_generated_enum": false,
+      "arity": 0,
+      "source_candidates": [
+        {
+          "line": 495,
+          "source_sha256": "d7e139f18715829f83520b22d80bb4c0bb79fc92a7249ab794a37213808e974a",
+          "parameter_types": [],
+          "has_javadoc": false
+        }
+      ],
+      "source_match": "name_arity_and_simple_parameter_types",
+      "documentation_status": "human_review_required; Javadoc presence alone does not establish a stable mod contract"
+    },
+    {
+      "id": "game.faction.player.PTech.TechCurr#total()",
+      "owner": "game.faction.player.PTech.TechCurr",
+      "name": "total",
+      "kind": "METHOD",
+      "signature": "total()",
+      "public": true,
+      "source_file": "game/faction/player/PTech.java",
+      "uses": [
+        "StateCollector.java:205"
+      ],
+      "parameter_types": [],
+      "compiler_generated_enum": false,
+      "arity": 0,
+      "source_candidates": [
+        {
+          "line": 487,
+          "source_sha256": "d7e139f18715829f83520b22d80bb4c0bb79fc92a7249ab794a37213808e974a",
+          "parameter_types": [],
+          "has_javadoc": false
+        }
+      ],
+      "source_match": "name_arity_and_simple_parameter_types",
+      "documentation_status": "human_review_required; Javadoc presence alone does not establish a stable mod contract"
+    },
+    {
       "id": "game.faction.player.PTrade#unitsExported",
       "owner": "game.faction.player.PTrade",
       "name": "unitsExported",
@@ -1162,7 +1426,7 @@
       "public": true,
       "source_file": "game/faction/player/PTrade.java",
       "uses": [
-        "StateCollector.java:205"
+        "StateCollector.java:234"
       ],
       "parameter_types": [],
       "compiler_generated_enum": false,
@@ -1187,7 +1451,7 @@
       "public": true,
       "source_file": "game/faction/player/PTrade.java",
       "uses": [
-        "StateCollector.java:204"
+        "StateCollector.java:233"
       ],
       "parameter_types": [],
       "compiler_generated_enum": false,
@@ -1238,7 +1502,7 @@
       "public": true,
       "source_file": "game/faction/player/Player.java",
       "uses": [
-        "StateCollector.java:185"
+        "StateCollector.java:187"
       ],
       "parameter_types": [],
       "compiler_generated_enum": false,
@@ -1263,8 +1527,8 @@
       "public": true,
       "source_file": "game/faction/player/Player.java",
       "uses": [
-        "StateCollector.java:204",
-        "StateCollector.java:205"
+        "StateCollector.java:233",
+        "StateCollector.java:234"
       ],
       "parameter_types": [],
       "compiler_generated_enum": false,
@@ -1289,7 +1553,7 @@
       "public": true,
       "source_file": "game/time/TIME.java",
       "uses": [
-        "StateCollector.java:232"
+        "StateCollector.java:261"
       ],
       "parameter_types": [],
       "compiler_generated_enum": false,
@@ -1314,7 +1578,7 @@
       "public": true,
       "source_file": "game/time/TIME.java",
       "uses": [
-        "StateCollector.java:232"
+        "StateCollector.java:261"
       ],
       "parameter_types": [],
       "compiler_generated_enum": false,
@@ -1443,7 +1707,7 @@
         "EntityReadRequest.java:149",
         "StateCollector.java:109",
         "StateCollector.java:146",
-        "StateCollector.java:196",
+        "StateCollector.java:225",
         "StateCollector.java:93",
         "UiContextCollector.java:90"
       ],
@@ -1498,7 +1762,7 @@
       "uses": [
         "StateCollector.java:151",
         "StateCollector.java:167",
-        "StateCollector.java:203",
+        "StateCollector.java:232",
         "StateCollector.java:37",
         "StateCollector.java:38",
         "TileReadRequest.java:113",
@@ -1554,8 +1818,8 @@
       "uses": [
         "StateCollector.java:165",
         "StateCollector.java:166",
-        "StateCollector.java:204",
-        "StateCollector.java:205"
+        "StateCollector.java:233",
+        "StateCollector.java:234"
       ],
       "parameter_types": [],
       "compiler_generated_enum": false,
@@ -1582,7 +1846,7 @@
       "uses": [
         "StateCollector.java:151",
         "StateCollector.java:163",
-        "StateCollector.java:203",
+        "StateCollector.java:232",
         "StateCollector.java:37"
       ],
       "parameter_types": [],
@@ -1668,6 +1932,31 @@
       "documentation_status": "human_review_required; Javadoc presence alone does not establish a stable mod contract"
     },
     {
+      "id": "init.tech.TECH#costs",
+      "owner": "init.tech.TECH",
+      "name": "costs",
+      "kind": "FIELD",
+      "signature": "costs",
+      "public": true,
+      "source_file": "init/tech/TECH.java",
+      "uses": [
+        "StateCollector.java:198"
+      ],
+      "parameter_types": [],
+      "compiler_generated_enum": false,
+      "arity": -1,
+      "source_candidates": [
+        {
+          "line": 32,
+          "source_sha256": "58f335d7be0e3940766992b5aca8739dca272a7fed28fd91c6dd0bbdc38b0011",
+          "parameter_types": [],
+          "has_javadoc": false
+        }
+      ],
+      "source_match": "name_arity_and_simple_parameter_types",
+      "documentation_status": "human_review_required; Javadoc presence alone does not establish a stable mod contract"
+    },
+    {
       "id": "init.tech.TECH#desc()",
       "owner": "init.tech.TECH",
       "name": "desc",
@@ -1701,7 +1990,9 @@
       "public": true,
       "source_file": "init/tech/TECH.java",
       "uses": [
-        "StateCollector.java:185",
+        "StateCollector.java:193",
+        "StateCollector.java:196",
+        "StateCollector.java:198",
         "StateCollector.java:39",
         "StateCollector.java:40"
       ],
@@ -1728,7 +2019,8 @@
       "public": true,
       "source_file": "init/tech/TECH.java",
       "uses": [
-        "StateCollector.java:185"
+        "StateCollector.java:197",
+        "StateCollector.java:200"
       ],
       "parameter_types": [],
       "compiler_generated_enum": false,
@@ -1753,7 +2045,7 @@
       "public": true,
       "source_file": "init/tech/TECH.java",
       "uses": [
-        "StateCollector.java:185",
+        "StateCollector.java:196",
         "StateCollector.java:40"
       ],
       "parameter_types": [],
@@ -1771,6 +2063,83 @@
       "documentation_status": "human_review_required; Javadoc presence alone does not establish a stable mod contract"
     },
     {
+      "id": "init.tech.TECH#requires()",
+      "owner": "init.tech.TECH",
+      "name": "requires",
+      "kind": "METHOD",
+      "signature": "requires()",
+      "public": true,
+      "source_file": "init/tech/TECH.java",
+      "uses": [
+        "StateCollector.java:190"
+      ],
+      "parameter_types": [],
+      "compiler_generated_enum": false,
+      "arity": 0,
+      "source_candidates": [
+        {
+          "line": 141,
+          "source_sha256": "58f335d7be0e3940766992b5aca8739dca272a7fed28fd91c6dd0bbdc38b0011",
+          "parameter_types": [],
+          "has_javadoc": false
+        }
+      ],
+      "source_match": "name_arity_and_simple_parameter_types",
+      "documentation_status": "human_review_required; Javadoc presence alone does not establish a stable mod contract"
+    },
+    {
+      "id": "init.tech.TECH.TechRequirement#level",
+      "owner": "init.tech.TECH.TechRequirement",
+      "name": "level",
+      "kind": "FIELD",
+      "signature": "level",
+      "public": true,
+      "source_file": "init/tech/TECH.java",
+      "uses": [
+        "StateCollector.java:191",
+        "StateCollector.java:194"
+      ],
+      "parameter_types": [],
+      "compiler_generated_enum": false,
+      "arity": -1,
+      "source_candidates": [
+        {
+          "line": 179,
+          "source_sha256": "58f335d7be0e3940766992b5aca8739dca272a7fed28fd91c6dd0bbdc38b0011",
+          "parameter_types": [],
+          "has_javadoc": false
+        }
+      ],
+      "source_match": "name_arity_and_simple_parameter_types",
+      "documentation_status": "human_review_required; Javadoc presence alone does not establish a stable mod contract"
+    },
+    {
+      "id": "init.tech.TECH.TechRequirement#tech",
+      "owner": "init.tech.TECH.TechRequirement",
+      "name": "tech",
+      "kind": "FIELD",
+      "signature": "tech",
+      "public": true,
+      "source_file": "init/tech/TECH.java",
+      "uses": [
+        "StateCollector.java:191",
+        "StateCollector.java:193"
+      ],
+      "parameter_types": [],
+      "compiler_generated_enum": false,
+      "arity": -1,
+      "source_candidates": [
+        {
+          "line": 178,
+          "source_sha256": "58f335d7be0e3940766992b5aca8739dca272a7fed28fd91c6dd0bbdc38b0011",
+          "parameter_types": [],
+          "has_javadoc": false
+        }
+      ],
+      "source_match": "name_arity_and_simple_parameter_types",
+      "documentation_status": "human_review_required; Javadoc presence alone does not establish a stable mod contract"
+    },
+    {
       "id": "init.tech.TECHS#ALL()",
       "owner": "init.tech.TECHS",
       "name": "ALL",
@@ -1779,7 +2148,7 @@
       "public": true,
       "source_file": "init/tech/TECHS.java",
       "uses": [
-        "StateCollector.java:185",
+        "StateCollector.java:188",
         "StateCollector.java:39"
       ],
       "parameter_types": [],
@@ -1789,6 +2158,83 @@
         {
           "line": 37,
           "source_sha256": "a04db03e5e33fc9202c6e325be346990d058c9c3f93cc6641c42f83000c5840e",
+          "parameter_types": [],
+          "has_javadoc": false
+        }
+      ],
+      "source_match": "name_arity_and_simple_parameter_types",
+      "documentation_status": "human_review_required; Javadoc presence alone does not establish a stable mod contract"
+    },
+    {
+      "id": "init.tech.TechCost#amount",
+      "owner": "init.tech.TechCost",
+      "name": "amount",
+      "kind": "FIELD",
+      "signature": "amount",
+      "public": true,
+      "source_file": "init/tech/TechCost.java",
+      "uses": [
+        "StateCollector.java:199",
+        "StateCollector.java:200"
+      ],
+      "parameter_types": [],
+      "compiler_generated_enum": false,
+      "arity": -1,
+      "source_candidates": [
+        {
+          "line": 6,
+          "source_sha256": "270b8cfc2328e3845b87d571430773432e48e66e9ee8ff2b39948e90c30afbfc",
+          "parameter_types": [],
+          "has_javadoc": false
+        }
+      ],
+      "source_match": "name_arity_and_simple_parameter_types",
+      "documentation_status": "human_review_required; Javadoc presence alone does not establish a stable mod contract"
+    },
+    {
+      "id": "init.tech.TechCost#cu",
+      "owner": "init.tech.TechCost",
+      "name": "cu",
+      "kind": "FIELD",
+      "signature": "cu",
+      "public": true,
+      "source_file": "init/tech/TechCost.java",
+      "uses": [
+        "StateCollector.java:198"
+      ],
+      "parameter_types": [],
+      "compiler_generated_enum": false,
+      "arity": -1,
+      "source_candidates": [
+        {
+          "line": 5,
+          "source_sha256": "270b8cfc2328e3845b87d571430773432e48e66e9ee8ff2b39948e90c30afbfc",
+          "parameter_types": [],
+          "has_javadoc": false
+        }
+      ],
+      "source_match": "name_arity_and_simple_parameter_types",
+      "documentation_status": "human_review_required; Javadoc presence alone does not establish a stable mod contract"
+    },
+    {
+      "id": "init.tech.TechCurrency#bo",
+      "owner": "init.tech.TechCurrency",
+      "name": "bo",
+      "kind": "FIELD",
+      "signature": "bo",
+      "public": true,
+      "source_file": "init/tech/TechCurrency.java",
+      "uses": [
+        "StateCollector.java:198",
+        "StateCollector.java:204"
+      ],
+      "parameter_types": [],
+      "compiler_generated_enum": false,
+      "arity": -1,
+      "source_candidates": [
+        {
+          "line": 11,
+          "source_sha256": "c8dbc1da5738de3f55d6f45fabf3a90ddfb9a0ef97988d19b00997227547b503",
           "parameter_types": [],
           "has_javadoc": false
         }
@@ -1808,8 +2254,8 @@
         "EntityReadRequest.java:136",
         "EntityReadRequest.java:150",
         "StateCollector.java:146",
-        "StateCollector.java:252",
-        "StateCollector.java:254",
+        "StateCollector.java:281",
+        "StateCollector.java:283",
         "StateCollector.java:93"
       ],
       "parameter_types": [],
@@ -1836,7 +2282,7 @@
       "source_file": "init/type/HCLASSES.java",
       "uses": [
         "StateCollector.java:145",
-        "StateCollector.java:249"
+        "StateCollector.java:278"
       ],
       "parameter_types": [],
       "compiler_generated_enum": false,
@@ -1889,7 +2335,7 @@
       "source_file": "settlement/entity/ENTETIES.java",
       "uses": [
         "EntityReadRequest.java:122",
-        "StateCollector.java:191"
+        "StateCollector.java:220"
       ],
       "parameter_types": [],
       "compiler_generated_enum": false,
@@ -1945,7 +2391,7 @@
       "uses": [
         "EntityReadRequest.java:131",
         "EntityReadRequest.java:145",
-        "StateCollector.java:195",
+        "StateCollector.java:224",
         "StateCollector.java:93",
         "UiContextCollector.java:90"
       ],
@@ -1973,7 +2419,7 @@
       "source_file": "settlement/entity/ENTITY.java",
       "uses": [
         "EntityReadRequest.java:131",
-        "StateCollector.java:192",
+        "StateCollector.java:221",
         "StateCollector.java:86",
         "UiContextCollector.java:89"
       ],
@@ -2003,7 +2449,7 @@
         "EntityReadRequest.java:132",
         "EntityReadRequest.java:147",
         "EntityReadRequest.java:148",
-        "StateCollector.java:195",
+        "StateCollector.java:224",
         "StateCollector.java:94",
         "UiContextCollector.java:90"
       ],
@@ -2089,7 +2535,7 @@
       "uses": [
         "EntityReadRequest.java:135",
         "EntityReadRequest.java:149",
-        "StateCollector.java:196",
+        "StateCollector.java:225",
         "StateCollector.java:93",
         "UiContextCollector.java:90"
       ],
@@ -2143,7 +2589,7 @@
       "uses": [
         "EntityReadRequest.java:122",
         "EntityReadRequest.java:125",
-        "StateCollector.java:191"
+        "StateCollector.java:220"
       ],
       "parameter_types": [],
       "compiler_generated_enum": false,
@@ -2305,7 +2751,7 @@
       "public": true,
       "source_file": "settlement/main/SETT.java",
       "uses": [
-        "StateCollector.java:233",
+        "StateCollector.java:262",
         "TileReadRequest.java:68"
       ],
       "parameter_types": [],
@@ -2331,7 +2777,7 @@
       "public": true,
       "source_file": "settlement/main/SETT.java",
       "uses": [
-        "StateCollector.java:233",
+        "StateCollector.java:262",
         "TileReadRequest.java:68"
       ],
       "parameter_types": [],
@@ -2383,7 +2829,7 @@
       "source_file": "settlement/main/SETT.java",
       "uses": [
         "EntityReadRequest.java:111",
-        "StateCollector.java:271",
+        "StateCollector.java:300",
         "TileReadRequest.java:67",
         "UiContextCollector.java:31",
         "UiContextCollector.java:32"
@@ -2859,6 +3305,7 @@
       "public": true,
       "source_file": "settlement/room/main/Room.java",
       "uses": [
+        "StateCollector.java:176",
         "StateCollector.java:65",
         "TileReadRequest.java:108"
       ],
@@ -3376,7 +3823,7 @@
       "public": true,
       "source_file": "settlement/stats/STATS.java",
       "uses": [
-        "StateCollector.java:244"
+        "StateCollector.java:273"
       ],
       "parameter_types": [],
       "compiler_generated_enum": false,
@@ -3661,8 +4108,8 @@
       "source_file": "settlement/stats/stat/SETT_STATISTICS.java",
       "uses": [
         "StateCollector.java:146",
-        "StateCollector.java:251",
-        "StateCollector.java:252"
+        "StateCollector.java:280",
+        "StateCollector.java:281"
       ],
       "parameter_types": [
         "init.type.HCLASS"
@@ -3691,7 +4138,7 @@
       "public": true,
       "source_file": "settlement/stats/stat/SETT_STATISTICS.java",
       "uses": [
-        "StateCollector.java:257"
+        "StateCollector.java:286"
       ],
       "parameter_types": [],
       "compiler_generated_enum": false,
@@ -3801,7 +4248,7 @@
       "public": true,
       "source_file": "settlement/stats/stat/STAT.java",
       "uses": [
-        "StateCollector.java:256",
+        "StateCollector.java:285",
         "StateCollector.java:42"
       ],
       "parameter_types": [],
@@ -3827,7 +4274,7 @@
       "public": true,
       "source_file": "settlement/stats/stat/STAT.java",
       "uses": [
-        "StateCollector.java:256",
+        "StateCollector.java:285",
         "StateCollector.java:42",
         "StateCollector.java:46"
       ],
@@ -3854,7 +4301,7 @@
       "public": true,
       "source_file": "settlement/stats/stat/StatCollection.java",
       "uses": [
-        "StateCollector.java:247"
+        "StateCollector.java:276"
       ],
       "parameter_types": [],
       "compiler_generated_enum": false,
@@ -3879,8 +4326,8 @@
       "public": true,
       "source_file": "settlement/stats/stat/StatCollection.java",
       "uses": [
-        "StateCollector.java:245",
-        "StateCollector.java:256"
+        "StateCollector.java:274",
+        "StateCollector.java:285"
       ],
       "parameter_types": [],
       "compiler_generated_enum": false,
@@ -4372,7 +4819,7 @@
       "uses": [
         "EntityReadRequest.java:132",
         "EntityReadRequest.java:147",
-        "StateCollector.java:195",
+        "StateCollector.java:224",
         "StateCollector.java:74",
         "StateCollector.java:94",
         "UiContextCollector.java:90"
@@ -4402,7 +4849,7 @@
       "uses": [
         "EntityReadRequest.java:132",
         "EntityReadRequest.java:148",
-        "StateCollector.java:195",
+        "StateCollector.java:224",
         "StateCollector.java:74",
         "StateCollector.java:94",
         "UiContextCollector.java:90"
@@ -5124,8 +5571,8 @@
         "ChatPanel.java:181",
         "StateCollector.java:104",
         "StateCollector.java:177",
-        "StateCollector.java:213",
-        "StateCollector.java:220",
+        "StateCollector.java:242",
+        "StateCollector.java:249",
         "StateCollector.java:65"
       ],
       "parameter_types": [],
@@ -5672,7 +6119,8 @@
       "source_file": "util/info/INFO.java",
       "uses": [
         "StateCollector.java:151",
-        "StateCollector.java:256",
+        "StateCollector.java:204",
+        "StateCollector.java:285",
         "StateCollector.java:38",
         "StateCollector.java:42"
       ],
@@ -5701,7 +6149,7 @@
       "uses": [
         "StateCollector.java:146",
         "StateCollector.java:147",
-        "StateCollector.java:252"
+        "StateCollector.java:281"
       ],
       "parameter_types": [
         "T"
@@ -5730,7 +6178,7 @@
       "public": true,
       "source_file": "util/statistics/HISTORY_INT.java",
       "uses": [
-        "StateCollector.java:251"
+        "StateCollector.java:280"
       ],
       "parameter_types": [
         "T"
@@ -5759,8 +6207,8 @@
       "public": true,
       "source_file": "util/statistics/HistoryObject.java",
       "uses": [
-        "StateCollector.java:204",
-        "StateCollector.java:205"
+        "StateCollector.java:233",
+        "StateCollector.java:234"
       ],
       "parameter_types": [
         "T"
@@ -6998,7 +7446,7 @@
       "public": true,
       "source_file": "world/WORLD.java",
       "uses": [
-        "StateCollector.java:274",
+        "StateCollector.java:303",
         "UiContextCollector.java:30"
       ],
       "parameter_types": [],
@@ -7024,7 +7472,7 @@
       "public": true,
       "source_file": "world/WORLD.java",
       "uses": [
-        "StateCollector.java:219"
+        "StateCollector.java:248"
       ],
       "parameter_types": [],
       "compiler_generated_enum": false,
@@ -7049,7 +7497,7 @@
       "public": true,
       "source_file": "world/WORLD.java",
       "uses": [
-        "StateCollector.java:222"
+        "StateCollector.java:251"
       ],
       "parameter_types": [],
       "compiler_generated_enum": false,
@@ -7074,7 +7522,7 @@
       "public": true,
       "source_file": "world/WORLD.java",
       "uses": [
-        "StateCollector.java:222"
+        "StateCollector.java:251"
       ],
       "parameter_types": [],
       "compiler_generated_enum": false,
@@ -7124,7 +7572,7 @@
       "public": true,
       "source_file": "world/WorldGen.java",
       "uses": [
-        "StateCollector.java:274",
+        "StateCollector.java:303",
         "UiContextCollector.java:33"
       ],
       "parameter_types": [],
@@ -7225,7 +7673,7 @@
       "public": true,
       "source_file": "world/map/regions/Region.java",
       "uses": [
-        "StateCollector.java:221"
+        "StateCollector.java:250"
       ],
       "parameter_types": [],
       "compiler_generated_enum": false,
@@ -7250,7 +7698,7 @@
       "public": true,
       "source_file": "world/map/regions/Region.java",
       "uses": [
-        "StateCollector.java:220"
+        "StateCollector.java:249"
       ],
       "parameter_types": [],
       "compiler_generated_enum": false,
@@ -7275,7 +7723,7 @@
       "public": true,
       "source_file": "world/map/regions/Region.java",
       "uses": [
-        "StateCollector.java:220"
+        "StateCollector.java:249"
       ],
       "parameter_types": [],
       "compiler_generated_enum": false,
@@ -7300,7 +7748,7 @@
       "public": true,
       "source_file": "world/map/regions/Region.java",
       "uses": [
-        "StateCollector.java:221"
+        "StateCollector.java:250"
       ],
       "parameter_types": [],
       "compiler_generated_enum": false,
@@ -7325,7 +7773,7 @@
       "public": true,
       "source_file": "world/map/regions/Region.java",
       "uses": [
-        "StateCollector.java:220"
+        "StateCollector.java:249"
       ],
       "parameter_types": [],
       "compiler_generated_enum": false,
@@ -7350,7 +7798,7 @@
       "public": true,
       "source_file": "world/map/regions/Region.java",
       "uses": [
-        "StateCollector.java:220"
+        "StateCollector.java:249"
       ],
       "parameter_types": [],
       "compiler_generated_enum": false,
@@ -7375,7 +7823,7 @@
       "public": true,
       "source_file": "world/map/regions/RegionInfo.java",
       "uses": [
-        "StateCollector.java:220"
+        "StateCollector.java:249"
       ],
       "parameter_types": [],
       "compiler_generated_enum": false,
@@ -7400,7 +7848,7 @@
       "public": true,
       "source_file": "world/map/regions/WREGIONS.java",
       "uses": [
-        "StateCollector.java:219"
+        "StateCollector.java:248"
       ],
       "parameter_types": [],
       "compiler_generated_enum": false,

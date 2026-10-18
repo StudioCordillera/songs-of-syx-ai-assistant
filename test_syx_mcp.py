@@ -218,3 +218,24 @@ def test_select_can_return_context_without_mixing_snapshots(setup):
     assert result['ui_context']['known_overlays']['confirmation'] is True
     assert result['results'][0]['rows']==[{'id':8}]
     assert result['state']['snapshot_id']==state['snapshot_id']
+
+
+def test_field_discovery_returns_meanings_without_state_values(setup):
+    advisor,state=setup
+    state['domains']['research']={'coverage':'partial','reason':'synthetic research fixture',
+        'data':{'technologies':[], 'field_definitions':{'requirements':{
+            'definition':'Expanded prerequisites, not a full unlock decision',
+            'source':'test-only source anchor'}}}}
+    save(advisor,state)
+    result=advisor.describe('research')
+    assert result['field_definitions']==state['domains']['research']['data']['field_definitions']
+    assert 'technologies' not in result['field_definitions']
+    assert advisor.describe('resources')['field_definitions']=={}
+
+
+def test_field_meanings_obey_response_budget(setup):
+    advisor,state=setup
+    state['domains']['resources']['data']['field_definitions']={'huge':'x'*65536}
+    save(advisor,state)
+    with pytest.raises(ValueError,match='64 KiB'):
+        advisor.describe('resources')
