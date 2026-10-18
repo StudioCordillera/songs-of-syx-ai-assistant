@@ -45,7 +45,7 @@ async def verify(directory):
         'evaluated_game_version':'0.71.44',
         'source_sha256':{n:hashlib.sha256((root/n).read_bytes()).hexdigest() for n in
             ('syx_mcp.py','syx_knowledge.py','guidance-questions.json','dev/verify_guidance.py')},
-        'limits':['Nine authored retrieval cases, not comprehensive advice correctness or a semantic-search benchmark.',
+        'limits':[f'{len(cases)} authored retrieval cases, not comprehensive advice correctness or a semantic-search benchmark.',
             'Historical developer explanations do not establish current-patch mechanics.',
             'Starter corpus is locally reviewed and not automatically refreshed; no complete guide collection.']}
     (directory/'guidance-validation.json').write_text(json.dumps(report,indent=2)+'\n')

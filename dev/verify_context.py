@@ -55,7 +55,12 @@ def verify(directory: Path, timeout: float = 220):
                 if name=='management':assert flags['management_screen']
                 if name=='encyclopedia':assert flags['encyclopedia'] and not flags['management_screen']
                 if name=='loading_overlay':assert flags['loading']
-                if name=='room':assert context['open_room_blueprints'] and context['selected_subject'] is None
+                if name=='room':
+                    assert context['open_room_blueprints'] and context['selected_subject'] is None
+                    catalog={r.id:r for r in snapshot.references}
+                    for room in context['open_room_blueprints']:
+                        assert room['reference_id']=='room:'+room['blueprint_id']
+                        assert catalog[room['reference_id']].category=='room'
                 if name=='reloaded':assert snapshot.session_id!=first_session and context['active_view']=='settlement'
             checked[name]={'passed':True,'snapshot_fresh':status['fresh'],'ui_context_available':bool(context.get('available')) if name!='main_menu' else False}
             print('PASS',name,flush=True)
@@ -65,6 +70,7 @@ def verify(directory: Path, timeout: float = 220):
     missing=required-checked.keys()
     report={'passed':not missing,'checks':checked,'missing':sorted(missing),
         'limits':['Main menu is inferred only as unknown/stale after updates stop; no menu identification API established.',
+                  'Room references identify blueprint help, not a selected instance or a complete tooltip.',
                   'Loading-overlay flag test is separate from the real save reload transition.',
                   'Battle, world generation and other menu subpages remain untested.']}
     (directory/'validation.json').write_text(json.dumps(report,indent=2)+'\n')

@@ -93,7 +93,8 @@ public final class UiContextCollector {
             result.put("room_list_open",VIEW.s().panels.added(VIEW.s().ui.rooms.main()));
             List<Object> rooms=new ArrayList<>();
             for(RoomBlueprint bp:SETT.ROOMS().all()) if(VIEW.s().ui.rooms.openIs(bp))
-                rooms.add(object("blueprint_id",bp.key,"scope","room table and detail panels present; exact instance unavailable"));
+                rooms.add(object("blueprint_id",bp.key,"reference_id",
+                    bp instanceof settlement.room.main.RoomBlueprintImp?"room:"+bp.key:null,"scope","room table and detail panels present; exact instance unavailable"));
             result.put("open_room_blueprints",rooms);
         }
         return result;

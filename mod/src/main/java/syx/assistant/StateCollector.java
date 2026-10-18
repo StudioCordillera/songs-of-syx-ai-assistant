@@ -40,6 +40,15 @@ public final class StateCollector {
             "title",technology.name().toString(),"text",helpText(technology.desc()),"origin","init.tech.TECH: "+technology.key));
         for(STAT stat:STATS.all()) result.add(object("id","stat:"+stat.index(),"category","stat",
             "title",stat.info().name.toString(),"text",helpText(stat.info().desc),"origin","settlement.stats.stat.STAT: "+stat.key(),"stat_id",stat.index(),"individual_getter_available",stat.hasIndu() && stat.indu()!=null));
+        for(settlement.room.main.RoomBlueprint blueprint:SETT.ROOMS().all()) {
+            if(!(blueprint instanceof settlement.room.main.RoomBlueprintImp))continue;
+            var room=(settlement.room.main.RoomBlueprintImp)blueprint;
+            result.add(object("id","room:"+room.key,"category","room","title",room.info.name.toString(),
+                "text",helpText(room.info.desc),"origin","settlement.room.main.RoomBlueprintImp: "+room.key));
+        }
+        for(var currency:TECHS.COSTS())result.add(object("id","research_currency:"+currency.bo.key,
+            "category","research_currency","title",currency.bo.name.toString(),"text",helpText(currency.bo.desc),
+            "origin","init.tech.TechCurrency / game.boosting.Boostable: "+currency.bo.key));
         referenceCache=result; return result;
     }
     static Map<String,Object> individualStat(Humanoid h,STAT stat) {
@@ -138,6 +147,7 @@ public final class StateCollector {
                         pending.add(object("room_id",room.index(),"blueprint_id",blueprint.key,
                             "industry_id",industry.index(),"recipe_index",producer.industryI(),"direction",direction,
                             "resource_id",resource.resource.key,"reference_id","resource:"+resource.resource.key,
+                            "room_reference_id","room:"+blueprint.key,
                             "base_rate_raw",Double.isFinite(rate)?rate:null,
                             "day_accumulator_raw",Double.isFinite(day)?day:null,
                             "previous_day_units",resource.dayPrev.get(producer),
@@ -219,7 +229,7 @@ public final class StateCollector {
             for (RoomBlueprintIns<?> bp: SETT.ROOMS().ins()) for (RoomInstance room: bp.all()) {
                 if (bp.employment() == null) continue;
                 if (room.employees() == null) continue;
-                rows.add(object("id", bp.key+":"+room.mX()+":"+room.mY(), "room_id", room.index(), "blueprint_id", bp.key,
+                rows.add(object("id", bp.key+":"+room.mX()+":"+room.mY(), "room_id", room.index(), "blueprint_id", bp.key, "reference_id", "room:"+bp.key,
                     "name", room.name().toString(), "tile_x", room.mX(), "tile_y", room.mY(),
                     "active", room.active(), "employed", room.employees().employed(), "needed", room.employees().needed(),
                     "target", room.employees().target(), "capacity", room.employees().max(), "unit", "workers"));
@@ -248,6 +258,7 @@ public final class StateCollector {
             for(game.faction.player.PTech.TechCurr currency:playerTech.currs()) {
                 double penalty=currency.penalty();
                 currencies.add(object("id",currency.cu.bo.key,"name",currency.cu.bo.name.toString(),
+                    "reference_id","research_currency:"+currency.cu.bo.key,
                     "total",currency.total(),"allocated",currency.allocated(),"frozen",currency.frozen(),
                     "available",currency.available(),"penalty_raw",Double.isFinite(penalty)?penalty:null));
             }

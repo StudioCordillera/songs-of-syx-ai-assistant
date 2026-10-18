@@ -102,6 +102,25 @@ SEEDS.extend([
 ])
 
 
+SEEDS.append({
+    'id':'steam-v71-logistics-nerond',
+    'title':'V71 logistics — warehouses, fetch priority and loading stations',
+    'url':'https://steamcommunity.com/sharedfiles/filedetails/?id=3622513777',
+    'kind':'guide','authority':'community','author':'Nerond',
+    'retrieved_at':'2026-10-18T04:12:15Z','game_versions':['0.71'],
+    'version_notes':'Visible title labels V71; exact 0.71.44 compatibility is unverified. Advice is community-authored, not a developer contract.',
+    'text':'The author describes logistics as workers collecting goods for their own facility, rather than '
+           'automatically distributing them everywhere. Warehouse fetch radius limits collection distance. '
+           'Fetch, priority and explicit pull sources serve different purposes; inspect those settings before '
+           'adding workers. A busy warehouse may indicate long supply routes or inappropriate collection range, '
+           'not just insufficient storage. For distant, high-volume delivery the guide discusses loading and '
+           'unloading stations, warning that unrestricted warehouses can fetch delivered goods back and create '
+           'a loop. Confirm current '
+           'settings and installed room descriptions before changing a city; this summary does not establish '
+           'exact capacity, spoilage or throughput formulas.'
+})
+
+
 def install_seed(directory: Path):
     from syx_mcp import Source, load_json
     directory.mkdir(parents=True, exist_ok=True)

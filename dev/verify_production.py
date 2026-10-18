@@ -53,6 +53,7 @@ async def verify(directory):
             employment={r['room_id']:r for r in await rows('employment','/rooms')}
             resources={r['id']:r for r in await rows('resources','/stockpiles')}
             assert all(r['resource_id'] in resources for r in observed)
+            assert all(r['room_reference_id']=='room:'+r['blueprint_id'] for r in observed)
             eligible=[r for r in observed if r['direction']=='output' and r['room_id'] in employment]
             assert eligible
             query={'source':{'domain':'production','path':'/room_data/flows'},

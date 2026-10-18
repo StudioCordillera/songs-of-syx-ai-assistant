@@ -58,28 +58,43 @@
       "passed": true
     },
     {
+      "source_id": "steam-v71-logistics-nerond",
+      "url": "https://steamcommunity.com/sharedfiles/filedetails/?id=3622513777",
+      "authority": "community",
+      "version_compatibility": "family_match",
+      "passed": true
+    },
+    {
+      "source_id": "steam-v71-logistics-nerond",
+      "url": "https://steamcommunity.com/sharedfiles/filedetails/?id=3622513777",
+      "authority": "community",
+      "version_compatibility": "family_match",
+      "passed": true
+    },
+    {
       "expected": null,
       "passed": true
     }
   ],
-  "case_count": 9,
+  "case_count": 11,
   "inference_calls": 0,
   "evaluated_game_version": "0.71.44",
   "source_sha256": {
-    "syx_mcp.py": "111bb78f1add81b21c93b7e05ec9f928563357bccfe7288bd653bfe5bda102ac",
-    "syx_knowledge.py": "fdaa52f09409c16cc4bf66989cc8d1ca9581bbfd3f10dcba0d4e7a78444297df",
-    "guidance-questions.json": "90df016347618c40ca993f821aadc7800b377a94e698dd3cd03c7fae1e305355",
-    "dev/verify_guidance.py": "3d4b6e86d65d331bbecaf224d5da5150946500b84e97f82bdcd326e0ed374683"
+    "syx_mcp.py": "42b92b7af68558136a3aea7355459826c0de7e23029258a68580bf86b769d2e8",
+    "syx_knowledge.py": "7947aac1cea46f450fe56ee91efa11e9871f86085a90939f0d0c2007327896c0",
+    "guidance-questions.json": "e3a0c29ab043ef3924db1af185d21a37655a56ce9f662c97e92e7a4f214622d6",
+    "dev/verify_guidance.py": "9271844da57ed0494242903980fc7a6d31aac3b0573d7699975015e2b4fb1f8d"
   },
   "limits": [
-    "Nine authored retrieval cases, not comprehensive advice correctness or a semantic-search benchmark.",
+    "11 authored retrieval cases, not comprehensive advice correctness or a semantic-search benchmark.",
     "Historical developer explanations do not establish current-patch mechanics.",
-    "Starter corpus is locally reviewed and not automatically refreshed; no complete guide collection."
+    "Starter corpus is locally reviewed and not automatically refreshed; no complete guide collection.",
+    "One V71 logistics community guide supplements historical developer evidence; patch compatibility remains unverified."
   ],
   "python_tests": {
     "passed": 141
   },
-  "seed_summary_count": 8,
+  "seed_summary_count": 9,
   "prior_core_checkpoint_commit": "807f6e6",
-  "runtime_game_checks": "Not rerun: no production Java changes in this guidance checkpoint. CORE_VALIDATION.json retains its exact build and Python hashes."
+  "related_installed_help_checkpoint": "INSTALLED_HELP_VALIDATION.json"
 }

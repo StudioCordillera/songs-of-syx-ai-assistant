@@ -10,7 +10,7 @@ The game-facing boundary remains an in-process SCRIPT mod using explicit public 
 
 Goal: let an assistant discover available variables and request a complex, bounded selection quickly, without receiving the entire state on each question.
 
-Implemented: 18 partial typed domains; snapshot filters, projections, joins, arithmetic and aggregates; on-demand person/stat reads; retained entity captures for stable paging; finite terrain/floor/room/mineral/path reads. Results identify their observation, session, coverage and scope. The compiler audit currently inventories 306 public production member references. The offline public-member catalog is a discovery backlog, not a count of supported variables.
+Implemented: 18 partial typed domains; snapshot filters, projections, joins, arithmetic and aggregates; on-demand person/stat reads; retained entity captures for stable paging; finite terrain/floor/room/mineral/path reads. Results identify their observation, session, coverage and scope. The compiler audit currently inventories 308 public production member references. The offline public-member catalog is a discovery backlog, not a count of supported variables.
 
 Next work:
 
@@ -39,7 +39,7 @@ Acceptance: a context-dependent answer uses the same observation as its data que
 
 Goal: give the assistant easy access to official, developer and high-quality community material relevant to the user's question and game version.
 
-Implemented: installed game-help retrieval and a reviewed starter corpus of eight original external-source summaries with direct URLs, authority and version caveats. This is a small foundation, not comprehensive guide coverage. Nine authored retrieval cases now pass through actual MCP; relevance ranks before version/authority tie-breakers (GUIDANCE_VALIDATION.json).
+Implemented: installed game-help retrieval now includes 111 room and three research-currency descriptions in the copied-game check (834 total references), with links from room UI context, employment, production and currency data. See INSTALLED_HELP_VALIDATION.json. A reviewed starter corpus contains nine original external-source summaries with direct URLs, authority and version caveats. This is a small foundation, not comprehensive guide coverage. Eleven authored retrieval cases now pass through actual MCP; relevance ranks before version/authority tie-breakers (GUIDANCE_VALIDATION.json).
 
 Next work:
 

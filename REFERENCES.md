@@ -31,7 +31,7 @@ Five short authored summaries, checked 2026-10-17, can be installed with `syx-kn
 
 ## Additional reviewed gameplay evidence (2026-10-18 UTC)
 
-The starter corpus now contains eight original summaries. Three added records were checked directly on their canonical Steam pages, including the developer badge and surrounding discussion:
+The starter corpus now contains nine original summaries. Three added records were checked directly on their canonical Steam pages, including the developer badge and surrounding discussion:
 
 | Source | Authority | Scope / limitation |
 | --- | --- | --- |
@@ -41,7 +41,7 @@ The starter corpus now contains eight original summaries. Three added records we
 
 These records retain unknown version compatibility rather than being labeled V71-compatible by assumption. Wiki.gg pages encountered during discovery returned access errors and were not added as newly reviewed evidence. Existing source timestamps are preserved when the corpus is reinstalled.
 
-Search uses whole-word relevance before version compatibility and authority tie-breakers. Matching terms and a retrieval score are returned for inspection; the score is not factual confidence. The response stays within 64 KiB and reports truncation. See GUIDANCE_VALIDATION.json for the nine authored local-MCP cases. This is a lexical starter retrieval check, not a comprehensive evaluation of model advice.
+Search uses whole-word relevance before version compatibility and authority tie-breakers. Matching terms and a retrieval score are returned for inspection; the score is not factual confidence. The response stays within 64 KiB and reports truncation. See GUIDANCE_VALIDATION.json for the eleven authored local-MCP cases. This is a lexical starter retrieval check, not a comprehensive evaluation of model advice.
 
 ## API establishment audit (0.4.0)
 
@@ -57,3 +57,10 @@ API_ESTABLISHMENT.md links the primary sources, reproducible compiler inventory 
 - [DeepSeek API introduction](https://api-docs.deepseek.com/): native service endpoint and current model identifiers.
 
 PROVIDERS.md tracks required behavior and distinguishes supplied connection templates from pending authenticated/model/in-game-client validation.
+
+
+## Installed help expansion
+
+The latest copied-game catalog contains 834 records, including 111 room blueprint descriptions and three research-currency descriptions. Source/compiler-verified public `RoomBlueprintImp.info` and `TechCurrency.bo` metadata supply these additions. Runtime checks compare title/description hashes and exact-ID/category MCP lookup; only hashes/counts are published. UI blueprint links remain partial context, with the existing stale-main-menu limit. See INSTALLED_HELP_VALIDATION.json.
+
+Added [Nerond's V71 logistics guide](https://steamcommunity.com/sharedfiles/filedetails/?id=3622513777) as community evidence for collection settings and delivery loops; exact patch compatibility remains unverified.

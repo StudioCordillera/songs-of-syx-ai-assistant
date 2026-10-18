@@ -26,7 +26,24 @@ public final class ContextScenario {
     public static void install(Path directory,Path copiedSave) {
         output=directory;save=copiedSave;
         try {Files.createDirectories(output);}catch(Exception e){throw new IllegalStateException(e);}
-        VIEW.s().activate();GAME.SPEED.speedSet(0);phase=0;announce("settlement");register();
+        VIEW.s().activate();GAME.SPEED.speedSet(0);
+        writeHelpExpectations();phase=0;announce("settlement");register();
+    }
+    static String hash(CharSequence text) throws Exception {
+        byte[] digest=java.security.MessageDigest.getInstance("SHA-256").digest((text==null?"":text.toString()).getBytes(java.nio.charset.StandardCharsets.UTF_8));
+        StringBuilder result=new StringBuilder();for(byte b:digest)result.append(String.format("%02x",b&255));return result.toString();
+    }
+    static void writeHelpExpectations() {
+        try {
+            List<Object> rows=new ArrayList<>();
+            for(var blueprint:SETT.ROOMS().all())if(blueprint instanceof settlement.room.main.RoomBlueprintImp) {
+                var bp=(settlement.room.main.RoomBlueprintImp)blueprint;
+                rows.add(Map.of("id","room:"+bp.key,"category","room","title_sha256",hash(bp.info.name),"text_sha256",hash(bp.info.desc)));
+            }
+            for(var currency:init.tech.TECHS.COSTS())rows.add(Map.of("id","research_currency:"+currency.bo.key,
+                "category","research_currency","title_sha256",hash(currency.bo.name),"text_sha256",hash(currency.bo.desc)));
+            Files.writeString(output.resolve("help-fixture.json"),JsonWriter.encode(Map.of("references",rows)));
+        }catch(Exception error){throw new IllegalStateException(error);}
     }
     static void register() {
         GAME.addAfterUpdate(()->{

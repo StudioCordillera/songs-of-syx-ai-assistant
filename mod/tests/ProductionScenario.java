@@ -23,7 +23,7 @@ public final class ProductionScenario {
                             row.put("room_id",room.index());row.put("blueprint_id",blueprint.key);
                             row.put("industry_id",industry.index());row.put("recipe_index",instance.industryI());
                             row.put("direction",direction);row.put("resource_id",resource.resource.key);
-                            row.put("reference_id","resource:"+resource.resource.key);row.put("base_rate_raw",resource.rate);
+                            row.put("reference_id","resource:"+resource.resource.key);row.put("room_reference_id","room:"+blueprint.key);row.put("base_rate_raw",resource.rate);
                             row.put("day_accumulator_raw",resource.day.getD(instance));row.put("previous_day_units",resource.dayPrev.get(instance));
                             row.put("year_units",resource.year.get(instance));row.put("previous_year_units",resource.yearPrev.get(instance));
                             expected.add(row);

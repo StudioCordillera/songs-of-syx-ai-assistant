@@ -356,7 +356,7 @@ def create_server(advisor: Advisor) -> MCPServer:
 
     @mcp.tool(annotations=annotations)
     def search_game_references(query: str, category: str | None = None, limit: int = 5) -> dict:
-        """Search installed in-game resource, technology and stat help text. These are primary
+        """Search installed resource, technology, stat, room and research_currency help text. These are primary
         installed-data references, with exact game version and active mods. Modded text may
         differ from the base game. Query an exact reference ID to retrieve its description.
         Cite the reference ID/origin alongside the observation.
@@ -371,8 +371,12 @@ def create_server(advisor: Advisor) -> MCPServer:
             score=1000 if reference.id==query.strip() else sum(term in (reference.title+' '+reference.text).lower() for term in terms)
             if score: ranked.append((score,reference.id,reference.model_dump()))
         ranked.sort(key=lambda row:(-row[0],row[1]))
-        return {'state':advisor.status(snapshot),'results':[row[2] for row in ranked[:limit]],
-                'catalog_size':len(snapshot.references),'authority':'Installed game help text; active mods may override it.'}
+        result={'state':advisor.status(snapshot),'results':[row[2] for row in ranked[:limit]],
+                'catalog_size':len(snapshot.references),'total_matches':len(ranked),'results_truncated':len(ranked)>limit,
+                'authority':'Installed game help text; active mods may override it.'}
+        while len(json.dumps(result).encode())>65536 and result['results']:
+            result['results'].pop();result['results_truncated']=True
+        return result
 
     return mcp
 

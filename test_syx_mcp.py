@@ -177,6 +177,17 @@ def test_mcp_transport(setup):
                 stale_context = await session.call_tool('get_game_ui_context', {})
                 assert stale_context.is_error
 
+                state['references']=[{'id':'room:large'+str(i),'category':'room','title':'Food room',
+                    'text':'Food '+('x'*29999),'origin':'synthetic fixture'} for i in range(3)]
+                save(a,state)
+                bounded=await session.call_tool('search_game_references',{'query':'food','category':'room','limit':10})
+                assert not bounded.is_error
+                payload=next(c.text for c in bounded.content if c.type=='text')
+                assert len(payload.encode())<=65536
+                result=json.loads(payload)
+                assert result['total_matches']==3 and result['results_truncated']
+                assert len(result['results'])==2 and all(len(r['text'])==30004 for r in result['results'])
+
                 invalid = await session.call_tool('query_game_state', {'domain': '../secret'})
                 assert invalid.is_error
     asyncio.run(exercise())

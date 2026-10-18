@@ -2,8 +2,8 @@ from syx_knowledge import install_seed
 from syx_mcp import Advisor
 
 def test_seed_authority_and_versions(tmp_path):
-    assert install_seed(tmp_path)==8
-    assert install_seed(tmp_path)==8
+    assert install_seed(tmp_path)==9
+    assert install_seed(tmp_path)==9
     advisor=Advisor(tmp_path/'snapshot.json',tmp_path/'corpus.json')
     hit=advisor.search('trade','0.71.44')['results'][0]
     assert hit['authority']=='official' and hit['version_compatibility']=='family_match'
@@ -26,6 +26,8 @@ def test_reviewed_player_question_retrieval(tmp_path):
         'pasture fertility animals':'developer-pasture-fertility-2021',
         'release notes previous version':'developer-faq-reference-navigation',
         'farms moisture hunting':'steam-v71-starting-economy',
+        'warehouse fetch priority radius':'steam-v71-logistics-nerond',
+        'loading unloading stations loop':'steam-v71-logistics-nerond',
     }
     for question,expected in cases.items():
         result=advisor.search(question,'0.71.44',limit=1)['results'][0]
