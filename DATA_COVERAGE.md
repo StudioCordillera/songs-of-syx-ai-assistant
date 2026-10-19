@@ -29,7 +29,7 @@ Aggregate stat collections are intentionally left in game-defined units until th
 
 - `query_live_entities`: finite projected fields, IDs, recorded-workplace room filter, named stat filters and recorded workplace/profession/home/division assignments. Cursor pages are separate observations.
 - `capture_live_entities` / `read_entity_capture`: bounded detached observations retained for stable paging, with original session/tick/context. Not a global worker transaction.
-- `query_live_tiles`: terrain/floor/room/mineral/path fields in a bounded rectangle, with fixed filters. Coordinate room data does not identify a UI-selected room. Cursor pages remain separate observations.
+- `query_live_tiles`: terrain/floor/room/mineral/path/stored-moisture fields in a bounded rectangle, with fixed filters. Coordinate room data does not identify a UI-selected room. Cursor pages remain separate observations.
 - `capture_live_tiles` / `read_tile_capture`: a complete <=4096-tile scan with <=100 matches/64 KiB from one callback, then retained historical pages; incomplete selections retain nothing.
 
 - `query_live_regional_outputs`: explicit active-region/resource matrix with fixed accrued-range/faction filters and projections, independent of cached output rows. Each page is a separate live campaign observation; not a retained/global transaction.
@@ -74,3 +74,5 @@ The workplace-filter checkpoint selects assigned humanoids through the existing 
 Small tile selections can now be retained in one callback through `capture_live_tiles`, then paged with `read_tile_capture`. Rectangle area <=4096, max_rows <=100 and payload <=64 KiB; incomplete/predicate/byte failures retain nothing. This improves cross-page consistency for that finite selection, not full-map/all-variable coverage or UI-selected-room identity. [TILE_CAPTURES.md](TILE_CAPTURES.md) records original-context/token/lifecycle limits and city-only value-parity evidence.
 
 Regional outputs additionally support complete bounded retained selections through `capture_live_regional_outputs` / `read_regional_output_capture`. This adds consistency across pages, not new game variables: the same explicit public output/owner getters and meaning limits apply. Matrix <=10,000 cells, matches <=2,000, payload <=2 MiB; any incomplete/error/overflow result retains nothing. See REGIONAL_CAPTURES.md and its exact source/JAR evidence. Native faults/largest-world cost and full UI/lifecycle coverage remain unestablished.
+
+The optional `ground_moisture` tile projection exposes separate quantized base/current fractions from public stored maps. It does not export MOISTURE_TOT, precipitation, fertility or crop/pasture yield. Bounds, instantiated scene/session, per-field availability and original live/captured time remain explicit; see [GROUND_MOISTURE.md](GROUND_MOISTURE.md).

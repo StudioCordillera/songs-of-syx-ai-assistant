@@ -15,27 +15,27 @@
   ],
   "cited_urls_match_retrieval": true,
   "simple_transcript_without_debug_events": true,
-  "mod_jar_sha256": "8d9e1aec427b86f1604b6330fc44d8dfad666f04717d8977ee7e04cd4149226f",
+  "mod_jar_sha256": "4d5f841ee276ed20277d440f53a7071acccda42a66f4bb4ab841cfb76f1118e7",
   "production_source_sha256": {
     "syx/assistant/AssistantScript.java": "82fa2395aa96e7ae9cee612b32171fb495ca289dc7f99269c1ad7a2d417cca55",
     "syx/assistant/ChatPanel.java": "3138d3e863ccb36ad5b6b37a7e1f3486dd2d8c1dc43ab469b26af714548d8437",
     "syx/assistant/EntityReadRequest.java": "e2d13aee21f399e8718382d5b43d5a6c85e5d78d2708d8105b9f1ecfe730edf8",
     "syx/assistant/JsonWriter.java": "c525eb60d3224cab83ed3fd6b8594ec8652211f00bd947e873e1482f919e81dc",
     "syx/assistant/RegionalReadRequest.java": "4d1da800e6f2ecf6b036f188693ac1095329321bc569c82f34be9918768ef2b3",
-    "syx/assistant/StateCollector.java": "8437066a95ce197cb93ddc5f23004694bfdc080ccd28dd1d297b4946bcef2af6",
-    "syx/assistant/TileReadRequest.java": "1a192cde61a7e1bdefa170390c00b17c74573b9c41de71700ebea466411ad3c5",
+    "syx/assistant/StateCollector.java": "58b6f25bb21493da7ce6a9770d2068ee86f9419e1d3aff5cf83e56a0a532dcdf",
+    "syx/assistant/TileReadRequest.java": "5daf3cc3abc0cb849f654e09efadb3d0263b73d4e5e220e97671ea1c4a40bde6",
     "syx/assistant/UiContentCollector.java": "c0d20c7f9f2734a0bb625427875f06bfcd07edb20611248b39b6e8f480ef5a48",
     "syx/assistant/UiContextCollector.java": "b8a3e582e1c2b7da868ad9513f02793685d7a986464fe8935b32b86216f70b29"
   },
   "python_source_sha256": {
-    "syx_mcp.py": "c3dd7a2da049c6aac265be43ef91cc20bb6a8e13e27658389078654bcc6c114f",
+    "syx_mcp.py": "6e57581936147e8f17f3716c4e71acd24fda4bb63ab6f594e9342587f3b998d5",
     "syx_knowledge.py": "f5d7dd6d387ad0fb8f2b024a3bd599ad1cec28f2906dfae27d9d2fdf56e4de7e",
     "syx_query.py": "ae9c4537093952510e6536810c065b6e07f7bfc2d78d3bc02ccd0d21f4d12c07",
-    "syx_api_support.py": "4e018dbb0b91d729cd290104dfbad21c63df09b8c4624b7687d9e51060099ec6",
-    "syx_api_manifest.py": "b577853a9beb367c58ed86cc0d56cdeb9fadb3e770956186547ea8e8ad8f3805",
+    "syx_api_support.py": "80276ac400801e9a895438162cbbb63db090f3dae930882b891b70a87fff5caf",
+    "syx_api_manifest.py": "22d7597af96cdd554bffa5647b61821f1f28e1eac7044dffa02e4c9bccf4d391",
     "syx_live.py": "2f29a2d828fc5c512075fa6a2082dd5fae9d4a39fb22ae847765533dc5628c75",
     "syx_capture.py": "32778d9f5f217119ba45b114ba2a710bdd0ce4333efa672c31c690dcc3f3c3ec",
-    "syx_tiles.py": "43024d10af917442d4d994f316db18fbd7cab388196682c471891135553c843f",
+    "syx_tiles.py": "c5ceea79fc5d4d80307ecf7fe429ca1f1f6ae64d17e95569d54625bf02c4d664",
     "syx_regions.py": "96dd3355f50279c7c748d866019f889bd9889ef00c7cf97bf4fa582fede7ffb5",
     "syx_chat_store.py": "7344b35476096b680e0cf85958f97596b3c9cfe843072202f30e357b97dedbe5",
     "syx_deepseek.py": "d58e21dbcfdeb1ef0f411dfbb4c0267234bdc5cc185e00d300821725ca1885e3",
@@ -48,17 +48,17 @@
     "Copied city; native own-widget text/click fixture, not physical keyboard or every screen size.",
     "No complete game-state/all-menu claim. Raw read-only tool evidence remains in the private local history.",
     "Linux user-test bundle; game and Python dependencies must be installed separately.",
-    "World list-panel flags identify activated underlying manager membership only; modal or hidden UI can obscure them. No selected region/army identity, displayed row contents or full hierarchy.",
-    "Fourteen controlled world-list phases, eleven faction phases and eight existing scene phases are finite copied-profile checks, not all menus/mods/displays or immediate unload detection.",
-    "Earlier regional live/capture and protocol-codec reports retain their prior JAR/source scope; not rerun as feature-specific fixtures for this UI-only change. Current core includes limited regional availability checks."
+    "Moisture: stored quantized base/current fractions, not MOISTURE_TOT, rainfall, fertility, yield, irrigation eligibility or forecasts. Optional instantiated-scene projection with unchanged tile bounds/errors/row/byte budgets.",
+    "Eighteen copied-city tile point cases, separate 100-row moisture and terrain/room captures and eight scene phases are finite evidence. Wide 100-row combined projection is refused at the existing tool-text budget; native getter faults, natural moisture evolution and worst-case full-world cost remain unestablished.",
+    "Earlier candidate-moisture, world-list/faction, regional-live/capture and protocol-codec feature reports keep their prior JAR/source scopes. They are not relabeled fresh. Current seven core groups provide their own finite scene/context checks."
   ],
   "game_exit_code": 0,
   "dev_runner_source_sha256": "407b30e67642d0efbb3863e0c65ca584391bfebe57af30c593f47c0871387e5c",
-  "followup_completed_at": "2026-10-19T03:56:49.915874+00:00",
+  "followup_completed_at": "2026-10-19T04:30:10.139739+00:00",
   "game_version": "0.71.44",
   "game_jar_sha256": "fe0137c05408e5ee9e31f06fc44fe37a5d4372d9c985b280f0852d1347c0224b",
-  "python_tests_passed": 302,
-  "public_production_members": 381,
+  "python_tests_passed": 305,
+  "public_production_members": 384,
   "non_public_production_members": 0,
   "core_check_groups_passed": 7,
   "distribution_checks": {
@@ -69,7 +69,7 @@
     "isolated_installer_jar_hash": true,
     "provided_key_literal_absent_from_archive": true,
     "provider_calls": 0,
-    "candidate_zip_sha256": "9ec643652158527816d4016191b6788c3e0b093aa6da3b12bb89a44d9ace3ead",
+    "candidate_zip_sha256": "b7b6860f0367210ec2c7c53765481decf3d9485f5d5d71f44880f4d38efa2595",
     "chat_panel_class_bytes_match_prior": true,
     "paid_run_known_engine_crash_markers_absent": true
   },
@@ -106,11 +106,32 @@
     },
     "scope": "Prior no-inference focus/wrapping fixture; ChatPanel class bytes verified identical in current candidate. Full current-build Pro geometry/send checks passed separately."
   },
-  "core_validation_report_sha256": "ef97c67304e0f3e050e133e405c5d685b3ea35632d501cd6515415651fc5648c",
-  "world_list_context_validation_report_sha256": "714ada5ca3e97d6330492b9997e6c6f45e2db8a6eab02930f344504cc72f7398",
-  "world_list_boundary_review_sha256": "23e4049d0f52d918666952e9ec79315eaa5aa3fa1ed54a8c2ae9ee5cd4d154d3",
-  "world_faction_context_validation_report_sha256": "b1801b1cf5fc3984f783004aabddb1c09befbe0139fa665f8b76d2373228b52e",
-  "collection_cost_validation_report_sha256": "b3716fffc202a537cad0acee9925a541eadcfc8e580d0072e10116dcc7dd76da",
-  "capability_discovery_report_sha256": "2a44b51563f28341f7dc6d9c938c9bc17b275371fa11654d05eaf957b39758da",
-  "guidance_validation_report_sha256": "830095e8512bee44c4485205019c6d1ad4a27945aae9d5669cca97f88baf53ea"
+  "core_validation_report_sha256": "aff977f3bcd94ba25f4cef8bc4d0534b9f2bb41a4b54f21d7e92fe788a8e7df7",
+  "tile_capture_validation_report_sha256": "3e627127d3fa269e6275f706026676d608aba47efa282da35177a73c5c20ad01",
+  "ground_moisture_boundary_review_sha256": "081ec60f6916f33cc4df7e866d420257eaf7effd969de51efd2a4664d4daf3f9",
+  "collection_cost_validation_report_sha256": "012d303e56ab61a5484e2ad1aeeea93036dd2bdfa414e495b376c256e6f3a44e",
+  "capability_discovery_report_sha256": "9b96600979dd90ac45ceeafd11a359de67611934232f341616f557ec59df93eb",
+  "guidance_validation_report_sha256": "fcc75a80d55a37ea5ba4b4df39bae652e3dc0b0f7dac7fbd8ca252bbf46c8446",
+  "prior_feature_report_scopes": {
+    "GROUND_MOISTURE_READER_VALIDATION.json": {
+      "mod_jar_sha256": "8d9e1aec427b86f1604b6330fc44d8dfad666f04717d8977ee7e04cd4149226f",
+      "rerun_as_feature_fixture_this_checkpoint": false
+    },
+    "WORLD_LIST_CONTEXT_VALIDATION.json": {
+      "mod_jar_sha256": "8d9e1aec427b86f1604b6330fc44d8dfad666f04717d8977ee7e04cd4149226f",
+      "rerun_as_feature_fixture_this_checkpoint": false
+    },
+    "WORLD_FACTION_CONTEXT_VALIDATION.json": {
+      "mod_jar_sha256": "8d9e1aec427b86f1604b6330fc44d8dfad666f04717d8977ee7e04cd4149226f",
+      "rerun_as_feature_fixture_this_checkpoint": false
+    },
+    "REGIONAL_LIVE_VALIDATION.json": {
+      "mod_jar_sha256": "2c7726b84b07a76f913191f2b4bb83f0506273c7d46f4cc742a2d253efdadddb",
+      "rerun_as_feature_fixture_this_checkpoint": false
+    },
+    "REGIONAL_CAPTURE_VALIDATION.json": {
+      "mod_jar_sha256": "2c7726b84b07a76f913191f2b4bb83f0506273c7d46f4cc742a2d253efdadddb",
+      "rerun_as_feature_fixture_this_checkpoint": false
+    }
+  }
 }

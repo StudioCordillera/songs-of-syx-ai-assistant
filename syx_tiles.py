@@ -10,8 +10,8 @@ TileKey = Annotated[StrictStr, Field(min_length=1, max_length=100)]
 
 class TileSelection(StrictModel):
     tile_bounds: list[TileCoordinate] = Field(min_length=4, max_length=4)
-    fields: list[Literal['terrain','floor','room','minerals','path']] = Field(
-        default_factory=lambda:['terrain','floor','room'], min_length=1, max_length=5)
+    fields: list[Literal['terrain','floor','room','minerals','path','ground_moisture']] = Field(
+        default_factory=lambda:['terrain','floor','room'], min_length=1, max_length=6)
     terrain_id: TileKey | None = None
     floor_id: TileKey | None = None
     room_blueprint_id: TileKey | None = None
@@ -125,4 +125,8 @@ TILE_FIELD_DEFINITIONS={
             'throne_component_reachable':'tile or an orthogonal neighbor super-component connects to throne component'},
         'limits':'Published path components may await updates. No route, reachability for a particular agent, building suitability or visibility guaranteed.'},
     'availability':'Each projected group has available/data. available=true with data=null is a successful absence observation; available=false reports a getter failure. Predicate getter errors are counted separately.'}
+TILE_FIELD_DEFINITIONS['ground_moisture']={'nullable':False,'source':'settlement/tilemap/ground/Ground.java',
+    'fields':{'base_fraction':'stored base four-bit tile moisture / 15 (0..1)',
+              'stored_current_fraction':'separate stored current four-bit tile moisture / 15 (0..1)'},
+    'limits':'Quantized stored fractions, not MOISTURE_TOT, rainfall, fertility, crop/pasture yield or placement advice. Current approaches a clamped water-influence target; exact age/convergence unknown. Bounds are validated before reading: out-of-map getter defaults must not be treated as dry tiles. Instantiated scene only, including battlefield; not automatically the city the user means. Public shipped-source verification, not separately documented stable mod contracts.'}
 TILE_QUERY_HELP['field_definitions']=TILE_FIELD_DEFINITIONS

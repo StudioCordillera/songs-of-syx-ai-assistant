@@ -1,7 +1,19 @@
 {
   "passed": true,
-  "evaluated_at": "2026-10-18T23:48:03.204495+00:00",
+  "evaluated_at": "2026-10-19T04:19:36.010749+00:00",
   "checks": [
+    {
+      "id": "tile_ground_moisture",
+      "support": "public_source_verified",
+      "references": [
+        "settlement/tilemap/ground/Ground.java",
+        "GROUND_MOISTURE_BOUNDARY_REVIEW.json",
+        "GROUND_MOISTURE_READER_VALIDATION.json",
+        "TILE_CAPTURE_VALIDATION.json",
+        "TILE_CAPTURES.md"
+      ],
+      "passed": true
+    },
     {
       "id": "world_list_panel_context",
       "support": "public_source_verified",
@@ -171,21 +183,22 @@
       "passed": true
     }
   ],
+  "ground_moisture_member_anchors_checked": 3,
   "world_list_member_anchors_checked": 7,
   "service_counter_member_anchors_checked": 3,
   "faction_context_member_anchors_checked": 3,
   "no_game_snapshot_required": true,
   "inference_calls": 0,
-  "public_inventory_size": 381,
+  "public_inventory_size": 384,
   "source_sha256": {
-    "syx_mcp.py": "c3dd7a2da049c6aac265be43ef91cc20bb6a8e13e27658389078654bcc6c114f",
-    "syx_api_support.py": "4e018dbb0b91d729cd290104dfbad21c63df09b8c4624b7687d9e51060099ec6",
-    "syx_api_manifest.py": "b577853a9beb367c58ed86cc0d56cdeb9fadb3e770956186547ea8e8ad8f3805",
-    "dev/verify_capability_discovery.py": "e7ba35bfe298e1c39c3e0134d59ba53c58298e3e220089aceab574b86b0d284a"
+    "syx_mcp.py": "6e57581936147e8f17f3716c4e71acd24fda4bb63ab6f594e9342587f3b998d5",
+    "syx_api_support.py": "80276ac400801e9a895438162cbbb63db090f3dae930882b891b70a87fff5caf",
+    "syx_api_manifest.py": "22d7597af96cdd554bffa5647b61821f1f28e1eac7044dffa02e4c9bccf4d391",
+    "dev/verify_capability_discovery.py": "fb2870ad6d233f4f9ee38d9b748baa549f55e4619d95c07764fb25830c75a7cd"
   },
   "limits": [
     "Capability records summarize existing evidence; no new game getter/scene or official stable contract is established.",
     "Offline discovery is not an attestation of a separately installed game mod; pair source-matching builds.",
-    "Thirteen supported capabilities and two explicit gaps sampled, not exhaustive metadata acceptance."
+    "Fourteen supported capabilities and two explicit gaps sampled, not exhaustive metadata acceptance."
   ]
 }

@@ -1,10 +1,18 @@
 # Validation evidence
 
-## Ground-moisture candidate follow-up — unchanged player
+## Current stored tile-moisture player checkpoint
+
+The exact source/JAR pair passes 305 offline tests, two actual Pro turns, all seven native core groups, fourteen sampled supported capability records/two gaps/sixteen member anchors, all 37 local guidance cases and fresh extracted dependency/startup/isolated-install/key-exclusion checks. The audit has 384 public production references and zero non-public references. USER_TEST_VALIDATION.json pins current evidence; ChatPanel class bytes match retained prior focus/wrapping evidence.
+
+TILE_CAPTURE_VALIDATION.json records eighteen live stdio MCP point cases, native public-linear-reader expectations, separate 100-row terrain/room and moisture-only retained selections, ten-page preservation after simulation/view changes, no request on paging and actual session invalidation of a fresh moisture token. A combined 100-row projection is refused by the unchanged text budget; no limit is weakened. Its eight scene follow-ups use the production query helper/fixed mailbox directly, including generated battlefield/menu/reload and unavailable world setup. Known JVM-fatal output is now also rejected by the finite crash-marker guard. The initial budget-mismatched fixture attempt is not published as a pass.
+
+GROUND_MOISTURE.md explains quantization, unavailable/zero, scene/time and source-contract distinctions. Stored fractions do not establish total moisture, precipitation, fertility, yield, irrigation eligibility or forecasts. The prior candidate report retains its own JAR scope. Current regular collector cost is in CURRENT_COLLECTION_COST_VALIDATION.json; it is not optional moisture-request latency or FPS acceptance. Earlier world-list/faction, regional live/capture and codec feature reports retain separate source scopes. Full variables, menus, native faults, natural evolution, larger-world/city costs and broader current-version reference coverage remain open.
+
+## Ground-moisture candidate follow-up — earlier unchanged player
 
 GROUND_MOISTURE_BOUNDARY_REVIEW.json pins two public stored tile readers; GROUND_MOISTURE_READER_VALIDATION.json records 4096 sampled coordinates, 64 native samples, 524288 coordinate/linear comparisons, naturally different base/current values, four invalid-coordinate defaults and four unchanged MCP terrain anchors. Moisture itself is not yet exposed through MCP. Warm reader-only loops have median 0.118 ms/max 4.029 ms; DTO/encoding/request/MCP costs and all-state/cap/fault acceptance remain unestablished. Clean completion, copied-mod restoration/save integrity and 302 offline tests pass. Production, latest/previous bundles and provider evidence are unchanged; no paid inference. See GROUND_MOISTURE_BOUNDARY.md for exact scope and outstanding production gates.
 
-## Current world-list context player checkpoint
+## World-list context player checkpoint — prior build
 
 WORLD_LIST_CONTEXT_VALIDATION.json records fourteen controlled copied-profile phases and actual MCP parity for three world-list membership flags, including modal/hidden UI, inactive city/editor, return and same-observation selective projection. WORLD_LIST_BOUNDARY_REVIEW.json pins source/compiler/selected-bytecode semantics and fixed collection bounds. Flags describe underlying activated manager membership, not topmost visibility, selected identity, displayed rows or a complete UI tree. Unknown/unavailable remains null; closed remains false. See WORLD_LIST_CONTEXT.md.
 

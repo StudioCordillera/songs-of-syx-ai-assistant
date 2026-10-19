@@ -142,7 +142,7 @@ def verify(directory:Path,timeout:float=260,on_demand:bool=False,tiles:bool=Fals
             tile_available=None
             if tiles:
                 from syx_tiles import query_tiles
-                selection={'tile_bounds':[0,0,1,1],'fields':['terrain','floor','room','minerals','path'],
+                selection={'tile_bounds':[0,0,1,1],'fields':['terrain','floor','room','minerals','path','ground_moisture'],
                            'limit':1,'expected_session_id':snapshot.session_id}
                 if name in {'world_generation','terrain_generated'}:
                     try:query_tiles(advisor,selection)
@@ -154,6 +154,9 @@ def verify(directory:Path,timeout:float=260,on_demand:bool=False,tiles:bool=Fals
                     assert tile['scene']['settlement_scene_kind']==scene['settlement_scene_kind']
                     assert tile['ui_context']['active_view']==context['active_view']
                     assert tile['data']['rows'][0]['terrain']['available']
+                    moisture=tile['data']['rows'][0]['ground_moisture']
+                    assert moisture['available'] and set(moisture['data'])=={'base_fraction','stored_current_fraction'}
+                    assert all(0<=v<=1 and abs(v*15-round(v*15))<1e-10 for v in moisture['data'].values())
                     assert tile['data']['next_cursor'] is None
                     tile_available=True
             if name not in {'world_generation','terrain_generated'}:
@@ -184,7 +187,7 @@ def verify(directory:Path,timeout:float=260,on_demand:bool=False,tiles:bool=Fals
                     assert live['data']['rows'][0]['resource_id']==known_regional[1]
                     regional_available=True
             checks[name]={'passed':True,'world_list_panel_coverage':lists['coverage'],'view':context['active_view'],'scene_kind':scene['settlement_scene_kind'],
-                          'on_demand_read_available':read_available,'tile_read_available':tile_available,'regional_live_read_available':regional_available,
+                          'on_demand_read_available':read_available,'tile_read_available':tile_available,'ground_moisture_read_available':tile_available,'regional_live_read_available':regional_available,
                           'city_trade_pipeline_coverage':city_trade.data['settlement_pipeline']['coverage'] if city_trade.data else 'unavailable',
                           'world_population_coverage':regional.coverage,
                           'regional_output_coverage':regional.data['regional_output_bookkeeping']['coverage'] if regional.data else 'unavailable',

@@ -28,7 +28,7 @@ public final class TileReadRequest {
         cursor=number(v.get("cursor"),0,Integer.MAX_VALUE);scanLimit=number(v.get("scan_limit"),1,4096);limit=number(v.get("limit"),1,100);
         fields=new LinkedHashSet<>();
         for(String field:v.get("fields").split(",",-1))
-            if(!Set.of("terrain","floor","room","minerals","path").contains(field) || !fields.add(field))throw new IllegalArgumentException("Unknown/duplicate tile field");
+            if(!Set.of("terrain","floor","room","minerals","path","ground_moisture").contains(field) || !fields.add(field))throw new IllegalArgumentException("Unknown/duplicate tile field");
         terrain=key(v.get("terrain"));floor=key(v.get("floor"));room=key(v.get("room"));mineral=key(v.get("mineral"));
         hasRoom=bool(v.get("has_room"));reachable=bool(v.get("reachable"));
     }
@@ -112,6 +112,11 @@ public final class TileReadRequest {
                 init.resources.Minable m=SETT.MINERALS().getter.get(x,y);
                 return m==null?null:object("resource_id",m.resource.key,"reference_id","resource:"+m.resource.key,
                     "amount_raw",SETT.MINERALS().amountInt.get(x,y),"amount_fraction",SETT.MINERALS().amountD.get(x,y),"richness_flag_raw",SETT.MINERALS().value.get(x,y));
+            }
+            case "ground_moisture": {
+                var ground=SETT.GROUND();
+                return object("base_fraction",ground.MOISTURE_BASE.get(x,y),
+                    "stored_current_fraction",ground.MOISTURE_CURRENT.get(x,y));
             }
             case "path": {
                 settlement.path.AVAILABILITY a=SETT.PATH().getAvailability(x,y);

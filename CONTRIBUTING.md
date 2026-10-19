@@ -31,6 +31,8 @@ python3 dev/check_user_test_release.py
 
 Keep `java` on PATH. `SYX_JAVA_HOME` selects its module/release files for this repo's compiler invocations. The Java mod targets release 16; the audit/catalog tools need release 17+. The optional `claude` extra is for deferred advanced SDK/provider work, not a prerequisite for core development or the simple Pro client.
 
+Pytest also checks that the duplicated Java tile-projection allowlist, snapshot discovery list and Python schema/field definitions agree. Run this cheap cross-layer check before paid/native work; native MCP tests remain the behavior proof.
+
 Pytest uses mocks/synthetic fixtures and local Git repositories. It does not need a key or real inference. Native-game tests are explicit scripts; GitHub CI cannot validate licensed-game behavior. Documentation-only/developer-tool changes do not require rebuilding the unchanged player payload or refreshing historical product test counts.
 
 ## Licensed game fixture setup

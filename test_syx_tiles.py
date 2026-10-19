@@ -77,3 +77,30 @@ def test_tile_channel_uses_shared_freshness_guard_and_no_entity_mailbox(live):
 ])
 def test_tile_response_rejects_wrong_scope_incomplete_cursors_and_coordinates(live,tamper,match):
     with pytest.raises(ValueError,match=match):run_response(live[0],tamper)
+
+
+def test_optional_ground_moisture_projection_preserves_default_and_request_bounds():
+    default=TileSelection(tile_bounds=[0,0,1,1])
+    assert default.fields==['terrain','floor','room']
+    selection=TileSelection(tile_bounds=[0,0,1,1],fields=['ground_moisture'])
+    wire=selection.wire(str(uuid4()),str(uuid4()),int(time.time()*1000+8000))
+    assert 'fields=ground_moisture\n' in wire and 'protocol=1\n' in wire
+    assert selection.scan_limit==4096 and selection.limit==25
+
+
+def test_tile_projection_discovery_contract_agrees_across_java_and_python():
+    """Cheap cross-layer preflight for duplicated lists; native checks still prove behavior."""
+    import re
+    from pathlib import Path
+    from syx_tiles import TILE_FIELD_DEFINITIONS
+    root=Path(__file__).parent
+    schema=TileSelection.model_json_schema()['properties']['fields']
+    fields=schema['items']['enum']
+    collector=(root/'mod/src/main/java/syx/assistant/StateCollector.java').read_text()
+    request=(root/'mod/src/main/java/syx/assistant/TileReadRequest.java').read_text()
+    metadata=re.findall(r'"tile_fields",Arrays\.asList\(([^()]*)\)',collector)
+    accepted=re.findall(r'Set\.of\(([^()]*)\)\.contains\(field\)',request)
+    assert len(metadata)==len(accepted)==1,'Re-review changed projection declarations'
+    names=lambda text:re.findall(r'"([a-z_]+)"',text)
+    assert names(metadata[0])==names(accepted[0])==fields
+    assert set(fields)<=TILE_FIELD_DEFINITIONS.keys()

@@ -7,5 +7,5 @@ def require_clean_game_log(path):
     # Errors.check() also captures ordinary fixture stderr on normal shutdown.
     # SMOKE_CAPTURED_ENGINE_OUTPUT alone is therefore not a failure marker.
     text=Path(path).read_text(encoding='utf-8',errors='replace')
-    if any(marker in text for marker in ['Time until crash:','SMOKE_FIXTURE_FAILURE:']):
+    if any(marker in text for marker in ['Time until crash:','SMOKE_FIXTURE_FAILURE:','A fatal error has been detected by the Java Runtime Environment:']):
         raise RuntimeError('Engine crash/error marker despite process completion; inspect the private game log')

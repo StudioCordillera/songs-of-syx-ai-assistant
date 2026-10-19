@@ -4,7 +4,7 @@
 
 ## Selection and completeness
 
-Use the fixed `query_live_tiles` fields and AND predicates: terrain, floor, room, minerals and path, with explicit `[x1,y1,x2,y2]` bounds and exclusive upper limits. `game_query_help.retained_tiles.selection` supplies the strict schema.
+Use the fixed `query_live_tiles` fields and AND predicates: terrain, floor, room, minerals, path and optional ground_moisture, with explicit `[x1,y1,x2,y2]` bounds and exclusive upper limits. `game_query_help.retained_tiles.selection` supplies the strict schema.
 
 - Rectangle area must fit `scan_limit`, at most **4,096 tiles**. This is checked before contacting the game.
 - `max_rows` is 1–100, default **100**. Cursor must be zero; a capture never combines multiple live pages.
@@ -32,11 +32,11 @@ Create:
 {"tile_bounds":[0,0,10,10],"fields":["terrain","room"],"max_rows":100}
 ```
 
-Then call `read_tile_capture` with the returned ID and `limit=20`, following `next_offset` until null. Include UI context only when needed. For a larger rectangle with sparse matches, narrow predicates and ensure the entire area fits 4,096 scanned tiles; more than 100 matches still fails. A 100-tile selection with all five wide projections may exceed the byte limit. Use live tile pages when independent observations are acceptable.
+Then call `read_tile_capture` with the returned ID and `limit=20`, following `next_offset` until null. Include UI context only when needed. For a larger rectangle with sparse matches, narrow predicates and ensure the entire area fits 4,096 scanned tiles; more than 100 matches still fails. A 100-tile selection with all six wide projections may exceed the byte limit. Use live tile pages when independent observations are acceptable.
 
 ## Validation and limits
 
-[TILE_CAPTURE_VALIDATION.json](TILE_CAPTURE_VALIDATION.json) pins the current source/JAR and copied-game MCP checks: 100 retained terrain/room rows against independent public getters; ten pages after active simulation and a world-view change; original request/tick/time/UI preservation; concurrent pages without a new tile mailbox request; an empty 4,096-tile selection; an incomplete 110-tile unfiltered selection refused at 100 rows; wrong-kind token rejection and actual session-rotation invalidation. The fixture changes only copied-game view/speed through public APIs. Production capture tools never pause, mutate or control the game.
+[TILE_CAPTURE_VALIDATION.json](TILE_CAPTURE_VALIDATION.json) pins its exact source/JAR and copied-game MCP checks: 100 retained terrain/room rows against independent public getters; ten pages after active simulation and a world-view change; original request/tick/time/UI preservation; concurrent pages without a new tile mailbox request; an empty 4,096-tile selection; an incomplete 110-tile unfiltered selection refused at 100 rows; wrong-kind token rejection and actual session-rotation invalidation. The fixture changes only copied-game view/speed through public APIs. Production capture tools never pause, mutate or control the game.
 
 [ENTITY_CAPTURE_REGRESSION_VALIDATION.json](ENTITY_CAPTURE_REGRESSION_VALIDATION.json) separately rechecks the shared retention path with 1,395 copied-game entities after simulation, added population and view changes. Unit tests cover immutable response copies, partial/predicate/byte failures, expiry/eviction, separate stores, stale status and changed sessions/versions. Synthetic errors are distinct from actual game getter-fault injection.
 
@@ -54,3 +54,5 @@ LIBGL_ALWAYS_SOFTWARE=1 xvfb-run -a -s '-screen 0 1280x960x24' \
 ```
 
 Use `--case entities` for the separate shared-retention regression. Both fixed cases acquire the shared native lock, extract/check the published JAR, compile test-only public-API fixtures and restore the copied profile's prior mod. They verify the copied save's checksum before emitting a passing final report. Never wrap these runners in another fixture lock. A source-matching unpromoted player can be selected with `--candidate-dir` and `--validation`, following the contributor candidate workflow. Raw fixture data and logs stay under ignored runtime/; reports publish hashes, counts, scope and checks only. No provider request is made by this runner.
+
+The stored-moisture checkpoint reruns live point and separate retained 100-row moisture-only and terrain/room parity with separate base/current fractions, including naturally different values and zero/full base cases. It preserves the existing capture bounds and error/refusal rules. Read [GROUND_MOISTURE.md](GROUND_MOISTURE.md) and exact current reports; the earlier candidate-only moisture reader report retains its prior JAR scope.

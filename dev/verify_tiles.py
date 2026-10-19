@@ -43,12 +43,15 @@ async def verify(directory):
                 return result
             for expected in fixture['points']:
                 x,y=expected['tile_x'],expected['tile_y']
-                spec={'tile_bounds':[x,y,x+1,y+1],'fields':['terrain','floor','room','minerals','path'],'limit':1}
+                spec={'tile_bounds':[x,y,x+1,y+1],'fields':['terrain','floor','room','minerals','path','ground_moisture'],'limit':1}
                 result=await call(spec);row=result['data']['rows'][0]
                 assert row['tile_x']==x and row['tile_y']==y
                 assert all(row[f]['available'] for f in spec['fields']),row
                 assert row['terrain']['data']['key']==expected['terrain']
                 floor=row['floor']['data'];room=row['room']['data'];mineral=row['minerals']['data'];path=row['path']['data']
+                moisture=row['ground_moisture']['data']
+                assert moisture=={k:expected[k] for k in ['base_fraction','stored_current_fraction']}
+                assert all(0<=v<=1 and abs(v*15-round(v*15))<1e-10 for v in moisture.values())
                 assert (None if floor is None else floor['key'])==expected['floor']
                 if floor is not None:assert floor['degradation_raw']==expected['degrade']
                 assert (None if room is None else room['map_record_id'])==expected['room_record']
@@ -98,9 +101,18 @@ async def verify(directory):
                 assert not response.is_error and len(text.encode())<=65536,text
                 return json.loads(text)
             help_result=await tool('game_query_help',{})
+            listed=await tool('query_game_state',{'domain':'map','pointer':'/tile_fields'})
+            assert listed['data']==['terrain','floor','room','minerals','path','ground_moisture']
+            assert help_result['on_demand_tiles']['selection']['properties']['fields']['items']['enum']==listed['data']
             assert help_result['retained_tiles']['create_tool']=='capture_live_tiles'
             spec={'tile_bounds':fixture['capture_rectangle'],'fields':['terrain','room'],'max_rows':100}
             made=await tool('capture_live_tiles',{'spec':spec});cap=made['capture'];token=cap['capture_id']
+            retained_rows=[{k:v for k,v in row.items() if k!='ground_moisture'} for row in fixture['capture_rows']]
+            moisture_rows=[{k:row[k] for k in ['tile_x','tile_y','ground_moisture']} for row in fixture['capture_rows']]
+            await tool('capture_live_tiles',{'spec':{**spec,'fields':['terrain','room','ground_moisture']}},error='64 KiB')
+            moisture=await tool('capture_live_tiles',{'spec':{**spec,'fields':['ground_moisture']}})
+            assert moisture['capture']['row_count']==100 and moisture['capture']['selection_complete']
+            moisture_token=moisture['capture']['capture_id']
             assert cap['row_count']==100 and cap['scanned_tiles']==100 and cap['selection_complete']
             assert cap['capture_kind']=='tile' and 'rows' not in made
             await tool('capture_live_tiles',{'spec':{'tile_bounds':[0,0,11,10],'fields':['terrain'],'max_rows':100}},error='Incomplete tile capture')
@@ -111,7 +123,7 @@ async def verify(directory):
             assert empty_page['rows']==[] and empty_page['next_offset'] is None
             await tool('read_entity_capture',{'capture_id':token},error='missing')
             first=await tool('read_tile_capture',{'capture_id':token,'limit':11,'include_ui_context':True})
-            assert first['rows']==fixture['capture_rows'][:11]
+            assert first['rows']==retained_rows[:11]
             assert first['captured_ui_context']['active_view']=='settlement'
             (directory/'tile-capture-advance.request').write_text('test-only public view/speed change\n')
             began=time.monotonic()
@@ -128,9 +140,13 @@ async def verify(directory):
                 assert page['current_state']['scene']['active_view']=='world'
                 captured.extend(page['rows']);retained_pages+=1;offset=page['next_offset']
                 if offset is None:break
-            assert captured==fixture['capture_rows']
+            assert captured==retained_rows
             left,right=await asyncio.gather(*[tool('read_tile_capture',{'capture_id':token,'limit':11}) for _ in range(2)])
             assert left['rows']==right['rows']==first['rows']
+            moisture_pages=[await tool('read_tile_capture',{'capture_id':moisture_token,'offset':i,'limit':10,'include_ui_context':True}) for i in range(0,100,10)]
+            assert [r for page in moisture_pages for r in page['rows']]==moisture_rows
+            assert all(page['capture']['request_id']==moisture['capture']['request_id'] and page['capture']['tick']==moisture['capture']['tick'] and page['capture']['captured_at']==moisture['capture']['captured_at'] for page in moisture_pages)
+            assert all(page['captured_ui_context']['active_view']=='settlement' and page['current_state']['scene']['active_view']=='world' for page in moisture_pages)
             assert (directory/'tile-request.txt').read_bytes()==wire
             (directory/'tile-capture-city.request').write_text('test-only public city/pause restore\n')
             began=time.monotonic()
@@ -138,12 +154,12 @@ async def verify(directory):
                 if advisor.snapshot().scene['active_view']=='settlement':break
                 await asyncio.sleep(.2)
             else:raise AssertionError('Copied tile city was not restored')
-            fresh=await tool('capture_live_tiles',{'spec':{'tile_bounds':[x,y,x+1,y+1],'fields':['terrain']}})
+            fresh=await tool('capture_live_tiles',{'spec':{'tile_bounds':[x,y,x+1,y+1],'fields':['ground_moisture']}})
             tile_capture_report={'passed':True,'game_version':snapshot.game_version,'retained_rows':len(captured),
-                'retained_pages':retained_pages,'direct_public_getter_row_parity':True,'original_request_tick_time_scene_and_ui_preserved':True,
+                'retained_pages':retained_pages,'direct_public_getter_row_parity':True,'ground_moisture_live_and_retained_parity':True,'ground_moisture_retained_rows':100,'ground_moisture_retained_pages':10,'wide_100_row_tool_text_budget_refusal':True,'original_request_tick_time_scene_and_ui_preserved':True,
                 'active_simulation_and_view_change':True,'paging_did_not_write_game_request_mailbox':True,
                 'complete_empty_selection_scanned_tiles':4096,'incomplete_row_cap_rejected':True,'concurrent_pages':True,
-                'wrong_kind_token_rejected':True,'help_discoverable':True,'inference_calls':0,
+                'wrong_kind_token_rejected':True,'help_discoverable':True,'snapshot_tile_field_list_matches_moisture_support':True,'inference_calls':0,
                 'controlled_fixture_actions':['VIEW.world().activate()','VIEW.s().activate()','GAME.SPEED.speedSet(...)'],
                 'source_sha256':{name:hashlib.sha256((root/name).read_bytes()).hexdigest() for name in
                     ['syx_capture.py','syx_tiles.py','syx_mcp.py','mod/tests/TileScenario.java','dev/verify_tiles.py']},

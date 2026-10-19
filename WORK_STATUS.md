@@ -2,7 +2,21 @@
 
 Use `python3 dev/collaboration_status.py` for actual remote/local state at every run; this file is a handoff, not a live branch/working-tree assertion. Read AGENTS.md and reconcile newer collaborator work before editing.
 
-## Latest production checkpoint — world list-panel context
+## Latest production checkpoint — optional stored tile moisture
+
+GROUND_MOISTURE.md documents the optional ground_moisture projection for query_live_tiles and capture_live_tiles: separate base_fraction and stored_current_fraction from public stored maps, with sixteen quantized values in 0..1 (raw value / 15). It is not MOISTURE_TOT, rainfall, fertility, yield, irrigation eligibility or a forecast. Existing default fields, protocol 1 keys, predicates and 4096-scan/100-row/64-KiB limits remain. Out-of-map rectangles and missing instantiated scenes fail; getter defaults are not valid dry tiles. Captured values/time/UI remain historical; battlefield/loaded-city/world-view scope must be read explicitly.
+
+The production audit now has 384 public references and zero non-public references: SETT.GROUND and its two maps are the three additions; the public coordinate getter was already referenced. Nine Java classes, eighteen read-only MCP tools and fifteen Python modules remain. New discovery/field semantics retain source-verification versus documented-contract limits. The map snapshot discovery list now names the projection; moisture values remain on-demand. Provider/account/debug controls and gameplay actions are unchanged.
+
+TILE_CAPTURE_VALIDATION.json pins eighteen real-city live MCP point cases, including zero/full base and naturally different base/current values. Native expectations use public linear overloads; shared backing storage is not independent raw ground truth. Separate 100-row terrain/room and moisture-only captures preserve values across simulation/world-view changes, ten-page reads and concurrent existing-page checks, without another game request; session rotation rejects a fresh moisture token. A combined 100-row terrain/room/moisture request is refused by the unchanged tool text budget. The first attempt incorrectly expected it to fit and was rejected as a passing run; the corrected fixture tests that refusal instead of increasing limits. Eight scene follow-ups call the production query helper/fixed mailbox directly (city, tactical HUD, generated battlefield/menu, reload, initial/terrain setup), not separate stdio acceptance for every scene. Initial/terrain setup refuses tile reads. Current finite crash-marker guards also reject known JVM-fatal output, supplementing exit code without claiming all-error detection.
+
+The exact player pair passes 305 offline tests, two actual DeepSeek Pro turns, all seven native core groups, fourteen sampled supported capabilities/two explicit gaps/sixteen member anchors, all 37 unchanged-corpus guidance cases and fresh extracted dependency/startup/isolated-install/key-exclusion checks. No external reference review date is refreshed. Compiled ChatPanel bytes match prior focus/wrapping evidence; physical keyboard/all-display acceptance remains open.
+
+CURRENT_COLLECTION_COST_VALIDATION.json pins this JAR's finite paused-city baseline: 31 warm samples, collection median 10.297 ms/max 15.978 ms; separate encoding median 10.257 ms/max 15.940 ms; 1,797,839-byte snapshot. This is regular collection, not optional moisture-request latency, largest-world/city or FPS acceptance. The earlier candidate read-loop timing excludes DTO/encoding/transport and keeps its own JAR scope. Native getter faults, natural moisture evolution and broader cost/scene acceptance remain open.
+
+The latest tested player ZIP matches current production source and retains its real tested predecessor. Earlier candidate-moisture, world-list/faction, regional live/capture and codec feature reports retain their prior source/JAR scopes; USER_TEST_VALIDATION.json identifies them explicitly. Current core supplies its own finite context/scene regressions. Normal profile/mod/saves, credentials and audio/display settings remain untouched. Fetch checks found no collaborator overlap; no competing implementation was discarded.
+
+## Prior world-list production checkpoint
 
 WORLD_LIST_CONTEXT.md documents three same-observation `world_list_panels` flags: army list, player Realm list and Regions browser. Only the active completed-world view returns partial boolean membership; inactive/uninitialized/editor/setup or reader failure returns unavailable/null. The flags describe the activated underlying side-panel manager, including when confirmations or hidden UI obscure it. They do not identify a selected region/army, displayed rows, search/sort, complete hierarchy or topmost visibility. Realm skips the capital; the Regions browser excludes the player capital and has its own filtering/sorting. Never infer a census or foreign-only list from these flags.
 
@@ -10,7 +24,7 @@ WORLD_LIST_BOUNDARY_REVIEW.json pins public compiler access and selected source/
 
 WORLD_LIST_CONTEXT_VALIDATION.json pins fourteen controlled public-action phases in a disposable copied game: closed/open/combined lists, modal, inactive city/editor, return, reopen and hidden UI; actual MCP context and pinned selective world-row projections agree. The initial fixture hit a final-ack teardown race despite observing all phases, so it was rejected. The corrected world/faction fixtures wait for final verifier completion; read/core/cost runners reject finite known crash/failure markers even for zero exit. Normal captured stderr alone is not a crash. Current world-list fixture also requires its explicit clean-completion marker. These guards are finite, not proof against every engine failure; historical reports are not relabeled.
 
-## Current validation and collector cost
+## World-list checkpoint validation and collector cost
 
 The exact source/JAR pair passes 302 offline tests, two actual DeepSeek Pro turns, fourteen world-list phases, eleven faction-context phases and all seven native core groups. The eight existing scene phases additionally check unavailable/null world-list fields. Thirteen sampled supported capabilities, two explicit gaps and thirteen service/faction/world-list source anchors pass actual MCP discovery; all 37 guidance cases pass against the unchanged thirteen-source corpus. This local regression does not refresh external reference review dates. Fresh extracted dependencies, launcher/coordinator startup, isolated installation and provided-key exclusion pass. ChatPanel class bytes match prior focus/wrapping evidence; physical keyboard/all-display acceptance remains open.
 
@@ -18,13 +32,13 @@ CURRENT_COLLECTION_COST_VALIDATION.json pins this build's finite paused-city bas
 
 The source-matching latest player ZIP preserves the simplified Pro interface and retains the previous tested bundle. Normal saves/credentials and normal-profile mod files remain untouched. Remote main was unchanged at reconciliation checks; no competing implementation was discarded or overwritten.
 
-## Ground-moisture candidate follow-up — player unchanged
+## Prior ground-moisture candidate follow-up
 
 GROUND_MOISTURE_BOUNDARY.md / GROUND_MOISTURE_BOUNDARY_REVIEW.json establish two stored public tile readers: MOISTURE_BASE and MOISTURE_CURRENT, normalized four-bit fractions. Current stored moisture approaches a clamped water-influence target; it is not MOISTURE_TOT, rainfall, fertility or yield. Derived total/environmental water and weather factors remain excluded. Coordinate getters return zero outside the map, so future observation must reject invalid coordinates explicitly.
 
 GROUND_MOISTURE_READER_VALIDATION.json records a 4096-point uniformly spaced grid across a 768x768 copied city, 64 samples and 524288 coordinate/linear comparisons. Both maps naturally exhibit all sixteen quantized values; 49 points differ between base/current. Paused samples stay unchanged. Four invalid coordinates return zero. Native overloads share storage, so this is not independent raw-storage truth. Four unchanged terrain MCP corner checks confirm coordinates/session; moisture is not yet an MCP field. Timed 8192-read loops have warm median 0.118 ms/max 4.029 ms, excluding DTO/encoding/transport. No moisture writes, inference or saves. Clean completion, crash-marker guard, copied-mod restoration/save integrity and 302 offline tests pass.
 
-The player source, latest/previous bundles and existing provider/core evidence are unchanged. The immediate next data task is a fixed optional ground_moisture tile projection with distinct base/current fields, current bounds, explicit errors and provenance, actual live/retained MCP value parity and additional scene tests. Audit/build/core/Pro/distribution gates must precede promotion; this candidate checkpoint does not satisfy those outstanding mapping gates. No remote overlap was found or implementation discarded.
+The player source, latest/previous bundles and existing provider/core evidence are unchanged. At that candidate checkpoint, the optional production projection, live/retained MCP parity and scene/build/Pro/distribution gates were still pending. The subsequent production follow-up is described above; the earlier candidate report is not relabeled as MCP evidence. No remote overlap was found or implementation discarded.
 
 ## Prior regional-capture checkpoint
 

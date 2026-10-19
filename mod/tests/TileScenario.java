@@ -24,10 +24,14 @@ public final class TileScenario {
                 else examples.putIfAbsent("no_floor",new int[]{x,y});
                 if(SETT.MINERALS().getter.get(x,y)!=null)examples.putIfAbsent("mineral",new int[]{x,y});
                 else examples.putIfAbsent("no_mineral",new int[]{x,y});
+                double base=SETT.GROUND().MOISTURE_BASE.get(x,y),current=SETT.GROUND().MOISTURE_CURRENT.get(x,y);
+                if(base==0)examples.putIfAbsent("moisture_base_zero",new int[]{x,y});
+                if(base==1)examples.putIfAbsent("moisture_base_full",new int[]{x,y});
+                if(base!=current)examples.putIfAbsent("moisture_base_current_different",new int[]{x,y});
                 String terrain=SETT.TERRAIN().get(x,y).key();
                 if(examples.size()<12)examples.putIfAbsent("terrain:"+terrain,new int[]{x,y});
             }
-            for(String required:new String[]{"instance_room","floor","mineral","no_room","no_floor","no_mineral"})
+            for(String required:new String[]{"instance_room","floor","mineral","no_room","no_floor","no_mineral","moisture_base_zero","moisture_base_full","moisture_base_current_different"})
                 if(!examples.containsKey(required))throw new IllegalStateException("Copied fixture lacks "+required);
             List<Object> points=new ArrayList<>();
             for(Map.Entry<String,int[]> e:examples.entrySet()) {
@@ -40,7 +44,9 @@ public final class TileScenario {
                     "room_record",room==null?null:room.index(),"instance_room",room instanceof RoomInstance?room.index():null,
                     "room_blueprint",room==null?null:room.blueprint().key,"mineral",mineral==null?null:mineral.resource.key,
                     "amount_raw",mineral==null?null:SETT.MINERALS().amountInt.get(x,y),"availability",path.name(),
-                    "reachable",SETT.PATH().reachability.is(x,y)));
+                    "reachable",SETT.PATH().reachability.is(x,y),
+                    "base_fraction",SETT.GROUND().MOISTURE_BASE.get(x+y*SETT.TWIDTH),
+                    "stored_current_fraction",SETT.GROUND().MOISTURE_CURRENT.get(x+y*SETT.TWIDTH)));
             }
             int[] anchor=examples.get("instance_room");int x1=Math.max(0,anchor[0]-8),y1=Math.max(0,anchor[1]-8);
             int x2=Math.min(SETT.TWIDTH,x1+24),y2=Math.min(SETT.THEIGHT,y1+24);
@@ -55,6 +61,7 @@ public final class TileScenario {
             for(int y=cy;y<cy+10;y++)for(int x=cx;x<cx+10;x++) {
                 var t=SETT.TERRAIN().get(x,y);Room r=SETT.ROOMS().map.get(x,y);
                 captureRows.add(object("tile_x",x,"tile_y",y,
+                    "ground_moisture",object("available",true,"data",object("base_fraction",SETT.GROUND().MOISTURE_BASE.get(x+y*SETT.TWIDTH),"stored_current_fraction",SETT.GROUND().MOISTURE_CURRENT.get(x+y*SETT.TWIDTH))),
                     "terrain",object("available",true,"data",object("key",t.key(),"name",t.name().toString(),
                         "roof_flag",t.roofIs(),"massive_wall_flag",t.isMassiveWall())),
                     "room",object("available",true,"data",r==null?null:object("map_record_id",r.index(),

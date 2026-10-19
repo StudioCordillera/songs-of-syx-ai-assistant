@@ -3,7 +3,7 @@ import pytest
 from dev.native_game_completion import require_clean_game_log
 
 
-@pytest.mark.parametrize('marker',['Time until crash:','SMOKE_FIXTURE_FAILURE:'])
+@pytest.mark.parametrize('marker',['Time until crash:','SMOKE_FIXTURE_FAILURE:','A fatal error has been detected by the Java Runtime Environment:'])
 def test_exit_zero_engine_failure_marker_is_not_accepted(tmp_path,marker):
     log=tmp_path/'game.log';log.write_text('all observations verified\n'+marker+' renderer/update error\nDISPOSING\n')
     with pytest.raises(RuntimeError,match='Engine crash/error marker'):require_clean_game_log(log)
