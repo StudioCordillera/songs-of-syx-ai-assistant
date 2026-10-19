@@ -1,6 +1,6 @@
 {
   "passed": true,
-  "validated_at": "2026-10-18T22:01:47.896147+00:00",
+  "validated_at": "2026-10-18T23:53:34.813800+00:00",
   "checks": [
     {
       "phase": "city_unavailable",
@@ -85,44 +85,54 @@
     "Presence/tab reads describe underlying panels and can remain true behind a modal; inactive-world contexts are unavailable.",
     "No complete tab tree, selected room/region, tooltip text, standalone menu hook, all-scene/faction cap/fault or large-city cost acceptance."
   ],
+  "known_engine_crash_markers_absent": true,
   "game_exit_code": 0,
-  "mod_jar_sha256": "d50072623dbd669cc7ae56c1ad6b022d0a860e344cc73328e9908a1c99dbd857",
+  "mod_jar_sha256": "8d9e1aec427b86f1604b6330fc44d8dfad666f04717d8977ee7e04cd4149226f",
   "game_jar_sha256": "fe0137c05408e5ee9e31f06fc44fe37a5d4372d9c985b280f0852d1347c0224b",
   "production_source_sha256": {
-    "syx/assistant/AssistantScript.java": "079b048597c373f88d8179d4f8e8fec576a82c5b13ad6c95fe6e672ba3722e3a",
+    "syx/assistant/AssistantScript.java": "82fa2395aa96e7ae9cee612b32171fb495ca289dc7f99269c1ad7a2d417cca55",
     "syx/assistant/ChatPanel.java": "3138d3e863ccb36ad5b6b37a7e1f3486dd2d8c1dc43ab469b26af714548d8437",
     "syx/assistant/EntityReadRequest.java": "e2d13aee21f399e8718382d5b43d5a6c85e5d78d2708d8105b9f1ecfe730edf8",
     "syx/assistant/JsonWriter.java": "c525eb60d3224cab83ed3fd6b8594ec8652211f00bd947e873e1482f919e81dc",
-    "syx/assistant/StateCollector.java": "073b965746f839b99432d062d157439a4f8c0911385627dd3aef14767fb5d258",
+    "syx/assistant/RegionalReadRequest.java": "4d1da800e6f2ecf6b036f188693ac1095329321bc569c82f34be9918768ef2b3",
+    "syx/assistant/StateCollector.java": "8437066a95ce197cb93ddc5f23004694bfdc080ccd28dd1d297b4946bcef2af6",
     "syx/assistant/TileReadRequest.java": "1a192cde61a7e1bdefa170390c00b17c74573b9c41de71700ebea466411ad3c5",
     "syx/assistant/UiContentCollector.java": "c0d20c7f9f2734a0bb625427875f06bfcd07edb20611248b39b6e8f480ef5a48",
-    "syx/assistant/UiContextCollector.java": "398ab4931efb3451ad0d0dcf80e0c19651e9ffb20fd8b6e6377a9ca53358f7d5"
+    "syx/assistant/UiContextCollector.java": "b8a3e582e1c2b7da868ad9513f02793685d7a986464fe8935b32b86216f70b29"
   },
   "python_source_sha256": {
-    "syx_mcp.py": "7978d3c17dd0495cedcf162b0c2cbe0f2f0518ab0ccfb8641f8adc4e90f71b4e",
+    "syx_mcp.py": "c3dd7a2da049c6aac265be43ef91cc20bb6a8e13e27658389078654bcc6c114f",
     "syx_knowledge.py": "f5d7dd6d387ad0fb8f2b024a3bd599ad1cec28f2906dfae27d9d2fdf56e4de7e",
-    "syx_query.py": "039795c9c0e1a4f167ff7bb98afd5955c52814d4fcf40705d0c59cdf06b684b4",
-    "syx_api_support.py": "ffcc8f9fad51de63d0edebe8982d0564cd78454f04f765fedf58d01d768b666f",
-    "syx_api_manifest.py": "c0fbabb826313aaf55393f3d5665af2510b3ba82ccc001a7d896c9e0ca33aedd",
-    "syx_live.py": "8238cdfc021c8d43a02e9c9b304fe262f701ebd52a492c17ea9ce3e308e37885",
-    "syx_capture.py": "506f18a5b55ea66cd38ac239bd7398fde597420e0363327629308098f23f82a9",
+    "syx_query.py": "ae9c4537093952510e6536810c065b6e07f7bfc2d78d3bc02ccd0d21f4d12c07",
+    "syx_api_support.py": "4e018dbb0b91d729cd290104dfbad21c63df09b8c4624b7687d9e51060099ec6",
+    "syx_api_manifest.py": "b577853a9beb367c58ed86cc0d56cdeb9fadb3e770956186547ea8e8ad8f3805",
+    "syx_live.py": "2f29a2d828fc5c512075fa6a2082dd5fae9d4a39fb22ae847765533dc5628c75",
+    "syx_capture.py": "32778d9f5f217119ba45b114ba2a710bdd0ce4333efa672c31c690dcc3f3c3ec",
     "syx_tiles.py": "43024d10af917442d4d994f316db18fbd7cab388196682c471891135553c843f",
+    "syx_regions.py": "96dd3355f50279c7c748d866019f889bd9889ef00c7cf97bf4fa582fede7ffb5",
     "syx_chat_store.py": "7344b35476096b680e0cf85958f97596b3c9cfe843072202f30e357b97dedbe5",
     "syx_deepseek.py": "d58e21dbcfdeb1ef0f411dfbb4c0267234bdc5cc185e00d300821725ca1885e3",
-    "syx_chat.py": "2ebb914f8e517b742ddf851f8901c96b6f383c2112691e4f05031d7231c37e62",
+    "syx_chat.py": "bb201ed9e6a0ed84f6dbddd583304e3c9b655f3e3c563f6a48f60e9669775714",
     "syx_chat_service.py": "8e311cc51bf686d70d466f7a31863b9cbf1905231066316eb492f2c7bd074b6b",
     "syx_claude.py": "3a850a645907f27b1a9cb15c3c5244b96b2da97d5d0dc37f5cd7d6f708cf92a8",
     "syx_claude_worker.py": "ab6638b2c4ef3a4a1548fde1c0739a48f4d47e468494dd7444019f3f330dea38"
   },
   "inference_calls": 0,
   "fixture_source_sha256": {
-    "mod/tests/LiveSmoke.java": "85582452e23db3e0aaae73cb61d1b9019309657e483ff43a00922d15df58a4db",
+    "mod/tests/LiveSmoke.java": "f4d25b59e2e33366c976c95e4e2f55727ce00373f2a79c1f26a4971b3c08f4e9",
     "mod/tests/TileScenario.java": "cd9b03885f7e7e985191c3f45eb3c7a209dc3c670169aac339d13f20e2571f1e",
     "mod/tests/EntityScenario.java": "df9b359332c391857857d93ed5d38e36f2029b3a066c3bcb540e74f3eda69f7d",
     "mod/tests/SceneScenario.java": "ae623566198d96c324ae911d14c9100da0ab73a6e7c49f1c877c675ec60b6a55",
-    "mod/tests/FactionUiScenario.java": "b0c2afc70c0620039f263770789c27a63167938fd6c1258b4ca73b7454eb7463",
+    "mod/tests/FactionUiScenario.java": "efd008fbf99a8d21db18d386d78ad5309acafc88e735d4b2b393a6363ac70bef",
+    "mod/tests/RegionalOutputScenario.java": "7aced23bff4580d883542c9a8c9b8b6df2d206be80942f83c2ab82c183783096",
+    "mod/tests/RegionalOutputExportScenario.java": "bf637e23ba1023c250bb615f60c04d28b807695e4af2bcf6f3797c73aae93a66",
+    "mod/tests/RegionalLiveScenario.java": "f5a759f5137ceadd858dfabc02d785738618214df541288421e21fa6771f48fc",
+    "mod/tests/RegionalCostScenario.java": "2e0256d98ad39d0f34e2f8080f8e1a04e9f93bc77ffa0b3995c82639dc86fbf7",
+    "mod/tests/RegionalCaptureScenario.java": "bfba6148a55eef4cf48c615ed9b55aada047da2f2a164d55efc78be169cb2d5b",
+    "mod/tests/WorldListScenario.java": "44202e2fb03075e13b66a6c22dbd4e210b784f67bc68b030269bb8e51958a799",
     "dev/verify_faction_ui.py": "da1e6858b31f147f2586b26fb46a8362927fb09cce018997a22a02c3e17e4a81",
-    "dev/run_read_fixture.py": "32254cd8a31a0282338c6e9a68559c79a397564ea924d71d8e4aec311ccf2489"
+    "dev/run_read_fixture.py": "1b8c0a416af23040cbc5802c8187a78949640f0bffe7b7a36f3907a1e923cced",
+    "dev/native_game_completion.py": "6fe7731cbd5825c3a7a0d6cee0f3bedaf0f19f3a7af735daa33e367c7c3403d4"
   },
   "copied_profile_mod_restored": true,
   "copied_save_unchanged": true

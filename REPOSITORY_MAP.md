@@ -12,7 +12,7 @@ Game process public after-update callback → detached Java DTOs → local snaps
 | --- | --- |
 | AssistantScript.java | SCRIPT lifecycle, after-update registration, game-thread/worker handoff, snapshot/mailbox/chat IPC and supported-version guard. |
 | StateCollector.java | Eighteen partial domains, installed help, typed field definitions and bounded room/resource/region relationships. New fields require provenance, bounds and getter/MCP validation. |
-| UiContextCollector.java | Scene/view/overlay/subject/room-blueprint and bounded world-faction-panel context through mapped public getters. No private selected-room fallback. |
+| UiContextCollector.java | Scene/view/overlay/subject/room-blueprint, world-list membership and bounded world-faction-panel context through mapped public getters. No private selected-room fallback. |
 | UiContentCollector.java | Bounded exposed popup/section labels/controls, ancestry and opaque/error/truncation markers. |
 | RegionalReadRequest.java | Fixed live/complete-capture active-region/resource matrix protocols, bounded range/faction predicates and projections on the update thread; independent of cached row prefix. |
 | EntityReadRequest.java | Strict live/capture protocol parsing, finite predicates/projections, public entity/stat/workplace reads on the update thread. |
@@ -50,7 +50,7 @@ Only these production classes are packaged. `mod/tests/` contains non-shipped bo
 | build_mod.py | Compile only our Java against a licensed game JAR, release 16; creates _Info and our own mod JAR. |
 | audit_api.py + dev/ApiAudit.java | Compiler-resolved production game members, public-access/source anchors and critical bytecode checks; regenerates api-audit.json/syx_api_manifest.py. |
 | catalog_api.py + dev/GameApiCatalog.java | Offline public declaration candidate catalog under ignored build/; API_DISCOVERY.json is the retained summary/current production pairing. No runtime getter safety is inferred. |
-| dev/verify_*_contract.py, verify_bytecode.py, review_production_modifier_boundary.py, review_stockpile_boundary.py, review_ui_lifecycle_boundary.py, review_regional_output_boundary.py, verify_production_periods.py | Static licensed source/binary review without initializing game classes; publish metadata/hashes/conclusions only. |
+| dev/verify_*_contract.py, verify_bytecode.py, review_production_modifier_boundary.py, review_stockpile_boundary.py, review_ui_lifecycle_boundary.py, review_world_list_boundary.py, review_regional_output_boundary.py, verify_production_periods.py | Static licensed source/binary review without initializing game classes; publish metadata/hashes/conclusions only. |
 | test_*.py | Offline regression tests with mock providers/synthetic observations/local Git repos. No key or paid inference needed. |
 | mod/tests/ + dev/verify_*.py | Explicit licensed-game getter/MCP/context/cap/lifecycle fixtures and metadata-only reports. Read each verifier's scope. |
 | dev/run_read_fixture.py | Fixed tile/entity/world-faction-context/regional regressions and regional collector/MCP timing samples against published/candidate player; locks/restores copied mod and checks copied-save integrity. |
@@ -61,6 +61,7 @@ Only these production classes are packaged. `mod/tests/` contains non-shipped bo
 | dev/profile_collection_cost.py / benchmark_selective_queries.py | Descriptive collection/selection timings for exact published payload; audited game/source pair, copied mod restore/save integrity and shared lock. Current small-city evidence is separate from historical timings and larger-city acceptance. |
 | make_user_test.py | Package only our Java/Python/player assets from matching provider/source evidence; retain prior tested ZIP. |
 | dev/check_user_test_release.py | Standard-library freshness/hash checker for current production payload; CI/pre-push gate, not a game playtest. |
+| dev/native_game_completion.py | Finite engine-crash/fixture-failure log guard for read/core/cost runners; normal captured stderr alone is not a failure. Explicit feature completion markers supplement process exit codes. |
 | dev/game_fixture_lock.py | Machine-wide advisory lock for cooperating native runners on this shared device; core/chat/cost acquire it automatically. |
 | dev/collaboration_status.py | Fetch refs/tags and report divergence, overlap and tracked release changes; no automatic integration or file mutation. |
 | dev/check_documentation.py | Check local links, documentation inventory and selected current facts; --write-index refreshes the deterministic index. |
@@ -78,6 +79,7 @@ The release whitelist is `make_user_test.MODULES`, five files in `user_test/`, o
 - `STOCKPILE_BOUNDARY_REVIEW.json` / `STOCKPILE_BOUNDARY.md`: static candidate review; STOCKPILE_READER_VALIDATION.json pins the earlier reader-only JAR. STOCKPILE_BOOKKEEPING_VALIDATION.json checks current global reservation DTO/MCP exposure; per-room arrays remain fixture-only.
 - Other `*_VALIDATION.json`, `validation-evidence.json`, `provider-validation.json` and source-review reports may belong to older builds. Preserve them as historical evidence; current equivalents can be nested in PLAYER_CORE. The index distinguishes their roles.
 - `REGIONAL_OUTPUT_BOUNDARY_REVIEW.json` / `REGIONAL_OUTPUT_BOUNDARY.md` / `REGIONAL_OUTPUT_READER_VALIDATION.json`: original candidate stored-reader/offset evidence and excluded mutating helpers; its earlier JAR/hashes remain historical. REGIONAL_OUTPUTS.md / REGIONAL_OUTPUT_VALIDATION.json describe the subsequent bounded DTO/MCP mapping.
+- `WORLD_LIST_BOUNDARY_REVIEW.json` / `WORLD_LIST_CONTEXT_VALIDATION.json` / `WORLD_LIST_CONTEXT.md`: source/compiler membership review and finite native availability/modal/hidden/editor/MCP checks; no selected-object or list-content claim.
 - `UI_LIFECYCLE_BOUNDARY_REVIEW.json` / `WORLD_FACTION_CONTEXT.md`: finite source/compiler route checks, public faction panel observations and explicit inaccessible/mutating alternatives; WORLD_FACTION_CONTEXT_VALIDATION.json pins eleven copied-game/MCP phases. Not exhaustive API absence proof.
 - `REGIONAL_CAPTURE_VALIDATION.json`: complete single-callback regional selections, retained pages after counter/context changes, real reload invalidation and finite capture timings; REGIONAL_CAPTURES.md describes protocol and limits.
 - `REGIONAL_REQUEST_COST_VALIDATION.json`: earlier live-page JAR regional collector/encoding samples plus sequential actual MCP latency; finite paused campaign, separate from regular collector cost. Reproduce with the `regional-cost` read-fixture case.

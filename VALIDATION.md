@@ -1,6 +1,16 @@
 # Validation evidence
 
-## Current regional-capture player checkpoint
+## Current world-list context player checkpoint
+
+WORLD_LIST_CONTEXT_VALIDATION.json records fourteen controlled copied-profile phases and actual MCP parity for three world-list membership flags, including modal/hidden UI, inactive city/editor, return and same-observation selective projection. WORLD_LIST_BOUNDARY_REVIEW.json pins source/compiler/selected-bytecode semantics and fixed collection bounds. Flags describe underlying activated manager membership, not topmost visibility, selected identity, displayed rows or a complete UI tree. Unknown/unavailable remains null; closed remains false. See WORLD_LIST_CONTEXT.md.
+
+USER_TEST_VALIDATION.json links the exact production JAR/source pair: 302 offline tests, two real DeepSeek Pro turns, all seven native core groups, eleven additional faction phases, thirteen sampled supported capabilities/two gaps/thirteen member anchors and all 37 local guidance cases. Existing eight scene phases assert unavailable/null world-list context. Fresh extracted dependencies/startup/isolated install/key exclusion pass; compiled ChatPanel bytes match prior focus/wrapping evidence. No external reference review date or prior feature fixture is relabeled fresh.
+
+The initial world-list fixture reached its observations but raced during final teardown; its apparent zero exit was rejected. The corrected world/faction scenarios wait for final verifier completion. Current read/core/cost runs reject finite known engine-crash/failure log markers; world-list additionally requires an explicit clean-completion file. Normal captured stderr on shutdown alone is not a failure. These checks supplement exit status without claiming to detect every possible engine failure. Current reports retain exact fixture hashes.
+
+CURRENT_COLLECTION_COST_VALIDATION.json measures 31 warm paused-city samples: collection median 6.257 ms/max 13.325 ms, separate encoding median 10.498 ms/max 12.953 ms, 1,797,821-byte snapshot. These finite local costs establish neither largest-world/city performance nor FPS. Current compiler inventory is 381 public production references and zero non-public references; eighteen read-only tools remain. Earlier regional capture/live/codec feature reports retain their prior source/JAR scope; current core covers limited regional availability only. Broader variables, selections, menus, faults and current-version reference coverage remain open.
+
+## Regional-capture player checkpoint — prior build
 
 REGIONAL_CAPTURE_VALIDATION.json pins complete single-callback regional selections and immutable MCP paging after a copied counter/view change, no request while paging, exact matching-row limits, row/scan refusal, empty capture, concurrent pages, separate pools and real reload invalidation. The finite copied campaign supplies 4,200 selected cells/166 positive rows and a separate 1,974-row capture larger than 64 KiB. Sixty-four native collector/encoding samples agree with independent public getters. REGIONAL_CAPTURES.md describes the 10,000-cell/2,000-row/2-MiB protocol, historical provenance, TTL/freshness and explicit unsupported scopes.
 
@@ -12,7 +22,7 @@ CURRENT_COLLECTION_COST_VALIDATION.json refreshes the regular small paused-city 
 
 REGIONAL_LIVE_VALIDATION.json records actual MCP/direct-getter parity for 4,200 selected cells over 42 pages, an empty filtered 4,096-cell scan followed by the target, combined predicates/projections, unknown/inactive refusal, concurrent callers, restored test controls and eight scene phases. The separate authored partial-cache MCP server proves a target absent from 100 copied cached rows is still returned by the real live callback. Its timestamp/session are not refreshed; this is not an actual production 10,000-cell cap or large-world fixture. REGIONAL_LIVE_READS.md describes matrix cursors, source/byte budgets and separate page observations. The Java codec accepts the valid/end-cursor frame and rejects 19 malformed variants without game bootstrap.
 
-The live-page checkpoint passed 267 Python tests/two Pro turns with sixteen tools and 375 public game references. Its source-specific reports remain in Git history. REGIONAL_LIVE_VALIDATION.json has a fresh same-scope native follow-up for the newer regional-capture build; its current source/JAR hashes are explicit. Native registry/cell faults, real large-world export truncation and all-variable/menu coverage remain open.
+The live-page checkpoint passed 267 Python tests/two Pro turns with sixteen tools and 375 public game references. Its source-specific reports remain in Git history. REGIONAL_LIVE_VALIDATION.json retains a same-scope native follow-up for the prior regional-capture build; its source/JAR hashes are explicit. Native registry/cell faults, real large-world export truncation and all-variable/menu coverage remain open.
 
 ## Regional-output player checkpoint — prior build
 

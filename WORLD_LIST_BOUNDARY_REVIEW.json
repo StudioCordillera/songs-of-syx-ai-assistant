@@ -1,0 +1,107 @@
+{
+  "passed": true,
+  "reviewed_at": "2026-10-18T23:46:56.132407+00:00",
+  "game_jar_sha256": "fe0137c05408e5ee9e31f06fc44fe37a5d4372d9c985b280f0852d1347c0224b",
+  "source_archive_sha256": "a3fc2aa9f4be31aec0616a5030a656ac49a6011343b7e91395c7bac0b9dfb0a5",
+  "catalog_sha256": "5b4b13770eb3251ce066e4f9cf57b5e6b1956687136b5be33a680b707a73b065",
+  "verifier_source_sha256": "e5eb5868bb6c50f40228850bee4cb424df6ff302c67392eaf5aa671be0616dd0",
+  "public_declaration_members": [
+    "view.main.VIEW#world()",
+    "view.world.WorldView#UI",
+    "view.world.WorldView#panels",
+    "view.world.WorldUI#armies",
+    "view.world.WorldUI#regions",
+    "view.world.ui.army.UIArmies#listIsOpen(view.interrupter.ISidePanels)",
+    "view.world.ui.region.UIRegions#playerList",
+    "view.world.ui.region.UIRegions#allList",
+    "view.interrupter.ISidePanels#added(view.interrupter.ISidePanel)"
+  ],
+  "selected_method_checks": [
+    {
+      "owner": "view.world.ui.army.UIArmies",
+      "signature": "public boolean listIsOpen(view.interrupter.ISidePanels);",
+      "source_path": "view/world/ui/army/UIArmies.java",
+      "source_sha256": "71bb8aa186e8d5e509f92355095fcd1608a452e9b89d5b5ceb805da360852d92",
+      "normalized_disassembly_sha256": "e3a425ba074b406db16e98c537b41b2fcdee91c82f85e4ed5dc8029b2bacce09",
+      "no_direct_heap_write_allocation": true,
+      "loop_bound": "No backward branch"
+    },
+    {
+      "owner": "view.interrupter.ISidePanels",
+      "signature": "public boolean added(view.interrupter.ISidePanel);",
+      "source_path": "view/interrupter/ISidePanels.java",
+      "source_sha256": "fae436013cc4620186746e7a4b4c9f6615d74ecb6121e7bc37c6e2d13bc3012d",
+      "normalized_disassembly_sha256": "f37ac26dc40543ca84c5db49a80ee767e8321d78cfdc8d783b5d259500a8088c",
+      "no_direct_heap_write_allocation": true,
+      "loop_bound": "Source-verified fixed 16-slot added collection"
+    },
+    {
+      "owner": "view.interrupter.Interrupter",
+      "signature": "public final boolean isActivated();",
+      "source_path": "view/interrupter/Interrupter.java",
+      "source_sha256": "3abe0d9e7da942c8a1a16925f3d8ec30e6bd86f96e99a072ae4407f9b1491bd6",
+      "normalized_disassembly_sha256": "4bf50b9af946737293f7519de91eb2864d7f8006287eb0c303248f813942edef",
+      "no_direct_heap_write_allocation": true,
+      "loop_bound": "No backward branch"
+    },
+    {
+      "owner": "snake2d.util.sets.ArrayList",
+      "signature": "public int size();",
+      "source_path": "snake2d/util/sets/ArrayList.java",
+      "source_sha256": "4c8fb69e01ee3fcf458dbeeae7a398874895041e1a964ecae80442eeb3ef142d",
+      "normalized_disassembly_sha256": "a6d1da21f6147afdb2108fb26d19ba6795c9e5a7a5fbb886e4ec8309c95a234d",
+      "no_direct_heap_write_allocation": true,
+      "loop_bound": "No backward branch"
+    },
+    {
+      "owner": "snake2d.util.sets.ArrayList",
+      "signature": "public E get(int);",
+      "source_path": "snake2d/util/sets/ArrayList.java",
+      "source_sha256": "4c8fb69e01ee3fcf458dbeeae7a398874895041e1a964ecae80442eeb3ef142d",
+      "normalized_disassembly_sha256": "0dbed64e4917674e546707514fa893ad49c92cef50ef8366f77de9c725c848b7",
+      "no_direct_heap_write_allocation": true,
+      "loop_bound": "No backward branch"
+    }
+  ],
+  "additional_source_sha256": {
+    "view/world/WorldUI.java": "f85cac7fda715017a29c65c0fc17da795ea2fbcd2e8f8c25586849ae3f30e32b",
+    "view/world/WorldView.java": "df73fadd911854b6d7903d702a56942861fb29a0186a4739aa5f1f38de60418c",
+    "view/world/ui/region/UIRegions.java": "91e964fccbf304133427216db631e3f2beb4aaa61dd8b898b1b959f210db650c",
+    "view/world/ui/region/ListPlayer.java": "8d34e0b8cf991bb886be0af8ae044901e163a93110f9daaf2c05b98d45cc9986",
+    "view/world/ui/region/ListAll.java": "d813f698472a7e8e751d66a1497bfb515e2781bcf2ce2aef1c16d5962022ac0b",
+    "view/interrupter/ISidePanels.java": "fae436013cc4620186746e7a4b4c9f6615d74ecb6121e7bc37c6e2d13bc3012d",
+    "snake2d/util/sets/ArrayList.java": "4c8fb69e01ee3fcf458dbeeae7a398874895041e1a964ecae80442eeb3ef142d"
+  },
+  "fixed_pool_constructor_check": {
+    "owner": "view.interrupter.ISidePanels",
+    "signature": "public view.interrupter.ISidePanels(view.interrupter.InterManager, int);",
+    "normalized_disassembly_sha256": "f28a0a85180ef01ddfba917e41e6cb3a37d9c11341b340904e891b756e88cb79",
+    "fixed_pool_capacity": 16,
+    "scope": "Constructor inspected only, never invoked by production observer"
+  },
+  "helper_source_sha256": {
+    "dev/review_ui_lifecycle_boundary.py": "468c3e07253da763b0551cb9ef03b95bc32b7aae197bf87f0f9ba67c564ed5ca",
+    "dev/verify_bytecode.py": "82bcd57e36eee9c4f960a523b04391a6f748ba15fdcdb25484e3193df61ca494"
+  },
+  "compile_probe": {
+    "id": "WorldListObservers",
+    "expected_compilation": "success",
+    "matched": true,
+    "diagnostic_category": null,
+    "probe_source_sha256": "01f832abfe2b535fadfd066c5d6fbe62e64f3fca78a6ac9e35f7bd3ef5f0242f",
+    "compiler_output_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  },
+  "game_methods_executed": 0,
+  "inference_calls": 0,
+  "conclusions": [
+    "Three compiling public observer routes return activated side-panel-manager membership, not selected army/region identities, list rows/search/sort, a tab tree or rendered visibility.",
+    "ISidePanels.added first requires manager activation, then identity-scans its private fixed-capacity 16-slot collection. Three production checks need at most 48 membership comparisons in this pinned implementation. Ordinary getter calls have the selected read-only bytecode surface checked separately.",
+    "playerList is the Realm panel whose row builder skips realm index zero. allList is the Regions browser whose source excludes the player capital and applies its own sort/filter. Their presence does not prove a complete census, foreign-only listing or selection.",
+    "Inactive views, hidden UI and modals require explicit scope guards/caveats; compile/source checks alone do not establish live behavior. Panel-opening/binding/get(Region) or hide actions are excluded from production observers."
+  ],
+  "limits": [
+    "Shipped source/binary/compiler evidence, not separately documented stable contracts or formal whole-game purity/thread-safety proof.",
+    "No native agreement, lifecycle/occlusion/fault or cost evidence is implied. Inspect separately source-pinned runtime reports before promoting observations.",
+    "No game initialization, reflection, process memory, screenshots or native input. Metadata/hashes only; licensed source/bodies are not redistributed."
+  ]
+}

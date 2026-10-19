@@ -1,0 +1,13 @@
+{
+  "queries": [{
+    "source": {"domain": "world", "path": "/regions"},
+    "select": {
+      "region_id": {"field": "/id"},
+      "army_list_present": {"context": "/world_list_panels/army_list_present"},
+      "realm_list_present": {"context": "/world_list_panels/player_realm_list_present"},
+      "region_browser_present": {"context": "/world_list_panels/region_browser_present"}
+    },
+    "limit": 3
+  }],
+  "include_ui_context": true
+}

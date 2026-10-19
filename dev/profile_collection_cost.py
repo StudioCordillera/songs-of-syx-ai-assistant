@@ -25,6 +25,7 @@ from benchmark_selective_queries import benchmark
 from syx_mcp import Snapshot
 from syx_query import QueryEngine
 from run_player_chat_check import native_environment
+from native_game_completion import require_clean_game_log
 
 
 def sha(path):return hashlib.sha256(path.read_bytes()).hexdigest()
@@ -166,6 +167,9 @@ def profile(args):
                 process.terminate()
                 try:process.wait(timeout=15)
                 except subprocess.TimeoutExpired:process.kill();process.wait()
+    require_clean_game_log(directory/'game.log')
+    report['source_sha256']['dev/native_game_completion.py']=sha(ROOT/'dev/native_game_completion.py')
+    report['known_engine_crash_markers_absent']=True
     report.update(game_exit_code=process.returncode,copied_profile_mod_restored=True,copied_save_unchanged=True,
         game_jar_sha256=audit['game_jar_sha256'],source_archive_sha256=audit['source_archive_sha256'])
     (directory/'collection-cost-validation.json').write_text(json.dumps(report,indent=2)+'\n')

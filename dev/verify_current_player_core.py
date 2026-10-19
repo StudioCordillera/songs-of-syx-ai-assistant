@@ -17,6 +17,7 @@ import zipfile
 ROOT=Path(__file__).resolve().parent.parent
 sys.path.insert(0,str(ROOT))
 from check_user_test_release import check
+from native_game_completion import require_clean_game_log
 from game_fixture_lock import exclusive_fixture
 
 
@@ -70,13 +71,15 @@ def verify(args):
                     process.terminate()
                     try:process.wait(timeout=10)
                     except subprocess.TimeoutExpired:process.kill();process.wait()
+        require_clean_game_log(run/(name+'-game.log'))
         result=json.loads((state/report_name).read_text());assert result['passed']
+        result['known_engine_crash_markers_absent']=True
         results[name]=result
         print('Passed player build:',name,flush=True)
     report={'passed':True,'mod_jar_sha256':sha(jar),'production_source_sha256':manifest['validation']['production_source_sha256'],
         'python_source_sha256':manifest['validation']['python_source_sha256'],'checks':results,'inference_calls':0,
         'fixture_source_sha256':fixture_hashes,
-        'verifier_source_sha256':{'dev/'+n:sha(ROOT/'dev'/n) for _,n,_,_ in cases},
+        'verifier_source_sha256':{**{'dev/'+n:sha(ROOT/'dev'/n) for _,n,_,_ in cases},'dev/native_game_completion.py':sha(ROOT/'dev/native_game_completion.py'),'dev/verify_current_player_core.py':sha(Path(__file__))},
         'limits':['Finite sampled scenarios and copied city; no exhaustive menu/keyboard/display or large-city acceptance.',
                   'Main-menu identity is unknown after expiry, not positively detected. Current simple chat stays closed during core scene checks.']}
     (run/'player-core-validation.json').write_text(json.dumps(report,indent=2)+'\n')

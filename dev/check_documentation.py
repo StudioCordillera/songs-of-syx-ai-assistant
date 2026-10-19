@@ -35,6 +35,7 @@ def scope(path):
     if name=='REGIONAL_LIVE_VALIDATION.json':return 'Live regional MCP protocol/matrix/scene checks; partial-cache case is explicitly authored'
     if name=='REGIONAL_OUTPUT_VALIDATION.json':return 'Native regional output DTO/MCP exposure; inspect bounded matrix/control and source/JAR scope'
     if name=='REGIONAL_OUTPUT_READER_VALIDATION.json':return 'Candidate native regional stored-reader probe only; no production MCP counter exposure'
+    if name=='WORLD_LIST_CONTEXT_VALIDATION.json':return 'Fourteen native world-list membership/context phases with explicit clean completion; inspect exact source/JAR/limits'
     if name=='WORLD_FACTION_CONTEXT_VALIDATION.json':return 'Native faction-panel/current-context and MCP join checks; finite copied-world scope'
     if name=='CURRENT_COLLECTION_COST_VALIDATION.json':return 'Current published collector small-city timings; historical baseline preserved, no large-city/live-request acceptance'
     if name=='STOCKPILE_BOOKKEEPING_VALIDATION.json':return 'Current global stockpile DTO/MCP evidence; per-room arrays are fixture-only'

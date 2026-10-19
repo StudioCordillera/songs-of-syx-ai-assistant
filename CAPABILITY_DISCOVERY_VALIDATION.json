@@ -1,7 +1,20 @@
 {
   "passed": true,
-  "evaluated_at": "2026-10-18T23:25:34.259764+00:00",
+  "evaluated_at": "2026-10-18T23:48:03.204495+00:00",
   "checks": [
+    {
+      "id": "world_list_panel_context",
+      "support": "public_source_verified",
+      "references": [
+        "WORLD_LIST_CONTEXT.md",
+        "WORLD_LIST_BOUNDARY_REVIEW.json",
+        "WORLD_LIST_CONTEXT_VALIDATION.json",
+        "view/world/ui/army/UIArmies.java",
+        "view/world/ui/region/UIRegions.java",
+        "view/interrupter/ISidePanels.java"
+      ],
+      "passed": true
+    },
     {
       "id": "retained_regional_output_selections",
       "support": "public_source_verified",
@@ -158,20 +171,21 @@
       "passed": true
     }
   ],
+  "world_list_member_anchors_checked": 7,
   "service_counter_member_anchors_checked": 3,
   "faction_context_member_anchors_checked": 3,
   "no_game_snapshot_required": true,
   "inference_calls": 0,
-  "public_inventory_size": 375,
+  "public_inventory_size": 381,
   "source_sha256": {
-    "syx_mcp.py": "ab5d53726431e7d19c24f25e98160d27b93f9017f8170ac6fb544c827edf430f",
-    "syx_api_support.py": "c35f7db5f1136d5f37ddae275b6f4ac1719ce47b4aa40dbe17a88a41c847b5aa",
-    "syx_api_manifest.py": "48b2c0a2e80c476bc2a7d5e0d94b48efe5251a4444e9a13ec7b102edeb3d3ebe",
-    "dev/verify_capability_discovery.py": "cf57695c4bc13bac776ea60681f5968e0d5eddc88e6479bee645ff800fd16cb2"
+    "syx_mcp.py": "c3dd7a2da049c6aac265be43ef91cc20bb6a8e13e27658389078654bcc6c114f",
+    "syx_api_support.py": "4e018dbb0b91d729cd290104dfbad21c63df09b8c4624b7687d9e51060099ec6",
+    "syx_api_manifest.py": "b577853a9beb367c58ed86cc0d56cdeb9fadb3e770956186547ea8e8ad8f3805",
+    "dev/verify_capability_discovery.py": "e7ba35bfe298e1c39c3e0134d59ba53c58298e3e220089aceab574b86b0d284a"
   },
   "limits": [
     "Capability records summarize existing evidence; no new game getter/scene or official stable contract is established.",
     "Offline discovery is not an attestation of a separately installed game mod; pair source-matching builds.",
-    "Twelve supported capabilities and two explicit gaps sampled, not exhaustive metadata acceptance."
+    "Thirteen supported capabilities and two explicit gaps sampled, not exhaustive metadata acceptance."
   ]
 }

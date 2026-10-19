@@ -61,6 +61,10 @@ public final class LiveSmoke {
                                         RegionalOutputScenario.install(Paths.get(System.getProperty("syx.assistant.stateDir")));
                                         return;
                                     }
+                                    if (Boolean.getBoolean("syx.smoke.worldLists")) {
+                                        WorldListScenario.install(Paths.get(System.getProperty("syx.assistant.stateDir")));
+                                        return;
+                                    }
                                     if (Boolean.getBoolean("syx.smoke.factionUi")) {
                                         FactionUiScenario.install(Paths.get(System.getProperty("syx.assistant.stateDir")));
                                         return;

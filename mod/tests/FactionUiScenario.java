@@ -22,6 +22,7 @@ public final class FactionUiScenario {
                 if(Files.exists(directory.resolve("verifier.done"))) {CORE.annihilate();return;}
                 if(System.nanoTime()-began[0]>180_000_000_000L)throw new IllegalStateException("Faction UI verifier timed out");
                 if(ready[0] && !Files.exists(directory.resolve("phase-"+step[0]+".done")))return;
+                if(ready[0] && step[0]==10)return;
                 if(ready[0])step[0]++;
                 int n=step[0];var ui=VIEW.world().UI.factions;
                 String phase;Integer expected=null;Boolean dip=null;boolean available=true,list=false,modal=false;
@@ -57,7 +58,7 @@ public final class FactionUiScenario {
                 record.put("faction_id",expected);record.put("diplomacy_tab",dip);record.put("modal",modal);
                 Files.writeString(directory.resolve("phase.json"),JsonWriter.encode(record));ready[0]=true;
                 System.err.println("FACTION UI TEST: "+phase);
-            }catch(Exception error){CORE.annihilate(error);}
+            }catch(Exception error){System.err.println("SMOKE_FIXTURE_FAILURE: "+error);CORE.annihilate(error);}
         });
     }
 }

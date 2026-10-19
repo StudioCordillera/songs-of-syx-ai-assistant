@@ -2,7 +2,7 @@
 
 The production reference audit proves only the public members used by our adapter. To identify remaining mapping work, `catalog_api.py` separately scans the entire shipped source archive and resolves its named types and public declared members against the installed game JAR with the Java compiler. It never starts the game, executes its classes, or uses reflection. This is development tooling, outside the packaged mod and MCP server.
 
-The current scan covers 2,443 source files, resolves every cataloged named top-level/member source type, and finds 2,052 public types with public enclosing types and 17,442 public declared member signatures. All 375 production reference IDs occur in this catalog. Matching game JAR/source archive hashes establish that the discovery run and production audit used the same reference pair. They do not attest the installed/running mod.
+The current scan covers 2,443 source files, resolves every cataloged named top-level/member source type, and finds 2,052 public types with public enclosing types and 17,442 public declared member signatures. All 381 production reference IDs occur in this catalog. Matching game JAR/source archive hashes establish that the discovery run and production audit used the same reference pair. They do not attest the installed/running mod.
 
 | Root package | Public declared member candidates | Production reference IDs |
 | --- | ---: | ---: |
@@ -12,7 +12,7 @@ The current scan covers 2,443 source files, resolves every cataloged named top-l
 | init | 1,726 | 34 |
 | util | 1,664 | 24 |
 | world | 1,212 | 30 |
-| view | 1,006 | 51 |
+| view | 1,006 | 57 |
 | launcher | 69 | 0 |
 | script | 28 | 0 |
 | menu | 11 | 0 |
@@ -72,3 +72,5 @@ The regional-output checkpoint pairs all 375 production references with this ret
 
 
 The live-regional checkpoint reuses these same 375 public references through a fixed update-thread request protocol and adds no game getter. Registry bindings, selected cells and live response provenance are reviewed separately from cached table rows; REGIONAL_LIVE_READS.md / REGIONAL_LIVE_VALIDATION.json describe the native matrix, authored partial-cache and scene evidence. This does not create a full schema or stable official contract.
+
+The world-list-context checkpoint adds six explicit public field/getter references for known army/realm/region-browser membership, bringing the production pairing to 381. Source/binary review checks activated-manager semantics and the fixed 16-slot collection; native context/availability evidence is separate. This adds no selected-object or full panel-tree contract. See WORLD_LIST_CONTEXT.md and WORLD_LIST_BOUNDARY_REVIEW.json.

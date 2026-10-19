@@ -15,7 +15,7 @@
   ],
   "cited_urls_match_retrieval": true,
   "simple_transcript_without_debug_events": true,
-  "mod_jar_sha256": "2c7726b84b07a76f913191f2b4bb83f0506273c7d46f4cc742a2d253efdadddb",
+  "mod_jar_sha256": "8d9e1aec427b86f1604b6330fc44d8dfad666f04717d8977ee7e04cd4149226f",
   "production_source_sha256": {
     "syx/assistant/AssistantScript.java": "82fa2395aa96e7ae9cee612b32171fb495ca289dc7f99269c1ad7a2d417cca55",
     "syx/assistant/ChatPanel.java": "3138d3e863ccb36ad5b6b37a7e1f3486dd2d8c1dc43ab469b26af714548d8437",
@@ -25,14 +25,14 @@
     "syx/assistant/StateCollector.java": "8437066a95ce197cb93ddc5f23004694bfdc080ccd28dd1d297b4946bcef2af6",
     "syx/assistant/TileReadRequest.java": "1a192cde61a7e1bdefa170390c00b17c74573b9c41de71700ebea466411ad3c5",
     "syx/assistant/UiContentCollector.java": "c0d20c7f9f2734a0bb625427875f06bfcd07edb20611248b39b6e8f480ef5a48",
-    "syx/assistant/UiContextCollector.java": "398ab4931efb3451ad0d0dcf80e0c19651e9ffb20fd8b6e6377a9ca53358f7d5"
+    "syx/assistant/UiContextCollector.java": "b8a3e582e1c2b7da868ad9513f02793685d7a986464fe8935b32b86216f70b29"
   },
   "python_source_sha256": {
-    "syx_mcp.py": "ab5d53726431e7d19c24f25e98160d27b93f9017f8170ac6fb544c827edf430f",
+    "syx_mcp.py": "c3dd7a2da049c6aac265be43ef91cc20bb6a8e13e27658389078654bcc6c114f",
     "syx_knowledge.py": "f5d7dd6d387ad0fb8f2b024a3bd599ad1cec28f2906dfae27d9d2fdf56e4de7e",
     "syx_query.py": "ae9c4537093952510e6536810c065b6e07f7bfc2d78d3bc02ccd0d21f4d12c07",
-    "syx_api_support.py": "c35f7db5f1136d5f37ddae275b6f4ac1719ce47b4aa40dbe17a88a41c847b5aa",
-    "syx_api_manifest.py": "48b2c0a2e80c476bc2a7d5e0d94b48efe5251a4444e9a13ec7b102edeb3d3ebe",
+    "syx_api_support.py": "4e018dbb0b91d729cd290104dfbad21c63df09b8c4624b7687d9e51060099ec6",
+    "syx_api_manifest.py": "b577853a9beb367c58ed86cc0d56cdeb9fadb3e770956186547ea8e8ad8f3805",
     "syx_live.py": "2f29a2d828fc5c512075fa6a2082dd5fae9d4a39fb22ae847765533dc5628c75",
     "syx_capture.py": "32778d9f5f217119ba45b114ba2a710bdd0ce4333efa672c31c690dcc3f3c3ec",
     "syx_tiles.py": "43024d10af917442d4d994f316db18fbd7cab388196682c471891135553c843f",
@@ -48,23 +48,19 @@
     "Copied city; native own-widget text/click fixture, not physical keyboard or every screen size.",
     "No complete game-state/all-menu claim. Raw read-only tool evidence remains in the private local history.",
     "Linux user-test bundle; game and Python dependencies must be installed separately.",
-    "Regional capture and timing checks are finite copied-campaign evidence. No native registry/cell faults, native 2 MiB overflow, worst-case 10000 cells/2000 rows, natural rollover/ownership transfers, full game variables/menus or global worker transaction established. Captured rows/context/time stay historical."
+    "World list-panel flags identify activated underlying manager membership only; modal or hidden UI can obscure them. No selected region/army identity, displayed row contents or full hierarchy.",
+    "Fourteen controlled world-list phases, eleven faction phases and eight existing scene phases are finite copied-profile checks, not all menus/mods/displays or immediate unload detection.",
+    "Earlier regional live/capture and protocol-codec reports retain their prior JAR/source scope; not rerun as feature-specific fixtures for this UI-only change. Current core includes limited regional availability checks."
   ],
   "game_exit_code": 0,
   "dev_runner_source_sha256": "407b30e67642d0efbb3863e0c65ca584391bfebe57af30c593f47c0871387e5c",
-  "followup_completed_at": "2026-10-18T23:38:46.473953+00:00",
+  "followup_completed_at": "2026-10-19T03:56:49.915874+00:00",
   "game_version": "0.71.44",
   "game_jar_sha256": "fe0137c05408e5ee9e31f06fc44fe37a5d4372d9c985b280f0852d1347c0224b",
-  "python_tests_passed": 296,
-  "public_production_members": 375,
+  "python_tests_passed": 302,
+  "public_production_members": 381,
   "non_public_production_members": 0,
   "core_check_groups_passed": 7,
-  "core_validation_report_sha256": "5c226035890cc68b2904e0905cd678a212378bcbd770eed7824bc9056287e28d",
-  "regional_live_validation_report_sha256": "9fdd04288a21935f1393d4e70d5ac72c139c353574f4deaa779c245537a384ce",
-  "regional_capture_validation_report_sha256": "a502a04956134ceec7e3aefa5d82c4edc6aa8bea630d3a34b02c26b7c3849e50",
-  "collection_cost_validation_report_sha256": "6b8dd02aa485511cc145eef5f2e053f61cb9673d2fd9e88df95da5ba33902f2c",
-  "capability_discovery_report_sha256": "edc8c7983f0ead3a0042ef42f6b0f31618abb8c8ffd84eb1ef50263eb0836043",
-  "guidance_validation_report_sha256": "d55cbafc0b4f81f76e717106375c9c6017cbf40f1dade96250388ba14cd7ef89",
   "distribution_checks": {
     "passed": true,
     "fresh_dependency_environment": true,
@@ -73,7 +69,9 @@
     "isolated_installer_jar_hash": true,
     "provided_key_literal_absent_from_archive": true,
     "provider_calls": 0,
-    "candidate_zip_sha256": "a5391e335859b3e13aa6e121e4700d7d9f789c8758cf60fe049309fe7c5eebf7"
+    "candidate_zip_sha256": "9ec643652158527816d4016191b6788c3e0b093aa6da3b12bb89a44d9ace3ead",
+    "chat_panel_class_bytes_match_prior": true,
+    "paid_run_known_engine_crash_markers_absent": true
   },
   "prior_unchanged_chat_focus_evidence": {
     "prior_mod_jar_sha256": "5a1f3fa413e4776e9d7f03e7d3af306cae4ecd59a0b07b6bb8d9509c39e9d397",
@@ -108,9 +106,11 @@
     },
     "scope": "Prior no-inference focus/wrapping fixture; ChatPanel class bytes verified identical in current candidate. Full current-build Pro geometry/send checks passed separately."
   },
-  "regional_protocol_codec": {
-    "passed": true,
-    "malformed_frames_rejected": 22,
-    "source_sha256": "78eedd1da4b5660e1563ccb9cee788d350a6bb6c33a45074d944789f5c4bf98c"
-  }
+  "core_validation_report_sha256": "ef97c67304e0f3e050e133e405c5d685b3ea35632d501cd6515415651fc5648c",
+  "world_list_context_validation_report_sha256": "714ada5ca3e97d6330492b9997e6c6f45e2db8a6eab02930f344504cc72f7398",
+  "world_list_boundary_review_sha256": "23e4049d0f52d918666952e9ec79315eaa5aa3fa1ed54a8c2ae9ee5cd4d154d3",
+  "world_faction_context_validation_report_sha256": "b1801b1cf5fc3984f783004aabddb1c09befbe0139fa665f8b76d2373228b52e",
+  "collection_cost_validation_report_sha256": "b3716fffc202a537cad0acee9925a541eadcfc8e580d0072e10116dcc7dd76da",
+  "capability_discovery_report_sha256": "2a44b51563f28341f7dc6d9c938c9bc17b275371fa11654d05eaf957b39758da",
+  "guidance_validation_report_sha256": "830095e8512bee44c4485205019c6d1ad4a27945aae9d5669cca97f88baf53ea"
 }

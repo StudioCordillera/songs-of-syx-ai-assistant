@@ -41,6 +41,8 @@ def verify(directory:Path,timeout:float=260,on_demand:bool=False,tiles:bool=Fals
             assert status['live'],status
             assert context.get('available'),context
             assert scene['active_view']==context['active_view']
+            lists=context['world_list_panels']
+            assert lists['coverage']=='unavailable' and all(lists[f] is None for f in ['army_list_present','player_realm_list_present','region_browser_present'])
             sessions[name]=snapshot.session_id
             if name in {'city','city_restored','city_reloaded'}:
                 assert context['active_view']=='settlement'
@@ -181,7 +183,7 @@ def verify(directory:Path,timeout:float=260,on_demand:bool=False,tiles:bool=Fals
                     assert live['data']['rows'][0]['region_id']==known_regional[0]
                     assert live['data']['rows'][0]['resource_id']==known_regional[1]
                     regional_available=True
-            checks[name]={'passed':True,'view':context['active_view'],'scene_kind':scene['settlement_scene_kind'],
+            checks[name]={'passed':True,'world_list_panel_coverage':lists['coverage'],'view':context['active_view'],'scene_kind':scene['settlement_scene_kind'],
                           'on_demand_read_available':read_available,'tile_read_available':tile_available,'regional_live_read_available':regional_available,
                           'city_trade_pipeline_coverage':city_trade.data['settlement_pipeline']['coverage'] if city_trade.data else 'unavailable',
                           'world_population_coverage':regional.coverage,

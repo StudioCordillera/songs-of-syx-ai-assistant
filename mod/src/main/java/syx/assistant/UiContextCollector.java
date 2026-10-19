@@ -62,11 +62,29 @@ public final class UiContextCollector {
                 truncated || failed>0?"Incomplete identity search; missing detail is unknown":
                 matches==0?"No active faction matched an open detail panel; this does not enumerate other world panels":null);
     }
+    private static Map<String,Object> unknownWorldLists(String reason) {
+        return object("coverage","unavailable","army_list_present",null,"player_realm_list_present",null,
+            "region_browser_present",null,"reason",reason);
+    }
+    /** Fixed public membership readers; list presence never identifies a selected object. */
+    private static Map<String,Object> worldListPanels(String kind) {
+        if(!kind.equals("world") || !world.WORLD.GEN().isDone)
+            return unknownWorldLists("Requires the active completed-world view; hidden/inactive-world panels are not current UI context.");
+        var w=VIEW.world();
+        return object("coverage","partial","army_list_present",w.UI.armies.listIsOpen(w.panels),
+            "player_realm_list_present",w.panels.added(w.UI.regions.playerList),
+            "region_browser_present",w.panels.added(w.UI.regions.allList),
+            "scope","Known activated world side-panel membership only. A modal or hidden UI may obscure panels. Not list contents/search/sort, selected army/region identities, a full tab tree or topmost rendered visibility.",
+            "reason",null);
+    }
     @SuppressWarnings("unchecked")
     public static Map<String,Object> collect() {
         Map<String,Object> result=object("coverage","partial","source","public game API; sampled from GAME.addAfterUpdate on the game update thread",
             "active_view",null,"selected_subject",null,"open_room_blueprints",new ArrayList<>(),
+            "world_list_panels",unknownWorldLists("No initialized active completed-world view"),
             "unsupported",object("selected_room_instance","No public selected-instance getter established",
+                "selected_world_region","No nonmutating public selected-region identity route established",
+                "selected_world_army","No public selected-army detail identity getter established",
                 "tooltip_text","GBox has no established read-only text enumeration API",
                 "full_screen_tab","IManager.current is private; manager.open() only reports presence",
                 "arbitrary_panel_tree","InterManager's collection is private",
@@ -81,6 +99,8 @@ public final class UiContextCollector {
         try {result.put("world_faction_panels",worldFactionPanels(kind));}
         catch(RuntimeException failure){result.put("world_faction_panels",object("coverage","unavailable",
             "list_open",null,"detail_faction",null,"reason",failure.getClass().getSimpleName()));}
+        try {result.put("world_list_panels",worldListPanels(kind));}
+        catch(RuntimeException failure){result.put("world_list_panels",unknownWorldLists(failure.getClass().getSimpleName()));}
         result.put("world_generation_step",object("available",false,"reason","Wizard staging fields are private; WorldGen flags describe preparation, not the exact visible step"));
         if(kind.equals("battle")) {
             game.battle.state.BattleState battle=VIEW.b().state();

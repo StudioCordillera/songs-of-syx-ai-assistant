@@ -31,7 +31,7 @@ async def verify(directory):
                 assert result['game_version']=='0.71.44' and result['inventory_size']==len(json.loads((ROOT/'api-audit.json').read_text())['members'])
                 assert 'not an attestation' in result['warning']
                 return result
-            for identifier in ['retained_regional_output_selections','live_regional_output_selections','regional_output_bookkeeping','retained_tile_selections','city_stockpile_bookkeeping','room_producer_degradation','entity_workplace_filter','room_workforce_factors','room_service_counters','service_cohort_permissions','city_trade_pipeline','regional_population_counters']:
+            for identifier in ['world_list_panel_context','retained_regional_output_selections','live_regional_output_selections','regional_output_bookkeeping','retained_tile_selections','city_stockpile_bookkeeping','room_producer_degradation','entity_workplace_filter','room_workforce_factors','room_service_counters','service_cohort_permissions','city_trade_pipeline','regional_population_counters']:
                 result=await call(identifier)
                 assert len(result['capabilities'])==1
                 record=result['capabilities'][0]
@@ -53,16 +53,25 @@ async def verify(directory):
             factions=await call('UIFactions')
             assert {(m['name'],m['arity']) for m in factions['members']}=={('openIs',0),('openIs',1),('diploIs',1)}
             assert all(m['public'] and len(m['source_candidates'])==1 for m in factions['members'])
+            world_ids=['view.world.WorldUI#armies','view.world.WorldUI#regions','view.world.WorldView#panels',
+                'view.world.ui.army.UIArmies#listIsOpen(view.interrupter.ISidePanels)',
+                'view.world.ui.region.UIRegions#allList','view.world.ui.region.UIRegions#playerList',
+                'view.interrupter.ISidePanels#added(view.interrupter.ISidePanel)']
+            for identifier in world_ids:
+                anchors=await call(identifier)
+                assert len(anchors['members'])==1 and anchors['members'][0]['id']==identifier
+                member=anchors['members'][0]
+                assert member['public'] and len(member['source_candidates'])==1 and member['source_candidates'][0]['line']>0
             report={'passed':True,'evaluated_at':datetime.now(timezone.utc).isoformat(),'checks':checked,
-                'service_counter_member_anchors_checked':service_anchors,'faction_context_member_anchors_checked':len(factions['members']),'no_game_snapshot_required':not (directory/'snapshot.json').exists(),
+                'world_list_member_anchors_checked':len(world_ids),'service_counter_member_anchors_checked':service_anchors,'faction_context_member_anchors_checked':len(factions['members']),'no_game_snapshot_required':not (directory/'snapshot.json').exists(),
                 'inference_calls':0,'public_inventory_size':result['inventory_size'],
                 'source_sha256':{n:hashlib.sha256((ROOT/n).read_bytes()).hexdigest() for n in
                     ['syx_mcp.py','syx_api_support.py','syx_api_manifest.py','dev/verify_capability_discovery.py']},
                 'limits':['Capability records summarize existing evidence; no new game getter/scene or official stable contract is established.',
                     'Offline discovery is not an attestation of a separately installed game mod; pair source-matching builds.',
-                    'Twelve supported capabilities and two explicit gaps sampled, not exhaustive metadata acceptance.']}
+                    'Thirteen supported capabilities and two explicit gaps sampled, not exhaustive metadata acceptance.']}
             (directory/'capability-discovery-validation.json').write_text(json.dumps(report,indent=2)+'\n')
-            print('Twelve data capabilities, two coverage gaps and three service and three faction member anchors verified through MCP.')
+            print('Thirteen data capabilities, two coverage gaps and seven world-list, three service and three faction member anchors verified through MCP.')
             return report
 
 
