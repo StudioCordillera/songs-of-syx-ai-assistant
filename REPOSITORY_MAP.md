@@ -101,3 +101,7 @@ At handoff, update WORK_STATUS and the relevant current feature guides. Keep pre
 [Stored tile moisture](GROUND_MOISTURE.md) is the optional production base/current projection through the existing live/retained tile path. `TileReadRequest.java`, `syx_tiles.py`, `TileScenario.java`, `dev/verify_tiles.py` and `dev/verify_scenes.py` carry mapping, definitions and native/MCP follow-up. The earlier candidate report remains separately scoped.
 
 `test_syx_tiles.py` includes a cheap cross-layer projection-discovery preflight; the licensed-game tile fixture independently checks the snapshot field list against MCP query help and actual field values. This guards metadata drift without treating source-text agreement as runtime proof.
+
+## Cached viewport candidate
+
+[VIEWPORT_BOUNDARY.md](VIEWPORT_BOUNDARY.md) distinguishes stored window geometry from selection/hover/rendered visibility. `dev/review_viewport_boundary.py` pins compiler/source/selected-bytecode checks; `mod/tests/ViewportScenario.java`, `dev/verify_viewport.py` and `dev/run_read_fixture.py --case viewport` reproduce eleven public-action copied-game phases. [Static review](VIEWPORT_BOUNDARY_REVIEW.json) and [candidate report](VIEWPORT_CANDIDATE_VALIDATION.json) do not add a production DTO/MCP field.

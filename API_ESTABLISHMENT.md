@@ -164,3 +164,7 @@ The regional capture protocol reuses those same 375 public references with separ
 ## Stored tile-moisture candidate — developer follow-up
 
 [GROUND_MOISTURE_BOUNDARY.md](GROUND_MOISTURE_BOUNDARY.md) establishes public stored base/current readers through source/compiler/selected-bytecode review and a finite copied-city native probe. Four-bit fractions, out-of-map zero defaults and exclusions for derived total/weather/fertility are explicit. The 4096-point/64-sample probe does not add production references or MCP moisture fields. Actual live/retained mapping parity and scene acceptance remain outstanding; current inventory and player are unchanged.
+
+## Cached viewport candidate — no new production mapping
+
+[VIEWPORT_BOUNDARY.md](VIEWPORT_BOUNDARY.md) records compiling public city/tactical/battle/world window routes and stored geometry readers. The native candidate observes management-open cache/zoom mismatch and existing MCP context across eleven phases. Cached sub-mouse coordinates do not establish a hover/selection, consuming methods remain excluded, and geometry is not yet an MCP field. Current production audit/player are unchanged; exact source/compiler/native scopes are separate.

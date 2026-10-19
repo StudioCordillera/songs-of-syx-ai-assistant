@@ -1,0 +1,193 @@
+{
+  "passed": true,
+  "reviewed_at": "2026-10-19T04:38:55.338225+00:00",
+  "stage": "Finite cached-viewport candidate review; no production mapping",
+  "game_jar_sha256": "fe0137c05408e5ee9e31f06fc44fe37a5d4372d9c985b280f0852d1347c0224b",
+  "source_archive_sha256": "a3fc2aa9f4be31aec0616a5030a656ac49a6011343b7e91395c7bac0b9dfb0a5",
+  "catalog_sha256": "5b4b13770eb3251ce066e4f9cf57b5e6b1956687136b5be33a680b707a73b065",
+  "verifier_source_sha256": "bbc4f67b8570fac879b5f8bf544a7437d8d452bc896d6460ebfc161d1d904a07",
+  "helper_source_sha256": {
+    "dev/verify_bytecode.py": "82bcd57e36eee9c4f960a523b04391a6f748ba15fdcdb25484e3193df61ca494",
+    "dev/review_ui_lifecycle_boundary.py": "468c3e07253da763b0551cb9ef03b95bc32b7aae197bf87f0f9ba67c564ed5ca"
+  },
+  "public_declaration_members": [
+    "view.main.VIEW#s()",
+    "view.main.VIEW#b()",
+    "view.main.VIEW#world()",
+    "view.sett.SettView#getWindow()",
+    "view.sett.invasion.SBattleView#getWindow()",
+    "view.battle.BattleView#getWindow()",
+    "view.world.WorldView#window",
+    "view.subview.GameWindow#tiles()",
+    "view.subview.GameWindow#pixels()",
+    "view.subview.GameWindow#view()",
+    "view.subview.GameWindow#zoomout()",
+    "view.subview.GameWindow#tile()",
+    "view.subview.GameWindow#consumeHover()"
+  ],
+  "selected_reader_checks": [
+    {
+      "owner": "view.sett.SettView",
+      "signature": "public view.subview.GameWindow getWindow();",
+      "normalized_disassembly_sha256": "4765db608b479ac586c618dab721438e9225df4f6adc893f2bab31ab16421496",
+      "no_direct_calls_heap_writes_allocations_backward_branches": true
+    },
+    {
+      "owner": "view.sett.invasion.SBattleView",
+      "signature": "public view.subview.GameWindow getWindow();",
+      "normalized_disassembly_sha256": "4765db608b479ac586c618dab721438e9225df4f6adc893f2bab31ab16421496",
+      "no_direct_calls_heap_writes_allocations_backward_branches": true
+    },
+    {
+      "owner": "view.battle.BattleView",
+      "signature": "public view.subview.GameWindow getWindow();",
+      "normalized_disassembly_sha256": "4765db608b479ac586c618dab721438e9225df4f6adc893f2bab31ab16421496",
+      "no_direct_calls_heap_writes_allocations_backward_branches": true
+    },
+    {
+      "owner": "view.subview.GameWindow",
+      "signature": "public snake2d.util.datatypes.RECTANGLE tiles();",
+      "normalized_disassembly_sha256": "143aa814fefd692eb2cfc6b36a6c0d778f99b4efc0c49ab52d00fe8b68ba0330",
+      "no_direct_calls_heap_writes_allocations_backward_branches": true
+    },
+    {
+      "owner": "view.subview.GameWindow",
+      "signature": "public view.subview.GameWindow$PIXELWINDOW pixels();",
+      "normalized_disassembly_sha256": "d080ed980f6927d01a121af1fe4392ce12b9da132c0bcd34973d0421dca6aa1f",
+      "no_direct_calls_heap_writes_allocations_backward_branches": true
+    },
+    {
+      "owner": "view.subview.GameWindow",
+      "signature": "public snake2d.util.datatypes.RECTANGLE view();",
+      "normalized_disassembly_sha256": "ff03c5bb95431fd6b6c2017fddaf1d28c7097bf25e1bd737613b74f48620ff8b",
+      "no_direct_calls_heap_writes_allocations_backward_branches": true
+    },
+    {
+      "owner": "view.subview.GameWindow",
+      "signature": "public int zoomout();",
+      "normalized_disassembly_sha256": "b220044764547acf8606eb63bbb3ab85f3ddec4b6c4a005a7b987c812be7b918",
+      "no_direct_calls_heap_writes_allocations_backward_branches": true
+    },
+    {
+      "owner": "view.subview.GameWindow",
+      "signature": "public view.subview.GameWindow$SUB_MOUSE tile();",
+      "normalized_disassembly_sha256": "35372c690af8c1be45261e5e917a7c2383959017a84348ce9a50d509815a6cb1",
+      "no_direct_calls_heap_writes_allocations_backward_branches": true
+    },
+    {
+      "owner": "snake2d.util.datatypes.Rec",
+      "signature": "public int x1();",
+      "normalized_disassembly_sha256": "5ee876e1aac056df0e2909e9d9d024eae9cf31e654776791b386ec350297c513",
+      "no_direct_calls_heap_writes_allocations_backward_branches": true
+    },
+    {
+      "owner": "snake2d.util.datatypes.Rec",
+      "signature": "public int x2();",
+      "normalized_disassembly_sha256": "a678fc0b820b3e4120d6bde7f6cea8ee25584085ab1e5aa1b360bb08ea381e68",
+      "no_direct_calls_heap_writes_allocations_backward_branches": true
+    },
+    {
+      "owner": "snake2d.util.datatypes.Rec",
+      "signature": "public int y1();",
+      "normalized_disassembly_sha256": "8e7fdf18bbc2f731ba5c424f06afe2fa8e9b660732f429675d651300cf48dc15",
+      "no_direct_calls_heap_writes_allocations_backward_branches": true
+    },
+    {
+      "owner": "snake2d.util.datatypes.Rec",
+      "signature": "public int y2();",
+      "normalized_disassembly_sha256": "5a413dac8846a547e05e353044b76592e5362c5c8350407c0de2ce3c8126e1fa",
+      "no_direct_calls_heap_writes_allocations_backward_branches": true
+    },
+    {
+      "owner": "snake2d.util.datatypes.Rec",
+      "signature": "public int width();",
+      "normalized_disassembly_sha256": "4ef8bb13f5ba624168a1df1e27bddf46009db8d34e22f69c5c13049a1eafadaa",
+      "no_direct_calls_heap_writes_allocations_backward_branches": true
+    },
+    {
+      "owner": "snake2d.util.datatypes.Rec",
+      "signature": "public int height();",
+      "normalized_disassembly_sha256": "f27bfb2c67b27e902ceffc7ac05dda5962f8528ec40360a438647042d715b3f1",
+      "no_direct_calls_heap_writes_allocations_backward_branches": true
+    },
+    {
+      "owner": "snake2d.util.datatypes.Coo",
+      "signature": "public int x();",
+      "normalized_disassembly_sha256": "cc0dc82757034aae1e27df94aa9e2d8b60b82f7aec93ef24f679139637b48e62",
+      "no_direct_calls_heap_writes_allocations_backward_branches": true
+    },
+    {
+      "owner": "snake2d.util.datatypes.Coo",
+      "signature": "public int y();",
+      "normalized_disassembly_sha256": "8452be678e8836a1de414c5c54ef8a6b7d321ad0d5a5fba4e3a35c661d4c66e5",
+      "no_direct_calls_heap_writes_allocations_backward_branches": true
+    }
+  ],
+  "excluded_consuming_methods": [
+    {
+      "signature": "public boolean consumeHover();",
+      "normalized_disassembly_sha256": "546b51eccec3031877a24a6daf1e9fdaefb1e51e02186b89f60d5f34f4c7a885",
+      "reason": "State/input consuming method; never an observation"
+    },
+    {
+      "signature": "public boolean hasZoomedOutMoreandConsumeThatMotherFZoom();",
+      "normalized_disassembly_sha256": "084ac6b8c6a0de97f122b99d17abfe86bb5ff45e1b5288393ea9ce5486cdb1a1",
+      "reason": "State/input consuming method; never an observation"
+    },
+    {
+      "signature": "public void hover();",
+      "normalized_disassembly_sha256": "b63522cf994d8a3e646d62c14be8d40faff7ac10d3f23d20a0d6a8209baa07cb",
+      "reason": "State/input consuming method; never an observation"
+    },
+    {
+      "signature": "view.main.VIEW.hide()",
+      "normalized_disassembly_sha256": "af4d454dd890e7aa14e40817cda453842b29b2392a46d10ef4bb4ae4b91fc88f",
+      "reason": "Sets hidden UI true, not a toggle or unhide observer"
+    }
+  ],
+  "update_management_early_return_disassembly_sha256": "ec2586f316415e45103c3f0e5d1d286149e37bd25b09e369907d7fccdcbfcbff",
+  "source_sha256": {
+    "view/subview/GameWindow.java": "aa9d4ae6871da205937c53fbd8914080f1e1276e01e2526198fabda9900e595e",
+    "view/world/WorldView.java": "df73fadd911854b6d7903d702a56942861fb29a0186a4739aa5f1f38de60418c",
+    "view/sett/SettView.java": "316760036f4c7a5cee92eced9f32b60c76f2507c12e74a26a4ec1588ef6c2c4d",
+    "view/sett/invasion/SBattleView.java": "2b9edf0e1c399c6affec9fea13c75d1f3c10173c1a73c1b46df279d4373fccf5",
+    "view/battle/BattleView.java": "34c4932e5d46e0cbd66757336fc4a39252fbf80bb9ff2c71abf88b2c48def1e9",
+    "snake2d/util/datatypes/Rec.java": "4d382767fcefba8dcff65fbcc9e11c37d489c3fa42e07b996b0a236bcb65516a",
+    "snake2d/util/datatypes/Coo.java": "ded40b608b4fd871c266514fbab759a10ef3d0a69b788ab60579ab956bf09fff",
+    "view/main/VIEW.java": "b62a822c5349f63a07f5adb5c62624c2eac99347d97ff1700592b4f6353d6036"
+  },
+  "compile_probes": [
+    {
+      "id": "CachedViewportReaders",
+      "expected_compilation": "success",
+      "matched": true,
+      "diagnostic_category": null,
+      "probe_source_sha256": "69d7cd28131c9c1577d53ca09dddde479882a748e8c4c0f29e13cdf7ca50bdf1",
+      "compiler_output_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "id": "PrivateWindowHover",
+      "expected_compilation": "rejected",
+      "matched": true,
+      "diagnostic_category": "compiler.err.report.access",
+      "probe_source_sha256": "dbb702befef960f7764b62fc352a433506cd9cdd09defc62fc76958fe6866f80",
+      "compiler_output_sha256": "7d84514ba8bdc78dca2d58703f22c43f7173b09dbaecb996ae28a906146863ed"
+    }
+  ],
+  "game_methods_executed": 0,
+  "inference_calls": 0,
+  "conclusions": [
+    "Public window routes compile for city, city tactical HUD, generated battle and campaign world; source binds city/battle windows to SETT pixel bounds and world window to WORLD pixels.",
+    "Selected getters return stored references/primitive state. Rectangle accessors copy stored integer views; engine objects are mutable and must not escape a future update-thread DTO.",
+    "pixels() exposes the rounded Pixels2 cache; tiles() exposes a separately cached rectangle using truncating pixel/tile conversion, not a conservative census of rendered/intersecting tiles. Screen view bounds do not prove occlusion, clipping or UI stacking.",
+    "GameWindow.update returns before its ordinary cache refresh when management is open. Neither getter success nor hasMoved establishes freshness or validity of a user reference.",
+    "tile() exposes cached sub-mouse coordinates. The hover flag is private; consumeHover clears state, hover consumes input, and the zoom-change consumer clears state. These are excluded from production reads. No selected/hovered tile, room or live cursor target is established.",
+    "VIEW.hide sets the hidden flag true; repeated calls do not restore UI. No nonconsuming public unhide route is established by these inspected methods. Test hidden UI last rather than inject an input to reset it.",
+    "A possible future observation is explicitly cached viewport geometry with view/scene/session and unavailable/freshness limits. No projection, native parity, scene matrix or all-menu acceptance follows from this static review."
+  ],
+  "limits": [
+    "Pinned shipped-source/binary/compiler evidence, not documented stable contracts, formal whole-game purity or exhaustive proof that no other public hover/selection route exists.",
+    "Anonymous/internal types are inspected statically only; runtime probes compile external public API calls and never execute game methods.",
+    "No reflection, screenshots, process memory, native input/OS automation, game initialization or proprietary body redistribution. Native public-action fixture evidence must be separate."
+  ]
+}
