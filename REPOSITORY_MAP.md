@@ -93,3 +93,7 @@ Ignored `.venv/`, `.tools/`, build/, dist/, runtime/, env/auth files and local g
 `examples/providers/`, `claude.mcp.example.json` and `codex.example.toml` are external-client development aids. They are not required for native Pro tests and do not establish every provider's authenticated acceptance. OPENAI_CONNECTION.md, PROVIDERS.md and IN_GAME_CHAT.md retain deferred requirements. No provider/account expansion is implied by collaborating with Claude.
 
 At handoff, update WORK_STATUS and the relevant current feature guides. Keep precise history in reports/Git; do not rewrite old dates/hashes or add another unqualified "current" claim to a historical checkpoint.
+
+## Reviewed ground-moisture candidate
+
+[GROUND_MOISTURE_BOUNDARY.md](GROUND_MOISTURE_BOUNDARY.md) explains two stored tile readers and the outstanding production acceptance. `dev/review_ground_moisture.py` pins source/binary/compiler semantics; `mod/tests/GroundMoistureScenario.java`, `dev/verify_ground_moisture.py` and `dev/run_read_fixture.py --case ground-moisture` validate the finite copied-city candidate. [Static review](GROUND_MOISTURE_BOUNDARY_REVIEW.json) and [reader report](GROUND_MOISTURE_READER_VALIDATION.json) are candidate evidence, not new MCP support or all-scene acceptance. Latest player payload is unchanged.

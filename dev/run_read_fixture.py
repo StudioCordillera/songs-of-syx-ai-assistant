@@ -22,7 +22,8 @@ from game_fixture_lock import exclusive_fixture
 from native_game_completion import require_clean_game_log
 from run_player_chat_check import native_environment
 
-CASES={'tiles':('tiles','verify_tiles.py','tile-capture-validation.json'),
+CASES={'ground-moisture':('groundMoisture','verify_ground_moisture.py','ground-moisture-validation.json'),
+       'tiles':('tiles','verify_tiles.py','tile-capture-validation.json'),
        'entities':('capture','verify_entity_captures.py','capture-validation.json'),
        'world-lists':('worldLists','verify_world_lists.py','world-list-validation.json'),
        'faction-ui':('factionUi','verify_faction_ui.py','faction-ui-validation.json'),
@@ -53,6 +54,10 @@ def run(args):
         review=json.loads((ROOT/'WORLD_LIST_BOUNDARY_REVIEW.json').read_text())
         if not review['passed'] or any(review[k]!=audit[k] for k in ('game_jar_sha256','source_archive_sha256')) or review['verifier_source_sha256']!=sha(ROOT/'dev/review_world_list_boundary.py'):
             raise ValueError('World-list context requires passing paired current static review')
+    if args.case=='ground-moisture':
+        review=json.loads((ROOT/'GROUND_MOISTURE_BOUNDARY_REVIEW.json').read_text())
+        if not review['passed'] or any(review[k]!=audit[k] for k in ('game_jar_sha256','source_archive_sha256')) or review['verifier_source_sha256']!=sha(ROOT/'dev/review_ground_moisture.py'):
+            raise ValueError('Ground moisture requires passing paired current candidate review')
     state=Path(tempfile.mkdtemp(prefix='read-'+args.case+'-',dir=runtime));os.chmod(state,0o700)
     jar=state/'syx-ai-assistant.jar'
     with zipfile.ZipFile((args.candidate_dir or ROOT/'releases')/'latest-user-test.zip') as z:
@@ -88,12 +93,17 @@ def run(args):
             if not completion.get('passed') or completion.get('verified_phases')!=14 or (state/'world-list-fixture-failure.json').exists():
                 raise RuntimeError('World-list fixture did not confirm clean completion')
             report['explicit_fixture_clean_completion']=True
+        if args.case=='ground-moisture':
+            completion=json.loads((state/'ground-moisture-clean-exit.json').read_text())
+            if completion!={'passed':True,'samples':64} or (state/'ground-moisture-fixture-failure.json').exists():
+                raise RuntimeError('Ground-moisture candidate fixture did not confirm clean completion')
+            report['explicit_fixture_clean_completion']=True
         report.update(validated_at=datetime.now(timezone.utc).isoformat(),game_exit_code=process.returncode,
             mod_jar_sha256=sha(jar),game_jar_sha256=audit['game_jar_sha256'],
             production_source_sha256=manifest['validation']['production_source_sha256'],
             python_source_sha256=manifest['validation']['python_source_sha256'],inference_calls=0)
         report['fixture_source_sha256']={n:sha(ROOT/n) for n in ['mod/tests/LiveSmoke.java','mod/tests/TileScenario.java',
-            'mod/tests/EntityScenario.java','mod/tests/SceneScenario.java','mod/tests/FactionUiScenario.java','mod/tests/RegionalOutputScenario.java','mod/tests/RegionalOutputExportScenario.java','mod/tests/RegionalLiveScenario.java','mod/tests/RegionalCostScenario.java','mod/tests/RegionalCaptureScenario.java','mod/tests/WorldListScenario.java','dev/'+verifier,'dev/run_read_fixture.py','dev/native_game_completion.py']}
+            'mod/tests/EntityScenario.java','mod/tests/SceneScenario.java','mod/tests/FactionUiScenario.java','mod/tests/RegionalOutputScenario.java','mod/tests/RegionalOutputExportScenario.java','mod/tests/RegionalLiveScenario.java','mod/tests/RegionalCostScenario.java','mod/tests/RegionalCaptureScenario.java','mod/tests/WorldListScenario.java','mod/tests/GroundMoistureScenario.java','dev/'+verifier,'dev/run_read_fixture.py','dev/native_game_completion.py']}
     finally:
         if process is not None and process.poll() is None:
             process.terminate()
@@ -104,6 +114,8 @@ def run(args):
             raise RuntimeError('Copied mod restoration/save integrity check failed; no passing final report written')
     if args.case=='world-lists':
         report['boundary_review_sha256']=sha(ROOT/'WORLD_LIST_BOUNDARY_REVIEW.json')
+    if args.case=='ground-moisture':
+        report['candidate_boundary_review_sha256']=sha(ROOT/'GROUND_MOISTURE_BOUNDARY_REVIEW.json')
     if args.case in {'regional-live','regional-capture'}:
         report['fixture_source_sha256']['dev/regional_partial_cache_server.py']=sha(ROOT/'dev/regional_partial_cache_server.py')
         report['fixture_source_sha256']['dev/verify_scenes.py']=sha(ROOT/'dev/verify_scenes.py')

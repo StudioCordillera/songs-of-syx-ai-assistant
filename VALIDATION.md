@@ -1,5 +1,9 @@
 # Validation evidence
 
+## Ground-moisture candidate follow-up — unchanged player
+
+GROUND_MOISTURE_BOUNDARY_REVIEW.json pins two public stored tile readers; GROUND_MOISTURE_READER_VALIDATION.json records 4096 sampled coordinates, 64 native samples, 524288 coordinate/linear comparisons, naturally different base/current values, four invalid-coordinate defaults and four unchanged MCP terrain anchors. Moisture itself is not yet exposed through MCP. Warm reader-only loops have median 0.118 ms/max 4.029 ms; DTO/encoding/request/MCP costs and all-state/cap/fault acceptance remain unestablished. Clean completion, copied-mod restoration/save integrity and 302 offline tests pass. Production, latest/previous bundles and provider evidence are unchanged; no paid inference. See GROUND_MOISTURE_BOUNDARY.md for exact scope and outstanding production gates.
+
 ## Current world-list context player checkpoint
 
 WORLD_LIST_CONTEXT_VALIDATION.json records fourteen controlled copied-profile phases and actual MCP parity for three world-list membership flags, including modal/hidden UI, inactive city/editor, return and same-observation selective projection. WORLD_LIST_BOUNDARY_REVIEW.json pins source/compiler/selected-bytecode semantics and fixed collection bounds. Flags describe underlying activated manager membership, not topmost visibility, selected identity, displayed rows or a complete UI tree. Unknown/unavailable remains null; closed remains false. See WORLD_LIST_CONTEXT.md.

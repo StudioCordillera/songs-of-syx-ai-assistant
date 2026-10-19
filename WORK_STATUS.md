@@ -18,6 +18,14 @@ CURRENT_COLLECTION_COST_VALIDATION.json pins this build's finite paused-city bas
 
 The source-matching latest player ZIP preserves the simplified Pro interface and retains the previous tested bundle. Normal saves/credentials and normal-profile mod files remain untouched. Remote main was unchanged at reconciliation checks; no competing implementation was discarded or overwritten.
 
+## Ground-moisture candidate follow-up — player unchanged
+
+GROUND_MOISTURE_BOUNDARY.md / GROUND_MOISTURE_BOUNDARY_REVIEW.json establish two stored public tile readers: MOISTURE_BASE and MOISTURE_CURRENT, normalized four-bit fractions. Current stored moisture approaches a clamped water-influence target; it is not MOISTURE_TOT, rainfall, fertility or yield. Derived total/environmental water and weather factors remain excluded. Coordinate getters return zero outside the map, so future observation must reject invalid coordinates explicitly.
+
+GROUND_MOISTURE_READER_VALIDATION.json records a 4096-point uniformly spaced grid across a 768x768 copied city, 64 samples and 524288 coordinate/linear comparisons. Both maps naturally exhibit all sixteen quantized values; 49 points differ between base/current. Paused samples stay unchanged. Four invalid coordinates return zero. Native overloads share storage, so this is not independent raw-storage truth. Four unchanged terrain MCP corner checks confirm coordinates/session; moisture is not yet an MCP field. Timed 8192-read loops have warm median 0.118 ms/max 4.029 ms, excluding DTO/encoding/transport. No moisture writes, inference or saves. Clean completion, crash-marker guard, copied-mod restoration/save integrity and 302 offline tests pass.
+
+The player source, latest/previous bundles and existing provider/core evidence are unchanged. The immediate next data task is a fixed optional ground_moisture tile projection with distinct base/current fields, current bounds, explicit errors and provenance, actual live/retained MCP value parity and additional scene tests. Audit/build/core/Pro/distribution gates must precede promotion; this candidate checkpoint does not satisfy those outstanding mapping gates. No remote overlap was found or implementation discarded.
+
 ## Prior regional-capture checkpoint
 
 The regional-capture checkpoint adds `capture_live_regional_outputs` / `read_regional_output_capture`: one complete ordered active-region/resource matrix selection in a public after-update callback, then immutable encoded paging without another game request. Protocol 2 keeps 100 IDs/100 keys, permits <=10,000 scanned cells/2,000 matching rows/2 MiB and requires cursor zero with the entire matrix inside the scan budget. Exact row-bound matches can succeed after scanning remaining nonmatches; any extra match, cell error or overflow retains nothing. Existing live protocol 1 remains <=4,096 scanned cells/100 rows/64 KiB per separate observation.

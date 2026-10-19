@@ -1,0 +1,159 @@
+{
+  "passed": true,
+  "reviewed_at": "2026-10-19T04:00:51.241566+00:00",
+  "stage": "Candidate stored tile moisture, not production mapping",
+  "game_jar_sha256": "fe0137c05408e5ee9e31f06fc44fe37a5d4372d9c985b280f0852d1347c0224b",
+  "source_archive_sha256": "a3fc2aa9f4be31aec0616a5030a656ac49a6011343b7e91395c7bac0b9dfb0a5",
+  "catalog_sha256": "5b4b13770eb3251ce066e4f9cf57b5e6b1956687136b5be33a680b707a73b065",
+  "verifier_source_sha256": "d21b493b8de1b84580dab99fbdac5e941b15b43efecc0f9f7c56ae2c5f781b44",
+  "helper_source_sha256": {
+    "dev/verify_bytecode.py": "82bcd57e36eee9c4f960a523b04391a6f748ba15fdcdb25484e3193df61ca494",
+    "dev/review_ui_lifecycle_boundary.py": "468c3e07253da763b0551cb9ef03b95bc32b7aae197bf87f0f9ba67c564ed5ca"
+  },
+  "public_declaration_members": [
+    "settlement.main.SETT#GROUND()",
+    "settlement.main.SETT#IN_BOUNDS(int,int)",
+    "settlement.main.SETT#TWIDTH",
+    "settlement.tilemap.ground.Ground#MOISTURE_BASE",
+    "settlement.tilemap.ground.Ground#MOISTURE_CURRENT",
+    "snake2d.util.map.MAP_DOUBLE#get(int,int)",
+    "snake2d.util.map.MAP_DOUBLE#get(int)",
+    "snake2d.util.sets.Bitsmap1D#get(int)"
+  ],
+  "selected_method_checks": [
+    {
+      "owner": "settlement.tilemap.ground.Ground$2",
+      "signature": "public double get(int, int);",
+      "normalized_disassembly_sha256": "678f42d59b007a977760bfd183bea867f81f5ea7e02513c00af0f0648264fe06",
+      "no_direct_heap_write_allocation_backward_branch": true,
+      "direct_calls": [
+        "settlement/main/SETT.IN_BOUNDS",
+        "get"
+      ]
+    },
+    {
+      "owner": "settlement.tilemap.ground.Ground$2",
+      "signature": "public double get(int);",
+      "normalized_disassembly_sha256": "ce398487cb6e733d30a9111bdaf698b9bc2ee50d65fa8f42bfab017621f74df7",
+      "no_direct_heap_write_allocation_backward_branch": true,
+      "direct_calls": [
+        "snake2d/util/sets/Bitsmap1D.get"
+      ]
+    },
+    {
+      "owner": "settlement.tilemap.ground.Ground$3",
+      "signature": "public double get(int, int);",
+      "normalized_disassembly_sha256": "678f42d59b007a977760bfd183bea867f81f5ea7e02513c00af0f0648264fe06",
+      "no_direct_heap_write_allocation_backward_branch": true,
+      "direct_calls": [
+        "settlement/main/SETT.IN_BOUNDS",
+        "get"
+      ]
+    },
+    {
+      "owner": "settlement.tilemap.ground.Ground$3",
+      "signature": "public double get(int);",
+      "normalized_disassembly_sha256": "be4b9dd166fd2c03c5489565d2e01496fb59b3ea2ce34255f5732331fc14a3f9",
+      "no_direct_heap_write_allocation_backward_branch": true,
+      "direct_calls": [
+        "snake2d/util/sets/Bitsmap1D.get"
+      ]
+    },
+    {
+      "owner": "snake2d.util.sets.Bitsmap1D",
+      "signature": "public int get(int);",
+      "normalized_disassembly_sha256": "d21f2b4f0095d75257ba71ee6681403f1aa4880948ed1b2c396b04f427728e6a",
+      "no_direct_heap_write_allocation_backward_branch": true,
+      "direct_calls": []
+    },
+    {
+      "owner": "settlement.main.SETT",
+      "signature": "public static boolean IN_BOUNDS(int, int);",
+      "normalized_disassembly_sha256": "1a4069fc7e8a484cd1ae2a8989a094de2a70a0846fd82a174dfcb0c396fd5453",
+      "no_direct_heap_write_allocation_backward_branch": true,
+      "direct_calls": [
+        "snake2d/util/datatypes/RECTANGLE.holdsPoint"
+      ]
+    },
+    {
+      "owner": "snake2d.util.datatypes.RECTANGLE",
+      "signature": "public default boolean holdsPoint(double, double);",
+      "normalized_disassembly_sha256": "f673665b5d5927323d448491d7eeaf9ef109a88acb4b4cb5a1ebd204e16baf13",
+      "no_direct_heap_write_allocation_backward_branch": true,
+      "direct_calls": [
+        "x1",
+        "x2",
+        "y1",
+        "y2"
+      ]
+    },
+    {
+      "owner": "snake2d.util.datatypes.Rec",
+      "signature": "public int x1();",
+      "normalized_disassembly_sha256": "5ee876e1aac056df0e2909e9d9d024eae9cf31e654776791b386ec350297c513",
+      "no_direct_heap_write_allocation_backward_branch": true,
+      "direct_calls": []
+    },
+    {
+      "owner": "snake2d.util.datatypes.Rec",
+      "signature": "public int x2();",
+      "normalized_disassembly_sha256": "a678fc0b820b3e4120d6bde7f6cea8ee25584085ab1e5aa1b360bb08ea381e68",
+      "no_direct_heap_write_allocation_backward_branch": true,
+      "direct_calls": []
+    },
+    {
+      "owner": "snake2d.util.datatypes.Rec",
+      "signature": "public int y1();",
+      "normalized_disassembly_sha256": "8e7fdf18bbc2f731ba5c424f06afe2fa8e9b660732f429675d651300cf48dc15",
+      "no_direct_heap_write_allocation_backward_branch": true,
+      "direct_calls": []
+    },
+    {
+      "owner": "snake2d.util.datatypes.Rec",
+      "signature": "public int y2();",
+      "normalized_disassembly_sha256": "5a413dac8846a547e05e353044b76592e5362c5c8350407c0de2ce3c8126e1fa",
+      "no_direct_heap_write_allocation_backward_branch": true,
+      "direct_calls": []
+    },
+    {
+      "owner": "settlement.main.SETT",
+      "signature": "public static settlement.tilemap.ground.Ground GROUND();",
+      "normalized_disassembly_sha256": "834e5002b66ea765c1a150132d7ebf2824b4bfbb289771c31eeadb6fe23a5541",
+      "no_direct_heap_write_allocation_backward_branch": true,
+      "direct_calls": []
+    }
+  ],
+  "additional_source_sha256": {
+    "settlement/tilemap/ground/Ground.java": "396a36c459e0854f0d70c0833ddf39b225ed3f811dea4ed9b46fd93646b23f26",
+    "snake2d/util/sets/Bitsmap1D.java": "ec9df8a5729f9e35c7f4ff8ca84c7b4005ac53cb8269bab1fce5d82e30c5c18c",
+    "settlement/main/SETT.java": "406866466d776896e2bf4bda86172a7c9a9ffc7df3494557e1e1135b55f76561",
+    "snake2d/util/datatypes/RECTANGLE.java": "184240ef3ae9924d0f0a6d72082269df77b4f299534015b6b8b1dea0159f61fb",
+    "snake2d/util/datatypes/Rec.java": "4d382767fcefba8dcff65fbcc9e11c37d489c3fa42e07b996b0a236bcb65516a",
+    "settlement/environment/SettEnvMap.java": "ea5bc96ba94f55e932a1d595fd02021e45d6ca55a96370794672bab26d23ce89",
+    "settlement/weather/WeatherMoisture.java": "6fcf16f5cb1feaa6bb5f5844edc9ce78b7fa4a0689bc43a29aeb8d944d749fb7"
+  },
+  "compile_probe": {
+    "id": "StoredGroundMoisture",
+    "expected_compilation": "success",
+    "matched": true,
+    "diagnostic_category": null,
+    "probe_source_sha256": "d9b4d4ad34ef2111fc524232e52f5f51635df13fe7418598c273b501623675fe",
+    "compiler_output_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  },
+  "game_methods_executed": 0,
+  "inference_calls": 0,
+  "conclusions": [
+    "Base/current are separate stored four-bit tile maps normalized by 1/15. In-bounds values are quantized 0..1, not exact unquantized water content.",
+    "Coordinate wrappers check bounds and return zero outside them. A future observer must reject out-of-map coordinates; getter zero alone cannot prove valid dry terrain.",
+    "Current stored map approaches a clamped base-plus-water target one raw step per adjust call. It is not the same as MOISTURE_TOT; exact age/convergence/update cadence is unknown.",
+    "MOISTURE_TOT computes base + 2*WATER_SWEET without final clamping and calls an environmental reader. It is excluded from this stored-reader review and native candidate route.",
+    "Weather precipitation/growth and moisture overlays are separate concepts. These tile readers do not establish soil fertility, crop/pasture yield, irrigation eligibility, construction suitability or forecasts.",
+    "Selected read-only bytecode chain has no direct heap write/allocation/backward branch; no setter, adjust, initialization, rendering or update is invoked by the candidate observation."
+  ],
+  "limits": [
+    "Shipped source/binary/compiler review, not separately documented stable public mod contracts or whole-game formal purity/thread-safety proof.",
+    "Runtime scene/coordinate/parity/cost evidence is separate. No new production field, MCP capability, all-state coverage or latest-player test claim.",
+    "Anonymous implementation names are inspected statically only; candidate runtime code calls public MAP_DOUBLE.get, never names those classes or accesses private/package fields.",
+    "Metadata/hashes only; no proprietary source/bodies redistributed. No reflection, screenshots, process memory or native input."
+  ]
+}
