@@ -1,0 +1,28 @@
+{
+  "queries": [
+    {
+      "name": "configured_home_totals_by_kind",
+      "source": {"domain": "housing", "path": "/physical_home_candidate/data/rooms"},
+      "group_by": {"kind": {"field": "/kind"}},
+      "aggregates": {
+        "observed_homes": {"op": "count"},
+        "reported_assignments": {"op": "sum", "value": {"field": "/occupants_reported"}},
+        "configured_capacity_sum": {"op": "sum", "value": {"field": "/capacity_configured"}}
+      }
+    },
+    {
+      "name": "occupied_recorded_homes",
+      "source": {"domain": "housing", "path": "/physical_home_candidate/data/rooms"},
+      "where": {"gt": [{"field": "/occupants_reported"}, 0]},
+      "select": {
+        "room_id": {"field": "/room_id"},
+        "kind": {"field": "/kind"},
+        "assigned": {"field": "/occupants_reported"},
+        "capacity": {"field": "/capacity_configured"}
+      },
+      "sort": [{"field": "/assigned", "direction": "desc"}, {"field": "/room_id", "direction": "asc"}],
+      "limit": 5
+    }
+  ],
+  "include_ui_context": true
+}

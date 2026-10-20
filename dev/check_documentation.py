@@ -48,6 +48,7 @@ def scope(path):
     if name=='CHAT_TARGET_DISPATCH.md':return 'Developer dispatch seam, cancellation/restart/unknown-delivery contract and remaining integration gates'
     if name=='CHAT_HISTORY_CANDIDATE_VALIDATION.json':return 'Developer-only SQLite receipt/filter/migration and actual bundled-store compatibility tests; not production badge/world-routing acceptance'
     if name=='HOUSING_BOUNDARY_REVIEW.json':return 'Unregistered housing selected source/public-reader/budget review; mutating routes excluded, no native/player acceptance'
+    if name=='HOUSING_QUERY_CANDIDATE_VALIDATION.json':return 'Developer-augmented native snapshot through real MCP; selective query parity and demonstrated missing diagnostics; production readiness false'
     if name=='HOUSING_SCENE_VALIDATION.json':return 'Developer-only unchanged housing candidate in eight real scene/reload phases; separate production MCP regressions, no housing MCP field'
     if name=='HOUSING_FAULT_VALIDATION.json':return 'Developer-only public furnishing clear induces one capacity getter error; failed row omitted and full housing DTO restored'
     if name=='HOUSING_CHAMBER_VALIDATION.json':return 'Developer-only constructed empty/occupied chamber, restored assignment/removal and actual scan/row bounds; unchanged player'

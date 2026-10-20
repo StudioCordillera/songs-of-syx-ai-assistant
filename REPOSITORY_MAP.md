@@ -30,6 +30,8 @@ The unchanged housing candidate also has a separate real-chamber/bounds runner: 
 
 `dev/run_housing_scenes.py` with `dev/candidates/housing/scenes/StockpileScenario.java` adds [eight real candidate scene/reload checks](HOUSING_SCENE_VALIDATION.json) plus separate current-production MCP regressions. `dev/run_housing_fault.py` with `dev/candidates/housing/fault/StockpileScenario.java` adds [one native getter-failure/restoration check](HOUSING_FAULT_VALIDATION.json). Both use the unchanged reader and disposable public fixture routes; neither packages housing or adds a tool.
 
+[Housing query integration](HOUSING_QUERY_INTEGRATION.md) maps the next production gates. `dev/run_housing_query_candidate.py` and `dev/candidates/housing/query/StockpileScenario.java` exercise the unchanged real MCP over their own same-callback augmented native snapshot; [evidence](HOUSING_QUERY_CANDIDATE_VALIDATION.json) includes successful selective queries and a demonstrated missing-diagnostics gate. `housing-query-candidate-example.json` uses provisional developer paths and is not a player query.
+
 ## Python runtime modules
 
 | Module | Responsibility |

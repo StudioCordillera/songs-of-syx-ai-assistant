@@ -78,3 +78,5 @@ xvfb-run -a -s '-screen 0 1280x960x24' .venv/bin/python dev/run_housing_chamber.
 This explicit developer runner creates/promotes/assigns only in the disposable process and does not expose those operations through MCP.
 
 For the separate scene and controlled fault fixtures, use the same arguments above with `dev/run_housing_scenes.py` or `dev/run_housing_fault.py`. The latter explicitly changes one copied home's furnishing and restores the housing DTO in the same callback; it is not a player command.
+
+[Selective-query integration follow-up](HOUSING_QUERY_INTEGRATION.md) now checks a developer-augmented same-callback native observation through real MCP. It also demonstrates missing housing-specific selective metadata and explicitly blocks production readiness until corrected; no player query path is claimed.

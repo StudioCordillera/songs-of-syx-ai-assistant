@@ -2,6 +2,14 @@
 
 Use `python3 dev/collaboration_status.py` for actual remote/local state at every run; this file is a handoff, not a live branch/working-tree assertion. Read AGENTS.md and reconcile newer collaborator work before editing.
 
+## Housing selective-query seam / diagnostic gap — player unchanged
+
+HOUSING_QUERY_INTEGRATION.md / HOUSING_QUERY_CANDIDATE_VALIDATION.json establish five actual stdio MCP calls over a developer-augmented same-callback native snapshot. The unchanged housing reader's 36 home rows/204 reported residents are appended only to the fixture's detached current production observation. Grouped configured counts/sums, filtering/projection/order, observed-shape discovery, original snapshot/UI/session and wrong-pin refusal agree. Provisional housing-query-candidate-example.json is for this developer observation only, not the current player. No housing mutation/inference or normal-profile change.
+
+The experiment also proves a production-readiness failure: selective source metadata preserves row_limit but omits seven housing-specific scan/error/truncation keys, including actual room_scan_complete. A real one-row candidate result then counts one without carrying that actual completeness value. Raw data preserves the diagnostics; fetching all raw data is not an accepted fix. The passing experiment explicitly has production_integration_ready=false/select_diagnostics_complete=false. Preserve these negative findings, not just the positive query checks.
+
+Next: fixed scalar diagnostic propagation, final field/envelope/source definitions and bounded resident relationships; then reviewed production integration and exact-source native/MCP/discovery/Pro/core/cost/distribution release gates. Existing player/latest/previous payloads remain unchanged and source-matched. Prior chamber/scene/fault reports retain their scope. Explicit completion/zero exit/crash-marker guard, copied-mod restoration and copied-save integrity pass. No competing collaborator implementation was discarded. Broader variables/UI/reference objectives remain active.
+
 ## Housing scene / native fault follow-up — player unchanged
 
 HOUSING_SCENE_VALIDATION.json checks eight actual public scene phases for the unchanged unregistered housing candidate. Four city/tactical/return/reload observations each match 36 home rows, 204 resident IDs and 16 ordinary cohort rows in the same after-update callback; generated battle deployment/menu and initial/terrain world setup refuse with null data. The existing production MCP scene suite additionally passes context/session rotation, weather and readonly-table regressions. No candidate housing MCP field is exposed or joined to an older snapshot.
