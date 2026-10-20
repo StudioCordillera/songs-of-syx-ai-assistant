@@ -1,0 +1,53 @@
+{
+  "passed": true,
+  "validated_at": "2026-10-20T08:11:46.894590+00:00",
+  "stage": "Developer-only typed capture-page evidence preparation; not native target UI or provider integration",
+  "new_offline_cases": 33,
+  "full_offline_tests": 427,
+  "full_offline_log_sha256": "42b32d95cbb931d1594c578a89cf6fdaf68521eb311179d7e886b5e09be5b138",
+  "source_sha256": {
+    "dev/chat_target_candidate.py": "4cdd55835cd0028aa74dcbe342f02a5eca6cb712b045458dc3010951286a4dd2",
+    "test_chat_target_candidate.py": "4cd0cbba13b1c4258e60b59871ff7018ff647a8c4f6eac8bd66b5c52636bb20c",
+    "syx_capture.py": "32778d9f5f217119ba45b114ba2a710bdd0ce4333efa672c31c690dcc3f3c3ec",
+    "syx_live.py": "2f29a2d828fc5c512075fa6a2082dd5fae9d4a39fb22ae847765533dc5628c75",
+    "syx_tiles.py": "c5ceea79fc5d4d80307ecf7fe429ca1f1f6ae64d17e95569d54625bf02c4d664",
+    "syx_regions.py": "96dd3355f50279c7c748d866019f889bd9889ef00c7cf97bf4fa582fede7ffb5",
+    "syx_mcp.py": "6e57581936147e8f17f3716c4e71acd24fda4bb63ab6f594e9342587f3b998d5"
+  },
+  "production_source_changed": false,
+  "native_fixture_executed": false,
+  "player_bundles_changed": false,
+  "latest_zip_sha256": "309ee82d47af3e562706a661adcd9deb21a20906b023aca62da1de03767fe558",
+  "previous_zip_sha256": "832f3ad1a49e0c3f5933af7a0c530edaf471a8b6f03b9d4373cec80e1cd6df40",
+  "local_claude_review": {
+    "requested_alias": "opus",
+    "effort": "high",
+    "observed_model": "claude-opus-5-5",
+    "tools": [],
+    "exit_code": 0,
+    "subtype": "success",
+    "is_error": false,
+    "duration_ms": 154661,
+    "num_turns": 4,
+    "input_prompt_sha256": "e4dee61097952d35f3e5017262cb598e4e8e889437b14f72b4d7b029b4be2cac",
+    "final_public_text_sha256": "81c5f5b06f24193434af6f60bd243716ccb47f84349c21f28d26d6492d12b2b5",
+    "reviewed_source_sha256": {
+      "dev/chat_target_candidate.py": "9a25f3c4a16609e808a2adff08b69378addbcfda6f1ccf8f30bdba7c7678d374",
+      "test_chat_target_candidate.py": "d20c018db78e36037251c4e7edaa93a9366e4466df05c28f85268166ca0d59cc",
+      "syx_capture.py": "32778d9f5f217119ba45b114ba2a710bdd0ce4333efa672c31c690dcc3f3c3ec"
+    },
+    "isolated_checkout_base": "36b3d91e58c684ad267cd6554e87b920df1c9c07",
+    "source_supplied_directly_from_working_tree_base": "0236eacb0dd89af9cc91356e3e67b10b53178454",
+    "final_followup_source_reviewed_by_claude": false,
+    "credits_purchased": false
+  },
+  "limits": [
+    "Same-process capture pools; current coordinator and stdio MCP require separate future transport.",
+    "Synthetic game-read payloads exercise real encoded stores; no new licensed native or provider acceptance.",
+    "Original observations are historical and separate, not current values/permanent IDs/global transactions.",
+    "Recent exported status cannot detect every between-observation transition or freeze the game after prepare.",
+    "Drafts survive failed preparation; shared capture pools may independently expire/evict/invalidate backing tokens.",
+    "Retention hint is measured at staging, not current liveness; no automatic recapture.",
+    "No picker/native chip/send dispatch/durable turn integration/reference passage/action authority."
+  ]
+}

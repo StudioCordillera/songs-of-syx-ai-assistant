@@ -2,6 +2,14 @@
 
 Use `python3 dev/collaboration_status.py` for actual remote/local state at every run; this file is a handoff, not a live branch/working-tree assertion. Read AGENTS.md and reconcile newer collaborator work before editing.
 
+## Typed next-message capture evidence — developer follow-up
+
+CHAT_TARGET_CANDIDATE.md maps the new unshipped fixed entity/tile/regional capture-page adapter. Per-chat previews pin original rows/selection/scene/session/version/tick/time and exact content hashes, preserve unknowns, reject overlapping pages, and prepare an all-or-nothing 32-KiB evidence envelope with lifecycle revalidation. Retention hints are explicitly measured at staging; expired/evicted targets remain removable. No native picker/chips, interprocess coordinator/MCP transport, send queue or gameplay commands are added. Server-local capture tokens require a future real transport/lifetime design, not copying Python objects across processes.
+
+A bounded local CLI peer review completed on actual claude-opus-5-5/high; retention, malformed scene, non-finite values, overlap and empty-preparation concerns informed follow-up changes/tests. Thirty-three authored offline cases use the real encoded production pools with synthetic game reads; 427 offline tests pass. CHAT_TARGET_CANDIDATE_VALIDATION.json pins final source and the earlier reviewed source separately. Existing production source/JAR and both runnable ZIPs remain unchanged and freshness checks pass. No competitor diff was discarded; the user's untracked log remains untouched. Some stale roadmap/map/gesture text was corrected to distinguish earlier candidates from the later completed prototype review and production auto-attachment.
+
+Next: establish bounded native/coordinator/MCP target transport, immutable durable turn evidence and exact queue acknowledgement, then real own-widget target pickers/chips. Native display/receipt policy and input/focus gates remain open; do not promote this same-process candidate or browser prototype into a player feature claim. Broader state/reference coverage and large-world cost gates still apply.
+
 ## Standalone reference UI and renewed Claude follow-up
 
 PLAYER_CHAT_PROTOTYPE.md maps a dependency-free simulated browser client with draggable launcher/header code, resize control and keyboard alternatives, theme presets/custom contrast correction, per-chat drafts, current-load/all-chat filters, unsupported/stale typed chips, background final-reply counts and explicit fully displayed read acknowledgement. PLAYER_CHAT_PROTOTYPE_VALIDATION.json records finite iterative browser checks and final visual inspection at 1280x720. This is Codex-authored using the four recovered Claude reviews, not a completed new Claude-generated response. Held launcher movement/out-of-window release, all resolutions, persistence and native integration remain unverified; later header/resize/hold browser checks are below. Production and the runnable ZIPs stay unchanged.

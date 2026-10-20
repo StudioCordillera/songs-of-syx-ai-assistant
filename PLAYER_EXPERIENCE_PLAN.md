@@ -75,3 +75,7 @@ Official references consulted for invocation: [model configuration](https://code
 ## Standalone reference prototype
 
 [PLAYER_CHAT_PROTOTYPE.md](PLAYER_CHAT_PROTOTYPE.md) provides a Codex-authored dependency-free simulation informed by the four recovered Claude reviews. Finite browser checks cover drafts, typed unsupported/stale chips, closed-panel final-reply counts, explicit reads, filters, cancellation, keyboard geometry and themes. It is separate from the native player and any completed new Claude design response; review its acceptance gaps before porting.
+
+## Typed target evidence follow-up
+
+[CHAT_TARGET_CANDIDATE.md](CHAT_TARGET_CANDIDATE.md) begins UX-06 with per-chat immutable capture-page previews and all-or-nothing runtime/version/scene/hash validation before preparing evidence. It reuses the production retained-read semantics without new game APIs. This developer-only same-process adapter does not yet connect native chips, coordinator/MCP transport or durable sends. Reference passages and broader target kinds remain explicit future work.
