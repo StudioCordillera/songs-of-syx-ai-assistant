@@ -1,0 +1,194 @@
+{
+  "passed": true,
+  "evaluated_at": "2026-10-20T17:49:26.471589+00:00",
+  "checks": [
+    {
+      "phase": 0,
+      "warehouse_count": 101,
+      "matrix_cells_checked": 4242,
+      "full_projection_pages": 61,
+      "actual_row_limit": 100,
+      "actual_empty_scan_limit": 4096,
+      "empty_tail_cells": 146,
+      "explicit_reordered_rooms_checked": 3
+    },
+    {
+      "phase": 1,
+      "warehouse_count": 100,
+      "matrix_cells_checked": 4200,
+      "full_projection_pages": 60,
+      "actual_row_limit": 100,
+      "actual_empty_scan_limit": 4096,
+      "empty_tail_cells": 104,
+      "explicit_reordered_rooms_checked": 3
+    }
+  ],
+  "successful_mcp_pages": 129,
+  "maximum_observed_tool_text_bytes": 38576,
+  "ordered_slot_shift_after_removal": true,
+  "inference_calls": 0,
+  "source_sha256": {
+    "mod/tests/StockpileMatrixScenario.java": "6028ae4b9bc7eafc6a7222d11dd246121e58aa026372b1dce682e4899ac1cb71",
+    "mod/tests/LiveSmoke.java": "96107ac90ea1493d5cf240421c146d21cda83c45be45e8577ccd141446c21e8f",
+    "dev/verify_stockpile_matrix.py": "4f9841a33c3132bb6a72605a7ce6b00c2c4e2efe11f4c1a87a668860714ffccc",
+    "dev/run_read_fixture.py": "458172d6623a6501e0317e262f38b9da208599d00ca5efa58eb8d3590db3b8ed"
+  },
+  "limits": [
+    "100 real small test warehouses are constructed through public APIs in a paused copied city; not a representative populated larger settlement or ordinary build/material simulation.",
+    "Construction uses real furnishing, zero-default RoomInit inputs and fixed path/room checks; in-memory effects are discarded without saving, not claimed restored.",
+    "All six projected values match public stored getters sharing engine storage; no independent physical inventory or cross-page transaction claim.",
+    "Native 4096-cell scan and 100-row limits plus one ordered removal are exercised. Byte overflow, injected registry/cell faults, wider lifecycle and worst-case latency/FPS remain unvalidated.",
+    "Source-verified fixed public fixture mutations do not expose production game actions. Published player source and latest/previous ZIPs remain unchanged."
+  ],
+  "known_engine_crash_markers_absent": true,
+  "explicit_fixture_clean_completion": true,
+  "validated_at": "2026-10-20T17:49:26.588044+00:00",
+  "game_exit_code": 0,
+  "mod_jar_sha256": "12d3494064f969dead59e1c471cf2f7aef81ac626d6eff2b4435476b6f9c10a9",
+  "game_jar_sha256": "fe0137c05408e5ee9e31f06fc44fe37a5d4372d9c985b280f0852d1347c0224b",
+  "source_archive_sha256": "a3fc2aa9f4be31aec0616a5030a656ac49a6011343b7e91395c7bac0b9dfb0a5",
+  "production_source_sha256": {
+    "syx/assistant/AssistantScript.java": "c2b8ed68350d4a274315b16dc9ff1c6828a51516777c1ef4a45b84acc6d8b092",
+    "syx/assistant/ChatPanel.java": "06db6b7715f9187a40a0b4b987ab7f64e09df5f9dc07193e261249302d1ac12f",
+    "syx/assistant/EntityReadRequest.java": "e2d13aee21f399e8718382d5b43d5a6c85e5d78d2708d8105b9f1ecfe730edf8",
+    "syx/assistant/JsonWriter.java": "c525eb60d3224cab83ed3fd6b8594ec8652211f00bd947e873e1482f919e81dc",
+    "syx/assistant/RegionalReadRequest.java": "4d1da800e6f2ecf6b036f188693ac1095329321bc569c82f34be9918768ef2b3",
+    "syx/assistant/StateCollector.java": "58b6f25bb21493da7ce6a9770d2068ee86f9419e1d3aff5cf83e56a0a532dcdf",
+    "syx/assistant/StockpileReadRequest.java": "589ab0087808dbc973aa7726829c3260c609e043baac080824538c44ed5df360",
+    "syx/assistant/TileReadRequest.java": "5daf3cc3abc0cb849f654e09efadb3d0263b73d4e5e220e97671ea1c4a40bde6",
+    "syx/assistant/UiContentCollector.java": "c0d20c7f9f2734a0bb625427875f06bfcd07edb20611248b39b6e8f480ef5a48",
+    "syx/assistant/UiContextCollector.java": "0f67200fdcf2740f4d3d4b1751ea0bf143613b20a44afb77af0ebb0ae8078937"
+  },
+  "python_source_sha256": {
+    "syx_mcp.py": "f55b857570e7f6b68320876bb65f7d9d4ccdecd06ea859181ee94e86603e1dd4",
+    "syx_knowledge.py": "f5d7dd6d387ad0fb8f2b024a3bd599ad1cec28f2906dfae27d9d2fdf56e4de7e",
+    "syx_query.py": "ae9c4537093952510e6536810c065b6e07f7bfc2d78d3bc02ccd0d21f4d12c07",
+    "syx_api_support.py": "63e0a3272e2dc04ebb2cc2a8ab06c31b8c03eb3eda449b8c98bff3e75f9d0df8",
+    "syx_api_manifest.py": "fe406c49ced9a475bfb48edb480b74c0254136ab38c07b70357d54a569736229",
+    "syx_live.py": "fdcb9366a3aab0d40a6c4bf597f80e5b15349ae09e9e91acf51c573455c3f69b",
+    "syx_capture.py": "32778d9f5f217119ba45b114ba2a710bdd0ce4333efa672c31c690dcc3f3c3ec",
+    "syx_tiles.py": "c5ceea79fc5d4d80307ecf7fe429ca1f1f6ae64d17e95569d54625bf02c4d664",
+    "syx_regions.py": "96dd3355f50279c7c748d866019f889bd9889ef00c7cf97bf4fa582fede7ffb5",
+    "syx_stockpiles.py": "bbad8de495428c4b44d4f860273bd9d39cea05c90c2ae8d102507b750e4f16db",
+    "syx_chat_store.py": "a2f2ffa53097cb60eab72c015c3d516693aa1c89c8aa54d74f4dfc96d222e634",
+    "syx_deepseek.py": "d58e21dbcfdeb1ef0f411dfbb4c0267234bdc5cc185e00d300821725ca1885e3",
+    "syx_chat.py": "98ceecfc8b042e45b0ea461f73fed74cc3fde00833a6fce22372649b9f844d6c",
+    "syx_chat_service.py": "1afc8252f8562a6c0ff5f6755f7b0479c401bf6e2f079503313da9e67713d73e",
+    "syx_claude.py": "3a850a645907f27b1a9cb15c3c5244b96b2da97d5d0dc37f5cd7d6f708cf92a8",
+    "syx_claude_worker.py": "ab6638b2c4ef3a4a1548fde1c0739a48f4d47e468494dd7444019f3f330dea38"
+  },
+  "fixture_source_sha256": {
+    "mod/tests/LiveSmoke.java": "96107ac90ea1493d5cf240421c146d21cda83c45be45e8577ccd141446c21e8f",
+    "mod/tests/StockpileMatrixScenario.java": "6028ae4b9bc7eafc6a7222d11dd246121e58aa026372b1dce682e4899ac1cb71",
+    "mod/tests/StockpileLifecycleScenario.java": "9f1d8101021ef28621c8152da9b4ee2adf0a29c1eb8f01bfd865d9cc177fe7ca",
+    "mod/tests/TileScenario.java": "f9c275b67dd4e763d89a8af5d857f7088e17ee146845c27e290c2a6012625cdb",
+    "mod/tests/EntityScenario.java": "df9b359332c391857857d93ed5d38e36f2029b3a066c3bcb540e74f3eda69f7d",
+    "mod/tests/SceneScenario.java": "ae623566198d96c324ae911d14c9100da0ab73a6e7c49f1c877c675ec60b6a55",
+    "mod/tests/FactionUiScenario.java": "efd008fbf99a8d21db18d386d78ad5309acafc88e735d4b2b393a6363ac70bef",
+    "mod/tests/RegionalOutputScenario.java": "7aced23bff4580d883542c9a8c9b8b6df2d206be80942f83c2ab82c183783096",
+    "mod/tests/RegionalOutputExportScenario.java": "bf637e23ba1023c250bb615f60c04d28b807695e4af2bcf6f3797c73aae93a66",
+    "mod/tests/RegionalLiveScenario.java": "f5a759f5137ceadd858dfabc02d785738618214df541288421e21fa6771f48fc",
+    "mod/tests/RegionalCostScenario.java": "2e0256d98ad39d0f34e2f8080f8e1a04e9f93bc77ffa0b3995c82639dc86fbf7",
+    "mod/tests/RegionalCaptureScenario.java": "bfba6148a55eef4cf48c615ed9b55aada047da2f2a164d55efc78be169cb2d5b",
+    "mod/tests/WorldListScenario.java": "44202e2fb03075e13b66a6c22dbd4e210b784f67bc68b030269bb8e51958a799",
+    "mod/tests/GroundMoistureScenario.java": "c684406280eb80601a410f1de2e2216dc2a9895385b3b94b8e879d196ea68acb",
+    "mod/tests/ViewportScenario.java": "dbc195bfa2f780176f22856f548690bcdc5577e53530914ebf05656ef10205a1",
+    "mod/tests/ChatBackgroundScenario.java": "77bb55617d47167d6d628ad55f16f8550f011213be2a5a66023b19f7b8741292",
+    "mod/tests/ChatVisibilityScenario.java": "e6f2894ac20a4e3c6a4090b22f0c41bb7a7f7f185ce1c5b86302ce30cf9c199d",
+    "dev/verify_stockpile_matrix.py": "4f9841a33c3132bb6a72605a7ce6b00c2c4e2efe11f4c1a87a668860714ffccc",
+    "dev/run_read_fixture.py": "458172d6623a6501e0317e262f38b9da208599d00ca5efa58eb8d3590db3b8ed",
+    "dev/native_game_completion.py": "8d29009ecb6b1c54e65ce4d94bc1c175d189c68aad59251381ec4cf5a063773f"
+  },
+  "copied_profile_mod_restored": true,
+  "copied_save_unchanged": true,
+  "manual_source_review": {
+    "reviewed_at": "2026-10-20T17:50:16.130713+00:00",
+    "scope": "Selected shipped-source creation/removal review and catalog declaration checks, with actual external fixture compilation/native acceptance reported separately; not stable documented official contracts.",
+    "earlier_lifecycle_source_review_sha256": "540d1462796c61a2f7a0188ffb02f2a52a8e7912b8530f7963682e638e604837",
+    "additional_public_fixture_members": [
+      {
+        "id": "settlement.room.main.ROOMS#tmpArea(java.lang.Object)",
+        "source_anchor": [
+          {
+            "source_file": "settlement/room/main/ROOMS.java",
+            "line": 797,
+            "source_sha256": "de6ba96c43487d94418acf70cc99f2948b699b0a3183fd3ff0831ea3e93d0196",
+            "has_javadoc": false
+          }
+        ]
+      },
+      {
+        "id": "settlement.room.main.TmpArea#set(int,int)",
+        "source_anchor": [
+          {
+            "source_file": "settlement/room/main/TmpArea.java",
+            "line": 131,
+            "source_sha256": "ea0c953299594e338bfc680162137c0892e4f3130c74a788fe729b80a628dec7",
+            "has_javadoc": false
+          }
+        ]
+      },
+      {
+        "id": "settlement.room.main.TmpArea#room()",
+        "source_anchor": [
+          {
+            "source_file": "settlement/room/main/TmpArea.java",
+            "line": 189,
+            "source_sha256": "ea0c953299594e338bfc680162137c0892e4f3130c74a788fe729b80a628dec7",
+            "has_javadoc": false
+          }
+        ]
+      },
+      {
+        "id": "settlement.room.main.MapDataF#itemSet(int,int,settlement.room.main.furnisher.FurnisherItem,settlement.room.main.Room.RoomInstanceImp)",
+        "source_anchor": []
+      },
+      {
+        "id": "settlement.room.main.furnisher.Furnisher#item(int)",
+        "source_anchor": [
+          {
+            "source_file": "settlement/room/main/furnisher/Furnisher.java",
+            "line": 240,
+            "source_sha256": "eb2d8f238374a34d0a1e4718ee9dbe125c4eb28fa58a5d902c2efc88f417122b",
+            "has_javadoc": false
+          }
+        ]
+      },
+      {
+        "id": "settlement.room.infra.stockpile.StockpileInstance#totalCrates()",
+        "source_anchor": [
+          {
+            "source_file": "settlement/room/infra/stockpile/StockpileInstance.java",
+            "line": 282,
+            "source_sha256": "a6557b7860d3205f22dca40c24a1372e28e33765fda9238e473943bb3edf4a85",
+            "has_javadoc": false
+          }
+        ]
+      }
+    ],
+    "selected_source_sha256": {
+      "settlement/room/main/MapDataF.java": "7395de01a4eac86c9faa288a9810df6513db770aff83cb8355e3290291027e72",
+      "settlement/room/main/TmpArea.java": "ea0c953299594e338bfc680162137c0892e4f3130c74a788fe729b80a628dec7",
+      "settlement/room/main/RoomInstance.java": "5a2cd2bb21b33e0461efcea619998ea6a139782f80702f360de6d7584bdf6f07",
+      "settlement/room/main/RoomsMap.java": "42262ac80e338eec40b159e4b9adb2148763af22f698654b1cc201dc2e0209fa",
+      "settlement/room/main/RoomBlueprintIns.java": "e75e0800cc9db4ecaa9926173ec51049f3a1163293705a564031d49658c6e8b8",
+      "settlement/room/main/furnisher/Furnisher.java": "eb2d8f238374a34d0a1e4718ee9dbe125c4eb28fa58a5d902c2efc88f417122b",
+      "settlement/room/infra/stockpile/Constructor.java": "f1bc51adcb8b68fcfbae105cba288f350535ca260f970bdb9083090bcaa66137",
+      "settlement/room/infra/stockpile/StockpileInstance.java": "a6557b7860d3205f22dca40c24a1372e28e33765fda9238e473943bb3edf4a85",
+      "snake2d/util/sets/ArrayListResize.java": "12a02e4bd019e01a110e82124ad9ae50403a2ca9452d88508cdaa3f3b154f5c0"
+    },
+    "findings": [
+      "The public temporary-area setter claims real free room cells. Public MapDataF.itemSet writes furnishing metadata after checking room membership, bounds and empty furnishing indices; it also consumes randomness and sprite-data generation.",
+      "Furnisher.item(0) is the reserved null slot in this shipped build; the fixture explicitly selects and bounds item(1), not a fabricated furnishing tile or a new blueprint.",
+      "Each temporary area is consumed by public Furnisher.create in the same callback; actual StockpileInstance registration, crates and public getters are used. No private collection mutation or shadow class.",
+      "RoomBlueprintIns.removeInstance invokes ArrayListResize.removeOrdered, which shifts later entries left. Native ordered identity/getter comparisons confirm the shift after removing slot one in this fixture.",
+      "The fixed free-cell/path checks, zero-default RoomInit and finished-stat adjustment are developer fixture setup, not a reproduction of player placement eligibility/material consumption or a production action lane."
+    ]
+  },
+  "offline_regression": {
+    "passed": true,
+    "tests_passed": 580,
+    "seconds": 53.23,
+    "scope": "Full existing offline suite. Native matrix/bounds acceptance is separate and does not follow from the offline test count."
+  }
+}

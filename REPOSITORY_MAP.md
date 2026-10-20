@@ -164,3 +164,8 @@ At handoff, update WORK_STATUS and the relevant current feature guides. Keep pre
 ## Warehouse removal and ID reuse regression
 
 `mod/tests/StockpileLifecycleScenario.java`, `dev/verify_stockpile_lifecycle.py` and `dev/run_read_fixture.py --case stockpile-lifecycle` validate three public-action copied-city phases through the actual production MCP: baseline, a distinct same-ID instance and complete removal. [Evidence](STOCKPILE_LIFECYCLE_VALIDATION.json) pins nine successful pages, expected explicit-ID/cursor refusals and clean restoration. [Manual source review](STOCKPILE_LIFECYCLE_SOURCE_REVIEW.json) separates public fixture routes from static internal implementation inspection. No production code, provider call or player ZIP changes; multi-room/cap/fault coverage remains open.
+
+
+## Real multi-warehouse matrix regression
+
+`mod/tests/StockpileMatrixScenario.java`, `dev/verify_stockpile_matrix.py` and `dev/run_read_fixture.py --case stockpile-matrix` create fixed small real test rooms in the copied city and compare 101/100-room matrices before/after middle removal. [Pinned evidence and selected source review](STOCKPILE_MATRIX_VALIDATION.json) cover 8,442 getter cells, 129 successful MCP pages, ordered slot shifts, explicit-order queries, actual 4,096-cell empty scans and 100-row projected pages. Developer-only setup is not a normal build/material or larger-city performance fixture. No player source/ZIP changes, provider calls or production game actions.

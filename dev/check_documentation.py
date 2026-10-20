@@ -47,6 +47,7 @@ def scope(path):
     if name=='CHAT_TARGET_DISPATCH_VALIDATION.json':return 'Developer-only accepted-turn claim tests and copied-city fake-provider handoff; not native player or paid Pro acceptance'
     if name=='CHAT_TARGET_DISPATCH.md':return 'Developer dispatch seam, cancellation/restart/unknown-delivery contract and remaining integration gates'
     if name=='CHAT_HISTORY_CANDIDATE_VALIDATION.json':return 'Developer-only SQLite receipt/filter/migration and actual bundled-store compatibility tests; not production badge/world-routing acceptance'
+    if name=='STOCKPILE_MATRIX_VALIDATION.json':return 'Actual 101/100-room MCP scan/row bounds and ordered removal; fixed public fixture setup, not large-city cost or native byte/fault coverage'
     if name=='STOCKPILE_LIFECYCLE_SOURCE_REVIEW.json':return 'Manual selected shipped-source lifecycle/public fixture-route review; not a stable documented contract'
     if name=='STOCKPILE_LIFECYCLE_VALIDATION.json':return 'Actual copied-city same-ID replacement/removal MCP regression against unchanged published player; finite scope'
     if name in {'api-audit.json','API_DISCOVERY.json'}:return 'Generated current audit/pairing; declaration candidates are not runtime variables'
