@@ -159,3 +159,8 @@ At handoff, update WORK_STATUS and the relevant current feature guides. Keep pre
 [CHAT_TARGET_TASKS.md](CHAT_TARGET_TASKS.md) maps `dev/chat_target_tasks.py` and `test_chat_target_tasks.py`: explicit accepted-task ownership, exact Stop, no-replay status, bounded concurrency/recent summaries and pending-cleanup-aware teardown. Copied-city fake-provider task completion/Stop and [evidence](CHAT_TARGET_TASKS_VALIDATION.json) remain separate from native request/button integration.
 
 [CACHED_VIEWPORT.md](CACHED_VIEWPORT.md) maps the production `UiContextCollector.cachedViewport` primitive DTO, same-tick public-getter fixture, actual MCP context/selection verifier, scene invariant helper and query example. [Viewport evidence](VIEWPORT_VALIDATION.json) separates supported cache observations from unavailable management/setup/editor states and unknown rendered visibility/cache age.
+
+
+## Warehouse removal and ID reuse regression
+
+`mod/tests/StockpileLifecycleScenario.java`, `dev/verify_stockpile_lifecycle.py` and `dev/run_read_fixture.py --case stockpile-lifecycle` validate three public-action copied-city phases through the actual production MCP: baseline, a distinct same-ID instance and complete removal. [Evidence](STOCKPILE_LIFECYCLE_VALIDATION.json) pins nine successful pages, expected explicit-ID/cursor refusals and clean restoration. [Manual source review](STOCKPILE_LIFECYCLE_SOURCE_REVIEW.json) separates public fixture routes from static internal implementation inspection. No production code, provider call or player ZIP changes; multi-room/cap/fault coverage remains open.

@@ -1,0 +1,99 @@
+{
+  "reviewed_at": "2026-10-20T17:32:26.622702+00:00",
+  "game_jar_sha256": "fe0137c05408e5ee9e31f06fc44fe37a5d4372d9c985b280f0852d1347c0224b",
+  "source_archive_sha256": "a3fc2aa9f4be31aec0616a5030a656ac49a6011343b7e91395c7bac0b9dfb0a5",
+  "scope": "Manual selected shipped-source lifecycle review with catalog public declaration checks. Not a separate stable documented mod contract or whole-game source/binary equivalence.",
+  "public_fixture_route_members": [
+    {
+      "id": "settlement.room.main.RoomInstance#remove(int,int,boolean,java.lang.Object,boolean)",
+      "source_anchor": [
+        {
+          "source_file": "settlement/room/main/RoomInstance.java",
+          "line": 253,
+          "source_sha256": "5a2cd2bb21b33e0461efcea619998ea6a139782f80702f360de6d7584bdf6f07",
+          "has_javadoc": false
+        }
+      ]
+    },
+    {
+      "id": "settlement.room.main.RoomInstance#stat(int)",
+      "source_anchor": [
+        {
+          "source_file": "settlement/room/main/RoomInstance.java",
+          "line": 365,
+          "source_sha256": "5a2cd2bb21b33e0461efcea619998ea6a139782f80702f360de6d7584bdf6f07",
+          "has_javadoc": false
+        }
+      ]
+    },
+    {
+      "id": "settlement.room.main.TmpArea#clearAndUpdate()",
+      "source_anchor": [
+        {
+          "source_file": "settlement/room/main/TmpArea.java",
+          "line": 168,
+          "source_sha256": "ea0c953299594e338bfc680162137c0892e4f3130c74a788fe729b80a628dec7",
+          "has_javadoc": false
+        }
+      ]
+    },
+    {
+      "id": "settlement.room.main.furnisher.Furnisher#create(settlement.room.main.TmpArea,settlement.room.main.util.RoomInit)",
+      "source_anchor": [
+        {
+          "source_file": "settlement/room/main/furnisher/Furnisher.java",
+          "line": 323,
+          "source_sha256": "eb2d8f238374a34d0a1e4718ee9dbe125c4eb28fa58a5d902c2efc88f417122b",
+          "has_javadoc": false
+        }
+      ]
+    },
+    {
+      "id": "settlement.room.main.util.RoomInit#RoomInit(settlement.room.main.RoomBlueprintImp,int)",
+      "source_anchor": [
+        {
+          "source_file": "settlement/room/main/util/RoomInit.java",
+          "line": 12,
+          "source_sha256": "e83fe7c6305053e1192008e73b4c52485993031b050120f5b39d422da5d8382c",
+          "has_javadoc": false
+        }
+      ]
+    },
+    {
+      "id": "settlement.room.main.util.RoomStats.RoomStatsList#add(int,int)",
+      "source_anchor": [
+        {
+          "source_file": "settlement/room/main/util/RoomStats.java",
+          "line": 56,
+          "source_sha256": "55085280d70d6f0f4d20e7205fc36e76c4dc7a1a4b69057a531fdee26427af17",
+          "has_javadoc": false
+        }
+      ]
+    }
+  ],
+  "reviewed_source_sha256": {
+    "settlement/room/main/RoomInstance.java": "5a2cd2bb21b33e0461efcea619998ea6a139782f80702f360de6d7584bdf6f07",
+    "settlement/room/main/RoomsMap.java": "42262ac80e338eec40b159e4b9adb2148763af22f698654b1cc201dc2e0209fa",
+    "settlement/room/main/TmpArea.java": "ea0c953299594e338bfc680162137c0892e4f3130c74a788fe729b80a628dec7",
+    "settlement/room/main/RoomBlueprintIns.java": "e75e0800cc9db4ecaa9926173ec51049f3a1163293705a564031d49658c6e8b8",
+    "settlement/room/main/util/RoomInit.java": "e83fe7c6305053e1192008e73b4c52485993031b050120f5b39d422da5d8382c",
+    "settlement/room/main/util/RoomStats.java": "55085280d70d6f0f4d20e7205fc36e76c4dc7a1a4b69057a531fdee26427af17",
+    "settlement/room/main/furnisher/Furnisher.java": "eb2d8f238374a34d0a1e4718ee9dbe125c4eb28fa58a5d902c2efc88f417122b",
+    "settlement/room/infra/stockpile/Constructor.java": "f1bc51adcb8b68fcfbae105cba288f350535ca260f970bdb9083090bcaa66137",
+    "settlement/room/infra/stockpile/StockpileInstance.java": "a6557b7860d3205f22dca40c24a1372e28e33765fda9238e473943bb3edf4a85",
+    "snake2d/util/sets/ArrayListResize.java": "12a02e4bd019e01a110e82124ad9ae50403a2ca9452d88508cdaa3f3b154f5c0"
+  },
+  "findings": [
+    "RoomInstance.remove checks existence and tile membership, deactivates/disposes, removes blueprint registration, then transfers geometry into the singleton TmpArea and clears the old indexed room slot.",
+    "RoomsMap.create chooses a free indexed slot using lastIndex and can reuse a removed ID. Loaded saves can contain earlier free slots, so the first replacement need not reuse the removed ID.",
+    "RoomBlueprintIns.removeInstance uses ArrayListResize.removeOrdered: later warehouse discovery slots shift left after removal. This static finding is not a multi-room native acceptance case.",
+    "Furnisher.create dispatches the warehouse construction implementation; StockpileInstance consumes existing furnishing cells, builds crate bookkeeping, can pick up scattered resources, then activates. A public zero-default RoomInit is fixture input, not a faithful material-cost simulation.",
+    "TmpArea must be consumed or cleared within the same callback. The fixture does not retain it across callbacks or publish it through MCP.",
+    "Public finished-room statistics are adjusted after test reconstruction to pair with the next public removal. No normal save or production mutation path is added."
+  ],
+  "limits": [
+    "Actual compiler access and MCP lifecycle outcomes are reported separately in STOCKPILE_LIFECYCLE_VALIDATION.json.",
+    "Internal implementation methods are inspected statically only, never called reflectively or accessed as private runtime fields.",
+    "No source text, game archive, state rows or copied save is redistributed."
+  ]
+}

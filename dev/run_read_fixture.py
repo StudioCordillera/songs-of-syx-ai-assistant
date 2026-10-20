@@ -24,7 +24,8 @@ from game_fixture_lock import exclusive_fixture
 from native_game_completion import require_clean_game_log
 from run_player_chat_check import native_environment
 
-CASES={'stockpile-live':('stockpileLive','verify_live_stockpiles.py','stockpile-live-validation.json'),
+CASES={'stockpile-lifecycle':('stockpileLifecycle','verify_stockpile_lifecycle.py','stockpile-lifecycle-validation.json'),
+       'stockpile-live':('stockpileLive','verify_live_stockpiles.py','stockpile-live-validation.json'),
        'chat-visibility':('chatVisibility','verify_chat_visibility.py','chat-visibility-validation.json'),
        'chat-background':('chatBackground','verify_chat_background.py','chat-background-validation.json'),
        'viewport':('viewport','verify_viewport.py','viewport-validation.json'),
@@ -104,6 +105,11 @@ def run(args):
         require_clean_game_log(state/'game.log')
         report=json.loads((state/report_name).read_text());assert report['passed']
         report['known_engine_crash_markers_absent']=True
+        if args.case=='stockpile-lifecycle':
+            completion=json.loads((state/'stockpile-lifecycle-clean-exit.json').read_text())
+            if completion!={'passed':True,'verified_phases':3}:
+                raise RuntimeError('Warehouse lifecycle fixture did not confirm clean completion')
+            report['explicit_fixture_clean_completion']=True
         if args.case=='world-lists':
             completion=json.loads((state/'world-list-clean-exit.json').read_text())
             if not completion.get('passed') or completion.get('verified_phases')!=14 or (state/'world-list-fixture-failure.json').exists():
@@ -131,9 +137,10 @@ def run(args):
             report['explicit_fixture_clean_completion']=True
         report.update(validated_at=datetime.now(timezone.utc).isoformat(),game_exit_code=process.returncode,
             mod_jar_sha256=sha(jar),game_jar_sha256=audit['game_jar_sha256'],
+            source_archive_sha256=audit['source_archive_sha256'],
             production_source_sha256=manifest['validation']['production_source_sha256'],
             python_source_sha256=manifest['validation']['python_source_sha256'],inference_calls=report.get('inference_calls',0))
-        report['fixture_source_sha256']={n:sha(ROOT/n) for n in ['mod/tests/LiveSmoke.java','mod/tests/TileScenario.java',
+        report['fixture_source_sha256']={n:sha(ROOT/n) for n in ['mod/tests/LiveSmoke.java','mod/tests/StockpileLifecycleScenario.java','mod/tests/TileScenario.java',
             'mod/tests/EntityScenario.java','mod/tests/SceneScenario.java','mod/tests/FactionUiScenario.java','mod/tests/RegionalOutputScenario.java','mod/tests/RegionalOutputExportScenario.java','mod/tests/RegionalLiveScenario.java','mod/tests/RegionalCostScenario.java','mod/tests/RegionalCaptureScenario.java','mod/tests/WorldListScenario.java','mod/tests/GroundMoistureScenario.java','mod/tests/ViewportScenario.java','mod/tests/ChatBackgroundScenario.java','mod/tests/ChatVisibilityScenario.java','dev/'+verifier,'dev/run_read_fixture.py','dev/native_game_completion.py']}
     finally:
         if process is not None and process.poll() is None:
