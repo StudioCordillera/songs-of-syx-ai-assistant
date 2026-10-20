@@ -1,5 +1,10 @@
 # Validation evidence
 
+## Background chat follow-up — unchanged production bundle
+
+[CHAT_BACKGROUND_VALIDATION.json](CHAT_BACKGROUND_VALIDATION.json) pins the current published JAR and Python source to a copied-city test at speed 1. Simulation advanced by 2.1875 game seconds during an open-pending interval and 2.28125 during a closed-pending interval. A controlled delayed provider stub completed through the real coordinator/MCP/history path while closed, and reopening exposed the answer in the same chat. Clean completion, finite crash-marker checks, copied-mod restoration and save integrity passed. No external inference, badge, auto-connect, world grouping, physical pointer/keyboard or every-scene acceptance is claimed. Reproduce with `dev/run_read_fixture.py --case chat-background` and the normal licensed-game/copied-save arguments. The stub is developer-only; no production source or bundle changes.
+
+
 ## Current stored tile-moisture player checkpoint
 
 The exact source/JAR pair passes 305 offline tests, two actual Pro turns, all seven native core groups, fourteen sampled supported capability records/two gaps/sixteen member anchors, all 37 local guidance cases and fresh extracted dependency/startup/isolated-install/key-exclusion checks. The audit has 384 public production references and zero non-public references. USER_TEST_VALIDATION.json pins current evidence; ChatPanel class bytes match retained prior focus/wrapping evidence.

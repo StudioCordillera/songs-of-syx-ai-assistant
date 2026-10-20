@@ -8,6 +8,10 @@ A local Java mod and MCP server for selective game observations, UI-aware questi
 
 The player gets **DeepSeek Pro** (`deepseek-v4-pro`), a simple chat list/transcript, wrapped composer, Send/Stop and durable local histories. The helper keeps its key outside version control and the published bundle; it never bundles credentials. Login/provider/debug controls are hidden and raw tool evidence stays in private history. See [player instructions](user_test/README.txt), [installation](INSTALL.md) and [build/rollback policy](releases/README.md).
 
+## Requested next revision
+
+[Player-experience plan](PLAYER_EXPERIENCE_PLAN.md): automatic game connection, world-filtered history, a movable/resizable/themed panel, message target attachments, blueprint references, unread notifications and a separately reviewed public-API copilot execution track. These are planned; the current download remains the tested simple Pro client. A new copied-city regression confirms time advances during open/closed chat and a simulated delayed reply survives closing/reopening; see [bounded evidence](CHAT_BACKGROUND_VALIDATION.json).
+
 ## Start collaborating
 
 Read [shared instructions](AGENTS.md), the [repository map](REPOSITORY_MAP.md), [contributor/test workflow](CONTRIBUTING.md), [current handoff](WORK_STATUS.md) and [roadmap](ROADMAP.md). Claude's [entry file](CLAUDE.md) imports the same shared instructions. The [documentation index](DOCUMENTATION_INDEX.md) maps current guides and historical evidence.

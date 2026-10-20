@@ -1,0 +1,50 @@
+{
+  "stage": "Four peer source reviews completed; parent hit subscription session limit before final design/prototype",
+  "checked_at": "2026-10-20T02:42:44.469270+00:00",
+  "cli_version": "2.1.296",
+  "base_commit": "498af4c356c959a2943cf1ccfd6a50f3dc51904d",
+  "requested_best_attempt": {
+    "exit_code": 1,
+    "error_code": "model_requires_usage_credits",
+    "status": 429,
+    "inference_performed": false,
+    "credits_purchased": false
+  },
+  "continuing_attempt": {
+    "selected_alias": "opus",
+    "observed_model": "claude-opus-5-5",
+    "effort": "max",
+    "tools": [
+      "Read",
+      "Glob",
+      "Grep",
+      "Agent"
+    ],
+    "permission_mode": "plan",
+    "strict_empty_mcp_config": true,
+    "observed_peer_delegations": 4,
+    "completed_design_result_available": false,
+    "exit_code": 1,
+    "status": 429,
+    "error": "usage_limit_reached",
+    "completed_peer_reviews": 4
+  },
+  "prompt_sha256": "a903302d4b93fe9309a8113d3023b8999fa56a5b7c23e893db687ab47da312ab",
+  "production_source_changed": false,
+  "limits": [
+    "Observed model/delegation metadata are from this task-owned local CLI session, not an assertion of all Anthropic features or entitlements.",
+    "No completed standalone prototype or native UI redesign is published in this checkpoint.",
+    "Source reviews used an isolated credential-free clone of the stated base commit; the later background native fixture is separate newer evidence.",
+    "Private transcripts, generated prompt exports and raw results remain under ignored runtime/ or the task-owned Claude session; no auth files or keys were copied."
+  ],
+  "actual_peer_stats": {
+    "spawned": 4,
+    "completed": 4,
+    "failed": 0,
+    "by_type": {
+      "Explore": 3,
+      "Plan": 1
+    }
+  },
+  "review_synthesis": "CLAUDE_UX_REVIEW.md"
+}

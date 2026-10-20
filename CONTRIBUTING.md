@@ -33,7 +33,7 @@ Keep `java` on PATH. `SYX_JAVA_HOME` selects its module/release files for this r
 
 Pytest also checks that the duplicated Java tile-projection allowlist, snapshot discovery list and Python schema/field definitions agree. Run this cheap cross-layer check before paid/native work; native MCP tests remain the behavior proof.
 
-Pytest uses mocks/synthetic fixtures and local Git repositories. It does not need a key or real inference. Native-game tests are explicit scripts; GitHub CI cannot validate licensed-game behavior. Documentation-only/developer-tool changes do not require rebuilding the unchanged player payload or refreshing historical product test counts.
+Pytest discovery excludes ignored runtime/build/hidden dependency directories, so disposable source clones under runtime do not duplicate the suite. Pytest uses mocks/synthetic fixtures and local Git repositories. It does not need a key or real inference. Native-game tests are explicit scripts; GitHub CI cannot validate licensed-game behavior. Documentation-only/developer-tool changes do not require rebuilding the unchanged player payload or refreshing historical product test counts.
 
 ## Licensed game fixture setup
 

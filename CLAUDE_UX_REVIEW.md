@@ -1,0 +1,32 @@
+# Claude Code source review and candidate design constraints
+
+Four local Claude Code peer reviews completed against checkpoint `498af4c356c959a2943cf1ccfd6a50f3dc51904d`, using Opus 5.5 at max effort. They covered current UX, persistence, public-API boundaries and a critique of a draft persistence/protocol plan. The parent session hit its usage limit before returning a final design/prototype. This document is an edited synthesis, not a generated HTML interface, accepted implementation or native validation. Raw task-owned reports remain private. [Invocation outcome](CLAUDE_UX_COLLABORATION.json) records the limit.
+
+The later [background fixture](CHAT_BACKGROUND_VALIDATION.json) now provides finite open/closed unpaused copied-city evidence absent from that source checkout. Do not repeat the earlier reviewers' absence-of-evidence statement as the current test status. Physical gameplay input and all scenes remain unvalidated.
+
+## Confirmed current source observations
+
+- [ChatPanel](mod/src/main/java/syx/assistant/ChatPanel.java) uses fixed positions, rebuilds widgets on refreshed state, clears the draft on chat change and retains one pending action ID without an acknowledgement timeout. The attachment error's wording differs from the visible button. Preserve drafts per chat, stable focus/scroll and consistent wording in the redesign; provide a recoverable unknown-action state without resending under a fresh paid-turn ID.
+- [Coordinator](syx_chat_service.py) filters simple-mode provider choices after the store's 100-chat limit. Apply scope/provider filtering before the limit and define access to older/selected/running chats rather than silently hiding them.
+- [Store](syx_chat_store.py) uses a database-wide integer event sequence without AUTOINCREMENT, plus unique UUID event IDs. Sequence numbers can be reused after deletion of the highest rows. A proposed read cursor must validate the event UUID and its chat, not accept a number from another chat or assume globally permanent sequence identity.
+- [Reply loop](syx_chat.py) saves final assistant events before separately finishing the turn; the coordinator removes accumulated streaming text when the reply task returns. A proposed unread badge must require both a completed turn and a visible final reply, and must not count streaming chunks or expose a duplicate persisted/streaming copy during provider cleanup. These are design constraints; no new failure-injection/provider-cleanup fixture was run here.
+- The current protocol is a strict action parser plus line-oriented UI state. Session attachment, action admission, turn creation and history writes span existing method/transaction boundaries. A future atomic routing/admission design cannot be obtained merely by wrapping these methods in another SQLite context manager. Define one explicit transaction and test injected failures at each write boundary.
+
+## Candidate-plan hazards identified by the fourth peer
+
+These findings concern a draft proposal, not thirteen newly demonstrated bugs in the released build. Retain them as review/test requirements before selecting an implementation:
+
+1. A read acknowledgement must refer to the displayed chat and an event actually belonging to it. A delayed refresh or a click on another chat must not mark unseen messages read. Empty final answers need explicit semantics: exclude them from successful unread replies or display an acknowledgeable placeholder.
+2. On migration, existing historical replies must not all become newly unread. Recover a stopped coordinator independently of normal read-only store opens. Define treatment of failed, cancelled, interrupted and user-stopped turns separately from successful reply counts.
+3. An acknowledgement is not necessarily successful admission. Return an identifiable accepted/rejected/duplicate/unknown outcome. Shared timeout/expiry rules and reuse of the same action ID must prevent a late original send and a retried send from becoming two paid turns.
+4. Establish fresh authoritative presence before automatic routing. Concurrent game instances must not make a shared presence file oscillate between worlds. Never read mutable GUI state from the I/O worker; publish detached state from the game thread. Session changes cannot silently transfer a running turn.
+5. Parse each UI revision into a complete detached model before changing visible state. A partial or malformed update must not overwrite the chat, draft or read acknowledgement. Heartbeat timestamps must not force unrelated widget rebuilds; revisions must remain distinct across coordinator restart.
+6. Plan history rollback and roll-forward explicitly. The current store rejects unsupported user_version values. Test any migration or extension-table approach with the retained previous client, including delete cascades, interrupted turns and restoration; do not assume keeping a ZIP alone makes a newer database backwards compatible.
+7. Use a versioned IPC contract for new fields and acknowledgements. Old readers split existing chat rows at a fixed separator and old action readers reject unknown keys. Never append extra fields to existing rows and assume mixed mod/helper versions will work.
+8. A read mark requires actual display, not merely an open panel or received transcript. Hidden UI, a different selected chat, scrolled-away final replies and obscuring panels must retain their unread status until genuinely displayed under the defined rule.
+
+## Suggested execution slices
+
+First establish migration/admission/read-ack semantics with offline failure, duplicate, wrong-chat, cross-runtime and restart cases. Add a pure game-independent Java protocol/view-state model with shared golden frames. Then integrate automatic connection, filters and durable badge counts at the current layout. Port drag/resize/theme/composer changes after public widget input contracts and focus behavior are established. Follow with typed target chips and cited cards.
+
+Tests must retain paired mod/helper rejection, selected chats beyond list limits, concurrent sessions, draft preservation, stable control identity, completed-versus-partial replies, hidden/scrolled visibility and previous-client rollback behavior. Native fixtures should identify controls semantically where possible, rather than making the new layout preserve historical coordinates. Physical keyboard/pointer and resolution/UI-scale acceptance remain separate manual gates. The production release still needs its exact-source Pro/core/distribution checks and a retained previous tested bundle.

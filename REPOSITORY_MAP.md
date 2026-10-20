@@ -86,6 +86,10 @@ The release whitelist is `make_user_test.MODULES`, five files in `user_test/`, o
 - `CURRENT_COLLECTION_COST_VALIDATION.json`: current published collector in a paused small copied city; COLLECTION_COST_VALIDATION.json preserves the older workforce build. Neither proves large-city/live-capture cost.
 - `COLLABORATION_VALIDATION.json`: the original developer-tool/docs checkpoint, separate from the player's test count/JAR; pinned hashes/counts remain historical as current guides evolve.
 
+## Player-experience revision and background regression
+
+[PLAYER_EXPERIENCE_PLAN.md](PLAYER_EXPERIENCE_PLAN.md) maps the latest user requests, current gaps and acceptance order. `mod/tests/ChatBackgroundScenario.java`, `dev/verify_chat_background.py` and `dev/run_read_fixture.py --case chat-background` exercise current published own-panel widgets at speed 1 with simulated delayed inference through the real coordinator/MCP/history. [CHAT_BACKGROUND_VALIDATION.json](CHAT_BACKGROUND_VALIDATION.json) records finite open/closed time progression and closed completion/reopen. CLAUDE_UX_COLLABORATION.json records four completed local Opus/max peer reviews and the parent session-limit failure; [CLAUDE_UX_REVIEW.md](CLAUDE_UX_REVIEW.md) preserves their edited findings. A final design/prototype is not available. This is developer-only evidence; no production badge, auto-attachment, world grouping, drag/resize or action support is implied. [Blueprint candidate discovery](BLUEPRINT_REFERENCE_CANDIDATES.md) records page-text/metadata leads only; geometry, rights and current-game compatibility still need review.
+
 ## Private/local and deferred material
 
 Ignored `.venv/`, `.tools/`, build/, dist/, runtime/, env/auth files and local game installation are not a portable dependency bundle. Contributors supply their own licensed game, Java/JDK, compatible copied save and provider key. Do not commit private patches/logs or use another app's credential files. The public repository has no selected redistribution license.

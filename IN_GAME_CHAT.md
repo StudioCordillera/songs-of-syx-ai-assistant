@@ -6,6 +6,12 @@ This includes DeepSeek: connecting a DeepSeek API account must lead to the same 
 
 The delivered player currently uses simple DeepSeek Pro chat/history with hidden login/provider/debug controls (USER_TEST_VALIDATION.json). The complete multi-provider setup/selection/evidence UI described below remains a requirement, not a request to expand it during the present core-data focus. Older advanced routes have separate CHAT_VALIDATION.json evidence.
 
+## Latest player revision takes priority
+
+[PLAYER_EXPERIENCE_PLAN.md](PLAYER_EXPERIENCE_PLAN.md) adds automatic game connection, world-group history filtering, Claude Code UX work, drag/resize/themes, target chips and unread notifications. Routine manual attachment is to be removed while preserving session checks and historical provenance. Until implemented, the current player still requires it. The provider selection/account sections below retain deferred broader requirements and do not supersede the simple Pro revision. The new public-API gameplay execution track is separately gated; existing observation tools remain read-only.
+
+[CHAT_BACKGROUND_VALIDATION.json](CHAT_BACKGROUND_VALIDATION.json) now supplies finite current-payload copied-city evidence for time progression while open/closed and a closed completed reply returning on reopen, using simulated inference through the real coordinator. It is not actual provider, physical input or unread-badge acceptance.
+
 ## Full required player experience
 
 Open the assistant in the game, choose a provider/model and subscription or API route, and connect using the supported official authentication flow. The panel shows the active connection in plain language. Create a named chat, ask a question, see the answer arrive, inspect its game observations and citations, and continue the conversation. Previous chats remain accessible under their game-session history.
@@ -31,7 +37,7 @@ The same message composer, transcript, chat list and session log work across pro
 | AI-CHAT-013 | Render citations and untrusted model/game/reference text safely | References display their source/URL, version compatibility and observation age; text is data, not an instruction to invoke game setters or arbitrary code |
 | AI-CHAT-014 | Preserve explicit provider/account boundaries on switching and errors | Changing provider or billing route requires a deliberate user choice, shows whether prior conversation context will be sent, and logs a provider-change event; quota/authentication errors never trigger another route silently |
 
-Mocked replies, setup profiles and local MCP health checks do not satisfy the authenticated in-game acceptance gates. Current 0.12.0 tests establish public game observation behavior, not this chat interface or history feature.
+Mocked replies, setup profiles and local MCP health checks do not satisfy the authenticated in-game acceptance gates. Earlier 0.12.0 observation evidence does not establish chat completion. Current authenticated player and finite background/lifecycle evidence have separate exact-build scopes.
 
 ## Session and conversation model
 

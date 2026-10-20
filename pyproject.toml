@@ -26,3 +26,4 @@ py-modules = ["syx_mcp", "syx_knowledge", "syx_query", "syx_api_support", "syx_a
 [tool.pytest.ini_options]
 testpaths = ["."]
 python_files = ["test_*.py"]
+norecursedirs = ["runtime", ".*", "*.egg", "*.egg-info", "build", "CVS", "dist", "node_modules", "venv", "{arch}", "_darcs"]

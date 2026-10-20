@@ -22,6 +22,10 @@ The production game bridge uses only explicit in-process public game APIs on the
 
 Keep partial/unavailable/unknown, null vs zero, scope, collection caps/errors, source provenance and observation/session consistency explicit. Never claim complete variables, menus, production or performance without evidence. Test-only public mutations belong only in path-validated disposable copied-game fixtures and must be labeled separately from observer behavior. Preserve normal saves and credentials.
 
+## New player-experience revision
+
+The player's newer request is captured in PLAYER_EXPERIENCE_PLAN.md: automatic connection, world-filtered history, Claude Code UI redesign, drag/resize/themes, next-message target attachments, cited blueprint examples and completed-reply unread badges. Finish source-matched checkpoints and develop these in reviewable candidates while preserving the tested player download. Provider/account expansion remains deferred. The new copilot request authorizes public-API action research and a separately reviewed typed execution lane; it does not make the current read-only tools writable or authorize bypassing public API, identity, thread, preview/stop and result-verification gates. No production gameplay actions are implemented yet. External published visual reference analysis is distinct from running-game screenshots, which remain excluded.
+
 ## Validation and publishing
 
 CONTRIBUTING.md has portable setup, offline checks, licensed-game fixtures, a manually supplied DeepSeek key workflow and candidate promotion. On this shared device Claude must use the ignored mode-0600 local .env via --env-file .env; the framework cannot inject environment variables. Never print or commit that file. Offline tests need no provider credentials. Never print keys, put them in commands/chat/commits, copy another app's tokens or run inference implicitly during offline tests.
