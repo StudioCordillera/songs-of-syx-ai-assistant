@@ -15,6 +15,7 @@ MAX_CHATS = 100
 MAX_ATTACHMENTS = 8
 MAX_BYTES = 32768
 KINDS = ('entity', 'tile', 'regional_output')
+RETENTION_NOTICE = 'Estimate at staging only, not revalidated liveness. Eviction or server restart can expire this target earlier; remove or pick again.'
 NOTICE = ('Attached rows are retained historical observations, not current values, '
           'UI selections, permanent identities, executable targets or a shared '
           'transaction. Different captures retain separate ticks and times.')
@@ -150,7 +151,7 @@ class DraftEvidence:
         attachment_id = str(uuid4())
         item = {'attachment_id': attachment_id, **page, 'observation_sha256': sha256(raw).hexdigest(),
                 'retention_hint': {'remaining_seconds_at_stage': remaining,
-                    'notice': 'Estimate at staging only, not revalidated liveness. Eviction or server restart can expire this target earlier; remove or pick again.'}}
+                    'notice': RETENTION_NOTICE}}
         # Validate the whole outgoing envelope before mutating any draft.
         bounded(self._envelope(chat_id, [*self.preview(chat_id), item]))
         stored = {'raw': raw, 'item': bounded(item)}
@@ -168,6 +169,31 @@ class DraftEvidence:
         uuid(chat_id)
         # Detached copies; stale observations remain removable/historical here.
         return [json.loads(item['item']) for item in self._drafts.get(chat_id, {}).values()]
+
+    def clear_accepted(self, chat_id, accepted):
+        """Clear only exact accepted IDs/hashes; missing IDs are idempotent."""
+        uuid(chat_id)
+        if not isinstance(accepted, list) or len(accepted) > MAX_ATTACHMENTS:
+            raise ValueError('At most eight accepted targets required')
+        ids = []
+        for row in accepted:
+            if not isinstance(row, dict) or set(row) != {'attachment_id', 'observation_sha256'}:
+                raise ValueError('Exact accepted target identities required')
+            uuid(row['attachment_id']); ids.append(row['attachment_id'])
+            value = row['observation_sha256']
+            if type(value) is not str or len(value) != 64 or any(c not in '0123456789abcdef' for c in value):
+                raise ValueError('Accepted observation hash required')
+        if len(set(ids)) != len(ids):
+            raise ValueError('Duplicate accepted target IDs')
+        draft = self._drafts.get(chat_id, {})
+        for row in accepted:
+            stored = draft.get(row['attachment_id'])
+            if stored is not None and json.loads(stored['item'])['observation_sha256'] != row['observation_sha256']:
+                raise ValueError('Accepted target content no longer matches; nothing cleared')
+        for aid in ids:
+            draft.pop(aid, None)
+        if not draft:
+            self._drafts.pop(chat_id, None)
 
     def remove(self, chat_id, attachment_id):
         uuid(chat_id); uuid(attachment_id)

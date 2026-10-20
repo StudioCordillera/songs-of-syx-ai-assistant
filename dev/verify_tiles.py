@@ -12,6 +12,8 @@ from mcp.client.stdio import stdio_client
 from syx_mcp import Advisor
 from verify_scenes import verify as verify_scenes
 from dev.chat_target_transport import McpTargetDrafts
+from dev.chat_target_queue import TargetQueue, TargetAdmission
+from syx_chat_store import ChatStore
 from uuid import uuid4
 
 
@@ -128,12 +130,37 @@ async def verify(directory):
             assert first['rows']==retained_rows[:11]
             assert first['captured_ui_context']['active_view']=='settlement'
             target_wire=(directory/'tile-request.txt').read_bytes()
-            target_adapter=McpTargetDrafts(session);target_chat=str(uuid4())
+            target_adapter=McpTargetDrafts(session)
+            target_history=ChatStore(directory/'target-queue-history')
+            target_queue=TargetQueue(target_history);assert target_queue.initialize() is True
+            target_chat=target_history.new(snapshot.session_id,model='deepseek-v4-pro')['chat_id']
             target_item=await target_adapter.stage(target_chat,'tile',token,limit=2)
             target_initial=await target_adapter.prepare(target_chat)
             assert target_initial['attachments'][0]['rows']==retained_rows[:2]
             assert target_item['capture']['request_id']==cap['request_id']
             assert target_item['capture']['tick']==cap['tick']
+            assert (directory/'tile-request.txt').read_bytes()==target_wire
+            target_request=dict(chat_id=target_chat,request_id=str(uuid4()),turn_id=str(uuid4()),game_session=snapshot.session_id,
+                text='Explain the two selected retained tile observations',attachment_ids=[target_item['attachment_id']])
+            target_admission=TargetAdmission(target_queue,target_adapter)
+            accepted=await target_admission.accept(**target_request)
+            accepted_evidence=target_queue.accepted_evidence(target_request['request_id'])
+            assert accepted_evidence['attachments'][0]['rows']==retained_rows[:2]
+            assert target_history.turns(target_chat)[0]['status']=='queued'
+            assert [e['kind'] for e in target_history.events(target_chat)]==['user','target_evidence']
+            await target_admission.acknowledge(target_request)
+            assert target_adapter.preview(target_chat)==[]
+            target_item=await target_adapter.stage(target_chat,'tile',token,limit=2)
+            target_history.close()
+            target_history=ChatStore(directory/'target-queue-history',recover=True)
+            target_queue=TargetQueue(target_history);assert target_queue.initialize() is False
+            target_admission=TargetAdmission(target_queue,target_adapter)
+            assert await target_admission.accept(**target_request)==accepted
+            await target_admission.acknowledge(target_request)
+            assert target_adapter.preview(target_chat)==[target_item]
+            assert target_history.turns(target_chat)[0]['status']=='queued'
+            assert target_queue.accepted_evidence(target_request['request_id'])==accepted_evidence
+            target_history.close()
             assert (directory/'tile-request.txt').read_bytes()==target_wire
             (directory/'tile-capture-advance.request').write_text('test-only public view/speed change\n')
             began=time.monotonic()
@@ -180,9 +207,12 @@ async def verify(directory):
             target_transport_report={'passed':True,'scope':'Developer adapter over actual stdio MCP and copied-city retained tile reads',
                 'direct_public_getter_rows_matched':2,'changed_scene_refused':True,'return_to_original_scene_recovers':True,
                 'evicted_original_token_refused':True,'explicit_new_capture_selection_passed':True,'failed_draft_preserved':True,'stage_and_prepare_did_not_write_tile_request':True,
+                'durable_target_acceptance':{'passed':True,'getter_matched_rows':2,'original_evidence_persisted':True,
+                    'queued_question_not_dispatched':True,'queued_survives_store_restart':True,'exact_replay_no_duplicate_turn':True,
+                    'old_ack_preserves_restaged_target':True,'tile_mailbox_unchanged':True},
                 'native_player_picker_or_send_integration':False,'inference_calls':0,
                 'source_sha256':{name:hashlib.sha256((root/name).read_bytes()).hexdigest() for name in
-                    ['dev/chat_target_candidate.py','dev/chat_target_transport.py','dev/verify_tiles.py']}}
+                    ['dev/chat_target_candidate.py','dev/chat_target_transport.py','dev/chat_target_queue.py','dev/verify_tiles.py']}}
             tile_capture_report={'passed':True,'developer_target_transport':target_transport_report,'game_version':snapshot.game_version,'retained_rows':len(captured),
                 'retained_pages':retained_pages,'direct_public_getter_row_parity':True,'ground_moisture_live_and_retained_parity':True,'ground_moisture_retained_rows':100,'ground_moisture_retained_pages':10,'wide_100_row_tool_text_budget_refusal':True,'original_request_tick_time_scene_and_ui_preserved':True,
                 'active_simulation_and_view_change':True,'paging_did_not_write_game_request_mailbox':True,

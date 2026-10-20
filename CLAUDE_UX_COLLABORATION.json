@@ -181,5 +181,29 @@
         "dev/chat_target_transport.py": "6b480f4142fb1efdfb3a8374d87dee160fb5ab1fc7f4e19ef4f6a681bc6343b7"
       }
     }
-  ]
+  ],
+  "completed_target_queue_review": {
+    "requested_alias": "opus",
+    "effort": "high",
+    "observed_models": [
+      "claude-opus-5-5"
+    ],
+    "tools": [],
+    "exit_code": 0,
+    "subtype": "success",
+    "is_error": false,
+    "duration_ms": 46525,
+    "num_turns": 1,
+    "input_prompt_sha256": "a70fa1220a437452433d0a58835e4ffeacbcb30ff36ecc4e9782d507a58df53a",
+    "final_public_text_sha256": "4795ef98829eeb9c38c3ed464457e778ea0b7cb5ac300fae93aeca6a9c749ddd",
+    "reviewed_source_sha256": {
+      "dev/chat_target_queue.py": "aaf4c04d8a8b7ada3f6988d992bcf793cc81dac8a971c21a677d97df44c13a8d"
+    },
+    "input_working_tree_base": "b8592cc89ac3a9d50855defeaa93d78ed2750766",
+    "isolated_checkout_base": "36b3d91e58c684ad267cd6554e87b920df1c9c07",
+    "edited_decisions": "CHAT_TARGET_QUEUE.md",
+    "final_followup_source_reviewed_by_claude": false,
+    "credits_purchased": false,
+    "account_limits_bypassed": false
+  }
 }

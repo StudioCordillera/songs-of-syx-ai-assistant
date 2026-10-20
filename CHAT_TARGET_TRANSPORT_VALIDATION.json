@@ -115,5 +115,6 @@
     "Single caller-owned server/session; foreign/expired/evicted captures refuse, with no reconnect or recapture.",
     "Original captures stay historical; recent status cannot detect every between-observation transition or freeze the game.",
     "Copied-city two-row getter parity and finite scene/eviction recovery, not native entity/regional/all-menu/performance acceptance."
-  ]
+  ],
+  "subsequent_target_queue_validation": "CHAT_TARGET_QUEUE_VALIDATION.json"
 }

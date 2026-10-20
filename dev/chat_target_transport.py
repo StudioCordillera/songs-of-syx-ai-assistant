@@ -113,6 +113,13 @@ class McpTargetDrafts:
         except TimeoutError as error:
             raise ValueError('Target removal timed out; draft retained') from error
 
+    async def clear_accepted(self, chat_id, accepted):
+        try:
+            async with asyncio.timeout(OPERATION_SECONDS), self._lock:
+                self._draft.clear_accepted(chat_id, accepted)
+        except TimeoutError as error:
+            raise ValueError('Accepted-target acknowledgement timed out; retry exact acknowledgement') from error
+
     async def stage(self, chat_id, kind, capture_id, *, offset=0, limit=1):
         uuid(chat_id); page_arguments(kind, capture_id, offset, limit)
         try:
@@ -126,19 +133,34 @@ class McpTargetDrafts:
         except TimeoutError as error:
             raise ValueError('Target preparation timed out; draft retained, no message sent') from error
 
-    async def prepare(self, chat_id):
+    async def prepare(self, chat_id, *, expected_session=None, expected_ids=None):
         uuid(chat_id)
+        strict = expected_session is not None or expected_ids is not None
+        if strict:
+            uuid(expected_session)
+            if not isinstance(expected_ids, list) or len(expected_ids) > 8:
+                raise ValueError('Expected 0..8 target identities')
+            for aid in expected_ids: uuid(aid)
+            if len(set(expected_ids)) != len(expected_ids):
+                raise ValueError('Expected target IDs must be unique')
         try:
             async with asyncio.timeout(OPERATION_SECONDS), self._lock:
                 await self._admit()
                 state = await self._status()
                 items = self._draft.preview(chat_id)
+                if strict and (state['session_id'] != expected_session or [item['attachment_id'] for item in items] != expected_ids):
+                    raise ValueError('Send runtime or target selection changed; review before sending')
                 for item in items:
                     meta = item['capture']
                     self._origin(meta, state)
                     page, _ = await self._page(item['kind'], meta['capture_id'], item['offset'], item['limit'], state)
                     self._draft.verify_observation(chat_id, item['attachment_id'], page)
-                self._origin(state, await self._status())
-                return json.loads(bounded(self._draft._envelope(chat_id, items)))
+                final = await self._status()
+                self._origin(state, final)
+                envelope = self._draft._envelope(chat_id, items)
+                if strict:
+                    envelope['admission'] = {key: final[key] for key in ('session_id','game_version','snapshot_id','tick','captured_at','scene','fresh','live')}
+                    envelope['admission']['scope'] = 'recent_exporter_observation'
+                return json.loads(bounded(envelope))
         except TimeoutError as error:
             raise ValueError('Target preparation timed out; draft retained, no message sent') from error

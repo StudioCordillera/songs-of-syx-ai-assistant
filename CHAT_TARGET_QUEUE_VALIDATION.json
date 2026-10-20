@@ -1,0 +1,123 @@
+{
+  "passed": true,
+  "validated_at": "2026-10-20T10:26:19.538340+00:00",
+  "stage": "Developer-only durable undispatched question/evidence acceptance, not native UI or provider delivery",
+  "full_offline_tests": 489,
+  "new_queue_cases": 38,
+  "source_sha256": {
+    "dev/chat_target_queue.py": "afc74d752f277d72bc2a4d315714831ec89c12568d971d69640af161049f4cea",
+    "dev/chat_target_candidate.py": "64a26e2c3d0d4ace1d432faa4281b95f820bbda5d76668e191a7ad494f14aeb2",
+    "dev/chat_target_transport.py": "483e0c8eb9c5f4abd882094dfbba6ebcbc31af6de760d1827b91945a8fdfa5ad",
+    "dev/chat_history_candidate.py": "7d552d2c483208fe3e3ec3d7d72bd17cd2d4403711d88dc6b4dab3fc44c61f20",
+    "test_chat_target_queue.py": "1eddc3ce738732c2ddcc99a7bdb9693f5b93771f045a151cc2da1b0d45e776af",
+    "test_chat_target_candidate.py": "5b1f55dab645aa907a0b8cb8d9674d3d551c58db9c155a8359f93f221c87a43a",
+    "test_chat_target_transport.py": "e0c6999dea14462d7eb7256eeb3d6591a3e7cc02977d0fb75b24dfe42e289d1a",
+    "test_chat_history_candidate.py": "b92808555570c74f9f70db11926499a5e2ef3bf4ade2421fb480a17c6eafa365",
+    "dev/verify_tiles.py": "c18dac0aae6a876db90563b26cdbea981ea7b10bad931fe56402a5f82118cfc0",
+    "dev/run_read_fixture.py": "92d22b5b7f4ae6aff768a4dcafdbacb2e3ea94432c83475d7bf66ee3a4268349",
+    "syx_chat_store.py": "a2f2ffa53097cb60eab72c015c3d516693aa1c89c8aa54d74f4dfc96d222e634",
+    "syx_mcp.py": "6e57581936147e8f17f3716c4e71acd24fda4bb63ab6f594e9342587f3b998d5",
+    "syx_capture.py": "32778d9f5f217119ba45b114ba2a710bdd0ce4333efa672c31c690dcc3f3c3ec"
+  },
+  "offline_log_sha256": "d53ea271243acf6a917391e1ca7f599f48382406f4e016d506fa1f845b86f034",
+  "native": {
+    "passed": true,
+    "game_version": "0.71.44",
+    "mod_jar_sha256": "73b44c555a0f9e5e9d2497fee2ce6e6276052b8926117c776ebe1276a4a8cc22",
+    "game_jar_sha256": "fe0137c05408e5ee9e31f06fc44fe37a5d4372d9c985b280f0852d1347c0224b",
+    "source_archive_sha256": "a3fc2aa9f4be31aec0616a5030a656ac49a6011343b7e91395c7bac0b9dfb0a5",
+    "executed_read_report_sha256": "05e7b8c453bfc43c4c60fb6b98a10c6c6ec42ee5e4c46033cbb6358b74f2ec0e",
+    "scene_report_sha256": "ed0c4cb9b713379d4378722d278b37155a5b562d95917810274c238ac2213662",
+    "target_checks": {
+      "passed": true,
+      "scope": "Developer adapter over actual stdio MCP and copied-city retained tile reads",
+      "direct_public_getter_rows_matched": 2,
+      "changed_scene_refused": true,
+      "return_to_original_scene_recovers": true,
+      "evicted_original_token_refused": true,
+      "explicit_new_capture_selection_passed": true,
+      "failed_draft_preserved": true,
+      "stage_and_prepare_did_not_write_tile_request": true,
+      "durable_target_acceptance": {
+        "passed": true,
+        "getter_matched_rows": 2,
+        "original_evidence_persisted": true,
+        "queued_question_not_dispatched": true,
+        "queued_survives_store_restart": true,
+        "exact_replay_no_duplicate_turn": true,
+        "old_ack_preserves_restaged_target": true,
+        "tile_mailbox_unchanged": true
+      },
+      "native_player_picker_or_send_integration": false,
+      "inference_calls": 0,
+      "source_sha256": {
+        "dev/chat_target_candidate.py": "64a26e2c3d0d4ace1d432faa4281b95f820bbda5d76668e191a7ad494f14aeb2",
+        "dev/chat_target_transport.py": "483e0c8eb9c5f4abd882094dfbba6ebcbc31af6de760d1827b91945a8fdfa5ad",
+        "dev/chat_target_queue.py": "afc74d752f277d72bc2a4d315714831ec89c12568d971d69640af161049f4cea",
+        "dev/verify_tiles.py": "c18dac0aae6a876db90563b26cdbea981ea7b10bad931fe56402a5f82118cfc0"
+      }
+    },
+    "copied_profile_mod_restored": true,
+    "copied_save_unchanged": true,
+    "known_engine_crash_markers_absent": true,
+    "game_exit_code": 0,
+    "actual_session_rotation_invalidates_token": true,
+    "provider_inference_calls": 0
+  },
+  "local_claude_review": {
+    "requested_alias": "opus",
+    "effort": "high",
+    "observed_models": [
+      "claude-opus-5-5"
+    ],
+    "tools": [],
+    "exit_code": 0,
+    "subtype": "success",
+    "is_error": false,
+    "duration_ms": 46525,
+    "num_turns": 1,
+    "input_prompt_sha256": "a70fa1220a437452433d0a58835e4ffeacbcb30ff36ecc4e9782d507a58df53a",
+    "final_public_text_sha256": "4795ef98829eeb9c38c3ed464457e778ea0b7cb5ac300fae93aeca6a9c749ddd",
+    "reviewed_source_sha256": {
+      "dev/chat_target_queue.py": "aaf4c04d8a8b7ada3f6988d992bcf793cc81dac8a971c21a677d97df44c13a8d"
+    },
+    "input_working_tree_base": "b8592cc89ac3a9d50855defeaa93d78ed2750766",
+    "isolated_checkout_base": "36b3d91e58c684ad267cd6554e87b920df1c9c07",
+    "edited_decisions": "CHAT_TARGET_QUEUE.md",
+    "final_followup_source_reviewed_by_claude": false,
+    "credits_purchased": false,
+    "account_limits_bypassed": false
+  },
+  "bundled_store_compatibility": {
+    "latest-user-test.zip": {
+      "zip_sha256": "309ee82d47af3e562706a661adcd9deb21a20906b023aca62da1de03767fe558",
+      "checks": [
+        "Actual extracted ChatStore accepts queue extension",
+        "Reopen/recover retains queued record without dispatch",
+        "Exact acceptance/evidence retained",
+        "Deletion cascades, foreign_key_check empty"
+      ]
+    },
+    "previous-user-test.zip": {
+      "zip_sha256": "832f3ad1a49e0c3f5933af7a0c530edaf471a8b6f03b9d4373cec80e1cd6df40",
+      "checks": [
+        "Actual extracted ChatStore accepts queue extension",
+        "Reopen/recover retains queued record without dispatch",
+        "Exact acceptance/evidence retained",
+        "Deletion cascades, foreign_key_check empty"
+      ]
+    }
+  },
+  "production_source_changed": false,
+  "player_bundles_changed": false,
+  "base_history_user_version": 1,
+  "limits": [
+    "No native picker/chip/request/ack lane, production provider-loop handoff, dispatch worker or normal-history migration.",
+    "Atomic/idempotent local acceptance is not a paid provider exactly-once or automatic replay guarantee.",
+    "Fresh admission uses recent exported state, a two-second local preparation lease and conservative -5..30-second export age; it cannot detect every between-export transition.",
+    "SQLite busy timeout can block the helper thread; no helper/UI responsiveness or large-history performance acceptance.",
+    "Two getter-matched native tile rows and finite copied-city restart/ack checks; entity/regional queue data tests remain synthetic.",
+    "Immutable through owned APIs with payload integrity hashes, not protection from an actor with arbitrary SQLite write access.",
+    "No new game APIs, gameplay commands, screenshots, OS game input, normal saves/history access or inference calls."
+  ]
+}

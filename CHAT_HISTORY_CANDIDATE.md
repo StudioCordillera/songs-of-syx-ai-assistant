@@ -29,3 +29,5 @@ Run `.venv/bin/python -m pytest -q test_chat_history_candidate.py` without any k
 ## Later player-pair compatibility recheck
 
 The automatic-connection release ran the full 356-test suite again after promotion, including these twelve candidate cases against the actual new latest and retained previous bundled store code. CHAT_HISTORY_CANDIDATE_VALIDATION.json preserves the original 317-test checkpoint and adds subsequent_player_pair_recheck with exact source/ZIP/store hashes. This does not ship receipts or establish native visibility/world identity.
+
+The later [target queue candidate](CHAT_TARGET_QUEUE.md) shares the independently versioned extension registry. Receipt initialization now permits a missing receipt component when only another component exists, while refusing an unversioned owned receipt table. Both initialization orders are tested without changing base user_version=1; earlier receipt evidence retains its own source hashes.

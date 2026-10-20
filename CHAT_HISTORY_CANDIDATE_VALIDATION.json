@@ -77,5 +77,6 @@
       }
     }
   },
-  "checkpoint_scope_note": "Original 317-test checkpoint fields and hashes are retained. The subsequent_player_pair_recheck records later current/previous bundled-store tests; the extension remains unshipped."
+  "checkpoint_scope_note": "Original 317-test checkpoint fields and hashes are retained. The subsequent_player_pair_recheck records later current/previous bundled-store tests; the extension remains unshipped.",
+  "subsequent_target_queue_validation": "CHAT_TARGET_QUEUE_VALIDATION.json"
 }

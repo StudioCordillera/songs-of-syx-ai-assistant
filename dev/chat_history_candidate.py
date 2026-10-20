@@ -31,7 +31,11 @@ class HistoryCandidate:
         if not exists:
             return None
         row = self.db.execute("SELECT version FROM syx_ux_schema WHERE component='receipts'").fetchone()
-        if row is None or row[0] != 1:
+        if row is None:
+            if self.db.execute("SELECT 1 FROM sqlite_master WHERE type='table' AND name='syx_ux_reads'").fetchone():
+                raise ValueError('Unversioned candidate receipt table')
+            return None
+        if row[0] != 1:
             raise ValueError('Unknown candidate receipt extension version')
         return row[0]
 
@@ -78,7 +82,7 @@ class HistoryCandidate:
                 self.db.commit()
                 return False
             completed = self._completed()
-            self.db.execute('''CREATE TABLE syx_ux_schema(
+            self.db.execute('''CREATE TABLE IF NOT EXISTS syx_ux_schema(
                 component TEXT PRIMARY KEY,version INTEGER NOT NULL)''')
             self.db.execute('''CREATE TABLE syx_ux_reads(
                 chat_id TEXT NOT NULL,turn_id TEXT NOT NULL,event_id TEXT NOT NULL UNIQUE,
