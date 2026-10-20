@@ -1,6 +1,6 @@
 # Per-warehouse live query candidate
 
-This is **developer-only**, outside `mod/src/main/java`, with no player dispatch, mailbox or MCP tool. The current playable ZIP and its predecessor remain unchanged. [Validation](STOCKPILE_LIVE_CANDIDATE_VALIDATION.json) establishes compilation against the paired licensed 0.71.44 JAR, detached protocol checks and two narrow room-lookup readers; it does not establish runtime collector correctness or release acceptance.
+This is **developer-only**, outside `mod/src/main/java`, with no player dispatch, mailbox or MCP tool. The current playable ZIP and its predecessor remain unchanged. [Validation](STOCKPILE_LIVE_CANDIDATE_VALIDATION.json) establishes compilation against the paired licensed 0.71.44 JAR, detached protocol checks and two narrow room-lookup readers; its scope excludes runtime collector correctness and release acceptance. The separate [native candidate check](STOCKPILE_LIVE_NATIVE_VALIDATION.json) now establishes finite getter/page/filter parity described below, with player integration still pending.
 
 ## Intended selective access
 
@@ -26,9 +26,26 @@ Reproduce with licensed files, without a provider key:
   --output runtime/stockpile-candidate-validation.json
 ```
 
+## Finite copied-city candidate evidence
+
+`dev/run_stockpile_candidate.py` compiles the unregistered request and an explicit replacement of the test-only stockpile scenario into private fixture classes. The published player JAR stays unchanged. A separate [current player regression](STOCKPILE_CURRENT_REGRESSION_VALIDATION.json) reruns the original global getter/DTO and retained-observation MCP checks against that JAR; it does not expose the new per-room query. The runner reuses the shared device lock, isolated-home/copied-save path checks, sanitized environment, clean-game-log guard and copied-mod restoration. No provider key is required.
+
+Thirteen native cases execute 72 requests across one warehouse and 42 resources. All 8,170 reported counter comparisons match the separate resource-overload public getters. Fourteen small pages reproduce the complete 42-cell matrix; nine empty filtered pages advance to the terminal cursor. Combined predicates retain original positions, projections preserve mandatory identities without extra fields, zero capacity stays zero, and explicit lookup agrees. Missing/non-warehouse IDs, an unknown resource, expired/cross-session requests and past-end cursors refuse explicitly. Immediate deactivate/reactivate verifies retained stored counters and active predicates, then restores the room. Actual world-view access reads the underlying instantiated city.
+
+Two temporarily changed public scope flags test the refusal branches and are restored within the callback; this does **not** prove actual battle/setup transitions. No room removal/reuse, absent-city, malformed-registry or per-cell exception test is claimed. The maximum observed response is 19,097 bytes, not proof of a general byte-bound refusal policy. Thirty-one warm combined request-frame/parse/collect/encode samples have median 0.490 ms and maximum 1.166 ms in this paused fixture; this is not standalone collector, transport, concurrent-load, large-city or FPS acceptance.
+
+The first native attempt passed its checks but was refused by an overbroad new log check that mistook ordinary captured shutdown stderr for a failure. The runner now reuses `native_game_completion.require_clean_game_log`; two subsequent native runs complete cleanly, including the final projection/zero-capacity follow-up pinned in the report. Passing acceptance requires fixture results, zero process exit, the finite known-crash-marker check, copied-mod restoration and unchanged copied save together.
+
+```sh
+xvfb-run -a -s '-screen 0 1280x960x24' .venv/bin/python dev/run_stockpile_candidate.py \
+  --game-dir '/path/to/Songs of Syx' \
+  --jdk-home '/path/to/jdk' --java '/path/to/game-compatible/java' \
+  --save runtime/smoke.save
+```
+
 ## Next acceptance work
 
-1. Independently compare candidate rows, ordering, filters, empty pages and cursor/error behavior with direct getters in the disposable copied city. Cover explicit unknown/non-warehouse IDs, active/inactive rooms, session/deadline changes and unavailable scenes; establish removal/reuse behavior rather than assuming it.
+1. Extend the finite native parity above to multi-room ordering, removal/reuse, actual unsupported scene/lifecycle transitions, absent-city, per-cell exceptions and hard scan/row limits. Do not generalize the one-room result to complete logistics or all menus.
 2. Implement the strict Python selection/response validator and serialized 64 KiB all-or-error bound, then paired fixed mailboxes under the existing shared request lock. Never move game traversal onto the I/O thread. Verify actual MCP parity and corruption/refusal paths.
 3. Measure collector/encoding/transport cost and real cap/fault paths. Add capability discovery, field provenance and an agent-facing example. No unbounded resource registry, arbitrary member invocation or crate scratch handles.
 4. Only then integrate production, refresh the public-member audit and run exact-source player/provider/core/distribution gates before promoting once and retaining the actual prior ZIP.

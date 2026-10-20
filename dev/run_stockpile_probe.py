@@ -21,6 +21,7 @@ ROOT=Path(__file__).resolve().parent.parent
 sys.path[:0]=[str(ROOT),str(ROOT/'dev')]
 from check_user_test_release import check
 from game_fixture_lock import exclusive_fixture
+from native_game_completion import require_clean_game_log
 from run_player_chat_check import native_environment
 
 
@@ -131,7 +132,7 @@ async def verify(state,manifest):
             'No screenshot, native input or normal game/profile manipulation. Use a separate virtual display with software rendering to isolate presentation while a normal player is running.']}
 
 
-def run(args):
+def run(args, *, scenario_override=None, extra_sources=(), verifier=verify, report_name="stockpile-probe-validation.json"):
     manifest=check(ROOT,args.candidate_dir,args.validation);runtime=(ROOT/'runtime').resolve();home=runtime/'smoke-home';save=args.save.resolve()
     if home.is_symlink() or not home.is_dir() or not save.is_file() or not save.is_relative_to(runtime):
         raise ValueError('Use the isolated smoke-home and a copied save under runtime/')
@@ -145,9 +146,14 @@ def run(args):
     assert sha(jar)==manifest['mod_jar_sha256']
     classes=state/'classes';classes.mkdir()
     env=native_environment(os.environ);env['PYTHONPATH']=str(ROOT)
+    sources=sorted((ROOT/'mod/tests').glob('*.java'))
+    if scenario_override is not None:
+        if scenario_override.name!='StockpileScenario.java':raise ValueError('Only the explicit stockpile scenario can be replaced')
+        sources=[p for p in sources if p.name!=scenario_override.name]+[scenario_override]
+    sources+=list(extra_sources)
     subprocess.run(['java','-Djava.home='+str(jdk),'-m','jdk.compiler/com.sun.tools.javac.Main',
         '--release','16','-encoding','UTF-8','-cp',str(game/'SongsOfSyx.jar')+os.pathsep+str(jar),'-d',str(classes),
-        *map(str,(ROOT/'mod/tests').glob('*.java'))],env=env,check=True)
+        *map(str,sources)],env=env,check=True)
     target=home/'.local/share/songsofsyx/mods/syx-ai-assistant/V71/script/syx-ai-assistant.jar'
     if target.is_symlink() or not target.is_file() or not target.resolve().is_relative_to(home.resolve()):
         raise ValueError('Copied-profile mod JAR must be regular and stay inside smoke-home')
@@ -167,10 +173,12 @@ def run(args):
                 if process.poll() is not None:raise RuntimeError('Native stockpile probe exited early; see private log '+str(state/'game.log'))
                 if time.monotonic()>deadline:raise RuntimeError('Native stockpile probe timed out; see private log '+str(state/'game.log'))
                 time.sleep(.2)
-            report=asyncio.run(verify(state,manifest))
+            report=asyncio.run(verifier(state,manifest))
             (state/'verifier.done').write_text('passed\n');process.wait(timeout=30)
             assert process.returncode==0
+        require_clean_game_log(state/'game.log')
         report['game_exit_code']=process.returncode
+        report['native_failure_markers_absent']=True
         report.update(pair)
     finally:
         if process is not None and process.poll() is None:
@@ -182,7 +190,7 @@ def run(args):
             raise RuntimeError('Copied profile restoration/save integrity check failed; no passing report written')
     report['copied_profile_mod_restored']=True
     report['copied_save_unchanged']=True
-    output=state/'stockpile-probe-validation.json';output.write_text(json.dumps(report,indent=2)+'\n')
+    output=state/report_name;output.write_text(json.dumps(report,indent=2)+'\n')
     print('Stockpile candidate probe passed:',output)
 
 

@@ -1,0 +1,105 @@
+{
+  "passed": true,
+  "checked_at": "2026-10-20T15:42:10.596750+00:00",
+  "scope": "Detached per-warehouse candidate invoked on the public game after-update thread in one paused copied city. No candidate mailbox, MCP endpoint or player integration.",
+  "native_checks": {
+    "passed": true,
+    "cases": [
+      {
+        "name": "typed_instance_discovery_and_counter_identity_parity",
+        "passed": true
+      },
+      {
+        "name": "full_matrix_paging_with_small_scan_and_row_caps",
+        "passed": true
+      },
+      {
+        "name": "empty_filtered_pages_still_advance_matrix_cursor",
+        "passed": true
+      },
+      {
+        "name": "and_predicates_preserve_original_matrix_positions",
+        "passed": true
+      },
+      {
+        "name": "explicit_room_lookup_and_resource_binding",
+        "passed": true
+      },
+      {
+        "name": "projection_preserves_required_identity_without_extra_fields",
+        "passed": true
+      },
+      {
+        "name": "zero_capacity_is_observed_zero_not_missing",
+        "passed": true
+      },
+      {
+        "name": "terminal_and_past_end_cursor",
+        "passed": true
+      },
+      {
+        "name": "unknown_and_nonwarehouse_identity_refusal",
+        "passed": true
+      },
+      {
+        "name": "expired_and_cross_session_refusal",
+        "passed": true
+      },
+      {
+        "name": "immediate_inactive_stored_bookkeeping_and_restoration",
+        "passed": true
+      },
+      {
+        "name": "controlled_public_scope_flags_refuse_not_actual_battle_transition",
+        "passed": true
+      },
+      {
+        "name": "underlying_city_counters_from_world_view",
+        "passed": true
+      }
+    ],
+    "requests": 72,
+    "counter_comparisons": 8170,
+    "room_count": 1,
+    "resource_count": 42,
+    "matrix_cells": 42,
+    "pages": 14,
+    "empty_filtered_pages": 9,
+    "maximum_observed_response_bytes": 19097,
+    "controlled_room_restored": true,
+    "controlled_scope_flags_restored": true
+  },
+  "timing": {
+    "interval": "Request frame construction, parsing, collection and detached JSON encoding together; no IPC/MCP/provider.",
+    "warm_samples": 31,
+    "warm_median_ms": 0.490217,
+    "warm_max_ms": 1.165887
+  },
+  "production_mod_jar_sha256": "43209ef439c1c4278df54cd4b4fbc580441dc8c18cce1b01ad6d5055cbb26b36",
+  "candidate_class_packaged_in_player": false,
+  "source_sha256": {
+    "dev/candidates/stockpiles/StockpileScenario.java": "621b27aa015514652f958c6ad4691c38f5feba8c06d6e4005208eb503947010f",
+    "dev/candidates/stockpiles/syx/assistant/StockpileReadRequest.java": "f9dfdeed8b8de9484070637cdf175cff9b889c9a4d89d49ed9c6e619d6b0aba3",
+    "dev/run_stockpile_candidate.py": "07dc1cbcd81c2b3e0723f354a14f59ccba6b4d87568915779cc879fe999de4bb",
+    "dev/run_stockpile_probe.py": "58ae3d08c3dd4c5ac9a844b318a374cf251b9f78b6dbc68a32e90cb5016dc7ea",
+    "dev/native_game_completion.py": "8d29009ecb6b1c54e65ce4d94bc1c175d189c68aad59251381ec4cf5a063773f",
+    "mod/tests/LiveSmoke.java": "673d5dd203d7732261437c993a6c4e4587f4fdadcaf7d27afaf1ff28e712d37b"
+  },
+  "private_fixture_sha256": "85f80a74d506ba82018f1ffc6657dee3c13cd7ac0ed090777930d5d2c857e34f",
+  "limits": [
+    "The finite copied save has the reported number of warehouses/resources; this is not large-city, 100-room, hard 4096-cell or 100-row cap/fault acceptance.",
+    "The independent resource-overload tally getters share underlying storage; parity is not independent physical inventory truth.",
+    "Immediate public deactivate/reactivate and two temporarily changed public scope flags are test-only, restored within the callback; no save is written.",
+    "Scope-flag refusal is not actual battle/setup lifecycle coverage. Room removal/reuse, absent SETT, malformed registries and per-cell exceptions remain untested.",
+    "World-view access observes instantiated city bookkeeping, not selected warehouses or world inventories. No durable ID or exact tally-age guarantee.",
+    "No mailbox, Python schema/response validator, MCP parity, cross-page consistency, retained capture, runtime byte-bound refusal or paid player acceptance.",
+    "Timings include request construction, parse, collect and encoding together in one callback; not standalone collector cost, scheduling/IPC, concurrent load, FPS or worst-case acceptance."
+  ],
+  "game_exit_code": 0,
+  "native_failure_markers_absent": true,
+  "game_jar_sha256": "fe0137c05408e5ee9e31f06fc44fe37a5d4372d9c985b280f0852d1347c0224b",
+  "source_archive_sha256": "a3fc2aa9f4be31aec0616a5030a656ac49a6011343b7e91395c7bac0b9dfb0a5",
+  "static_boundary_review_sha256": "fb16db8a27038de97902155f91d84736fda4751aa01b3209328f3aa616dce893",
+  "copied_profile_mod_restored": true,
+  "copied_save_unchanged": true
+}

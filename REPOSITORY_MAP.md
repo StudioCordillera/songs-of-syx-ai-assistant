@@ -22,7 +22,7 @@ Game process public after-update callback → detached Java DTOs → local snaps
 
 Only these production classes are packaged. `mod/tests/` contains non-shipped bootstrap and public-API fixtures; some deliberately mutate only copied in-process game state. `LiveSmoke.java` / PathCheck enforce copied save and isolated user.home before engine start. `DegradationPositiveScenario` is a test-only public maintenance action, never an MCP action.
 
-The unregistered per-warehouse request draft lives under `dev/candidates/stockpiles/`; [candidate scope and next gates](STOCKPILE_LIVE_CANDIDATE.md) distinguish it from the nine packaged classes. `dev/verify_stockpile_candidate.py` compiles it and checks detached parsing plus paired public room-lookup bodies without starting the game.
+The unregistered per-warehouse request draft lives under `dev/candidates/stockpiles/`; [candidate scope and next gates](STOCKPILE_LIVE_CANDIDATE.md) distinguish it from the nine packaged classes. `dev/verify_stockpile_candidate.py` compiles it and checks detached parsing plus paired public room-lookup bodies without starting the game. `dev/run_stockpile_candidate.py` separately executes bounded direct-getter/page/filter/refusal checks in the isolated copied city through an explicit test-only scenario override; it does not dispatch candidate requests through the player or MCP.
 
 ## Python runtime modules
 

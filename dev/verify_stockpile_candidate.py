@@ -54,7 +54,7 @@ def verify(game, jdk, catalog_path):
             source = record['source_candidates'][0]
             assert hashlib.sha256(z.read(source['source_file'])).hexdigest() == source['source_sha256']
     production = sorted((ROOT / 'mod/src/main/java').rglob('*.java'))
-    candidates = sorted((ROOT / 'dev/candidates/stockpiles').rglob('*.java'))
+    candidates = sorted((ROOT / 'dev/candidates/stockpiles/syx/assistant').rglob('*.java'))
     assert len(candidates) == 2 and not any(p.name == 'StockpileReadRequest.java' for p in production)
     with tempfile.TemporaryDirectory(prefix='syx-stockpile-codec-') as temporary:
         classes = Path(temporary) / 'classes'

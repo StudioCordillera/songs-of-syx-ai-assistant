@@ -1,6 +1,6 @@
 {
   "passed": true,
-  "checked_at": "2026-10-20T15:36:51.809976+00:00",
+  "checked_at": "2026-10-20T15:40:22.325586+00:00",
   "scope": "Developer-only candidate compilation, strict wire parsing, integer comparisons and two public room lookup reader bodies. No collector execution, game fixture or MCP transport.",
   "game_jar_sha256": "fe0137c05408e5ee9e31f06fc44fe37a5d4372d9c985b280f0852d1347c0224b",
   "source_archive_sha256": "a3fc2aa9f4be31aec0616a5030a656ac49a6011343b7e91395c7bac0b9dfb0a5",
@@ -20,7 +20,7 @@
     "mod/src/main/java/syx/assistant/UiContentCollector.java": "c0d20c7f9f2734a0bb625427875f06bfcd07edb20611248b39b6e8f480ef5a48",
     "mod/src/main/java/syx/assistant/UiContextCollector.java": "0f67200fdcf2740f4d3d4b1751ea0bf143613b20a44afb77af0ebb0ae8078937"
   },
-  "verifier_source_sha256": "f949121d98ee6c14433c3827c3a3ff2cb4929bec4a40c827468709dfe7681dd3",
+  "verifier_source_sha256": "8d0a2a947c7ea59cc396f15daef0840884f3f625292969655fe04e000fd90f15",
   "codec": {
     "accepted_frames": 7,
     "rejected_frames": 41,
