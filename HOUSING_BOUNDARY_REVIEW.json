@@ -1,0 +1,283 @@
+{
+  "passed": true,
+  "evaluated_at": "2026-10-20T18:57:47.715592+00:00",
+  "game_jar_sha256": "fe0137c05408e5ee9e31f06fc44fe37a5d4372d9c985b280f0852d1347c0224b",
+  "source_archive_sha256": "a3fc2aa9f4be31aec0616a5030a656ac49a6011343b7e91395c7bac0b9dfb0a5",
+  "public_route_members": [
+    {
+      "id": "settlement.room.main.RoomsMap#max()",
+      "source_anchor": [
+        {
+          "source_file": "settlement/room/main/RoomsMap.java",
+          "line": 133,
+          "source_sha256": "42262ac80e338eec40b159e4b9adb2148763af22f698654b1cc201dc2e0209fa",
+          "has_javadoc": false
+        }
+      ]
+    },
+    {
+      "id": "settlement.room.main.RoomsMap#getByIndex(int)",
+      "source_anchor": [
+        {
+          "source_file": "settlement/room/main/RoomsMap.java",
+          "line": 129,
+          "source_sha256": "42262ac80e338eec40b159e4b9adb2148763af22f698654b1cc201dc2e0209fa",
+          "has_javadoc": false
+        }
+      ]
+    },
+    {
+      "id": "settlement.room.home.HOME#occupants()",
+      "source_anchor": [
+        {
+          "source_file": "settlement/room/home/HOME.java",
+          "line": 22,
+          "source_sha256": "576f3d5b6191aaae14652d3b092c9e411a1225bff22e8e0cb8b2b6a7bece016e",
+          "has_javadoc": false
+        }
+      ]
+    },
+    {
+      "id": "settlement.room.home.HOME#occupantsMax()",
+      "source_anchor": [
+        {
+          "source_file": "settlement/room/home/HOME.java",
+          "line": 23,
+          "source_sha256": "576f3d5b6191aaae14652d3b092c9e411a1225bff22e8e0cb8b2b6a7bece016e",
+          "has_javadoc": false
+        }
+      ]
+    },
+    {
+      "id": "settlement.room.home.house.HomeInstance#occupants()",
+      "source_anchor": [
+        {
+          "source_file": "settlement/room/home/house/HomeInstance.java",
+          "line": 355,
+          "source_sha256": "59a55d54a99b829a51afcfa3d6b1d10cbf8ee043f997b83fec15cd142a1b7d08",
+          "has_javadoc": false
+        }
+      ]
+    },
+    {
+      "id": "settlement.room.home.house.HomeInstance#occupantsOdd()",
+      "source_anchor": [
+        {
+          "source_file": "settlement/room/home/house/HomeInstance.java",
+          "line": 360,
+          "source_sha256": "59a55d54a99b829a51afcfa3d6b1d10cbf8ee043f997b83fec15cd142a1b7d08",
+          "has_javadoc": false
+        }
+      ]
+    },
+    {
+      "id": "settlement.room.home.house.HomeInstance#occupantsMax()",
+      "source_anchor": [
+        {
+          "source_file": "settlement/room/home/house/HomeInstance.java",
+          "line": 453,
+          "source_sha256": "59a55d54a99b829a51afcfa3d6b1d10cbf8ee043f997b83fec15cd142a1b7d08",
+          "has_javadoc": false
+        }
+      ]
+    },
+    {
+      "id": "settlement.room.home.house.HomeInstance#occupant(int)",
+      "source_anchor": [
+        {
+          "source_file": "settlement/room/home/house/HomeInstance.java",
+          "line": 342,
+          "source_sha256": "59a55d54a99b829a51afcfa3d6b1d10cbf8ee043f997b83fec15cd142a1b7d08",
+          "has_javadoc": false
+        }
+      ]
+    },
+    {
+      "id": "settlement.room.home.house.HomeInstance#isolation()",
+      "source_anchor": [
+        {
+          "source_file": "settlement/room/home/house/HomeInstance.java",
+          "line": 537,
+          "source_sha256": "59a55d54a99b829a51afcfa3d6b1d10cbf8ee043f997b83fec15cd142a1b7d08",
+          "has_javadoc": false
+        }
+      ]
+    },
+    {
+      "id": "settlement.room.home.house.ROOM_HOME#total(init.type.HGROUP)",
+      "source_anchor": [
+        {
+          "source_file": "settlement/room/home/house/ROOM_HOME.java",
+          "line": 93,
+          "source_sha256": "1d35bf1f2cd70ffa15d6fa6570c1d290483ab7a37326e1776f6f0286aebf7213",
+          "has_javadoc": false
+        }
+      ]
+    },
+    {
+      "id": "settlement.room.home.house.ROOM_HOME#used(init.type.HGROUP)",
+      "source_anchor": [
+        {
+          "source_file": "settlement/room/home/house/ROOM_HOME.java",
+          "line": 99,
+          "source_sha256": "1d35bf1f2cd70ffa15d6fa6570c1d290483ab7a37326e1776f6f0286aebf7213",
+          "has_javadoc": false
+        }
+      ]
+    },
+    {
+      "id": "init.type.HGROUP#all()",
+      "source_anchor": [
+        {
+          "source_file": "init/type/HGROUP.java",
+          "line": 55,
+          "source_sha256": "9e01e4c5fce5805ca26d3a270ef15669ef29a5354ad94193872bbeef136d25e1",
+          "has_javadoc": false
+        }
+      ]
+    },
+    {
+      "id": "init.type.HGROUP#index()",
+      "source_anchor": [
+        {
+          "source_file": "init/type/HGROUP.java",
+          "line": 105,
+          "source_sha256": "9e01e4c5fce5805ca26d3a270ef15669ef29a5354ad94193872bbeef136d25e1",
+          "has_javadoc": false
+        }
+      ]
+    },
+    {
+      "id": "settlement.room.home.chamber.ChamberInstance#occupants()",
+      "source_anchor": [
+        {
+          "source_file": "settlement/room/home/chamber/ChamberInstance.java",
+          "line": 158,
+          "source_sha256": "f381246099489fb47dd231c9d823208948237224c542737335d385d385392b49",
+          "has_javadoc": false
+        }
+      ]
+    },
+    {
+      "id": "settlement.room.home.chamber.ChamberInstance#occupantsMax()",
+      "source_anchor": [
+        {
+          "source_file": "settlement/room/home/chamber/ChamberInstance.java",
+          "line": 205,
+          "source_sha256": "f381246099489fb47dd231c9d823208948237224c542737335d385d385392b49",
+          "has_javadoc": false
+        }
+      ]
+    }
+  ],
+  "selected_source_sha256": {
+    "settlement/room/home/HOME.java": "576f3d5b6191aaae14652d3b092c9e411a1225bff22e8e0cb8b2b6a7bece016e",
+    "settlement/room/home/house/HomeInstance.java": "59a55d54a99b829a51afcfa3d6b1d10cbf8ee043f997b83fec15cd142a1b7d08",
+    "settlement/room/home/house/ROOM_HOME.java": "1d35bf1f2cd70ffa15d6fa6570c1d290483ab7a37326e1776f6f0286aebf7213",
+    "settlement/room/home/house/OddHome.java": "4448bcc0122507141113e4e485ff6ea722aa3e1f9e29952bb1c6329eae087f56",
+    "settlement/room/home/house/HomeContructor.java": "ac3c05e10215ab5656f33d6a94e250247e590347da9697bc982f1a3685fe9f25",
+    "settlement/room/home/chamber/ChamberInstance.java": "f381246099489fb47dd231c9d823208948237224c542737335d385d385392b49",
+    "settlement/room/home/chamber/ROOM_CHAMBER.java": "34eec9a78040c06e21d101eae41d7d8e181c4de474b9b25653127e46695c2f94",
+    "settlement/room/home/chamber/Constructor.java": "5fd0b5eff6cb36f87e072c2e2eb12ad2cbf4d5a6f3a8cda2a7b32b2f1dc094aa",
+    "settlement/room/main/Room.java": "00cfa45c5e55c6ae24ab361af2505570cf7e40fb5e55a3341de66e435034d877",
+    "settlement/room/main/RoomInstance.java": "5a2cd2bb21b33e0461efcea619998ea6a139782f80702f360de6d7584bdf6f07",
+    "settlement/room/main/MapDataF.java": "7395de01a4eac86c9faa288a9810df6513db770aff83cb8355e3290291027e72",
+    "settlement/room/main/furnisher/Furnisher.java": "eb2d8f238374a34d0a1e4718ee9dbe125c4eb28fa58a5d902c2efc88f417122b",
+    "settlement/room/main/furnisher/FurnisherItemGroup.java": "18d85b0a7c9f99a5f846ae10100723586ae53b31d5abbb48593464fa0760e0fe",
+    "init/type/HGROUP.java": "9e01e4c5fce5805ca26d3a270ef15669ef29a5354ad94193872bbeef136d25e1",
+    "settlement/stats/colls/StatsHome.java": "a92e7473813f087b772e4bbe5071669d6bbeb0e8a8e67bfb565c96c38cbb90a2"
+  },
+  "selected_reader_checks": [
+    {
+      "owner": "settlement.room.home.house.HomeInstance",
+      "signature": "public int occupants();",
+      "normalized_disassembly_sha256": "6849933f3936d5368af76afa7516e1125214d8515c9144b9f6327c20703e07b3",
+      "scope": "Selected stored/constant accessor body; no calls, direct writes, allocation or backward branch."
+    },
+    {
+      "owner": "settlement.room.home.house.HomeInstance",
+      "signature": "public int occupantsOdd();",
+      "normalized_disassembly_sha256": "8acb4c6081543bd8a25894ee6ee6420e06743b1774322c747fb730bd8e246b93",
+      "scope": "Selected stored/constant accessor body; no calls, direct writes, allocation or backward branch."
+    },
+    {
+      "owner": "settlement.room.home.house.HomeInstance",
+      "signature": "public double isolation();",
+      "normalized_disassembly_sha256": "32cecd68249c12e3a0949aba5d032b98dd1a6ed0e134a3fc597efff79f4b8383",
+      "scope": "Selected stored/constant accessor body; no calls, direct writes, allocation or backward branch."
+    },
+    {
+      "owner": "settlement.room.home.chamber.ChamberInstance",
+      "signature": "public int occupantsMax();",
+      "normalized_disassembly_sha256": "72e3790c3dbb29653a28af4e03a03612e85d983fe0948c49c0e7015c0e39036a",
+      "scope": "Selected stored/constant accessor body; no calls, direct writes, allocation or backward branch."
+    },
+    {
+      "owner": "init.type.HGROUP",
+      "signature": "public int index();",
+      "normalized_disassembly_sha256": "e76682d7831e8e4f4047e1636b584f6da61458126dd9eecd8cd15ff5f927ab05",
+      "scope": "Selected stored/constant accessor body; no calls, direct writes, allocation or backward branch."
+    },
+    {
+      "owner": "settlement.room.home.house.ROOM_HOME",
+      "signature": "total(HGROUP)",
+      "normalized_disassembly_sha256": "29d8840358f681a4ce2f94cc22b1a166b3ec3456c14ebc611c1db20bea86fa62",
+      "scope": "Null returns stored group-sum scalar; nonnull indexes stored group array through separately checked HGROUP.index."
+    },
+    {
+      "owner": "settlement.room.home.house.ROOM_HOME",
+      "signature": "used(HGROUP)",
+      "normalized_disassembly_sha256": "d791e2997b3b297d6a50f561e04c6274f533b97f41bc47a267701cd12a8eda95",
+      "scope": "Null returns stored group-sum scalar; nonnull indexes stored group array through separately checked HGROUP.index."
+    }
+  ],
+  "excluded_routes": [
+    {
+      "owner": "settlement.room.home.house.HomeInstance",
+      "signature": "public int resourceAm(int);",
+      "normalized_disassembly_sha256": "27f2ead8e0871fc93540a0f3b17ca753d91e9275b790d5696896b8eb3e06306b",
+      "reason": "Can mutate persistent state/cache, lighting or search queue; excluded from observer."
+    },
+    {
+      "owner": "settlement.room.home.house.HomeInstance",
+      "signature": "private void resCount();",
+      "normalized_disassembly_sha256": "1565f5969bae903b9dc9f0ac9c4dda122ac7c5d943deb3c939a7cee66d037d0d",
+      "reason": "Can mutate persistent state/cache, lighting or search queue; excluded from observer."
+    },
+    {
+      "owner": "settlement.room.home.house.HomeInstance",
+      "signature": "public settlement.room.home.HOME use();",
+      "normalized_disassembly_sha256": "e0652e5cb392fa2678cce1035057dee1abd8f5232fb131f6189e78b9959d1b99",
+      "reason": "Can mutate persistent state/cache, lighting or search queue; excluded from observer."
+    },
+    {
+      "owner": "settlement.room.home.house.OddHome",
+      "signature": "public boolean has(settlement.entity.humanoid.Humanoid);",
+      "normalized_disassembly_sha256": "d3c2c8140d062c9f7cef0909dc98925cb85b1cc974f208aa4974ff631c62dafc",
+      "reason": "Can mutate persistent state/cache, lighting or search queue; excluded from observer."
+    }
+  ],
+  "external_candidate_compilation": true,
+  "detached_budget_rejections": 8,
+  "game_initializations": 0,
+  "source_sha256": {
+    "dev/candidates/housing/syx/assistant/candidate/HousingObservation.java": "c258a5ed55aab537b2aab646bf6f27051f741395a3feea9f43da10fcad1eaff8",
+    "dev/review_housing_boundary.py": "8c70e96117f1d695a4ac58897fb33ed89a306d52b169e508c9ae5c79e622bade"
+  },
+  "manual_semantic_review": [
+    "Ordinary homes are persistent HomeInstance room slots, distinct from RoomInstance employee/producer tables. Capacity follows furnishing-group/upgrade lookup through public pure stored accessors; service coordinates are door/service identity, not UI selection.",
+    "HomeInstance.occupants is a stored assigned count; occupantsOdd is stored no-employment-at-accounting bookkeeping, not an up-to-date unemployment census. Availability uses am-amOdd and may admit a replacement even when the physical roster is full.",
+    "ChamberInstance.occupants resolves its recorded entity ID to report zero/one. Zero does not prove its private raw ID slot is zero. Its capacity is constant one. These two home kinds must keep different count provenance.",
+    "ROOM_HOME.report adds counters once per eligible cohort bit; null total/used sums these cohort ledgers. Empty homes can therefore contribute to multiple cohorts. Neither null totals nor sum(cohort capacity-used) is a unique physical vacancy count.",
+    "Ordinary isolation is an unsigned eight-bit fraction. Chamber isolation delegates to conditional RoomInstance isolation and may return one when its constructor does not require indoors; not complete housing quality or fresh environmental measurement.",
+    "HomeInstance.resourceAm calls resCount/unuse and can refresh resourceData/renderTimer or lighting. use, occupy/vacate, settingSet, upgradeSet and OddHome search queue methods are excluded.",
+    "Policy-bit getters can lazily allocate/resize backing data and occupied-home availability can initialize specific-group caches; no policy handle or eligibility evaluation is exposed by this candidate.",
+    "Existing hCoo is a public reusable scratch coordinate. A native fixture may immediately copy/check it against a home service coordinate; no scratch or HOME/room/entity handle crosses a DTO boundary."
+  ],
+  "limits": [
+    "Selected shipped-source/bytecode/accessibility checks, not separately documented stable official housing contracts or whole call-graph equivalence.",
+    "Manual transitive review covers fixed known concrete home/chamber/furnisher/map/index routes; no generic HOME implementation or arbitrary invocation is accepted.",
+    "No native/MCP/player acceptance follows from this static verifier. Candidate remains unregistered; two known home types only.",
+    "Rows/slots/cohorts/resident IDs have finite caps; failure/truncation qualify absence. No physical presence, effective reachability, permanent room identity or exact counter age claim."
+  ]
+}

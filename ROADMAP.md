@@ -173,3 +173,8 @@ WEATHER_SCENE_VALIDATION.json adds eight actual weather scene phases, including 
 ## Stored weather production checkpoint
 
 WEATHER.md / WEATHER_VALIDATION.json promote the fixed fourteen-value public weather mapping through existing selective MCP queries, with per-field source meanings, atomic invalid/unavailable refusal and explicit read-time versus update-age limits. Four getter/DTO/retained-original query observations and eight actual live scene queries pass; sixteen new public references bring the inventory to 413. All 583 tests and source-matched Pro/core/helper/capture/distribution gates precede one promotion retaining the true prior bundle. No weather-specific external guide or semantic provider-advice claim is added. Continue wider variables/context/reference coverage, native faults and representative costs; this does not complete the overall objective.
+
+
+## Housing reader candidate
+
+HOUSING_CANDIDATE.md adds fixed known physical-home rows/rosters and separate eligibility-weighted ordinary-home ledgers. Public source/selected-bytecode/compiler checks and 32 copied-city samples establish ordinary-home getter and 204 recorded-assignment-coordinate joins. Mutating resource/light/search/policy-normalization paths are excluded; group-null totals are not unique physical beds. Real noble chambers, budgets/faults/lifecycle and query diagnostics must precede reviewed production mapping and paired release gates. This candidate does not change current housing MCP/player support or complete the broader objective.

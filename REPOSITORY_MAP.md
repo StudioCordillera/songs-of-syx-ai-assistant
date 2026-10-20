@@ -183,3 +183,8 @@ At handoff, update WORK_STATUS and the relevant current feature guides. Keep pre
 ## Production stored weather
 
 [Weather fields and scopes](WEATHER.md), `WeatherObservation.java`, the map-domain wrapper, `WeatherScenario.java` and `dev/verify_weather.py` supply same-callback full-observation getter/DTO checks and actual retained-original MCP projections, followed by eight actual live weather scene queries. `dev/review_weather_production.py` / [contract review](WEATHER_CONTRACT_REVIEW.json) and [runtime evidence](WEATHER_VALIDATION.json) separate public source/bytecode/codec findings from actual behavior. `test_weather.py`, `weather-query-example.json` and the capability-discovery verifier cover zero/unavailable/stale snapshot and discoverable source meanings. Earlier candidate reports retain their source/JAR dates.
+
+
+## Housing record/ledger candidate
+
+[Housing candidate scope](HOUSING_CANDIDATE.md) maps `dev/candidates/housing/syx/assistant/candidate/HousingObservation.java`, the explicit `StockpileScenario.java` host override, `dev/review_housing_boundary.py` and `dev/run_housing_candidate.py`. [Selected source/public-reader review](HOUSING_BOUNDARY_REVIEW.json) is separate from [32 native samples](HOUSING_CANDIDATE_VALIDATION.json): 36 ordinary homes, 204 assignment links and 16 eligibility-weighted cohort rows. Noble branch, actual budgets/faults and broader lifecycle remain unvalidated. No production/MCP housing field or player ZIP change yet.

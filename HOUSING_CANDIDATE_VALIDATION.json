@@ -1,0 +1,68 @@
+{
+  "passed": true,
+  "evaluated_at": "2026-10-20T19:02:57.136384+00:00",
+  "scope": "Unregistered candidate: fixed known home types, assigned rosters and ordinary-home group-weighted ledgers in one unchanged paused copied city.",
+  "native_checks": {
+    "passed": true,
+    "ordinary_homes": 36,
+    "noble_chambers": 0,
+    "resolved_roster_ids": 204,
+    "assignment_coordinate_matches": 204,
+    "cohort_rows": 16,
+    "capacity_group_sum_differs_from_unique_ordinary_home_sum": true,
+    "used_group_sum_differs_from_unique_ordinary_home_sum": false,
+    "samples": 32,
+    "candidate_bytes": 18135
+  },
+  "collector_cost": {
+    "interval": "Candidate collect including fixed room-slot scan, detached rows/rosters/cohort data and bounds, excluding independent baseline and encoding.",
+    "samples_after_first": 31,
+    "median_ms": 0.183881,
+    "max_ms": 0.219437
+  },
+  "mod_jar_sha256": "64e637eadddecc9609d1715573fd1287ece80a4a3304aac20f2e50fd1b8ae979",
+  "production_source_sha256": {
+    "syx/assistant/AssistantScript.java": "c2b8ed68350d4a274315b16dc9ff1c6828a51516777c1ef4a45b84acc6d8b092",
+    "syx/assistant/ChatPanel.java": "06db6b7715f9187a40a0b4b987ab7f64e09df5f9dc07193e261249302d1ac12f",
+    "syx/assistant/EntityReadRequest.java": "e2d13aee21f399e8718382d5b43d5a6c85e5d78d2708d8105b9f1ecfe730edf8",
+    "syx/assistant/JsonWriter.java": "c525eb60d3224cab83ed3fd6b8594ec8652211f00bd947e873e1482f919e81dc",
+    "syx/assistant/RegionalReadRequest.java": "4d1da800e6f2ecf6b036f188693ac1095329321bc569c82f34be9918768ef2b3",
+    "syx/assistant/StateCollector.java": "09f96ee681945456e041194003ec070daa3f0a7319a0ce297af2e864aedade37",
+    "syx/assistant/StockpileReadRequest.java": "589ab0087808dbc973aa7726829c3260c609e043baac080824538c44ed5df360",
+    "syx/assistant/TileReadRequest.java": "5daf3cc3abc0cb849f654e09efadb3d0263b73d4e5e220e97671ea1c4a40bde6",
+    "syx/assistant/UiContentCollector.java": "c0d20c7f9f2734a0bb625427875f06bfcd07edb20611248b39b6e8f480ef5a48",
+    "syx/assistant/UiContextCollector.java": "0f67200fdcf2740f4d3d4b1751ea0bf143613b20a44afb77af0ebb0ae8078937",
+    "syx/assistant/WeatherObservation.java": "ddda0d16df5581ee9e032e98cebc843f2bbb0b2d20b02dcfc14dedf2cec7fe25"
+  },
+  "candidate_packaged_in_player": false,
+  "candidate_housing_mcp_calls": 0,
+  "provider_calls": 0,
+  "save_writes": 0,
+  "housing_static_review_sha256": "e7142e8d82eb6bfe8b2fcfddf600cc7d9bab8eeeb174ae0567027eee163aaebb",
+  "source_sha256": {
+    "dev/candidates/housing/StockpileScenario.java": "ea9289d9e0318c5ad555bfc78c35bea92c58044a7383af80818a4cc377088810",
+    "dev/candidates/housing/syx/assistant/candidate/HousingObservation.java": "c258a5ed55aab537b2aab646bf6f27051f741395a3feea9f43da10fcad1eaff8",
+    "dev/run_housing_candidate.py": "0453159b14374dc42a4a571a1639f5120abf0e9c9907c21948795596e691720a",
+    "dev/review_housing_boundary.py": "8c70e96117f1d695a4ac58897fb33ed89a306d52b169e508c9ae5c79e622bade",
+    "dev/run_stockpile_probe.py": "2ec255855a2d92a3435543a814ec4388de0184d3fd78dd6a2be0652704d182e5",
+    "mod/tests/LiveSmoke.java": "bd6d755d51ed03881ed4074b99a9be489acb8fd46ddb0d0c3a9f8a9a0d8aa211",
+    "dev/native_game_completion.py": "8d29009ecb6b1c54e65ce4d94bc1c175d189c68aad59251381ec4cf5a063773f"
+  },
+  "private_fixture_sha256": "0c670a9538bee77e3ab3a78e47895d74026c8f692a8078cf95e4e37d1312038f",
+  "limits": [
+    "One paused copied city; naturally present known ordinary/noble type counts are recorded. Zero examples of a type do not establish native acceptance for that type.",
+    "Public stored/resolved getters share engine storage. Roster/home-coordinate agreement is observed linkage, never physical presence, current sleeping or universal bidirectional consistency.",
+    "Cohort sums are eligibility-weighted ledgers, not unique physical beds or effective vacant housing; no overlapping-empty-home mutation fixture or actual person eligibility evaluation.",
+    "No room removal/reuse, real budget/fault/roster-cap, live simulation, battle/setup/reload or large-city/FPS acceptance. Eight bad-budget cases run separately without initializing a game.",
+    "The candidate reads no resource/use/search/eligibility action and returns no engine handle. The existing hCoo scratch coordinate is compared/copied immediately in this fixture only.",
+    "The shared host uses explicit legacy scenario/ready-file hooks; no production home field, new tool, provider call or normal-profile change is implemented."
+  ],
+  "explicit_fixture_clean_completion": true,
+  "game_exit_code": 0,
+  "native_failure_markers_absent": true,
+  "game_jar_sha256": "fe0137c05408e5ee9e31f06fc44fe37a5d4372d9c985b280f0852d1347c0224b",
+  "source_archive_sha256": "a3fc2aa9f4be31aec0616a5030a656ac49a6011343b7e91395c7bac0b9dfb0a5",
+  "static_boundary_review_sha256": "e7142e8d82eb6bfe8b2fcfddf600cc7d9bab8eeeb174ae0567027eee163aaebb",
+  "copied_profile_mod_restored": true,
+  "copied_save_unchanged": true
+}
