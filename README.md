@@ -38,6 +38,7 @@ It fetches remote branches/tags and reports remote changes, overlapping unpublis
 - [On-demand regional output selections](REGIONAL_LIVE_READS.md) read explicit active-region/resource cells independently of cached export limits. [Retained regional captures](REGIONAL_CAPTURES.md) keep one complete selection consistent across pages: up to 10,000 requested cells, 2,000 matching rows and 2 MiB, with failure refusal and original provenance.
 - [World faction panel context](WORLD_FACTION_CONTEXT.md): bounded active-faction identity and stored diplomacy-tab observations, with same-snapshot diplomacy joins and explicit modal/inactive-view limits.
 - [World list-panel context](WORLD_LIST_CONTEXT.md): army, realm and region-browser membership with unavailable/null, modal/hidden UI and same-observation query rules. No selected army/region inference.
+- [Stored city weather](WEATHER.md): ten game-scale factors and four stored/sign flags through same-snapshot selective queries, with explicit units, age and city-only scope. These are not physical units, regional weather, crop yields or forecasts.
 - [Cached viewport geometry](CACHED_VIEWPORT.md) through public stored camera readers for city/tactical/battle/world, with explicit coordinate spaces, unknown cache age/visibility and management/loading/unsupported refusal. No hover/selection or complete visible-tile inference.
 - Partial public-API UI context: active views, known overlays, selected person, open room blueprint and bounded exposed popup/section content. [UI/API limits](API_ESTABLISHMENT.md) remain explicit.
 

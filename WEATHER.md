@@ -1,0 +1,14 @@
+# Stored city weather through selective queries
+
+The map domain exposes `/weather`: ten fixed stored game-scale factors and four stored/sign flags from public in-process APIs. See field definitions under `/weather/field_definitions`. The data is under `/weather/data/factors` and `/weather/data/flags`, in the same observation as the root snapshot/context. Query only the needed columns with `select_game_state`; `weather-query-example.json` is an authored projection, not a live weather measurement.
+
+Coverage is partial for a completed instantiated campaign city, including its underlying weather while other views are open. Generated battlefield/setup/no-city and read/numeric failures are unavailable/null, not zero weather. Exact factor/flag age is unknown. The getters are source/binary verified public members in Songs of Syx 0.71.44, not separately documented stable official contracts.
+
+Factors: precipitation history, global ground snow, global water ice, wind strength, temperature scale, cloud amount, downfall intensity, thunder amount, plant growth and seasonal ripeness. All are finite game-defined [0,1] values. Temperature is not Celsius/Fahrenheit; precipitation history is neither current downfall nor tile moisture. Snow/ice are not local tile depth/passability. Growth/ripeness are not individual crop yields, harvestable stock or complete productivity modifiers. No target/forecast is exported.
+
+Flags: downfall is snow, autumn growth, crops ripe and ripening. They read stored booleans or the sign of stored snow history. The engine computes some ripeness flags using the previous factor before updating its seasonal value. Preserve the flags; do not recompute them from simultaneously exported factors. These flags do not describe a selected object or topmost UI visibility.
+
+WEATHER_CANDIDATE_REVIEW.json pins selected source/bytecode and detached numeric checks; earlier native/candidate scene evidence retains its original source/JAR scope. WEATHER_VALIDATION.json pins the production getter/DTO/MCP and actual scene follow-up. USER_TEST_VALIDATION.json records source-matched release checks. Native malformed stored values/getter exceptions, broad climates/seasons, standalone menu/instant unload and large-city/FPS acceptance remain open. The thirteen-source external guidance corpus is unchanged; no new external weather-guide review or citation is invented.
+
+
+A completed bounded local Claude Code Opus 5.5/high one-file critique found no demonstrated correctness defect. CLAUDE_UX_COLLABORATION.json pins the exact input/source/final hashes and independent assessment. Atomic refusal is intentional; optional null-message diagnostics do not change correctness. The reviewer's inference that corrupt values occur in real saves is not adopted as evidence. No production change, credit purchase, limit bypass or retry follows from this review.

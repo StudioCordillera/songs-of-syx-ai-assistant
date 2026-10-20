@@ -1,0 +1,13 @@
+{
+  "include_ui_context": true,
+  "queries": [{
+    "source": {"domain": "map", "path": "/weather/data"},
+    "select": {
+      "precipitation_history": {"field": "/factors/precipitation_history"},
+      "temperature_scale": {"field": "/factors/temperature_scale"},
+      "downfall_intensity": {"field": "/factors/downfall_intensity"},
+      "downfall_is_snow": {"field": "/flags/downfall_is_snow"},
+      "crops_ripe_flag": {"field": "/flags/crops_ripe"}
+    }
+  }]
+}

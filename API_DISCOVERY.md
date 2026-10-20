@@ -2,7 +2,7 @@
 
 The production reference audit proves only the public members used by our adapter. To identify remaining mapping work, `catalog_api.py` separately scans the entire shipped source archive and resolves its named types and public declared members against the installed game JAR with the Java compiler. It never starts the game, executes its classes, or uses reflection. This is development tooling, outside the packaged mod and MCP server.
 
-The current scan covers 2,443 source files, resolves every cataloged named top-level/member source type, and finds 2,052 public types with public enclosing types and 17,442 public declared member signatures. All 397 production reference IDs occur in this catalog. Matching game JAR/source archive hashes establish that the discovery run and production audit used the same reference pair. They do not attest the installed/running mod.
+The current scan covers 2,443 source files, resolves every cataloged named top-level/member source type, and finds 2,052 public types with public enclosing types and 17,442 public declared member signatures. All 413 production reference IDs occur in this catalog. Matching game JAR/source archive hashes establish that the discovery run and production audit used the same reference pair. They do not attest the installed/running mod.
 
 | Root package | Public declared member candidates | Production reference IDs |
 | --- | ---: | ---: |
@@ -81,4 +81,7 @@ The automatic-connection checkpoint paired all 385 references at that checkpoint
 
 The cached-viewport mapping adds eight explicit public camera-window/cache references, bringing that checkpoint pairing to 393. All match the retained declaration catalog/source pair; no dynamic invocation or input/refresh method is exposed. See CACHED_VIEWPORT.md and CACHED_VIEWPORT_CONTRACT_REVIEW.json.
 
-The per-warehouse mapping adds four explicit public references, bringing the current pairing to 397 (all catalog matched). STOCKPILE_LIVE_READS.md and STOCKPILE_LIVE_CONTRACT_REVIEW.json establish fixed tally/slot reader meaning and bounds; the declaration catalog itself still does not establish getter safety or runtime reachability.
+The per-warehouse mapping adds four explicit public references, bringing that checkpoint pairing to 397 (all catalog matched). STOCKPILE_LIVE_READS.md and STOCKPILE_LIVE_CONTRACT_REVIEW.json establish fixed tally/slot reader meaning and bounds; the declaration catalog itself still does not establish getter safety or runtime reachability.
+
+
+The stored-weather mapping adds sixteen fixed public references (413 total, all catalog matched; 412 source anchors plus one generated enum). WEATHER.md / WEATHER_CONTRACT_REVIEW.json / WEATHER_VALIDATION.json pin ten stored game-scale factors and four flags, units/age/scene boundaries and finite production DTO/MCP acceptance. They do not establish physical units, crop predictions, all variables/menus or stable official getter contracts.

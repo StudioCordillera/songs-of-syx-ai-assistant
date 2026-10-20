@@ -18,7 +18,7 @@ This is a routing inventory of the current adapter, not a complete game schema. 
 | diplomacy | `/factions` | Active faction identities and stance | Treaties and relationship factors |
 | military | `/statistics`, `/scene_armies` | BATTLE aggregates and instantiated scene divisions | Full world-army/order schemas and combat history |
 | world | `/regions`, `/population_by_race`, `/regional_output_bookkeeping/rows`, `/regional_output_bookkeeping/schedules`, `/field_definitions` | Region identity/ownership/population plus bounded resource-backed stored accruals and cyclic configured offsets | Retained regional selections, other economy/army relationships, actual shipping/arrival, exact counter age, non-resource output and large-world/cap/fault validation |
-| map | dimensions and on-demand tool description | Scene dimensions, finite tile reads and bounded retained tile selections | Broader spatial fields, larger retained batches and all-field/scene/fault costs |
+| map | dimensions, `/weather`, on-demand tool description | Scene dimensions, ten stored weather factors/four flags, finite tile reads and bounded retained tile selections | Broader spatial fields, larger retained batches and all-field/scene/fault costs |
 | entities | `/items`, `/selected_subject` | Prefix IDs/positions and dedicated selected-person public stats | More typed attributes and relationship filters beyond recorded workplace |
 | events | `/registered_event_types`, current event ID/elapsed fields | Registered event types and current scripted event | Complete incidents/history and future-event claims |
 | settings | pause/speed/time fields | Current public clock and requested speed | Full settings schema |
@@ -82,3 +82,6 @@ Cached viewport geometry is additionally available in same-observation UI contex
 ## Live warehouse/resource selections
 
 `query_live_stockpiles` supplies per-room raw stored/capacity/reservation/crate counters independently of cached room prefixes. Explicit IDs or typed warehouse-slot discovery, exact resource keys, fixed AND predicates/projections and bounded mutable pages are described in STOCKPILE_LIVE_READS.md. This is a separate observation; room IDs can be reused, slots can reorder, and zero capacity/inactive stored values are not missing data. The cached resources domain above still contains global totals. No crate handle, all-logistics census, UI-selected room, exact counter age or multi-page transaction is established.
+
+
+[Weather](WEATHER.md) is completed instantiated-city bookkeeping under map /weather, including underlying city data in other views. Weather data/definitions share the snapshot/context; battle/setup or failures are unavailable/null. Legitimate zero remains zero. Game factors are not physical units, tile moisture, regional weather, crop yields or forecasts; cached ripeness flags may use the previous factor during engine update.

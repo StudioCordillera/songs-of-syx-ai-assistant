@@ -1,0 +1,699 @@
+{
+  "passed": true,
+  "evaluated_at": "2026-10-20T18:23:22.985548+00:00",
+  "game_jar_sha256": "fe0137c05408e5ee9e31f06fc44fe37a5d4372d9c985b280f0852d1347c0224b",
+  "source_archive_sha256": "a3fc2aa9f4be31aec0616a5030a656ac49a6011343b7e91395c7bac0b9dfb0a5",
+  "mod_jar_sha256": "64e637eadddecc9609d1715573fd1287ece80a4a3304aac20f2e50fd1b8ae979",
+  "public_weather_members": [
+    {
+      "id": "settlement.main.SETT#WEATHER()",
+      "owner": "settlement.main.SETT",
+      "name": "WEATHER",
+      "kind": "METHOD",
+      "signature": "WEATHER()",
+      "public": true,
+      "source_file": "settlement/main/SETT.java",
+      "uses": [
+        "WeatherObservation.java:45"
+      ],
+      "parameter_types": [],
+      "compiler_generated_enum": false,
+      "arity": 0,
+      "source_candidates": [
+        {
+          "line": 231,
+          "source_sha256": "406866466d776896e2bf4bda86172a7c9a9ffc7df3494557e1e1135b55f76561",
+          "parameter_types": [],
+          "has_javadoc": false
+        }
+      ],
+      "source_match": "name_arity_and_simple_parameter_types",
+      "documentation_status": "human_review_required; Javadoc presence alone does not establish a stable mod contract"
+    },
+    {
+      "id": "settlement.weather.SWEATHER#clouds",
+      "owner": "settlement.weather.SWEATHER",
+      "name": "clouds",
+      "kind": "FIELD",
+      "signature": "clouds",
+      "public": true,
+      "source_file": "settlement/weather/SWEATHER.java",
+      "uses": [
+        "WeatherObservation.java:47"
+      ],
+      "parameter_types": [],
+      "compiler_generated_enum": false,
+      "arity": -1,
+      "source_candidates": [
+        {
+          "line": 34,
+          "source_sha256": "f86c34cc0f64af514281a3205e64c8fdd36de12d1d86e8bf307b8882935f1fb3",
+          "parameter_types": [],
+          "has_javadoc": false
+        }
+      ],
+      "source_match": "name_arity_and_simple_parameter_types",
+      "documentation_status": "human_review_required; Javadoc presence alone does not establish a stable mod contract"
+    },
+    {
+      "id": "settlement.weather.SWEATHER#growth",
+      "owner": "settlement.weather.SWEATHER",
+      "name": "growth",
+      "kind": "FIELD",
+      "signature": "growth",
+      "public": true,
+      "source_file": "settlement/weather/SWEATHER.java",
+      "uses": [
+        "WeatherObservation.java:47",
+        "WeatherObservation.java:48"
+      ],
+      "parameter_types": [],
+      "compiler_generated_enum": false,
+      "arity": -1,
+      "source_candidates": [
+        {
+          "line": 37,
+          "source_sha256": "f86c34cc0f64af514281a3205e64c8fdd36de12d1d86e8bf307b8882935f1fb3",
+          "parameter_types": [],
+          "has_javadoc": false
+        }
+      ],
+      "source_match": "name_arity_and_simple_parameter_types",
+      "documentation_status": "human_review_required; Javadoc presence alone does not establish a stable mod contract"
+    },
+    {
+      "id": "settlement.weather.SWEATHER#growthRipe",
+      "owner": "settlement.weather.SWEATHER",
+      "name": "growthRipe",
+      "kind": "FIELD",
+      "signature": "growthRipe",
+      "public": true,
+      "source_file": "settlement/weather/SWEATHER.java",
+      "uses": [
+        "WeatherObservation.java:47",
+        "WeatherObservation.java:48"
+      ],
+      "parameter_types": [],
+      "compiler_generated_enum": false,
+      "arity": -1,
+      "source_candidates": [
+        {
+          "line": 38,
+          "source_sha256": "f86c34cc0f64af514281a3205e64c8fdd36de12d1d86e8bf307b8882935f1fb3",
+          "parameter_types": [],
+          "has_javadoc": false
+        }
+      ],
+      "source_match": "name_arity_and_simple_parameter_types",
+      "documentation_status": "human_review_required; Javadoc presence alone does not establish a stable mod contract"
+    },
+    {
+      "id": "settlement.weather.SWEATHER#ice",
+      "owner": "settlement.weather.SWEATHER",
+      "name": "ice",
+      "kind": "FIELD",
+      "signature": "ice",
+      "public": true,
+      "source_file": "settlement/weather/SWEATHER.java",
+      "uses": [
+        "WeatherObservation.java:46"
+      ],
+      "parameter_types": [],
+      "compiler_generated_enum": false,
+      "arity": -1,
+      "source_candidates": [
+        {
+          "line": 31,
+          "source_sha256": "f86c34cc0f64af514281a3205e64c8fdd36de12d1d86e8bf307b8882935f1fb3",
+          "parameter_types": [],
+          "has_javadoc": false
+        }
+      ],
+      "source_match": "name_arity_and_simple_parameter_types",
+      "documentation_status": "human_review_required; Javadoc presence alone does not establish a stable mod contract"
+    },
+    {
+      "id": "settlement.weather.SWEATHER#moisture",
+      "owner": "settlement.weather.SWEATHER",
+      "name": "moisture",
+      "kind": "FIELD",
+      "signature": "moisture",
+      "public": true,
+      "source_file": "settlement/weather/SWEATHER.java",
+      "uses": [
+        "WeatherObservation.java:46"
+      ],
+      "parameter_types": [],
+      "compiler_generated_enum": false,
+      "arity": -1,
+      "source_candidates": [
+        {
+          "line": 29,
+          "source_sha256": "f86c34cc0f64af514281a3205e64c8fdd36de12d1d86e8bf307b8882935f1fb3",
+          "parameter_types": [],
+          "has_javadoc": false
+        }
+      ],
+      "source_match": "name_arity_and_simple_parameter_types",
+      "documentation_status": "human_review_required; Javadoc presence alone does not establish a stable mod contract"
+    },
+    {
+      "id": "settlement.weather.SWEATHER#rain",
+      "owner": "settlement.weather.SWEATHER",
+      "name": "rain",
+      "kind": "FIELD",
+      "signature": "rain",
+      "public": true,
+      "source_file": "settlement/weather/SWEATHER.java",
+      "uses": [
+        "WeatherObservation.java:47"
+      ],
+      "parameter_types": [],
+      "compiler_generated_enum": false,
+      "arity": -1,
+      "source_candidates": [
+        {
+          "line": 35,
+          "source_sha256": "f86c34cc0f64af514281a3205e64c8fdd36de12d1d86e8bf307b8882935f1fb3",
+          "parameter_types": [],
+          "has_javadoc": false
+        }
+      ],
+      "source_match": "name_arity_and_simple_parameter_types",
+      "documentation_status": "human_review_required; Javadoc presence alone does not establish a stable mod contract"
+    },
+    {
+      "id": "settlement.weather.SWEATHER#snow",
+      "owner": "settlement.weather.SWEATHER",
+      "name": "snow",
+      "kind": "FIELD",
+      "signature": "snow",
+      "public": true,
+      "source_file": "settlement/weather/SWEATHER.java",
+      "uses": [
+        "WeatherObservation.java:46",
+        "WeatherObservation.java:48"
+      ],
+      "parameter_types": [],
+      "compiler_generated_enum": false,
+      "arity": -1,
+      "source_candidates": [
+        {
+          "line": 30,
+          "source_sha256": "f86c34cc0f64af514281a3205e64c8fdd36de12d1d86e8bf307b8882935f1fb3",
+          "parameter_types": [],
+          "has_javadoc": false
+        }
+      ],
+      "source_match": "name_arity_and_simple_parameter_types",
+      "documentation_status": "human_review_required; Javadoc presence alone does not establish a stable mod contract"
+    },
+    {
+      "id": "settlement.weather.SWEATHER#temp",
+      "owner": "settlement.weather.SWEATHER",
+      "name": "temp",
+      "kind": "FIELD",
+      "signature": "temp",
+      "public": true,
+      "source_file": "settlement/weather/SWEATHER.java",
+      "uses": [
+        "WeatherObservation.java:46"
+      ],
+      "parameter_types": [],
+      "compiler_generated_enum": false,
+      "arity": -1,
+      "source_candidates": [
+        {
+          "line": 33,
+          "source_sha256": "f86c34cc0f64af514281a3205e64c8fdd36de12d1d86e8bf307b8882935f1fb3",
+          "parameter_types": [],
+          "has_javadoc": false
+        }
+      ],
+      "source_match": "name_arity_and_simple_parameter_types",
+      "documentation_status": "human_review_required; Javadoc presence alone does not establish a stable mod contract"
+    },
+    {
+      "id": "settlement.weather.SWEATHER#thunder",
+      "owner": "settlement.weather.SWEATHER",
+      "name": "thunder",
+      "kind": "FIELD",
+      "signature": "thunder",
+      "public": true,
+      "source_file": "settlement/weather/SWEATHER.java",
+      "uses": [
+        "WeatherObservation.java:47"
+      ],
+      "parameter_types": [],
+      "compiler_generated_enum": false,
+      "arity": -1,
+      "source_candidates": [
+        {
+          "line": 36,
+          "source_sha256": "f86c34cc0f64af514281a3205e64c8fdd36de12d1d86e8bf307b8882935f1fb3",
+          "parameter_types": [],
+          "has_javadoc": false
+        }
+      ],
+      "source_match": "name_arity_and_simple_parameter_types",
+      "documentation_status": "human_review_required; Javadoc presence alone does not establish a stable mod contract"
+    },
+    {
+      "id": "settlement.weather.SWEATHER#wind",
+      "owner": "settlement.weather.SWEATHER",
+      "name": "wind",
+      "kind": "FIELD",
+      "signature": "wind",
+      "public": true,
+      "source_file": "settlement/weather/SWEATHER.java",
+      "uses": [
+        "WeatherObservation.java:46"
+      ],
+      "parameter_types": [],
+      "compiler_generated_enum": false,
+      "arity": -1,
+      "source_candidates": [
+        {
+          "line": 32,
+          "source_sha256": "f86c34cc0f64af514281a3205e64c8fdd36de12d1d86e8bf307b8882935f1fb3",
+          "parameter_types": [],
+          "has_javadoc": false
+        }
+      ],
+      "source_match": "name_arity_and_simple_parameter_types",
+      "documentation_status": "human_review_required; Javadoc presence alone does not establish a stable mod contract"
+    },
+    {
+      "id": "settlement.weather.WeatherGrowth#isAutumn()",
+      "owner": "settlement.weather.WeatherGrowth",
+      "name": "isAutumn",
+      "kind": "METHOD",
+      "signature": "isAutumn()",
+      "public": true,
+      "source_file": "settlement/weather/WeatherGrowth.java",
+      "uses": [
+        "WeatherObservation.java:48"
+      ],
+      "parameter_types": [],
+      "compiler_generated_enum": false,
+      "arity": 0,
+      "source_candidates": [
+        {
+          "line": 48,
+          "source_sha256": "43ae4400bd4bbf1776d4f0428d6fa2024530f0a124e99724c187f28b13d6422b",
+          "parameter_types": [],
+          "has_javadoc": false
+        }
+      ],
+      "source_match": "name_arity_and_simple_parameter_types",
+      "documentation_status": "human_review_required; Javadoc presence alone does not establish a stable mod contract"
+    },
+    {
+      "id": "settlement.weather.WeatherGrowthRipe#cropsAreRipe()",
+      "owner": "settlement.weather.WeatherGrowthRipe",
+      "name": "cropsAreRipe",
+      "kind": "METHOD",
+      "signature": "cropsAreRipe()",
+      "public": true,
+      "source_file": "settlement/weather/WeatherGrowthRipe.java",
+      "uses": [
+        "WeatherObservation.java:48"
+      ],
+      "parameter_types": [],
+      "compiler_generated_enum": false,
+      "arity": 0,
+      "source_candidates": [
+        {
+          "line": 24,
+          "source_sha256": "502df5d391569d042bcc6954db3e6a5981cf359e06c6e4dcda1967c0a2d02d3e",
+          "parameter_types": [],
+          "has_javadoc": false
+        }
+      ],
+      "source_match": "name_arity_and_simple_parameter_types",
+      "documentation_status": "human_review_required; Javadoc presence alone does not establish a stable mod contract"
+    },
+    {
+      "id": "settlement.weather.WeatherGrowthRipe#ripening()",
+      "owner": "settlement.weather.WeatherGrowthRipe",
+      "name": "ripening",
+      "kind": "METHOD",
+      "signature": "ripening()",
+      "public": true,
+      "source_file": "settlement/weather/WeatherGrowthRipe.java",
+      "uses": [
+        "WeatherObservation.java:48"
+      ],
+      "parameter_types": [],
+      "compiler_generated_enum": false,
+      "arity": 0,
+      "source_candidates": [
+        {
+          "line": 50,
+          "source_sha256": "502df5d391569d042bcc6954db3e6a5981cf359e06c6e4dcda1967c0a2d02d3e",
+          "parameter_types": [],
+          "has_javadoc": false
+        }
+      ],
+      "source_match": "name_arity_and_simple_parameter_types",
+      "documentation_status": "human_review_required; Javadoc presence alone does not establish a stable mod contract"
+    },
+    {
+      "id": "settlement.weather.WeatherSnow#rainIsSnow()",
+      "owner": "settlement.weather.WeatherSnow",
+      "name": "rainIsSnow",
+      "kind": "METHOD",
+      "signature": "rainIsSnow()",
+      "public": true,
+      "source_file": "settlement/weather/WeatherSnow.java",
+      "uses": [
+        "WeatherObservation.java:48"
+      ],
+      "parameter_types": [],
+      "compiler_generated_enum": false,
+      "arity": 0,
+      "source_candidates": [
+        {
+          "line": 70,
+          "source_sha256": "86638d92bde2d6ea2a2fa8400b45b7d2d08e266c370f37e2b43fb047e0d5d807",
+          "parameter_types": [],
+          "has_javadoc": false
+        }
+      ],
+      "source_match": "name_arity_and_simple_parameter_types",
+      "documentation_status": "human_review_required; Javadoc presence alone does not establish a stable mod contract"
+    },
+    {
+      "id": "settlement.weather.WeatherThing#getD()",
+      "owner": "settlement.weather.WeatherThing",
+      "name": "getD",
+      "kind": "METHOD",
+      "signature": "getD()",
+      "public": true,
+      "source_file": "settlement/weather/WeatherThing.java",
+      "uses": [
+        "WeatherObservation.java:46",
+        "WeatherObservation.java:47"
+      ],
+      "parameter_types": [],
+      "compiler_generated_enum": false,
+      "arity": 0,
+      "source_candidates": [
+        {
+          "line": 23,
+          "source_sha256": "73ae0e01605565995b8f28834f6ab0dd9527d5fbe4419cd48fb73a18624425e4",
+          "parameter_types": [],
+          "has_javadoc": false
+        }
+      ],
+      "source_match": "name_arity_and_simple_parameter_types",
+      "documentation_status": "human_review_required; Javadoc presence alone does not establish a stable mod contract"
+    }
+  ],
+  "paired_stored_reader_review": {
+    "passed": true,
+    "checked_at": "2026-10-20T18:23:22.301854+00:00",
+    "game_jar_sha256": "fe0137c05408e5ee9e31f06fc44fe37a5d4372d9c985b280f0852d1347c0224b",
+    "source_archive_sha256": "a3fc2aa9f4be31aec0616a5030a656ac49a6011343b7e91395c7bac0b9dfb0a5",
+    "public_route_members": [
+      {
+        "id": "settlement.main.SETT#WEATHER()",
+        "source_anchor": [
+          {
+            "source_file": "settlement/main/SETT.java",
+            "line": 231,
+            "source_sha256": "406866466d776896e2bf4bda86172a7c9a9ffc7df3494557e1e1135b55f76561",
+            "has_javadoc": false
+          }
+        ]
+      },
+      {
+        "id": "settlement.weather.WeatherThing#getD()",
+        "source_anchor": [
+          {
+            "source_file": "settlement/weather/WeatherThing.java",
+            "line": 23,
+            "source_sha256": "73ae0e01605565995b8f28834f6ab0dd9527d5fbe4419cd48fb73a18624425e4",
+            "has_javadoc": false
+          }
+        ]
+      },
+      {
+        "id": "settlement.weather.SWEATHER#moisture",
+        "source_anchor": [
+          {
+            "source_file": "settlement/weather/SWEATHER.java",
+            "line": 29,
+            "source_sha256": "f86c34cc0f64af514281a3205e64c8fdd36de12d1d86e8bf307b8882935f1fb3",
+            "has_javadoc": false
+          }
+        ]
+      },
+      {
+        "id": "settlement.weather.SWEATHER#snow",
+        "source_anchor": [
+          {
+            "source_file": "settlement/weather/SWEATHER.java",
+            "line": 30,
+            "source_sha256": "f86c34cc0f64af514281a3205e64c8fdd36de12d1d86e8bf307b8882935f1fb3",
+            "has_javadoc": false
+          }
+        ]
+      },
+      {
+        "id": "settlement.weather.SWEATHER#ice",
+        "source_anchor": [
+          {
+            "source_file": "settlement/weather/SWEATHER.java",
+            "line": 31,
+            "source_sha256": "f86c34cc0f64af514281a3205e64c8fdd36de12d1d86e8bf307b8882935f1fb3",
+            "has_javadoc": false
+          }
+        ]
+      },
+      {
+        "id": "settlement.weather.SWEATHER#wind",
+        "source_anchor": [
+          {
+            "source_file": "settlement/weather/SWEATHER.java",
+            "line": 32,
+            "source_sha256": "f86c34cc0f64af514281a3205e64c8fdd36de12d1d86e8bf307b8882935f1fb3",
+            "has_javadoc": false
+          }
+        ]
+      },
+      {
+        "id": "settlement.weather.SWEATHER#temp",
+        "source_anchor": [
+          {
+            "source_file": "settlement/weather/SWEATHER.java",
+            "line": 33,
+            "source_sha256": "f86c34cc0f64af514281a3205e64c8fdd36de12d1d86e8bf307b8882935f1fb3",
+            "has_javadoc": false
+          }
+        ]
+      },
+      {
+        "id": "settlement.weather.SWEATHER#clouds",
+        "source_anchor": [
+          {
+            "source_file": "settlement/weather/SWEATHER.java",
+            "line": 34,
+            "source_sha256": "f86c34cc0f64af514281a3205e64c8fdd36de12d1d86e8bf307b8882935f1fb3",
+            "has_javadoc": false
+          }
+        ]
+      },
+      {
+        "id": "settlement.weather.SWEATHER#rain",
+        "source_anchor": [
+          {
+            "source_file": "settlement/weather/SWEATHER.java",
+            "line": 35,
+            "source_sha256": "f86c34cc0f64af514281a3205e64c8fdd36de12d1d86e8bf307b8882935f1fb3",
+            "has_javadoc": false
+          }
+        ]
+      },
+      {
+        "id": "settlement.weather.SWEATHER#thunder",
+        "source_anchor": [
+          {
+            "source_file": "settlement/weather/SWEATHER.java",
+            "line": 36,
+            "source_sha256": "f86c34cc0f64af514281a3205e64c8fdd36de12d1d86e8bf307b8882935f1fb3",
+            "has_javadoc": false
+          }
+        ]
+      },
+      {
+        "id": "settlement.weather.SWEATHER#growth",
+        "source_anchor": [
+          {
+            "source_file": "settlement/weather/SWEATHER.java",
+            "line": 37,
+            "source_sha256": "f86c34cc0f64af514281a3205e64c8fdd36de12d1d86e8bf307b8882935f1fb3",
+            "has_javadoc": false
+          }
+        ]
+      },
+      {
+        "id": "settlement.weather.SWEATHER#growthRipe",
+        "source_anchor": [
+          {
+            "source_file": "settlement/weather/SWEATHER.java",
+            "line": 38,
+            "source_sha256": "f86c34cc0f64af514281a3205e64c8fdd36de12d1d86e8bf307b8882935f1fb3",
+            "has_javadoc": false
+          }
+        ]
+      },
+      {
+        "id": "settlement.weather.WeatherSnow#rainIsSnow()",
+        "source_anchor": [
+          {
+            "source_file": "settlement/weather/WeatherSnow.java",
+            "line": 70,
+            "source_sha256": "86638d92bde2d6ea2a2fa8400b45b7d2d08e266c370f37e2b43fb047e0d5d807",
+            "has_javadoc": false
+          }
+        ]
+      },
+      {
+        "id": "settlement.weather.WeatherGrowth#isAutumn()",
+        "source_anchor": [
+          {
+            "source_file": "settlement/weather/WeatherGrowth.java",
+            "line": 48,
+            "source_sha256": "43ae4400bd4bbf1776d4f0428d6fa2024530f0a124e99724c187f28b13d6422b",
+            "has_javadoc": false
+          }
+        ]
+      },
+      {
+        "id": "settlement.weather.WeatherGrowthRipe#cropsAreRipe()",
+        "source_anchor": [
+          {
+            "source_file": "settlement/weather/WeatherGrowthRipe.java",
+            "line": 24,
+            "source_sha256": "502df5d391569d042bcc6954db3e6a5981cf359e06c6e4dcda1967c0a2d02d3e",
+            "has_javadoc": false
+          }
+        ]
+      },
+      {
+        "id": "settlement.weather.WeatherGrowthRipe#ripening()",
+        "source_anchor": [
+          {
+            "source_file": "settlement/weather/WeatherGrowthRipe.java",
+            "line": 50,
+            "source_sha256": "502df5d391569d042bcc6954db3e6a5981cf359e06c6e4dcda1967c0a2d02d3e",
+            "has_javadoc": false
+          }
+        ]
+      }
+    ],
+    "selected_source_sha256": {
+      "settlement/weather/SWEATHER.java": "f86c34cc0f64af514281a3205e64c8fdd36de12d1d86e8bf307b8882935f1fb3",
+      "settlement/weather/WeatherThing.java": "73ae0e01605565995b8f28834f6ab0dd9527d5fbe4419cd48fb73a18624425e4",
+      "settlement/weather/WeatherMoisture.java": "6fcf16f5cb1feaa6bb5f5844edc9ce78b7fa4a0689bc43a29aeb8d944d749fb7",
+      "settlement/weather/WeatherSnow.java": "86638d92bde2d6ea2a2fa8400b45b7d2d08e266c370f37e2b43fb047e0d5d807",
+      "settlement/weather/WeatherIce.java": "7724d348635e8a0767c2f267c9e4f730f8a4f5139b25a513924cbdb70b2922ac",
+      "settlement/weather/WeatherWind.java": "74e617bf212b26277c08bf48add9215386f7a86491c77e5c2d896c8c347219b5",
+      "settlement/weather/WeatherTemp.java": "12fa4b3c7257ba442dfc3c85c4cc6d04fa42b062796f51c06e100be124bb29a9",
+      "settlement/weather/WeatherClouds.java": "4df40cdcef03948e29b5eda3e373a8797da1458288eb690aa9722fa52c4fa2fa",
+      "settlement/weather/WeatherDownfall.java": "7c37effa9c6853377323e6e57d48a42d55116eff878ed157c389fb71cd384084",
+      "settlement/weather/WeatherThunder.java": "06f00553b58899684fdd46774178cd034d706b69bf945f0e5db9668c735f9422",
+      "settlement/weather/WeatherGrowth.java": "43ae4400bd4bbf1776d4f0428d6fa2024530f0a124e99724c187f28b13d6422b",
+      "settlement/weather/WeatherGrowthRipe.java": "502df5d391569d042bcc6954db3e6a5981cf359e06c6e4dcda1967c0a2d02d3e"
+    },
+    "checks": [
+      {
+        "owner": "settlement.main.SETT",
+        "signature": "public static settlement.weather.SWEATHER WEATHER();",
+        "normalized_disassembly_sha256": "c19c561a68356a8c1985a84eae5e94809d43e417d389ebc6605780fb604c2bc2",
+        "scope": "Selected stored accessor body; no calls, direct writes, allocation or backward branch."
+      },
+      {
+        "owner": "settlement.weather.WeatherThing",
+        "signature": "public double getD();",
+        "normalized_disassembly_sha256": "a917e690df18b31307802c477884d61e2dcd2fb83a59a2725a27fd3adb9d204f",
+        "scope": "Selected stored accessor body; no calls, direct writes, allocation or backward branch."
+      },
+      {
+        "owner": "settlement.weather.WeatherSnow",
+        "signature": "public boolean rainIsSnow();",
+        "normalized_disassembly_sha256": "a05d96fab74b0e2c0b40c8962c8f0e0a6b85bad566d4587f81d169e533286ca6",
+        "scope": "Selected stored accessor body; no calls, direct writes, allocation or backward branch."
+      },
+      {
+        "owner": "settlement.weather.WeatherGrowth",
+        "signature": "public boolean isAutumn();",
+        "normalized_disassembly_sha256": "791cd90b60c916521e28ef2e37aef78dd72d243bc4f141675cf2c91726af7a5f",
+        "scope": "Selected stored accessor body; no calls, direct writes, allocation or backward branch."
+      },
+      {
+        "owner": "settlement.weather.WeatherGrowthRipe",
+        "signature": "public boolean cropsAreRipe();",
+        "normalized_disassembly_sha256": "da70c8d3f15c62f0f42566b811625f2b0d9c393ad9286cc3496cd750fece59a3",
+        "scope": "Selected stored accessor body; no calls, direct writes, allocation or backward branch."
+      },
+      {
+        "owner": "settlement.weather.WeatherGrowthRipe",
+        "signature": "public boolean ripening();",
+        "normalized_disassembly_sha256": "5d75e555e80b8193e624fbacb19682b99df2c56b51ed7eb1b06ed12070569406",
+        "scope": "Selected stored accessor body; no calls, direct writes, allocation or backward branch."
+      }
+    ],
+    "concrete_final_classes_inheriting_stored_getD": [
+      "WeatherMoisture",
+      "WeatherSnow",
+      "WeatherIce",
+      "WeatherWind",
+      "WeatherTemp",
+      "WeatherClouds",
+      "WeatherDownfall",
+      "WeatherThunder",
+      "WeatherGrowth",
+      "WeatherGrowthRipe"
+    ],
+    "detached_shape_checks": {
+      "accepted": 3,
+      "rejected": 58,
+      "game_initializations": 0
+    },
+    "source_sha256": {
+      "dev/candidates/weather/syx/assistant/candidate/WeatherObservation.java": "e5d61851121269e9588aaf6f4492f3b9bd81cbd17c8a5d7dd0218e45016b24cf",
+      "dev/candidates/weather/WeatherPureCheck.java": "8abdbe10c1406095683b62afaed8ea827ed348c92fd0600090101340e068f57d",
+      "dev/review_weather_candidate.py": "e5991b9a0d20c4dff6efa910d638e984d721a3b09c466b9eae9e9bffa57bfb6b"
+    },
+    "conclusions": [
+      "Ten fixed public final weather components inherit the stored double getter; four flags read stored booleans or a stored snow-history sign. No mutable handle or generic invocation is returned.",
+      "WeatherThing setters clamp values but loading restores the raw saved double without validation. Candidate refuses nonfinite/out-of-range factors instead of normalizing them into invented values.",
+      "Precipitation history differs from current downfall and from per-tile ground moisture; temperature is a game scale, not a physical temperature conversion.",
+      "Growth/ripeness are global stored factors, not individual crop yields. GrowthRipe.update computes cached ripe/ripening flags using the prior getD before storing the new seasonal factor; flags must not be re-derived as simultaneous truth.",
+      "Moisture.setD can send a drought message; weather updates, setters, targets, renderer/light/audio handles and forecast calculations are excluded."
+    ],
+    "limits": [
+      "Shipped-source/selected-bytecode verification and external compiler access, not separately documented stable official mod contracts or complete source/binary equivalence.",
+      "No native weather or MCP/player acceptance follows from this static check. Native evidence is separate; candidate remains unregistered.",
+      "Ten factors and four flags only; no regional weather map, exact cache age, normal physical units, crop productivity or forecast."
+    ]
+  },
+  "production_detached_checks": {
+    "accepted": 3,
+    "rejected": 58,
+    "game_initializations": 0
+  },
+  "source_sha256": {
+    "mod/src/main/java/syx/assistant/WeatherObservation.java": "ddda0d16df5581ee9e032e98cebc843f2bbb0b2d20b02dcfc14dedf2cec7fe25",
+    "mod/src/main/java/syx/assistant/StateCollector.java": "09f96ee681945456e041194003ec070daa3f0a7319a0ce297af2e864aedade37",
+    "dev/review_weather_production.py": "0766fae609fc00da94f0de12fa551d5c7242cd9633ae66d2619504a9df065a98",
+    "dev/review_weather_candidate.py": "e5991b9a0d20c4dff6efa910d638e984d721a3b09c466b9eae9e9bffa57bfb6b"
+  },
+  "scope": "Selected stored accessors/source semantics plus actual production compiler attribution and detached shape checks. Field definitions add detached strings only; actual DTO/MCP/lifecycle acceptance is separate.",
+  "limits": [
+    "Shipped-source/selected-bytecode verification, not separately documented stable official API contracts or complete source/binary equivalence.",
+    "Native invalid stored factors/getter exceptions and broad climates/seasons remain unproven; public setter normalization is not fault injection."
+  ]
+}

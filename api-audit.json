@@ -9,11 +9,12 @@
     "syx/assistant/EntityReadRequest.java": "e2d13aee21f399e8718382d5b43d5a6c85e5d78d2708d8105b9f1ecfe730edf8",
     "syx/assistant/JsonWriter.java": "c525eb60d3224cab83ed3fd6b8594ec8652211f00bd947e873e1482f919e81dc",
     "syx/assistant/RegionalReadRequest.java": "4d1da800e6f2ecf6b036f188693ac1095329321bc569c82f34be9918768ef2b3",
-    "syx/assistant/StateCollector.java": "58b6f25bb21493da7ce6a9770d2068ee86f9419e1d3aff5cf83e56a0a532dcdf",
+    "syx/assistant/StateCollector.java": "09f96ee681945456e041194003ec070daa3f0a7319a0ce297af2e864aedade37",
     "syx/assistant/StockpileReadRequest.java": "589ab0087808dbc973aa7726829c3260c609e043baac080824538c44ed5df360",
     "syx/assistant/TileReadRequest.java": "5daf3cc3abc0cb849f654e09efadb3d0263b73d4e5e220e97671ea1c4a40bde6",
     "syx/assistant/UiContentCollector.java": "c0d20c7f9f2734a0bb625427875f06bfcd07edb20611248b39b6e8f480ef5a48",
-    "syx/assistant/UiContextCollector.java": "0f67200fdcf2740f4d3d4b1751ea0bf143613b20a44afb77af0ebb0ae8078937"
+    "syx/assistant/UiContextCollector.java": "0f67200fdcf2740f4d3d4b1751ea0bf143613b20a44afb77af0ebb0ae8078937",
+    "syx/assistant/WeatherObservation.java": "ddda0d16df5581ee9e032e98cebc843f2bbb0b2d20b02dcfc14dedf2cec7fe25"
   },
   "members": [
     {
@@ -193,7 +194,8 @@
         "RegionalReadRequest.java:116",
         "StateCollector.java:444",
         "StockpileReadRequest.java:116",
-        "TileReadRequest.java:61"
+        "TileReadRequest.java:61",
+        "WeatherObservation.java:49"
       ],
       "parameter_types": [],
       "compiler_generated_enum": false,
@@ -2900,7 +2902,8 @@
         "StateCollector.java:265",
         "StateCollector.java:394",
         "StockpileReadRequest.java:82",
-        "UiContextCollector.java:34"
+        "UiContextCollector.java:34",
+        "WeatherObservation.java:43"
       ],
       "parameter_types": [],
       "compiler_generated_enum": false,
@@ -3192,6 +3195,31 @@
       "documentation_status": "human_review_required; Javadoc presence alone does not establish a stable mod contract"
     },
     {
+      "id": "settlement.main.SETT#WEATHER()",
+      "owner": "settlement.main.SETT",
+      "name": "WEATHER",
+      "kind": "METHOD",
+      "signature": "WEATHER()",
+      "public": true,
+      "source_file": "settlement/main/SETT.java",
+      "uses": [
+        "WeatherObservation.java:45"
+      ],
+      "parameter_types": [],
+      "compiler_generated_enum": false,
+      "arity": 0,
+      "source_candidates": [
+        {
+          "line": 231,
+          "source_sha256": "406866466d776896e2bf4bda86172a7c9a9ffc7df3494557e1e1135b55f76561",
+          "parameter_types": [],
+          "has_javadoc": false
+        }
+      ],
+      "source_match": "name_arity_and_simple_parameter_types",
+      "documentation_status": "human_review_required; Javadoc presence alone does not establish a stable mod contract"
+    },
+    {
       "id": "settlement.main.SETT#WORLD_AREA()",
       "owner": "settlement.main.SETT",
       "name": "WORLD_AREA",
@@ -3204,7 +3232,8 @@
         "StateCollector.java:265",
         "StateCollector.java:394",
         "StockpileReadRequest.java:82",
-        "UiContextCollector.java:34"
+        "UiContextCollector.java:34",
+        "WeatherObservation.java:43"
       ],
       "parameter_types": [],
       "compiler_generated_enum": false,
@@ -3241,7 +3270,8 @@
         "TileReadRequest.java:67",
         "UiContextCollector.java:33",
         "UiContextCollector.java:34",
-        "UiContextCollector.java:95"
+        "UiContextCollector.java:95",
+        "WeatherObservation.java:43"
       ],
       "parameter_types": [],
       "compiler_generated_enum": false,
@@ -6411,6 +6441,385 @@
         {
           "line": 126,
           "source_sha256": "afd0587e5aece03ac485f03e9b727a52bf96f6072597d69f4cb2f381c2b81c41",
+          "parameter_types": [],
+          "has_javadoc": false
+        }
+      ],
+      "source_match": "name_arity_and_simple_parameter_types",
+      "documentation_status": "human_review_required; Javadoc presence alone does not establish a stable mod contract"
+    },
+    {
+      "id": "settlement.weather.SWEATHER#clouds",
+      "owner": "settlement.weather.SWEATHER",
+      "name": "clouds",
+      "kind": "FIELD",
+      "signature": "clouds",
+      "public": true,
+      "source_file": "settlement/weather/SWEATHER.java",
+      "uses": [
+        "WeatherObservation.java:47"
+      ],
+      "parameter_types": [],
+      "compiler_generated_enum": false,
+      "arity": -1,
+      "source_candidates": [
+        {
+          "line": 34,
+          "source_sha256": "f86c34cc0f64af514281a3205e64c8fdd36de12d1d86e8bf307b8882935f1fb3",
+          "parameter_types": [],
+          "has_javadoc": false
+        }
+      ],
+      "source_match": "name_arity_and_simple_parameter_types",
+      "documentation_status": "human_review_required; Javadoc presence alone does not establish a stable mod contract"
+    },
+    {
+      "id": "settlement.weather.SWEATHER#growth",
+      "owner": "settlement.weather.SWEATHER",
+      "name": "growth",
+      "kind": "FIELD",
+      "signature": "growth",
+      "public": true,
+      "source_file": "settlement/weather/SWEATHER.java",
+      "uses": [
+        "WeatherObservation.java:47",
+        "WeatherObservation.java:48"
+      ],
+      "parameter_types": [],
+      "compiler_generated_enum": false,
+      "arity": -1,
+      "source_candidates": [
+        {
+          "line": 37,
+          "source_sha256": "f86c34cc0f64af514281a3205e64c8fdd36de12d1d86e8bf307b8882935f1fb3",
+          "parameter_types": [],
+          "has_javadoc": false
+        }
+      ],
+      "source_match": "name_arity_and_simple_parameter_types",
+      "documentation_status": "human_review_required; Javadoc presence alone does not establish a stable mod contract"
+    },
+    {
+      "id": "settlement.weather.SWEATHER#growthRipe",
+      "owner": "settlement.weather.SWEATHER",
+      "name": "growthRipe",
+      "kind": "FIELD",
+      "signature": "growthRipe",
+      "public": true,
+      "source_file": "settlement/weather/SWEATHER.java",
+      "uses": [
+        "WeatherObservation.java:47",
+        "WeatherObservation.java:48"
+      ],
+      "parameter_types": [],
+      "compiler_generated_enum": false,
+      "arity": -1,
+      "source_candidates": [
+        {
+          "line": 38,
+          "source_sha256": "f86c34cc0f64af514281a3205e64c8fdd36de12d1d86e8bf307b8882935f1fb3",
+          "parameter_types": [],
+          "has_javadoc": false
+        }
+      ],
+      "source_match": "name_arity_and_simple_parameter_types",
+      "documentation_status": "human_review_required; Javadoc presence alone does not establish a stable mod contract"
+    },
+    {
+      "id": "settlement.weather.SWEATHER#ice",
+      "owner": "settlement.weather.SWEATHER",
+      "name": "ice",
+      "kind": "FIELD",
+      "signature": "ice",
+      "public": true,
+      "source_file": "settlement/weather/SWEATHER.java",
+      "uses": [
+        "WeatherObservation.java:46"
+      ],
+      "parameter_types": [],
+      "compiler_generated_enum": false,
+      "arity": -1,
+      "source_candidates": [
+        {
+          "line": 31,
+          "source_sha256": "f86c34cc0f64af514281a3205e64c8fdd36de12d1d86e8bf307b8882935f1fb3",
+          "parameter_types": [],
+          "has_javadoc": false
+        }
+      ],
+      "source_match": "name_arity_and_simple_parameter_types",
+      "documentation_status": "human_review_required; Javadoc presence alone does not establish a stable mod contract"
+    },
+    {
+      "id": "settlement.weather.SWEATHER#moisture",
+      "owner": "settlement.weather.SWEATHER",
+      "name": "moisture",
+      "kind": "FIELD",
+      "signature": "moisture",
+      "public": true,
+      "source_file": "settlement/weather/SWEATHER.java",
+      "uses": [
+        "WeatherObservation.java:46"
+      ],
+      "parameter_types": [],
+      "compiler_generated_enum": false,
+      "arity": -1,
+      "source_candidates": [
+        {
+          "line": 29,
+          "source_sha256": "f86c34cc0f64af514281a3205e64c8fdd36de12d1d86e8bf307b8882935f1fb3",
+          "parameter_types": [],
+          "has_javadoc": false
+        }
+      ],
+      "source_match": "name_arity_and_simple_parameter_types",
+      "documentation_status": "human_review_required; Javadoc presence alone does not establish a stable mod contract"
+    },
+    {
+      "id": "settlement.weather.SWEATHER#rain",
+      "owner": "settlement.weather.SWEATHER",
+      "name": "rain",
+      "kind": "FIELD",
+      "signature": "rain",
+      "public": true,
+      "source_file": "settlement/weather/SWEATHER.java",
+      "uses": [
+        "WeatherObservation.java:47"
+      ],
+      "parameter_types": [],
+      "compiler_generated_enum": false,
+      "arity": -1,
+      "source_candidates": [
+        {
+          "line": 35,
+          "source_sha256": "f86c34cc0f64af514281a3205e64c8fdd36de12d1d86e8bf307b8882935f1fb3",
+          "parameter_types": [],
+          "has_javadoc": false
+        }
+      ],
+      "source_match": "name_arity_and_simple_parameter_types",
+      "documentation_status": "human_review_required; Javadoc presence alone does not establish a stable mod contract"
+    },
+    {
+      "id": "settlement.weather.SWEATHER#snow",
+      "owner": "settlement.weather.SWEATHER",
+      "name": "snow",
+      "kind": "FIELD",
+      "signature": "snow",
+      "public": true,
+      "source_file": "settlement/weather/SWEATHER.java",
+      "uses": [
+        "WeatherObservation.java:46",
+        "WeatherObservation.java:48"
+      ],
+      "parameter_types": [],
+      "compiler_generated_enum": false,
+      "arity": -1,
+      "source_candidates": [
+        {
+          "line": 30,
+          "source_sha256": "f86c34cc0f64af514281a3205e64c8fdd36de12d1d86e8bf307b8882935f1fb3",
+          "parameter_types": [],
+          "has_javadoc": false
+        }
+      ],
+      "source_match": "name_arity_and_simple_parameter_types",
+      "documentation_status": "human_review_required; Javadoc presence alone does not establish a stable mod contract"
+    },
+    {
+      "id": "settlement.weather.SWEATHER#temp",
+      "owner": "settlement.weather.SWEATHER",
+      "name": "temp",
+      "kind": "FIELD",
+      "signature": "temp",
+      "public": true,
+      "source_file": "settlement/weather/SWEATHER.java",
+      "uses": [
+        "WeatherObservation.java:46"
+      ],
+      "parameter_types": [],
+      "compiler_generated_enum": false,
+      "arity": -1,
+      "source_candidates": [
+        {
+          "line": 33,
+          "source_sha256": "f86c34cc0f64af514281a3205e64c8fdd36de12d1d86e8bf307b8882935f1fb3",
+          "parameter_types": [],
+          "has_javadoc": false
+        }
+      ],
+      "source_match": "name_arity_and_simple_parameter_types",
+      "documentation_status": "human_review_required; Javadoc presence alone does not establish a stable mod contract"
+    },
+    {
+      "id": "settlement.weather.SWEATHER#thunder",
+      "owner": "settlement.weather.SWEATHER",
+      "name": "thunder",
+      "kind": "FIELD",
+      "signature": "thunder",
+      "public": true,
+      "source_file": "settlement/weather/SWEATHER.java",
+      "uses": [
+        "WeatherObservation.java:47"
+      ],
+      "parameter_types": [],
+      "compiler_generated_enum": false,
+      "arity": -1,
+      "source_candidates": [
+        {
+          "line": 36,
+          "source_sha256": "f86c34cc0f64af514281a3205e64c8fdd36de12d1d86e8bf307b8882935f1fb3",
+          "parameter_types": [],
+          "has_javadoc": false
+        }
+      ],
+      "source_match": "name_arity_and_simple_parameter_types",
+      "documentation_status": "human_review_required; Javadoc presence alone does not establish a stable mod contract"
+    },
+    {
+      "id": "settlement.weather.SWEATHER#wind",
+      "owner": "settlement.weather.SWEATHER",
+      "name": "wind",
+      "kind": "FIELD",
+      "signature": "wind",
+      "public": true,
+      "source_file": "settlement/weather/SWEATHER.java",
+      "uses": [
+        "WeatherObservation.java:46"
+      ],
+      "parameter_types": [],
+      "compiler_generated_enum": false,
+      "arity": -1,
+      "source_candidates": [
+        {
+          "line": 32,
+          "source_sha256": "f86c34cc0f64af514281a3205e64c8fdd36de12d1d86e8bf307b8882935f1fb3",
+          "parameter_types": [],
+          "has_javadoc": false
+        }
+      ],
+      "source_match": "name_arity_and_simple_parameter_types",
+      "documentation_status": "human_review_required; Javadoc presence alone does not establish a stable mod contract"
+    },
+    {
+      "id": "settlement.weather.WeatherGrowth#isAutumn()",
+      "owner": "settlement.weather.WeatherGrowth",
+      "name": "isAutumn",
+      "kind": "METHOD",
+      "signature": "isAutumn()",
+      "public": true,
+      "source_file": "settlement/weather/WeatherGrowth.java",
+      "uses": [
+        "WeatherObservation.java:48"
+      ],
+      "parameter_types": [],
+      "compiler_generated_enum": false,
+      "arity": 0,
+      "source_candidates": [
+        {
+          "line": 48,
+          "source_sha256": "43ae4400bd4bbf1776d4f0428d6fa2024530f0a124e99724c187f28b13d6422b",
+          "parameter_types": [],
+          "has_javadoc": false
+        }
+      ],
+      "source_match": "name_arity_and_simple_parameter_types",
+      "documentation_status": "human_review_required; Javadoc presence alone does not establish a stable mod contract"
+    },
+    {
+      "id": "settlement.weather.WeatherGrowthRipe#cropsAreRipe()",
+      "owner": "settlement.weather.WeatherGrowthRipe",
+      "name": "cropsAreRipe",
+      "kind": "METHOD",
+      "signature": "cropsAreRipe()",
+      "public": true,
+      "source_file": "settlement/weather/WeatherGrowthRipe.java",
+      "uses": [
+        "WeatherObservation.java:48"
+      ],
+      "parameter_types": [],
+      "compiler_generated_enum": false,
+      "arity": 0,
+      "source_candidates": [
+        {
+          "line": 24,
+          "source_sha256": "502df5d391569d042bcc6954db3e6a5981cf359e06c6e4dcda1967c0a2d02d3e",
+          "parameter_types": [],
+          "has_javadoc": false
+        }
+      ],
+      "source_match": "name_arity_and_simple_parameter_types",
+      "documentation_status": "human_review_required; Javadoc presence alone does not establish a stable mod contract"
+    },
+    {
+      "id": "settlement.weather.WeatherGrowthRipe#ripening()",
+      "owner": "settlement.weather.WeatherGrowthRipe",
+      "name": "ripening",
+      "kind": "METHOD",
+      "signature": "ripening()",
+      "public": true,
+      "source_file": "settlement/weather/WeatherGrowthRipe.java",
+      "uses": [
+        "WeatherObservation.java:48"
+      ],
+      "parameter_types": [],
+      "compiler_generated_enum": false,
+      "arity": 0,
+      "source_candidates": [
+        {
+          "line": 50,
+          "source_sha256": "502df5d391569d042bcc6954db3e6a5981cf359e06c6e4dcda1967c0a2d02d3e",
+          "parameter_types": [],
+          "has_javadoc": false
+        }
+      ],
+      "source_match": "name_arity_and_simple_parameter_types",
+      "documentation_status": "human_review_required; Javadoc presence alone does not establish a stable mod contract"
+    },
+    {
+      "id": "settlement.weather.WeatherSnow#rainIsSnow()",
+      "owner": "settlement.weather.WeatherSnow",
+      "name": "rainIsSnow",
+      "kind": "METHOD",
+      "signature": "rainIsSnow()",
+      "public": true,
+      "source_file": "settlement/weather/WeatherSnow.java",
+      "uses": [
+        "WeatherObservation.java:48"
+      ],
+      "parameter_types": [],
+      "compiler_generated_enum": false,
+      "arity": 0,
+      "source_candidates": [
+        {
+          "line": 70,
+          "source_sha256": "86638d92bde2d6ea2a2fa8400b45b7d2d08e266c370f37e2b43fb047e0d5d807",
+          "parameter_types": [],
+          "has_javadoc": false
+        }
+      ],
+      "source_match": "name_arity_and_simple_parameter_types",
+      "documentation_status": "human_review_required; Javadoc presence alone does not establish a stable mod contract"
+    },
+    {
+      "id": "settlement.weather.WeatherThing#getD()",
+      "owner": "settlement.weather.WeatherThing",
+      "name": "getD",
+      "kind": "METHOD",
+      "signature": "getD()",
+      "public": true,
+      "source_file": "settlement/weather/WeatherThing.java",
+      "uses": [
+        "WeatherObservation.java:46",
+        "WeatherObservation.java:47"
+      ],
+      "parameter_types": [],
+      "compiler_generated_enum": false,
+      "arity": 0,
+      "source_candidates": [
+        {
+          "line": 23,
+          "source_sha256": "73ae0e01605565995b8f28834f6ab0dd9527d5fbe4419cd48fb73a18624425e4",
           "parameter_types": [],
           "has_javadoc": false
         }
@@ -10017,7 +10426,8 @@
         "UiContextCollector.java:32",
         "UiContextCollector.java:42",
         "UiContextCollector.java:73",
-        "UiContextCollector.java:99"
+        "UiContextCollector.java:99",
+        "WeatherObservation.java:43"
       ],
       "parameter_types": [],
       "compiler_generated_enum": false,
@@ -10155,7 +10565,8 @@
         "UiContextCollector.java:35",
         "UiContextCollector.java:42",
         "UiContextCollector.java:73",
-        "UiContextCollector.java:99"
+        "UiContextCollector.java:99",
+        "WeatherObservation.java:43"
       ],
       "parameter_types": [],
       "compiler_generated_enum": false,

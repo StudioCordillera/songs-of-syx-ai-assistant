@@ -168,3 +168,8 @@ WEATHER_CANDIDATE.md records a new fixed public stored-reader candidate: ten nor
 
 
 WEATHER_SCENE_VALIDATION.json adds eight actual weather scene phases, including generated battle/setup refusal and copied-city reload, plus seven restored wind-setter normalization controls. These controls retain legitimate zero/one and do not inject bad stored doubles: native malformed-reader/save faults remain open. The unchanged weather candidate is ready for the next production DTO/discovery and selective-query integration work, followed by exact-source player release gates. Main-menu/instant unload and complete states/menus remain unestablished.
+
+
+## Stored weather production checkpoint
+
+WEATHER.md / WEATHER_VALIDATION.json promote the fixed fourteen-value public weather mapping through existing selective MCP queries, with per-field source meanings, atomic invalid/unavailable refusal and explicit read-time versus update-age limits. Four getter/DTO/retained-original query observations and eight actual live scene queries pass; sixteen new public references bring the inventory to 413. All 583 tests and source-matched Pro/core/helper/capture/distribution gates precede one promotion retaining the true prior bundle. No weather-specific external guide or semantic provider-advice claim is added. Continue wider variables/context/reference coverage, native faults and representative costs; this does not complete the overall objective.

@@ -29,7 +29,7 @@ async def unavailable_city_data_mcp(directory):
                 denied=await session.call_tool('select_game_state',{'spec':{'queries':[{'source':{'domain':domain,'path':path},'aggregates':{'n':{'op':'count'}}}]}})
                 assert denied.is_error and 'observation is unavailable' in next(c.text for c in denied.content if c.type=='text')
 
-def verify(directory:Path,timeout:float=260,on_demand:bool=False,tiles:bool=False,regional_live:bool=False,stockpile_live:bool=False):
+def verify(directory:Path,timeout:float=260,on_demand:bool=False,tiles:bool=False,regional_live:bool=False,stockpile_live:bool=False,weather:bool=False):
     advisor=Advisor(directory/'snapshot.json',directory/'corpus.json')
     required={'city','settlement_battle','city_restored','battle_deployment','battle_menu','city_reloaded','world_generation','terrain_generated'}
     checks={};sessions={};began=time.monotonic();known_regional=None;known_stockpile=None
@@ -204,7 +204,29 @@ def verify(directory:Path,timeout:float=260,on_demand:bool=False,tiles:bool=Fals
                     assert live['scene']['settlement_scene_kind']=='city'
                     assert live['ui_context']['active_view']==context['active_view']
                     stockpile_available=True
-            checks[name]={'passed':True,'world_list_panel_coverage':lists['coverage'],'view':context['active_view'],'scene_kind':scene['settlement_scene_kind'],
+            weather_available=None
+            if weather:
+                observed=snapshot.domains['map'].data.get('weather') if snapshot.domains['map'].data else None
+                weather_available=name in {'city','city_restored','city_reloaded','settlement_battle'}
+                if observed is not None:
+                    assert observed['available']==weather_available
+                    assert observed['coverage']==('partial' if weather_available else 'unavailable')
+                    if weather_available:assert len(observed['data']['factors'])==10 and len(observed['data']['flags'])==4
+                    else:assert observed['data'] is None
+                else:assert not weather_available
+                from mcp import ClientSession,StdioServerParameters
+                from mcp.client.stdio import stdio_client
+                async def weather_query():
+                    root=Path(__file__).resolve().parent.parent
+                    params=StdioServerParameters(command=sys.executable,args=['-m','syx_mcp'],cwd=str(root),env={**os.environ,'SYX_STATE_DIR':str(directory)})
+                    async with stdio_client(params) as streams:
+                        async with ClientSession(*streams) as mcp:
+                            await mcp.initialize()
+                            query={'source':{'domain':'map','path':'/weather/data'},'select':{'wind':{'field':'/factors/wind_strength'}}}
+                            r=await mcp.call_tool('select_game_state',{'spec':{'queries':[query]}})
+                            assert bool(r.is_error)==(not weather_available),str(r)
+                asyncio.run(weather_query())
+            checks[name]={'passed':True,'weather_available':weather_available,'world_list_panel_coverage':lists['coverage'],'view':context['active_view'],'scene_kind':scene['settlement_scene_kind'],
                           'on_demand_read_available':read_available,'tile_read_available':tile_available,'ground_moisture_read_available':tile_available,'regional_live_read_available':regional_available,'stockpile_live_read_available':stockpile_available,
                           'city_trade_pipeline_coverage':city_trade.data['settlement_pipeline']['coverage'] if city_trade.data else 'unavailable',
                           'world_population_coverage':regional.coverage,
