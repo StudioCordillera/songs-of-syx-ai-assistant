@@ -1,0 +1,62 @@
+{
+  "passed": true,
+  "reviewed_at": "2026-10-20T07:47:19.058707+00:00",
+  "stage": "Iterative manual standalone browser review, not native/player acceptance",
+  "authorship": "Codex prototype with a completed local Claude Opus 5.5/high peer review; not attributed to a completed Claude generation response",
+  "prototype_sha256": "35f310efdc494810f53bc92ebb0061070df9c70cb02b13887f33371f4a2015ae",
+  "prototype_bytes": 25159,
+  "browser": "Codex in-app browser, background localhost preview",
+  "viewport": {
+    "width": 1280,
+    "height": 720
+  },
+  "checks_during_iterative_review": [
+    "Keyboard opening exposes named chat region and labeled controls.",
+    "Delayed simulated final reply completes while closed and exposes exactly one unread badge.",
+    "Opening preserves unread count; explicit acknowledgement after revealing the full card clears it and returns focus to the transcript.",
+    "Draft A and Draft B survive switching two conversations.",
+    "Unsupported region target is labeled unavailable; Send refuses and preserves the question.",
+    "Stop yields no unread final reply, including after subsequent UI interactions exceed its timer.",
+    "All-chat list shows three mock conversations; after another simulated load This load shows one while old selected content remains explicitly historical.",
+    "Person target retained in an earlier conversation is labeled stale after a new simulated load.",
+    "Keyboard movement changes panel x by -16 and resize changes width by +16.",
+    "Disconnect produces unknown badge and disables Send; reconnect preserves the zero completed-reply count after cancellation.",
+    "Parchment preset updates appearance; an unreadable near-background custom accent is adjusted to a contrasting value.",
+    "Visual inspection found launcher covering Send; final policy hides the launcher while open and the next inspection showed Send unobscured."
+  ],
+  "final_appearance_only_patch": "Welcome eyebrow uses theme-muted text; reloaded parchment view visually inspected at 1280x720.",
+  "javascript_syntax_check": "node --check passed on the post-review final script",
+  "game_calls": 0,
+  "provider_calls": 0,
+  "external_assets": 0,
+  "production_source_changed": false,
+  "player_bundles_changed": false,
+  "limits": [
+    "Manual finite browser review with incremental appearance fixes, not an automated full-source regression suite.",
+    "The first bounded wait for the four-second demo reply expired before the next authoritative AX state showed its completed badge; this is not native network/provider evidence.",
+    "Actual immediate header drag, resize and stationary launcher hold were browser-checked after review; held launcher movement, out-of-window release, touch/scaling, all breakpoints and native persistence remain unverified.",
+    "Prototype mock histories reset on reload; game identity, native UI/receipt transport and production player remain separate."
+  ],
+  "final_reloaded_visual_check": true,
+  "post_claude_review_at": "2026-10-20T07:58:23.416338+00:00",
+  "post_review_browser_checks": {
+    "immediate_header_drag": {
+      "before_x": 450,
+      "after_x": 350,
+      "before_y": 58,
+      "after_y": 58,
+      "y_clamped": true
+    },
+    "pointer_resize": {
+      "before_width": 790,
+      "before_height": 650,
+      "after_width": 726,
+      "after_height": 602
+    },
+    "stationary_500ms_launcher_hold_does_not_open": true,
+    "subsequent_short_click_opens": true,
+    "chat_button_focus_survives_delayed_reply_render": true,
+    "automatic_reconnect_boundary_and_historical_message_label_visible": true
+  },
+  "pre_peer_review_prototype_sha256": "b65d72e21e202e8b2655572bc7c1d9eaa6284b623138c644e1bdb40590ca1b63"
+}

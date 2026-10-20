@@ -133,3 +133,7 @@ At handoff, update WORK_STATUS and the relevant current feature guides. Keep pre
 [BLUEPRINT_PLANNER_REVIEW.json](BLUEPRINT_PLANNER_REVIEW.json) pins selected upstream author software/license/version and lossy-conversion caveats. It extends [blueprint discovery](BLUEPRINT_REFERENCE_CANDIDATES.md) without importing code/assets or claiming a verified current-game schematic.
 
 [CHAT_DISPLAY_REFRESH_VALIDATION.json](CHAT_DISPLAY_REFRESH_VALIDATION.json) preserves synthetic before/after encoded-row cache timings and the subsequent 394-test exact-source recheck; original row-cost reports retain their prior source hashes.
+
+[PLAYER_CHAT_PROTOTYPE.md](PLAYER_CHAT_PROTOTYPE.md) maps the Codex-authored standalone `design/player-chat-prototype.html` and [finite browser review](PLAYER_CHAT_PROTOTYPE_VALIDATION.json). It uses recovered Claude findings but is not attributed to a completed new Claude response or native mod acceptance.
+
+[CLAUDE_PROTOTYPE_REVIEW.md](CLAUDE_PROTOTYPE_REVIEW.md) records the completed local Opus 5.5 source critique, accepted browser fixes, rejected identity/read-policy alternatives and finite post-review checks; [invocation evidence](CLAUDE_UX_COLLABORATION.json) keeps earlier generation timeouts separate.

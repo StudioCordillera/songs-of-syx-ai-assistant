@@ -12,6 +12,8 @@ The player gets **DeepSeek Pro** (`deepseek-v4-pro`), a simple chat list/transcr
 
 [Player-experience plan](PLAYER_EXPERIENCE_PLAN.md): automatic game connection, world-filtered history, a movable/resizable/themed panel, message target attachments, blueprint references, unread notifications and a separately reviewed public-API copilot execution track. Automatic current-game connection and This load / All chats filtering are implemented in the latest tested simple Pro client; the other revision features remain planned. Runtime loads are not permanent world identities. See [connection scope](AUTO_CONNECTION.md). A new copied-city regression confirms time advances during open/closed chat and a simulated delayed reply survives closing/reopening; see [bounded evidence](CHAT_BACKGROUND_VALIDATION.json).
 
+A separate [standalone design review prototype](PLAYER_CHAT_PROTOTYPE.md) explores the remaining interface revision with simulated data. It is Codex-authored and reviewed through local Claude Code Opus 5.5; it is separate from the native mod.
+
 ## Start collaborating
 
 Read [shared instructions](AGENTS.md), the [repository map](REPOSITORY_MAP.md), [contributor/test workflow](CONTRIBUTING.md), [current handoff](WORK_STATUS.md) and [roadmap](ROADMAP.md). Claude's [entry file](CLAUDE.md) imports the same shared instructions. The [documentation index](DOCUMENTATION_INDEX.md) maps current guides and historical evidence.

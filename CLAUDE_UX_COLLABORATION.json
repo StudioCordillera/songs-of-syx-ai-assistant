@@ -50,6 +50,63 @@
   },
   "review_synthesis": "CLAUDE_UX_REVIEW.md",
   "followup_prepared": "CLAUDE_UX_FOLLOWUP.md",
-  "followup_status": "User renewed CLI augmentation request. Known session limit remains before advertised reset; no retry or credit purchase.",
-  "scope_note": "Invocation outcome at the pinned historical base commit. Later independently implemented automatic-connection production changes have their own source-matched reports; production_source_changed=false describes only this Claude invocation checkpoint."
+  "followup_status": "The advertised old subscription reset has passed. Two renewed max-effort design requests did not deliver a final response inside our own finite runtime limits. These are not newly observed credit/quota errors; no purchase or account/limit bypass occurred. Reuse recovered reviews and the independent prototype rather than repeating full generation.",
+  "scope_note": "Invocation outcome at the pinned historical base commit. Later independently implemented automatic-connection production changes have their own source-matched reports; production_source_changed=false describes only this Claude invocation checkpoint.",
+  "renewed_followups": [
+    {
+      "started_at": "2026-10-20T07:10:05.689451+00:00",
+      "base_commit": "36b3d91e58c684ad267cd6554e87b920df1c9c07",
+      "requested_alias": "opus",
+      "effort": "max",
+      "tools": [
+        "Read",
+        "Glob",
+        "Grep",
+        "Agent"
+      ],
+      "outcome": "Assistant-imposed 600-second limit elapsed; no final JSON/design response captured.",
+      "completed_design_available": false,
+      "observed_model": null,
+      "prompt_sha256": "6eb141044b81f46878685518b0d98ead2decab395033678b6261f7e826687832"
+    },
+    {
+      "started_at": "2026-10-20T07:20:58.770427+00:00",
+      "base_commit": "36b3d91e58c684ad267cd6554e87b920df1c9c07",
+      "requested_alias": "opus",
+      "observed_model": "claude-opus-5-5",
+      "effort": "max",
+      "tools": [],
+      "outcome": "Active request was allowed 30 minutes, then terminated by our own watchdog with exit 143. Stream contained model/thinking progress but no final text/design result.",
+      "completed_design_available": false,
+      "prompt_sha256": "67951343318f804fa4acb1f32cdfc724bc27e4dd9a8d8908b617475ce3383621"
+    }
+  ],
+  "current_followup": "Completed local Opus 5.5/high peer review; selected source fixes implemented and browser-checked in the independent prototype.",
+  "independent_reference_prototype": "PLAYER_CHAT_PROTOTYPE.md",
+  "completed_prototype_peer_review": {
+    "checked_at": "2026-10-20T07:58:23.416338+00:00",
+    "requested_alias": "opus",
+    "observed_model": "claude-opus-5-5",
+    "effort": "high",
+    "tools": [],
+    "exit_code": 0,
+    "result_subtype": "success",
+    "is_error": false,
+    "duration_ms": 62899,
+    "reported_num_turns": 2,
+    "isolated_checkout_base": "36b3d91e58c684ad267cd6554e87b920df1c9c07",
+    "input_prompt_sha256": "6add3dd4bfb2797fa32a4d9527a4d727536efb3966dd44d51feb8efc282dd106",
+    "final_public_text_sha256": "36971fb14544385698610fd1cae4a65b1d9fc38f2eeabbd956f6268eb872a1cd",
+    "edited_review": "CLAUDE_PROTOTYPE_REVIEW.md",
+    "prototype": "design/player-chat-prototype.html",
+    "prototype_generation_claimed": false,
+    "credits_purchased": false,
+    "limits": [
+      "One local CLI review invocation; reported turn count is retained rather than inferred from configured turn caps.",
+      "No finished max-effort generation result was received. Prototype authorship remains Codex with reviewed Claude input.",
+      "Raw streams, internal thinking, auth and private session records are not published.",
+      "Finite source critique and separate browser checks; no native game UI, migration or production acceptance."
+    ],
+    "reviewed_prototype_sha256": "b65d72e21e202e8b2655572bc7c1d9eaa6284b623138c644e1bdb40590ca1b63"
+  }
 }
