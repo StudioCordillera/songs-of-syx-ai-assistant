@@ -33,7 +33,7 @@ def check_game_pair(game,review_path=ROOT/'STOCKPILE_BOUNDARY_REVIEW.json'):
     pair={'game_jar_sha256':sha(game/'SongsOfSyx.jar'),
           'source_archive_sha256':sha(game/'info/SongsOfSyx-sources.jar')}
     if not review.get('passed') or any(review.get(k)!=v for k,v in pair.items()):
-        raise ValueError('Licensed game/source differs from the static stockpile review; re-establish the candidate contract')
+        raise ValueError('Licensed game/source differs from the static review selected for this candidate; re-establish the candidate contract')
     return {**pair,'static_boundary_review_sha256':sha(review_path)}
 
 
@@ -132,13 +132,13 @@ async def verify(state,manifest):
             'No screenshot, native input or normal game/profile manipulation. Use a separate virtual display with software rendering to isolate presentation while a normal player is running.']}
 
 
-def run(args, *, scenario_override=None, extra_sources=(), verifier=verify, report_name="stockpile-probe-validation.json"):
+def run(args, *, scenario_override=None, extra_sources=(), verifier=verify, report_name="stockpile-probe-validation.json", boundary_review_path=None, completion_marker=None):
     manifest=check(ROOT,args.candidate_dir,args.validation);runtime=(ROOT/'runtime').resolve();home=runtime/'smoke-home';save=args.save.resolve()
     if home.is_symlink() or not home.is_dir() or not save.is_file() or not save.is_relative_to(runtime):
         raise ValueError('Use the isolated smoke-home and a copied save under runtime/')
     if not os.environ.get('DISPLAY'):raise ValueError('A native display or isolated xvfb-run display is required')
     game=args.game_dir.resolve();jdk=args.jdk_home.resolve();java=args.java.resolve()
-    pair=check_game_pair(game)
+    pair=check_game_pair(game,boundary_review_path or ROOT/'STOCKPILE_BOUNDARY_REVIEW.json')
     state=Path(tempfile.mkdtemp(prefix='stockpile-probe-',dir=runtime));os.chmod(state,0o700)
     jar=state/'syx-ai-assistant.jar'
     with zipfile.ZipFile((args.candidate_dir or ROOT/'releases')/'latest-user-test.zip') as z:
@@ -177,6 +177,11 @@ def run(args, *, scenario_override=None, extra_sources=(), verifier=verify, repo
             (state/'verifier.done').write_text('passed\n');process.wait(timeout=30)
             assert process.returncode==0
         require_clean_game_log(state/'game.log')
+        if completion_marker is not None:
+            name,expected=completion_marker
+            if json.loads((state/name).read_text())!=expected:
+                raise RuntimeError('Native candidate did not confirm explicit clean completion')
+            report['explicit_fixture_clean_completion']=True
         report['game_exit_code']=process.returncode
         report['native_failure_markers_absent']=True
         report.update(pair)

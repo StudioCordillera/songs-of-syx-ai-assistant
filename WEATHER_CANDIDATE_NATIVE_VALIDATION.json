@@ -1,0 +1,71 @@
+{
+  "passed": true,
+  "evaluated_at": "2026-10-20T18:01:08.446772+00:00",
+  "scope": "Unregistered candidate weather scalar/flag getter parity in one copied campaign; no weather MCP/player field.",
+  "samples": 48,
+  "direct_getter_comparisons": 672,
+  "phase_samples": {
+    "paused_city": 16,
+    "running_city": 16,
+    "paused_world": 16
+  },
+  "city_time_advances_when_running": true,
+  "paused_phase_time_unchanged": true,
+  "naturally_changed_factors_during_running_window": 3,
+  "maximum_candidate_json_bytes": 745,
+  "collector_cost": {
+    "interval": "Candidate collect including detached maps, finite checks, tick/time metadata, excluding JSON encoding and independent getter baseline.",
+    "warm_samples": 47,
+    "median_ms": 0.069129,
+    "max_ms": 0.102327
+  },
+  "mod_jar_sha256": "12d3494064f969dead59e1c471cf2f7aef81ac626d6eff2b4435476b6f9c10a9",
+  "production_source_sha256": {
+    "syx/assistant/AssistantScript.java": "c2b8ed68350d4a274315b16dc9ff1c6828a51516777c1ef4a45b84acc6d8b092",
+    "syx/assistant/ChatPanel.java": "06db6b7715f9187a40a0b4b987ab7f64e09df5f9dc07193e261249302d1ac12f",
+    "syx/assistant/EntityReadRequest.java": "e2d13aee21f399e8718382d5b43d5a6c85e5d78d2708d8105b9f1ecfe730edf8",
+    "syx/assistant/JsonWriter.java": "c525eb60d3224cab83ed3fd6b8594ec8652211f00bd947e873e1482f919e81dc",
+    "syx/assistant/RegionalReadRequest.java": "4d1da800e6f2ecf6b036f188693ac1095329321bc569c82f34be9918768ef2b3",
+    "syx/assistant/StateCollector.java": "58b6f25bb21493da7ce6a9770d2068ee86f9419e1d3aff5cf83e56a0a532dcdf",
+    "syx/assistant/StockpileReadRequest.java": "589ab0087808dbc973aa7726829c3260c609e043baac080824538c44ed5df360",
+    "syx/assistant/TileReadRequest.java": "5daf3cc3abc0cb849f654e09efadb3d0263b73d4e5e220e97671ea1c4a40bde6",
+    "syx/assistant/UiContentCollector.java": "c0d20c7f9f2734a0bb625427875f06bfcd07edb20611248b39b6e8f480ef5a48",
+    "syx/assistant/UiContextCollector.java": "0f67200fdcf2740f4d3d4b1751ea0bf143613b20a44afb77af0ebb0ae8078937"
+  },
+  "candidate_packaged_in_player": false,
+  "weather_mcp_calls": 0,
+  "provider_calls": 0,
+  "save_writes": 0,
+  "source_sha256": {
+    "dev/candidates/weather/StockpileScenario.java": "382bc74f50b178f42b4b35abc59f41d83796761f2b0c8e38c76170f838ef512c",
+    "dev/candidates/weather/syx/assistant/candidate/WeatherObservation.java": "e5d61851121269e9588aaf6f4492f3b9bd81cbd17c8a5d7dd0218e45016b24cf",
+    "dev/run_weather_candidate.py": "a113d6007e1d5b08bb0e4cc80ee40617cb2e238872964a236db599fc3dbcebac",
+    "dev/run_stockpile_probe.py": "3a6b9da372e37eb3aaa6a44d426d5bc666368c45cbb46cc89770413f20b02cb6",
+    "mod/tests/LiveSmoke.java": "96107ac90ea1493d5cf240421c146d21cda83c45be45e8577ccd141446c21e8f",
+    "dev/native_game_completion.py": "8d29009ecb6b1c54e65ce4d94bc1c175d189c68aad59251381ec4cf5a063773f"
+  },
+  "private_fixture_sha256": "dff4150238238cad0882409b3be268933c588cb769637a2c0d46754c65da5fea",
+  "weather_static_review_sha256": "523d9834b3e881e03e6675e30936ef98eed9fbce04de7e58105737a9c1345a55",
+  "limits": [
+    "One copied campaign and short natural time window, not all seasons/climates, whole-year changes, battle/setup/unload, bad native getters/saves or large-city/FPS acceptance.",
+    "Repeated public getters share engine storage. Pure detached rejection tests are separate from native corruption/fault injection.",
+    "Underlying city weather remains available while the world view is active; no world-region weather or UI-selected weather object claim.",
+    "Public speed/view fixture actions are controlled test-only. Speed is paused and city view restored before exit; in-memory simulation progress is discarded without saving.",
+    "The shared host uses legacy StockpileScenario/stockpile-fixture filenames solely as explicit scenario/ready hooks; no stockpile reader is replaced, reinterpreted or shadowed.",
+    "The candidate is not imported by production, advertised through MCP, or included in the tested player ZIP. No updated official stable mod contract is inferred."
+  ],
+  "explicit_fixture_clean_completion": true,
+  "game_exit_code": 0,
+  "native_failure_markers_absent": true,
+  "game_jar_sha256": "fe0137c05408e5ee9e31f06fc44fe37a5d4372d9c985b280f0852d1347c0224b",
+  "source_archive_sha256": "a3fc2aa9f4be31aec0616a5030a656ac49a6011343b7e91395c7bac0b9dfb0a5",
+  "static_boundary_review_sha256": "523d9834b3e881e03e6675e30936ef98eed9fbce04de7e58105737a9c1345a55",
+  "copied_profile_mod_restored": true,
+  "copied_save_unchanged": true,
+  "offline_regression": {
+    "passed": true,
+    "tests_passed": 580,
+    "seconds": 59.52,
+    "scope": "Full existing offline suite, separately from three accepted/58 rejected Java detached cases and 48 native weather samples. Initial error-message-only assertion failures were corrected without weakening the game/source refusal guard."
+  }
+}

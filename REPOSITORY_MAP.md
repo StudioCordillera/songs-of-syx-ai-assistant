@@ -169,3 +169,8 @@ At handoff, update WORK_STATUS and the relevant current feature guides. Keep pre
 ## Real multi-warehouse matrix regression
 
 `mod/tests/StockpileMatrixScenario.java`, `dev/verify_stockpile_matrix.py` and `dev/run_read_fixture.py --case stockpile-matrix` create fixed small real test rooms in the copied city and compare 101/100-room matrices before/after middle removal. [Pinned evidence and selected source review](STOCKPILE_MATRIX_VALIDATION.json) cover 8,442 getter cells, 129 successful MCP pages, ordered slot shifts, explicit-order queries, actual 4,096-cell empty scans and 100-row projected pages. Developer-only setup is not a normal build/material or larger-city performance fixture. No player source/ZIP changes, provider calls or production game actions.
+
+
+## Stored weather reader candidate
+
+[Weather candidate scope](WEATHER_CANDIDATE.md) maps `dev/candidates/weather/syx/assistant/candidate/WeatherObservation.java`, detached `WeatherPureCheck.java`, the explicit host `StockpileScenario.java` override, `dev/review_weather_candidate.py` and `dev/run_weather_candidate.py`. [Source/codec review](WEATHER_CANDIDATE_REVIEW.json) is separate from [48 native samples/672 getter comparisons](WEATHER_CANDIDATE_NATIVE_VALIDATION.json). Ten game-scale factors/four flags are unregistered: no player or MCP field yet. The shared disposable host supports optional review/completion hooks; its stockpile defaults remain unchanged. Latest/previous tested payloads are preserved.
