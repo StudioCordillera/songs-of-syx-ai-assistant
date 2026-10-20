@@ -48,6 +48,10 @@ The selective-state, truthful lifecycle and high-quality references objectives c
 - Keep close/open state separate from reply tasks and Stop. Persist read acknowledgements through a bounded versioned IPC change; heartbeat rewrites cannot create new unread replies. Test a completion racing with close, chat selection, reload, coordinator restart and display acknowledgement.
 - Follow the migration with exact-source provider/native/player release gates. Prototype controls and mocks cannot replace migration/restart/failure tests or a working game-owned interface.
 
+## Unread/history candidate follow-up
+
+[CHAT_HISTORY_CANDIDATE.md](CHAT_HISTORY_CANDIDATE.md) now implements developer-only per-event receipts, explicit transactional legacy baselining and runtime/Pro filtering before the chat cap. Twelve authored cases include actual current/previous bundled-store compatibility and out-of-order completion; the full offline suite passes 317 tests. It is not connected to the player and does not supply a badge, automatic connection, world identity or display proof. Explicit per-event receipts replace the earlier cumulative-cursor proposal to avoid sequence reuse and late-completion loss. See the candidate's bounded refusal and production acceptance limits.
+
 ## Initial blueprint discovery
 
 [BLUEPRINT_REFERENCE_CANDIDATES.md](BLUEPRINT_REFERENCE_CANDIDATES.md) records first page-text/metadata leads for a Workshop blueprint mod, a structured room planner, a tutorial listing and a historical community layout discussion. No geometry, video/image contents, rights or current-version optimality are validated; these are not added to the production guidance corpus.

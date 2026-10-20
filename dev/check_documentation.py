@@ -41,6 +41,7 @@ def scope(path):
     if name=='STOCKPILE_BOOKKEEPING_VALIDATION.json':return 'Current global stockpile DTO/MCP evidence; per-room arrays are fixture-only'
     if name=='STOCKPILE_READER_VALIDATION.json':return 'Candidate native-reader checks and existing aggregate MCP parity; additional production fields pending'
     if name=='COLLABORATION_VALIDATION.json':return 'Historical collaboration/dev-doc checkpoint; inspect pinned hashes, separate from player evidence'
+    if name=='CHAT_HISTORY_CANDIDATE_VALIDATION.json':return 'Developer-only SQLite receipt/filter/migration and actual bundled-store compatibility tests; not production badge/world-routing acceptance'
     if name in {'api-audit.json','API_DISCOVERY.json'}:return 'Generated current audit/pairing; declaration candidates are not runtime variables'
     if name.endswith('_REVIEW.json') or name=='REFERENCE_SOURCE_REVIEW.json':return 'Pinned source review; exact date/hash/scope, not an automatic refresh'
     if name.endswith('_VALIDATION.json') or name in {'provider-validation.json','validation-evidence.json'}:

@@ -1,0 +1,60 @@
+{
+  "passed": true,
+  "validated_at": "2026-10-20T02:51:48.522340+00:00",
+  "stage": "Developer-only SQLite unread/history candidate; not packaged or connected to player UI",
+  "base_commit": "df91a88fbc6852d32146e7d1aca789b6af521510",
+  "source_sha256": {
+    "dev/chat_history_candidate.py": "259fd25b8b3d46cc1c2f7887361d1846458a43c5ad3faa046becd31e42b6fa9a",
+    "test_chat_history_candidate.py": "b92808555570c74f9f70db11926499a5e2ef3bf4ade2421fb480a17c6eafa365",
+    "syx_chat_store.py": "7344b35476096b680e0cf85958f97596b3c9cfe843072202f30e357b97dedbe5"
+  },
+  "offline_tests": 317,
+  "candidate_cases": 12,
+  "test_log": "runtime/history-candidate-tests-final.log",
+  "bundled_legacy_store_tests": {
+    "latest-user-test.zip": {
+      "zip_sha256": "832f3ad1a49e0c3f5933af7a0c530edaf471a8b6f03b9d4373cec80e1cd6df40",
+      "legacy_store_sha256": "7344b35476096b680e0cf85958f97596b3c9cfe843072202f30e357b97dedbe5"
+    },
+    "previous-user-test.zip": {
+      "zip_sha256": "5e13fc5dda1b767755de98eca009ede3ca6e7937965bb2b0759740b6b83d9079",
+      "legacy_store_sha256": "7344b35476096b680e0cf85958f97596b3c9cfe843072202f30e357b97dedbe5"
+    }
+  },
+  "base_user_version_preserved": 1,
+  "extension_version": 1,
+  "receipt_identity": "Explicit final event UUID plus chat and original observed runtime; one receipt per completed visible turn",
+  "migration_atomic_failure_injection": "SQLite authorizer denies baseline receipt insertion after DDL; complete extension rollback and unchanged original events verified",
+  "candidate_budgets": {
+    "completed_assistant_rows": 10000,
+    "utf8_payload_bytes": 2097152,
+    "ack_event_ids": 100,
+    "chat_list_rows": 100
+  },
+  "production_source_changed": false,
+  "player_zip_changed": false,
+  "external_inference_calls": 0,
+  "native_game_runs": 0,
+  "normal_history_accessed": false,
+  "checks": [
+    "Existing completed replies baseline as read; pending final completion becomes unread",
+    "Wrong chat/session/event batches rejected without clearing valid unread",
+    "Per-event receipts persist across restart and do not clear undisplayed turns",
+    "Out-of-order completion and duplicated final events counted once per turn",
+    "Deleted global sequence reuse does not authenticate an old event UUID",
+    "Failed/cancelled/interrupted/empty/partial events excluded from successful reply count",
+    "Ordinary base-store open neither recovers running turns nor initializes/baselines receipts",
+    "Exact UTF-8 budget accepted; row/byte/ack bounds and unknown versions refuse",
+    "Injected migration failure rolls back schema and baseline without changing old events",
+    "Both actual bundled legacy clients recover/create/delete and return without FK errors",
+    "Runtime history retains recorded old-session membership after attachment changes",
+    "Runtime and Pro filters applied before 100-chat limit"
+  ],
+  "limits": [
+    "Synthetic disposable SQLite histories; no actual game/player UI/provider or normal-history migration acceptance.",
+    "Candidate extension not imported by production or packaged. No badge, automatic attachment, stable world identity, display proof or new gameplay capability.",
+    "Finite latest/previous bundled-store compatibility only. General retention/schema tampering, larger-history performance, independent-writer concurrency and production admission are unvalidated.",
+    "Budgets fail explicitly; no complete count/migration for histories beyond the stated candidate limits.",
+    "Legacy clients do not acknowledge display; new legacy-period replies conservatively remain unread on return."
+  ]
+}

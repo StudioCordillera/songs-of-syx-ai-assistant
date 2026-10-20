@@ -90,6 +90,10 @@ The release whitelist is `make_user_test.MODULES`, five files in `user_test/`, o
 
 [PLAYER_EXPERIENCE_PLAN.md](PLAYER_EXPERIENCE_PLAN.md) maps the latest user requests, current gaps and acceptance order. `mod/tests/ChatBackgroundScenario.java`, `dev/verify_chat_background.py` and `dev/run_read_fixture.py --case chat-background` exercise current published own-panel widgets at speed 1 with simulated delayed inference through the real coordinator/MCP/history. [CHAT_BACKGROUND_VALIDATION.json](CHAT_BACKGROUND_VALIDATION.json) records finite open/closed time progression and closed completion/reopen. CLAUDE_UX_COLLABORATION.json records four completed local Opus/max peer reviews and the parent session-limit failure; [CLAUDE_UX_REVIEW.md](CLAUDE_UX_REVIEW.md) preserves their edited findings. A final design/prototype is not available. This is developer-only evidence; no production badge, auto-attachment, world grouping, drag/resize or action support is implied. [Blueprint candidate discovery](BLUEPRINT_REFERENCE_CANDIDATES.md) records page-text/metadata leads only; geometry, rights and current-game compatibility still need review.
 
+## Developer unread/history candidate
+
+[CHAT_HISTORY_CANDIDATE.md](CHAT_HISTORY_CANDIDATE.md) documents `dev/chat_history_candidate.py`, isolated SQLite receipt/migration/runtime-filter code not imported or packaged by the player. `test_chat_history_candidate.py` supplies twelve authored cases, including actual latest/previous bundled-store compatibility. [Candidate evidence](CHAT_HISTORY_CANDIDATE_VALIDATION.json) pins source/bundle hashes and explicit budgets; no badge, automatic routing, stable world identity or real display acknowledgement is claimed.
+
 ## Private/local and deferred material
 
 Ignored `.venv/`, `.tools/`, build/, dist/, runtime/, env/auth files and local game installation are not a portable dependency bundle. Contributors supply their own licensed game, Java/JDK, compatible copied save and provider key. Do not commit private patches/logs or use another app's credential files. The public repository has no selected redistribution license.

@@ -14,6 +14,8 @@ The runnable player checkpoint now requires a source-matching `releases/latest-u
 
 [PLAYER_EXPERIENCE_PLAN.md](PLAYER_EXPERIENCE_PLAN.md) is the current detailed backlog and acceptance plan for automatic active-game connection, per-world chat filters, Claude Code UI redesign, draggable/resizable/themed panel and launcher, typed message attachments, cited blueprint examples, asynchronous play and unread counts. These are requested features, not shipped support. First follow-up: the [background chat test](CHAT_BACKGROUND_VALIDATION.json) now proves open/closed unpaused copied-city progression and closed completion through the real coordinator with simulated delayed inference. Native input, actual provider delay, world grouping and unread badges remain separate gates.
 
+The developer-only [history candidate](CHAT_HISTORY_CANDIDATE.md) now establishes individual event receipts, transactional baselining and runtime/Pro filtering with finite rollback/late-completion/legacy-store tests. No production badge/auto-routing is connected yet; real display provenance and admission remain gates.
+
 The new copilot track targets typed public in-process gameplay commands across supported contexts. Current production remains read-only. Establish commands, targets, scene coverage, preconditions, opt-in/preview/stop and result checks before adding an execution lane; unsupported contexts stay explicit. Preserve the original selective-state/lifecycle/reference objectives below.
 
 ## 1. Selective access to game state — first priority
