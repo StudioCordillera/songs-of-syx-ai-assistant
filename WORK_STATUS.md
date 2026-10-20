@@ -2,6 +2,14 @@
 
 Use `python3 dev/collaboration_status.py` for actual remote/local state at every run; this file is a handoff, not a live branch/working-tree assertion. Read AGENTS.md and reconcile newer collaborator work before editing.
 
+## Housing scene / native fault follow-up — player unchanged
+
+HOUSING_SCENE_VALIDATION.json checks eight actual public scene phases for the unchanged unregistered housing candidate. Four city/tactical/return/reload observations each match 36 home rows, 204 resident IDs and 16 ordinary cohort rows in the same after-update callback; generated battle deployment/menu and initial/terrain world setup refuse with null data. The existing production MCP scene suite additionally passes context/session rotation, weather and readonly-table regressions. No candidate housing MCP field is exposed or joined to an older snapshot.
+
+HOUSING_FAULT_VALIDATION.json induces a real NullPointerException in one ordinary home's capacity getter by public test-only furnishing clear. Partial coverage and failed_room_reads=1 omit that room; the other 35 rows and cohort ledger stay equal. Public itemSet in finally restores item identity and the complete original housing DTO before returning. No claim of full sprite/light/cache/path rollback or natural corrupt-save occurrence. Normal paired-source home capacities top out at 18/chambers at one, below the defensive 64-resident cap; native roster truncation remains unexecuted. Sources/provenance are recorded in HOUSING_CANDIDATE.md and the reports.
+
+Both locked disposable runs pass explicit clean completion, zero exit, known crash-marker checks, copied-mod restoration and supplied copied-save integrity. Scene battle generation may write its own isolated fixture saves. Normal saves, credentials, simple Pro player and true latest/previous bundles stay unchanged. Next: precise field/diagnostic/query semantics, remaining roster/invalid/cap/live-time cases and reviewed production integration, alongside wider variable/UI/reference objectives. Standalone main-menu/immediate unload and all-menu coverage remain unestablished. No competing collaborator change was discarded.
+
 ## Housing chamber / real bounds follow-up — player unchanged
 
 HOUSING_CHAMBER_VALIDATION.json / HOUSING_CANDIDATE.md add actual empty and controlled occupied chamber acceptance for the unchanged unregistered candidate. The locked copied-city fixture creates one real chamber through public furnishing/constructor APIs; a freshly constructed subject is promoted through public nobleSet, assigned with the StatsHome setter, checked for resolved count/roster/recorded coordinates, and restored to its prior null home in finally. No existing person is promoted or reassigned. Chamber removal restores the original 36 home rows and ordinary cohort ledgers. One actual row cap and three exact scan prefixes match full rows/completeness. No player/MCP/action integration occurs.

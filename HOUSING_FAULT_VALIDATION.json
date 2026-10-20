@@ -1,0 +1,74 @@
+{
+  "passed": true,
+  "evaluated_at": "2026-10-20T19:25:38.187563+00:00",
+  "scope": "One native capacity-getter failure after public furnishing clear in an unchanged candidate; original DTO restored in the same copied-city callback.",
+  "native_checks": {
+    "passed": true,
+    "fault_cases": 1,
+    "direct_getter_failure": "NullPointerException",
+    "baseline_home_rows": 36,
+    "fault_home_rows": 35,
+    "failed_room_reads": 1,
+    "unrelated_rows_ledger_unchanged": true,
+    "housing_output_restored": true,
+    "same_callback": true
+  },
+  "mod_jar_sha256": "64e637eadddecc9609d1715573fd1287ece80a4a3304aac20f2e50fd1b8ae979",
+  "production_source_sha256": {
+    "syx/assistant/AssistantScript.java": "c2b8ed68350d4a274315b16dc9ff1c6828a51516777c1ef4a45b84acc6d8b092",
+    "syx/assistant/ChatPanel.java": "06db6b7715f9187a40a0b4b987ab7f64e09df5f9dc07193e261249302d1ac12f",
+    "syx/assistant/EntityReadRequest.java": "e2d13aee21f399e8718382d5b43d5a6c85e5d78d2708d8105b9f1ecfe730edf8",
+    "syx/assistant/JsonWriter.java": "c525eb60d3224cab83ed3fd6b8594ec8652211f00bd947e873e1482f919e81dc",
+    "syx/assistant/RegionalReadRequest.java": "4d1da800e6f2ecf6b036f188693ac1095329321bc569c82f34be9918768ef2b3",
+    "syx/assistant/StateCollector.java": "09f96ee681945456e041194003ec070daa3f0a7319a0ce297af2e864aedade37",
+    "syx/assistant/StockpileReadRequest.java": "589ab0087808dbc973aa7726829c3260c609e043baac080824538c44ed5df360",
+    "syx/assistant/TileReadRequest.java": "5daf3cc3abc0cb849f654e09efadb3d0263b73d4e5e220e97671ea1c4a40bde6",
+    "syx/assistant/UiContentCollector.java": "c0d20c7f9f2734a0bb625427875f06bfcd07edb20611248b39b6e8f480ef5a48",
+    "syx/assistant/UiContextCollector.java": "0f67200fdcf2740f4d3d4b1751ea0bf143613b20a44afb77af0ebb0ae8078937",
+    "syx/assistant/WeatherObservation.java": "ddda0d16df5581ee9e032e98cebc843f2bbb0b2d20b02dcfc14dedf2cec7fe25"
+  },
+  "candidate_housing_mcp_calls": 0,
+  "provider_calls": 0,
+  "save_writes": 0,
+  "candidate_packaged_in_player": false,
+  "housing_static_review_sha256": "e7142e8d82eb6bfe8b2fcfddf600cc7d9bab8eeeb174ae0567027eee163aaebb",
+  "source_sha256": {
+    "dev/candidates/housing/fault/StockpileScenario.java": "d37b89169d354bf49c27dad1ae6fbc04caaaf1b2540a80b5b39307ef93b882c0",
+    "dev/candidates/housing/syx/assistant/candidate/HousingObservation.java": "c258a5ed55aab537b2aab646bf6f27051f741395a3feea9f43da10fcad1eaff8",
+    "dev/run_housing_fault.py": "63e185485aac521adaf9cc75ebf135493f0401b9954ec68310b3257253de3fc0",
+    "dev/run_stockpile_probe.py": "2ec255855a2d92a3435543a814ec4388de0184d3fd78dd6a2be0652704d182e5",
+    "mod/tests/LiveSmoke.java": "bd6d755d51ed03881ed4074b99a9be489acb8fd46ddb0d0c3a9f8a9a0d8aa211",
+    "dev/native_game_completion.py": "8d29009ecb6b1c54e65ce4d94bc1c175d189c68aad59251381ec4cf5a063773f"
+  },
+  "selected_game_source_sha256": {
+    "settlement/room/main/MapDataF.java": "7395de01a4eac86c9faa288a9810df6513db770aff83cb8355e3290291027e72",
+    "settlement/room/home/house/HomeInstance.java": "59a55d54a99b829a51afcfa3d6b1d10cbf8ee043f997b83fec15cd142a1b7d08",
+    "settlement/room/home/house/HomeContructor.java": "ac3c05e10215ab5656f33d6a94e250247e590347da9697bc982f1a3685fe9f25",
+    "settlement/room/home/house/Sprites.java": "3cb38dd6848536f6741ea20bdabdd2539167f791a8f60daa7b2177b5a0ec7d1d",
+    "settlement/room/sprite/RoomSprite.java": "97754b8b8ffebf9a6a818c48a4762580a08d6003585e5e441236a087d912d785"
+  },
+  "private_fixture_sha256": "03f5b04004538383b00882ce6d188d766901f7749cab1839fa37fac76859f056",
+  "public_test_only_actions": [
+    "MapDataF.itemClear",
+    "MapDataF.itemSet in finally",
+    "GAME.SPEED.speedSet/VIEW.s.activate"
+  ],
+  "manual_source_review": [
+    "HomeInstance.it reads furnishing at the service tile; occupantsMax dereferences its group. Clearing the furnishing through public itemClear therefore induces a real missing-item capacity getter exception without private state access.",
+    "MapDataF.itemClear changes furnishing/sprite/light data and checks room ownership; itemSet repopulates the full footprint. The test selects a complete same-room footprint and restores inside finally before yielding. Housing construction uses the reviewed Dummy sprite on these furnishing tiles.",
+    "Only candidate DTO equality, original item identity and unrelated row/ledger equality are restored/checked. Sprite randomness, light/cache/path or all engine-state rollback is not claimed. No public mutation becomes part of the observer."
+  ],
+  "limits": [
+    "One deliberately induced missing furnishing, not a naturally corrupt save, null room registry, invalid isolation, stale resident ID, roster error or every exception type.",
+    "The failed room is omitted with failed_room_reads=1; all other rows/cohort ledger stay equal. Complete slot scanning does not mean complete successful housing observation.",
+    "No battle/setup/reload or MCP acceptance in this fault report; scene tests are separate. No source-private/reflection/process-memory/invocation workaround, save or normal-profile mutation."
+  ],
+  "explicit_fixture_clean_completion": true,
+  "game_exit_code": 0,
+  "native_failure_markers_absent": true,
+  "game_jar_sha256": "fe0137c05408e5ee9e31f06fc44fe37a5d4372d9c985b280f0852d1347c0224b",
+  "source_archive_sha256": "a3fc2aa9f4be31aec0616a5030a656ac49a6011343b7e91395c7bac0b9dfb0a5",
+  "static_boundary_review_sha256": "e7142e8d82eb6bfe8b2fcfddf600cc7d9bab8eeeb174ae0567027eee163aaebb",
+  "copied_profile_mod_restored": true,
+  "copied_save_unchanged": true
+}

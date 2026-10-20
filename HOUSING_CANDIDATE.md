@@ -42,6 +42,16 @@ Source review also found that `Noble.subject()` can clear a stale stored ID. It 
 
 The original 32-sample report above remains unchanged and still has zero native chamber examples. This separate report closes one empty and one controlled occupied chamber case plus removal and small actual budget cases. Missing-resident/invalid-isolation/getter failures, roster truncation, maximum registry/row/byte budgets, live time and battle/setup/reload remain unvalidated. Production/MCP/player payloads remain unchanged.
 
+## Scene and real getter-failure follow-up
+
+[HOUSING_SCENE_VALIDATION.json](HOUSING_SCENE_VALIDATION.json) observes the unchanged housing candidate through eight actual public scene phases. City, tactical city, city return and a real copied-city reload each check 36 home rows, 204 resident IDs and 16 cohort rows against direct getters inside the same after-update callback. Generated battle deployment/menu and initial/terrain world setup return unavailable with null data. The existing production MCP scene suite separately passes current context/session rotation, stored weather and the other readonly-table checks. Housing itself remains absent from MCP; candidate data is not attached to an older production snapshot.
+
+[HOUSING_FAULT_VALIDATION.json](HOUSING_FAULT_VALIDATION.json) checks one actual capacity getter exception. A test-only public furnishing clear removes the item required by one ordinary home's `occupantsMax()` lookup. That getter then throws `NullPointerException`; the candidate returns partial coverage, `failed_room_reads=1`, omits the failed home and preserves the other 35 home rows plus ordinary cohort ledger. A complete slot scan describes enumeration, not complete successful observation. It must never hide the failed-row count or fabricate zero capacity/occupants.
+
+The original furnishing is restored through public `itemSet` in `finally` before the callback returns. Its identity and the entire original housing DTO match again. Sprite/light/cache/path state is not claimed fully rolled back. This deliberate malformed copied-process setup is not evidence of naturally corrupt saves or every getter/roster failure. Source review of the paired ordinary constructor defines capacities 3/4/5, 5/7/9 and 10/14/18 by furnishing group and normal upgrade; chambers have capacity one. Normal valid assignments therefore do not exercise the defensive 64-ID roster truncation branch. The source-bound observation is distinct from native cap acceptance and does not cover another version, external modification or malformed state.
+
+Both runners require the shared fixture lock, paired source/binary, explicit clean completion, zero exit, known crash-marker checks, copied-mod restoration and supplied copied-save integrity. Scene generation may write its own disposable battle saves. No normal save, provider call, housing production field or game-control endpoint is added. Actual roster-error/invalid-isolation and maximum registry/row/byte cases, standalone unload/main menu, natural assignment/live-time changes and larger-city costs remain open.
+
 ## Reproduce and next gates
 
 Use the licensed game/source, copied `runtime/smoke.save`, isolated `runtime/smoke-home`, full JDK and compatible game Java described in CONTRIBUTING.md:
@@ -66,3 +76,5 @@ xvfb-run -a -s '-screen 0 1280x960x24' .venv/bin/python dev/run_housing_chamber.
 ```
 
 This explicit developer runner creates/promotes/assigns only in the disposable process and does not expose those operations through MCP.
+
+For the separate scene and controlled fault fixtures, use the same arguments above with `dev/run_housing_scenes.py` or `dev/run_housing_fault.py`. The latter explicitly changes one copied home's furnishing and restores the housing DTO in the same callback; it is not a player command.

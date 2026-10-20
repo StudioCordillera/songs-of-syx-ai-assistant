@@ -28,6 +28,8 @@ The historical pre-production per-warehouse request draft lives under `dev/candi
 
 The unchanged housing candidate also has a separate real-chamber/bounds runner: `dev/run_housing_chamber.py` and `dev/candidates/housing-chamber/StockpileScenario.java`. [HOUSING_CHAMBER_VALIDATION.json](HOUSING_CHAMBER_VALIDATION.json) records one created empty chamber, one controlled occupied assignment using a new test-only promoted noble, restored null home/removal, and actual scan/row limits. Its public mutations belong only in the disposable fixture; there is no production action or new MCP field.
 
+`dev/run_housing_scenes.py` with `dev/candidates/housing/scenes/StockpileScenario.java` adds [eight real candidate scene/reload checks](HOUSING_SCENE_VALIDATION.json) plus separate current-production MCP regressions. `dev/run_housing_fault.py` with `dev/candidates/housing/fault/StockpileScenario.java` adds [one native getter-failure/restoration check](HOUSING_FAULT_VALIDATION.json). Both use the unchanged reader and disposable public fixture routes; neither packages housing or adds a tool.
+
 ## Python runtime modules
 
 | Module | Responsibility |
