@@ -166,3 +166,42 @@ def test_degradation_example_sorts_projected_values_and_keeps_null_staffing(snap
     assert result['rows']==[
         {'room':room,'resource':'wood','degradation':value,'recorded_previous_day':10,'staffing':worker if room==1 else None}
         for room,value in [(2,.8),(1,.2),(3,0),(4,None)]]
+
+
+def test_housing_scan_and_read_failures_survive_aggregate_and_join(snapshot):
+    from syx_mcp import Domain
+    diagnostics={'room_slots_scanned':12,'room_map_size':90,'scan_limit':12,
+                 'room_scan_complete':False,'failed_room_reads':1,'failed_rosters':2,
+                 'truncated_rosters':3,'row_limit':10}
+    snapshot.domains['housing']=Domain(coverage='partial',scope='instantiated_settlement_scene',data={
+        'home_records':{'coverage':'partial','scope':'instantiated_city_home_records',
+                        'data':{**diagnostics,'rooms':[{'id':'grain','occupants':4}]}}})
+    source={'domain':'housing','path':'/home_records/data/rooms'}
+    aggregate=run(snapshot,{'source':source,'aggregates':{'n':{'op':'count'}}})
+    expected=[{'path':'/home_records/data',**diagnostics}]
+    assert aggregate['rows']==[{'n':1}]
+    assert aggregate['sources'][0]['collection_diagnostics']==expected
+    assert aggregate['sources'][0]['subtree_scope']=='instantiated_city_home_records'
+    joined=run(snapshot,{'source':{'domain':'resources','path':'/rows'},
+        'joins':[{'source':source,'left_key':'/id','right_key':'/id','as':'home'}],
+        'select':{'id':field('/id')}})
+    assert joined['sources'][0]['collection_diagnostics']==[]
+    assert joined['sources'][1]['collection_diagnostics']==expected
+
+
+def test_housing_diagnostics_never_copy_strings_rows_or_descendants():
+    from syx_query import collection_diagnostics
+    node={'home_records':{'data':{'failed_room_reads':'private exception text',
+          'failed_rosters':['private resident IDs'],'truncated_rosters':{'private':'body'},
+          'room_scan_complete':False,'scan_limit':12,
+          'rows':[{'failed_room_reads':999,'private':'row values'}]}}}
+    assert collection_diagnostics(node,'/home_records/data/rows')==[
+        {'path':'/home_records/data','room_scan_complete':False,'scan_limit':12}]
+    assert collection_diagnostics(node,'/home_records')==[]
+
+
+def test_housing_zero_errors_and_complete_scan_are_not_dropped():
+    from syx_query import collection_diagnostics
+    data={'room_slots_scanned':90,'room_map_size':90,'scan_limit':10000,
+          'room_scan_complete':True,'failed_room_reads':0,'failed_rosters':0,'truncated_rosters':0}
+    assert collection_diagnostics({'data':{**data,'rooms':[]}},'/data/rooms')==[{'path':'/data',**data}]

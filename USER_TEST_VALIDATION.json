@@ -15,7 +15,7 @@
   ],
   "cited_urls_match_retrieval": true,
   "simple_transcript_without_debug_events": true,
-  "mod_jar_sha256": "64e637eadddecc9609d1715573fd1287ece80a4a3304aac20f2e50fd1b8ae979",
+  "mod_jar_sha256": "079c12d78f8306cc5351a6b82c274f02e682f83d88785fd2c6ef6ec5327b7e9e",
   "production_source_sha256": {
     "syx/assistant/AssistantScript.java": "c2b8ed68350d4a274315b16dc9ff1c6828a51516777c1ef4a45b84acc6d8b092",
     "syx/assistant/ChatPanel.java": "06db6b7715f9187a40a0b4b987ab7f64e09df5f9dc07193e261249302d1ac12f",
@@ -32,7 +32,7 @@
   "python_source_sha256": {
     "syx_mcp.py": "98b3c236062230c022bd4a1b3d2b8d383e9415647b4338fff250e6106b3272a2",
     "syx_knowledge.py": "f5d7dd6d387ad0fb8f2b024a3bd599ad1cec28f2906dfae27d9d2fdf56e4de7e",
-    "syx_query.py": "ae9c4537093952510e6536810c065b6e07f7bfc2d78d3bc02ccd0d21f4d12c07",
+    "syx_query.py": "61e40b2c7d26eb0f136461f1d06e575bc12586b80fc132a512268aea56e0fd1f",
     "syx_api_support.py": "878e3691eaff288e1c833ec447742714c90181d2652b79b0e94e2951b7eaeb7d",
     "syx_api_manifest.py": "38226c36397bd92f1343f5fad04d6653f3929e6574ec359f0431aa473f5d13f5",
     "syx_live.py": "fdcb9366a3aab0d40a6c4bf597f80e5b15349ae09e9e91acf51c573455c3f69b",
@@ -51,41 +51,38 @@
     "Copied city; native own-widget text/click fixture, not physical keyboard or every screen size.",
     "No complete game-state/all-menu claim. Raw read-only tool evidence remains in the private local history.",
     "Linux user-test bundle; game and Python dependencies must be installed separately.",
-    "Weather uses fixed public source-verified stored game factors/flags, not separately documented stable getter contracts, physical temperature/rainfall units, tile moisture, regional weather, crop yields or forecasts.",
-    "Four actual production observations have same-callback getter/DTO/retained-original MCP parity; eight subsequent actual live scene MCP checks include city/tactical/reload and battle/setup refusal.",
-    "Native malformed stored weather/getter exceptions and broad climates/seasons remain unproven. Earlier public input normalization controls do not inject bad stored values.",
-    "Cached ripeness flags can use the previous factor during engine update. Read timestamp/tick is not exact field update age.",
-    "Small-city collection samples are descriptive; no large-city/world/FPS or worst-case acceptance. Main-menu/instant unload and full UI selection/tree remain unestablished with the existing freshness limit.",
-    "The thirteen-source guide corpus and 37 local evaluation cases are unchanged; this is not a new external weather-guide review or a provider semantic-advice benchmark.",
-    "Native typed chips/drag/resize/unread and gameplay actions remain unshipped. Full variable/lifecycle/reference objective remains active."
+    "The fresh native query report uses developer-augmented same-callback housing DTOs; no production housing mapping, new game getter or action is shipped.",
+    "Fresh core/paid/distribution reports are source matched. Older weather/cost/UI/tile/entity/regional feature reports retain their actual hashes/dates/scopes and are not relabeled as fresh full-build acceptance.",
+    "Three synthetic cases cover nonzero failure values, join/aggregate provenance, zero/false and non-scalar exclusion. Native candidate parity covers one capped scan with zero failures, not native nonzero roster errors or every exception.",
+    "Unchanged Java class contents establish byte identity, not every possible runtime behavior or full variables/menu/lifecycle/reference coverage."
   ],
   "known_engine_crash_markers_absent": true,
   "game_exit_code": 0,
   "dev_runner_source_sha256": "73f472bf0c91444df3b5e18a66d11f49f11752e918e5a6113100c712ee7daf0c",
   "copied_mod_restored": true,
   "copied_save_unchanged": true,
-  "followup_completed_at": "2026-10-20T18:37:54.816596+00:00",
+  "followup_completed_at": "2026-10-20T23:46:42.116889+00:00",
   "game_version": "0.71.44",
   "game_jar_sha256": "fe0137c05408e5ee9e31f06fc44fe37a5d4372d9c985b280f0852d1347c0224b",
   "source_archive_sha256": "a3fc2aa9f4be31aec0616a5030a656ac49a6011343b7e91395c7bac0b9dfb0a5",
-  "python_tests_passed": 583,
+  "python_tests_passed": 586,
   "public_production_members": 413,
   "non_public_production_members": 0,
   "core_check_groups_passed": 7,
   "distribution_checks": {
     "passed": true,
-    "validated_at": "2026-10-20T18:36:27.975117+00:00",
+    "validated_at": "2026-10-20T23:38:57.982036+00:00",
     "fresh_dependency_environment": true,
     "extracted_check": true,
     "extracted_helper_startup_no_inference": true,
     "isolated_installer_jar_hash": true,
     "provided_key_literal_absent_from_archive": true,
     "provider_calls": 0,
-    "tested_pre_promotion_zip_sha256": "e8a393bc7d40a77db3c3215070349c11a85e71695dee3c99e6463a46f2139451",
+    "tested_pre_promotion_zip_sha256": "ce78b7aa01334c3fea2c219008828a028e967fb8f589a7e21d07f6a42135fba6",
     "tested_payload_files_sha256": {
       "syx_mcp.py": "98b3c236062230c022bd4a1b3d2b8d383e9415647b4338fff250e6106b3272a2",
       "syx_knowledge.py": "f5d7dd6d387ad0fb8f2b024a3bd599ad1cec28f2906dfae27d9d2fdf56e4de7e",
-      "syx_query.py": "ae9c4537093952510e6536810c065b6e07f7bfc2d78d3bc02ccd0d21f4d12c07",
+      "syx_query.py": "61e40b2c7d26eb0f136461f1d06e575bc12586b80fc132a512268aea56e0fd1f",
       "syx_api_support.py": "878e3691eaff288e1c833ec447742714c90181d2652b79b0e94e2951b7eaeb7d",
       "syx_api_manifest.py": "38226c36397bd92f1343f5fad04d6653f3929e6574ec359f0431aa473f5d13f5",
       "syx_live.py": "fdcb9366a3aab0d40a6c4bf597f80e5b15349ae09e9e91acf51c573455c3f69b",
@@ -104,10 +101,10 @@
       "install-mod.py": "55a24b0b3c85adf2e42181633bea832fb86bc6a10a671e1cf57a3c0d760d2d92",
       "requirements.txt": "8962ac1ba6867e3cd89e03fe7780ca36f0856c2a7263e6d8bbd4b0e4b085c7c2",
       "README.txt": "cfe7b3fc3ab90af3690fc10e190194e37bcabb8b7fcf05481a95bef8a669f2ee",
-      "mod/syx-ai-assistant/V71/script/syx-ai-assistant.jar": "64e637eadddecc9609d1715573fd1287ece80a4a3304aac20f2e50fd1b8ae979",
+      "mod/syx-ai-assistant/V71/script/syx-ai-assistant.jar": "079c12d78f8306cc5351a6b82c274f02e682f83d88785fd2c6ef6ec5327b7e9e",
       "mod/syx-ai-assistant/_Info.txt": "0f18e1d58354c93eee5967a424dbb61c2ef0baa0346a057533365447275762d1"
     },
-    "mod_jar_sha256": "64e637eadddecc9609d1715573fd1287ece80a4a3304aac20f2e50fd1b8ae979",
+    "mod_jar_sha256": "079c12d78f8306cc5351a6b82c274f02e682f83d88785fd2c6ef6ec5327b7e9e",
     "production_source_sha256": {
       "syx/assistant/AssistantScript.java": "c2b8ed68350d4a274315b16dc9ff1c6828a51516777c1ef4a45b84acc6d8b092",
       "syx/assistant/ChatPanel.java": "06db6b7715f9187a40a0b4b987ab7f64e09df5f9dc07193e261249302d1ac12f",
@@ -124,7 +121,7 @@
     "python_source_sha256": {
       "syx_mcp.py": "98b3c236062230c022bd4a1b3d2b8d383e9415647b4338fff250e6106b3272a2",
       "syx_knowledge.py": "f5d7dd6d387ad0fb8f2b024a3bd599ad1cec28f2906dfae27d9d2fdf56e4de7e",
-      "syx_query.py": "ae9c4537093952510e6536810c065b6e07f7bfc2d78d3bc02ccd0d21f4d12c07",
+      "syx_query.py": "61e40b2c7d26eb0f136461f1d06e575bc12586b80fc132a512268aea56e0fd1f",
       "syx_api_support.py": "878e3691eaff288e1c833ec447742714c90181d2652b79b0e94e2951b7eaeb7d",
       "syx_api_manifest.py": "38226c36397bd92f1343f5fad04d6653f3929e6574ec359f0431aa473f5d13f5",
       "syx_live.py": "fdcb9366a3aab0d40a6c4bf597f80e5b15349ae09e9e91acf51c573455c3f69b",
@@ -146,14 +143,15 @@
       "Container hash records this test archive. Final evidence metadata may change BUILD.json; payload file hashes must remain identical at promotion."
     ]
   },
-  "previous_tested_mod_jar_sha256": "12d3494064f969dead59e1c471cf2f7aef81ac626d6eff2b4435476b6f9c10a9",
+  "previous_tested_mod_jar_sha256": "64e637eadddecc9609d1715573fd1287ece80a4a3304aac20f2e50fd1b8ae979",
   "player_features": [
     "Automatic current-runtime connection on opening and validated reconnect-on-send",
     "This load / All chats filters before list caps; not permanent world identity",
     "Bounded in-memory per-chat drafts and paired protocol refusal; visible older-chat error notices",
     "Cached public viewport geometry with explicit coordinate scope and unknown visibility/age",
     "Selective fixed per-warehouse resource bookkeeping through read-only MCP with explicit room IDs or warehouse-slot discovery",
-    "Selective same-snapshot stored city weather factors/flags with unit/scope/age/source definitions"
+    "Selective same-snapshot stored city weather factors/flags with unit/scope/age/source definitions",
+    "Preserve fixed housing scan/error/roster diagnostics in selective source metadata; housing reader remains unregistered"
   ],
   "unshipped_features": [
     "Native typed target chips",
@@ -161,22 +159,11 @@
     "Unread badge",
     "Gameplay action execution lane"
   ],
-  "prior_feature_report_scopes": "Earlier candidate and other feature-specific reports keep their original source/JAR/date scopes. Named current parent regressions are fresh; no exhaustive variables/menu/cost or reference claim.",
+  "prior_feature_report_scopes": "Java source and class contents are byte-identical to the previous tested player. Earlier feature-specific JAR/Python/date scopes remain historical; only the listed current core/distribution/query/provider checks are fresh.",
   "current_evidence_sha256": {
-    "PLAYER_CORE_VALIDATION.json": "22e7168511908babdf672d5e86d6ef932873adf6d9c9a95cd9f0eeb1b365daa4",
-    "AUTO_CONNECTION_VALIDATION.json": "f2149f78894d3dd79da9bf5aecd9f6e5fe23e1c7bf78226a6c070af49640ec91",
-    "CHAT_FOCUS_VALIDATION.json": "3595e3b7c75029d1d06bcf5853e8ea501875f4d18de2fd2ad920b01003f85938",
-    "CHAT_BACKGROUND_VALIDATION.json": "23bd531597cdbb848809226bd12f54e4e837900ede75c62d5fec542c7fbb105b",
-    "CURRENT_COLLECTION_COST_VALIDATION.json": "708505b94b7f0b59b994c71f2a4e1ca2a74b93ba046bda738237e71095e711dd",
-    "STOCKPILE_CURRENT_REGRESSION_VALIDATION.json": "7605b7dbd885a0d06556f17d5320987aab53f2d3540b385062b8e1b1f6fe2e02",
-    "VIEWPORT_VALIDATION.json": "d6f78d65721f66c4619b7330fcb4536663714d117b8c00e90d0fabb20c375748",
-    "TILE_CAPTURE_VALIDATION.json": "c282d3bf6ef4af3bb29437f2fe1fa971f90f458e6d13d8652b5c1544f66fa8c7",
-    "ENTITY_CAPTURE_REGRESSION_VALIDATION.json": "8d6450daa43a33a19ab9820a56ce6fc3fde86b8b07d600c53d33879ebb7ef61d",
-    "REGIONAL_CAPTURE_VALIDATION.json": "1d65a9c0b468a05bc27b5ca5f228f1a67692b7eaba488477bffac1c03194cc84",
-    "PLAYER_DISTRIBUTION_VALIDATION.json": "6b9714ce60de33be10df436909afa2114369580bd859e59cb9cb0c2900fdb3a0",
-    "WEATHER_VALIDATION.json": "f2d6741ff063cee4c8dee4e01df41a599dfd6eea1581119d1b6e81727a9f91ba",
-    "WEATHER_CONTRACT_REVIEW.json": "09f1afbfadbe7b687a939ee2828f1dd0657f9a35841a94e6be3051d2a9c67709",
-    "GUIDANCE_VALIDATION.json": "398af97b12cc5b911ab04ce734eb65c0aa9958ba35764973c02ab24cc7d2a618",
-    "CAPABILITY_DISCOVERY_VALIDATION.json": "a905bd4e52a34c58e7378572de602078683a25fbb567c55aabc889af93806d84"
+    "PLAYER_CORE_VALIDATION.json": "57fd95fda1d78d1f7603fc042cae4ed4fa2d8156d53f1786c0f91b88e2d3aea5",
+    "PLAYER_DISTRIBUTION_VALIDATION.json": "db10b43aa02fa1fbd1f4b0321ee01700cce3f8c1b5e047466cb5e2fb83200790",
+    "HOUSING_QUERY_DIAGNOSTICS_VALIDATION.json": "a8a4cabc2b882d7049a33fe8709676037c728e930762b90e7118d467bf7ebc65",
+    "QUERY_DIAGNOSTICS_RELEASE_VALIDATION.json": "7e0925ddf92216cdf3aa4db4c8fcace3ae716e4d0c8ff6e06ed741827b55e0bf"
   }
 }

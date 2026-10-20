@@ -190,3 +190,7 @@ HOUSING_SCENE_VALIDATION.json now covers city/tactical/return/reload availabilit
 ## Housing selective-query seam — diagnostic readiness gap
 
 HOUSING_QUERY_INTEGRATION.md records five actual MCP calls over a developer-augmented same-callback native observation, including grouped sums/filter/projection/order and snapshot/UI consistency. A real capped one-row selection also demonstrates that current selective metadata omits seven housing scan/error/truncation diagnostics. HOUSING_QUERY_CANDIDATE_VALIDATION.json explicitly records production_integration_ready=false; its successful reproduction is not promotion approval. Fix fixed scalar propagation, finalize source-backed field/envelope/resident-relationship semantics, then run actual production/release gates. No player housing path, new tool or bundle change is shipped here.
+
+## Selective diagnostic propagation repair
+
+COLLECTION_DIAGNOSTICS.md records the repaired fixed scalar allowlist: housing slot-scan, completeness, failed-room/roster and roster-truncation values now survive selective projection/aggregation/join source metadata. The historical negative experiment remains unchanged; HOUSING_QUERY_DIAGNOSTICS_VALIDATION.json checks exact native capped values through actual MCP with the repair. Only Python query metadata changes; Java source/class contents and game getters stay unchanged. The player release has separate fresh Pro/core/distribution acceptance. Housing source definitions, relationships and collector mapping still require integration and feature/release gates.

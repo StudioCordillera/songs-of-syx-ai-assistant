@@ -29,7 +29,7 @@ It fetches remote branches/tags and reports remote changes, overlapping unpublis
 ## What is implemented
 
 - Eighteen partial domains spanning population, resources, production, employment, services, housing, health, law, happiness, research, trade, diplomacy, military, world, map, entities, events and settings.
-- Discoverable fields/provenance and bounded filters, projections, joins, grouping, arithmetic, aggregates, sorting and pagination. Query batches share one cached observation.
+- Discoverable fields/provenance and bounded filters, projections, joins, grouping, arithmetic, aggregates, sorting and pagination. Query batches share one cached observation. [Collection diagnostics](COLLECTION_DIAGNOSTICS.md) preserve reviewed scan/error/truncation limits in selective source metadata; the richer housing reader remains a developer candidate.
 - On-demand person/stat/relationship reads beyond the exported prefix, recorded-workplace filtering and retained entity captures for consistent bounded paging. Separate live cursor pages remain different observations.
 - Bounded terrain/floor/room/mineral/path queries, optional [stored tile moisture](GROUND_MOISTURE.md) and [retained tile selections](TILE_CAPTURES.md): one callback, up to 4,096 scanned tiles, 100 matches and 64 KiB, then stable paging. Live tile pages remain separate observations; neither route identifies the UI-selected room.
 - Recipe/recorded-flow and staffing joins, stored workforce factors and producer degradation with explicit units, threshold, age and completeness limits. Configured service permissions and stored service-point counters are distinct from individual access/daily capacity.

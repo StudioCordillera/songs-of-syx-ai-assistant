@@ -1,17 +1,17 @@
 {
   "passed": true,
-  "validated_at": "2026-10-20T18:36:27.975117+00:00",
+  "validated_at": "2026-10-20T23:38:57.982036+00:00",
   "fresh_dependency_environment": true,
   "extracted_check": true,
   "extracted_helper_startup_no_inference": true,
   "isolated_installer_jar_hash": true,
   "provided_key_literal_absent_from_archive": true,
   "provider_calls": 0,
-  "tested_pre_promotion_zip_sha256": "e8a393bc7d40a77db3c3215070349c11a85e71695dee3c99e6463a46f2139451",
+  "tested_pre_promotion_zip_sha256": "ce78b7aa01334c3fea2c219008828a028e967fb8f589a7e21d07f6a42135fba6",
   "tested_payload_files_sha256": {
     "syx_mcp.py": "98b3c236062230c022bd4a1b3d2b8d383e9415647b4338fff250e6106b3272a2",
     "syx_knowledge.py": "f5d7dd6d387ad0fb8f2b024a3bd599ad1cec28f2906dfae27d9d2fdf56e4de7e",
-    "syx_query.py": "ae9c4537093952510e6536810c065b6e07f7bfc2d78d3bc02ccd0d21f4d12c07",
+    "syx_query.py": "61e40b2c7d26eb0f136461f1d06e575bc12586b80fc132a512268aea56e0fd1f",
     "syx_api_support.py": "878e3691eaff288e1c833ec447742714c90181d2652b79b0e94e2951b7eaeb7d",
     "syx_api_manifest.py": "38226c36397bd92f1343f5fad04d6653f3929e6574ec359f0431aa473f5d13f5",
     "syx_live.py": "fdcb9366a3aab0d40a6c4bf597f80e5b15349ae09e9e91acf51c573455c3f69b",
@@ -30,10 +30,10 @@
     "install-mod.py": "55a24b0b3c85adf2e42181633bea832fb86bc6a10a671e1cf57a3c0d760d2d92",
     "requirements.txt": "8962ac1ba6867e3cd89e03fe7780ca36f0856c2a7263e6d8bbd4b0e4b085c7c2",
     "README.txt": "cfe7b3fc3ab90af3690fc10e190194e37bcabb8b7fcf05481a95bef8a669f2ee",
-    "mod/syx-ai-assistant/V71/script/syx-ai-assistant.jar": "64e637eadddecc9609d1715573fd1287ece80a4a3304aac20f2e50fd1b8ae979",
+    "mod/syx-ai-assistant/V71/script/syx-ai-assistant.jar": "079c12d78f8306cc5351a6b82c274f02e682f83d88785fd2c6ef6ec5327b7e9e",
     "mod/syx-ai-assistant/_Info.txt": "0f18e1d58354c93eee5967a424dbb61c2ef0baa0346a057533365447275762d1"
   },
-  "mod_jar_sha256": "64e637eadddecc9609d1715573fd1287ece80a4a3304aac20f2e50fd1b8ae979",
+  "mod_jar_sha256": "079c12d78f8306cc5351a6b82c274f02e682f83d88785fd2c6ef6ec5327b7e9e",
   "production_source_sha256": {
     "syx/assistant/AssistantScript.java": "c2b8ed68350d4a274315b16dc9ff1c6828a51516777c1ef4a45b84acc6d8b092",
     "syx/assistant/ChatPanel.java": "06db6b7715f9187a40a0b4b987ab7f64e09df5f9dc07193e261249302d1ac12f",
@@ -50,7 +50,7 @@
   "python_source_sha256": {
     "syx_mcp.py": "98b3c236062230c022bd4a1b3d2b8d383e9415647b4338fff250e6106b3272a2",
     "syx_knowledge.py": "f5d7dd6d387ad0fb8f2b024a3bd599ad1cec28f2906dfae27d9d2fdf56e4de7e",
-    "syx_query.py": "ae9c4537093952510e6536810c065b6e07f7bfc2d78d3bc02ccd0d21f4d12c07",
+    "syx_query.py": "61e40b2c7d26eb0f136461f1d06e575bc12586b80fc132a512268aea56e0fd1f",
     "syx_api_support.py": "878e3691eaff288e1c833ec447742714c90181d2652b79b0e94e2951b7eaeb7d",
     "syx_api_manifest.py": "38226c36397bd92f1343f5fad04d6653f3929e6574ec359f0431aa473f5d13f5",
     "syx_live.py": "fdcb9366a3aab0d40a6c4bf597f80e5b15349ae09e9e91acf51c573455c3f69b",

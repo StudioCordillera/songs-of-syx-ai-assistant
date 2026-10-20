@@ -55,6 +55,8 @@ COLLECTION_DIAGNOSTIC_KEYS = frozenset({
     'resource_limit', 'flow_row_limit', 'trade_type_count', 'trade_type_scan_limit',
     'failed_resources', 'scanned_resources', 'resource_count_total', 'resource_truncated',
     'scanned_regions', 'scanned_cells', 'cell_limit', 'cell_truncated', 'failed_cells',
+    'room_slots_scanned', 'room_map_size', 'scan_limit', 'room_scan_complete',
+    'failed_room_reads', 'failed_rosters', 'truncated_rosters',
 })
 
 

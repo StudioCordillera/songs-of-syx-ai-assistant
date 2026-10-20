@@ -32,6 +32,8 @@ The unchanged housing candidate also has a separate real-chamber/bounds runner: 
 
 [Housing query integration](HOUSING_QUERY_INTEGRATION.md) maps the next production gates. `dev/run_housing_query_candidate.py` and `dev/candidates/housing/query/StockpileScenario.java` exercise the unchanged real MCP over their own same-callback augmented native snapshot; [evidence](HOUSING_QUERY_CANDIDATE_VALIDATION.json) includes successful selective queries and a demonstrated missing-diagnostics gate. `housing-query-candidate-example.json` uses provisional developer paths and is not a player query.
 
+[Collection diagnostics](COLLECTION_DIAGNOSTICS.md) describes the fixed scalar-only ancestor metadata contract in `syx_query.py`, including the seven housing-specific keys. `dev/run_housing_query_diagnostics.py` retains the earlier native/MCP experiment with corrected expectations and exact capped diagnostics; [positive evidence](HOUSING_QUERY_DIAGNOSTICS_VALIDATION.json) is separate from the historical negative report. The housing reader itself remains unregistered.
+
 ## Python runtime modules
 
 | Module | Responsibility |

@@ -1,6 +1,6 @@
 {
   "passed": true,
-  "mod_jar_sha256": "64e637eadddecc9609d1715573fd1287ece80a4a3304aac20f2e50fd1b8ae979",
+  "mod_jar_sha256": "079c12d78f8306cc5351a6b82c274f02e682f83d88785fd2c6ef6ec5327b7e9e",
   "production_source_sha256": {
     "syx/assistant/AssistantScript.java": "c2b8ed68350d4a274315b16dc9ff1c6828a51516777c1ef4a45b84acc6d8b092",
     "syx/assistant/ChatPanel.java": "06db6b7715f9187a40a0b4b987ab7f64e09df5f9dc07193e261249302d1ac12f",
@@ -17,7 +17,7 @@
   "python_source_sha256": {
     "syx_mcp.py": "98b3c236062230c022bd4a1b3d2b8d383e9415647b4338fff250e6106b3272a2",
     "syx_knowledge.py": "f5d7dd6d387ad0fb8f2b024a3bd599ad1cec28f2906dfae27d9d2fdf56e4de7e",
-    "syx_query.py": "ae9c4537093952510e6536810c065b6e07f7bfc2d78d3bc02ccd0d21f4d12c07",
+    "syx_query.py": "61e40b2c7d26eb0f136461f1d06e575bc12586b80fc132a512268aea56e0fd1f",
     "syx_api_support.py": "878e3691eaff288e1c833ec447742714c90181d2652b79b0e94e2951b7eaeb7d",
     "syx_api_manifest.py": "38226c36397bd92f1343f5fad04d6653f3929e6574ec359f0431aa473f5d13f5",
     "syx_live.py": "fdcb9366a3aab0d40a6c4bf597f80e5b15349ae09e9e91acf51c573455c3f69b",
@@ -134,7 +134,7 @@
           "mod/tests/ProductionScenario.java": "d5a305c0ca3c3a23deb25947b124ca5bb8e8b3e196d6992609d633cd7a508af3",
           "dev/verify_production.py": "c5f709e8ced215dfde81e6aeb55e60415babf65b9843775a456b9b1fd936fb79",
           "degradation-query-example.json": "35af3cb42d9ed6761d184ae2b03f51385ce1305d720de233e6754955de1c3cba",
-          "syx_query.py": "ae9c4537093952510e6536810c065b6e07f7bfc2d78d3bc02ccd0d21f4d12c07",
+          "syx_query.py": "61e40b2c7d26eb0f136461f1d06e575bc12586b80fc132a512268aea56e0fd1f",
           "syx_mcp.py": "98b3c236062230c022bd4a1b3d2b8d383e9415647b4338fff250e6106b3272a2"
         },
         "limits": [
@@ -165,7 +165,7 @@
           "mod/tests/ProductionScenario.java": "d5a305c0ca3c3a23deb25947b124ca5bb8e8b3e196d6992609d633cd7a508af3",
           "dev/verify_production.py": "c5f709e8ced215dfde81e6aeb55e60415babf65b9843775a456b9b1fd936fb79",
           "workforce-query-example.json": "a3a5f019cbc0f28343eb7e6448aba801b3f7c1bd3d3a053d8456c55111298fff",
-          "syx_query.py": "ae9c4537093952510e6536810c065b6e07f7bfc2d78d3bc02ccd0d21f4d12c07",
+          "syx_query.py": "61e40b2c7d26eb0f136461f1d06e575bc12586b80fc132a512268aea56e0fd1f",
           "syx_mcp.py": "98b3c236062230c022bd4a1b3d2b8d383e9415647b4338fff250e6106b3272a2"
         },
         "limits": [
