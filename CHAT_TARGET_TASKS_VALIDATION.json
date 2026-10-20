@@ -1,0 +1,101 @@
+{
+  "passed": true,
+  "validated_at": "2026-10-20T14:19:00.911800+00:00",
+  "stage": "Developer-only accepted helper task/Stop ownership; no native control, fresh paid inference or player release",
+  "full_offline_tests": 526,
+  "new_task_cases": 12,
+  "offline_log_sha256": "20919cce2b693494f5bb0043e54fdfc63ed420ceef0cd8d495e35681579062f9",
+  "source_sha256": {
+    "dev/chat_target_tasks.py": "25e085885be589e2f48bce4c73b8d3d3a28aaba5229174d30bf265d4cd70ade2",
+    "test_chat_target_tasks.py": "4efbbe76d89dbd8bc8dd69816b2d2e2b341bc26cd39bc175e2c1ea28dd4271bb",
+    "dev/chat_target_dispatch.py": "178c0d5c003fd7fb95ca699a3f2d411dfb1e958583ca798e913e646a0ea85f12",
+    "dev/chat_target_queue.py": "afc74d752f277d72bc2a4d315714831ec89c12568d971d69640af161049f4cea",
+    "dev/chat_target_transport.py": "483e0c8eb9c5f4abd882094dfbba6ebcbc31af6de760d1827b91945a8fdfa5ad",
+    "dev/verify_tiles.py": "edd0779c0f4e71e13a357e922b455cfaa12e327847c23d83d511c09a754b2712",
+    "dev/run_read_fixture.py": "d237f156bc293b7867805d876d717ced3bd616c9fbd16a5eb0fffdb705fc5820",
+    "syx_chat.py": "bb201ed9e6a0ed84f6dbddd583304e3c9b655f3e3c563f6a48f60e9669775714",
+    "syx_chat_store.py": "a2f2ffa53097cb60eab72c015c3d516693aa1c89c8aa54d74f4dfc96d222e634"
+  },
+  "bounds": {
+    "owned_active_tasks": 8,
+    "recent_digest_attempt_summaries": 100,
+    "start_lock_and_acceptance_timeout_seconds": 5,
+    "close_cleanup_observation_seconds": 2
+  },
+  "native": {
+    "game_version": "0.71.44",
+    "mod_jar_sha256": "73b44c555a0f9e5e9d2497fee2ce6e6276052b8926117c776ebe1276a4a8cc22",
+    "game_jar_sha256": "fe0137c05408e5ee9e31f06fc44fe37a5d4372d9c985b280f0852d1347c0224b",
+    "game_exit_code": 0,
+    "known_engine_crash_markers_absent": true,
+    "copied_profile_mod_restored": true,
+    "copied_save_unchanged": true,
+    "actual_session_rotation_invalidates_token": true,
+    "executed_read_report_sha256": "de78c9537e3f5f49c2e254ac148d14fb17b3e154b261a931cdb305c3438ef00a",
+    "scene_report_sha256": "ed0c4cb9b713379d4378722d278b37155a5b562d95917810274c238ac2213662",
+    "owned_task_checks": {
+      "passed": true,
+      "completed_getter_backed_workflow": true,
+      "exact_start_replay_no_new_provider_call": true,
+      "running_fake_provider_stop": true,
+      "terminal_cancelled_and_cleanup_finished": true,
+      "unknown_remote_outcome_kept_explicit": true
+    },
+    "getter_backed_dispatch_checks": {
+      "passed": true,
+      "original_evicted_capture_rows_reach_fake_provider": true,
+      "exactly_one_fake_provider_workflow": true,
+      "duplicate_claim_refused": true,
+      "one_original_user_event": true,
+      "newer_draft_preserved": true,
+      "tile_mailbox_unchanged": true
+    }
+  },
+  "local_claude_review": {
+    "requested_alias": "opus",
+    "effort": "high",
+    "observed_models": [
+      "claude-opus-5-5"
+    ],
+    "tools": [],
+    "exit_code": 0,
+    "subtype": "success",
+    "is_error": false,
+    "duration_ms": 46083,
+    "num_turns": 1,
+    "input_prompt_sha256": "b69861043fb3a20cef0a7a8a933f70208dfa543731078a8c05cf62c3e40ee86c",
+    "final_public_text_sha256": "1449dc01c073cbd321cbc6295447afa2e3bdcab679def316db527257597982d1",
+    "reviewed_source_sha256": {
+      "dev/chat_target_tasks.py": "646e3587b966e252c0d2613337daf509bf3489edd2a1264f00937ff368b594e2"
+    },
+    "input_working_tree_base": "52031ceff0dc7ba53a19857f286bac6406acedd1",
+    "isolated_checkout_base": "36b3d91e58c684ad267cd6554e87b920df1c9c07",
+    "edited_decisions": "CHAT_TARGET_TASKS.md",
+    "final_followup_source_reviewed_by_claude": false,
+    "credits_purchased": false,
+    "account_limits_bypassed": false
+  },
+  "provider_inference_calls": 0,
+  "production_changed": false,
+  "player_bundle_unchanged": true,
+  "exact_key_exclusion": {
+    "passed": true,
+    "task_owned_native_files_scanned": 74,
+    "key_value_or_digest_published": false
+  },
+  "bundle_sha256": {
+    "latest-user-test.zip": "309ee82d47af3e562706a661adcd9deb21a20906b023aca62da1de03767fe558",
+    "previous-user-test.zip": "832f3ad1a49e0c3f5933af7a0c530edaf471a8b6f03b9d4373cec80e1cd6df40"
+  },
+  "limits": [
+    "Real stdio MCP with synthetic readers/fake providers offline; copied-city retained getter-backed tile completion and one pending fake-provider Stop through actual MCP.",
+    "No native request/button/picker/chip/read integration, physical input, screenshot, new game API, gameplay action or fresh real Pro acceptance.",
+    "Pending admission cancellation belongs to the caller task; accepted-task Stop begins after registered ownership. Native protocol must integrate both phases.",
+    "Local cancelled/failed status is not proof of remote cancellation, receipt or billing; claimed non-completed work remains explicitly uncertain and never auto-replays.",
+    "Owned recent-cache Stop authority ends on eviction/restart. Unowned requests are observed, not cancelled; later coordinator queue-cancellation policy remains open.",
+    "Single event loop/coordinator owns dependencies. close reports pending cleanup without a second forced cancellation; keep dependencies alive while pending. This is not hard real-time latency acceptance.",
+    "Deleted-history teardown is defensive evidence, not permission for concurrent independent writers/recovery/deletion against a live coordinator.",
+    "Final post-review queued-cancel/teardown/identity fixes are independently tested, not re-reviewed by Claude. Earlier paid report retains historical source/scope.",
+    "No full game/menu/state/reference/large-world/visibility coverage or completed player revision is claimed."
+  ]
+}

@@ -42,6 +42,7 @@ def scope(path):
     if name=='STOCKPILE_BOOKKEEPING_VALIDATION.json':return 'Current global stockpile DTO/MCP evidence; per-room arrays are fixture-only'
     if name=='STOCKPILE_READER_VALIDATION.json':return 'Candidate native-reader checks and existing aggregate MCP parity; additional production fields pending'
     if name=='COLLABORATION_VALIDATION.json':return 'Historical collaboration/dev-doc checkpoint; inspect pinned hashes, separate from player evidence'
+    if name=='CHAT_TARGET_TASKS_VALIDATION.json':return 'Developer-only owned task/Stop lifecycle with fake providers and copied-city restoration; no native control or fresh real Pro acceptance'
     if name=='CHAT_TARGET_DISPATCH_PRO_VALIDATION.json':return 'Developer-only explicit paid Pro target handoff; copied-game restoration and fake-provider plumbing checks, not native UI/release acceptance'
     if name=='CHAT_TARGET_DISPATCH_VALIDATION.json':return 'Developer-only accepted-turn claim tests and copied-city fake-provider handoff; not native player or paid Pro acceptance'
     if name=='CHAT_TARGET_DISPATCH.md':return 'Developer dispatch seam, cancellation/restart/unknown-delivery contract and remaining integration gates'

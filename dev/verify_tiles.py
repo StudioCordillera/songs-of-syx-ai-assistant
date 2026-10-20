@@ -14,6 +14,7 @@ from verify_scenes import verify as verify_scenes
 from dev.chat_target_transport import McpTargetDrafts
 from dev.chat_target_queue import TargetQueue, TargetAdmission
 from dev.chat_target_dispatch import TargetDispatch, model_question
+from dev.chat_target_tasks import TargetTasks
 from syx_chat_store import ChatStore
 from uuid import uuid4
 
@@ -225,7 +226,14 @@ async def verify(directory,env_file=None):
             dispatch=TargetDispatch(target_queue,target_adapter,lambda _:fake_provider)
             assert dispatch.initialize() is True
             dispatch_wire=(directory/'tile-request.txt').read_bytes()
-            assert await dispatch.run(target_request)=='Synthetic selected-tile response'
+            task_lane=TargetTasks(TargetAdmission(target_queue,target_adapter),dispatch)
+            await task_lane.start(target_request)
+            async def settled_task(lane,request):
+                async with asyncio.timeout(10):
+                    while lane.view(request)['owned_task_active']:await asyncio.sleep(.01)
+                return lane.view(request)
+            completed_task=await settled_task(task_lane,target_request)
+            assert completed_task['turn_status']=='completed' and not completed_task['remote_outcome_unknown']
             assert fake_provider.calls==1 and fake_provider.closed
             assert target_history.turns(target_chat)[0]['status']=='completed'
             assert sum(e['kind']=='user' for e in target_history.events(target_chat))==1
@@ -233,7 +241,30 @@ async def verify(directory,env_file=None):
             try:await dispatch.run(target_request)
             except ValueError as error:assert 'already claimed' in str(error)
             else:raise AssertionError('Dispatch repeated an already claimed workflow')
+            assert (await task_lane.start(target_request))['turn_status']=='completed'
+            assert (await task_lane.close())['pending_owned_tasks']==0
             assert fake_provider.calls==1
+            stop_entered=asyncio.Event()
+            class PendingFixtureProvider:
+                calls=0
+                closed=False
+                async def complete(self,messages,tools,on_text):
+                    self.calls+=1;stop_entered.set();await asyncio.Event().wait()
+                async def close(self):self.closed=True
+            pending_provider=PendingFixtureProvider()
+            stop_chat=target_history.new(snapshot.session_id,model='deepseek-v4-pro')['chat_id']
+            stop_request=dict(chat_id=stop_chat,request_id=str(uuid4()),turn_id=str(uuid4()),game_session=snapshot.session_id,
+                text='Synthetic backend Stop check; never external inference',attachment_ids=[])
+            stop_dispatch=TargetDispatch(target_queue,target_adapter,lambda _:pending_provider)
+            stop_lane=TargetTasks(TargetAdmission(target_queue,target_adapter),stop_dispatch)
+            await stop_lane.start(stop_request)
+            async with asyncio.timeout(10):await stop_entered.wait()
+            stop_view=await stop_lane.stop(stop_request)
+            assert stop_view['stop_requested'] and stop_view['dispatch_claimed'] and stop_view['remote_outcome_unknown']
+            stopped_task=await settled_task(stop_lane,stop_request)
+            assert stopped_task['turn_status']=='cancelled' and pending_provider.calls==1 and pending_provider.closed
+            assert (await stop_lane.start(stop_request))['turn_status']=='cancelled'
+            assert pending_provider.calls==1 and (await stop_lane.close())['pending_owned_tasks']==0
             assert (directory/'tile-request.txt').read_bytes()==dispatch_wire
             target_history.close()
             paid_dispatch=None
@@ -251,9 +282,12 @@ async def verify(directory,env_file=None):
                 'explicit_target_dispatch':{'passed':True,'original_evicted_capture_rows_reach_fake_provider':True,
                     'exactly_one_fake_provider_workflow':True,'duplicate_claim_refused':True,
                     'one_original_user_event':True,'newer_draft_preserved':True,'tile_mailbox_unchanged':True},
+                'owned_task_stop':{'passed':True,'completed_getter_backed_workflow':True,
+                    'exact_start_replay_no_new_provider_call':True,'running_fake_provider_stop':True,
+                    'terminal_cancelled_and_cleanup_finished':True,'unknown_remote_outcome_kept_explicit':True},
                 'native_player_picker_or_send_integration':False,'inference_calls':0,
                 'source_sha256':{name:hashlib.sha256((root/name).read_bytes()).hexdigest() for name in
-                    ['dev/chat_target_candidate.py','dev/chat_target_transport.py','dev/chat_target_queue.py','dev/chat_target_dispatch.py','dev/verify_tiles.py']}}
+                    ['dev/chat_target_candidate.py','dev/chat_target_transport.py','dev/chat_target_queue.py','dev/chat_target_dispatch.py','dev/chat_target_tasks.py','dev/verify_tiles.py']}}
             tile_capture_report={'paid_target_dispatch':paid_dispatch,'passed':True,'developer_target_transport':target_transport_report,'game_version':snapshot.game_version,'retained_rows':len(captured),
                 'retained_pages':retained_pages,'direct_public_getter_row_parity':True,'ground_moisture_live_and_retained_parity':True,'ground_moisture_retained_rows':100,'ground_moisture_retained_pages':10,'wide_100_row_tool_text_budget_refusal':True,'original_request_tick_time_scene_and_ui_preserved':True,
                 'active_simulation_and_view_change':True,'paging_did_not_write_game_request_mailbox':True,

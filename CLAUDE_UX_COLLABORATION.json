@@ -230,5 +230,29 @@
     "final_followup_source_reviewed_by_claude": false,
     "credits_purchased": false,
     "account_limits_bypassed": false
+  },
+  "completed_target_tasks_review": {
+    "requested_alias": "opus",
+    "effort": "high",
+    "observed_models": [
+      "claude-opus-5-5"
+    ],
+    "tools": [],
+    "exit_code": 0,
+    "subtype": "success",
+    "is_error": false,
+    "duration_ms": 46083,
+    "num_turns": 1,
+    "input_prompt_sha256": "b69861043fb3a20cef0a7a8a933f70208dfa543731078a8c05cf62c3e40ee86c",
+    "final_public_text_sha256": "1449dc01c073cbd321cbc6295447afa2e3bdcab679def316db527257597982d1",
+    "reviewed_source_sha256": {
+      "dev/chat_target_tasks.py": "646e3587b966e252c0d2613337daf509bf3489edd2a1264f00937ff368b594e2"
+    },
+    "input_working_tree_base": "52031ceff0dc7ba53a19857f286bac6406acedd1",
+    "isolated_checkout_base": "36b3d91e58c684ad267cd6554e87b920df1c9c07",
+    "edited_decisions": "CHAT_TARGET_TASKS.md",
+    "final_followup_source_reviewed_by_claude": false,
+    "credits_purchased": false,
+    "account_limits_bypassed": false
   }
 }
