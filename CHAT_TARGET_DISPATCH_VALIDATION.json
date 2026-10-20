@@ -1,0 +1,114 @@
+{
+  "passed": true,
+  "validated_at": "2026-10-20T12:10:03.548111+00:00",
+  "stage": "Developer-only explicit accepted-turn handoff to unchanged Conversation; no native client or real Pro acceptance",
+  "full_offline_tests": 512,
+  "new_dispatch_cases": 23,
+  "offline_log_sha256": "3615c905a23a79c26e9d56965a2abc65cdf3f49c10a3608b852b9406c25e46d0",
+  "source_sha256": {
+    "dev/chat_target_dispatch.py": "178c0d5c003fd7fb95ca699a3f2d411dfb1e958583ca798e913e646a0ea85f12",
+    "test_chat_target_dispatch.py": "798f5a7e60fbb5b5bab8926aae733c32f343de6fe8d42e3d0311206dec2c23ea",
+    "dev/chat_target_queue.py": "afc74d752f277d72bc2a4d315714831ec89c12568d971d69640af161049f4cea",
+    "dev/chat_target_transport.py": "483e0c8eb9c5f4abd882094dfbba6ebcbc31af6de760d1827b91945a8fdfa5ad",
+    "dev/chat_target_candidate.py": "64a26e2c3d0d4ace1d432faa4281b95f820bbda5d76668e191a7ad494f14aeb2",
+    "dev/verify_tiles.py": "2648ac25b19170c978ae4fdb6d5177aefad73b5254c53f6a0edfc90bb3bb3ce2",
+    "dev/run_read_fixture.py": "92d22b5b7f4ae6aff768a4dcafdbacb2e3ea94432c83475d7bf66ee3a4268349",
+    "syx_chat.py": "bb201ed9e6a0ed84f6dbddd583304e3c9b655f3e3c563f6a48f60e9669775714",
+    "syx_chat_store.py": "a2f2ffa53097cb60eab72c015c3d516693aa1c89c8aa54d74f4dfc96d222e634",
+    "syx_mcp.py": "6e57581936147e8f17f3716c4e71acd24fda4bb63ab6f594e9342587f3b998d5"
+  },
+  "native": {
+    "passed": true,
+    "game_version": "0.71.44",
+    "mod_jar_sha256": "73b44c555a0f9e5e9d2497fee2ce6e6276052b8926117c776ebe1276a4a8cc22",
+    "game_jar_sha256": "fe0137c05408e5ee9e31f06fc44fe37a5d4372d9c985b280f0852d1347c0224b",
+    "copied_profile_mod_restored": true,
+    "copied_save_unchanged": true,
+    "known_engine_crash_markers_absent": true,
+    "game_exit_code": 0,
+    "actual_session_rotation_invalidates_token": true,
+    "executed_read_report_sha256": "f5a81a60e23d1d2a52335d0baf433f891a10adcac42fb09bd1ff1631972cbe90",
+    "scene_report_sha256": "ed0c4cb9b713379d4378722d278b37155a5b562d95917810274c238ac2213662",
+    "target_checks": {
+      "passed": true,
+      "scope": "Developer adapter over actual stdio MCP and copied-city retained tile reads",
+      "direct_public_getter_rows_matched": 2,
+      "changed_scene_refused": true,
+      "return_to_original_scene_recovers": true,
+      "evicted_original_token_refused": true,
+      "explicit_new_capture_selection_passed": true,
+      "failed_draft_preserved": true,
+      "stage_and_prepare_did_not_write_tile_request": true,
+      "durable_target_acceptance": {
+        "passed": true,
+        "getter_matched_rows": 2,
+        "original_evidence_persisted": true,
+        "queued_question_not_auto_dispatched": true,
+        "queued_survives_store_restart": true,
+        "exact_replay_no_duplicate_turn": true,
+        "old_ack_preserves_restaged_target": true,
+        "tile_mailbox_unchanged": true
+      },
+      "explicit_target_dispatch": {
+        "passed": true,
+        "original_evicted_capture_rows_reach_fake_provider": true,
+        "exactly_one_fake_provider_workflow": true,
+        "duplicate_claim_refused": true,
+        "one_original_user_event": true,
+        "newer_draft_preserved": true,
+        "tile_mailbox_unchanged": true
+      },
+      "native_player_picker_or_send_integration": false,
+      "inference_calls": 0,
+      "source_sha256": {
+        "dev/chat_target_candidate.py": "64a26e2c3d0d4ace1d432faa4281b95f820bbda5d76668e191a7ad494f14aeb2",
+        "dev/chat_target_transport.py": "483e0c8eb9c5f4abd882094dfbba6ebcbc31af6de760d1827b91945a8fdfa5ad",
+        "dev/chat_target_queue.py": "afc74d752f277d72bc2a4d315714831ec89c12568d971d69640af161049f4cea",
+        "dev/chat_target_dispatch.py": "178c0d5c003fd7fb95ca699a3f2d411dfb1e958583ca798e913e646a0ea85f12",
+        "dev/verify_tiles.py": "2648ac25b19170c978ae4fdb6d5177aefad73b5254c53f6a0edfc90bb3bb3ce2"
+      }
+    },
+    "provider_inference_calls": 0
+  },
+  "local_claude_review": {
+    "requested_alias": "opus",
+    "effort": "high",
+    "observed_models": [
+      "claude-opus-5-5"
+    ],
+    "tools": [],
+    "exit_code": 0,
+    "subtype": "success",
+    "is_error": false,
+    "duration_ms": 78788,
+    "num_turns": 1,
+    "input_prompt_sha256": "ca05da66da1d133a749d1098cf4bd5b31f9996f1a566f6775064b3cd176c8db1",
+    "final_public_text_sha256": "642b74b1d69e80354f72d343be5ceb7c4cebece63ae8f20c574b67ecada41f14",
+    "reviewed_source_sha256": {
+      "dev/chat_target_dispatch.py": "04bf486cb31881ce6f93dc68d1d47d2abc745020be4ceb3733bfcf1e2395893d",
+      "syx_chat.py": "bb201ed9e6a0ed84f6dbddd583304e3c9b655f3e3c563f6a48f60e9669775714"
+    },
+    "input_working_tree_base": "38a76ec8b119467f518c8762ab7e4ef437c50736",
+    "isolated_checkout_base": "36b3d91e58c684ad267cd6554e87b920df1c9c07",
+    "edited_decisions": "CHAT_TARGET_DISPATCH.md",
+    "final_followup_source_reviewed_by_claude": false,
+    "credits_purchased": false,
+    "account_limits_bypassed": false
+  },
+  "provider_inference_calls": 0,
+  "production_changed": false,
+  "player_bundle_unchanged": true,
+  "bundle_sha256": {
+    "latest-user-test.zip": "309ee82d47af3e562706a661adcd9deb21a20906b023aca62da1de03767fe558",
+    "previous-user-test.zip": "832f3ad1a49e0c3f5933af7a0c530edaf471a8b6f03b9d4373cec80e1cd6df40"
+  },
+  "limits": [
+    "Actual stdio production MCP with synthetic readers/fake providers in offline cases; no paid inference, key, game automation or normal histories.",
+    "Copied-city native dispatch uses two getter-matched original tile rows after token eviction and a fake provider; not entity/regional/native picker/chip/stop or real Pro acceptance.",
+    "One workflow claim can contain up to eight normal provider rounds and sixteen tool calls; no exactly-once remote delivery/billing claim.",
+    "Before claim refusal retains queued request. After claim failure/cancellation/interrupt never auto-replays; remote outcome may remain unknown.",
+    "Single coordinator owns history/tasks; an independent legacy writer can bypass the new claim protocol. Explicit chat/history deletion ends the retained refusal lifetime; no queue prune API exists.",
+    "Same-device clocks/default export freshness and sequential runtime/scene checks; no cross-host clock, full game/menu/state, visibility, UI, large-world cost or gameplay action acceptance.",
+    "Final running-turn/credential follow-up is independently tested; Claude reviewed its earlier separately pinned source."
+  ]
+}

@@ -13,6 +13,7 @@ from syx_mcp import Advisor
 from verify_scenes import verify as verify_scenes
 from dev.chat_target_transport import McpTargetDrafts
 from dev.chat_target_queue import TargetQueue, TargetAdmission
+from dev.chat_target_dispatch import TargetDispatch, model_question
 from syx_chat_store import ChatStore
 from uuid import uuid4
 
@@ -204,15 +205,49 @@ async def verify(directory):
             await target_adapter.remove(target_chat,target_item['attachment_id'])
             replacement=await target_adapter.stage(target_chat,'tile',fresh['capture']['capture_id'])
             assert (await target_adapter.prepare(target_chat))['attachments']==[replacement]
+            # Explicit developer dispatch AFTER original pool eviction: original accepted
+            # rows are historical evidence, not live retained-token authority.
+            target_history=ChatStore(directory/'target-queue-history',recover=True)
+            target_queue=TargetQueue(target_history)
+            class FixtureProvider:
+                calls=0
+                closed=False
+                async def complete(self,messages,tools,on_text):
+                    self.calls+=1
+                    question=next(m['content'] for m in messages if m['role']=='user' and 'Selected target observations' in m['content'])
+                    assert question.startswith(model_question(target_request,accepted_evidence))
+                    assert accepted_evidence['attachments'][0]['rows']==retained_rows[:2]
+                    assert not any(m['role']=='tool' for m in messages)
+                    on_text('Synthetic selected-tile response')
+                    return {'role':'assistant','content':'Synthetic selected-tile response'}
+                async def close(self):self.closed=True
+            fake_provider=FixtureProvider()
+            dispatch=TargetDispatch(target_queue,target_adapter,lambda _:fake_provider)
+            assert dispatch.initialize() is True
+            dispatch_wire=(directory/'tile-request.txt').read_bytes()
+            assert await dispatch.run(target_request)=='Synthetic selected-tile response'
+            assert fake_provider.calls==1 and fake_provider.closed
+            assert target_history.turns(target_chat)[0]['status']=='completed'
+            assert sum(e['kind']=='user' for e in target_history.events(target_chat))==1
+            assert target_adapter.preview(target_chat)==[replacement]
+            try:await dispatch.run(target_request)
+            except ValueError as error:assert 'already claimed' in str(error)
+            else:raise AssertionError('Dispatch repeated an already claimed workflow')
+            assert fake_provider.calls==1
+            assert (directory/'tile-request.txt').read_bytes()==dispatch_wire
+            target_history.close()
             target_transport_report={'passed':True,'scope':'Developer adapter over actual stdio MCP and copied-city retained tile reads',
                 'direct_public_getter_rows_matched':2,'changed_scene_refused':True,'return_to_original_scene_recovers':True,
                 'evicted_original_token_refused':True,'explicit_new_capture_selection_passed':True,'failed_draft_preserved':True,'stage_and_prepare_did_not_write_tile_request':True,
                 'durable_target_acceptance':{'passed':True,'getter_matched_rows':2,'original_evidence_persisted':True,
-                    'queued_question_not_dispatched':True,'queued_survives_store_restart':True,'exact_replay_no_duplicate_turn':True,
+                    'queued_question_not_auto_dispatched':True,'queued_survives_store_restart':True,'exact_replay_no_duplicate_turn':True,
                     'old_ack_preserves_restaged_target':True,'tile_mailbox_unchanged':True},
+                'explicit_target_dispatch':{'passed':True,'original_evicted_capture_rows_reach_fake_provider':True,
+                    'exactly_one_fake_provider_workflow':True,'duplicate_claim_refused':True,
+                    'one_original_user_event':True,'newer_draft_preserved':True,'tile_mailbox_unchanged':True},
                 'native_player_picker_or_send_integration':False,'inference_calls':0,
                 'source_sha256':{name:hashlib.sha256((root/name).read_bytes()).hexdigest() for name in
-                    ['dev/chat_target_candidate.py','dev/chat_target_transport.py','dev/chat_target_queue.py','dev/verify_tiles.py']}}
+                    ['dev/chat_target_candidate.py','dev/chat_target_transport.py','dev/chat_target_queue.py','dev/chat_target_dispatch.py','dev/verify_tiles.py']}}
             tile_capture_report={'passed':True,'developer_target_transport':target_transport_report,'game_version':snapshot.game_version,'retained_rows':len(captured),
                 'retained_pages':retained_pages,'direct_public_getter_row_parity':True,'ground_moisture_live_and_retained_parity':True,'ground_moisture_retained_rows':100,'ground_moisture_retained_pages':10,'wide_100_row_tool_text_budget_refusal':True,'original_request_tick_time_scene_and_ui_preserved':True,
                 'active_simulation_and_view_change':True,'paging_did_not_write_game_request_mailbox':True,

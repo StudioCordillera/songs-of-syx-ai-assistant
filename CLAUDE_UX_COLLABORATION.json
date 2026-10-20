@@ -205,5 +205,30 @@
     "final_followup_source_reviewed_by_claude": false,
     "credits_purchased": false,
     "account_limits_bypassed": false
+  },
+  "completed_target_dispatch_review": {
+    "requested_alias": "opus",
+    "effort": "high",
+    "observed_models": [
+      "claude-opus-5-5"
+    ],
+    "tools": [],
+    "exit_code": 0,
+    "subtype": "success",
+    "is_error": false,
+    "duration_ms": 78788,
+    "num_turns": 1,
+    "input_prompt_sha256": "ca05da66da1d133a749d1098cf4bd5b31f9996f1a566f6775064b3cd176c8db1",
+    "final_public_text_sha256": "642b74b1d69e80354f72d343be5ceb7c4cebece63ae8f20c574b67ecada41f14",
+    "reviewed_source_sha256": {
+      "dev/chat_target_dispatch.py": "04bf486cb31881ce6f93dc68d1d47d2abc745020be4ceb3733bfcf1e2395893d",
+      "syx_chat.py": "bb201ed9e6a0ed84f6dbddd583304e3c9b655f3e3c563f6a48f60e9669775714"
+    },
+    "input_working_tree_base": "38a76ec8b119467f518c8762ab7e4ef437c50736",
+    "isolated_checkout_base": "36b3d91e58c684ad267cd6554e87b920df1c9c07",
+    "edited_decisions": "CHAT_TARGET_DISPATCH.md",
+    "final_followup_source_reviewed_by_claude": false,
+    "credits_purchased": false,
+    "account_limits_bypassed": false
   }
 }
