@@ -1,0 +1,18 @@
+{
+  "passed": true,
+  "validated_at": "2026-10-20T03:30:06.728755+00:00",
+  "stage": "Offline game-independent candidate only; not packaged",
+  "tests_passed": 25,
+  "source_sha256": {
+    "dev/chat_gesture_candidate.py": "343f142d17be33142938f3d3a5f1f1343aab9438118d990161e524dae632a067",
+    "test_chat_gesture_candidate.py": "4f61992c1268fd3f64f1b23f00f72a4862268d1571e3fb9139cc6600cac14ef5"
+  },
+  "game_initializations": 0,
+  "inference_calls": 0,
+  "production_source_changed_by_candidate": false,
+  "limits": [
+    "Authored input sequences, not real pointer/focus/scale/scene or native hit-testing acceptance.",
+    "Caller must establish explicit own-surface eligibility and copy primitives; unknown focus is not synthesized.",
+    "Five-second total timeout and 350-ms/six-unit hold policy remain design choices for review; not a completed visual redesign."
+  ]
+}

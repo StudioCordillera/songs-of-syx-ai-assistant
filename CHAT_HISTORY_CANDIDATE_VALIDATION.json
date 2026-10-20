@@ -56,5 +56,26 @@
     "Finite latest/previous bundled-store compatibility only. General retention/schema tampering, larger-history performance, independent-writer concurrency and production admission are unvalidated.",
     "Budgets fail explicitly; no complete count/migration for histories beyond the stated candidate limits.",
     "Legacy clients do not acknowledge display; new legacy-period replies conservatively remain unread on return."
-  ]
+  ],
+  "subsequent_player_pair_recheck": {
+    "validated_at": "2026-10-20T03:37:09.653199+00:00",
+    "full_offline_tests": 356,
+    "candidate_cases": 12,
+    "source_sha256": {
+      "dev/chat_history_candidate.py": "259fd25b8b3d46cc1c2f7887361d1846458a43c5ad3faa046becd31e42b6fa9a",
+      "test_chat_history_candidate.py": "b92808555570c74f9f70db11926499a5e2ef3bf4ade2421fb480a17c6eafa365",
+      "syx_chat_store.py": "a2f2ffa53097cb60eab72c015c3d516693aa1c89c8aa54d74f4dfc96d222e634"
+    },
+    "bundles": {
+      "latest-user-test.zip": {
+        "zip_sha256": "309ee82d47af3e562706a661adcd9deb21a20906b023aca62da1de03767fe558",
+        "store_sha256": "a2f2ffa53097cb60eab72c015c3d516693aa1c89c8aa54d74f4dfc96d222e634"
+      },
+      "previous-user-test.zip": {
+        "zip_sha256": "832f3ad1a49e0c3f5933af7a0c530edaf471a8b6f03b9d4373cec80e1cd6df40",
+        "store_sha256": "7344b35476096b680e0cf85958f97596b3c9cfe843072202f30e357b97dedbe5"
+      }
+    }
+  },
+  "checkpoint_scope_note": "Original 317-test checkpoint fields and hashes are retained. The subsequent_player_pair_recheck records later current/previous bundled-store tests; the extension remains unshipped."
 }

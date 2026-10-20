@@ -30,10 +30,16 @@ final class ChatPanel extends InterGuisection {
     private String chat="", notice="Start the local chat coordinator to connect.";
     private String acknowledged="", waiting="", lastState="";
     private boolean opened,running,deleteArmed;
+    private boolean currentOnly=true;
+    private int protocol;
+    private String currentListSession="";
+    private long lastSync;
     private long heartbeat;
     private String connection="Coordinator not connected",provider="deepseek",route="api",model="deepseek-v4-pro";
     private long lastRefresh;
     private final List<String[]> chats=new ArrayList<>();
+    private final List<String[]> currentChats=new ArrayList<>();
+    private final LinkedHashMap<String,String[]> drafts=new LinkedHashMap<>();
     private final List<String> transcript=new ArrayList<>();
     private GScrollRows history;
 
@@ -61,7 +67,12 @@ final class ChatPanel extends InterGuisection {
     Map<String,Object> context() {
         return StateCollector.object("enabled",true,"panel_open",opened,"chat_id",chat.isEmpty()?null:chat,
             "generating",running,"runtime_session_id",session,"attached_session_id",attachedSession.isEmpty()?null:attachedSession,
-            "attachment_required",!chat.isEmpty()&&!session.equals(attachedSession),
+            "attachment_required",advanced&&!chat.isEmpty()&&!session.equals(attachedSession),
+            "reconnect_on_send",!advanced&&!chat.isEmpty()&&!session.equals(attachedSession),
+            "automatic_connection",!advanced,"coordinator_protocol",protocol,
+            "action_pending",!waiting.isEmpty(),"all_listed_chat_count",chats.size(),
+            "history_filter",!advanced&&currentOnly?"current_load":"all",
+            "listed_chat_count",!advanced&&currentOnly?(session.equals(currentListSession)?currentChats.size():0):chats.size(),
             "provider",provider,"route",route,"model",model,"interface",advanced?"advanced":"simple","experimental",true,
             "scope","Mod-owned chat panel only; underlying game selection remains separate");
     }
@@ -84,56 +95,86 @@ final class ChatPanel extends InterGuisection {
             return;
         }
         try {
-            List<String[]> nextChats=new ArrayList<>();List<String> nextLines=new ArrayList<>();
+            List<String[]> nextChats=new ArrayList<>(),nextCurrent=new ArrayList<>();List<String> nextLines=new ArrayList<>();
             String nextChat="",nextNotice="Coordinator state unavailable",ack="";
+            String nextProvider=provider,nextModel=model,nextRoute=route,nextAttached="",nextConnection=connection,nextListSession="";
+            boolean nextRunning=false;long nextHeartbeat=0;int nextProtocol=0;
             for(String line:state.split("\n")) {
                 int at=line.indexOf('=');if(at<0)continue;
                 String key=line.substring(0,at),value=line.substring(at+1);
-                if(key.equals("provider"))provider=value;
-                if(key.equals("model"))model=value;
-                if(key.equals("route"))route=value;
-                if(key.equals("session_id"))attachedSession=value;
-                if(key.equals("running"))running=value.equals("true");
-                if(key.equals("updated_at"))heartbeat=(long)(Double.parseDouble(value)*1000);
-                if(key.equals("connection_status"))connection=decode(value);
+                if(key.equals("protocol"))nextProtocol=Integer.parseInt(value);
+                if(key.equals("provider"))nextProvider=value;
+                if(key.equals("model"))nextModel=value;
+                if(key.equals("route"))nextRoute=value;
+                if(key.equals("session_id"))nextAttached=UUID.fromString(value).toString();
+                if(key.equals("current_chat_session"))nextListSession=UUID.fromString(value).toString();
+                if(key.equals("running")) {if(!value.equals("true")&&!value.equals("false"))throw new IllegalArgumentException();nextRunning=value.equals("true");}
+                if(key.equals("updated_at")) {
+                    double stamp=Double.parseDouble(value);if(!Double.isFinite(stamp)||stamp<=0||stamp>Long.MAX_VALUE/1000.0)throw new IllegalArgumentException();
+                    nextHeartbeat=(long)(stamp*1000);
+                }
+                if(key.equals("connection_status"))nextConnection=decode(value);
                 if(key.equals("chat_id"))nextChat=UUID.fromString(value).toString();
                 if(key.equals("request_id"))ack=value;
                 if(key.equals("notice"))nextNotice=decode(value);
                 if(key.equals("omitted"))nextLines.add("[Older preview lines omitted; full local history retained.]");
                 if(key.equals("line"))nextLines.add(decode(value));
-                if(key.equals("chat")) {
+                if(key.equals("chat")||key.equals("current_chat")) {
                     String[] parts=value.split("\\|",2);
                     if(parts.length!=2)throw new IllegalArgumentException();
-                    nextChats.add(new String[]{UUID.fromString(parts[0]).toString(),decode(parts[1])});
+                    (key.equals("chat")?nextChats:nextCurrent).add(new String[]{UUID.fromString(parts[0]).toString(),decode(parts[1])});
                 }
             }
-            chats.clear();chats.addAll(nextChats);transcript.clear();transcript.addAll(nextLines);
-            if(!chat.equals(nextChat)){history=null;deleteArmed=false;draft.setLength(0);composer.text().clear();}
+            if(nextChats.size()>100||nextCurrent.size()>100||nextLines.size()>1000||nextHeartbeat==0)throw new IllegalArgumentException();
+            if(nextProtocol!=1&&nextProtocol!=2)throw new IllegalArgumentException();
+            if(nextProtocol!=2&&!advanced) {
+                protocol=nextProtocol;notice="Update the mod and chat helper together to connect automatically";
+                lastRefresh=now;if(opened)rebuild();return;
+            }
+            chats.clear();chats.addAll(nextChats);currentChats.clear();currentChats.addAll(nextCurrent);transcript.clear();transcript.addAll(nextLines);
+            if(!chat.equals(nextChat)) {
+                String[] initial=chat.isEmpty()?new String[]{draft.toString(),composer.text().toString()}:null;
+                if(!chat.isEmpty())drafts.put(chat,new String[]{draft.toString(),composer.text().toString()});
+                while(drafts.size()>100)drafts.remove(drafts.keySet().iterator().next());
+                history=null;deleteArmed=false;draft.setLength(0);composer.text().clear();
+                String[] saved=drafts.get(nextChat);if(saved==null)saved=initial;
+                if(saved!=null){draft.append(saved[0]);composer.text().add(saved[1]);}
+            }
+            protocol=nextProtocol;provider=nextProvider;model=nextModel;route=nextRoute;attachedSession=nextAttached;
+            connection=nextConnection;heartbeat=nextHeartbeat;running=nextRunning;currentListSession=nextListSession;
             chat=nextChat;notice=nextNotice;acknowledged=ack;
             if(waiting.equals(acknowledged))waiting="";
             lastState=state;lastRefresh=now;if(opened)rebuild();
+            if(opened&&!advanced&&chat.isEmpty()&&waiting.isEmpty()&&now-lastSync>5_000_000_000L)sync();
         } catch(RuntimeException invalid) { notice="Invalid chat coordinator state"; }
     }
     private GButt.ButtPanel button(String label,ACTION action) {
         GButt.ButtPanel button=new GButt.ButtPanel(label);
         button.clickActionSet(action);return button;
     }
-    private void action(String name,String text) {action(name,text,null,null,null);}
-    private void action(String name,String text,String selectedProvider,String selectedRoute,String selectedModel) {
-        if(heartbeat==0 || System.currentTimeMillis()-heartbeat>5000) {notice="Coordinator unavailable; reconnect before sending an action";rebuild();return;}
-        if(!waiting.isEmpty()) { notice="Waiting for the coordinator to acknowledge the previous action";rebuild();return; }
-        if(!name.equals("new") && chat.isEmpty()) {notice="Create or select a chat first";rebuild();return;}
+    private boolean action(String name,String text) {return action(name,text,null,null,null);}
+    private boolean action(String name,String text,String selectedProvider,String selectedRoute,String selectedModel) {return action(name,text,selectedProvider,selectedRoute,selectedModel,null);}
+    private boolean action(String name,String text,String selectedProvider,String selectedRoute,String selectedModel,String targetChat) {
+        if(!advanced&&protocol!=2){notice=protocol==0?"Start the local chat helper to connect.":"Update the mod and chat helper together";rebuild();return false;}
+        long age=System.currentTimeMillis()-heartbeat;
+        if(heartbeat==0 || age>5000 || age< -5000) {notice="Coordinator unavailable; reconnect before sending an action";rebuild();return false;}
+        if(!waiting.isEmpty()) { notice="Waiting for the coordinator to acknowledge the previous action";rebuild();return false; }
+        String target=targetChat==null?chat:targetChat;
+        if(!name.equals("new")&&!name.equals("sync") && target.isEmpty()) {notice="Connecting to this game; please wait";rebuild();return false;}
         waiting=UUID.randomUUID().toString();
         String request="request_id="+waiting+"\naction="+name+"\nsession_id="+session+"\n";
-        if(!name.equals("new"))request+="chat_id="+chat+"\n";
+        if(!advanced)request+="protocol=2\n";
+        if(!name.equals("new")&&!name.equals("sync"))request+="chat_id="+target+"\n";
         if(selectedProvider!=null)request+="provider="+selectedProvider+"\nroute="+selectedRoute+"\nmodel="+selectedModel+"\n";
         if(text!=null)request+="text="+encode(text)+"\n";
-        submit.accept(request);notice="Request queued locally";rebuild();
+        submit.accept(request);notice="Request queued locally";rebuild();return true;
     }
+    private void sync(){lastSync=System.nanoTime();action("sync",null);}
     private void toggle() {
         opened=!opened;
         if(!opened && Mouse.currentClicked==composer)Mouse.currentClicked=null;
         rebuild();
+        if(opened&&!advanced&&waiting.isEmpty())sync();
     }
     private void rebuild() {
         if(!opened) {
@@ -147,16 +188,19 @@ final class ChatPanel extends InterGuisection {
         };
         panel.add(button("Close",this::toggle),16,86);
         panel.add(button(advanced?"New DeepSeek":"New chat",()->action("new","New chat","deepseek","api","deepseek-v4-pro")),140,86);
-        if(advanced || (!chat.isEmpty()&&!attachedSession.equals(session)))panel.add(button("Use with this game",()->action("attach",null)),340,86);
+        if(advanced)panel.add(button("Use with this game",()->action("attach",null)),340,86);
+        if(!advanced)panel.add(button(currentOnly?"This load":"All chats",()->{currentOnly=!currentOnly;rebuild();}),460,86);
         if(advanced)panel.add(button("Evidence",()->action("evidence",null)),650,86);
         panel.add(new GTextR(UI.FONT().S,advanced?connection+" | "+model:"DeepSeek Pro"+(running?" — Thinking…":"")),16,130);
-        String message=notice.length()>110?notice.substring(0,110):notice;
+        boolean reconnectHint=notice.equals("Connected to this game; ask a question")||notice.equals("History loaded; your next question uses the loaded game");
+        String hint=!advanced&&protocol==2&&reconnectHint&&!chat.isEmpty()&&!attachedSession.equals(session)?"Your next question connects this chat to the loaded game. Earlier messages stay historical.":notice;
+        String message=hint.length()>110?hint.substring(0,110):hint;
         panel.add(new GTextR(UI.FONT().S,message),16,154);
         List<RENDEROBJ> choices=new ArrayList<>();
-        for(String[] entry:chats) {
+        for(String[] entry:!advanced&&currentOnly?(session.equals(currentListSession)?currentChats:Collections.<String[]>emptyList()):chats) {
             String id=entry[0],title=entry[1];
             if(title.length()>35)title=title.substring(0,35);
-            choices.add(button(title,()->{if(!waiting.isEmpty())return;chat=id;history=null;draft.setLength(0);composer.text().clear();deleteArmed=false;action("select",null);}));
+            choices.add(button(title,()->action("select",null,null,null,null,id)));
         }
         if(choices.isEmpty())choices.add(new GTextR(UI.FONT().S,"No chats yet"));
         panel.add(new GScrollRows(choices,70).view(),16,184);
@@ -174,7 +218,7 @@ final class ChatPanel extends InterGuisection {
             if(rows.size()>=1200)break;
         }
         if(rows.size()>=1200)rows.add(new GTextR(UI.FONT().S,"[Panel row limit reached; full bounded evidence is retained locally.]"));
-        if(rows.isEmpty())rows.add(new GTextR(UI.FONT().S,advanced?"Create/select a chat. Add text in short segments, then Send.":"Start a new chat and ask about your game."));
+        if(rows.isEmpty())rows.add(new GTextR(UI.FONT().S,advanced?"Create/select a chat. Add text in short segments, then Send.":"Ask a question about your game. The connection is handled automatically."));
         boolean follow=history==null || history.target.get()>=history.target.max();
         int scroll=follow?Integer.MAX_VALUE:history.target.get();
         history=new GScrollRows(rows,250);history.target.set(scroll);
@@ -197,11 +241,11 @@ final class ChatPanel extends InterGuisection {
         }),16,594);
         } else panel.add(new GTextR(UI.FONT().S,"Ask a question (up to 240 characters), then Send."),16,620);
         panel.add(button("Send",()->{
-            if(!attachedSession.equals(session)){notice="This chat belongs to another game session. Use Attach to this game before sending.";rebuild();return;}
+            if(advanced&&!attachedSession.equals(session)){notice="Use with this game before sending in the advanced interface.";rebuild();return;}
             if(running){notice="Stop or wait for the current reply before sending another message";rebuild();return;}
             String text=draft.toString()+(draft.length()>0?" ":"")+composer.text();
             if(text.isBlank()||text.length()>8000){notice="Enter 1..8000 characters";rebuild();return;}
-            if(waiting.isEmpty()&&!chat.isEmpty()){action("send",text);draft.setLength(0);composer.text().clear();}
+            if(waiting.isEmpty()&&!chat.isEmpty()&&action("send",text)){draft.setLength(0);composer.text().clear();drafts.remove(chat);}
         }),200,advanced?594:650);
         panel.add(button("Stop",()->action("stop",null)),340,advanced?594:650);
         panel.body().setWidth(Math.max(840,panel.body().width()));

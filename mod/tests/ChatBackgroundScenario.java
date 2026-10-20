@@ -33,7 +33,7 @@ public final class ChatBackgroundScenario {
                         if(!Files.exists(directory.resolve("chat-ui.txt")))return;
                         press(panel.section().elements().get(0));phase[0]=1;break;
                     case 1:
-                        require(open,"Panel failed to open");press(panel.section().elements().get(1));phase[0]=2;break;
+                        require(open,"Panel failed to open");phase[0]=2;break;
                     case 2:
                         if(c.get("chat_id")==null)return;
                         cid[0]=c.get("chat_id").toString();require("simple".equals(c.get("interface")),"Expected simple player");

@@ -22,7 +22,7 @@ The new copilot track targets typed public in-process gameplay commands across s
 
 Goal: let an assistant discover available variables and request a complex, bounded selection quickly, without receiving the entire state on each question.
 
-Implemented: 18 partial typed domains; snapshot filters, projections, joins, arithmetic and aggregates; on-demand person/stat reads with recorded-workplace filtering; retained entity captures for stable paging; finite terrain/floor/room/mineral/path/stored-moisture reads plus small retained tile selections; stored producer-room degradation; bounded regional resource accruals/configured schedules and direct active-region/resource matrix reads independent of the cached prefix, plus complete bounded retained regional selections from one callback (10,000 cells/2,000 matches/2 MiB). Results identify their observation, session, coverage and scope. The compiler audit currently inventories 384 public production member references. The offline public-member catalog is a discovery backlog, not a count of supported variables.
+Implemented: 18 partial typed domains; snapshot filters, projections, joins, arithmetic and aggregates; on-demand person/stat reads with recorded-workplace filtering; retained entity captures for stable paging; finite terrain/floor/room/mineral/path/stored-moisture reads plus small retained tile selections; stored producer-room degradation; bounded regional resource accruals/configured schedules and direct active-region/resource matrix reads independent of the cached prefix, plus complete bounded retained regional selections from one callback (10,000 cells/2,000 matches/2 MiB). Results identify their observation, session, coverage and scope. The compiler audit currently inventories 385 public production member references. The offline public-member catalog is a discovery backlog, not a count of supported variables.
 
 Next work:
 
@@ -134,3 +134,9 @@ The regional-output candidate follow-up reviews the stored resource accumulator 
 
 
 The live-regional checkpoint adds query_live_regional_outputs: explicit active IDs/resource keys, fixed accrual/faction predicates and projections, bounded matrix cursors and fresh per-response context. It bypasses cached output rows without increasing snapshot caps or adding game getters. Native checks cover 4,200 cells/42 pages, an actual 4,096-cell empty filtered page then target, concurrent requests and scenes. The partial-cache case is an authored 100-row snapshot clone, not a real 10,000-cell export-cap/huge-world test. Retained regional reads, registry/cell fault injection and larger-world latency remain open.
+
+## Automatic player connection revision
+
+The paired simple Pro revision removes routine manual attachment: opening prepares/selects a conversation; sending revalidates the actual fresh MCP runtime and reconnects an older selected chat with immutable prior events/provider-context reset. This load / All chats applies independent runtime/Pro SQL filters before the 100-chat cap. Draft selection round-trips are bounded in memory, and protocol 1 is refused by the new simple panel. See AUTO_CONNECTION.md and current exact-source release reports. Permanent world grouping, managed helper startup/multiple game instances and immediate unload detection remain open. Unread receipts are still developer-only; no player badge or gameplay actions ship.
+
+CHAT_INPUT_BOUNDARY.md establishes finite static public pointer/held-state routes and the private-focus/cached-pointer/layered-render limits for future native drag and unread visibility. CLAUDE_UX_FOLLOWUP.md reuses the four completed local CLI reviews after the advertised session reset; no new Claude design result or native redesign is claimed.

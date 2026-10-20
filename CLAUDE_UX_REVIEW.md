@@ -2,9 +2,11 @@
 
 Four local Claude Code peer reviews completed against checkpoint `498af4c356c959a2943cf1ccfd6a50f3dc51904d`, using Opus 5.5 at max effort. They covered current UX, persistence, public-API boundaries and a critique of a draft persistence/protocol plan. The parent session hit its usage limit before returning a final design/prototype. This document is an edited synthesis, not a generated HTML interface, accepted implementation or native validation. Raw task-owned reports remain private. [Invocation outcome](CLAUDE_UX_COLLABORATION.json) records the limit.
 
+The newer [automatic-connection revision](AUTO_CONNECTION.md) fixes the reviewed draft-clearing and post-limit provider-filter issues and removes routine manual attachment in simple mode. Its source/native/provider evidence is separate from these earlier Claude reviews. Pending-action recovery, stable view models and unread/display semantics remain open.
+
 The later [background fixture](CHAT_BACKGROUND_VALIDATION.json) now provides finite open/closed unpaused copied-city evidence absent from that source checkout. Do not repeat the earlier reviewers' absence-of-evidence statement as the current test status. Physical gameplay input and all scenes remain unvalidated.
 
-## Confirmed current source observations
+## Source observations at the reviewed checkpoint
 
 - [ChatPanel](mod/src/main/java/syx/assistant/ChatPanel.java) uses fixed positions, rebuilds widgets on refreshed state, clears the draft on chat change and retains one pending action ID without an acknowledgement timeout. The attachment error's wording differs from the visible button. Preserve drafts per chat, stable focus/scroll and consistent wording in the redesign; provide a recoverable unknown-action state without resending under a fresh paid-turn ID.
 - [Coordinator](syx_chat_service.py) filters simple-mode provider choices after the store's 100-chat limit. Apply scope/provider filtering before the limit and define access to older/selected/running chats rather than silently hiding them.

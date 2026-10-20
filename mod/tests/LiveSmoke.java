@@ -41,6 +41,10 @@ public final class LiveSmoke {
                                 public void doAfterSet() {
                                     GAME.SPEED.speedSet(0);
                                     view.main.VIEW.inters().load.deactivate();
+                                    if (Boolean.getBoolean("syx.smoke.chatAuto")) {
+                                        syx.assistant.ChatAutoConnectScenario.install(Paths.get(System.getProperty("syx.assistant.stateDir")),Paths.get(args[0]));
+                                        return;
+                                    }
                                     if (Boolean.getBoolean("syx.smoke.chatBackground")) {
                                         syx.assistant.ChatBackgroundScenario.install(Paths.get(System.getProperty("syx.assistant.stateDir")));
                                         return;

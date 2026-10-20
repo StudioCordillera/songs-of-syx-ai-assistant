@@ -1,11 +1,11 @@
 {
   "passed": true,
-  "measured_at": "2026-10-19T04:29:56.704998+00:00",
+  "measured_at": "2026-10-20T03:36:44.359811+00:00",
   "game_version": "0.71.44",
-  "mod_jar_sha256": "4d5f841ee276ed20277d440f53a7071acccda42a66f4bb4ab841cfb76f1118e7",
+  "mod_jar_sha256": "73b44c555a0f9e5e9d2497fee2ce6e6276052b8926117c776ebe1276a4a8cc22",
   "production_source_sha256": {
     "syx/assistant/AssistantScript.java": "82fa2395aa96e7ae9cee612b32171fb495ca289dc7f99269c1ad7a2d417cca55",
-    "syx/assistant/ChatPanel.java": "3138d3e863ccb36ad5b6b37a7e1f3486dd2d8c1dc43ab469b26af714548d8437",
+    "syx/assistant/ChatPanel.java": "06db6b7715f9187a40a0b4b987ab7f64e09df5f9dc07193e261249302d1ac12f",
     "syx/assistant/EntityReadRequest.java": "e2d13aee21f399e8718382d5b43d5a6c85e5d78d2708d8105b9f1ecfe730edf8",
     "syx/assistant/JsonWriter.java": "c525eb60d3224cab83ed3fd6b8594ec8652211f00bd947e873e1482f919e81dc",
     "syx/assistant/RegionalReadRequest.java": "4d1da800e6f2ecf6b036f188693ac1095329321bc569c82f34be9918768ef2b3",
@@ -19,34 +19,32 @@
     "syx_knowledge.py": "f5d7dd6d387ad0fb8f2b024a3bd599ad1cec28f2906dfae27d9d2fdf56e4de7e",
     "syx_query.py": "ae9c4537093952510e6536810c065b6e07f7bfc2d78d3bc02ccd0d21f4d12c07",
     "syx_api_support.py": "80276ac400801e9a895438162cbbb63db090f3dae930882b891b70a87fff5caf",
-    "syx_api_manifest.py": "22d7597af96cdd554bffa5647b61821f1f28e1eac7044dffa02e4c9bccf4d391",
+    "syx_api_manifest.py": "310d51686679b9adb274a711b1355722cf8dda54a46363b0e1a8bdd55bc901a0",
     "syx_live.py": "2f29a2d828fc5c512075fa6a2082dd5fae9d4a39fb22ae847765533dc5628c75",
     "syx_capture.py": "32778d9f5f217119ba45b114ba2a710bdd0ce4333efa672c31c690dcc3f3c3ec",
     "syx_tiles.py": "c5ceea79fc5d4d80307ecf7fe429ca1f1f6ae64d17e95569d54625bf02c4d664",
     "syx_regions.py": "96dd3355f50279c7c748d866019f889bd9889ef00c7cf97bf4fa582fede7ffb5",
-    "syx_chat_store.py": "7344b35476096b680e0cf85958f97596b3c9cfe843072202f30e357b97dedbe5",
+    "syx_chat_store.py": "a2f2ffa53097cb60eab72c015c3d516693aa1c89c8aa54d74f4dfc96d222e634",
     "syx_deepseek.py": "d58e21dbcfdeb1ef0f411dfbb4c0267234bdc5cc185e00d300821725ca1885e3",
     "syx_chat.py": "bb201ed9e6a0ed84f6dbddd583304e3c9b655f3e3c563f6a48f60e9669775714",
-    "syx_chat_service.py": "8e311cc51bf686d70d466f7a31863b9cbf1905231066316eb492f2c7bd074b6b",
+    "syx_chat_service.py": "1afc8252f8562a6c0ff5f6755f7b0479c401bf6e2f079503313da9e67713d73e",
     "syx_claude.py": "3a850a645907f27b1a9cb15c3c5244b96b2da97d5d0dc37f5cd7d6f708cf92a8",
     "syx_claude_worker.py": "ab6638b2c4ef3a4a1548fde1c0739a48f4d47e468494dd7444019f3f330dea38"
   },
-  "private_observation_sha256": "e1804ca9f012b4c6a60a9b6949d458c865076b38c0de1af03818d077076d0461",
-  "observed_at": "2026-10-19 04:29:50.030886+00:00",
+  "private_observation_sha256": "2fd9b873b37ece3716cf63a319d6d78f884dc66fc21bce76409fb4af8b4a97a8",
+  "observed_at": "2026-10-20 03:36:37.859068+00:00",
   "native_fixture": {
-    "java_version": "21.0.12.1",
-    "passed": true,
     "shape": {
-      "service_policy_rows": 544,
-      "scanned_rooms": 36,
-      "stockpile_scanned_resources": 42,
-      "regional_output_rows": 8526,
       "regional_output_schedules": 42,
       "service_room_rows": 8,
       "entity_prefix_rows": 295,
       "regional_rows": 203,
       "stockpile_resource_rows": 42,
-      "production_flow_rows": 35
+      "production_flow_rows": 35,
+      "service_policy_rows": 544,
+      "scanned_rooms": 36,
+      "stockpile_scanned_resources": 42,
+      "regional_output_rows": 8526
     },
     "domain_count": 18,
     "os": "Linux",
@@ -58,231 +56,233 @@
     ],
     "samples": [
       {
-        "cache": "cold_mod_help_cache",
-        "encoding_utf8_ns": 10572129,
-        "combined_ns": 29407424,
-        "collection_ns": 18835295,
-        "snapshot_bytes": 1797838
+        "encoding_utf8_ns": 9608131,
+        "combined_ns": 21283844,
+        "collection_ns": 11675713,
+        "snapshot_bytes": 1798019,
+        "cache": "cold_mod_help_cache"
       },
       {
-        "cache": "warm_mod_help_cache",
-        "encoding_utf8_ns": 8935411,
-        "combined_ns": 24913555,
-        "collection_ns": 15978144,
-        "snapshot_bytes": 1797838
+        "encoding_utf8_ns": 11174051,
+        "combined_ns": 22161360,
+        "collection_ns": 10987309,
+        "snapshot_bytes": 1798019,
+        "cache": "warm_mod_help_cache"
       },
       {
-        "cache": "warm_mod_help_cache",
-        "encoding_utf8_ns": 9785199,
-        "combined_ns": 21357705,
-        "collection_ns": 11572506,
-        "snapshot_bytes": 1797838
+        "encoding_utf8_ns": 10482227,
+        "combined_ns": 18489523,
+        "collection_ns": 8007296,
+        "snapshot_bytes": 1798019,
+        "cache": "warm_mod_help_cache"
       },
       {
-        "cache": "warm_mod_help_cache",
-        "encoding_utf8_ns": 15940050,
-        "combined_ns": 22646766,
-        "collection_ns": 6706716,
-        "snapshot_bytes": 1797838
+        "encoding_utf8_ns": 9393929,
+        "combined_ns": 17392307,
+        "collection_ns": 7998378,
+        "snapshot_bytes": 1798019,
+        "cache": "warm_mod_help_cache"
       },
       {
-        "cache": "warm_mod_help_cache",
-        "encoding_utf8_ns": 9752894,
-        "combined_ns": 20594151,
-        "collection_ns": 10841257,
-        "snapshot_bytes": 1797838
+        "encoding_utf8_ns": 11264773,
+        "combined_ns": 19662448,
+        "collection_ns": 8397675,
+        "snapshot_bytes": 1798019,
+        "cache": "warm_mod_help_cache"
       },
       {
-        "cache": "warm_mod_help_cache",
-        "encoding_utf8_ns": 10737088,
-        "combined_ns": 23666600,
-        "collection_ns": 12929512,
-        "snapshot_bytes": 1797838
+        "encoding_utf8_ns": 10335972,
+        "combined_ns": 18667084,
+        "collection_ns": 8331112,
+        "snapshot_bytes": 1798019,
+        "cache": "warm_mod_help_cache"
       },
       {
-        "cache": "warm_mod_help_cache",
-        "encoding_utf8_ns": 9211512,
-        "combined_ns": 20535936,
-        "collection_ns": 11324424,
-        "snapshot_bytes": 1797838
+        "encoding_utf8_ns": 12114302,
+        "combined_ns": 19952142,
+        "collection_ns": 7837840,
+        "snapshot_bytes": 1798019,
+        "cache": "warm_mod_help_cache"
       },
       {
-        "cache": "warm_mod_help_cache",
-        "encoding_utf8_ns": 11565959,
-        "combined_ns": 21862907,
-        "collection_ns": 10296948,
-        "snapshot_bytes": 1797838
+        "encoding_utf8_ns": 10561543,
+        "combined_ns": 18936402,
+        "collection_ns": 8374859,
+        "snapshot_bytes": 1798019,
+        "cache": "warm_mod_help_cache"
       },
       {
-        "cache": "warm_mod_help_cache",
-        "encoding_utf8_ns": 9913569,
-        "combined_ns": 22250227,
-        "collection_ns": 12336658,
-        "snapshot_bytes": 1797838
+        "encoding_utf8_ns": 11574711,
+        "combined_ns": 18809996,
+        "collection_ns": 7235285,
+        "snapshot_bytes": 1798019,
+        "cache": "warm_mod_help_cache"
       },
       {
-        "cache": "warm_mod_help_cache",
-        "encoding_utf8_ns": 9108197,
-        "combined_ns": 22107977,
-        "collection_ns": 12999780,
-        "snapshot_bytes": 1797839
+        "encoding_utf8_ns": 12940374,
+        "combined_ns": 18889059,
+        "collection_ns": 5948685,
+        "snapshot_bytes": 1798020,
+        "cache": "warm_mod_help_cache"
       },
       {
-        "cache": "warm_mod_help_cache",
-        "encoding_utf8_ns": 10186810,
-        "combined_ns": 20080244,
-        "collection_ns": 9893434,
-        "snapshot_bytes": 1797839
+        "encoding_utf8_ns": 13319932,
+        "combined_ns": 19927226,
+        "collection_ns": 6607294,
+        "snapshot_bytes": 1798020,
+        "cache": "warm_mod_help_cache"
       },
       {
-        "cache": "warm_mod_help_cache",
-        "encoding_utf8_ns": 11562319,
-        "combined_ns": 20883078,
-        "collection_ns": 9320759,
-        "snapshot_bytes": 1797839
+        "encoding_utf8_ns": 11402813,
+        "combined_ns": 18246849,
+        "collection_ns": 6844036,
+        "snapshot_bytes": 1798020,
+        "cache": "warm_mod_help_cache"
       },
       {
-        "cache": "warm_mod_help_cache",
-        "encoding_utf8_ns": 10878015,
-        "combined_ns": 19353690,
-        "collection_ns": 8475675,
-        "snapshot_bytes": 1797839
+        "encoding_utf8_ns": 13043611,
+        "combined_ns": 20194053,
+        "collection_ns": 7150442,
+        "snapshot_bytes": 1798020,
+        "cache": "warm_mod_help_cache"
       },
       {
-        "cache": "warm_mod_help_cache",
-        "encoding_utf8_ns": 11485028,
-        "combined_ns": 20777623,
-        "collection_ns": 9292595,
-        "snapshot_bytes": 1797839
+        "encoding_utf8_ns": 9826400,
+        "combined_ns": 16025626,
+        "collection_ns": 6199226,
+        "snapshot_bytes": 1798020,
+        "cache": "warm_mod_help_cache"
       },
       {
-        "cache": "warm_mod_help_cache",
-        "encoding_utf8_ns": 11188377,
-        "combined_ns": 21373257,
-        "collection_ns": 10184880,
-        "snapshot_bytes": 1797839
+        "encoding_utf8_ns": 12564513,
+        "combined_ns": 18639918,
+        "collection_ns": 6075405,
+        "snapshot_bytes": 1798020,
+        "cache": "warm_mod_help_cache"
       },
       {
-        "cache": "warm_mod_help_cache",
-        "encoding_utf8_ns": 9900545,
-        "combined_ns": 20649438,
-        "collection_ns": 10748893,
-        "snapshot_bytes": 1797839
+        "encoding_utf8_ns": 9905346,
+        "combined_ns": 15904951,
+        "collection_ns": 5999605,
+        "snapshot_bytes": 1798020,
+        "cache": "warm_mod_help_cache"
       },
       {
-        "cache": "warm_mod_help_cache",
-        "encoding_utf8_ns": 12396059,
-        "combined_ns": 20790883,
-        "collection_ns": 8394824,
-        "snapshot_bytes": 1797839
+        "encoding_utf8_ns": 12334550,
+        "combined_ns": 18245927,
+        "collection_ns": 5911377,
+        "snapshot_bytes": 1798020,
+        "cache": "warm_mod_help_cache"
       },
       {
-        "cache": "warm_mod_help_cache",
-        "encoding_utf8_ns": 11962881,
-        "combined_ns": 24248407,
-        "collection_ns": 12285526,
-        "snapshot_bytes": 1797839
+        "encoding_utf8_ns": 11390524,
+        "combined_ns": 17281639,
+        "collection_ns": 5891115,
+        "snapshot_bytes": 1798020,
+        "cache": "warm_mod_help_cache"
       },
       {
-        "cache": "warm_mod_help_cache",
-        "encoding_utf8_ns": 10748245,
-        "combined_ns": 22607209,
-        "collection_ns": 11858964,
-        "snapshot_bytes": 1797839
+        "encoding_utf8_ns": 10793975,
+        "combined_ns": 17723029,
+        "collection_ns": 6929054,
+        "snapshot_bytes": 1798020,
+        "cache": "warm_mod_help_cache"
       },
       {
-        "cache": "warm_mod_help_cache",
-        "encoding_utf8_ns": 9512658,
-        "combined_ns": 22991704,
-        "collection_ns": 13479046,
-        "snapshot_bytes": 1797839
+        "encoding_utf8_ns": 12230321,
+        "combined_ns": 19719337,
+        "collection_ns": 7489016,
+        "snapshot_bytes": 1798020,
+        "cache": "warm_mod_help_cache"
       },
       {
-        "cache": "warm_mod_help_cache",
-        "encoding_utf8_ns": 11676810,
-        "combined_ns": 20449003,
-        "collection_ns": 8772193,
-        "snapshot_bytes": 1797839
+        "encoding_utf8_ns": 9709960,
+        "combined_ns": 15620481,
+        "collection_ns": 5910521,
+        "snapshot_bytes": 1798020,
+        "cache": "warm_mod_help_cache"
       },
       {
-        "cache": "warm_mod_help_cache",
-        "encoding_utf8_ns": 10632613,
-        "combined_ns": 20120542,
-        "collection_ns": 9487929,
-        "snapshot_bytes": 1797839
+        "encoding_utf8_ns": 11824055,
+        "combined_ns": 17417417,
+        "collection_ns": 5593362,
+        "snapshot_bytes": 1798020,
+        "cache": "warm_mod_help_cache"
       },
       {
-        "cache": "warm_mod_help_cache",
-        "encoding_utf8_ns": 9835637,
-        "combined_ns": 18856526,
-        "collection_ns": 9020889,
-        "snapshot_bytes": 1797839
+        "encoding_utf8_ns": 10951180,
+        "combined_ns": 17615381,
+        "collection_ns": 6664201,
+        "snapshot_bytes": 1798020,
+        "cache": "warm_mod_help_cache"
       },
       {
-        "cache": "warm_mod_help_cache",
-        "encoding_utf8_ns": 10257495,
-        "combined_ns": 21183471,
-        "collection_ns": 10925976,
-        "snapshot_bytes": 1797839
+        "encoding_utf8_ns": 13073588,
+        "combined_ns": 19052735,
+        "collection_ns": 5979147,
+        "snapshot_bytes": 1798020,
+        "cache": "warm_mod_help_cache"
       },
       {
-        "cache": "warm_mod_help_cache",
-        "encoding_utf8_ns": 12289033,
-        "combined_ns": 23519363,
-        "collection_ns": 11230330,
-        "snapshot_bytes": 1797839
+        "encoding_utf8_ns": 10417464,
+        "combined_ns": 17290784,
+        "collection_ns": 6873320,
+        "snapshot_bytes": 1798020,
+        "cache": "warm_mod_help_cache"
       },
       {
-        "cache": "warm_mod_help_cache",
-        "encoding_utf8_ns": 9727365,
-        "combined_ns": 21836360,
-        "collection_ns": 12108995,
-        "snapshot_bytes": 1797839
+        "encoding_utf8_ns": 11275955,
+        "combined_ns": 16514570,
+        "collection_ns": 5238615,
+        "snapshot_bytes": 1798020,
+        "cache": "warm_mod_help_cache"
       },
       {
-        "cache": "warm_mod_help_cache",
-        "encoding_utf8_ns": 13081449,
-        "combined_ns": 22470910,
-        "collection_ns": 9389461,
-        "snapshot_bytes": 1797839
+        "encoding_utf8_ns": 10213079,
+        "combined_ns": 16140944,
+        "collection_ns": 5927865,
+        "snapshot_bytes": 1798020,
+        "cache": "warm_mod_help_cache"
       },
       {
-        "cache": "warm_mod_help_cache",
-        "encoding_utf8_ns": 9812111,
-        "combined_ns": 21881915,
-        "collection_ns": 12069804,
-        "snapshot_bytes": 1797839
+        "encoding_utf8_ns": 13220617,
+        "combined_ns": 18925051,
+        "collection_ns": 5704434,
+        "snapshot_bytes": 1798020,
+        "cache": "warm_mod_help_cache"
       },
       {
-        "cache": "warm_mod_help_cache",
-        "encoding_utf8_ns": 10027916,
-        "combined_ns": 18688740,
-        "collection_ns": 8660824,
-        "snapshot_bytes": 1797839
+        "encoding_utf8_ns": 13213528,
+        "combined_ns": 18635196,
+        "collection_ns": 5421668,
+        "snapshot_bytes": 1798020,
+        "cache": "warm_mod_help_cache"
       },
       {
-        "cache": "warm_mod_help_cache",
-        "encoding_utf8_ns": 10589057,
-        "combined_ns": 19721756,
-        "collection_ns": 9132699,
-        "snapshot_bytes": 1797839
+        "encoding_utf8_ns": 10208188,
+        "combined_ns": 16313962,
+        "collection_ns": 6105774,
+        "snapshot_bytes": 1798020,
+        "cache": "warm_mod_help_cache"
       },
       {
-        "cache": "warm_mod_help_cache",
-        "encoding_utf8_ns": 9633099,
-        "combined_ns": 18069409,
-        "collection_ns": 8436310,
-        "snapshot_bytes": 1797839
+        "encoding_utf8_ns": 11720957,
+        "combined_ns": 16373847,
+        "collection_ns": 4652890,
+        "snapshot_bytes": 1798020,
+        "cache": "warm_mod_help_cache"
       },
       {
-        "cache": "warm_mod_help_cache",
-        "encoding_utf8_ns": 9921351,
-        "combined_ns": 18667925,
-        "collection_ns": 8746574,
-        "snapshot_bytes": 1797839
+        "encoding_utf8_ns": 11882331,
+        "combined_ns": 17140063,
+        "collection_ns": 5257732,
+        "snapshot_bytes": 1798020,
+        "cache": "warm_mod_help_cache"
       }
     ],
-    "reference_count": 834
+    "reference_count": 834,
+    "java_version": "21.0.12.1",
+    "passed": true
   },
   "sample_counts": {
     "cold_reference_cache": 1,
@@ -293,58 +293,58 @@
   "quantile_method": "Sorted samples, zero-based index floor(0.95*(n-1)); descriptive sample percentile, not a statistical bound.",
   "warm_native_ms": {
     "collection": {
-      "min": 6.707,
-      "median": 10.297,
-      "p95": 13.0,
-      "max": 15.978
+      "min": 4.653,
+      "median": 6.199,
+      "p95": 8.375,
+      "max": 10.987
     },
     "json_and_utf8_encoding": {
-      "min": 8.935,
-      "median": 10.257,
-      "p95": 12.396,
-      "max": 15.94
+      "min": 9.394,
+      "median": 11.391,
+      "p95": 13.214,
+      "max": 13.32
     },
     "combined_fixture_work": {
-      "min": 18.069,
-      "median": 21.183,
-      "p95": 23.667,
-      "max": 24.914
+      "min": 15.62,
+      "median": 18.247,
+      "p95": 19.952,
+      "max": 22.161
     }
   },
   "cold_native_ms": {
-    "collection": 18.835,
-    "json_and_utf8_encoding": 10.572,
-    "combined_fixture_work": 29.407
+    "collection": 11.676,
+    "json_and_utf8_encoding": 9.608,
+    "combined_fixture_work": 21.284
   },
   "regional_output_query_independent_parity": true,
   "regional_output_query_ms": {
-    "min": 109.818,
-    "median": 116.026,
-    "p95": 136.216,
-    "max": 180.531
+    "min": 105.906,
+    "median": 115.784,
+    "p95": 119.389,
+    "max": 163.55
   },
   "regional_output_rows": 8526,
   "regional_output_schedule_rows": 42,
-  "snapshot_bytes": 1797839,
+  "snapshot_bytes": 1798020,
   "offline_parse_ms": {
-    "min": 14.236,
-    "median": 22.555,
-    "p95": 26.224,
-    "max": 67.912
+    "min": 16.68,
+    "median": 20.735,
+    "p95": 23.147,
+    "max": 71.039
   },
   "offline_two_service_queries_ms": {
-    "min": 24.303,
-    "median": 44.958,
-    "p95": 50.807,
-    "max": 54.765
+    "min": 34.527,
+    "median": 39.941,
+    "p95": 44.405,
+    "max": 51.791
   },
   "two_service_queries_independent_parity": true,
   "five_existing_query_examples": {
     "passed": true,
     "method": "Offline QueryEngine only, on a preserved real snapshot. No game or inference calls.",
     "game_version": "0.71.44",
-    "source_snapshot_sha256": "e1804ca9f012b4c6a60a9b6949d458c865076b38c0de1af03818d077076d0461",
-    "source_observed_at": "2026-10-19 04:29:50.030886+00:00",
+    "source_snapshot_sha256": "2fd9b873b37ece3716cf63a319d6d78f884dc66fc21bce76409fb4af8b4a97a8",
+    "source_observed_at": "2026-10-20 03:36:37.859068+00:00",
     "query_spec_sha256": "b9afe28bc8e95bed3a8de1daf6605becff89a05db4f0777529434662b0917fe8",
     "source_sha256": {
       "syx_query.py": "ae9c4537093952510e6536810c065b6e07f7bfc2d78d3bc02ccd0d21f4d12c07",
@@ -360,13 +360,13 @@
       1,
       0
     ],
-    "snapshot_bytes": 1797839,
+    "snapshot_bytes": 1798020,
     "selected_results_bytes": 6838,
     "repetitions": 31,
     "local_elapsed_ms": {
-      "median": 25.225,
-      "p95": 28.49,
-      "max": 31.297
+      "median": 21.912,
+      "p95": 24.778,
+      "max": 25.25
     },
     "limits": [
       "One copied city, no large-city latency or collection cost claim. Timings are local descriptive measurements, not a guarantee.",
@@ -377,7 +377,7 @@
   },
   "selected_two_service_results_bytes": 4818,
   "source_sha256": {
-    "mod/tests/LiveSmoke.java": "99d5890e29b4ebf1e2eadc4100c73f5db4b36f0ffe23db1aa439ef3ad67fe6ba",
+    "mod/tests/LiveSmoke.java": "39ca17238236b843b400b87e1481aa1ea7112b99b751e6aa5dc6e1978c94601b",
     "mod/tests/CollectionCostScenario.java": "61eba2bb53ae64ba63b7733e79164c4f210a8f1e4fa9c24fe9cec13831baf321",
     "dev/profile_collection_cost.py": "365bb2f8492a8acc026c2dbcf6a59da9bf4969b849acf0c39d04e70d6f99672e",
     "dev/benchmark_selective_queries.py": "7d7877f7098a2389b609b0eb969151f68b402c96c50b83448cd0ca28f03b6412",

@@ -78,10 +78,13 @@ class ChatStore:
         with self.db:self.db.execute('INSERT INTO chats VALUES(?,?,?,?,?,?,?)',(cid,self.clean(title.strip()),game_session,provider,model,route,now()))
         return self.chat(cid)
 
-    def list(self,game_session=None):
+    def list(self,game_session=None,*,simple=False):
         if game_session is not None:identity(game_session)
-        rows=self.db.execute('SELECT chat_id FROM chats '+('WHERE attached_session=? ' if game_session else '')+'ORDER BY created_at DESC LIMIT 100',
-            (game_session,) if game_session else ()).fetchall()
+        if type(simple) is not bool:raise ValueError('Invalid history filter')
+        filters=[];args=[]
+        if game_session is not None:filters.append('attached_session=?');args.append(game_session)
+        if simple:filters.append("provider='deepseek' AND route='api' AND model='deepseek-v4-pro'")
+        rows=self.db.execute('SELECT chat_id FROM chats '+('WHERE '+' AND '.join(filters)+' ' if filters else '')+'ORDER BY created_at DESC,chat_id DESC LIMIT 100',args).fetchall()
         return [self.chat(r[0]) for r in rows]
 
     def _event(self,chat_id,turn_id,game_session,kind,payload):
@@ -101,10 +104,11 @@ class ChatStore:
         if kind not in {'tool','assistant','context_reset','session_boundary','turn_error','turn_cancelled'}:raise ValueError('Unknown history event kind')
         with self.db:self._event(chat_id,turn_id,game_session,kind,payload)
 
-    def attach(self,chat_id,game_session):
+    def attach(self,chat_id,game_session,*,explicit=True):
         chat=self.chat(chat_id);identity(game_session)
+        if type(explicit) is not bool:raise ValueError('Invalid attachment mode')
         with self.db:
-            self._event(chat_id,None,game_session,'session_boundary',{'previous_session':chat['attached_session'],'current_session':game_session,'explicit_continuation':True})
+            self._event(chat_id,None,game_session,'session_boundary',{'previous_session':chat['attached_session'],'current_session':game_session,'explicit_continuation':explicit,'automatic_current_game':not explicit})
             self.db.execute('UPDATE chats SET attached_session=? WHERE chat_id=?',(game_session,chat_id))
         return self.chat(chat_id)
 

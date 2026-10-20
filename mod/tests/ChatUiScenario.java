@@ -29,7 +29,7 @@ public final class ChatUiScenario {
                     case 1:
                         require(Boolean.TRUE.equals(panel.context().get("panel_open")),"Panel did not open");
                         require(panel.section().elements().size()>8,"Own controls missing");
-                        press(panel.section().elements().get(1));phase=2;break;
+                        if(!Boolean.TRUE.equals(panel.context().get("automatic_connection")))press(panel.section().elements().get(1));phase=2;break;
                     case 2:
                         Object id=panel.context().get("chat_id");
                         if(id==null){if(System.currentTimeMillis()-start>30000)throw new IllegalStateException("Coordinator did not create chat");return;}
@@ -71,7 +71,11 @@ public final class ChatUiScenario {
                             "passed",true,"checks",List.of("public GUI own-panel click consumed","open and close","create chat via file coordinator",
                             "composer focus","240 maximum-width characters fit wrapped input","simple Pro interface","missing-key send rejection","reopen chat identity","world and city panel persistence"),
                             "limitations",List.of("No real provider inference","No physical keyboard test","No full menu/modal/reload coverage","Default simple player panel"))));
-                        System.err.println("CHAT GUI TEST PASS");CORE.annihilate();return;
+                        System.err.println("CHAT GUI TEST PASS");return;
+                    case 8:
+                        if(!Files.exists(directory.resolve("verifier.done")))return;
+                        Files.writeString(directory.resolve("chat-focus-clean-exit.json"),"{\"passed\":true,\"provider_turns\":0}");
+                        phase=9;CORE.annihilate();return;
                 }
                 last=System.currentTimeMillis();
             }catch(Exception error){System.err.println("CHAT GUI TEST FAILURE: "+error);CORE.annihilate(error);}

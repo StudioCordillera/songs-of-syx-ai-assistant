@@ -5,7 +5,7 @@
   "method": "Java compiler attribution of production mod references; source anchors match declaring type/name/arity, not method body equivalence",
   "mod_source_sha256": {
     "syx/assistant/AssistantScript.java": "82fa2395aa96e7ae9cee612b32171fb495ca289dc7f99269c1ad7a2d417cca55",
-    "syx/assistant/ChatPanel.java": "3138d3e863ccb36ad5b6b37a7e1f3486dd2d8c1dc43ab469b26af714548d8437",
+    "syx/assistant/ChatPanel.java": "06db6b7715f9187a40a0b4b987ab7f64e09df5f9dc07193e261249302d1ac12f",
     "syx/assistant/EntityReadRequest.java": "e2d13aee21f399e8718382d5b43d5a6c85e5d78d2708d8105b9f1ecfe730edf8",
     "syx/assistant/JsonWriter.java": "c525eb60d3224cab83ed3fd6b8594ec8652211f00bd947e873e1482f919e81dc",
     "syx/assistant/RegionalReadRequest.java": "4d1da800e6f2ecf6b036f188693ac1095329321bc569c82f34be9918768ef2b3",
@@ -1995,19 +1995,19 @@
       "public": true,
       "source_file": "init/sprite/UI/UI.java",
       "uses": [
-        "ChatPanel.java:152",
-        "ChatPanel.java:154",
-        "ChatPanel.java:161",
-        "ChatPanel.java:164",
-        "ChatPanel.java:170",
-        "ChatPanel.java:176",
-        "ChatPanel.java:177",
-        "ChatPanel.java:184",
+        "ChatPanel.java:194",
         "ChatPanel.java:198",
-        "ChatPanel.java:43",
-        "ChatPanel.java:44",
-        "ChatPanel.java:46",
-        "ChatPanel.java:51"
+        "ChatPanel.java:205",
+        "ChatPanel.java:208",
+        "ChatPanel.java:214",
+        "ChatPanel.java:220",
+        "ChatPanel.java:221",
+        "ChatPanel.java:228",
+        "ChatPanel.java:242",
+        "ChatPanel.java:49",
+        "ChatPanel.java:50",
+        "ChatPanel.java:52",
+        "ChatPanel.java:57"
       ],
       "parameter_types": [],
       "compiler_generated_enum": false,
@@ -2032,19 +2032,19 @@
       "public": true,
       "source_file": "init/sprite/UI/UIFonts.java",
       "uses": [
-        "ChatPanel.java:152",
-        "ChatPanel.java:154",
-        "ChatPanel.java:161",
-        "ChatPanel.java:164",
-        "ChatPanel.java:170",
-        "ChatPanel.java:176",
-        "ChatPanel.java:177",
-        "ChatPanel.java:184",
+        "ChatPanel.java:194",
         "ChatPanel.java:198",
-        "ChatPanel.java:43",
-        "ChatPanel.java:44",
-        "ChatPanel.java:46",
-        "ChatPanel.java:51"
+        "ChatPanel.java:205",
+        "ChatPanel.java:208",
+        "ChatPanel.java:214",
+        "ChatPanel.java:220",
+        "ChatPanel.java:221",
+        "ChatPanel.java:228",
+        "ChatPanel.java:242",
+        "ChatPanel.java:49",
+        "ChatPanel.java:50",
+        "ChatPanel.java:52",
+        "ChatPanel.java:57"
       ],
       "parameter_types": [],
       "compiler_generated_enum": false,
@@ -6301,7 +6301,7 @@
       "public": true,
       "source_file": "snake2d/Input.java",
       "uses": [
-        "ChatPanel.java:50"
+        "ChatPanel.java:56"
       ],
       "parameter_types": [],
       "compiler_generated_enum": false,
@@ -6326,7 +6326,7 @@
       "public": true,
       "source_file": "snake2d/Input.java",
       "uses": [
-        "ChatPanel.java:48"
+        "ChatPanel.java:54"
       ],
       "parameter_types": [],
       "compiler_generated_enum": false,
@@ -6351,7 +6351,7 @@
       "public": true,
       "source_file": "snake2d/Mouse.java",
       "uses": [
-        "ChatPanel.java:135"
+        "ChatPanel.java:175"
       ],
       "parameter_types": [],
       "compiler_generated_enum": false,
@@ -6376,7 +6376,7 @@
       "public": true,
       "source_file": "snake2d/util/color/COLOR.java",
       "uses": [
-        "ChatPanel.java:145"
+        "ChatPanel.java:186"
       ],
       "parameter_types": [],
       "compiler_generated_enum": false,
@@ -6590,8 +6590,8 @@
       "public": true,
       "source_file": "snake2d/util/datatypes/Rec.java",
       "uses": [
-        "ChatPanel.java:207",
-        "ChatPanel.java:55"
+        "ChatPanel.java:251",
+        "ChatPanel.java:61"
       ],
       "parameter_types": [
         "double"
@@ -6620,7 +6620,7 @@
       "public": true,
       "source_file": "snake2d/util/datatypes/Rec.java",
       "uses": [
-        "ChatPanel.java:207"
+        "ChatPanel.java:251"
       ],
       "parameter_types": [],
       "compiler_generated_enum": false,
@@ -6645,8 +6645,8 @@
       "public": true,
       "source_file": "snake2d/util/gui/GuiSection.java",
       "uses": [
-        "ChatPanel.java:140",
-        "ChatPanel.java:143"
+        "ChatPanel.java:181",
+        "ChatPanel.java:184"
       ],
       "parameter_types": [],
       "compiler_generated_enum": false,
@@ -6671,26 +6671,27 @@
       "public": true,
       "source_file": "snake2d/util/gui/GuiSection.java",
       "uses": [
-        "ChatPanel.java:140",
-        "ChatPanel.java:148",
-        "ChatPanel.java:149",
-        "ChatPanel.java:150",
-        "ChatPanel.java:151",
-        "ChatPanel.java:152",
-        "ChatPanel.java:154",
-        "ChatPanel.java:162",
         "ChatPanel.java:181",
-        "ChatPanel.java:182",
-        "ChatPanel.java:184",
-        "ChatPanel.java:185",
-        "ChatPanel.java:186",
-        "ChatPanel.java:187",
+        "ChatPanel.java:189",
+        "ChatPanel.java:190",
         "ChatPanel.java:191",
         "ChatPanel.java:192",
         "ChatPanel.java:193",
+        "ChatPanel.java:194",
         "ChatPanel.java:198",
-        "ChatPanel.java:199",
-        "ChatPanel.java:206"
+        "ChatPanel.java:206",
+        "ChatPanel.java:225",
+        "ChatPanel.java:226",
+        "ChatPanel.java:228",
+        "ChatPanel.java:229",
+        "ChatPanel.java:230",
+        "ChatPanel.java:231",
+        "ChatPanel.java:235",
+        "ChatPanel.java:236",
+        "ChatPanel.java:237",
+        "ChatPanel.java:242",
+        "ChatPanel.java:243",
+        "ChatPanel.java:250"
       ],
       "parameter_types": [
         "snake2d.util.gui.renderable.RENDEROBJ",
@@ -6723,8 +6724,8 @@
       "public": true,
       "source_file": "snake2d/util/gui/GuiSection.java",
       "uses": [
-        "ChatPanel.java:145",
-        "ChatPanel.java:207"
+        "ChatPanel.java:186",
+        "ChatPanel.java:251"
       ],
       "parameter_types": [],
       "compiler_generated_enum": false,
@@ -6774,7 +6775,7 @@
       "public": true,
       "source_file": "snake2d/util/gui/GuiSection.java",
       "uses": [
-        "ChatPanel.java:145"
+        "ChatPanel.java:186"
       ],
       "parameter_types": [
         "snake2d.SPRITE_RENDERER",
@@ -6880,7 +6881,7 @@
       "public": true,
       "source_file": "snake2d/util/gui/clickable/CLICKABLE.java",
       "uses": [
-        "ChatPanel.java:55"
+        "ChatPanel.java:61"
       ],
       "parameter_types": [],
       "compiler_generated_enum": false,
@@ -6905,7 +6906,7 @@
       "public": true,
       "source_file": "snake2d/util/gui/clickable/CLICKABLE.java",
       "uses": [
-        "ChatPanel.java:119"
+        "ChatPanel.java:153"
       ],
       "parameter_types": [
         "snake2d.util.misc.ACTION"
@@ -7129,7 +7130,7 @@
       "public": true,
       "source_file": "snake2d/util/sprite/SPRITE.java",
       "uses": [
-        "ChatPanel.java:145"
+        "ChatPanel.java:186"
       ],
       "parameter_types": [
         "snake2d.SPRITE_RENDERER",
@@ -7160,7 +7161,7 @@
       "public": true,
       "source_file": "snake2d/util/sprite/text/Font.java",
       "uses": [
-        "ChatPanel.java:46"
+        "ChatPanel.java:52"
       ],
       "parameter_types": [],
       "compiler_generated_enum": false,
@@ -7185,8 +7186,8 @@
       "public": true,
       "source_file": "snake2d/util/sprite/text/Font.java",
       "uses": [
-        "ChatPanel.java:164",
-        "ChatPanel.java:43"
+        "ChatPanel.java:208",
+        "ChatPanel.java:49"
       ],
       "parameter_types": [],
       "compiler_generated_enum": false,
@@ -7211,7 +7212,7 @@
       "public": true,
       "source_file": "snake2d/util/sprite/text/Font.java",
       "uses": [
-        "ChatPanel.java:51"
+        "ChatPanel.java:57"
       ],
       "parameter_types": [
         "snake2d.SPRITE_RENDERER",
@@ -7242,6 +7243,35 @@
       "documentation_status": "human_review_required; Javadoc presence alone does not establish a stable mod contract"
     },
     {
+      "id": "snake2d.util.sprite.text.Str#add(java.lang.CharSequence)",
+      "owner": "snake2d.util.sprite.text.Str",
+      "name": "add",
+      "kind": "METHOD",
+      "signature": "add(java.lang.CharSequence)",
+      "public": true,
+      "source_file": "snake2d/util/sprite/text/Str.java",
+      "uses": [
+        "ChatPanel.java:141"
+      ],
+      "parameter_types": [
+        "java.lang.CharSequence"
+      ],
+      "compiler_generated_enum": false,
+      "arity": 1,
+      "source_candidates": [
+        {
+          "line": 64,
+          "source_sha256": "f4c82afb9fdb05544ad93c0d8304b71ce964fa022349fdbe95ad83b831a4bb63",
+          "parameter_types": [
+            "CharSequence"
+          ],
+          "has_javadoc": false
+        }
+      ],
+      "source_match": "name_arity_and_simple_parameter_types",
+      "documentation_status": "human_review_required; Javadoc presence alone does not establish a stable mod contract"
+    },
+    {
       "id": "snake2d.util.sprite.text.Str#clear()",
       "owner": "snake2d.util.sprite.text.Str",
       "name": "clear",
@@ -7250,10 +7280,9 @@
       "public": true,
       "source_file": "snake2d/util/sprite/text/Str.java",
       "uses": [
-        "ChatPanel.java:111",
-        "ChatPanel.java:159",
-        "ChatPanel.java:196",
-        "ChatPanel.java:204"
+        "ChatPanel.java:139",
+        "ChatPanel.java:240",
+        "ChatPanel.java:248"
       ],
       "parameter_types": [],
       "compiler_generated_enum": false,
@@ -7278,8 +7307,8 @@
       "public": true,
       "source_file": "snake2d/util/sprite/text/Str.java",
       "uses": [
-        "ChatPanel.java:191",
-        "ChatPanel.java:192"
+        "ChatPanel.java:235",
+        "ChatPanel.java:236"
       ],
       "parameter_types": [],
       "compiler_generated_enum": false,
@@ -7304,11 +7333,13 @@
       "public": true,
       "source_file": "snake2d/util/sprite/text/Str.java",
       "uses": [
-        "ChatPanel.java:185",
-        "ChatPanel.java:191",
-        "ChatPanel.java:192",
-        "ChatPanel.java:194",
-        "ChatPanel.java:48",
+        "ChatPanel.java:136",
+        "ChatPanel.java:137",
+        "ChatPanel.java:229",
+        "ChatPanel.java:235",
+        "ChatPanel.java:236",
+        "ChatPanel.java:238",
+        "ChatPanel.java:54",
         "StateCollector.java:113",
         "StateCollector.java:146",
         "StateCollector.java:356",
@@ -7338,7 +7369,7 @@
       "public": true,
       "source_file": "snake2d/util/sprite/text/StringInputSprite.java",
       "uses": [
-        "ChatPanel.java:44"
+        "ChatPanel.java:50"
       ],
       "parameter_types": [
         "int",
@@ -7369,7 +7400,7 @@
       "public": true,
       "source_file": "snake2d/util/sprite/text/StringInputSprite.java",
       "uses": [
-        "ChatPanel.java:49"
+        "ChatPanel.java:55"
       ],
       "parameter_types": [],
       "compiler_generated_enum": false,
@@ -7481,8 +7512,8 @@
       "public": true,
       "source_file": "util/data/INT.java",
       "uses": [
-        "ChatPanel.java:178",
-        "ChatPanel.java:179"
+        "ChatPanel.java:222",
+        "ChatPanel.java:223"
       ],
       "parameter_types": [],
       "compiler_generated_enum": false,
@@ -7507,7 +7538,7 @@
       "public": true,
       "source_file": "util/data/INT.java",
       "uses": [
-        "ChatPanel.java:178"
+        "ChatPanel.java:222"
       ],
       "parameter_types": [],
       "compiler_generated_enum": false,
@@ -7532,7 +7563,7 @@
       "public": true,
       "source_file": "util/data/INT.java",
       "uses": [
-        "ChatPanel.java:180"
+        "ChatPanel.java:224"
       ],
       "parameter_types": [
         "int"
@@ -7712,7 +7743,7 @@
       "public": true,
       "source_file": "util/gui/misc/GButt.java",
       "uses": [
-        "ChatPanel.java:118"
+        "ChatPanel.java:152"
       ],
       "parameter_types": [
         "java.lang.CharSequence"
@@ -7741,7 +7772,7 @@
       "public": true,
       "source_file": "util/gui/misc/GInput.java",
       "uses": [
-        "ChatPanel.java:54"
+        "ChatPanel.java:60"
       ],
       "parameter_types": [
         "snake2d.util.sprite.text.StringInputSprite"
@@ -7770,15 +7801,17 @@
       "public": true,
       "source_file": "util/gui/misc/GInput.java",
       "uses": [
-        "ChatPanel.java:111",
-        "ChatPanel.java:159",
-        "ChatPanel.java:185",
-        "ChatPanel.java:191",
-        "ChatPanel.java:192",
-        "ChatPanel.java:194",
-        "ChatPanel.java:196",
-        "ChatPanel.java:202",
-        "ChatPanel.java:204"
+        "ChatPanel.java:136",
+        "ChatPanel.java:137",
+        "ChatPanel.java:139",
+        "ChatPanel.java:141",
+        "ChatPanel.java:229",
+        "ChatPanel.java:235",
+        "ChatPanel.java:236",
+        "ChatPanel.java:238",
+        "ChatPanel.java:240",
+        "ChatPanel.java:246",
+        "ChatPanel.java:248"
       ],
       "parameter_types": [],
       "compiler_generated_enum": false,
@@ -7803,14 +7836,14 @@
       "public": true,
       "source_file": "util/gui/misc/GTextR.java",
       "uses": [
-        "ChatPanel.java:152",
-        "ChatPanel.java:154",
-        "ChatPanel.java:161",
-        "ChatPanel.java:170",
-        "ChatPanel.java:176",
-        "ChatPanel.java:177",
-        "ChatPanel.java:184",
-        "ChatPanel.java:198"
+        "ChatPanel.java:194",
+        "ChatPanel.java:198",
+        "ChatPanel.java:205",
+        "ChatPanel.java:214",
+        "ChatPanel.java:220",
+        "ChatPanel.java:221",
+        "ChatPanel.java:228",
+        "ChatPanel.java:242"
       ],
       "parameter_types": [
         "snake2d.util.sprite.text.Font",
@@ -7866,8 +7899,8 @@
       "public": true,
       "source_file": "util/gui/table/GScrollRows.java",
       "uses": [
-        "ChatPanel.java:162",
-        "ChatPanel.java:180"
+        "ChatPanel.java:206",
+        "ChatPanel.java:224"
       ],
       "parameter_types": [
         "java.lang.Iterable<? extends snake2d.util.gui.renderable.RENDEROBJ>",
@@ -7898,9 +7931,9 @@
       "public": true,
       "source_file": "util/gui/table/GScrollRows.java",
       "uses": [
-        "ChatPanel.java:178",
-        "ChatPanel.java:179",
-        "ChatPanel.java:180"
+        "ChatPanel.java:222",
+        "ChatPanel.java:223",
+        "ChatPanel.java:224"
       ],
       "parameter_types": [],
       "compiler_generated_enum": false,
@@ -7925,8 +7958,8 @@
       "public": true,
       "source_file": "util/gui/table/GScrollRows.java",
       "uses": [
-        "ChatPanel.java:162",
-        "ChatPanel.java:181"
+        "ChatPanel.java:206",
+        "ChatPanel.java:225"
       ],
       "parameter_types": [],
       "compiler_generated_enum": false,
@@ -8232,7 +8265,7 @@
       "public": true,
       "source_file": "view/interrupter/InterGuisection.java",
       "uses": [
-        "ChatPanel.java:41"
+        "ChatPanel.java:47"
       ],
       "parameter_types": [
         "view.interrupter.InterManager"
@@ -8261,8 +8294,8 @@
       "public": true,
       "source_file": "view/interrupter/InterGuisection.java",
       "uses": [
-        "ChatPanel.java:141",
-        "ChatPanel.java:208"
+        "ChatPanel.java:182",
+        "ChatPanel.java:252"
       ],
       "parameter_types": [
         "snake2d.util.gui.GuiSection"
@@ -8367,7 +8400,7 @@
       "public": true,
       "source_file": "view/interrupter/Interrupter.java",
       "uses": [
-        "ChatPanel.java:56"
+        "ChatPanel.java:62"
       ],
       "parameter_types": [],
       "compiler_generated_enum": false,
@@ -8392,7 +8425,7 @@
       "public": true,
       "source_file": "view/interrupter/Interrupter.java",
       "uses": [
-        "ChatPanel.java:56"
+        "ChatPanel.java:62"
       ],
       "parameter_types": [],
       "compiler_generated_enum": false,
@@ -8517,7 +8550,7 @@
       "public": true,
       "source_file": "view/main/Interrupters.java",
       "uses": [
-        "ChatPanel.java:41",
+        "ChatPanel.java:47",
         "UiContextCollector.java:128"
       ],
       "parameter_types": [],
@@ -8830,7 +8863,7 @@
       "public": true,
       "source_file": "view/main/VIEW.java",
       "uses": [
-        "ChatPanel.java:41",
+        "ChatPanel.java:47",
         "UiContentCollector.java:66",
         "UiContentCollector.java:67",
         "UiContentCollector.java:68",

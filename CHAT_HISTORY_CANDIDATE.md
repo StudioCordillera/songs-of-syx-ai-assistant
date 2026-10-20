@@ -25,3 +25,7 @@ Those legacy clients do not send display acknowledgements. New completed replies
 Run `.venv/bin/python -m pytest -q test_chat_history_candidate.py` without any key or game installation. Twelve authored cases cover legacy baselining/pending completion, correct and wrong-chat/session receipts, atomic rejection, duplicate/restart persistence, out-of-order completion, event-sequence reuse, ordinary non-recovery opens, failure/empty/partial exclusions, exact UTF-8 boundaries, migration rollback, actual latest/previous-client compatibility and filtering before the cap. Budget failures use deliberately reduced candidate limits; they are not a representative large-history performance workload.
 
 [CHAT_HISTORY_CANDIDATE_VALIDATION.json](CHAT_HISTORY_CANDIDATE_VALIDATION.json) pins the tested source and bundle hashes. The full repository suite passes 317 tests; the unchanged production payload retains its earlier exact-source Pro/native evidence and runnable latest/previous ZIPs. No game/provider/native fixture rerun is claimed for this developer-only SQLite addition.
+
+## Later player-pair compatibility recheck
+
+The automatic-connection release ran the full 356-test suite again after promotion, including these twelve candidate cases against the actual new latest and retained previous bundled store code. CHAT_HISTORY_CANDIDATE_VALIDATION.json preserves the original 317-test checkpoint and adds subsequent_player_pair_recheck with exact source/ZIP/store hashes. This does not ship receipts or establish native visibility/world identity.

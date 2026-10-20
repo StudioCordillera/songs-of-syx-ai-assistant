@@ -27,7 +27,8 @@ def scope(path):
         return 'Requirements / advanced or historical routes; current simple player is Pro'
     if name in {'USER_TEST_VALIDATION.json','PLAYER_CORE_VALIDATION.json','WORKFORCE_VALIDATION.json','SERVICE_VALIDATION.json',
                 'DEGRADATION_VALIDATION.json','DEGRADATION_POSITIVE_VALIDATION.json','GUIDANCE_VALIDATION.json',
-                'CAPABILITY_DISCOVERY_VALIDATION.json'}:
+                'CAPABILITY_DISCOVERY_VALIDATION.json','AUTO_CONNECTION_VALIDATION.json','CHAT_FOCUS_VALIDATION.json',
+                'PLAYER_DISTRIBUTION_VALIDATION.json'}:
         return 'Current linked player/feature evidence; inspect exact source/JAR hashes and case scope'
     if name in {'TILE_CAPTURE_VALIDATION.json','ENTITY_CAPTURE_REGRESSION_VALIDATION.json'}:return 'Current retained-read native evidence; inspect bounded selection and source/JAR scope'
     if name=='REGIONAL_REQUEST_COST_VALIDATION.json':return 'Earlier live-page build regional collector/encoding and sequential MCP timings; finite paused campaign, not worst-case acceptance'

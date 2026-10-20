@@ -19,6 +19,7 @@ sys.path.insert(0,str(ROOT));sys.path.insert(0,str(ROOT/'dev'))
 from syx_chat_service import read_key_file
 from verify_user_test_chat import verify
 from game_fixture_lock import exclusive_fixture
+from native_game_completion import require_clean_game_log
 
 
 def native_environment(env):
@@ -51,6 +52,10 @@ def run(args):
     subprocess.run(['java','-Djava.home='+str(jdk),'-m','jdk.compiler/com.sun.tools.javac.Main','--release','16',
         '-encoding','UTF-8','-cp',str(game/'SongsOfSyx.jar')+os.pathsep+str(jar),'-d',str(classes),
         *map(str,(ROOT/'mod/tests').glob('*.java'))],cwd=ROOT,env=env,check=True)
+    save_before=hashlib.sha256(save.read_bytes()).hexdigest()
+    def tree_hash(folder):
+        return {str(p.relative_to(folder)):hashlib.sha256(p.read_bytes()).hexdigest() for p in folder.rglob('*') if p.is_file()} if folder.exists() else {}
+    prior_hashes=tree_hash(target)
     backup=state/'prior-isolated-mod'
     if target.exists():shutil.copytree(target,backup)
     target.parent.mkdir(parents=True,exist_ok=True)
@@ -77,11 +82,9 @@ def run(args):
                     if native.returncode:raise RuntimeError('Native fixture failed; inspect its private runtime log')
                 finally:
                     if native.poll() is None:native.terminate();native.wait(timeout=20)
-                report=verify(ROOT,state,history,jar);report['game_exit_code']=native.returncode
+                require_clean_game_log(state/'game.log')
+                report=verify(ROOT,state,history,jar);report['known_engine_crash_markers_absent']=True;report['game_exit_code']=native.returncode
                 report['dev_runner_source_sha256']=hashlib.sha256(Path(__file__).read_bytes()).hexdigest()
-                output=state/'provider-validation.json';output.write_text(json.dumps(report,indent=2)+'\n')
-                print('Two actual DeepSeek Pro turns passed. Candidate JAR:',jar)
-                print('Candidate validation:',output)
             finally:
                 coordinator.terminate()
                 try:coordinator.wait(timeout=20)
@@ -89,6 +92,12 @@ def run(args):
     finally:
         if target.exists():shutil.rmtree(target)
         if backup.exists():shutil.copytree(backup,target)
+        if tree_hash(target)!=prior_hashes or hashlib.sha256(save.read_bytes()).hexdigest()!=save_before:
+            raise RuntimeError('Copied mod restoration/save integrity failed; no passing final report')
+    report['copied_mod_restored']=True;report['copied_save_unchanged']=True
+    output=state/'provider-validation.json';output.write_text(json.dumps(report,indent=2)+'\n')
+    print('Two actual DeepSeek Pro turns passed. Candidate JAR:',jar)
+    print('Candidate validation:',output)
 
 
 if __name__=='__main__':

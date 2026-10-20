@@ -27,7 +27,9 @@
     "exit_code": 1,
     "status": 429,
     "error": "usage_limit_reached",
-    "completed_peer_reviews": 4
+    "completed_peer_reviews": 4,
+    "advertised_reset_local": "2026-10-20T02:10:00-05:00",
+    "advertised_reset_timezone": "America/Chicago"
   },
   "prompt_sha256": "a903302d4b93fe9309a8113d3023b8999fa56a5b7c23e893db687ab47da312ab",
   "production_source_changed": false,
@@ -46,5 +48,8 @@
       "Plan": 1
     }
   },
-  "review_synthesis": "CLAUDE_UX_REVIEW.md"
+  "review_synthesis": "CLAUDE_UX_REVIEW.md",
+  "followup_prepared": "CLAUDE_UX_FOLLOWUP.md",
+  "followup_status": "User renewed CLI augmentation request. Known session limit remains before advertised reset; no retry or credit purchase.",
+  "scope_note": "Invocation outcome at the pinned historical base commit. Later independently implemented automatic-connection production changes have their own source-matched reports; production_source_changed=false describes only this Claude invocation checkpoint."
 }

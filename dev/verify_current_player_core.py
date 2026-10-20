@@ -24,7 +24,7 @@ from game_fixture_lock import exclusive_fixture
 def sha(path):return hashlib.sha256(path.read_bytes()).hexdigest()
 
 
-def verify(args):
+def verify_inner(args):
     manifest=check(ROOT,args.candidate_dir,args.validation)
     runtime=ROOT/'runtime';save=args.save.resolve();home=runtime/'smoke-home'
     if home.is_symlink():raise ValueError('smoke-home must not be a symlink')
@@ -37,7 +37,11 @@ def verify(args):
     with zipfile.ZipFile((args.candidate_dir or ROOT/'releases')/'latest-user-test.zip') as archive:
         jar.write_bytes(archive.read('mod/syx-ai-assistant/V71/script/syx-ai-assistant.jar'))
     assert sha(jar)==manifest['mod_jar_sha256']
-    game=args.game_dir.resolve();env={k:v for k,v in os.environ.items() if not any(s in k for s in ('API_KEY','ACCESS_TOKEN','REFRESH_TOKEN'))}
+    game=args.game_dir.resolve()
+    audit=json.loads((ROOT/'api-audit.json').read_text())
+    for key,path in [('game_jar_sha256',game/'SongsOfSyx.jar'),('source_archive_sha256',game/'info/SongsOfSyx-sources.jar')]:
+        if sha(path)!=audit[key]:raise ValueError('Game/source differs from current public API audit')
+    env={k:v for k,v in os.environ.items() if not any(s in k for s in ('API_KEY','ACCESS_TOKEN','REFRESH_TOKEN'))}
     env['PYTHONPATH']=str(ROOT)
     compiler=['java','-Djava.home='+str(args.jdk_home.resolve()),'-m','jdk.compiler/com.sun.tools.javac.Main']
     classes=run/'classes';classes.mkdir()
@@ -82,6 +86,27 @@ def verify(args):
         'verifier_source_sha256':{**{'dev/'+n:sha(ROOT/'dev'/n) for _,n,_,_ in cases},'dev/native_game_completion.py':sha(ROOT/'dev/native_game_completion.py'),'dev/verify_current_player_core.py':sha(Path(__file__))},
         'limits':['Finite sampled scenarios and copied city; no exhaustive menu/keyboard/display or large-city acceptance.',
                   'Main-menu identity is unknown after expiry, not positively detected. Current simple chat stays closed during core scene checks.']}
+    return run,report
+
+
+def verify(args):
+    import tempfile
+    home=ROOT/'runtime/smoke-home'
+    target=home/'.local/share/songsofsyx/mods/syx-ai-assistant/V71/script/syx-ai-assistant.jar'
+    save=args.save.resolve()
+    if home.is_symlink() or target.is_symlink() or not target.is_file() or not target.resolve().is_relative_to(home.resolve()):
+        raise ValueError('Use a regular copied-profile JAR inside smoke-home')
+    if not save.is_file() or not save.is_relative_to((ROOT/'runtime').resolve()):
+        raise ValueError('Use a copied save under runtime/')
+    before=sha(save)
+    with tempfile.TemporaryDirectory(prefix='core-restore-',dir=ROOT/'runtime') as private:
+        backup=Path(private)/'prior.jar';shutil.copy2(target,backup)
+        try:run,report=verify_inner(args)
+        finally:
+            shutil.copy2(backup,target)
+            if sha(target)!=sha(backup) or sha(save)!=before:
+                raise RuntimeError('Copied mod restoration/save integrity failed; no passing final report')
+    report['copied_mod_restored']=True;report['copied_save_unchanged']=True
     (run/'player-core-validation.json').write_text(json.dumps(report,indent=2)+'\n')
     print('Core evidence:',run/'player-core-validation.json',flush=True)
 

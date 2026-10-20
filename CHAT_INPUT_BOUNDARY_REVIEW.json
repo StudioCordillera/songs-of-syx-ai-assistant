@@ -1,0 +1,128 @@
+{
+  "passed": true,
+  "reviewed_at": "2026-10-20T03:21:51.300230+00:00",
+  "stage": "Static candidate input/visibility boundary only; no production drag/resize/badge",
+  "game_jar_sha256": "fe0137c05408e5ee9e31f06fc44fe37a5d4372d9c985b280f0852d1347c0224b",
+  "source_archive_sha256": "a3fc2aa9f4be31aec0616a5030a656ac49a6011343b7e91395c7bac0b9dfb0a5",
+  "direct_readers": [
+    {
+      "owner": "snake2d.CORE",
+      "signature": "public static snake2d.Input getInput();",
+      "source_path": "snake2d/CORE.java",
+      "source_sha256": "2600fff5c0eef54701bc3988e7aec3457b565b75fffcb2c9ff4b19b87779ecdf",
+      "normalized_disassembly_sha256": "2503811276f448c320a22e9ef89515a505a887222423bbf8e57b160eeedecfab",
+      "direct_reader_check": true
+    },
+    {
+      "owner": "snake2d.Input",
+      "signature": "public snake2d.Mouse getMouse();",
+      "source_path": "snake2d/Input.java",
+      "source_sha256": "1f4566180efb81e9bdeeb5c81b19b5b4fce3c996a9a515d48cf05dde5088ca41",
+      "normalized_disassembly_sha256": "199e2c4ccc21b4e80e30adda1dd8041c21a63865b706c26ceefa6ad3fb942d51",
+      "direct_reader_check": true
+    },
+    {
+      "owner": "snake2d.Mouse",
+      "signature": "public snake2d.util.datatypes.Coo getCoo();",
+      "source_path": "snake2d/Mouse.java",
+      "source_sha256": "4455715b0c26234ae78a7cea788c31bf8e4c0c7e9c66980f4a25a21884d68ee4",
+      "normalized_disassembly_sha256": "db714c3de0472b996266204cbc4d105debd533e4f14f57c3e60c94df09de8bc9",
+      "direct_reader_check": true
+    },
+    {
+      "owner": "snake2d.MButt",
+      "signature": "public boolean isDown();",
+      "source_path": "snake2d/MButt.java",
+      "source_sha256": "c24877f3852759f8e8adc6e80cd815385066189e7544a388ddcc0747856476dd",
+      "normalized_disassembly_sha256": "4dfe726561dcd84a8eb3ba8d9768ba7f39ad049012b765de39a37a4dd41a661d",
+      "direct_reader_check": true
+    }
+  ],
+  "selected_source_reviews": [
+    {
+      "path": "snake2d/Mouse.java",
+      "source_sha256": "4455715b0c26234ae78a7cea788c31bf8e4c0c7e9c66980f4a25a21884d68ee4",
+      "anchor_lines": [
+        89,
+        140,
+        97,
+        97
+      ],
+      "conclusion": "Pointer getter returns an engine-owned mutable Coo. Engine polling can retain previous coordinates while unfocused or outside bounds. Copy primitives on the game thread; never mutate or treat them as guaranteed current/focused/hovered-target identity."
+    },
+    {
+      "path": "snake2d/MButt.java",
+      "source_sha256": "c24877f3852759f8e8adc6e80cd815385066189e7544a388ddcc0747856476dd",
+      "anchor_lines": [
+        34,
+        35,
+        38
+      ],
+      "conclusion": "isDown reads held-button state without consuming clicks. It is not a release callback or mod ownership claim. Click consumption remains framework-owned; never mutate global click counters."
+    },
+    {
+      "path": "view/interrupter/InterGuisection.java",
+      "source_sha256": "727f7ddd3932cc7ddb460821e54d248b0cc41984649eff2c3770f4fc33065025",
+      "anchor_lines": [
+        23,
+        29,
+        59
+      ],
+      "conclusion": "Own section routes public framework hover/click/render. Existing native fixtures consume only own controls. A future hold/drag state machine must retain own capture and isolate composer/buttons."
+    },
+    {
+      "path": "view/interrupter/InterManager.java",
+      "source_sha256": "93bf95d5346e39dff8fdcf424a2b21587260340b4964e5d21fa7477591746da8",
+      "anchor_lines": [
+        86,
+        87
+      ],
+      "conclusion": "A render callback does not alone establish unobscured human visibility: manager layers may draw other interrupters. Unread acknowledgements need a separately reviewed visibility rule."
+    }
+  ],
+  "compiler_probes": [
+    {
+      "id": "ChatPointerRead",
+      "expected_compilation": "success",
+      "matched": true,
+      "diagnostic_category": null,
+      "probe_source_sha256": "44634ba57b1cde9a030b83cc1e92da2a0a0230c00c53fd9be2b7df47f8818b1a",
+      "compiler_output_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "id": "ChatHeldRead",
+      "expected_compilation": "success",
+      "matched": true,
+      "diagnostic_category": null,
+      "probe_source_sha256": "0f1c603ec48c1e0f23f17dfce99c4ccdcf561ea1cf89cef390da98bce1650982",
+      "compiler_output_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "id": "ChatBoundsRead",
+      "expected_compilation": "success",
+      "matched": true,
+      "diagnostic_category": null,
+      "probe_source_sha256": "f59c2bf451ee4de1dee76282b2d8ef8f87864a2bb0e507321c2d92920a311dc2",
+      "compiler_output_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "id": "ChatFocusExcluded",
+      "expected_compilation": "rejected",
+      "matched": true,
+      "diagnostic_category": "compiler.err.not.def.public.cant.access",
+      "probe_source_sha256": "e7fff9f8855dedcd28ca4d2327f5c8ba01e4d24cfe40f8806e746ec58b23b295",
+      "compiler_output_sha256": "9bf390844927cf71874693c942e93d000ccc6b979e1f1e913157d4160b1552b9"
+    }
+  ],
+  "reviewer_source_sha256": "394c281cafc88f08e96fdea10d7e7dafd7675497ec58cf3bdfac4d107f6844c2",
+  "game_initializations": 0,
+  "inference_calls": 0,
+  "exclusions": [
+    "No pointer setter, private focus access, click consumption, global counter mutation or OS/native input injection.",
+    "Do not retain mutable engine coordinate handles, infer selected game objects from pointer coordinates or acknowledge unread solely because render ran."
+  ],
+  "limits": [
+    "Finite selected source/binary/compiler review, not an exhaustive public API inventory or documented stable SCRIPT contract.",
+    "No actual hold/release/focus-loss/drag/resize/occlusion/scaling acceptance; these remain explicit native candidate gates."
+  ]
+}

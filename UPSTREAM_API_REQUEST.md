@@ -18,3 +18,11 @@ The current adapter uses the shipped SCRIPT lifecycle and explicit public getter
 Suggested compatibility rules: feature negotiation, no hidden fallback, explicit unavailable reasons, stable IDs across views, session rotation on load, bounded paging and deprecation notices per supported game build. Background UI selections should be distinguishable from the foreground/topmost context. Observation APIs should not consume input, modify selection, render UI or change simulation state.
 
 The proposal intentionally excludes arbitrary reflection, process memory access, native input, screenshots and privileged control. The source-verified inventory (`api-audit.json`) and current coverage report (`API_ESTABLISHMENT.md`) provide concrete examples and reproducible evidence for the requested additions.
+
+## Mod-owned gesture focus and display validity follow-up
+
+The finite 0.71.44 review in [CHAT_INPUT_BOUNDARY.md](CHAT_INPUT_BOUNDARY.md) finds public pointer/held-state routes, but the inspected GraphicContext.isFocused getter is package-private. Mouse.getCoo returns a mutable engine cache whose coordinates can remain unchanged outside bounds/unfocused. This is not an exhaustive proof that no other public route exists.
+
+A documented in-process API for read-only focus, pointer validity/age and mod-owned capture/release/cancel would let chat panels handle dragging without private access, native input injection, engine coordinate mutation or another widget's click consumption. Detached primitive coordinates with explicit coordinate units and validity would be preferable to a mutable shared handle. Separately, an own-widget visibility/clip/occlusion contract would help validate per-event unread display receipts; a render callback alone is not evidence that an unoccluded reply was seen. Stable save/world identity remains a separate existing request, never inferred from pointer/UI/city names.
+
+The unshipped gesture candidate uses a bounded cancellation policy while these native semantics are reviewed. It does not bypass focus access or claim actual native input acceptance.

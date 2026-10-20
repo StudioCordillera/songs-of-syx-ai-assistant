@@ -65,3 +65,7 @@ The later producer-degradation checkpoint changes `StateCollector` itself. These
 
 
 The subsequent city stockpile-bookkeeping collector adds bounded stored/reservation reads. This older timing report is not a benchmark of that collector/JAR; the new checkpoint establishes finite correctness and scene availability, not refreshed collection or large-city latency.
+
+## Automatic-connection player checkpoint
+
+CURRENT_COLLECTION_COST_VALIDATION.json pins JAR 73b44c55… and its paired production/Python source to 31 warm paused-small-city samples: collection median 6.199 ms, maximum 10.987 ms; separate JSON/UTF-8 encoding median 11.391 ms, maximum 13.320 ms. The observation is 1,798,020 bytes. Copied-mod restoration, copied-save integrity and finite crash checks pass. These descriptive samples do not demonstrate a speed improvement, largest-city/world behavior, optional request cost or FPS acceptance. Earlier timings retain their own hashes/scope.

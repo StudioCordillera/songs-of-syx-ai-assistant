@@ -35,7 +35,7 @@ Only these production classes are packaged. `mod/tests/` contains non-shipped bo
 | syx_knowledge.py | Reviewed SEEDS, non-destructive corpus merge and knowledge CLI. Search/ranking lives in Advisor in syx_mcp.py. |
 | syx_api_support.py | Curated capability routing, source/evidence/limit descriptions and explicit gaps; not arbitrary invocation. |
 | syx_api_manifest.py | Generated compiler audit metadata. Regenerate with audit_api.py; never hand-merge it. |
-| syx_chat_service.py | Local IPC coordinator, explicit game attachment, simple/advanced routes, key boundaries and lifecycle. |
+| syx_chat_service.py | Local IPC coordinator, fresh MCP automatic player attachment / explicit advanced attachment, simple/advanced routes, key boundaries and lifecycle. |
 | syx_chat.py | Bounded native DeepSeek conversation/tool loop and citation/evidence integration. |
 | syx_deepseek.py | Streaming native API protocol and explicit model/endpoint errors; simple chat selects Pro explicitly. |
 | syx_chat_store.py | Private SQLite chat/session/event persistence, recovery, secret redaction, local export/delete. |
@@ -113,3 +113,11 @@ At handoff, update WORK_STATUS and the relevant current feature guides. Keep pre
 ## Cached viewport candidate
 
 [VIEWPORT_BOUNDARY.md](VIEWPORT_BOUNDARY.md) distinguishes stored window geometry from selection/hover/rendered visibility. `dev/review_viewport_boundary.py` pins compiler/source/selected-bytecode checks; `mod/tests/ViewportScenario.java`, `dev/verify_viewport.py` and `dev/run_read_fixture.py --case viewport` reproduce eleven public-action copied-game phases. [Static review](VIEWPORT_BOUNDARY_REVIEW.json) and [candidate report](VIEWPORT_CANDIDATE_VALIDATION.json) do not add a production DTO/MCP field.
+
+## Automatic player connection checkpoint
+
+[AUTO_CONNECTION.md](AUTO_CONNECTION.md) maps paired IPC 2, automatic opening/reconnect-on-send, bounded runtime filters and per-chat draft preservation. `test_auto_connection.py` supplies offline admission/filter/race cases. `dev/run_chat_connection_check.py` / `dev/verify_auto_connection.py`, `ChatAutoConnectScenario.java` and `ChatUiScenario.java` provide copied-save feature/focus checks with fake providers or no key, separate from actual Pro acceptance. `dev/verify_player_distribution.py` checks fresh extracted dependencies/startup/isolated installation and optional provided-key exclusion without inference. Feature reports pin current source and JAR. Durable world identity, unread badges and native redesign remain open.
+
+[CHAT_INPUT_BOUNDARY.md](CHAT_INPUT_BOUNDARY.md) and `dev/review_chat_input_boundary.py` map future public own-widget gesture inputs, cached-pointer/mutable-handle limits, rejected private focus access and layered-render visibility limits. CHAT_INPUT_BOUNDARY_REVIEW.json is static candidate evidence with zero game initializations, not native drag/badge acceptance.
+
+[CHAT_GESTURE_CANDIDATE.md](CHAT_GESTURE_CANDIDATE.md) maps the unshipped game-independent `dev/chat_gesture_candidate.py` model and 25 offline cases in `test_chat_gesture_candidate.py`. It supplies no native polling/hit-testing/focus or actual player movement.

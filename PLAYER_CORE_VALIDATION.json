@@ -1,9 +1,9 @@
 {
   "passed": true,
-  "mod_jar_sha256": "4d5f841ee276ed20277d440f53a7071acccda42a66f4bb4ab841cfb76f1118e7",
+  "mod_jar_sha256": "73b44c555a0f9e5e9d2497fee2ce6e6276052b8926117c776ebe1276a4a8cc22",
   "production_source_sha256": {
     "syx/assistant/AssistantScript.java": "82fa2395aa96e7ae9cee612b32171fb495ca289dc7f99269c1ad7a2d417cca55",
-    "syx/assistant/ChatPanel.java": "3138d3e863ccb36ad5b6b37a7e1f3486dd2d8c1dc43ab469b26af714548d8437",
+    "syx/assistant/ChatPanel.java": "06db6b7715f9187a40a0b4b987ab7f64e09df5f9dc07193e261249302d1ac12f",
     "syx/assistant/EntityReadRequest.java": "e2d13aee21f399e8718382d5b43d5a6c85e5d78d2708d8105b9f1ecfe730edf8",
     "syx/assistant/JsonWriter.java": "c525eb60d3224cab83ed3fd6b8594ec8652211f00bd947e873e1482f919e81dc",
     "syx/assistant/RegionalReadRequest.java": "4d1da800e6f2ecf6b036f188693ac1095329321bc569c82f34be9918768ef2b3",
@@ -17,15 +17,15 @@
     "syx_knowledge.py": "f5d7dd6d387ad0fb8f2b024a3bd599ad1cec28f2906dfae27d9d2fdf56e4de7e",
     "syx_query.py": "ae9c4537093952510e6536810c065b6e07f7bfc2d78d3bc02ccd0d21f4d12c07",
     "syx_api_support.py": "80276ac400801e9a895438162cbbb63db090f3dae930882b891b70a87fff5caf",
-    "syx_api_manifest.py": "22d7597af96cdd554bffa5647b61821f1f28e1eac7044dffa02e4c9bccf4d391",
+    "syx_api_manifest.py": "310d51686679b9adb274a711b1355722cf8dda54a46363b0e1a8bdd55bc901a0",
     "syx_live.py": "2f29a2d828fc5c512075fa6a2082dd5fae9d4a39fb22ae847765533dc5628c75",
     "syx_capture.py": "32778d9f5f217119ba45b114ba2a710bdd0ce4333efa672c31c690dcc3f3c3ec",
     "syx_tiles.py": "c5ceea79fc5d4d80307ecf7fe429ca1f1f6ae64d17e95569d54625bf02c4d664",
     "syx_regions.py": "96dd3355f50279c7c748d866019f889bd9889ef00c7cf97bf4fa582fede7ffb5",
-    "syx_chat_store.py": "7344b35476096b680e0cf85958f97596b3c9cfe843072202f30e357b97dedbe5",
+    "syx_chat_store.py": "a2f2ffa53097cb60eab72c015c3d516693aa1c89c8aa54d74f4dfc96d222e634",
     "syx_deepseek.py": "d58e21dbcfdeb1ef0f411dfbb4c0267234bdc5cc185e00d300821725ca1885e3",
     "syx_chat.py": "bb201ed9e6a0ed84f6dbddd583304e3c9b655f3e3c563f6a48f60e9669775714",
-    "syx_chat_service.py": "8e311cc51bf686d70d466f7a31863b9cbf1905231066316eb492f2c7bd074b6b",
+    "syx_chat_service.py": "1afc8252f8562a6c0ff5f6755f7b0479c401bf6e2f079503313da9e67713d73e",
     "syx_claude.py": "3a850a645907f27b1a9cb15c3c5244b96b2da97d5d0dc37f5cd7d6f708cf92a8",
     "syx_claude_worker.py": "ab6638b2c4ef3a4a1548fde1c0739a48f4d47e468494dd7444019f3f330dea38"
   },
@@ -532,7 +532,7 @@
   },
   "inference_calls": 0,
   "fixture_source_sha256": {
-    "mod/tests/LiveSmoke.java": "99d5890e29b4ebf1e2eadc4100c73f5db4b36f0ffe23db1aa439ef3ad67fe6ba",
+    "mod/tests/LiveSmoke.java": "39ca17238236b843b400b87e1481aa1ea7112b99b751e6aa5dc6e1978c94601b",
     "mod/tests/ServiceScenario.java": "7c721be7328e0b61749a925f37c5248983cb6ba42ad22f92369d0aac37776fb2",
     "mod/tests/TradeScenario.java": "c36a05d312ebea021495d4f49934c96973410b86f6f52d662ef281c6c2b81277",
     "mod/tests/WorldScenario.java": "d29a089875a5e740fbf746689daf055e4f4956b1166fc603d1d8a7c0f22cfc04",
@@ -550,10 +550,12 @@
     "dev/verify_installed_help.py": "531efe504e65bebadad112c305094a97b1c055993291056fa2b14fbaaf728c1c",
     "dev/verify_extended_context.py": "ce03cf795f7be8c1e6d6a9d318752b045e0b4cabaef66554dab1fdc9513102b3",
     "dev/native_game_completion.py": "8d29009ecb6b1c54e65ce4d94bc1c175d189c68aad59251381ec4cf5a063773f",
-    "dev/verify_current_player_core.py": "57d97ca26ae1e1a7a43bb4f306060a8771d6cb55ac8e47f68c83ee924ebbb597"
+    "dev/verify_current_player_core.py": "02b595b0fee24529c61c015ba5d709784edfda10d5de07463e6db49c56e27f5f"
   },
   "limits": [
     "Finite sampled scenarios and copied city; no exhaustive menu/keyboard/display or large-city acceptance.",
     "Main-menu identity is unknown after expiry, not positively detected. Current simple chat stays closed during core scene checks."
-  ]
+  ],
+  "copied_mod_restored": true,
+  "copied_save_unchanged": true
 }

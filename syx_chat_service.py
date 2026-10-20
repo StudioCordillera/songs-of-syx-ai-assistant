@@ -57,13 +57,15 @@ def action(raw):
     fields={}
     for line in raw.decode('ascii').splitlines():
         key,sep,value=line.partition('=')
-        if not sep or key in fields or key not in {'request_id','action','session_id','chat_id','text','provider','route','model'}:raise ValueError('Invalid chat action')
+        if not sep or key in fields or key not in {'protocol','request_id','action','session_id','chat_id','text','provider','route','model'}:raise ValueError('Invalid chat action')
         fields[key]=value
     if not {'request_id','action','session_id'}<=fields.keys():raise ValueError('Incomplete chat action')
     identity(fields['request_id']);identity(fields['session_id'])
     if 'chat_id' in fields:identity(fields['chat_id'])
-    if fields['action'] not in {'new','select','send','stop','attach','evidence','rename','export','delete'}:raise ValueError('Unknown chat action')
-    if fields['action']!='new' and 'chat_id' not in fields:raise ValueError('Chat selection required')
+    if fields.get('protocol','1') not in {'1','2'}:raise ValueError('Unsupported chat action protocol')
+    if fields['action'] not in {'sync','new','select','send','stop','attach','evidence','rename','export','delete'}:raise ValueError('Unknown chat action')
+    if fields['action']=='sync' and fields.get('protocol')!='2':raise ValueError('Automatic connection requires paired protocol 2')
+    if fields['action'] not in {'new','sync'} and 'chat_id' not in fields:raise ValueError('Chat selection required')
     if 'text' in fields:fields['text']=unb64(fields['text'])
     return fields
 
@@ -78,8 +80,24 @@ class Coordinator:
         self.claude_loop=ClaudeConversation(store,mcp,None,api_key=claude_api_key)
         self.tasks={};self.selected=None;self.ack='';self.notice='DeepSeek API configured' if api_key else 'DeepSeek API key missing; set DEEPSEEK_API_KEY before starting the coordinator'
         self.partial={};self.last_write=0;self.expanded=set();self.validated=set()
+        self.ui_session=None
         with store.db:
             store.db.execute('CREATE TABLE IF NOT EXISTS actions(request_id TEXT PRIMARY KEY, at TEXT NOT NULL DEFAULT CURRENT_TIMESTAMP)')
+
+    async def current_game(self,session):
+        """Validate the requesting panel against existing bounded MCP observations.
+
+        This retains the exporter's freshness/unload limitation; it is not an
+        immediate lifecycle hook or multi-game presence registry.
+        """
+        try:
+            async with asyncio.timeout(4):
+                status=Conversation._status(await self.loop._tool('game_status',{}))
+        except TimeoutError:
+            raise ValueError('Game connection timed out; no question was sent') from None
+        if status.get('session_id')!=session or status.get('fresh') is not True or status.get('live') is not True:
+            raise ValueError('Waiting for a fresh matching loaded game; no question was sent')
+        return status
 
     async def dispatch(self,request):
         rid=request['request_id']
@@ -90,13 +108,25 @@ class Coordinator:
         self.ack=rid
         name=request['action'];session=request['session_id'];cid=request.get('chat_id')
         if self.simple:
-            if name=='new':
+            if name=='sync':
+                if request.get('protocol')!='2':raise ValueError('Update the mod and helper together')
+            elif name=='new':
                 choice=(request.get('provider','deepseek'),request.get('route','api'),request.get('model','deepseek-v4-pro'))
                 if choice!=('deepseek','api','deepseek-v4-pro'):raise ValueError('This user-test build uses DeepSeek Pro')
             elif name=='evidence':raise ValueError('Developer evidence controls are disabled in this user-test build')
             elif self.store.chat(cid)['model']!='deepseek-v4-pro' or self.store.chat(cid)['provider']!='deepseek':
                 raise ValueError('Start a new DeepSeek Pro chat in this user-test build')
+        if name=='sync':
+            if not self.simple:raise ValueError('Automatic player connection is unavailable in advanced mode')
+            await self.current_game(session)
+            self.ui_session=session
+            if self.selected is None:
+                current=self.store.list(session,simple=True)
+                self.selected=(current[0] if current else self.store.new(session,model='deepseek-v4-pro'))['chat_id']
+            self.notice='Connected to this game; ask a question'
+            return
         if name=='new':
+            if self.simple:await self.current_game(session);self.ui_session=session
             self.selected=self.store.new(session,request.get('text') or 'New chat',request.get('provider','deepseek'),request.get('model','deepseek-v4-pro' if self.simple else 'deepseek-flash'),request.get('route','api'))['chat_id'];self.notice='Chat created';return
         selected_chat=self.store.chat(cid);self.selected=cid
         if name=='evidence':
@@ -111,7 +141,9 @@ class Coordinator:
             if cid in self.tasks and not self.tasks[cid].done():raise ValueError('Stop the reply before deleting its chat')
             self.store.delete(cid);self.loop.context.pop(cid,None);self.expanded.discard(cid)
             self.selected=None;self.notice='Chat deleted from history; previously exported files are retained';return
-        if name=='select':self.notice='History loaded; continuing in a different runtime requires Attach';return
+        if name=='select':
+            self.notice='History loaded; your next question uses the loaded game' if self.simple else 'History loaded; continuing in a different runtime requires Attach'
+            return
         if name=='attach':
             if cid in self.tasks and not self.tasks[cid].done():raise ValueError('Stop the running reply before attaching a new game session')
             self.store.attach(cid,session);self.loop.context.pop(cid,None);self.notice='Chat attached explicitly to this game session';return
@@ -119,10 +151,20 @@ class Coordinator:
             task=self.tasks.get(cid)
             if task and not task.done():task.cancel();self.notice='Stopping reply'
             return
-        if selected_chat['attached_session']!=session:raise ValueError('This chat belongs to another runtime session; explicitly Attach to this game first')
+        if selected_chat['attached_session']!=session and not self.simple:raise ValueError('This chat belongs to another runtime session; explicitly Attach to this game first')
         if (selected_chat['provider'],selected_chat['route'])==('claude','api') and not self.claude_api_key:raise ValueError('Claude API key is missing; subscription fallback is disabled')
         if selected_chat['provider']=='deepseek' and not self.key:raise ValueError('DeepSeek API key is missing; no request sent')
         if cid in self.tasks and not self.tasks[cid].done():raise ValueError('A reply is already running')
+        if self.simple:
+            text=request.get('text','')
+            if not isinstance(text,str) or not 1<=len(text.strip())<=8000:raise ValueError('Message must contain 1..8000 characters')
+            if any(secret in text for secret in self.store.secrets):raise ValueError('Enter credentials through connection setup, not chat')
+            await self.current_game(session)
+            if cid in self.tasks and not self.tasks[cid].done():raise ValueError('A reply is already running')
+            self.ui_session=session
+            if selected_chat['attached_session']!=session:
+                selected_chat=self.store.attach(cid,session,explicit=False)
+                self.loop.context.pop(cid,None)
         if self.simple and selected_chat['title']=='New chat':
             self.store.rename(cid,request.get('text','New chat')[:60] or 'New chat')
         # A duplicate action ID is also the durable turn ID. Both journals prevent resubmission.
@@ -139,12 +181,15 @@ class Coordinator:
         self.tasks[cid]=asyncio.create_task(reply());self.notice='Generating with DeepSeek API'
 
     def write_ui(self):
-        lines=['protocol=1','updated_at='+str(time.time()),'request_id='+self.ack,
+        lines=['protocol=2','updated_at='+str(time.time()),'request_id='+self.ack,
             'notice='+b64(self.store.clean(self.notice)), 'connected='+str(bool(self.key)).lower(),
             'connection_status='+b64('DeepSeek API verified this run' if ('deepseek','api') in self.validated else 'DeepSeek API key loaded; not yet verified' if self.key else 'DeepSeek API key missing')]
-        for chat in self.store.list():
-            if not self.simple or (chat['provider'],chat['route'],chat['model'])==('deepseek','api','deepseek-v4-pro'):
-                lines.append('chat='+chat['chat_id']+'|'+b64(chat['title']))
+        for chat in self.store.list(simple=self.simple):
+            lines.append('chat='+chat['chat_id']+'|'+b64(chat['title']))
+        if self.simple and self.ui_session:
+            lines.append('current_chat_session='+self.ui_session)
+            for chat in self.store.list(self.ui_session,simple=True):
+                lines.append('current_chat='+chat['chat_id']+'|'+b64(chat['title']))
         if self.selected:
             chat=self.store.chat(self.selected)
             if chat['provider']=='claude':
@@ -167,8 +212,9 @@ class Coordinator:
                         text=payload.get('text','')
                         if not text:continue
                         text=('You: ' if kind=='user' else 'Assistant: ')+text
+                        if event['game_session']!=chat['attached_session']:text='Earlier game · '+text
                     elif kind in {'turn_error','turn_cancelled'}:text='Reply interrupted. Please try again or start a new chat.'
-                    elif kind=='session_boundary':text='Conversation connected to this game.'
+                    elif kind=='session_boundary':text='Connected automatically to this game. Earlier messages are history.' if payload.get('automatic_current_game') else 'Conversation connected to this game.'
                     else:continue
                     lines.append('line='+b64(text));continue
                 if kind=='tool':

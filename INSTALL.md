@@ -2,7 +2,7 @@
 
 ## Play the tested Linux build
 
-Download the [latest tested player ZIP](https://github.com/StudioCordillera/songs-of-syx-ai-assistant/raw/refs/heads/main/releases/latest-user-test.zip), extract it, run `python3 install-mod.py`, then `sh start-chat.sh`. Enable the mod, load a supported **0.71.44** game and open **AI chat → New chat**. Read [the bundled instructions](user_test/README.txt).
+Download the [latest tested player ZIP](https://github.com/StudioCordillera/songs-of-syx-ai-assistant/raw/refs/heads/main/releases/latest-user-test.zip), extract it, run `python3 install-mod.py`, then `sh start-chat.sh`. Enable the mod, load a supported **0.71.44** game and open **AI chat** (connects automatically). Read [the bundled instructions](user_test/README.txt).
 
 The bundle contains the compiled mod and simple DeepSeek Pro client, chat/session histories, Send/Stop and a wrapped composer. No compiler or coding client is needed to play. Python and first-launch dependency downloads are required. Credentials stay in a private external environment/file, never the bundle or game save. Provider/login/debug controls are hidden; tool JSON stays in private logs. The installer backs up the existing own-mod folder and rolls back copying failures without editing saves. [Release policy](releases/README.md) explains the retained previous ZIP.
 

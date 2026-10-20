@@ -31,7 +31,7 @@ public final class ChatLiveScenario {
                             boolean found=false;
                             for(RENDEROBJ row:panel.section().elements())if(row.body().x1()==650&&row.body().y1()==640){press(row);found=true;break;}
                             require(found,"No Claude subscription choice");
-                        }else press(panel.section().elements().get(1));
+                        }else if(!Boolean.TRUE.equals(panel.context().get("automatic_connection")))press(panel.section().elements().get(1));
                         phase=2;break;
                     case 2:
                         Object id=panel.context().get("chat_id");if(id==null)return;

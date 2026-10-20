@@ -105,3 +105,9 @@ Install hooks with `git config core.hooksPath .githooks`. The pre-push hook and 
 ## Documentation and evidence
 
 Run `python3 dev/check_documentation.py` before publishing. Update REPOSITORY_MAP.md and DOCUMENTATION_INDEX.md for new entry points/docs, current guides for behavior changes, and WORK_STATUS.md for next work. Keep historical dates/hashes/cases intact; label stale claims or replace misleading current prose. Earlier reports are not fresh validation of a changed source/JAR. Preserve the public-only game boundary, simple Pro interface, credentials, normal saves and proprietary game materials.
+
+## Current player automatic-connection checks
+
+`dev/run_chat_connection_check.py --case connection` builds/audits a preflight candidate in ignored runtime and checks automatic opening, reload/reconnect-on-send, runtime filters, history isolation, paired-protocol refusal and draft preservation through real mod/MCP/SQLite with simulated replies. `--case focus` checks current own-widget focus/wrapping/view persistence with no provider key. Both use the normal game-dir/save/java/jdk-home arguments and the shared native fixture lock. For release acceptance, also pass the exact paid candidate `--mod-jar` and matching `--validation`; preflight is not paid acceptance. Neither uses OS input or screenshots.
+
+`dev/verify_player_distribution.py --candidate-dir runtime/<candidate> --validation runtime/<paid-report> --env-file .env` checks fresh extracted dependencies, helper startup, isolated installation and literal key exclusion. It never sends the supplied key or makes inference calls. The separate native/paid/core reports remain required. Core and paid runners publish passing reports only after copied-profile mod restoration and copied-save integrity succeed. [Connection scope](AUTO_CONNECTION.md) and [Claude follow-up](CLAUDE_UX_FOLLOWUP.md) explain remaining UX gates.

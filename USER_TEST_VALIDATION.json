@@ -15,10 +15,10 @@
   ],
   "cited_urls_match_retrieval": true,
   "simple_transcript_without_debug_events": true,
-  "mod_jar_sha256": "4d5f841ee276ed20277d440f53a7071acccda42a66f4bb4ab841cfb76f1118e7",
+  "mod_jar_sha256": "73b44c555a0f9e5e9d2497fee2ce6e6276052b8926117c776ebe1276a4a8cc22",
   "production_source_sha256": {
     "syx/assistant/AssistantScript.java": "82fa2395aa96e7ae9cee612b32171fb495ca289dc7f99269c1ad7a2d417cca55",
-    "syx/assistant/ChatPanel.java": "3138d3e863ccb36ad5b6b37a7e1f3486dd2d8c1dc43ab469b26af714548d8437",
+    "syx/assistant/ChatPanel.java": "06db6b7715f9187a40a0b4b987ab7f64e09df5f9dc07193e261249302d1ac12f",
     "syx/assistant/EntityReadRequest.java": "e2d13aee21f399e8718382d5b43d5a6c85e5d78d2708d8105b9f1ecfe730edf8",
     "syx/assistant/JsonWriter.java": "c525eb60d3224cab83ed3fd6b8594ec8652211f00bd947e873e1482f919e81dc",
     "syx/assistant/RegionalReadRequest.java": "4d1da800e6f2ecf6b036f188693ac1095329321bc569c82f34be9918768ef2b3",
@@ -32,15 +32,15 @@
     "syx_knowledge.py": "f5d7dd6d387ad0fb8f2b024a3bd599ad1cec28f2906dfae27d9d2fdf56e4de7e",
     "syx_query.py": "ae9c4537093952510e6536810c065b6e07f7bfc2d78d3bc02ccd0d21f4d12c07",
     "syx_api_support.py": "80276ac400801e9a895438162cbbb63db090f3dae930882b891b70a87fff5caf",
-    "syx_api_manifest.py": "22d7597af96cdd554bffa5647b61821f1f28e1eac7044dffa02e4c9bccf4d391",
+    "syx_api_manifest.py": "310d51686679b9adb274a711b1355722cf8dda54a46363b0e1a8bdd55bc901a0",
     "syx_live.py": "2f29a2d828fc5c512075fa6a2082dd5fae9d4a39fb22ae847765533dc5628c75",
     "syx_capture.py": "32778d9f5f217119ba45b114ba2a710bdd0ce4333efa672c31c690dcc3f3c3ec",
     "syx_tiles.py": "c5ceea79fc5d4d80307ecf7fe429ca1f1f6ae64d17e95569d54625bf02c4d664",
     "syx_regions.py": "96dd3355f50279c7c748d866019f889bd9889ef00c7cf97bf4fa582fede7ffb5",
-    "syx_chat_store.py": "7344b35476096b680e0cf85958f97596b3c9cfe843072202f30e357b97dedbe5",
+    "syx_chat_store.py": "a2f2ffa53097cb60eab72c015c3d516693aa1c89c8aa54d74f4dfc96d222e634",
     "syx_deepseek.py": "d58e21dbcfdeb1ef0f411dfbb4c0267234bdc5cc185e00d300821725ca1885e3",
     "syx_chat.py": "bb201ed9e6a0ed84f6dbddd583304e3c9b655f3e3c563f6a48f60e9669775714",
-    "syx_chat_service.py": "8e311cc51bf686d70d466f7a31863b9cbf1905231066316eb492f2c7bd074b6b",
+    "syx_chat_service.py": "1afc8252f8562a6c0ff5f6755f7b0479c401bf6e2f079503313da9e67713d73e",
     "syx_claude.py": "3a850a645907f27b1a9cb15c3c5244b96b2da97d5d0dc37f5cd7d6f708cf92a8",
     "syx_claude_worker.py": "ab6638b2c4ef3a4a1548fde1c0739a48f4d47e468494dd7444019f3f330dea38"
   },
@@ -48,90 +48,147 @@
     "Copied city; native own-widget text/click fixture, not physical keyboard or every screen size.",
     "No complete game-state/all-menu claim. Raw read-only tool evidence remains in the private local history.",
     "Linux user-test bundle; game and Python dependencies must be installed separately.",
-    "Moisture: stored quantized base/current fractions, not MOISTURE_TOT, rainfall, fertility, yield, irrigation eligibility or forecasts. Optional instantiated-scene projection with unchanged tile bounds/errors/row/byte budgets.",
-    "Eighteen copied-city tile point cases, separate 100-row moisture and terrain/room captures and eight scene phases are finite evidence. Wide 100-row combined projection is refused at the existing tool-text budget; native getter faults, natural moisture evolution and worst-case full-world cost remain unestablished.",
-    "Earlier candidate-moisture, world-list/faction, regional-live/capture and protocol-codec feature reports keep their prior JAR/source scopes. They are not relabeled fresh. Current seven core groups provide their own finite scene/context checks."
+    "Current-load filtering is mutable runtime attachment, not durable world/save grouping. No multi-process registry or managed helper startup.",
+    "Existing up-to-30-second unload/freshness limitation remains; not immediate main-menu identification.",
+    "No production unread badge, drag/resize/theme, typed targets or gameplay execution. Receipt/gesture candidates are not packaged.",
+    "Native own-widget/fake-provider checks are separate from two actual Pro turns. No physical pointer/keyboard/all-scale/all-context acceptance.",
+    "Earlier tile/moisture/world-list/faction/regional feature reports retain their earlier JAR/source hashes. Current seven core groups provide finite regressions, not new feature-specific coverage for every old report.",
+    "Distribution container hash records its pre-promotion test archive; tested payload file hashes must equal the final bundle. Final BUILD evidence metadata is checked separately."
   ],
+  "known_engine_crash_markers_absent": true,
   "game_exit_code": 0,
-  "dev_runner_source_sha256": "407b30e67642d0efbb3863e0c65ca584391bfebe57af30c593f47c0871387e5c",
-  "followup_completed_at": "2026-10-19T04:30:10.139739+00:00",
+  "dev_runner_source_sha256": "73f472bf0c91444df3b5e18a66d11f49f11752e918e5a6113100c712ee7daf0c",
+  "copied_mod_restored": true,
+  "copied_save_unchanged": true,
+  "followup_completed_at": "2026-10-20T03:37:01.929360+00:00",
   "game_version": "0.71.44",
   "game_jar_sha256": "fe0137c05408e5ee9e31f06fc44fe37a5d4372d9c985b280f0852d1347c0224b",
-  "python_tests_passed": 305,
-  "public_production_members": 384,
+  "source_archive_sha256": "a3fc2aa9f4be31aec0616a5030a656ac49a6011343b7e91395c7bac0b9dfb0a5",
+  "python_tests_passed": 356,
+  "public_production_members": 385,
   "non_public_production_members": 0,
   "core_check_groups_passed": 7,
   "distribution_checks": {
     "passed": true,
+    "validated_at": "2026-10-20T03:36:57.626928+00:00",
     "fresh_dependency_environment": true,
     "extracted_check": true,
     "extracted_helper_startup_no_inference": true,
     "isolated_installer_jar_hash": true,
     "provided_key_literal_absent_from_archive": true,
     "provider_calls": 0,
-    "candidate_zip_sha256": "b7b6860f0367210ec2c7c53765481decf3d9485f5d5d71f44880f4d38efa2595",
-    "chat_panel_class_bytes_match_prior": true,
-    "paid_run_known_engine_crash_markers_absent": true
-  },
-  "prior_unchanged_chat_focus_evidence": {
-    "prior_mod_jar_sha256": "5a1f3fa413e4776e9d7f03e7d3af306cae4ecd59a0b07b6bb8d9509c39e9d397",
-    "chat_panel_class_sha256": {
-      "syx/assistant/ChatPanel$1.class": "e1bdfe76d9bd5f9472297a21bafa16e85a66b28f1b9c839d5555bb88bd6e46ae",
-      "syx/assistant/ChatPanel$2.class": "81c98aa2beb7f855da27b273539685ef2e97e8043c4b3f7e72af6c06d0e2b8d1",
-      "syx/assistant/ChatPanel.class": "0dbd7a42d4a5fc9af52443d8fd0f252a83be4f627e715d0e92999196a37380e3"
+    "tested_pre_promotion_zip_sha256": "bf76eb08000d7b5d92b0333d586bda5db03eed5c95113f035d956afa7d335baf",
+    "tested_payload_files_sha256": {
+      "syx_mcp.py": "6e57581936147e8f17f3716c4e71acd24fda4bb63ab6f594e9342587f3b998d5",
+      "syx_knowledge.py": "f5d7dd6d387ad0fb8f2b024a3bd599ad1cec28f2906dfae27d9d2fdf56e4de7e",
+      "syx_query.py": "ae9c4537093952510e6536810c065b6e07f7bfc2d78d3bc02ccd0d21f4d12c07",
+      "syx_api_support.py": "80276ac400801e9a895438162cbbb63db090f3dae930882b891b70a87fff5caf",
+      "syx_api_manifest.py": "310d51686679b9adb274a711b1355722cf8dda54a46363b0e1a8bdd55bc901a0",
+      "syx_live.py": "2f29a2d828fc5c512075fa6a2082dd5fae9d4a39fb22ae847765533dc5628c75",
+      "syx_capture.py": "32778d9f5f217119ba45b114ba2a710bdd0ce4333efa672c31c690dcc3f3c3ec",
+      "syx_tiles.py": "c5ceea79fc5d4d80307ecf7fe429ca1f1f6ae64d17e95569d54625bf02c4d664",
+      "syx_regions.py": "96dd3355f50279c7c748d866019f889bd9889ef00c7cf97bf4fa582fede7ffb5",
+      "syx_chat_store.py": "a2f2ffa53097cb60eab72c015c3d516693aa1c89c8aa54d74f4dfc96d222e634",
+      "syx_deepseek.py": "d58e21dbcfdeb1ef0f411dfbb4c0267234bdc5cc185e00d300821725ca1885e3",
+      "syx_chat.py": "bb201ed9e6a0ed84f6dbddd583304e3c9b655f3e3c563f6a48f60e9669775714",
+      "syx_chat_service.py": "1afc8252f8562a6c0ff5f6755f7b0479c401bf6e2f079503313da9e67713d73e",
+      "syx_claude.py": "3a850a645907f27b1a9cb15c3c5244b96b2da97d5d0dc37f5cd7d6f708cf92a8",
+      "syx_claude_worker.py": "ab6638b2c4ef3a4a1548fde1c0739a48f4d47e468494dd7444019f3f330dea38",
+      "start-chat.sh": "2586bf71939affcad88947dc9c17c8104172436d9f92ca46dc85c0561bb8e4ec",
+      "player.py": "545e93ff99b7018fd1726acb53766e15bf1d43403572d9b96db2d741e8067604",
+      "install-mod.py": "55a24b0b3c85adf2e42181633bea832fb86bc6a10a671e1cf57a3c0d760d2d92",
+      "requirements.txt": "8962ac1ba6867e3cd89e03fe7780ca36f0856c2a7263e6d8bbd4b0e4b085c7c2",
+      "README.txt": "cfe7b3fc3ab90af3690fc10e190194e37bcabb8b7fcf05481a95bef8a669f2ee",
+      "mod/syx-ai-assistant/V71/script/syx-ai-assistant.jar": "73b44c555a0f9e5e9d2497fee2ce6e6276052b8926117c776ebe1276a4a8cc22",
+      "mod/syx-ai-assistant/_Info.txt": "0f18e1d58354c93eee5967a424dbb61c2ef0baa0346a057533365447275762d1"
     },
-    "same_class_bytes_in_candidate": true,
-    "fixture": {
-      "limitations": [
-        "No real provider inference",
-        "No physical keyboard test",
-        "No full menu/modal/reload coverage",
-        "Default simple player panel"
-      ],
-      "passed": true,
-      "checks": [
-        "public GUI own-panel click consumed",
-        "open and close",
-        "create chat via file coordinator",
-        "composer focus",
-        "240 maximum-width characters fit wrapped input",
-        "simple Pro interface",
-        "missing-key send rejection",
-        "reopen chat identity",
-        "world and city panel persistence"
-      ],
-      "inference_calls": 0,
-      "no_provider_turns_created": true,
-      "fixture_sha256": "93a3984a6e6563247564190711d10861c69a3c7a6631a3bcf7ed0e7fc9f047de"
+    "mod_jar_sha256": "73b44c555a0f9e5e9d2497fee2ce6e6276052b8926117c776ebe1276a4a8cc22",
+    "production_source_sha256": {
+      "syx/assistant/AssistantScript.java": "82fa2395aa96e7ae9cee612b32171fb495ca289dc7f99269c1ad7a2d417cca55",
+      "syx/assistant/ChatPanel.java": "06db6b7715f9187a40a0b4b987ab7f64e09df5f9dc07193e261249302d1ac12f",
+      "syx/assistant/EntityReadRequest.java": "e2d13aee21f399e8718382d5b43d5a6c85e5d78d2708d8105b9f1ecfe730edf8",
+      "syx/assistant/JsonWriter.java": "c525eb60d3224cab83ed3fd6b8594ec8652211f00bd947e873e1482f919e81dc",
+      "syx/assistant/RegionalReadRequest.java": "4d1da800e6f2ecf6b036f188693ac1095329321bc569c82f34be9918768ef2b3",
+      "syx/assistant/StateCollector.java": "58b6f25bb21493da7ce6a9770d2068ee86f9419e1d3aff5cf83e56a0a532dcdf",
+      "syx/assistant/TileReadRequest.java": "5daf3cc3abc0cb849f654e09efadb3d0263b73d4e5e220e97671ea1c4a40bde6",
+      "syx/assistant/UiContentCollector.java": "c0d20c7f9f2734a0bb625427875f06bfcd07edb20611248b39b6e8f480ef5a48",
+      "syx/assistant/UiContextCollector.java": "b8a3e582e1c2b7da868ad9513f02793685d7a986464fe8935b32b86216f70b29"
     },
-    "scope": "Prior no-inference focus/wrapping fixture; ChatPanel class bytes verified identical in current candidate. Full current-build Pro geometry/send checks passed separately."
+    "python_source_sha256": {
+      "syx_mcp.py": "6e57581936147e8f17f3716c4e71acd24fda4bb63ab6f594e9342587f3b998d5",
+      "syx_knowledge.py": "f5d7dd6d387ad0fb8f2b024a3bd599ad1cec28f2906dfae27d9d2fdf56e4de7e",
+      "syx_query.py": "ae9c4537093952510e6536810c065b6e07f7bfc2d78d3bc02ccd0d21f4d12c07",
+      "syx_api_support.py": "80276ac400801e9a895438162cbbb63db090f3dae930882b891b70a87fff5caf",
+      "syx_api_manifest.py": "310d51686679b9adb274a711b1355722cf8dda54a46363b0e1a8bdd55bc901a0",
+      "syx_live.py": "2f29a2d828fc5c512075fa6a2082dd5fae9d4a39fb22ae847765533dc5628c75",
+      "syx_capture.py": "32778d9f5f217119ba45b114ba2a710bdd0ce4333efa672c31c690dcc3f3c3ec",
+      "syx_tiles.py": "c5ceea79fc5d4d80307ecf7fe429ca1f1f6ae64d17e95569d54625bf02c4d664",
+      "syx_regions.py": "96dd3355f50279c7c748d866019f889bd9889ef00c7cf97bf4fa582fede7ffb5",
+      "syx_chat_store.py": "a2f2ffa53097cb60eab72c015c3d516693aa1c89c8aa54d74f4dfc96d222e634",
+      "syx_deepseek.py": "d58e21dbcfdeb1ef0f411dfbb4c0267234bdc5cc185e00d300821725ca1885e3",
+      "syx_chat.py": "bb201ed9e6a0ed84f6dbddd583304e3c9b655f3e3c563f6a48f60e9669775714",
+      "syx_chat_service.py": "1afc8252f8562a6c0ff5f6755f7b0479c401bf6e2f079503313da9e67713d73e",
+      "syx_claude.py": "3a850a645907f27b1a9cb15c3c5244b96b2da97d5d0dc37f5cd7d6f708cf92a8",
+      "syx_claude_worker.py": "ab6638b2c4ef3a4a1548fde1c0739a48f4d47e468494dd7444019f3f330dea38"
+    },
+    "verifier_source_sha256": "eb989d8f6d4631a37ac06f0c380b36cb900c899cba34af4aea399d1d7fe4828a",
+    "limits": [
+      "Fresh Linux Python environment and isolated temporary profile only; no physical input/all-platform acceptance.",
+      "Fake startup credential never sent to provider; actual paid/native acceptance is reported separately.",
+      "Container hash records this test archive. Final evidence metadata may change BUILD.json; payload file hashes must remain identical at promotion."
+    ]
   },
-  "core_validation_report_sha256": "aff977f3bcd94ba25f4cef8bc4d0534b9f2bb41a4b54f21d7e92fe788a8e7df7",
-  "tile_capture_validation_report_sha256": "3e627127d3fa269e6275f706026676d608aba47efa282da35177a73c5c20ad01",
-  "ground_moisture_boundary_review_sha256": "081ec60f6916f33cc4df7e866d420257eaf7effd969de51efd2a4664d4daf3f9",
-  "collection_cost_validation_report_sha256": "012d303e56ab61a5484e2ad1aeeea93036dd2bdfa414e495b376c256e6f3a44e",
-  "capability_discovery_report_sha256": "9b96600979dd90ac45ceeafd11a359de67611934232f341616f557ec59df93eb",
-  "guidance_validation_report_sha256": "fcc75a80d55a37ea5ba4b4df39bae652e3dc0b0f7dac7fbd8ca252bbf46c8446",
+  "current_evidence_sha256": {
+    "AUTO_CONNECTION_VALIDATION.json": "93591493a69d7173ad9a9276b0cd8fa485b1b3933df4f8f9c1ef891c9e44010a",
+    "CHAT_FOCUS_VALIDATION.json": "176d5aa2d67440bd8b4974ddc6c65a5ea77bd2b3c83ce1fefe8c6cc345aa24a2",
+    "PLAYER_CORE_VALIDATION.json": "4ff4985b2b930cc06cf43988c60cec8050c541007f3c161108bec6b5cd2e44dd",
+    "CHAT_BACKGROUND_VALIDATION.json": "a6780ead9e5d745ae6950835c624193f1a18e5ebdf0d857c966db8053734fbb7",
+    "CURRENT_COLLECTION_COST_VALIDATION.json": "fe904f7643c662c246743a608c928f0e05b4c001544f11b4cd83cb2c61bbe34e",
+    "PLAYER_DISTRIBUTION_VALIDATION.json": "5edb222e94cd63b3d189fb9da781ea91866bd80d6a574402aefe456af564dbd7",
+    "CAPABILITY_DISCOVERY_VALIDATION.json": "2409dfdf42fb36e3314f379eb93c028dd45660bd503657fadb33203e1c29f549",
+    "GUIDANCE_VALIDATION.json": "6f97538ad5747a737459e1f97ba0123e609d89d30c39d6e17a0e105f41c9da1c"
+  },
+  "previous_tested_mod_jar_sha256": "4d5f841ee276ed20277d440f53a7071acccda42a66f4bb4ab841cfb76f1118e7",
   "prior_feature_report_scopes": {
+    "TILE_CAPTURE_VALIDATION.json": {
+      "mod_jar_sha256": "4d5f841ee276ed20277d440f53a7071acccda42a66f4bb4ab841cfb76f1118e7",
+      "report_sha256": "3e627127d3fa269e6275f706026676d608aba47efa282da35177a73c5c20ad01",
+      "rerun_as_feature_fixture_this_checkpoint": false
+    },
     "GROUND_MOISTURE_READER_VALIDATION.json": {
       "mod_jar_sha256": "8d9e1aec427b86f1604b6330fc44d8dfad666f04717d8977ee7e04cd4149226f",
+      "report_sha256": "b905e53d2704d90fd80bbab0b8a5927e8ef6462b05f87c8201014d4127dbcefd",
       "rerun_as_feature_fixture_this_checkpoint": false
     },
     "WORLD_LIST_CONTEXT_VALIDATION.json": {
       "mod_jar_sha256": "8d9e1aec427b86f1604b6330fc44d8dfad666f04717d8977ee7e04cd4149226f",
+      "report_sha256": "714ada5ca3e97d6330492b9997e6c6f45e2db8a6eab02930f344504cc72f7398",
       "rerun_as_feature_fixture_this_checkpoint": false
     },
     "WORLD_FACTION_CONTEXT_VALIDATION.json": {
       "mod_jar_sha256": "8d9e1aec427b86f1604b6330fc44d8dfad666f04717d8977ee7e04cd4149226f",
+      "report_sha256": "b1801b1cf5fc3984f783004aabddb1c09befbe0139fa665f8b76d2373228b52e",
       "rerun_as_feature_fixture_this_checkpoint": false
     },
     "REGIONAL_LIVE_VALIDATION.json": {
       "mod_jar_sha256": "2c7726b84b07a76f913191f2b4bb83f0506273c7d46f4cc742a2d253efdadddb",
+      "report_sha256": "9fdd04288a21935f1393d4e70d5ac72c139c353574f4deaa779c245537a384ce",
       "rerun_as_feature_fixture_this_checkpoint": false
     },
     "REGIONAL_CAPTURE_VALIDATION.json": {
       "mod_jar_sha256": "2c7726b84b07a76f913191f2b4bb83f0506273c7d46f4cc742a2d253efdadddb",
+      "report_sha256": "a502a04956134ceec7e3aefa5d82c4edc6aa8bea630d3a34b02c26b7c3849e50",
+      "rerun_as_feature_fixture_this_checkpoint": false
+    },
+    "REGIONAL_OUTPUT_VALIDATION.json": {
+      "mod_jar_sha256": "bf05945b3c75716fda4cf824a4edc03fd5e0159a463669ed18b93644ca4b7b23",
+      "report_sha256": "73d7b82df1f55763b28a0f7bf441431960c42677f5558f03794bf26930defdd7",
       "rerun_as_feature_fixture_this_checkpoint": false
     }
-  }
+  },
+  "player_features": [
+    "Automatic current-runtime connection on opening and validated reconnect-on-send",
+    "This load / All chats filters before list caps; not permanent world identity",
+    "Bounded in-memory per-chat drafts and paired protocol refusal; visible older-chat error notices"
+  ]
 }

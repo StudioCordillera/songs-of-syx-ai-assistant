@@ -4,13 +4,13 @@ A local Java mod and MCP server for selective game observations, UI-aware questi
 
 ## Play the tested build
 
-[Download the latest tested Linux ZIP](https://github.com/StudioCordillera/songs-of-syx-ai-assistant/raw/refs/heads/main/releases/latest-user-test.zip), extract it, run `python3 install-mod.py`, then `sh start-chat.sh`. Enable the mod, load a game and open **AI chat → New chat**. Python and first-launch internet access for dependencies are required; no Java compiler is needed to use the bundle.
+[Download the latest tested Linux ZIP](https://github.com/StudioCordillera/songs-of-syx-ai-assistant/raw/refs/heads/main/releases/latest-user-test.zip), extract it, run `python3 install-mod.py`, then `sh start-chat.sh`. Enable the mod, load a game and open **AI chat** (connects automatically). Python and first-launch internet access for dependencies are required; no Java compiler is needed to use the bundle.
 
 The player gets **DeepSeek Pro** (`deepseek-v4-pro`), a simple chat list/transcript, wrapped composer, Send/Stop and durable local histories. The helper keeps its key outside version control and the published bundle; it never bundles credentials. Login/provider/debug controls are hidden and raw tool evidence stays in private history. See [player instructions](user_test/README.txt), [installation](INSTALL.md) and [build/rollback policy](releases/README.md).
 
 ## Requested next revision
 
-[Player-experience plan](PLAYER_EXPERIENCE_PLAN.md): automatic game connection, world-filtered history, a movable/resizable/themed panel, message target attachments, blueprint references, unread notifications and a separately reviewed public-API copilot execution track. These are planned; the current download remains the tested simple Pro client. A new copied-city regression confirms time advances during open/closed chat and a simulated delayed reply survives closing/reopening; see [bounded evidence](CHAT_BACKGROUND_VALIDATION.json).
+[Player-experience plan](PLAYER_EXPERIENCE_PLAN.md): automatic game connection, world-filtered history, a movable/resizable/themed panel, message target attachments, blueprint references, unread notifications and a separately reviewed public-API copilot execution track. Automatic current-game connection and This load / All chats filtering are implemented in the latest tested simple Pro client; the other revision features remain planned. Runtime loads are not permanent world identities. See [connection scope](AUTO_CONNECTION.md). A new copied-city regression confirms time advances during open/closed chat and a simulated delayed reply survives closing/reopening; see [bounded evidence](CHAT_BACKGROUND_VALIDATION.json).
 
 ## Start collaborating
 

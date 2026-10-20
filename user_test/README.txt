@@ -11,12 +11,15 @@ and a DeepSeek API key. The ZIP contains no game files or credentials.
    The first run installs Python dependencies and asks for your API key if needed.
    Keep this terminal open. Your key is stored privately outside this bundle.
 4. Enable Syx AI Assistant in the game's launcher and load a game.
-   Click AI chat, then New chat. Ask a question and Send.
+   Click AI chat. A conversation connects automatically. Ask a question and Send.
 
 This player build uses DeepSeek Pro (deepseek-v4-pro). There is no provider
 picker, subscription login, evidence JSON view, or developer control panel.
-Messages and separate chats are saved locally. After loading a different game,
-choose Use with this game to explicitly continue an older conversation.
+Messages and separate chats are saved locally. This load shows conversations
+attached to the current runtime; All chats includes earlier loads. This does
+not identify the same saved world across reloads. Sending in an older chat
+connects the next question to the loaded game; earlier messages stay historical.
+Install and restart the paired mod and helper together when updating.
 
 The question box supports up to 240 characters with wrapping. Use follow-up
 messages for longer questions. Send/Stop control the reply. The assistant uses

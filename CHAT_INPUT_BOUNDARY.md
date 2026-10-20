@@ -1,0 +1,13 @@
+# Candidate chat input and display boundary
+
+This static review establishes a small source-verified public input route for a future mod-owned hold/drag UI. It does not ship dragging, resizing, themes or unread badges. CHAT_INPUT_BOUNDARY_REVIEW.json pins the licensed source/binary pair, selected method fingerprints, source anchors and four finite compiler probes; the game is not initialized.
+
+CORE.getInput → Input.getMouse → Mouse.getCoo and MButt.LEFT.isDown compile from an external package. The four selected getter bodies contain direct field reads, without writes/allocations/backward branches. Copy coordinate primitives immediately on the game thread. The coordinate object is mutable engine-owned state; never retain it for worker traversal or change it. Public graphics nativeWidth/nativeHeight also compile, but coordinate/bounds/scaling equivalence still needs native acceptance.
+
+The engine can leave pointer coordinates unchanged when unfocused or outside its bounds. GraphicContext.isFocused is package-private: its external compiler probe is deliberately rejected. A returned coordinate is not proof of current focus, active hover, a selected tile or object, or that the mod owns the held button. No private fallback is permitted. Hold/drag needs its own capture/cancel/release state, a bounded recovery rule and source/native checks for focus loss and scene transitions; the current review supplies none of those guarantees.
+
+Own InterGuisection hover/click routing supplies an appropriate place to initiate a gesture only on the launcher/header/resize handle. Composer text, citations, controls and scroll content must keep their own behavior. Read held state through public APIs; do not call pointer setters, mutate shared click counters or consume another widget's clicks to implement dragging. Existing fixtures operate only mod-owned controls, separate from physical pointer acceptance.
+
+Rendering alone cannot authenticate a displayed reply. InterManager draws interrupters in layers, and other UI can obscure a section that rendered. A future event-UUID unread receipt must also account for exact visible rows, clipping/scroll, selected chat, UI hidden/closed state and applicable obscuring managers. Never acknowledge all replies just because a transcript arrived or a render callback ran. This is a review requirement, not a claim that the existing player has a badge.
+
+Reproduce with dev/review_chat_input_boundary.py --game-dir <licensed-game> --jdk-home <full-jdk>. Only metadata and our conclusions are published; no proprietary source bodies, game values, screenshot, native automation or inference is included. These are shipped-source/compiler observations, not stable documented SCRIPT contracts or an exhaustive API inventory.
