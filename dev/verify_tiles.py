@@ -18,7 +18,7 @@ from syx_chat_store import ChatStore
 from uuid import uuid4
 
 
-async def verify(directory):
+async def verify(directory,env_file=None):
     directory=directory.resolve();advisor=Advisor(directory/'snapshot.json',directory/'corpus.json')
     started=time.monotonic()
     while time.monotonic()-started<180:
@@ -236,6 +236,12 @@ async def verify(directory):
             assert fake_provider.calls==1
             assert (directory/'tile-request.txt').read_bytes()==dispatch_wire
             target_history.close()
+            paid_dispatch=None
+            if env_file is not None:
+                from dev.verify_target_dispatch_pro import verify as verify_paid_dispatch
+                expected_moisture={k:point[k] for k in ('base_fraction','stored_current_fraction')}
+                assert replacement['rows'][0]['ground_moisture']['data']==expected_moisture
+                paid_dispatch=await verify_paid_dispatch(target_adapter,directory,fresh['capture']['capture_id'],replacement['rows'][0],env_file)
             target_transport_report={'passed':True,'scope':'Developer adapter over actual stdio MCP and copied-city retained tile reads',
                 'direct_public_getter_rows_matched':2,'changed_scene_refused':True,'return_to_original_scene_recovers':True,
                 'evicted_original_token_refused':True,'explicit_new_capture_selection_passed':True,'failed_draft_preserved':True,'stage_and_prepare_did_not_write_tile_request':True,
@@ -248,11 +254,12 @@ async def verify(directory):
                 'native_player_picker_or_send_integration':False,'inference_calls':0,
                 'source_sha256':{name:hashlib.sha256((root/name).read_bytes()).hexdigest() for name in
                     ['dev/chat_target_candidate.py','dev/chat_target_transport.py','dev/chat_target_queue.py','dev/chat_target_dispatch.py','dev/verify_tiles.py']}}
-            tile_capture_report={'passed':True,'developer_target_transport':target_transport_report,'game_version':snapshot.game_version,'retained_rows':len(captured),
+            tile_capture_report={'paid_target_dispatch':paid_dispatch,'passed':True,'developer_target_transport':target_transport_report,'game_version':snapshot.game_version,'retained_rows':len(captured),
                 'retained_pages':retained_pages,'direct_public_getter_row_parity':True,'ground_moisture_live_and_retained_parity':True,'ground_moisture_retained_rows':100,'ground_moisture_retained_pages':10,'wide_100_row_tool_text_budget_refusal':True,'original_request_tick_time_scene_and_ui_preserved':True,
                 'active_simulation_and_view_change':True,'paging_did_not_write_game_request_mailbox':True,
                 'complete_empty_selection_scanned_tiles':4096,'incomplete_row_cap_rejected':True,'concurrent_pages':True,
-                'wrong_kind_token_rejected':True,'help_discoverable':True,'snapshot_tile_field_list_matches_moisture_support':True,'inference_calls':0,
+                'wrong_kind_token_rejected':True,'help_discoverable':True,'snapshot_tile_field_list_matches_moisture_support':True,
+                'inference_calls':0 if paid_dispatch is None else paid_dispatch['provider_round_attempts'],
                 'controlled_fixture_actions':['VIEW.world().activate()','VIEW.s().activate()','GAME.SPEED.speedSet(...)'],
                 'source_sha256':{name:hashlib.sha256((root/name).read_bytes()).hexdigest() for name in
                     ['syx_capture.py','syx_tiles.py','syx_mcp.py','mod/tests/TileScenario.java','dev/verify_tiles.py']},
@@ -287,4 +294,6 @@ async def verify(directory):
 
 if __name__=='__main__':
     parser=argparse.ArgumentParser(description=__doc__);parser.add_argument('--state-dir',type=Path,required=True)
-    asyncio.run(verify(parser.parse_args().state_dir))
+    parser.add_argument('--env-file',type=Path,help='Explicitly enable two paid Pro developer handoff turns')
+    args=parser.parse_args()
+    asyncio.run(verify(args.state_dir,args.env_file))

@@ -2,6 +2,16 @@
 
 Use `python3 dev/collaboration_status.py` for actual remote/local state at every run; this file is a handoff, not a live branch/working-tree assertion. Read AGENTS.md and reconcile newer collaborator work before editing.
 
+## Real Pro accepted-target handoff — developer follow-up
+
+CHAT_TARGET_DISPATCH_PRO_VALIDATION.json records a new explicit paid copied-game backend check: two deepseek-v4-pro workflows/two provider round attempts complete through the accepted-turn dispatch seam. First carries one retained moisture tile row independently matched to native public-getter fixture values; second carries an empty target envelope. The helper checks exact original outgoing evidence before each call, durable completion/two original user events and no new call on duplicate dispatch. This is requested/configured model evidence, not response-model attestation or general semantic/citation accuracy. No native picker/chip/send/stop UI or player promotion is claimed.
+
+The tiles runner now supports explicit --env-file .env for this paid follow-up only. Other cases refuse the flag; absent it, existing fake-provider/zero-inference behavior remains. The key path goes only to the verifier; game/MCP environments stay credential-stripped, and no key is placed in child environment/config/logs. Literal key exclusion passes across 77 task-owned native artifacts. Copied-profile mod restoration, copied-save integrity, clean zero game exit, normal tile/scene/reload checks and duplicate-claim refusal pass. Only this explicit test extends the copied fixture's 140-second wait to a finite 500 seconds (verifier 660); production timing and provider/account routes are unchanged.
+
+514 offline cases pass, including two new real-stdio/fake-provider plumbing cases for exact payload/counts, cleanup, credential exclusion and no retry on failure. Earlier 512-case/fake-provider reports keep their original source hashes/scopes and link the newer paid report. No new Claude run was necessary for this fixed existing-store/provider test seam; the completed earlier Opus review remains separately pinned. No competing collaborator diff was discarded. Preserve the private untracked player log.
+
+The production source/JAR and both playable ZIPs remain unchanged/source matched. Next: native target/request/ack/claim/stop transport and own-widget picker/chips, then full native/real-Pro/core/distribution paired-player gates. This paid developer backend check does not replace those gates. Read visibility/input, wider state/reference coverage and large-world costs remain open.
+
 ## Explicit accepted-turn provider-loop handoff — developer follow-up
 
 CHAT_TARGET_DISPATCH.md maps an explicit durable claim/store seam into the unchanged production Conversation loop. Original accepted question/target evidence is preserved once and supplied to the model as untrusted historical data. Fresh current-runtime/version/full-scene admission precedes a unique transactional queued→running claim. Failed/cancelled/interrupted/completed claims never auto-replay; remote delivery/billing can remain unknown. No worker, native request/stop/chip controls, normal-history migration or player import is shipped. Each explicit workflow starts fresh provider context, preserving the existing selective read-only tools and normal bounded rounds.

@@ -86,7 +86,7 @@ public final class TileScenario {
                 if(Files.exists(output.resolve("tile-verifier.done"))) {
                     advanced[0]=true;SceneScenario.install(output,save);return;
                 }
-                if(System.currentTimeMillis()-started>140000){advanced[0]=true;CORE.annihilate();}
+                if(System.currentTimeMillis()-started>(Boolean.getBoolean("syx.smoke.targetDispatchPro")?500000:140000)){advanced[0]=true;CORE.annihilate();}
             });
         }catch(Exception error){throw new IllegalStateException(error);}
     }

@@ -1,7 +1,9 @@
 """Run fixed tile/entity/faction-context read regressions against an exact published/candidate player.
 
 Uses copied save/profile, shared fixture lock, public in-process fixtures and private
-logs. No provider request, native input, screenshot or normal game/profile changes.
+logs. Default runs make no provider request. Explicit tiles --env-file enables two
+paid Pro developer handoff turns; the key goes only to the verifier, never game/MCP.
+No native input, screenshot or normal game/profile changes.
 """
 import argparse
 from datetime import datetime,timezone
@@ -41,6 +43,9 @@ def sha(path):return hashlib.sha256(path.read_bytes()).hexdigest()
 
 
 def run(args):
+    env_file=getattr(args,'env_file',None)
+    if env_file is not None and args.case!='tiles':
+        raise ValueError('--env-file is only supported by the explicit paid tiles handoff check')
     manifest=check(ROOT,args.candidate_dir,args.validation)
     runtime=(ROOT/'runtime').resolve();home=runtime/'smoke-home';save=args.save.resolve()
     if home.is_symlink() or not home.is_dir() or not save.is_file() or not save.is_relative_to(runtime):
@@ -83,14 +88,17 @@ def run(args):
     cp=os.pathsep.join(map(str,[game/'SongsOfSyx.jar',game/'base/script/000_Tutorial.jar',game/'base/script/001_Tutorial.jar',jar,classes]))
     command=[str(java),'-Xmx4g','-Duser.home='+str(home),'-Dsyx.assistant.stateDir='+str(state),
         '-Dsyx.smoke.'+flag+'=true','-cp',cp,'LiveSmoke',str(save)]
+    if env_file is not None:command.insert(1,'-Dsyx.smoke.targetDispatchPro=true')
     process=None
     try:
         shutil.copy2(jar,target)
         subprocess.run([*command[:-2],'-Dsyx.smoke.validateOnly=true',*command[-2:]],cwd=game,env=env,check=True)
         with (state/'game.log').open('w') as game_log,(state/'verifier.log').open('w') as verify_log:
             process=subprocess.Popen(command,cwd=game,env=env,stdout=game_log,stderr=subprocess.STDOUT)
-            subprocess.run([sys.executable,str(ROOT/'dev'/verifier),'--state-dir',str(state)],cwd=ROOT,env=env,
-                stdout=verify_log,stderr=subprocess.STDOUT,check=True,timeout=330)
+            verifier_args=[sys.executable,str(ROOT/'dev'/verifier),'--state-dir',str(state)]
+            if env_file is not None:verifier_args+=['--env-file',str(env_file.resolve())]
+            subprocess.run(verifier_args,cwd=ROOT,env=env,
+                stdout=verify_log,stderr=subprocess.STDOUT,check=True,timeout=660 if env_file is not None else 330)
             process.wait(timeout=30);assert process.returncode==0
         require_clean_game_log(state/'game.log')
         report=json.loads((state/report_name).read_text());assert report['passed']
@@ -123,7 +131,7 @@ def run(args):
         report.update(validated_at=datetime.now(timezone.utc).isoformat(),game_exit_code=process.returncode,
             mod_jar_sha256=sha(jar),game_jar_sha256=audit['game_jar_sha256'],
             production_source_sha256=manifest['validation']['production_source_sha256'],
-            python_source_sha256=manifest['validation']['python_source_sha256'],inference_calls=0)
+            python_source_sha256=manifest['validation']['python_source_sha256'],inference_calls=report.get('inference_calls',0))
         report['fixture_source_sha256']={n:sha(ROOT/n) for n in ['mod/tests/LiveSmoke.java','mod/tests/TileScenario.java',
             'mod/tests/EntityScenario.java','mod/tests/SceneScenario.java','mod/tests/FactionUiScenario.java','mod/tests/RegionalOutputScenario.java','mod/tests/RegionalOutputExportScenario.java','mod/tests/RegionalLiveScenario.java','mod/tests/RegionalCostScenario.java','mod/tests/RegionalCaptureScenario.java','mod/tests/WorldListScenario.java','mod/tests/GroundMoistureScenario.java','mod/tests/ViewportScenario.java','mod/tests/ChatBackgroundScenario.java','mod/tests/ChatVisibilityScenario.java','dev/'+verifier,'dev/run_read_fixture.py','dev/native_game_completion.py']}
     finally:
@@ -145,6 +153,8 @@ def run(args):
         report['fixture_source_sha256']['dev/verify_scenes.py']=sha(ROOT/'dev/verify_scenes.py')
     if args.case in {'regional-output','regional-output-export'}:
         report['candidate_boundary_review_sha256']=sha(ROOT/'REGIONAL_OUTPUT_BOUNDARY_REVIEW.json')
+    if env_file is not None:
+        report['fixture_source_sha256']['dev/verify_target_dispatch_pro.py']=sha(ROOT/'dev/verify_target_dispatch_pro.py')
     report.update(copied_profile_mod_restored=True,copied_save_unchanged=True)
     output=state/'read-validation.json';output.write_text(json.dumps(report,indent=2)+'\n')
     print('Read fixture passed:',output)
@@ -155,5 +165,6 @@ if __name__=='__main__':
     p.add_argument('--case',choices=CASES,required=True)
     for name in ('game-dir','jdk-home','java','save'):p.add_argument('--'+name,type=Path,required=True)
     p.add_argument('--candidate-dir',type=Path);p.add_argument('--validation',type=Path)
+    p.add_argument('--env-file',type=Path,help='Explicit paid tiles-only Pro handoff check; never passed to the game or MCP')
     args=p.parse_args()
     with exclusive_fixture():run(args)

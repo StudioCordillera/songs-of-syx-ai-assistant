@@ -1,0 +1,84 @@
+{
+  "passed": true,
+  "validated_at": "2026-10-20T13:16:20.431274+00:00",
+  "stage": "Developer-only explicit paid target-dispatch backend follow-up; not native player/release acceptance",
+  "full_offline_tests": 514,
+  "new_fake_provider_plumbing_cases": 2,
+  "offline_log_sha256": "f9e4abe1df082605d3c997ed3e847b90ffd114018a35ffe61222eaf29f989763",
+  "source_sha256": {
+    "dev/verify_target_dispatch_pro.py": "6a3a7d8bde3bc7fe8d1428db0215d80dceeb3061881632da2b69a572f0d1a6d7",
+    "test_target_dispatch_pro_check.py": "0206d0b8df2ef22ba38f45d2e3a1b685bd581c61ca8face5bb5c2784d3b91943",
+    "dev/run_read_fixture.py": "d237f156bc293b7867805d876d717ced3bd616c9fbd16a5eb0fffdb705fc5820",
+    "dev/verify_tiles.py": "fab1463e855be4b25cd3113a303741648c9afaa9183090e1c78e5eb810f5db7c",
+    "mod/tests/TileScenario.java": "f9c275b67dd4e763d89a8af5d857f7088e17ee146845c27e290c2a6012625cdb",
+    "dev/chat_target_dispatch.py": "178c0d5c003fd7fb95ca699a3f2d411dfb1e958583ca798e913e646a0ea85f12",
+    "dev/chat_target_queue.py": "afc74d752f277d72bc2a4d315714831ec89c12568d971d69640af161049f4cea",
+    "dev/chat_target_transport.py": "483e0c8eb9c5f4abd882094dfbba6ebcbc31af6de760d1827b91945a8fdfa5ad",
+    "syx_chat.py": "bb201ed9e6a0ed84f6dbddd583304e3c9b655f3e3c563f6a48f60e9669775714",
+    "syx_chat_store.py": "a2f2ffa53097cb60eab72c015c3d516693aa1c89c8aa54d74f4dfc96d222e634",
+    "syx_deepseek.py": "d58e21dbcfdeb1ef0f411dfbb4c0267234bdc5cc185e00d300821725ca1885e3"
+  },
+  "paid_handoff": {
+    "passed": true,
+    "provider": "deepseek",
+    "route": "api",
+    "requested_model": "deepseek-v4-pro",
+    "provider_workflows": 2,
+    "provider_round_attempts": 2,
+    "outgoing_original_evidence_checks": 2,
+    "completed_turns": 2,
+    "selected_tile_rows": 1,
+    "selected_row_matches_native_getter": true,
+    "second_question_has_empty_target_envelope": true,
+    "duplicate_dispatch_refused": true,
+    "original_question_events": 2,
+    "accepted_envelope_sha256": [
+      "d6c7fe258e0cbc8aeb92f937ec6edb86c3b16e740d1dbd7d3d7032e0b9a688f7",
+      "28330972d8b67b1a2a0755bdd1391c904d9d7ccdeb704243140492dbdba2fa75"
+    ],
+    "model_semantic_correctness_or_citation_quality_proven": false,
+    "native_player_controls_tested": false
+  },
+  "native": {
+    "game_version": "0.71.44",
+    "mod_jar_sha256": "73b44c555a0f9e5e9d2497fee2ce6e6276052b8926117c776ebe1276a4a8cc22",
+    "game_jar_sha256": "fe0137c05408e5ee9e31f06fc44fe37a5d4372d9c985b280f0852d1347c0224b",
+    "game_exit_code": 0,
+    "known_engine_crash_markers_absent": true,
+    "copied_profile_mod_restored": true,
+    "copied_save_unchanged": true,
+    "actual_session_rotation_invalidates_token": true,
+    "executed_read_report_sha256": "89793988ddfc7932b36a56dc3016e3551470cd1054a4e6f54bf30f481e3e00a9",
+    "scene_report_sha256": "ed0c4cb9b713379d4378722d278b37155a5b562d95917810274c238ac2213662",
+    "target_dispatch_checks": {
+      "passed": true,
+      "original_evicted_capture_rows_reach_fake_provider": true,
+      "exactly_one_fake_provider_workflow": true,
+      "duplicate_claim_refused": true,
+      "one_original_user_event": true,
+      "newer_draft_preserved": true,
+      "tile_mailbox_unchanged": true
+    }
+  },
+  "exact_key_exclusion": {
+    "passed": true,
+    "task_owned_native_files_scanned": 77,
+    "key_value_or_digest_published": false
+  },
+  "credential_routing": "Explicit literal file is read only by verifier; game/MCP child environments use the existing credential-stripping routine. No key is written into environment/config/logs.",
+  "production_changed": false,
+  "player_bundle_unchanged": true,
+  "bundle_sha256": {
+    "latest-user-test.zip": "309ee82d47af3e562706a661adcd9deb21a20906b023aca62da1de03767fe558",
+    "previous-user-test.zip": "832f3ad1a49e0c3f5933af7a0c530edaf471a8b6f03b9d4373cec80e1cd6df40"
+  },
+  "limits": [
+    "Two explicit deepseek-v4-pro workflows made two provider round attempts. This records the configured/requested model; the adapter does not attest a server response model identifier.",
+    "One original retained moisture tile row matches copied-game public-getter expectations; the second workflow has no target rows. Original payload is inspected before each provider call.",
+    "Nonempty completed responses are not a general semantic/citation-quality evaluation; private replies/state/history are not published.",
+    "This is the developer dispatch seam, not native picker/chip/send/stop/read-badge integration or paired player acceptance. Existing default fixtures remain fake-provider-only.",
+    "Before-claim refusal can remain queued; after-claim errors/cancellation/restart never automatically replay. Remote receipt/billing/outcomes can remain unknown on failure.",
+    "Copied isolated city and fixed public-API fixture view/speed/scene changes only, no native input/screenshots/private game APIs/normal-save changes. No full state/all-scene/large-world acceptance.",
+    "The test-only tile wait extends from 140 to 500 seconds only with the explicit paid flag; verifier timeout is 660 seconds. No production timing/provider/account changes."
+  ]
+}
