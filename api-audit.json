@@ -12,7 +12,7 @@
     "syx/assistant/StateCollector.java": "58b6f25bb21493da7ce6a9770d2068ee86f9419e1d3aff5cf83e56a0a532dcdf",
     "syx/assistant/TileReadRequest.java": "5daf3cc3abc0cb849f654e09efadb3d0263b73d4e5e220e97671ea1c4a40bde6",
     "syx/assistant/UiContentCollector.java": "c0d20c7f9f2734a0bb625427875f06bfcd07edb20611248b39b6e8f480ef5a48",
-    "syx/assistant/UiContextCollector.java": "b8a3e582e1c2b7da868ad9513f02793685d7a986464fe8935b32b86216f70b29"
+    "syx/assistant/UiContextCollector.java": "0f67200fdcf2740f4d3d4b1751ea0bf143613b20a44afb77af0ebb0ae8078937"
   },
   "members": [
     {
@@ -25,7 +25,7 @@
       "source_file": "game/GAME.java",
       "uses": [
         "StateCollector.java:633",
-        "UiContextCollector.java:110"
+        "UiContextCollector.java:144"
       ],
       "parameter_types": [],
       "compiler_generated_enum": false,
@@ -326,7 +326,7 @@
       "source_file": "game/battle/Armies.java",
       "uses": [
         "StateCollector.java:633",
-        "UiContextCollector.java:110"
+        "UiContextCollector.java:144"
       ],
       "parameter_types": [],
       "compiler_generated_enum": false,
@@ -352,7 +352,7 @@
       "source_file": "game/battle/Armies.java",
       "uses": [
         "StateCollector.java:633",
-        "UiContextCollector.java:110"
+        "UiContextCollector.java:144"
       ],
       "parameter_types": [],
       "compiler_generated_enum": false,
@@ -403,7 +403,7 @@
       "source_file": "game/battle/Army.java",
       "uses": [
         "StateCollector.java:122",
-        "UiContextCollector.java:110"
+        "UiContextCollector.java:144"
       ],
       "parameter_types": [],
       "compiler_generated_enum": false,
@@ -681,7 +681,7 @@
       "public": true,
       "source_file": "game/battle/state/BattleState.java",
       "uses": [
-        "UiContextCollector.java:108"
+        "UiContextCollector.java:142"
       ],
       "parameter_types": [],
       "compiler_generated_enum": false,
@@ -706,8 +706,8 @@
       "public": true,
       "source_file": "game/battle/state/BattleState.java",
       "uses": [
-        "UiContextCollector.java:111",
-        "UiContextCollector.java:112"
+        "UiContextCollector.java:145",
+        "UiContextCollector.java:146"
       ],
       "parameter_types": [],
       "compiler_generated_enum": false,
@@ -732,7 +732,7 @@
       "public": true,
       "source_file": "game/battle/state/BattleState.java",
       "uses": [
-        "UiContextCollector.java:108"
+        "UiContextCollector.java:142"
       ],
       "parameter_types": [],
       "compiler_generated_enum": false,
@@ -937,7 +937,7 @@
       "source_file": "game/faction/FACTIONS.java",
       "uses": [
         "StateCollector.java:570",
-        "UiContextCollector.java:46"
+        "UiContextCollector.java:48"
       ],
       "parameter_types": [],
       "compiler_generated_enum": false,
@@ -1041,7 +1041,7 @@
         "RegionalReadRequest.java:96",
         "StateCollector.java:357",
         "StateCollector.java:573",
-        "UiContextCollector.java:51"
+        "UiContextCollector.java:53"
       ],
       "parameter_types": [],
       "compiler_generated_enum": false,
@@ -1784,7 +1784,7 @@
         "StateCollector.java:365",
         "StateCollector.java:457",
         "StateCollector.java:545",
-        "UiContextCollector.java:140"
+        "UiContextCollector.java:176"
       ],
       "parameter_types": [],
       "compiler_generated_enum": false,
@@ -2689,7 +2689,7 @@
         "EntityReadRequest.java:153",
         "StateCollector.java:102",
         "StateCollector.java:544",
-        "UiContextCollector.java:140"
+        "UiContextCollector.java:176"
       ],
       "parameter_types": [],
       "compiler_generated_enum": false,
@@ -2717,7 +2717,7 @@
         "EntityReadRequest.java:133",
         "StateCollector.java:541",
         "StateCollector.java:95",
-        "UiContextCollector.java:139"
+        "UiContextCollector.java:175"
       ],
       "parameter_types": [],
       "compiler_generated_enum": false,
@@ -2747,7 +2747,7 @@
         "EntityReadRequest.java:156",
         "StateCollector.java:103",
         "StateCollector.java:544",
-        "UiContextCollector.java:140"
+        "UiContextCollector.java:176"
       ],
       "parameter_types": [],
       "compiler_generated_enum": false,
@@ -2833,7 +2833,7 @@
         "EntityReadRequest.java:157",
         "StateCollector.java:102",
         "StateCollector.java:545",
-        "UiContextCollector.java:140"
+        "UiContextCollector.java:176"
       ],
       "parameter_types": [],
       "compiler_generated_enum": false,
@@ -2886,7 +2886,7 @@
         "StateCollector.java:171",
         "StateCollector.java:265",
         "StateCollector.java:394",
-        "UiContextCollector.java:32"
+        "UiContextCollector.java:34"
       ],
       "parameter_types": [],
       "compiler_generated_enum": false,
@@ -3078,7 +3078,7 @@
         "StateCollector.java:464",
         "TileReadRequest.java:107",
         "TileReadRequest.java:78",
-        "UiContextCollector.java:145"
+        "UiContextCollector.java:181"
       ],
       "parameter_types": [],
       "compiler_generated_enum": false,
@@ -3130,7 +3130,8 @@
       "source_file": "settlement/main/SETT.java",
       "uses": [
         "StateCollector.java:588",
-        "TileReadRequest.java:68"
+        "TileReadRequest.java:68",
+        "UiContextCollector.java:98"
       ],
       "parameter_types": [],
       "compiler_generated_enum": false,
@@ -3156,7 +3157,8 @@
       "source_file": "settlement/main/SETT.java",
       "uses": [
         "StateCollector.java:588",
-        "TileReadRequest.java:68"
+        "TileReadRequest.java:68",
+        "UiContextCollector.java:98"
       ],
       "parameter_types": [],
       "compiler_generated_enum": false,
@@ -3184,7 +3186,7 @@
         "StateCollector.java:171",
         "StateCollector.java:265",
         "StateCollector.java:394",
-        "UiContextCollector.java:32"
+        "UiContextCollector.java:34"
       ],
       "parameter_types": [],
       "compiler_generated_enum": false,
@@ -3218,8 +3220,9 @@
         "StateCollector.java:394",
         "StateCollector.java:645",
         "TileReadRequest.java:67",
-        "UiContextCollector.java:31",
-        "UiContextCollector.java:32"
+        "UiContextCollector.java:33",
+        "UiContextCollector.java:34",
+        "UiContextCollector.java:95"
       ],
       "parameter_types": [],
       "compiler_generated_enum": false,
@@ -3946,7 +3949,7 @@
       "source_file": "settlement/room/main/ROOMS.java",
       "uses": [
         "StateCollector.java:43",
-        "UiContextCollector.java:145"
+        "UiContextCollector.java:181"
       ],
       "parameter_types": [],
       "compiler_generated_enum": false,
@@ -4221,8 +4224,8 @@
         "StateCollector.java:79",
         "TileReadRequest.java:108",
         "TileReadRequest.java:80",
-        "UiContextCollector.java:146",
-        "UiContextCollector.java:147"
+        "UiContextCollector.java:182",
+        "UiContextCollector.java:183"
       ],
       "parameter_types": [],
       "compiler_generated_enum": false,
@@ -6431,7 +6434,7 @@
         "StateCollector.java:103",
         "StateCollector.java:544",
         "StateCollector.java:83",
-        "UiContextCollector.java:140"
+        "UiContextCollector.java:176"
       ],
       "parameter_types": [],
       "compiler_generated_enum": false,
@@ -6461,7 +6464,7 @@
         "StateCollector.java:103",
         "StateCollector.java:544",
         "StateCollector.java:83",
-        "UiContextCollector.java:140"
+        "UiContextCollector.java:176"
       ],
       "parameter_types": [],
       "compiler_generated_enum": false,
@@ -6487,7 +6490,8 @@
       "source_file": "snake2d/util/datatypes/RECTANGLE.java",
       "uses": [
         "UiContentCollector.java:32",
-        "UiContextCollector.java:111"
+        "UiContextCollector.java:145",
+        "UiContextCollector.java:86"
       ],
       "parameter_types": [],
       "compiler_generated_enum": false,
@@ -6513,7 +6517,8 @@
       "source_file": "snake2d/util/datatypes/RECTANGLE.java",
       "uses": [
         "UiContentCollector.java:32",
-        "UiContextCollector.java:111"
+        "UiContextCollector.java:145",
+        "UiContextCollector.java:86"
       ],
       "parameter_types": [],
       "compiler_generated_enum": false,
@@ -6539,7 +6544,8 @@
       "source_file": "snake2d/util/datatypes/RECTANGLE.java",
       "uses": [
         "UiContentCollector.java:32",
-        "UiContextCollector.java:112"
+        "UiContextCollector.java:146",
+        "UiContextCollector.java:86"
       ],
       "parameter_types": [],
       "compiler_generated_enum": false,
@@ -6565,7 +6571,8 @@
       "source_file": "snake2d/util/datatypes/RECTANGLE.java",
       "uses": [
         "UiContentCollector.java:32",
-        "UiContextCollector.java:112"
+        "UiContextCollector.java:146",
+        "UiContextCollector.java:86"
       ],
       "parameter_types": [],
       "compiler_generated_enum": false,
@@ -7718,7 +7725,7 @@
       "public": true,
       "source_file": "util/gui/misc/GBox.java",
       "uses": [
-        "UiContextCollector.java:125"
+        "UiContextCollector.java:161"
       ],
       "parameter_types": [],
       "compiler_generated_enum": false,
@@ -8133,7 +8140,7 @@
       "public": true,
       "source_file": "view/battle/BattleView.java",
       "uses": [
-        "UiContextCollector.java:25"
+        "UiContextCollector.java:27"
       ],
       "parameter_types": [],
       "compiler_generated_enum": false,
@@ -8141,6 +8148,31 @@
       "source_candidates": [
         {
           "line": 46,
+          "source_sha256": "34c4932e5d46e0cbd66757336fc4a39252fbf80bb9ff2c71abf88b2c48def1e9",
+          "parameter_types": [],
+          "has_javadoc": false
+        }
+      ],
+      "source_match": "name_arity_and_simple_parameter_types",
+      "documentation_status": "human_review_required; Javadoc presence alone does not establish a stable mod contract"
+    },
+    {
+      "id": "view.battle.BattleView#getWindow()",
+      "owner": "view.battle.BattleView",
+      "name": "getWindow",
+      "kind": "METHOD",
+      "signature": "getWindow()",
+      "public": true,
+      "source_file": "view/battle/BattleView.java",
+      "uses": [
+        "UiContextCollector.java:97"
+      ],
+      "parameter_types": [],
+      "compiler_generated_enum": false,
+      "arity": 0,
+      "source_candidates": [
+        {
+          "line": 150,
           "source_sha256": "34c4932e5d46e0cbd66757336fc4a39252fbf80bb9ff2c71abf88b2c48def1e9",
           "parameter_types": [],
           "has_javadoc": false
@@ -8158,7 +8190,7 @@
       "public": true,
       "source_file": "view/battle/BattleView.java",
       "uses": [
-        "UiContextCollector.java:106"
+        "UiContextCollector.java:140"
       ],
       "parameter_types": [],
       "compiler_generated_enum": false,
@@ -8209,7 +8241,7 @@
       "public": true,
       "source_file": "view/interrupter/IPopup.java",
       "uses": [
-        "UiContextCollector.java:118"
+        "UiContextCollector.java:152"
       ],
       "parameter_types": [],
       "compiler_generated_enum": false,
@@ -8234,9 +8266,9 @@
       "public": true,
       "source_file": "view/interrupter/ISidePanels.java",
       "uses": [
-        "UiContextCollector.java:143",
-        "UiContextCollector.java:75",
-        "UiContextCollector.java:76"
+        "UiContextCollector.java:179",
+        "UiContextCollector.java:77",
+        "UiContextCollector.java:78"
       ],
       "parameter_types": [
         "view.interrupter.ISidePanel"
@@ -8349,8 +8381,8 @@
       "public": true,
       "source_file": "view/interrupter/InterManager.java",
       "uses": [
-        "UiContextCollector.java:128",
-        "UiContextCollector.java:130"
+        "UiContextCollector.java:164",
+        "UiContextCollector.java:166"
       ],
       "parameter_types": [],
       "compiler_generated_enum": false,
@@ -8375,7 +8407,7 @@
       "public": true,
       "source_file": "view/interrupter/Interrupter.java",
       "uses": [
-        "UiContextCollector.java:16"
+        "UiContextCollector.java:18"
       ],
       "parameter_types": [],
       "compiler_generated_enum": false,
@@ -8450,7 +8482,7 @@
       "public": true,
       "source_file": "view/main/Interrupters.java",
       "uses": [
-        "UiContextCollector.java:119"
+        "UiContextCollector.java:153"
       ],
       "parameter_types": [],
       "compiler_generated_enum": false,
@@ -8475,7 +8507,7 @@
       "public": true,
       "source_file": "view/main/Interrupters.java",
       "uses": [
-        "UiContextCollector.java:117"
+        "UiContextCollector.java:151"
       ],
       "parameter_types": [],
       "compiler_generated_enum": false,
@@ -8500,7 +8532,7 @@
       "public": true,
       "source_file": "view/main/Interrupters.java",
       "uses": [
-        "UiContextCollector.java:117"
+        "UiContextCollector.java:151"
       ],
       "parameter_types": [],
       "compiler_generated_enum": false,
@@ -8525,7 +8557,7 @@
       "public": true,
       "source_file": "view/main/Interrupters.java",
       "uses": [
-        "UiContextCollector.java:119"
+        "UiContextCollector.java:153"
       ],
       "parameter_types": [],
       "compiler_generated_enum": false,
@@ -8551,7 +8583,7 @@
       "source_file": "view/main/Interrupters.java",
       "uses": [
         "ChatPanel.java:47",
-        "UiContextCollector.java:128"
+        "UiContextCollector.java:164"
       ],
       "parameter_types": [],
       "compiler_generated_enum": false,
@@ -8576,7 +8608,7 @@
       "public": true,
       "source_file": "view/main/Interrupters.java",
       "uses": [
-        "UiContextCollector.java:117"
+        "UiContextCollector.java:151"
       ],
       "parameter_types": [],
       "compiler_generated_enum": false,
@@ -8602,7 +8634,7 @@
       "source_file": "view/main/Interrupters.java",
       "uses": [
         "UiContentCollector.java:66",
-        "UiContextCollector.java:118"
+        "UiContextCollector.java:152"
       ],
       "parameter_types": [],
       "compiler_generated_enum": false,
@@ -8628,7 +8660,7 @@
       "source_file": "view/main/Interrupters.java",
       "uses": [
         "UiContentCollector.java:67",
-        "UiContextCollector.java:118"
+        "UiContextCollector.java:152"
       ],
       "parameter_types": [],
       "compiler_generated_enum": false,
@@ -8654,7 +8686,7 @@
       "source_file": "view/main/Interrupters.java",
       "uses": [
         "UiContentCollector.java:68",
-        "UiContextCollector.java:119"
+        "UiContextCollector.java:153"
       ],
       "parameter_types": [],
       "compiler_generated_enum": false,
@@ -8679,7 +8711,7 @@
       "public": true,
       "source_file": "view/main/Interrupters.java",
       "uses": [
-        "UiContextCollector.java:118"
+        "UiContextCollector.java:152"
       ],
       "parameter_types": [],
       "compiler_generated_enum": false,
@@ -8704,8 +8736,8 @@
       "public": true,
       "source_file": "view/main/VIEW.java",
       "uses": [
-        "UiContextCollector.java:120",
-        "UiContextCollector.java:121"
+        "UiContextCollector.java:154",
+        "UiContextCollector.java:155"
       ],
       "parameter_types": [],
       "compiler_generated_enum": false,
@@ -8730,9 +8762,10 @@
       "public": true,
       "source_file": "view/main/VIEW.java",
       "uses": [
-        "UiContextCollector.java:106",
-        "UiContextCollector.java:24",
-        "UiContextCollector.java:25"
+        "UiContextCollector.java:140",
+        "UiContextCollector.java:26",
+        "UiContextCollector.java:27",
+        "UiContextCollector.java:97"
       ],
       "parameter_types": [],
       "compiler_generated_enum": false,
@@ -8757,11 +8790,11 @@
       "public": true,
       "source_file": "view/main/VIEW.java",
       "uses": [
-        "UiContextCollector.java:114",
-        "UiContextCollector.java:130",
-        "UiContextCollector.java:19",
-        "UiContextCollector.java:20",
-        "UiContextCollector.java:92"
+        "UiContextCollector.java:126",
+        "UiContextCollector.java:148",
+        "UiContextCollector.java:166",
+        "UiContextCollector.java:21",
+        "UiContextCollector.java:22"
       ],
       "parameter_types": [],
       "compiler_generated_enum": false,
@@ -8787,8 +8820,8 @@
       "source_file": "view/main/VIEW.java",
       "uses": [
         "StateCollector.java:93",
-        "UiContextCollector.java:19",
-        "UiContextCollector.java:92"
+        "UiContextCollector.java:126",
+        "UiContextCollector.java:21"
       ],
       "parameter_types": [],
       "compiler_generated_enum": false,
@@ -8813,7 +8846,8 @@
       "public": true,
       "source_file": "view/main/VIEW.java",
       "uses": [
-        "UiContextCollector.java:115"
+        "UiContextCollector.java:149",
+        "UiContextCollector.java:157"
       ],
       "parameter_types": [],
       "compiler_generated_enum": false,
@@ -8838,7 +8872,7 @@
       "public": true,
       "source_file": "view/main/VIEW.java",
       "uses": [
-        "UiContextCollector.java:125"
+        "UiContextCollector.java:161"
       ],
       "parameter_types": [],
       "compiler_generated_enum": false,
@@ -8867,8 +8901,8 @@
         "UiContentCollector.java:66",
         "UiContentCollector.java:67",
         "UiContentCollector.java:68",
-        "UiContextCollector.java:116",
-        "UiContextCollector.java:128"
+        "UiContextCollector.java:150",
+        "UiContextCollector.java:164"
       ],
       "parameter_types": [],
       "compiler_generated_enum": false,
@@ -8895,12 +8929,14 @@
       "uses": [
         "StateCollector.java:93",
         "StateCollector.java:94",
-        "UiContextCollector.java:138",
-        "UiContextCollector.java:142",
-        "UiContextCollector.java:143",
-        "UiContextCollector.java:145",
-        "UiContextCollector.java:21",
-        "UiContextCollector.java:22"
+        "UiContextCollector.java:174",
+        "UiContextCollector.java:178",
+        "UiContextCollector.java:179",
+        "UiContextCollector.java:181",
+        "UiContextCollector.java:23",
+        "UiContextCollector.java:24",
+        "UiContextCollector.java:96",
+        "UiContextCollector.java:97"
       ],
       "parameter_types": [],
       "compiler_generated_enum": false,
@@ -8925,10 +8961,11 @@
       "public": true,
       "source_file": "view/main/VIEW.java",
       "uses": [
-        "UiContextCollector.java:23",
-        "UiContextCollector.java:26",
-        "UiContextCollector.java:43",
-        "UiContextCollector.java:73"
+        "UiContextCollector.java:100",
+        "UiContextCollector.java:25",
+        "UiContextCollector.java:28",
+        "UiContextCollector.java:45",
+        "UiContextCollector.java:75"
       ],
       "parameter_types": [],
       "compiler_generated_enum": false,
@@ -8954,12 +8991,12 @@
       "source_file": "view/main/VIEW.java",
       "uses": [
         "StateCollector.java:93",
-        "UiContextCollector.java:21",
-        "UiContextCollector.java:22",
         "UiContextCollector.java:23",
         "UiContextCollector.java:24",
         "UiContextCollector.java:25",
-        "UiContextCollector.java:26"
+        "UiContextCollector.java:26",
+        "UiContextCollector.java:27",
+        "UiContextCollector.java:28"
       ],
       "parameter_types": [],
       "compiler_generated_enum": false,
@@ -8984,7 +9021,7 @@
       "public": true,
       "source_file": "view/main/VIEW.java",
       "uses": [
-        "UiContextCollector.java:130"
+        "UiContextCollector.java:166"
       ],
       "parameter_types": [],
       "compiler_generated_enum": false,
@@ -9009,7 +9046,8 @@
       "public": true,
       "source_file": "view/sett/SettView.java",
       "uses": [
-        "UiContextCollector.java:22"
+        "UiContextCollector.java:24",
+        "UiContextCollector.java:97"
       ],
       "parameter_types": [],
       "compiler_generated_enum": false,
@@ -9017,6 +9055,31 @@
       "source_candidates": [
         {
           "line": 56,
+          "source_sha256": "316760036f4c7a5cee92eced9f32b60c76f2507c12e74a26a4ec1588ef6c2c4d",
+          "parameter_types": [],
+          "has_javadoc": false
+        }
+      ],
+      "source_match": "name_arity_and_simple_parameter_types",
+      "documentation_status": "human_review_required; Javadoc presence alone does not establish a stable mod contract"
+    },
+    {
+      "id": "view.sett.SettView#getWindow()",
+      "owner": "view.sett.SettView",
+      "name": "getWindow",
+      "kind": "METHOD",
+      "signature": "getWindow()",
+      "public": true,
+      "source_file": "view/sett/SettView.java",
+      "uses": [
+        "UiContextCollector.java:96"
+      ],
+      "parameter_types": [],
+      "compiler_generated_enum": false,
+      "arity": 0,
+      "source_candidates": [
+        {
+          "line": 188,
           "source_sha256": "316760036f4c7a5cee92eced9f32b60c76f2507c12e74a26a4ec1588ef6c2c4d",
           "parameter_types": [],
           "has_javadoc": false
@@ -9034,7 +9097,7 @@
       "public": true,
       "source_file": "view/sett/SettView.java",
       "uses": [
-        "UiContextCollector.java:143"
+        "UiContextCollector.java:179"
       ],
       "parameter_types": [],
       "compiler_generated_enum": false,
@@ -9060,10 +9123,10 @@
       "source_file": "view/sett/SettView.java",
       "uses": [
         "StateCollector.java:94",
-        "UiContextCollector.java:138",
-        "UiContextCollector.java:142",
-        "UiContextCollector.java:143",
-        "UiContextCollector.java:145"
+        "UiContextCollector.java:174",
+        "UiContextCollector.java:178",
+        "UiContextCollector.java:179",
+        "UiContextCollector.java:181"
       ],
       "parameter_types": [],
       "compiler_generated_enum": false,
@@ -9080,6 +9143,31 @@
       "documentation_status": "human_review_required; Javadoc presence alone does not establish a stable mod contract"
     },
     {
+      "id": "view.sett.invasion.SBattleView#getWindow()",
+      "owner": "view.sett.invasion.SBattleView",
+      "name": "getWindow",
+      "kind": "METHOD",
+      "signature": "getWindow()",
+      "public": true,
+      "source_file": "view/sett/invasion/SBattleView.java",
+      "uses": [
+        "UiContextCollector.java:97"
+      ],
+      "parameter_types": [],
+      "compiler_generated_enum": false,
+      "arity": 0,
+      "source_candidates": [
+        {
+          "line": 131,
+          "source_sha256": "2b9edf0e1c399c6affec9fea13c75d1f3c10173c1a73c1b46df279d4373fccf5",
+          "parameter_types": [],
+          "has_javadoc": false
+        }
+      ],
+      "source_match": "name_arity_and_simple_parameter_types",
+      "documentation_status": "human_review_required; Javadoc presence alone does not establish a stable mod contract"
+    },
+    {
       "id": "view.sett.ui.SettUI#rooms",
       "owner": "view.sett.ui.SettUI",
       "name": "rooms",
@@ -9088,8 +9176,8 @@
       "public": true,
       "source_file": "view/sett/ui/SettUI.java",
       "uses": [
-        "UiContextCollector.java:143",
-        "UiContextCollector.java:145"
+        "UiContextCollector.java:179",
+        "UiContextCollector.java:181"
       ],
       "parameter_types": [],
       "compiler_generated_enum": false,
@@ -9115,8 +9203,8 @@
       "source_file": "view/sett/ui/SettUI.java",
       "uses": [
         "StateCollector.java:94",
-        "UiContextCollector.java:138",
-        "UiContextCollector.java:142"
+        "UiContextCollector.java:174",
+        "UiContextCollector.java:178"
       ],
       "parameter_types": [],
       "compiler_generated_enum": false,
@@ -9141,7 +9229,7 @@
       "public": true,
       "source_file": "view/sett/ui/room/UIRooms.java",
       "uses": [
-        "UiContextCollector.java:143"
+        "UiContextCollector.java:179"
       ],
       "parameter_types": [],
       "compiler_generated_enum": false,
@@ -9166,7 +9254,7 @@
       "public": true,
       "source_file": "view/sett/ui/room/UIRooms.java",
       "uses": [
-        "UiContextCollector.java:145"
+        "UiContextCollector.java:181"
       ],
       "parameter_types": [
         "settlement.room.main.RoomBlueprint"
@@ -9196,7 +9284,7 @@
       "source_file": "view/sett/ui/subject/UISubjects.java",
       "uses": [
         "StateCollector.java:94",
-        "UiContextCollector.java:138"
+        "UiContextCollector.java:174"
       ],
       "parameter_types": [],
       "compiler_generated_enum": false,
@@ -9221,7 +9309,7 @@
       "public": true,
       "source_file": "view/sett/ui/subject/UISubjects.java",
       "uses": [
-        "UiContextCollector.java:142"
+        "UiContextCollector.java:178"
       ],
       "parameter_types": [],
       "compiler_generated_enum": false,
@@ -9238,6 +9326,106 @@
       "documentation_status": "human_review_required; Javadoc presence alone does not establish a stable mod contract"
     },
     {
+      "id": "view.subview.GameWindow#pixels()",
+      "owner": "view.subview.GameWindow",
+      "name": "pixels",
+      "kind": "METHOD",
+      "signature": "pixels()",
+      "public": true,
+      "source_file": "view/subview/GameWindow.java",
+      "uses": [
+        "UiContextCollector.java:105"
+      ],
+      "parameter_types": [],
+      "compiler_generated_enum": false,
+      "arity": 0,
+      "source_candidates": [
+        {
+          "line": 583,
+          "source_sha256": "aa9d4ae6871da205937c53fbd8914080f1e1276e01e2526198fabda9900e595e",
+          "parameter_types": [],
+          "has_javadoc": false
+        }
+      ],
+      "source_match": "name_arity_and_simple_parameter_types",
+      "documentation_status": "human_review_required; Javadoc presence alone does not establish a stable mod contract"
+    },
+    {
+      "id": "view.subview.GameWindow#tiles()",
+      "owner": "view.subview.GameWindow",
+      "name": "tiles",
+      "kind": "METHOD",
+      "signature": "tiles()",
+      "public": true,
+      "source_file": "view/subview/GameWindow.java",
+      "uses": [
+        "UiContextCollector.java:104"
+      ],
+      "parameter_types": [],
+      "compiler_generated_enum": false,
+      "arity": 0,
+      "source_candidates": [
+        {
+          "line": 587,
+          "source_sha256": "aa9d4ae6871da205937c53fbd8914080f1e1276e01e2526198fabda9900e595e",
+          "parameter_types": [],
+          "has_javadoc": false
+        }
+      ],
+      "source_match": "name_arity_and_simple_parameter_types",
+      "documentation_status": "human_review_required; Javadoc presence alone does not establish a stable mod contract"
+    },
+    {
+      "id": "view.subview.GameWindow#view()",
+      "owner": "view.subview.GameWindow",
+      "name": "view",
+      "kind": "METHOD",
+      "signature": "view()",
+      "public": true,
+      "source_file": "view/subview/GameWindow.java",
+      "uses": [
+        "UiContextCollector.java:105"
+      ],
+      "parameter_types": [],
+      "compiler_generated_enum": false,
+      "arity": 0,
+      "source_candidates": [
+        {
+          "line": 579,
+          "source_sha256": "aa9d4ae6871da205937c53fbd8914080f1e1276e01e2526198fabda9900e595e",
+          "parameter_types": [],
+          "has_javadoc": false
+        }
+      ],
+      "source_match": "name_arity_and_simple_parameter_types",
+      "documentation_status": "human_review_required; Javadoc presence alone does not establish a stable mod contract"
+    },
+    {
+      "id": "view.subview.GameWindow#zoomout()",
+      "owner": "view.subview.GameWindow",
+      "name": "zoomout",
+      "kind": "METHOD",
+      "signature": "zoomout()",
+      "public": true,
+      "source_file": "view/subview/GameWindow.java",
+      "uses": [
+        "UiContextCollector.java:104"
+      ],
+      "parameter_types": [],
+      "compiler_generated_enum": false,
+      "arity": 0,
+      "source_candidates": [
+        {
+          "line": 218,
+          "source_sha256": "aa9d4ae6871da205937c53fbd8914080f1e1276e01e2526198fabda9900e595e",
+          "parameter_types": [],
+          "has_javadoc": false
+        }
+      ],
+      "source_match": "name_arity_and_simple_parameter_types",
+      "documentation_status": "human_review_required; Javadoc presence alone does not establish a stable mod contract"
+    },
+    {
       "id": "view.ui.UIView#manager",
       "owner": "view.ui.UIView",
       "name": "manager",
@@ -9246,7 +9434,7 @@
       "public": true,
       "source_file": "view/ui/UIView.java",
       "uses": [
-        "UiContextCollector.java:121"
+        "UiContextCollector.java:155"
       ],
       "parameter_types": [],
       "compiler_generated_enum": false,
@@ -9271,7 +9459,7 @@
       "public": true,
       "source_file": "view/ui/UIView.java",
       "uses": [
-        "UiContextCollector.java:120"
+        "UiContextCollector.java:154"
       ],
       "parameter_types": [],
       "compiler_generated_enum": false,
@@ -9296,7 +9484,7 @@
       "public": true,
       "source_file": "view/ui/manage/IManager.java",
       "uses": [
-        "UiContextCollector.java:121"
+        "UiContextCollector.java:155"
       ],
       "parameter_types": [],
       "compiler_generated_enum": false,
@@ -9321,7 +9509,7 @@
       "public": true,
       "source_file": "view/world/WorldUI.java",
       "uses": [
-        "UiContextCollector.java:74"
+        "UiContextCollector.java:76"
       ],
       "parameter_types": [],
       "compiler_generated_enum": false,
@@ -9346,7 +9534,7 @@
       "public": true,
       "source_file": "view/world/WorldUI.java",
       "uses": [
-        "UiContextCollector.java:43"
+        "UiContextCollector.java:45"
       ],
       "parameter_types": [],
       "compiler_generated_enum": false,
@@ -9371,8 +9559,8 @@
       "public": true,
       "source_file": "view/world/WorldUI.java",
       "uses": [
-        "UiContextCollector.java:75",
-        "UiContextCollector.java:76"
+        "UiContextCollector.java:77",
+        "UiContextCollector.java:78"
       ],
       "parameter_types": [],
       "compiler_generated_enum": false,
@@ -9397,10 +9585,10 @@
       "public": true,
       "source_file": "view/world/WorldView.java",
       "uses": [
-        "UiContextCollector.java:43",
-        "UiContextCollector.java:74",
-        "UiContextCollector.java:75",
-        "UiContextCollector.java:76"
+        "UiContextCollector.java:45",
+        "UiContextCollector.java:76",
+        "UiContextCollector.java:77",
+        "UiContextCollector.java:78"
       ],
       "parameter_types": [],
       "compiler_generated_enum": false,
@@ -9425,7 +9613,7 @@
       "public": true,
       "source_file": "view/world/WorldView.java",
       "uses": [
-        "UiContextCollector.java:26"
+        "UiContextCollector.java:28"
       ],
       "parameter_types": [],
       "compiler_generated_enum": false,
@@ -9450,9 +9638,9 @@
       "public": true,
       "source_file": "view/world/WorldView.java",
       "uses": [
-        "UiContextCollector.java:74",
-        "UiContextCollector.java:75",
-        "UiContextCollector.java:76"
+        "UiContextCollector.java:76",
+        "UiContextCollector.java:77",
+        "UiContextCollector.java:78"
       ],
       "parameter_types": [],
       "compiler_generated_enum": false,
@@ -9460,6 +9648,31 @@
       "source_candidates": [
         {
           "line": 43,
+          "source_sha256": "df73fadd911854b6d7903d702a56942861fb29a0186a4739aa5f1f38de60418c",
+          "parameter_types": [],
+          "has_javadoc": false
+        }
+      ],
+      "source_match": "name_arity_and_simple_parameter_types",
+      "documentation_status": "human_review_required; Javadoc presence alone does not establish a stable mod contract"
+    },
+    {
+      "id": "view.world.WorldView#window",
+      "owner": "view.world.WorldView",
+      "name": "window",
+      "kind": "FIELD",
+      "signature": "window",
+      "public": true,
+      "source_file": "view/world/WorldView.java",
+      "uses": [
+        "UiContextCollector.java:100"
+      ],
+      "parameter_types": [],
+      "compiler_generated_enum": false,
+      "arity": -1,
+      "source_candidates": [
+        {
+          "line": 31,
           "source_sha256": "df73fadd911854b6d7903d702a56942861fb29a0186a4739aa5f1f38de60418c",
           "parameter_types": [],
           "has_javadoc": false
@@ -9477,7 +9690,7 @@
       "public": true,
       "source_file": "view/world/ui/army/UIArmies.java",
       "uses": [
-        "UiContextCollector.java:74"
+        "UiContextCollector.java:76"
       ],
       "parameter_types": [
         "view.interrupter.ISidePanels"
@@ -9506,7 +9719,7 @@
       "public": true,
       "source_file": "view/world/ui/faction/UIFactions.java",
       "uses": [
-        "UiContextCollector.java:51"
+        "UiContextCollector.java:53"
       ],
       "parameter_types": [
         "game.faction.Faction"
@@ -9535,7 +9748,7 @@
       "public": true,
       "source_file": "view/world/ui/faction/UIFactions.java",
       "uses": [
-        "UiContextCollector.java:44"
+        "UiContextCollector.java:46"
       ],
       "parameter_types": [],
       "compiler_generated_enum": false,
@@ -9560,7 +9773,7 @@
       "public": true,
       "source_file": "view/world/ui/faction/UIFactions.java",
       "uses": [
-        "UiContextCollector.java:49"
+        "UiContextCollector.java:51"
       ],
       "parameter_types": [
         "game.faction.Faction"
@@ -9589,7 +9802,7 @@
       "public": true,
       "source_file": "view/world/ui/region/UIRegions.java",
       "uses": [
-        "UiContextCollector.java:76"
+        "UiContextCollector.java:78"
       ],
       "parameter_types": [],
       "compiler_generated_enum": false,
@@ -9614,7 +9827,7 @@
       "public": true,
       "source_file": "view/world/ui/region/UIRegions.java",
       "uses": [
-        "UiContextCollector.java:75"
+        "UiContextCollector.java:77"
       ],
       "parameter_types": [],
       "compiler_generated_enum": false,
@@ -9644,9 +9857,10 @@
         "StateCollector.java:265",
         "StateCollector.java:296",
         "StateCollector.java:648",
-        "UiContextCollector.java:30",
-        "UiContextCollector.java:40",
-        "UiContextCollector.java:71"
+        "UiContextCollector.java:32",
+        "UiContextCollector.java:42",
+        "UiContextCollector.java:73",
+        "UiContextCollector.java:99"
       ],
       "parameter_types": [],
       "compiler_generated_enum": false,
@@ -9698,7 +9912,8 @@
       "public": true,
       "source_file": "world/WORLD.java",
       "uses": [
-        "StateCollector.java:376"
+        "StateCollector.java:376",
+        "UiContextCollector.java:101"
       ],
       "parameter_types": [],
       "compiler_generated_enum": false,
@@ -9723,7 +9938,8 @@
       "public": true,
       "source_file": "world/WORLD.java",
       "uses": [
-        "StateCollector.java:376"
+        "StateCollector.java:376",
+        "UiContextCollector.java:101"
       ],
       "parameter_types": [],
       "compiler_generated_enum": false,
@@ -9748,7 +9964,7 @@
       "public": true,
       "source_file": "world/WorldGen.java",
       "uses": [
-        "UiContextCollector.java:33"
+        "UiContextCollector.java:35"
       ],
       "parameter_types": [],
       "compiler_generated_enum": false,
@@ -9778,9 +9994,10 @@
         "StateCollector.java:265",
         "StateCollector.java:296",
         "StateCollector.java:648",
-        "UiContextCollector.java:33",
-        "UiContextCollector.java:40",
-        "UiContextCollector.java:71"
+        "UiContextCollector.java:35",
+        "UiContextCollector.java:42",
+        "UiContextCollector.java:73",
+        "UiContextCollector.java:99"
       ],
       "parameter_types": [],
       "compiler_generated_enum": false,
@@ -9805,7 +10022,7 @@
       "public": true,
       "source_file": "world/WorldGen.java",
       "uses": [
-        "UiContextCollector.java:33"
+        "UiContextCollector.java:35"
       ],
       "parameter_types": [],
       "compiler_generated_enum": false,
@@ -9830,7 +10047,7 @@
       "public": true,
       "source_file": "world/WorldGen.java",
       "uses": [
-        "UiContextCollector.java:34"
+        "UiContextCollector.java:36"
       ],
       "parameter_types": [],
       "compiler_generated_enum": false,
@@ -9855,7 +10072,7 @@
       "public": true,
       "source_file": "world/WorldGen.java",
       "uses": [
-        "UiContextCollector.java:34"
+        "UiContextCollector.java:36"
       ],
       "parameter_types": [],
       "compiler_generated_enum": false,

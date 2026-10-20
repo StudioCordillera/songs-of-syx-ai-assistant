@@ -5,6 +5,8 @@ import settlement.entity.humanoid.Humanoid;
 import settlement.main.SETT;
 import settlement.room.main.RoomBlueprint;
 import view.main.VIEW;
+import view.subview.GameWindow;
+import snake2d.util.datatypes.RECTANGLE;
 import view.main.Interrupters;
 import view.interrupter.Interrupter;
 import static syx.assistant.StateCollector.object;
@@ -77,10 +79,42 @@ public final class UiContextCollector {
             "scope","Known activated world side-panel membership only. A modal or hidden UI may obscure panels. Not list contents/search/sort, selected army/region identities, a full tab tree or topmost rendered visibility.",
             "reason",null);
     }
+    private static Map<String,Object> unavailableViewport(String reason) {
+        return object("available",false,"coverage","unavailable","data",null,"reason",reason);
+    }
+    private static List<Integer> rectangle(RECTANGLE r) {
+        return Arrays.asList(r.x1(),r.y1(),r.x2(),r.y2());
+    }
+    /** Copy stored primitive caches only; never update a camera or consume hover/input. */
+    private static Map<String,Object> cachedViewport(String kind,boolean hidden,Map<String,Object> flags) {
+        if(Boolean.TRUE.equals(flags.get("management_screen")))
+            return unavailableViewport("Management can freeze rectangle caches while zoom changes; geometry is unavailable");
+        if(Boolean.TRUE.equals(flags.get("loading")))return unavailableViewport("Loading overlay; no current viewport established");
+        GameWindow window;String coordinates;int width,height;
+        if(kind.equals("settlement") || kind.equals("settlement_battle") || kind.equals("battle")) {
+            if(!SETT.exists())return unavailableViewport("No instantiated settlement/battlefield map");
+            window=kind.equals("settlement")?VIEW.s().getWindow():
+                kind.equals("settlement_battle")?VIEW.s().battle.getWindow():VIEW.b().getWindow();
+            coordinates="instantiated_settlement_tiles";width=SETT.TWIDTH;height=SETT.THEIGHT;
+        } else if(kind.equals("world") && world.WORLD.GEN().isDone) {
+            window=VIEW.world().window;coordinates="campaign_world_tiles";
+            width=world.WORLD.TWIDTH();height=world.WORLD.THEIGHT();
+        } else return unavailableViewport("Unsupported active view or incomplete world; no camera inferred");
+        return object("available",true,"coverage","partial","reason",null,
+            "data",object("zoomout",window.zoomout(),"tiles",rectangle(window.tiles()),
+                "pixels",rectangle(window.pixels()),"screen",rectangle(window.view()),"map_bounds_tiles",Arrays.asList(0,0,width,height)),
+            "coordinate_scope",coordinates,"rectangle_order","x1,y1,x2,y2; upper bounds exclusive",
+            "pixels_unit","map pixels; rounded engine cache, not OS/display pixels",
+            "screen_unit","internal UI coordinates, not OS/display pixels",
+            "cache_age_known",false,"rendered_visibility_known",false,"ui_hidden",hidden,
+            "known_overlay_active",flags.values().stream().anyMatch(Boolean.TRUE::equals),
+            "source","Public GameWindow stored tiles/pixels/view/zoomout getters; primitives copied after game update",
+            "limits","Cached underlying camera only, not hovered/selected tiles, all rendered/intersecting edge tiles, clipping or topmost visibility. Bounds may extend outside the map; clip to map_bounds_tiles before a separate explicit query. Cache age/coherence outside tested cases is unknown; overlays may obscure it. Never refresh caches from an observer.");
+    }
     @SuppressWarnings("unchecked")
     public static Map<String,Object> collect() {
         Map<String,Object> result=object("coverage","partial","source","public game API; sampled from GAME.addAfterUpdate on the game update thread",
-            "active_view",null,"selected_subject",null,"open_room_blueprints",new ArrayList<>(),
+            "active_view",null,"cached_viewport",unavailableViewport("No initialized active view"),"selected_subject",null,"open_room_blueprints",new ArrayList<>(),
             "world_list_panels",unknownWorldLists("No initialized active completed-world view"),
             "unsupported",object("selected_room_instance","No public selected-instance getter established",
                 "selected_world_region","No nonmutating public selected-region identity route established",
@@ -120,6 +154,8 @@ public final class UiContextCollector {
         flag(flags,"encyclopedia",VIEW.UI().wiki);
         flags.put("management_screen",VIEW.UI().manager.open());
         result.put("known_overlays",flags);
+        try {result.put("cached_viewport",cachedViewport(kind,VIEW.hideUI(),flags));}
+        catch(RuntimeException failure){result.put("cached_viewport",unavailableViewport("Public camera read failed; geometry unknown"));}
         try {result.put("known_content",UiContentCollector.collect());}
         catch(RuntimeException failure){result.put("known_content",object("coverage","unavailable","reason",failure.getClass().getSimpleName()));}
         result.put("tooltip_present",!VIEW.hoverBox().emptyIs());

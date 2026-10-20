@@ -1,11 +1,19 @@
 # Validation evidence
 
-## Background chat follow-up — unchanged production bundle
+## Current cached-viewport player checkpoint
 
-[CHAT_BACKGROUND_VALIDATION.json](CHAT_BACKGROUND_VALIDATION.json) pins the current published JAR and Python source to a copied-city test at speed 1. Simulation advanced by 2.1875 game seconds during an open-pending interval and 2.28125 during a closed-pending interval. A controlled delayed provider stub completed through the real coordinator/MCP/history path while closed, and reopening exposed the answer in the same chat. Clean completion, finite crash-marker checks, copied-mod restoration and save integrity passed. No external inference, badge, auto-connect, world grouping, physical pointer/keyboard or every-scene acceptance is claimed. Reproduce with `dev/run_read_fixture.py --case chat-background` and the normal licensed-game/copied-save arguments. The stub is developer-only; no production source or bundle changes.
+VIEWPORT_VALIDATION.json pins the new public camera-cache mapping: ten supported DTO observations match independent getters on the same exported game-update tick; one management mismatch is refused; eleven actual MCP selective projections preserve the original snapshot/context. CACHED_VIEWPORT_CONTRACT_REVIEW.json and the original stored-reader review distinguish shipped-source accessibility/semantics from stable documented contracts. No refresh, pointer/input consumer, selection inference or rendered visibility/age claim is added.
+
+The exact candidate passes 529 offline tests, two real DeepSeek Pro chat turns, all seven native core groups, actual automatic connection/focus/background checks, retained tile/entity/regional capture regressions, fifteen sampled capabilities/two explicit gaps/twenty-four member anchors and all 37 local guidance cases. Fresh extracted dependencies/startup/isolated install/key exclusion pass. Source pairing is 393 public references/zero non-public, 392 source-declaration matches plus the existing compiler-generated enum member. USER_TEST_VALIDATION.json pins exact source/JAR and current parent reports; older feature reports retain their own source/dates.
+
+CURRENT_COLLECTION_COST_VALIDATION.json records 31 warm paused-city samples: collection median 5.637 ms/max 11.165 ms, separate encoding median 10.111 ms/max 15.357 ms, snapshot 1,799,038 bytes. These are finite small-city host timings, not a performance improvement, largest-world bound or FPS guarantee. Main-menu identity/instant unload, full selected-object/tab/tree coverage, exact cache freshness, larger-city/fault/cap execution and exhaustive variables/menus remain open. Developer-only target/task/display/prototype work is not shipped by this mapping.
+
+## Current background chat regression
+
+[CHAT_BACKGROUND_VALIDATION.json](CHAT_BACKGROUND_VALIDATION.json) pins the current published JAR and Python source to a copied-city test at speed 1. Simulation advanced by 3.0009765625 game seconds in each held open-pending and closed-pending interval. A controlled delayed provider stub completed through the real coordinator/MCP/history path while closed, and reopening exposed the answer in the same chat. Clean completion, finite crash-marker checks, copied-mod restoration and save integrity passed. No external inference, badge, permanent world grouping, physical pointer/keyboard or every-scene acceptance is claimed; automatic connection has its own separate checks. Reproduce with `dev/run_read_fixture.py --case chat-background` and the normal licensed-game/copied-save arguments. The stub is developer-only; this regression does not add provider calls or a gameplay-control tool.
 
 
-## Current stored tile-moisture player checkpoint
+## Stored tile-moisture player checkpoint — prior build
 
 The exact source/JAR pair passes 305 offline tests, two actual Pro turns, all seven native core groups, fourteen sampled supported capability records/two gaps/sixteen member anchors, all 37 local guidance cases and fresh extracted dependency/startup/isolated-install/key-exclusion checks. The audit has 384 public production references and zero non-public references. USER_TEST_VALIDATION.json pins current evidence; ChatPanel class bytes match retained prior focus/wrapping evidence.
 

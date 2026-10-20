@@ -10,6 +10,7 @@ import time
 from mcp import ClientSession,StdioServerParameters
 from mcp.client.stdio import stdio_client
 from syx_mcp import Advisor
+from assert_cached_viewport import validate_context
 from syx_live import query_entities
 
 async def transport(directory):
@@ -35,6 +36,7 @@ def verify(directory:Path,timeout=250):
             snapshot=advisor.snapshot();status=advisor.status(snapshot);context=snapshot.ui_context;scene=snapshot.scene
             assert status['live'] and context.get('available'),status
             content=context['known_content'];nodes=content['nodes'];flags=context['known_overlays']
+            validate_context(context,scene)
             assert content['coverage']=='partial' and len(nodes)<=80
             assert sum(len(n.get('text','')) for n in nodes)<=4096
             assert all(len(n.get('text',''))<=512 for n in nodes)

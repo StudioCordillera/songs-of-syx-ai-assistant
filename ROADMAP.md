@@ -37,7 +37,7 @@ Acceptance: the assistant can discover each supported field and retrieve only th
 
 Goal: answer questions about the current view and selection, and remain truthful through pauses, menus, reloads and scene changes.
 
-Implemented: active views, known overlay flags, selected person and individual stats, bounded world faction-panel identity/diplomacy-tab state, open room blueprints, bounded public popup/section content and save-session rotation. Public after-update sampling continues through UI pauses. Historical observation builds have isolated city/world/editor/battle and transition evidence; see the exact build scopes in VALIDATION.md and validation-evidence.json.
+Implemented: cached public camera geometry with explicit coordinate/cache/visibility limits, active views, known overlay flags, selected person and individual stats, bounded world faction-panel identity/diplomacy-tab state, open room blueprints, bounded public popup/section content and save-session rotation. Public after-update sampling continues through UI pauses. Historical observation builds have isolated city/world/editor/battle and transition evidence; see the exact build scopes in VALIDATION.md and validation-evidence.json.
 
 Next work:
 
@@ -152,3 +152,7 @@ CHAT_INPUT_BOUNDARY.md establishes finite static public pointer/held-state route
 [CHAT_TARGET_DISPATCH_PRO_VALIDATION.json](CHAT_TARGET_DISPATCH_PRO_VALIDATION.json) adds two explicit real Pro developer handoff workflows (one selected getter-matched moisture tile, then an empty target envelope), with 514 offline cases and clean copied-game restoration. Default fixtures remain zero-inference; `--case tiles --env-file .env` is the explicit paid opt-in. Native controls and the full paired-player gates remain open; no new player release or semantic/citation-quality completion is implied.
 
 [CHAT_TARGET_TASKS.md](CHAT_TARGET_TASKS.md) adds unshipped explicit helper task ownership and exact Stop with no automatic replay, pending-cleanup tracking, queued preclaim cancellation and bounded summaries. Twelve new cases/526 offline tests plus copied-city fake-provider completion/Stop checks precede native protocol/buttons and the full paired-player gates. Earlier real Pro evidence is historical for this new owner; native pending-admission cancellation/read/input and broader core coverage remain open.
+
+## Cached camera source-coverage checkpoint
+
+CACHED_VIEWPORT.md / VIEWPORT_VALIDATION.json add four supported public camera routes and eight explicit window/cache references, 393 public in total. Eleven same-tick getter/MCP/context-selection phases plus current core setup/editor guards preserve unsupported/null states, unknown cache age/rendered visibility and coordinate distinctions. The tested simple Pro payload is promoted after 529 tests and exact-source Pro/core/connection/focus/background/capture/cost/discovery/guidance/distribution gates, retaining its true predecessor. Full state/menu/selection/lifecycle coverage and larger-world/fault bounds remain open; continue the core source-coverage objective instead of treating this checkpoint as completion.

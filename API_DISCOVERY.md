@@ -2,7 +2,7 @@
 
 The production reference audit proves only the public members used by our adapter. To identify remaining mapping work, `catalog_api.py` separately scans the entire shipped source archive and resolves its named types and public declared members against the installed game JAR with the Java compiler. It never starts the game, executes its classes, or uses reflection. This is development tooling, outside the packaged mod and MCP server.
 
-The current scan covers 2,443 source files, resolves every cataloged named top-level/member source type, and finds 2,052 public types with public enclosing types and 17,442 public declared member signatures. All 385 production reference IDs occur in this catalog. Matching game JAR/source archive hashes establish that the discovery run and production audit used the same reference pair. They do not attest the installed/running mod.
+The current scan covers 2,443 source files, resolves every cataloged named top-level/member source type, and finds 2,052 public types with public enclosing types and 17,442 public declared member signatures. All 393 production reference IDs occur in this catalog. Matching game JAR/source archive hashes establish that the discovery run and production audit used the same reference pair. They do not attest the installed/running mod.
 
 | Root package | Public declared member candidates | Production reference IDs |
 | --- | ---: | ---: |
@@ -77,4 +77,6 @@ The world-list-context checkpoint adds six explicit public field/getter referenc
 
 The stored ground-moisture projection adds three explicit public references (SETT.GROUND and its two stored maps), bringing that checkpoint’s production pairing to 384. The MAP_DOUBLE coordinate getter was already referenced. Stored fractions are not total moisture, rainfall, fertility or yield. See GROUND_MOISTURE.md for runtime limits and GROUND_MOISTURE_BOUNDARY_REVIEW.json for the pinned review.
 
-The automatic-connection checkpoint pairs all 385 current references with the retained catalog after checksum/game-source verification. The additional public Str.add(CharSequence) restores bounded mod-owned composer drafts; it is not a gameplay action or a stable documented contract. See AUTO_CONNECTION.md.
+The automatic-connection checkpoint paired all 385 references at that checkpoint with the retained catalog after checksum/game-source verification. The additional public Str.add(CharSequence) restores bounded mod-owned composer drafts; it is not a gameplay action or a stable documented contract. See AUTO_CONNECTION.md.
+
+The cached-viewport mapping adds eight explicit public camera-window/cache references, bringing the current pairing to 393. All match the retained declaration catalog/source pair; no dynamic invocation or input/refresh method is exposed. See CACHED_VIEWPORT.md and CACHED_VIEWPORT_CONTRACT_REVIEW.json.

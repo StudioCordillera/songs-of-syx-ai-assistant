@@ -28,12 +28,12 @@
     "Current-load filter is runtime attachment, not permanent world grouping. No unread badge or managed helper startup.",
     "Protocol refusal changes the version line of this fixture helper; not exhaustive mixed-version compatibility."
   ],
-  "validated_at": "2026-10-20T03:27:52.390501+00:00",
+  "validated_at": "2026-10-20T15:05:49.544431+00:00",
   "case": "connection",
   "stage": "Exact paid candidate feature check",
-  "mod_jar_sha256": "73b44c555a0f9e5e9d2497fee2ce6e6276052b8926117c776ebe1276a4a8cc22",
+  "mod_jar_sha256": "43209ef439c1c4278df54cd4b4fbc580441dc8c18cce1b01ad6d5055cbb26b36",
   "production_source_sha256": {
-    "syx/assistant/UiContextCollector.java": "b8a3e582e1c2b7da868ad9513f02793685d7a986464fe8935b32b86216f70b29",
+    "syx/assistant/UiContextCollector.java": "0f67200fdcf2740f4d3d4b1751ea0bf143613b20a44afb77af0ebb0ae8078937",
     "syx/assistant/UiContentCollector.java": "c0d20c7f9f2734a0bb625427875f06bfcd07edb20611248b39b6e8f480ef5a48",
     "syx/assistant/ChatPanel.java": "06db6b7715f9187a40a0b4b987ab7f64e09df5f9dc07193e261249302d1ac12f",
     "syx/assistant/TileReadRequest.java": "5daf3cc3abc0cb849f654e09efadb3d0263b73d4e5e220e97671ea1c4a40bde6",
@@ -44,11 +44,11 @@
     "syx/assistant/JsonWriter.java": "c525eb60d3224cab83ed3fd6b8594ec8652211f00bd947e873e1482f919e81dc"
   },
   "python_source_sha256": {
-    "syx_mcp.py": "6e57581936147e8f17f3716c4e71acd24fda4bb63ab6f594e9342587f3b998d5",
+    "syx_mcp.py": "b54d3c787e89142ae46b65e4d3d3856d40b5cf3c4823962d6a70619876be2c3d",
     "syx_knowledge.py": "f5d7dd6d387ad0fb8f2b024a3bd599ad1cec28f2906dfae27d9d2fdf56e4de7e",
     "syx_query.py": "ae9c4537093952510e6536810c065b6e07f7bfc2d78d3bc02ccd0d21f4d12c07",
-    "syx_api_support.py": "80276ac400801e9a895438162cbbb63db090f3dae930882b891b70a87fff5caf",
-    "syx_api_manifest.py": "310d51686679b9adb274a711b1355722cf8dda54a46363b0e1a8bdd55bc901a0",
+    "syx_api_support.py": "f30fbbba750a84ebf225047214361f4ecd1f537e0d89da8cf1f997b146c06133",
+    "syx_api_manifest.py": "489713b7aa0fe9a844f95bdf12345014dd4abfdef64fad43256475b7eecb214d",
     "syx_live.py": "2f29a2d828fc5c512075fa6a2082dd5fae9d4a39fb22ae847765533dc5628c75",
     "syx_capture.py": "32778d9f5f217119ba45b114ba2a710bdd0ce4333efa672c31c690dcc3f3c3ec",
     "syx_tiles.py": "c5ceea79fc5d4d80307ecf7fe429ca1f1f6ae64d17e95569d54625bf02c4d664",
@@ -72,7 +72,7 @@
     "dev/verify_auto_connection.py": "5cf1cf122256f47d70e2cea5ba502e21d5b716a7d9849b7656db56a22b38f5d6",
     "mod/tests/ChatAutoConnectScenario.java": "2d33cbd6716ff4fd3568c74bbba024beac6f20fc2fbb9e8548ce756f37240746",
     "mod/tests/ChatUiScenario.java": "10f1a64f34755c73c16764c08ed30506d1e2742fbcb446c2dc3a4c4f10abf96e",
-    "mod/tests/LiveSmoke.java": "39ca17238236b843b400b87e1481aa1ea7112b99b751e6aa5dc6e1978c94601b",
+    "mod/tests/LiveSmoke.java": "673d5dd203d7732261437c993a6c4e4587f4fdadcaf7d27afaf1ff28e712d37b",
     "dev/native_game_completion.py": "8d29009ecb6b1c54e65ce4d94bc1c175d189c68aad59251381ec4cf5a063773f"
   }
 }

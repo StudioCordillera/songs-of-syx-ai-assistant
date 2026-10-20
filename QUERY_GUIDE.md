@@ -301,3 +301,7 @@ Use `capture_live_regional_outputs` and `read_regional_output_capture` when a se
 ## World list context
 
 `/world_list_panels` in UI context supplies `army_list_present`, `player_realm_list_present` and `region_browser_present`. Use context expressions in a selection pinned to that same observation, as in world-list-context-query-example.json. Active completed world yields known boolean membership; inactive/unavailable/error yields null, not closed=false. Hidden UI or a modal may obscure underlying true flags. These are not selected-object IDs, list contents/search/sort or complete visibility. See WORLD_LIST_CONTEXT.md before interpreting a user's “this region/army” question.
+
+## Cached camera context
+
+`get_game_ui_context` and same-observation context expressions include `cached_viewport`. [The example](viewport-context-query-example.json) projects the full camera observation, preserving null/unavailable. Read CACHED_VIEWPORT.md for map-pixel/internal-UI/tile units and source/visibility/cache-age limits. Campaign-world bounds cannot be used as settlement/battlefield tile-query coordinates. Inspect returned state.scene/session/timestamp, clip explicitly to matching map bounds, and treat any later live map read as a separate observation. Geometry does not identify a hovered tile, selected room, complete rendered census or durable area identity.

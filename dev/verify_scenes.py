@@ -8,6 +8,7 @@ import json
 from pathlib import Path
 import time
 from syx_mcp import Advisor
+from assert_cached_viewport import validate_context
 
 
 async def unavailable_city_data_mcp(directory):
@@ -41,6 +42,7 @@ def verify(directory:Path,timeout:float=260,on_demand:bool=False,tiles:bool=Fals
             assert status['live'],status
             assert context.get('available'),context
             assert scene['active_view']==context['active_view']
+            validate_context(context,scene)
             lists=context['world_list_panels']
             assert lists['coverage']=='unavailable' and all(lists[f] is None for f in ['army_list_present','player_realm_list_present','region_browser_present'])
             sessions[name]=snapshot.session_id

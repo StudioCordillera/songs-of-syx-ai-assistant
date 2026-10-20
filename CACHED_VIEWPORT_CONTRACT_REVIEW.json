@@ -1,0 +1,29 @@
+{
+  "passed": true,
+  "reviewed_at": "2026-10-20T15:02:49.198939+00:00",
+  "stage": "Finite cached viewport/rectangle/subject-panel/envelope contract review; no new official stable contract",
+  "game_jar_sha256": "fe0137c05408e5ee9e31f06fc44fe37a5d4372d9c985b280f0852d1347c0224b",
+  "source_archive_sha256": "a3fc2aa9f4be31aec0616a5030a656ac49a6011343b7e91395c7bac0b9dfb0a5",
+  "stored_reader_review_sha256": "ed03838cdd40136cd53a099f8d96b34ce1d12ae6e60aea4c102391834962ffe1",
+  "source_sha256": {
+    "game/GAME.java": "8077b7f01b7a0d4505b2e40c331754c1c4823142fc93b7d7d2493fda83d6aa81",
+    "snake2d/util/datatypes/RECTANGLE.java": "184240ef3ae9924d0f0a6d72082269df77b4f299534015b6b8b1dea0159f61fb",
+    "view/sett/ui/subject/UISubjects.java": "18f091473ac1b9fd9db7968edc4fc2c93a1910320a1f2007b204b4c6272af571",
+    "view/sett/ui/subject/UISubject.java": "13dc93d42f904f2e71eee60d21f6e23556b550caf4d933a7d4676603cfe33d11"
+  },
+  "verifier_source_sha256": "b00dc93c9f5f578af4d3596266d716eebcdf6045466494d803eb943909d15511",
+  "own_source_sha256": {
+    "mod/src/main/java/syx/assistant/UiContextCollector.java": "0f67200fdcf2740f4d3d4b1751ea0bf143613b20a44afb77af0ebb0ae8078937",
+    "syx_mcp.py": "b54d3c787e89142ae46b65e4d3d3856d40b5cf3c4823962d6a70619876be2c3d",
+    "mod/tests/ViewportScenario.java": "dbc195bfa2f780176f22856f548690bcdc5577e53530914ebf05656ef10205a1"
+  },
+  "conclusions": [
+    "Paused GAME update advances updateI before ordered after-update actions. The production callback is registered before the fixture; bounded getter samples are taken before fixture phase mutations and matched to exported tick. This does not assert tick uniqueness during arbitrary unpaused/faulted engine execution.",
+    "RECTANGLE point membership uses exclusive x2/y2; named deployment-bound objects and explicit camera vectors need not share a JSON shape. This is not a renderer/edge-intersection census.",
+    "UISubjects.current delegates to showing(), which checks live subject-panel membership. An alleged missing panel guard is not a demonstrated defect. Underlying membership still does not prove unobscured display.",
+    "MCP UI context includes the same snapshot status/scene. City versus battlefield is carried by state.scene.settlement_scene_kind; geometry alone is not a durable map identity or authority to reuse bounds in a later scene.",
+    "The mapping copies rectangle primitives and invokes none of the named camera refresh/hover/set/consume routes. Complete transitive purity and exhaustive API absence are not established by string markers."
+  ],
+  "game_methods_executed": 0,
+  "inference_calls": 0
+}

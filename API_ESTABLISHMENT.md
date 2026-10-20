@@ -5,7 +5,7 @@ This report establishes what can be verified within the user's required in-proce
 ## Evidence levels
 
 1. **Documented script contract:** the shipped semi-official script guide and SCRIPT interface describe script creation, updates and persistence callbacks. They do not document every game statistic or menu.
-2. **Source-verified public API:** Java compiler attribution resolves each game member referenced by production mod code. The current inventory contains 385 members, all public. Of these, 384 match declaring type, name, arity and simple parameter types in shipped source; the remaining member is the compiler-generated enum `values()` method. Seven referenced members have their own Javadoc blocks; Javadoc presence does not establish semantics or stability. Script override contracts are reviewed separately from the member-reference inventory.
+2. **Source-verified public API:** Java compiler attribution resolves each game member referenced by production mod code. The current inventory contains 393 members, all public. Of these, 392 match declaring type, name, arity and simple parameter types in shipped source; the remaining member is the compiler-generated enum `values()` method. Seven referenced members have their own Javadoc blocks; Javadoc presence does not establish semantics or stability. Script override contracts are reviewed separately from the member-reference inventory.
 3. **Runtime evidence:** the isolated fixture exercises supported contexts using public game methods and a copied save. The production mod only observes. Test mutations and engine bootstrap code are never packaged into the mod.
 4. **Unavailable/unvalidated:** missing public accessors and untested transitions stay explicit. No reflection, screenshot, native-input or package-access workaround is added.
 
@@ -17,12 +17,13 @@ Runtime evidence spans the 0.12.0 spatial/scene fixtures, 0.11.0 retained-captur
 
 | Capability | Established access | Runtime scope / limits |
 | --- | --- | --- |
-| Exported state variables | 18 partial typed public-API domains; 385 referenced members in the audit | Existing copied save; not every variable or every entity attribute |
+| Exported state variables | 18 partial typed public-API domains; 393 referenced members in the audit | Existing copied save; not every variable or every entity attribute |
 | Regional resource accrual/schedule | `RD.OUTPUT().get(TR.get(resource)).yearlyAccumilation.get(region)` and configured cyclic offset getter | Campaign resource-backed rows, bounded to 10,000 cells; stored accrual is not inventory/delivered total/ETA. See REGIONAL_OUTPUTS.md and REGIONAL_OUTPUT_VALIDATION.json |
 | On-demand regional outputs | Same explicit public stored counter/schedule getters plus bounded active-registry bindings | Fixed region/resource matrix queries independent of cached rows. Separate live pages; not a retained/global transaction. See REGIONAL_LIVE_READS.md |
 | Active view | `VIEW.current`, subview `isActive` | Settlement, world, settlement tactical HUD, generated deployment/engagement and controlled victory/defeat restoration, plus initial/terrain world generation; editor activation checked on a copied completed world |
 | Selected subject | `UISubjects.current`, individual class/type and named `STAT.hasIndu` / `STAT.indu` getters | 58 individual statistics observed in the copied-save subject; values/min/max and installed-help reference IDs. Panel may remain behind a modal overlay |
 | Room context | `UIRooms.openIs` and room-list membership | Room blueprint/table/detail presence exercised; exact selected instance unavailable |
+| Cached camera geometry | Four public active-window routes and stored rectangle/zoom readers, copied as primitives | City/tactical/world/generated battle with explicit units; management/loading/unsupported unavailable; hidden UI keeps cached data only. No hover, rendered census, exact cache age or durable map identity. See CACHED_VIEWPORT.md |
 | Stored tile moisture | Explicit public base/current map getters | Optional live/retained tile projection, instantiated scene bounds; not total moisture, rainfall, fertility, yield or placement. See GROUND_MOISTURE.md |
 | World list panels | Three explicit army/realm/region-browser membership readers | Active completed-world view only; null outside it, underlying true can persist behind a modal/hidden UI. No selected army/region or list-content inference. See WORLD_LIST_CONTEXT.md |
 | World faction panels | `UIFactions.openIs()` / `openIs(Faction)` / `diploIs(Faction)` | Active completed-world view only; bounded active-faction scan; underlying panel presence may be obscured by a modal. See WORLD_FACTION_CONTEXT.md |
@@ -108,7 +109,7 @@ The result overlay remains private and has no mapped public presence/title/conte
 
 ## Broader declaration discovery
 
-API_DISCOVERY.md records a separate compiler-based scan of the shipped source/archive pair: 2,052 public types and 17,442 declared public member candidates. The initial scan paired 246 production references; the current 385-reference pairing is recorded in API_DISCOVERY.md, with unresolved source-anchor matches explicit. Constructors, mutators and rendering APIs are candidates only; this is not live variable coverage. No new production methods are exposed by the catalog. The public CORE/CORE_STATE/menu declarations inspected in this pass still do not establish a current-menu getter or unload callback.
+API_DISCOVERY.md records a separate compiler-based scan of the shipped source/archive pair: 2,052 public types and 17,442 declared public member candidates. The initial scan paired 246 production references; the current 393-reference pairing is recorded in API_DISCOVERY.md, with unresolved source-anchor matches explicit. Constructors, mutators and rendering APIs are candidates only; this is not live variable coverage. No new production methods are exposed by the catalog. The public CORE/CORE_STATE/menu declarations inspected in this pass still do not establish a current-menu getter or unload callback.
 
 ## Person relationships — 0.10.0
 

@@ -1,6 +1,6 @@
 {
   "passed": true,
-  "mod_jar_sha256": "73b44c555a0f9e5e9d2497fee2ce6e6276052b8926117c776ebe1276a4a8cc22",
+  "mod_jar_sha256": "43209ef439c1c4278df54cd4b4fbc580441dc8c18cce1b01ad6d5055cbb26b36",
   "production_source_sha256": {
     "syx/assistant/AssistantScript.java": "82fa2395aa96e7ae9cee612b32171fb495ca289dc7f99269c1ad7a2d417cca55",
     "syx/assistant/ChatPanel.java": "06db6b7715f9187a40a0b4b987ab7f64e09df5f9dc07193e261249302d1ac12f",
@@ -10,14 +10,14 @@
     "syx/assistant/StateCollector.java": "58b6f25bb21493da7ce6a9770d2068ee86f9419e1d3aff5cf83e56a0a532dcdf",
     "syx/assistant/TileReadRequest.java": "5daf3cc3abc0cb849f654e09efadb3d0263b73d4e5e220e97671ea1c4a40bde6",
     "syx/assistant/UiContentCollector.java": "c0d20c7f9f2734a0bb625427875f06bfcd07edb20611248b39b6e8f480ef5a48",
-    "syx/assistant/UiContextCollector.java": "b8a3e582e1c2b7da868ad9513f02793685d7a986464fe8935b32b86216f70b29"
+    "syx/assistant/UiContextCollector.java": "0f67200fdcf2740f4d3d4b1751ea0bf143613b20a44afb77af0ebb0ae8078937"
   },
   "python_source_sha256": {
-    "syx_mcp.py": "6e57581936147e8f17f3716c4e71acd24fda4bb63ab6f594e9342587f3b998d5",
+    "syx_mcp.py": "b54d3c787e89142ae46b65e4d3d3856d40b5cf3c4823962d6a70619876be2c3d",
     "syx_knowledge.py": "f5d7dd6d387ad0fb8f2b024a3bd599ad1cec28f2906dfae27d9d2fdf56e4de7e",
     "syx_query.py": "ae9c4537093952510e6536810c065b6e07f7bfc2d78d3bc02ccd0d21f4d12c07",
-    "syx_api_support.py": "80276ac400801e9a895438162cbbb63db090f3dae930882b891b70a87fff5caf",
-    "syx_api_manifest.py": "310d51686679b9adb274a711b1355722cf8dda54a46363b0e1a8bdd55bc901a0",
+    "syx_api_support.py": "f30fbbba750a84ebf225047214361f4ecd1f537e0d89da8cf1f997b146c06133",
+    "syx_api_manifest.py": "489713b7aa0fe9a844f95bdf12345014dd4abfdef64fad43256475b7eecb214d",
     "syx_live.py": "2f29a2d828fc5c512075fa6a2082dd5fae9d4a39fb22ae847765533dc5628c75",
     "syx_capture.py": "32778d9f5f217119ba45b114ba2a710bdd0ce4333efa672c31c690dcc3f3c3ec",
     "syx_tiles.py": "c5ceea79fc5d4d80307ecf7fe429ca1f1f6ae64d17e95569d54625bf02c4d664",
@@ -132,7 +132,7 @@
           "dev/verify_production.py": "c5f709e8ced215dfde81e6aeb55e60415babf65b9843775a456b9b1fd936fb79",
           "degradation-query-example.json": "35af3cb42d9ed6761d184ae2b03f51385ce1305d720de233e6754955de1c3cba",
           "syx_query.py": "ae9c4537093952510e6536810c065b6e07f7bfc2d78d3bc02ccd0d21f4d12c07",
-          "syx_mcp.py": "6e57581936147e8f17f3716c4e71acd24fda4bb63ab6f594e9342587f3b998d5"
+          "syx_mcp.py": "b54d3c787e89142ae46b65e4d3d3856d40b5cf3c4823962d6a70619876be2c3d"
         },
         "limits": [
           "Paused copied city: observed room-value counts are reported, and a zero-only city does not establish nonzero room integration. Five synthetic public-decoder inputs exercise threshold/positive branches without writing room wear.",
@@ -163,7 +163,7 @@
           "dev/verify_production.py": "c5f709e8ced215dfde81e6aeb55e60415babf65b9843775a456b9b1fd936fb79",
           "workforce-query-example.json": "a3a5f019cbc0f28343eb7e6448aba801b3f7c1bd3d3a053d8456c55111298fff",
           "syx_query.py": "ae9c4537093952510e6536810c065b6e07f7bfc2d78d3bc02ccd0d21f4d12c07",
-          "syx_mcp.py": "6e57581936147e8f17f3716c4e71acd24fda4bb63ab6f594e9342587f3b998d5"
+          "syx_mcp.py": "b54d3c787e89142ae46b65e4d3d3856d40b5cf3c4823962d6a70619876be2c3d"
         },
         "limits": [
           "Paused copied city with both countInput branches, not all room types or larger-city/cap/fault execution.",
@@ -532,7 +532,7 @@
   },
   "inference_calls": 0,
   "fixture_source_sha256": {
-    "mod/tests/LiveSmoke.java": "39ca17238236b843b400b87e1481aa1ea7112b99b751e6aa5dc6e1978c94601b",
+    "mod/tests/LiveSmoke.java": "673d5dd203d7732261437c993a6c4e4587f4fdadcaf7d27afaf1ff28e712d37b",
     "mod/tests/ServiceScenario.java": "7c721be7328e0b61749a925f37c5248983cb6ba42ad22f92369d0aac37776fb2",
     "mod/tests/TradeScenario.java": "c36a05d312ebea021495d4f49934c96973410b86f6f52d662ef281c6c2b81277",
     "mod/tests/WorldScenario.java": "d29a089875a5e740fbf746689daf055e4f4956b1166fc603d1d8a7c0f22cfc04",
@@ -546,9 +546,9 @@
     "dev/verify_trade.py": "fb3706253767d6a66e3ba0742c865e489e041a630df77976ebddf583fb76a3d6",
     "dev/verify_world.py": "764215f1af2e8e6f8505d25ab31426da9b964d52fc176e44239f0f09ebb281af",
     "dev/verify_production.py": "c5f709e8ced215dfde81e6aeb55e60415babf65b9843775a456b9b1fd936fb79",
-    "dev/verify_scenes.py": "999516a282d16951bf2ae38a98cae568cb6b93c057c70ab4b4bea18ffe664c3e",
+    "dev/verify_scenes.py": "1b29075334545b2582ff0071a0297e979255e0d3d6993ab733a6f0d2947de070",
     "dev/verify_installed_help.py": "531efe504e65bebadad112c305094a97b1c055993291056fa2b14fbaaf728c1c",
-    "dev/verify_extended_context.py": "ce03cf795f7be8c1e6d6a9d318752b045e0b4cabaef66554dab1fdc9513102b3",
+    "dev/verify_extended_context.py": "76832dda77c10fcdb03f9092ba02397b864449284af793450f8e895735c5622c",
     "dev/native_game_completion.py": "8d29009ecb6b1c54e65ce4d94bc1c175d189c68aad59251381ec4cf5a063773f",
     "dev/verify_current_player_core.py": "02b595b0fee24529c61c015ba5d709784edfda10d5de07463e6db49c56e27f5f"
   },

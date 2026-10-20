@@ -27,12 +27,24 @@ public final class ViewportScenario {
     public static void install(Path directory){
         GAME.SPEED.speedSet(0);VIEW.s().activate();int[] step={0};boolean[] ready={false};long began=System.nanoTime();
         Map<String,Object> cityBefore=new LinkedHashMap<>();GameWindow[] handles=new GameWindow[4];
+        GameWindow[] sampledWindow={null};List<Object> samples=new ArrayList<>();int[] sampleFrame={0};
         GAME.addAfterUpdate(()->{
             try{
                 if(Files.exists(directory.resolve("verifier.done"))){
                     Files.writeString(directory.resolve("viewport-clean-exit.json"),JsonWriter.encode(object("passed",true,"verified_phases",11)));CORE.annihilate();return;
                 }
                 if(System.nanoTime()-began>230_000_000_000L)throw new IllegalStateException("Viewport verifier timed out");
+                // Production callback was registered first. Read independent getters on
+                // this same update tick BEFORE applying any next-phase fixture actions.
+                if(ready[0] && sampledWindow[0]!=null) {
+                    samples.add(object("step",step[0],"tick",Math.max(0,GAME.updateI()),"geometry",read(sampledWindow[0])));
+                    if(samples.size()>500)samples.remove(0);
+                    if((++sampleFrame[0]&7)==0) {
+                        Path tmp=directory.resolve("viewport-getter-samples.tmp");
+                        Files.writeString(tmp,JsonWriter.encode(samples));
+                        Files.move(tmp,directory.resolve("viewport-getter-samples.json"),StandardCopyOption.REPLACE_EXISTING,StandardCopyOption.ATOMIC_MOVE);
+                    }
+                }
                 if(ready[0] && !Files.exists(directory.resolve("phase-"+step[0]+".done")))return;
                 if(ready[0] && step[0]==10)return;if(ready[0])step[0]++;
                 String name,kind="settlement",scope="instantiated_settlement_tiles";boolean frozen=false,modal=false,hidden=false,menu=false;
@@ -66,8 +78,8 @@ public final class ViewportScenario {
                 check(w,frozen);
                 if(step[0]>=8)for(int i=0;i<4;i++)for(int j=i+1;j<4;j++)if(handles[i]==handles[j])throw new IllegalStateException("Expected four distinct window handles");
                 Map<String,Object> phase=object("phase",name,"step",step[0],"started_at",Instant.now().toString(),"expected_view",kind,
-                    "management",frozen,"modal",modal,"hidden",hidden,"menu",menu,"coordinate_scope",scope,"candidate_geometry",read(w),"control_checks",control);
-                Files.writeString(directory.resolve("phase.json"),JsonWriter.encode(phase));ready[0]=true;
+                    "management",frozen,"modal",modal,"hidden",hidden,"menu",menu,"coordinate_scope",scope,"candidate_geometry",read(w),"expected_map_bounds",scope.equals("campaign_world_tiles")?Arrays.asList(0,0,WORLD.TWIDTH(),WORLD.THEIGHT()):Arrays.asList(0,0,SETT.TWIDTH,SETT.THEIGHT),"control_checks",control);
+                Files.writeString(directory.resolve("phase.json"),JsonWriter.encode(phase));sampledWindow[0]=w;ready[0]=true;
             }catch(Exception e){System.err.println("SMOKE_FIXTURE_FAILURE: "+e);try{Files.writeString(directory.resolve("viewport-fixture-failure.json"),e.getClass().getSimpleName());}catch(Exception ignored){}CORE.annihilate(e);}
         });
     }

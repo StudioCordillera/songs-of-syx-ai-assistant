@@ -1,0 +1,14 @@
+{
+  "include_ui_context": true,
+  "queries": [
+    {
+      "source": {"domain": "world", "path": "/regions"},
+      "limit": 1,
+      "select": {
+        "region_id": {"field": "/id"},
+        "active_view": {"context": "/active_view"},
+        "cached_camera": {"context": "/cached_viewport"}
+      }
+    }
+  ]
+}

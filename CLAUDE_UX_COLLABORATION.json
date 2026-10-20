@@ -254,5 +254,29 @@
     "final_followup_source_reviewed_by_claude": false,
     "credits_purchased": false,
     "account_limits_bypassed": false
+  },
+  "completed_cached_viewport_mapping_review": {
+    "requested_alias": "opus",
+    "effort": "high",
+    "observed_models": [
+      "claude-opus-5-5"
+    ],
+    "tools": [],
+    "exit_code": 0,
+    "subtype": "success",
+    "is_error": false,
+    "duration_ms": 47220,
+    "num_turns": 1,
+    "input_prompt_sha256": "dbee831b63a95a6bfc6e73bddef09be88cd705d694cb8d5e62ad83d28e39ae23",
+    "final_public_text_sha256": "38a19e1ea80dc65728ebf4cf2c1372f95bb772ac141ab6d3235106fde568e3a2",
+    "reviewed_source_sha256": {
+      "mod/src/main/java/syx/assistant/UiContextCollector.java": "0f67200fdcf2740f4d3d4b1751ea0bf143613b20a44afb77af0ebb0ae8078937"
+    },
+    "input_working_tree_base": "63cca076daa3357b05f30657511d09d96773f7b1",
+    "isolated_checkout_base": "36b3d91e58c684ad267cd6554e87b920df1c9c07",
+    "edited_decisions": "CACHED_VIEWPORT.md",
+    "production_followup_after_review": false,
+    "credits_purchased": false,
+    "account_limits_bypassed": false
   }
 }

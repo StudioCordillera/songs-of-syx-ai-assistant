@@ -1,6 +1,6 @@
 # Cached viewport routes: reviewed candidate
 
-Public in-process window routes are source/compiler reviewed and exercised in a disposable copied game. **Viewport geometry is not yet a production DTO or MCP field.** Existing MCP context still reports supported views/overlays; it does not identify a hovered tile from these caches.
+Public in-process window routes are source/compiler reviewed and exercised in a disposable copied game. This file preserves the original candidate review. The subsequent production mapping is described in [CACHED_VIEWPORT.md](CACHED_VIEWPORT.md) and [VIEWPORT_VALIDATION.json](VIEWPORT_VALIDATION.json); the earlier candidate report keeps its original hashes and scope. No hovered tile is identified from these caches.
 
 | Context | Public route | Source-bound coordinate space |
 | --- | --- | --- |
@@ -33,7 +33,7 @@ Eleven accepted **existing MCP context** observations agree with the fixture's v
 
 The shared native lock, path-validated copied profile/save, explicit clean-completion marker, finite crash-marker guard, copied-mod restoration and unchanged copied-save checks pass. Test-only public camera/view/menu/hide and battle-setup actions are excluded from production. The developer follow-up passes 305 offline tests, with no inference. Normal profile, saves, credentials and latest/previous tested player payloads remain unchanged; prior player/provider reports keep their own dates/hashes.
 
-## Next implementation gate
+## Original implementation gate — subsequent mapping linked above
 
 A useful next mapping is explicitly cached viewport geometry for supported active views, with unavailable management/unsupported contexts, correct city-versus-world/battle units and same-observation provenance. Decide carefully whether reported engine tile bounds or an explicitly derived/clipped selection is needed; neither establishes all rendered tiles. Do not export cached mouse coordinates as a hover/selection fallback.
 
