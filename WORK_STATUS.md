@@ -12,6 +12,8 @@ CHAT_DISPLAY_COST_VALIDATION.json adds 31-sample synthetic one-chat workloads at
 
 REFERENCE_FEED_RECHECK.json separately rechecks the existing V71 service-fetch/treatment topic through the official Steam API. Externalpost redirects to the existing canonical citation. The API record preserves its own author/date/body hash; older review dates and the thirteen production summaries are unchanged. A localized archive returned older cached content, so archive/search freshness is not treated as API-record freshness.
 
+BLUEPRINT_PLANNER_REVIEW.json pins selected author source at an immutable commit: README data is v70, MIT software terms do not establish game/layout rights, and selected conversions can omit metadata/unknown furniture or infer orientation. No upstream code/data/assets were imported, no example verified and no native importer/action shipped. These findings constrain future structured blueprint advice.
+
 394 offline tests pass (38 new Python/Java cases, with pure Java segment policy exercised inside the cross-language case). The original 356-test player evidence and older receipt reports retain their original scopes. No remote overlapping work was found. Next: focused Claude follow-up after its advertised reset, native visibility/explicit-read policy and transport/layout integration; independent core/target/reference work continues. Preserve the user's private untracked test log.
 
 ## Automatic connection — current release checkpoint

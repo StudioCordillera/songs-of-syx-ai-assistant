@@ -129,3 +129,5 @@ At handoff, update WORK_STATUS and the relevant current feature guides. Keep pre
 `dev/measure_chat_display_candidate.py` measures disposable synthetic short-history/at-row-cap detached broker scans and unchanged refreshes; [CHAT_DISPLAY_COST_VALIDATION.json](CHAT_DISPLAY_COST_VALIDATION.json) keeps the exact source and workload limits. No production latency or native repaint acceptance is implied.
 
 [REFERENCE_FEED_RECHECK.json](REFERENCE_FEED_RECHECK.json) records the independent official Steam API recheck of existing service guidance, including author/date/body-hash provenance and cached-archive/canonical-mapping limits. It does not add or refresh production summaries automatically.
+
+[BLUEPRINT_PLANNER_REVIEW.json](BLUEPRINT_PLANNER_REVIEW.json) pins selected upstream author software/license/version and lossy-conversion caveats. It extends [blueprint discovery](BLUEPRINT_REFERENCE_CANDIDATES.md) without importing code/assets or claiming a verified current-game schematic.
