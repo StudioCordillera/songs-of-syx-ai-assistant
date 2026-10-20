@@ -14,6 +14,7 @@ Game process public after-update callback → detached Java DTOs → local snaps
 | StateCollector.java | Eighteen partial domains, installed help, typed field definitions and bounded room/resource/region relationships. New fields require provenance, bounds and getter/MCP validation. |
 | UiContextCollector.java | Scene/view/overlay/subject/room-blueprint, world-list membership and bounded world-faction-panel context through mapped public getters. No private selected-room fallback. |
 | UiContentCollector.java | Bounded exposed popup/section labels/controls, ancestry and opaque/error/truncation markers. |
+| StockpileReadRequest.java | Fixed per-warehouse/resource live pages, strict framing, typed stored counters/predicates/identity and bounded update-thread matrix scan. |
 | RegionalReadRequest.java | Fixed live/complete-capture active-region/resource matrix protocols, bounded range/faction predicates and projections on the update thread; independent of cached row prefix. |
 | EntityReadRequest.java | Strict live/capture protocol parsing, finite predicates/projections, public entity/stat/workplace reads on the update thread. |
 | TileReadRequest.java | Strict rectangle/filter/projection protocol and bounded terrain/floor/room/mineral/path reads. |
@@ -22,16 +23,17 @@ Game process public after-update callback → detached Java DTOs → local snaps
 
 Only these production classes are packaged. `mod/tests/` contains non-shipped bootstrap and public-API fixtures; some deliberately mutate only copied in-process game state. `LiveSmoke.java` / PathCheck enforce copied save and isolated user.home before engine start. `DegradationPositiveScenario` is a test-only public maintenance action, never an MCP action.
 
-The unregistered per-warehouse request draft lives under `dev/candidates/stockpiles/`; [candidate scope and next gates](STOCKPILE_LIVE_CANDIDATE.md) distinguish it from the nine packaged classes. `dev/verify_stockpile_candidate.py` compiles it and checks detached parsing plus paired public room-lookup bodies without starting the game. `dev/run_stockpile_candidate.py` separately executes bounded direct-getter/page/filter/refusal checks in the isolated copied city through an explicit test-only scenario override; it does not dispatch candidate requests through the player or MCP.
+The historical pre-production per-warehouse request draft lives under `dev/candidates/stockpiles/`; [candidate scope and next gates](STOCKPILE_LIVE_CANDIDATE.md) distinguish it from the ten packaged classes. `dev/verify_stockpile_candidate.py` compiles it and checks detached parsing plus paired public room-lookup bodies without starting the game. `dev/run_stockpile_candidate.py` separately executes bounded direct-getter/page/filter/refusal checks in the isolated copied city through an explicit test-only scenario override; it does not dispatch candidate requests through the player or MCP. The new production path is documented in STOCKPILE_LIVE_READS.md and tested with `dev/run_read_fixture.py --case stockpile-live`. Reproducing an older candidate requires its original source/payload checkout.
 
 ## Python runtime modules
 
 | Module | Responsibility |
 | --- | --- |
-| syx_mcp.py | Snapshot/domain models, freshness/cache, Advisor and eighteen tool registrations; stdio entry point. |
+| syx_mcp.py | Snapshot/domain models, freshness/cache, Advisor and nineteen tool registrations; stdio entry point. |
 | syx_query.py | Fixed snapshot selection language, joins/arithmetic/grouping/sort, shared work/row/source budgets and collection diagnostics. |
 | syx_live.py | Strict entity selections, live/capture wire transport and agent-facing schema/help. |
 | syx_capture.py | Immutable encoded retained entity/tile/regional observations in separate bounded pools, server-local tokens, shared paging/freshness guards and original provenance. |
+| syx_stockpiles.py | Strict warehouse/resource schema, wire encoding and response identity/projection/predicate/cursor/error/size validation; shared guarded live transport. |
 | syx_regions.py | Strict regional live/capture selections/wire, shared guarded transport and response matrix/projection/identity/completeness/cap checks. |
 | syx_tiles.py | Strict live/capture tile selection schemas, fixed mailbox and same-response context checks; captures must fit one callback. |
 | syx_knowledge.py | Reviewed SEEDS, non-destructive corpus merge and knowledge CLI. Search/ranking lives in Advisor in syx_mcp.py. |

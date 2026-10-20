@@ -1,6 +1,6 @@
 # Per-warehouse live query candidate
 
-This is **developer-only**, outside `mod/src/main/java`, with no player dispatch, mailbox or MCP tool. The current playable ZIP and its predecessor remain unchanged. [Validation](STOCKPILE_LIVE_CANDIDATE_VALIDATION.json) establishes compilation against the paired licensed 0.71.44 JAR, detached protocol checks and two narrow room-lookup readers; its scope excludes runtime collector correctness and release acceptance. The separate [native candidate check](STOCKPILE_LIVE_NATIVE_VALIDATION.json) now establishes finite getter/page/filter parity described below, with player integration still pending.
+The historical draft below is **developer-only**, outside `mod/src/main/java`, with no player dispatch, mailbox or MCP tool. The draft checkpoint retained its then-current playable ZIP and predecessor. A later production mapping now exists separately: see [the current live reads](STOCKPILE_LIVE_READS.md). Historical candidate evidence below keeps its original source/JAR scope. [Validation](STOCKPILE_LIVE_CANDIDATE_VALIDATION.json) establishes compilation against the paired licensed 0.71.44 JAR, detached protocol checks and two narrow room-lookup readers; its scope excludes runtime collector correctness and release acceptance. The separate [native candidate check](STOCKPILE_LIVE_NATIVE_VALIDATION.json) now establishes finite getter/page/filter parity described below, with player integration still pending.
 
 ## Intended selective access
 
@@ -16,7 +16,7 @@ The paired declaration catalog and source anchors establish public `RoomsMap.max
 
 The candidate and unchanged production sources compile together at Java release 16. The standalone harness accepts seven representative frames, refuses 41 malformed/oversized/unknown inputs, and checks 150 signed-int comparisons including minimum/maximum boundaries. It covers duplicate keys/IDs/projections, Unicode resource keys with embedded newlines, invalid UTF-8/base64, UTF-16 length parity, noncanonical integers/UUIDs, framing, deadlines and fixed selection bounds. JVM initialization logs are checked for absence of GAME and SETT initialization; no collector or native fixture runs.
 
-Reproduce with licensed files, without a provider key:
+The commands below reproduce the historical candidate from a separate checkout of `8da6798`, with licensed files and no provider key. The legacy verifiers refuse the current production checkout to avoid shadowing the packaged reader or relabeling its evidence. Use STOCKPILE_LIVE_READS.md for current checks.
 
 ```sh
 .venv/bin/python dev/verify_stockpile_candidate.py \
@@ -43,7 +43,7 @@ xvfb-run -a -s '-screen 0 1280x960x24' .venv/bin/python dev/run_stockpile_candid
   --save runtime/smoke.save
 ```
 
-## Next acceptance work
+## Acceptance backlog recorded at this candidate checkpoint
 
 1. Extend the finite native parity above to multi-room ordering, removal/reuse, actual unsupported scene/lifecycle transitions, absent-city, per-cell exceptions and hard scan/row limits. Do not generalize the one-room result to complete logistics or all menus.
 2. Implement the strict Python selection/response validator and serialized 64 KiB all-or-error bound, then paired fixed mailboxes under the existing shared request lock. Never move game traversal onto the I/O thread. Verify actual MCP parity and corruption/refusal paths.

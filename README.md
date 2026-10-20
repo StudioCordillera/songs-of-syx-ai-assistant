@@ -1,6 +1,6 @@
 # Songs of Syx AI Assistant
 
-A local Java mod and MCP server for selective game observations, UI-aware questions and cited guidance. The current player build targets **Songs of Syx 0.71.44**. Core coverage is partial; provider/account expansion is deferred.
+A local Java mod and MCP server for selective game observations, UI-aware questions and cited guidance. The current player build targets **Songs of Syx 0.71.44**. Core coverage is partial; provider/account expansion is deferred. [Selective warehouse reads](STOCKPILE_LIVE_READS.md) add room/resource bookkeeping beyond cached prefixes through the read-only MCP tools.
 
 ## Play the tested build
 

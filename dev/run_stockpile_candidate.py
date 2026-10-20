@@ -60,6 +60,8 @@ if __name__ == '__main__':
     parser.add_argument('--candidate-dir', type=Path)
     parser.add_argument('--validation', type=Path)
     args = parser.parse_args()
+    if (ROOT/'mod/src/main/java/syx/assistant/StockpileReadRequest.java').exists():
+        parser.error('Historical detached fixture requires checkout 8da6798; current production uses dev/run_read_fixture.py --case stockpile-live. Refusing to shadow the current packaged reader.')
     with exclusive_fixture():
         run(args, scenario_override=CANDIDATE/'StockpileScenario.java',
             extra_sources=[CANDIDATE/'syx/assistant/StockpileReadRequest.java'], verifier=verify,

@@ -35,7 +35,7 @@ async def verify(directory):
     async with stdio_client(parameters) as streams:
         async with ClientSession(*streams) as session:
             await session.initialize()
-            listing=await session.list_tools();assert len(listing.tools)==18 and all(t.annotations.read_only_hint for t in listing.tools)
+            listing=await session.list_tools();assert len(listing.tools)==19 and all(t.annotations.read_only_hint for t in listing.tools)
             async def call(name,args,error=None):
                 result=await session.call_tool(name,args);text=next(c.text for c in result.content if c.type=='text')
                 if error:

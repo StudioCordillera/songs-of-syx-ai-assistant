@@ -1,0 +1,115 @@
+{
+  "passed": true,
+  "checked_at": "2026-10-20T15:55:32.865537+00:00",
+  "game_jar_sha256": "fe0137c05408e5ee9e31f06fc44fe37a5d4372d9c985b280f0852d1347c0224b",
+  "source_archive_sha256": "a3fc2aa9f4be31aec0616a5030a656ac49a6011343b7e91395c7bac0b9dfb0a5",
+  "catalog_sha256": "5b4b13770eb3251ce066e4f9cf57b5e6b1956687136b5be33a680b707a73b065",
+  "prior_tally_contract_review_sha256": "fb16db8a27038de97902155f91d84736fda4751aa01b3209328f3aa616dce893",
+  "source_files_sha256": {
+    "settlement/room/main/RoomsMap.java": "42262ac80e338eec40b159e4b9adb2148763af22f698654b1cc201dc2e0209fa",
+    "settlement/room/main/RoomBlueprintIns.java": "e75e0800cc9db4ecaa9926173ec51049f3a1163293705a564031d49658c6e8b8",
+    "snake2d/util/sets/LIST.java": "ea8ecb759b80f864a75331063a2697aa462f3577a167635f719c454e70224627",
+    "snake2d/util/sets/ArrayListResize.java": "12a02e4bd019e01a110e82124ad9ae50403a2ca9452d88508cdaa3f3b154f5c0"
+  },
+  "public_route_members": [
+    {
+      "id": "settlement.room.main.RoomsMap#getByIndex(int)",
+      "source_anchor": {
+        "source_file": "settlement/room/main/RoomsMap.java",
+        "line": 129,
+        "source_sha256": "42262ac80e338eec40b159e4b9adb2148763af22f698654b1cc201dc2e0209fa",
+        "has_javadoc": false
+      }
+    },
+    {
+      "id": "settlement.room.main.RoomsMap#max()",
+      "source_anchor": {
+        "source_file": "settlement/room/main/RoomsMap.java",
+        "line": 133,
+        "source_sha256": "42262ac80e338eec40b159e4b9adb2148763af22f698654b1cc201dc2e0209fa",
+        "has_javadoc": false
+      }
+    },
+    {
+      "id": "settlement.room.main.RoomBlueprintIns#all()",
+      "source_anchor": {
+        "source_file": "settlement/room/main/RoomBlueprintIns.java",
+        "line": 248,
+        "source_sha256": "e75e0800cc9db4ecaa9926173ec51049f3a1163293705a564031d49658c6e8b8",
+        "has_javadoc": false
+      }
+    },
+    {
+      "id": "snake2d.util.sets.LIST#get(int)",
+      "source_anchor": {
+        "source_file": "snake2d/util/sets/LIST.java",
+        "line": 19,
+        "source_sha256": "ea8ecb759b80f864a75331063a2697aa462f3577a167635f719c454e70224627",
+        "has_javadoc": true
+      }
+    },
+    {
+      "id": "snake2d.util.sets.ArrayListResize#get(int)",
+      "source_anchor": {
+        "source_file": "snake2d/util/sets/ArrayListResize.java",
+        "line": 63,
+        "source_sha256": "12a02e4bd019e01a110e82124ad9ae50403a2ca9452d88508cdaa3f3b154f5c0",
+        "has_javadoc": false
+      }
+    },
+    {
+      "id": "snake2d.util.sets.ArrayListResize#size()",
+      "source_anchor": {
+        "source_file": "snake2d/util/sets/ArrayListResize.java",
+        "line": 211,
+        "source_sha256": "12a02e4bd019e01a110e82124ad9ae50403a2ca9452d88508cdaa3f3b154f5c0",
+        "has_javadoc": false
+      }
+    }
+  ],
+  "checks": [
+    {
+      "owner": "settlement.room.main.RoomsMap",
+      "signature": "public settlement.room.main.Room getByIndex(int);",
+      "normalized_disassembly_sha256": "003e16ac00c9f3d5a32784cbfb2cb182fae6dddd858fe2c66e1e825e48b3edb6",
+      "checked_scope": "Full selected accessor body: expected primitive/array reads, no calls/direct writes/allocations/backward branches."
+    },
+    {
+      "owner": "settlement.room.main.RoomsMap",
+      "signature": "public int max();",
+      "normalized_disassembly_sha256": "4ab526343024c3a6f3d78bdd74f56ac39e2d1b9368a99949956e8aa2ab35efb5",
+      "checked_scope": "Full selected accessor body: expected primitive/array reads, no calls/direct writes/allocations/backward branches."
+    },
+    {
+      "owner": "settlement.room.main.RoomBlueprintIns",
+      "signature": "public final snake2d.util.sets.LIST<T> all();",
+      "normalized_disassembly_sha256": "d6003b2f8b2a443fe595e9e3d24beaa6e5ac25bef2e15f2c6665d84fb8a1f0b5",
+      "checked_scope": "Full selected accessor body: expected primitive/array reads, no calls/direct writes/allocations/backward branches."
+    },
+    {
+      "owner": "snake2d.util.sets.ArrayListResize",
+      "signature": "public int size();",
+      "normalized_disassembly_sha256": "a6d1da21f6147afdb2108fb26d19ba6795c9e5a7a5fbb886e4ec8309c95a234d",
+      "checked_scope": "Full selected accessor body: expected primitive/array reads, no calls/direct writes/allocations/backward branches."
+    },
+    {
+      "owner": "snake2d.util.sets.ArrayListResize",
+      "signature": "public E get(int);",
+      "normalized_disassembly_sha256": "ba73318328c92263a97188edd6170ac9e41ebbac6614639e539919d1ec334d12",
+      "checked_scope": "Valid indexed-read path only: size guard then stored array access, no call/write/allocation. Invalid-index path constructs and throws an exception; not claimed allocation-free."
+    }
+  ],
+  "verifier_source_sha256": "7ef56862c2d77f6ca1e73446f98c430865e2dbf4c8a0e3ed2ce883c0ff8a9955",
+  "conclusions": [
+    "The final typed warehouse blueprint inherits a final all() getter backed by its private final ArrayListResize instance list. Static inspection does not access that private field at runtime.",
+    "The production page indexes only nonnegative slots below the same-callback list size. Removal/reordering between pages remains possible; row IDs/anchors are observation-scoped.",
+    "Explicit IDs use public max() before getByIndex(), then require a current StockpileInstance with matching blueprint. Array slots can be reused; this is not durable identity.",
+    "The existing paired tally review establishes five integer-index stored-counter readers; this extension adds discovery/explicit lookup routes, not crate scratch handles or gameplay commands."
+  ],
+  "limits": [
+    "Shipped-source/binary reader verification, not separately documented stable official mod contracts or complete source/binary equivalence.",
+    "No game initialized or native/MCP acceptance added by this static verifier. See separately pinned STOCKPILE_LIVE_VALIDATION.json.",
+    "Valid ArrayListResize.get path is allocation-free; invalid-index exception construction is explicitly excluded from that claim.",
+    "No all-state/menu, permanent identity, selection inference, large-world cost, actual cap/fault or counter-age guarantee."
+  ]
+}

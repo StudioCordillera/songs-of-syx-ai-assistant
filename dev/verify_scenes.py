@@ -29,10 +29,10 @@ async def unavailable_city_data_mcp(directory):
                 denied=await session.call_tool('select_game_state',{'spec':{'queries':[{'source':{'domain':domain,'path':path},'aggregates':{'n':{'op':'count'}}}]}})
                 assert denied.is_error and 'observation is unavailable' in next(c.text for c in denied.content if c.type=='text')
 
-def verify(directory:Path,timeout:float=260,on_demand:bool=False,tiles:bool=False,regional_live:bool=False):
+def verify(directory:Path,timeout:float=260,on_demand:bool=False,tiles:bool=False,regional_live:bool=False,stockpile_live:bool=False):
     advisor=Advisor(directory/'snapshot.json',directory/'corpus.json')
     required={'city','settlement_battle','city_restored','battle_deployment','battle_menu','city_reloaded','world_generation','terrain_generated'}
-    checks={};sessions={};began=time.monotonic();known_regional=None
+    checks={};sessions={};began=time.monotonic();known_regional=None;known_stockpile=None
     while time.monotonic()-began<timeout:
         try:
             phase=json.loads((directory/'phase.json').read_text());name=phase['phase']
@@ -188,8 +188,24 @@ def verify(directory:Path,timeout:float=260,on_demand:bool=False,tiles:bool=Fals
                     assert live['data']['rows'][0]['region_id']==known_regional[0]
                     assert live['data']['rows'][0]['resource_id']==known_regional[1]
                     regional_available=True
+            stockpile_available=None
+            if stockpile_live:
+                from syx_stockpiles import query_stockpiles
+                if name=='city':known_stockpile=stockpiles.data['stockpile_bookkeeping']['rows'][0]['resource_id']
+                assert known_stockpile is not None
+                spec={'resource_ids':[known_stockpile],'fields':['stored_raw'],'limit':1,'expected_session_id':snapshot.session_id}
+                if name in {'world_generation','terrain_generated'} or scene['settlement_scene_kind']=='battlefield':
+                    try:query_stockpiles(advisor,spec)
+                    except ValueError as error:assert 'No completed instantiated campaign city' in str(error),error
+                    else:raise AssertionError('Unsupported scene must reject city warehouse reads')
+                    stockpile_available=False
+                else:
+                    live=query_stockpiles(advisor,spec)
+                    assert live['scene']['settlement_scene_kind']=='city'
+                    assert live['ui_context']['active_view']==context['active_view']
+                    stockpile_available=True
             checks[name]={'passed':True,'world_list_panel_coverage':lists['coverage'],'view':context['active_view'],'scene_kind':scene['settlement_scene_kind'],
-                          'on_demand_read_available':read_available,'tile_read_available':tile_available,'ground_moisture_read_available':tile_available,'regional_live_read_available':regional_available,
+                          'on_demand_read_available':read_available,'tile_read_available':tile_available,'ground_moisture_read_available':tile_available,'regional_live_read_available':regional_available,'stockpile_live_read_available':stockpile_available,
                           'city_trade_pipeline_coverage':city_trade.data['settlement_pipeline']['coverage'] if city_trade.data else 'unavailable',
                           'world_population_coverage':regional.coverage,
                           'regional_output_coverage':regional.data['regional_output_bookkeeping']['coverage'] if regional.data else 'unavailable',

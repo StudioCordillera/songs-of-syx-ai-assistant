@@ -21,7 +21,7 @@ syx-chat = "syx_chat_service:main"
 syx-chatgpt-login = "syx_openai_auth:main"
 
 [tool.setuptools]
-py-modules = ["syx_mcp", "syx_knowledge", "syx_query", "syx_api_support", "syx_api_manifest", "syx_live", "syx_capture", "syx_tiles", "syx_regions", "syx_chat_store", "syx_deepseek", "syx_chat", "syx_chat_service", "syx_claude", "syx_claude_worker", "syx_openai_auth", "syx_openai_plan"]
+py-modules = ["syx_mcp", "syx_knowledge", "syx_query", "syx_api_support", "syx_api_manifest", "syx_live", "syx_capture", "syx_tiles", "syx_regions", "syx_stockpiles", "syx_chat_store", "syx_deepseek", "syx_chat", "syx_chat_service", "syx_claude", "syx_claude_worker", "syx_openai_auth", "syx_openai_plan"]
 
 [tool.pytest.ini_options]
 testpaths = ["."]

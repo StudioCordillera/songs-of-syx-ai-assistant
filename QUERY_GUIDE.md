@@ -178,7 +178,7 @@ This observes a recorded assignment. It does not prove the person is currently w
 
 ## Reference retrieval checks
 
-The reviewed starter corpus has nine original summaries. Run `PYTHONPATH="$PWD" .venv/bin/python dev/verify_guidance.py --state-dir runtime/guidance-check` to exercise eleven authored questions through actual MCP without a game or model call. The result records citation IDs/URLs and compatibility labels, including an unrelated no-match query and current-version community logistics queries. Search output reports total matches and truncation while retaining complete citation records within 64 KiB. This is lexical retrieval, so rephrase with relevant game terms when appropriate; no-result does not prove a mechanic does not exist.
+The reviewed starter corpus has thirteen original summaries. Run `PYTHONPATH="$PWD" .venv/bin/python dev/verify_guidance.py --state-dir runtime/guidance-check` to exercise thirty-seven authored questions through actual MCP without a game or model call. The result records citation IDs/URLs and compatibility labels, including an unrelated no-match query and current-version community logistics queries. Search output reports total matches and truncation while retaining complete citation records within 64 KiB. This is lexical retrieval, so rephrase with relevant game terms when appropriate; no-result does not prove a mechanic does not exist.
 
 ## Per-room current recipes and recorded quantities — development checkpoint
 
@@ -305,3 +305,7 @@ Use `capture_live_regional_outputs` and `read_regional_output_capture` when a se
 ## Cached camera context
 
 `get_game_ui_context` and same-observation context expressions include `cached_viewport`. [The example](viewport-context-query-example.json) projects the full camera observation, preserving null/unavailable. Read CACHED_VIEWPORT.md for map-pixel/internal-UI/tile units and source/visibility/cache-age limits. Campaign-world bounds cannot be used as settlement/battlefield tile-query coordinates. Inspect returned state.scene/session/timestamp, clip explicitly to matching map bounds, and treat any later live map read as a separate observation. Geometry does not identify a hovered tile, selected room, complete rendered census or durable area identity.
+
+## Select per-warehouse bookkeeping
+
+Use `query_live_stockpiles` after `game_status` and `game_query_help`. The [authored example](stockpile-live-query-example.json) selects assigned-capacity-positive GRAIN rows with stored/capacity/reserved counters and installed help references. Use actual installed resource keys; omitted `room_ids` discovers current warehouse slots, while explicit current IDs must bind warehouses. Follow next_cursor even for empty filtered pages. See [bounds, signed raw values, reservation meanings and separate-observation identity](STOCKPILE_LIVE_READS.md). Never silently join to an older cached room or call these values free goods, deliveries or selected rooms.

@@ -53,6 +53,8 @@ def verify(game, jdk, catalog_path):
             assert record['source_match'] == 'unique_signature_anchor'
             source = record['source_candidates'][0]
             assert hashlib.sha256(z.read(source['source_file'])).hexdigest() == source['source_sha256']
+    if (ROOT / 'mod/src/main/java/syx/assistant/StockpileReadRequest.java').exists():
+        raise ValueError('Historical detached checker requires its pre-production checkout (8da6798); current production uses dev/review_stockpile_live_contract.py and dev/run_read_fixture.py --case stockpile-live')
     production = sorted((ROOT / 'mod/src/main/java').rglob('*.java'))
     candidates = sorted((ROOT / 'dev/candidates/stockpiles/syx/assistant').rglob('*.java'))
     assert len(candidates) == 2 and not any(p.name == 'StockpileReadRequest.java' for p in production)

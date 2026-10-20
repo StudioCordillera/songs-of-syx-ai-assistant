@@ -4,12 +4,13 @@
   "source_archive_sha256": "a3fc2aa9f4be31aec0616a5030a656ac49a6011343b7e91395c7bac0b9dfb0a5",
   "method": "Java compiler attribution of production mod references; source anchors match declaring type/name/arity, not method body equivalence",
   "mod_source_sha256": {
-    "syx/assistant/AssistantScript.java": "82fa2395aa96e7ae9cee612b32171fb495ca289dc7f99269c1ad7a2d417cca55",
+    "syx/assistant/AssistantScript.java": "c2b8ed68350d4a274315b16dc9ff1c6828a51516777c1ef4a45b84acc6d8b092",
     "syx/assistant/ChatPanel.java": "06db6b7715f9187a40a0b4b987ab7f64e09df5f9dc07193e261249302d1ac12f",
     "syx/assistant/EntityReadRequest.java": "e2d13aee21f399e8718382d5b43d5a6c85e5d78d2708d8105b9f1ecfe730edf8",
     "syx/assistant/JsonWriter.java": "c525eb60d3224cab83ed3fd6b8594ec8652211f00bd947e873e1482f919e81dc",
     "syx/assistant/RegionalReadRequest.java": "4d1da800e6f2ecf6b036f188693ac1095329321bc569c82f34be9918768ef2b3",
     "syx/assistant/StateCollector.java": "58b6f25bb21493da7ce6a9770d2068ee86f9419e1d3aff5cf83e56a0a532dcdf",
+    "syx/assistant/StockpileReadRequest.java": "589ab0087808dbc973aa7726829c3260c609e043baac080824538c44ed5df360",
     "syx/assistant/TileReadRequest.java": "5daf3cc3abc0cb849f654e09efadb3d0263b73d4e5e220e97671ea1c4a40bde6",
     "syx/assistant/UiContentCollector.java": "c0d20c7f9f2734a0bb625427875f06bfcd07edb20611248b39b6e8f480ef5a48",
     "syx/assistant/UiContextCollector.java": "0f67200fdcf2740f4d3d4b1751ea0bf143613b20a44afb77af0ebb0ae8078937"
@@ -101,7 +102,7 @@
       "public": true,
       "source_file": "game/GAME.java",
       "uses": [
-        "AssistantScript.java:71"
+        "AssistantScript.java:74"
       ],
       "parameter_types": [
         "snake2d.util.misc.ACTION"
@@ -191,6 +192,7 @@
         "EntityReadRequest.java:172",
         "RegionalReadRequest.java:116",
         "StateCollector.java:444",
+        "StockpileReadRequest.java:116",
         "TileReadRequest.java:61"
       ],
       "parameter_types": [],
@@ -291,15 +293,18 @@
       "public": true,
       "source_file": "game/VERSION.java",
       "uses": [
-        "AssistantScript.java:156",
-        "AssistantScript.java:164",
-        "AssistantScript.java:172",
+        "AssistantScript.java:173",
+        "AssistantScript.java:181",
+        "AssistantScript.java:189",
+        "AssistantScript.java:196",
         "AssistantScript.java:29",
         "EntityReadRequest.java:106",
         "EntityReadRequest.java:171",
         "RegionalReadRequest.java:115",
         "RegionalReadRequest.java:69",
         "StateCollector.java:444",
+        "StockpileReadRequest.java:116",
+        "StockpileReadRequest.java:77",
         "TileReadRequest.java:60"
       ],
       "parameter_types": [],
@@ -1835,7 +1840,9 @@
       "public": true,
       "source_file": "init/resources/RESOURCE.java",
       "uses": [
-        "StateCollector.java:180"
+        "StateCollector.java:180",
+        "StockpileReadRequest.java:105",
+        "StockpileReadRequest.java:87"
       ],
       "parameter_types": [],
       "compiler_generated_enum": false,
@@ -1877,6 +1884,8 @@
         "StateCollector.java:462",
         "StateCollector.java:488",
         "StateCollector.java:552",
+        "StockpileReadRequest.java:86",
+        "StockpileReadRequest.java:87",
         "TileReadRequest.java:113",
         "TileReadRequest.java:82"
       ],
@@ -1970,7 +1979,11 @@
         "StateCollector.java:424",
         "StateCollector.java:462",
         "StateCollector.java:484",
-        "StateCollector.java:552"
+        "StateCollector.java:552",
+        "StockpileReadRequest.java:121",
+        "StockpileReadRequest.java:84",
+        "StockpileReadRequest.java:86",
+        "StockpileReadRequest.java:87"
       ],
       "parameter_types": [],
       "compiler_generated_enum": false,
@@ -2886,6 +2899,7 @@
         "StateCollector.java:171",
         "StateCollector.java:265",
         "StateCollector.java:394",
+        "StockpileReadRequest.java:82",
         "UiContextCollector.java:34"
       ],
       "parameter_types": [],
@@ -3076,6 +3090,9 @@
         "StateCollector.java:43",
         "StateCollector.java:463",
         "StateCollector.java:464",
+        "StockpileReadRequest.java:90",
+        "StockpileReadRequest.java:92",
+        "StockpileReadRequest.java:93",
         "TileReadRequest.java:107",
         "TileReadRequest.java:78",
         "UiContextCollector.java:181"
@@ -3186,6 +3203,7 @@
         "StateCollector.java:171",
         "StateCollector.java:265",
         "StateCollector.java:394",
+        "StockpileReadRequest.java:82",
         "UiContextCollector.java:34"
       ],
       "parameter_types": [],
@@ -3219,6 +3237,7 @@
         "StateCollector.java:265",
         "StateCollector.java:394",
         "StateCollector.java:645",
+        "StockpileReadRequest.java:82",
         "TileReadRequest.java:67",
         "UiContextCollector.java:33",
         "UiContextCollector.java:34",
@@ -3708,7 +3727,8 @@
       "uses": [
         "StateCollector.java:176",
         "StateCollector.java:463",
-        "StateCollector.java:464"
+        "StateCollector.java:464",
+        "StockpileReadRequest.java:99"
       ],
       "parameter_types": [],
       "compiler_generated_enum": false,
@@ -3734,7 +3754,8 @@
       "source_file": "settlement/room/infra/stockpile/StockpileTally.java",
       "uses": [
         "StateCollector.java:184",
-        "StateCollector.java:463"
+        "StateCollector.java:463",
+        "StockpileReadRequest.java:107"
       ],
       "parameter_types": [],
       "compiler_generated_enum": false,
@@ -3759,7 +3780,8 @@
       "public": true,
       "source_file": "settlement/room/infra/stockpile/StockpileTally.java",
       "uses": [
-        "StateCollector.java:185"
+        "StateCollector.java:185",
+        "StockpileReadRequest.java:108"
       ],
       "parameter_types": [],
       "compiler_generated_enum": false,
@@ -3784,7 +3806,8 @@
       "public": true,
       "source_file": "settlement/room/infra/stockpile/StockpileTally.java",
       "uses": [
-        "StateCollector.java:184"
+        "StateCollector.java:184",
+        "StockpileReadRequest.java:107"
       ],
       "parameter_types": [],
       "compiler_generated_enum": false,
@@ -3810,7 +3833,8 @@
       "source_file": "settlement/room/infra/stockpile/StockpileTally.java",
       "uses": [
         "StateCollector.java:185",
-        "StateCollector.java:464"
+        "StateCollector.java:464",
+        "StockpileReadRequest.java:108"
       ],
       "parameter_types": [],
       "compiler_generated_enum": false,
@@ -3835,7 +3859,8 @@
       "public": true,
       "source_file": "settlement/room/infra/stockpile/StockpileTally.java",
       "uses": [
-        "StateCollector.java:186"
+        "StateCollector.java:186",
+        "StockpileReadRequest.java:109"
       ],
       "parameter_types": [],
       "compiler_generated_enum": false,
@@ -3845,6 +3870,39 @@
           "line": 45,
           "source_sha256": "7f13631fcd05d9b5360c3fe0c9c6cb8655040a492d60dd7775276c84c5422455",
           "parameter_types": [],
+          "has_javadoc": false
+        }
+      ],
+      "source_match": "name_arity_and_simple_parameter_types",
+      "documentation_status": "human_review_required; Javadoc presence alone does not establish a stable mod contract"
+    },
+    {
+      "id": "settlement.room.infra.stockpile.StockpileTally.TallyData#get(int,settlement.room.infra.stockpile.StockpileInstance)",
+      "owner": "settlement.room.infra.stockpile.StockpileTally.TallyData",
+      "name": "get",
+      "kind": "METHOD",
+      "signature": "get(int,settlement.room.infra.stockpile.StockpileInstance)",
+      "public": true,
+      "source_file": "settlement/room/infra/stockpile/StockpileTally.java",
+      "uses": [
+        "StockpileReadRequest.java:107",
+        "StockpileReadRequest.java:108",
+        "StockpileReadRequest.java:109"
+      ],
+      "parameter_types": [
+        "int",
+        "settlement.room.infra.stockpile.StockpileInstance"
+      ],
+      "compiler_generated_enum": false,
+      "arity": 2,
+      "source_candidates": [
+        {
+          "line": 175,
+          "source_sha256": "7f13631fcd05d9b5360c3fe0c9c6cb8655040a492d60dd7775276c84c5422455",
+          "parameter_types": [
+            "int",
+            "StockpileInstance"
+          ],
           "has_javadoc": false
         }
       ],
@@ -3923,7 +3981,8 @@
       "uses": [
         "StateCollector.java:176",
         "StateCollector.java:463",
-        "StateCollector.java:464"
+        "StateCollector.java:464",
+        "StockpileReadRequest.java:90"
       ],
       "parameter_types": [],
       "compiler_generated_enum": false,
@@ -4001,6 +4060,8 @@
       "public": true,
       "source_file": "settlement/room/main/ROOMS.java",
       "uses": [
+        "StockpileReadRequest.java:92",
+        "StockpileReadRequest.java:93",
         "TileReadRequest.java:107",
         "TileReadRequest.java:78"
       ],
@@ -4059,6 +4120,7 @@
       "source_file": "settlement/room/main/Room.java",
       "uses": [
         "StateCollector.java:74",
+        "StockpileReadRequest.java:94",
         "TileReadRequest.java:108",
         "TileReadRequest.java:80"
       ],
@@ -4093,6 +4155,7 @@
         "StateCollector.java:251",
         "StateCollector.java:255",
         "StateCollector.java:74",
+        "StockpileReadRequest.java:111",
         "TileReadRequest.java:108"
       ],
       "parameter_types": [],
@@ -4222,6 +4285,8 @@
         "StateCollector.java:47",
         "StateCollector.java:74",
         "StateCollector.java:79",
+        "StockpileReadRequest.java:111",
+        "StockpileReadRequest.java:121",
         "TileReadRequest.java:108",
         "TileReadRequest.java:80",
         "UiContextCollector.java:182",
@@ -4278,7 +4343,8 @@
       "uses": [
         "StateCollector.java:134",
         "StateCollector.java:202",
-        "StateCollector.java:244"
+        "StateCollector.java:244",
+        "StockpileReadRequest.java:90"
       ],
       "parameter_types": [],
       "compiler_generated_enum": false,
@@ -4330,7 +4396,8 @@
       "source_file": "settlement/room/main/RoomInstance.java",
       "uses": [
         "StateCollector.java:147",
-        "StateCollector.java:252"
+        "StateCollector.java:252",
+        "StockpileReadRequest.java:104"
       ],
       "parameter_types": [],
       "compiler_generated_enum": false,
@@ -4408,7 +4475,8 @@
       "uses": [
         "StateCollector.java:145",
         "StateCollector.java:147",
-        "StateCollector.java:75"
+        "StateCollector.java:75",
+        "StockpileReadRequest.java:112"
       ],
       "parameter_types": [],
       "compiler_generated_enum": false,
@@ -4435,7 +4503,8 @@
       "uses": [
         "StateCollector.java:145",
         "StateCollector.java:147",
-        "StateCollector.java:75"
+        "StateCollector.java:75",
+        "StockpileReadRequest.java:112"
       ],
       "parameter_types": [],
       "compiler_generated_enum": false,
@@ -4503,6 +4572,60 @@
             "int",
             "int"
           ],
+          "has_javadoc": false
+        }
+      ],
+      "source_match": "name_arity_and_simple_parameter_types",
+      "documentation_status": "human_review_required; Javadoc presence alone does not establish a stable mod contract"
+    },
+    {
+      "id": "settlement.room.main.RoomsMap#getByIndex(int)",
+      "owner": "settlement.room.main.RoomsMap",
+      "name": "getByIndex",
+      "kind": "METHOD",
+      "signature": "getByIndex(int)",
+      "public": true,
+      "source_file": "settlement/room/main/RoomsMap.java",
+      "uses": [
+        "StockpileReadRequest.java:93"
+      ],
+      "parameter_types": [
+        "int"
+      ],
+      "compiler_generated_enum": false,
+      "arity": 1,
+      "source_candidates": [
+        {
+          "line": 129,
+          "source_sha256": "42262ac80e338eec40b159e4b9adb2148763af22f698654b1cc201dc2e0209fa",
+          "parameter_types": [
+            "int"
+          ],
+          "has_javadoc": false
+        }
+      ],
+      "source_match": "name_arity_and_simple_parameter_types",
+      "documentation_status": "human_review_required; Javadoc presence alone does not establish a stable mod contract"
+    },
+    {
+      "id": "settlement.room.main.RoomsMap#max()",
+      "owner": "settlement.room.main.RoomsMap",
+      "name": "max",
+      "kind": "METHOD",
+      "signature": "max()",
+      "public": true,
+      "source_file": "settlement/room/main/RoomsMap.java",
+      "uses": [
+        "StockpileReadRequest.java:92"
+      ],
+      "parameter_types": [],
+      "compiler_generated_enum": false,
+      "arity": 0,
+      "source_candidates": [
+        {
+          "line": 133,
+          "source_sha256": "42262ac80e338eec40b159e4b9adb2148763af22f698654b1cc201dc2e0209fa",
+          "parameter_types": [],
           "has_javadoc": false
         }
       ],
@@ -7090,6 +7213,35 @@
       "documentation_status": "human_review_required; Javadoc presence alone does not establish a stable mod contract"
     },
     {
+      "id": "snake2d.util.sets.LIST#get(int)",
+      "owner": "snake2d.util.sets.LIST",
+      "name": "get",
+      "kind": "METHOD",
+      "signature": "get(int)",
+      "public": true,
+      "source_file": "snake2d/util/sets/LIST.java",
+      "uses": [
+        "StockpileReadRequest.java:103"
+      ],
+      "parameter_types": [
+        "int"
+      ],
+      "compiler_generated_enum": false,
+      "arity": 1,
+      "source_candidates": [
+        {
+          "line": 19,
+          "source_sha256": "ea8ecb759b80f864a75331063a2697aa462f3577a167635f719c454e70224627",
+          "parameter_types": [
+            "int"
+          ],
+          "has_javadoc": true
+        }
+      ],
+      "source_match": "name_arity_and_simple_parameter_types",
+      "documentation_status": "human_review_required; Javadoc presence alone does not establish a stable mod contract"
+    },
+    {
       "id": "snake2d.util.sets.LIST#size()",
       "owner": "snake2d.util.sets.LIST",
       "name": "size",
@@ -7112,7 +7264,11 @@
         "StateCollector.java:399",
         "StateCollector.java:403",
         "StateCollector.java:424",
-        "StateCollector.java:425"
+        "StateCollector.java:425",
+        "StockpileReadRequest.java:121",
+        "StockpileReadRequest.java:84",
+        "StockpileReadRequest.java:87",
+        "StockpileReadRequest.java:97"
       ],
       "parameter_types": [],
       "compiler_generated_enum": false,
@@ -9857,6 +10013,7 @@
         "StateCollector.java:265",
         "StateCollector.java:296",
         "StateCollector.java:648",
+        "StockpileReadRequest.java:82",
         "UiContextCollector.java:32",
         "UiContextCollector.java:42",
         "UiContextCollector.java:73",
@@ -9994,6 +10151,7 @@
         "StateCollector.java:265",
         "StateCollector.java:296",
         "StateCollector.java:648",
+        "StockpileReadRequest.java:82",
         "UiContextCollector.java:35",
         "UiContextCollector.java:42",
         "UiContextCollector.java:73",

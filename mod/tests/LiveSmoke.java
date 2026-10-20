@@ -89,6 +89,10 @@ public final class LiveSmoke {
                                         FactionUiScenario.install(Paths.get(System.getProperty("syx.assistant.stateDir")));
                                         return;
                                     }
+                                    if (Boolean.getBoolean("syx.smoke.stockpileLive")) {
+                                        StockpileLiveScenario.install(Paths.get(System.getProperty("syx.assistant.stateDir")),Paths.get(args[0]));
+                                        return;
+                                    }
                                     if (Boolean.getBoolean("syx.smoke.stockpile")) {
                                         StockpileScenario.install(Paths.get(System.getProperty("syx.assistant.stateDir")));
                                         return;

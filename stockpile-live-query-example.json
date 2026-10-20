@@ -1,0 +1,6 @@
+{
+  "resource_ids": ["GRAIN"],
+  "fields": ["stored_raw", "capacity_raw", "reserved_stored_raw", "reference_id"],
+  "filters": [{"field": "capacity_raw", "op": "gt", "value": 0}],
+  "limit": 25
+}

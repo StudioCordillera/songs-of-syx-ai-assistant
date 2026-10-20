@@ -51,6 +51,9 @@ public final class AssistantScript implements SCRIPT {
         final AtomicReference<RegionalReadRequest> regionalRequest=new AtomicReference<>();
         final AtomicReference<Map<String,Object>> regionalResponse=new AtomicReference<>();
         String lastRegionalRequestText;
+        final AtomicReference<StockpileReadRequest> stockpileRequest=new AtomicReference<>();
+        final AtomicReference<Map<String,Object>> stockpileResponse=new AtomicReference<>();
+        String lastStockpileRequestText;
         String lastTileRequestText;
         String lastRequestText;
         final ScheduledExecutorService io;
@@ -83,6 +86,8 @@ public final class AssistantScript implements SCRIPT {
             if(tiles!=null)tileResponse.set(tiles.collect(session));
             RegionalReadRequest regional=regionalRequest.getAndSet(null);
             if(regional!=null)regionalResponse.set(regional.collect(session));
+            StockpileReadRequest stockpile=stockpileRequest.getAndSet(null);
+            if(stockpile!=null)stockpileResponse.set(stockpile.collect(session));
             long now = System.nanoTime();
             if (now-lastCapture < 2_000_000_000L) return;
             lastCapture = now;
@@ -132,6 +137,18 @@ public final class AssistantScript implements SCRIPT {
                 lastRegionalRequestText=text;regionalRequest.set(RegionalReadRequest.parse(text));
             } catch(Exception error){System.err.println("Syx assistant regional request: "+error);}
         }
+        private void pollStockpileRequest() {
+            Path file=dir.resolve("stockpile-request.txt");
+            try {
+                if(!Files.isRegularFile(file,LinkOption.NOFOLLOW_LINKS))return;
+                byte[] raw;
+                try(java.io.InputStream input=Files.newInputStream(file)){raw=input.readNBytes(8193);}
+                if(raw.length>8192)throw new IOException("Stockpile request exceeds 8 KiB");
+                String text=new String(raw,StandardCharsets.UTF_8);
+                if(text.equals(lastStockpileRequestText))return;
+                lastStockpileRequestText=text;stockpileRequest.set(StockpileReadRequest.parse(text));
+            } catch(Exception error){System.err.println("Syx assistant stockpile request: "+error);}
+        }
         private void pollChat() {
             try {
                 Path file=dir.resolve("chat-ui.txt");
@@ -149,7 +166,7 @@ public final class AssistantScript implements SCRIPT {
             }catch(Exception error){System.err.println("Syx assistant chat IPC failed");}
         }
         private synchronized void flush() {
-            if(!closed){pollReadRequest();pollTileRequest();pollRegionalRequest();if(Boolean.parseBoolean(System.getProperty("syx.assistant.chat","true")))pollChat();}
+            if(!closed){pollReadRequest();pollTileRequest();pollRegionalRequest();pollStockpileRequest();if(Boolean.parseBoolean(System.getProperty("syx.assistant.chat","true")))pollChat();}
             Map<String,Object> tiles=tileResponse.getAndSet(null);
             if(tiles!=null)try {
                 if(JsonWriter.encode(tiles).getBytes(StandardCharsets.UTF_8).length>65536)
@@ -173,6 +190,13 @@ public final class AssistantScript implements SCRIPT {
                         "captured_at",java.time.Instant.now().toString(),"available",false,"reason","Regional response exceeds read mode byte budget; narrow fields or rows","data",null);
                 writeDto("regional-response",region,cap);
             } catch(Exception error){System.err.println("Syx assistant regional response: "+error);}
+            Map<String,Object> stockpile=stockpileResponse.getAndSet(null);
+            if(stockpile!=null)try {
+                if(JsonWriter.encode(stockpile).getBytes(StandardCharsets.UTF_8).length>65536)
+                    stockpile=StateCollector.object("request_id",stockpile.get("request_id"),"session_id",session,"game_version",VERSION.VERSION_STRING,
+                        "captured_at",java.time.Instant.now().toString(),"available",false,"reason","Stockpile response exceeds 64 KiB; narrow fields or rows","data",null);
+                writeDto("stockpile-response",stockpile,65536);
+            } catch(Exception error){System.err.println("Syx assistant stockpile response: "+error);}
             Map<String,Object> dto = pending.getAndSet(null);
             if (dto == null) return;
             try { writeDto("snapshot",dto,16*1024*1024); }
@@ -181,7 +205,7 @@ public final class AssistantScript implements SCRIPT {
         synchronized void close() {
             if (closed) return;
             closed = true;
-            readRequest.set(null);readResponse.set(null);tileRequest.set(null);tileResponse.set(null);regionalRequest.set(null);regionalResponse.set(null);
+            readRequest.set(null);readResponse.set(null);tileRequest.set(null);tileResponse.set(null);regionalRequest.set(null);regionalResponse.set(null);stockpileRequest.set(null);stockpileResponse.set(null);
             pending.set(StateCollector.envelope(session, ++sequence, false));
             flush(); io.shutdown();
         }

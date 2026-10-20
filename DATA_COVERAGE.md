@@ -5,7 +5,7 @@ This is a routing inventory of the current adapter, not a complete game schema. 
 | Domain | Main snapshot query paths | Established content | Principal remaining gap |
 | --- | --- | --- | --- |
 | population | `/total`, `/by_race_class` | Scene counts by race/class | Growth factors, complete histories and individual attributes |
-| resources | `/stockpiles`, `/stockpile_bookkeeping/rows`, `/field_definitions` | Bounded global city assigned-crate, stored/capacity and stored/incoming-reservation counters; distinct mixed-logistics owned quantities | Per-room/crate relationships, transit/ground goods, exact tally age and effective reachability |
+| resources | `/stockpiles`, `/stockpile_bookkeeping/rows`, `/field_definitions` | Bounded global city assigned-crate, stored/capacity and stored/incoming-reservation counters; distinct mixed-logistics owned quantities | Crate relationships, transit/ground goods, exact tally age and effective reachability |
 | production | `/resources`, `/room_data/flows` | Campaign ledger plus bounded current scene recipe inputs/outputs, stored quantities and producer-room degradation | Production modifiers, bucket alignment, retained observations and forecasts |
 | employment | `/rooms`, `/field_definitions` | Bounded room identity, workforce counts/targets and stored work/travel/fetch/combined factors; shared room-instance key | Jobs/history, exact factor age and complete production modifiers |
 | services | `/statistics`, `/room_data/rooms`, `/access_policy`, `/field_definitions` | Aggregate stats, per-room raw service points and configured race/class permission flags, linked to staffing/population/help | Daily capacity, demand, effective individual access/reachability, full provider types and explanations |
@@ -78,3 +78,7 @@ Regional outputs additionally support complete bounded retained selections throu
 The optional `ground_moisture` tile projection exposes separate quantized base/current fractions from public stored maps. It does not export MOISTURE_TOT, precipitation, fertility or crop/pasture yield. Bounds, instantiated scene/session, per-field availability and original live/captured time remain explicit; see [GROUND_MOISTURE.md](GROUND_MOISTURE.md).
 
 Cached viewport geometry is additionally available in same-observation UI context, outside the eighteen data domains. Four active-window routes export primitive cache rectangles/zoom/map bounds with explicit city/battlefield/world scene provenance, null/unavailable guards and unknown age/visibility. CACHED_VIEWPORT.md and VIEWPORT_VALIDATION.json retain the getter/MCP limits; this is not a hovered/selected object or a complete visible-tile census.
+
+## Live warehouse/resource selections
+
+`query_live_stockpiles` supplies per-room raw stored/capacity/reservation/crate counters independently of cached room prefixes. Explicit IDs or typed warehouse-slot discovery, exact resource keys, fixed AND predicates/projections and bounded mutable pages are described in STOCKPILE_LIVE_READS.md. This is a separate observation; room IDs can be reused, slots can reorder, and zero capacity/inactive stored values are not missing data. The cached resources domain above still contains global totals. No crate handle, all-logistics census, UI-selected room, exact counter age or multi-page transaction is established.

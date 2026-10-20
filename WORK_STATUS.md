@@ -2,7 +2,19 @@
 
 Use `python3 dev/collaboration_status.py` for actual remote/local state at every run; this file is a handoff, not a live branch/working-tree assertion. Read AGENTS.md and reconcile newer collaborator work before editing.
 
-## Per-warehouse candidate — finite native getter and protocol follow-up
+## Per-warehouse MCP bookkeeping — promoted source-matched checkpoint
+
+STOCKPILE_LIVE_READS.md / STOCKPILE_LIVE_CONTRACT_REVIEW.json / STOCKPILE_LIVE_VALIDATION.json establish query_live_stockpiles through fixed public update-thread counters, detached bounded mailboxes and strict Python validation. Select explicit current room IDs or discover current warehouse slots independently of cached prefixes, exact resource keys, counter projections, four AND predicates and active filtering. Raw zero/signed values, reservations, reused IDs, separate page observations and cell-error-qualified absence remain explicit. No crate scratch handle, private reflection, game action, selected-room inference or permanent identity is introduced. The compiler inventory is 397 public/zero non-public references, 396 source matches plus one generated enum; eight members have their own Javadoc. These are source-verified members, not separately documented stable game contracts.
+
+The exact build passes 580 offline tests, two actual Pro turns, seven core groups, automatic connection/focus/background, eleven viewport phases, retained tile/entity/regional checks, small-city collection cost and fresh extracted client/dependency/startup/install/key exclusion. New actual MCP evidence matches 42 direct-getter cells across fourteen pages/nine empty filtered pages, projections/predicates/zero capacity/refusals, three concurrent transport callers and eight actual city/tactical/battle/menu/reload/setup phases. Source discovery samples sixteen supported capabilities, two gaps and 28 member anchors; all 37 guide cases pass against the unchanged thirteen-source starter corpus without an external-source refresh. No multi-room/cap/fault, native byte-overflow, large-world/FPS or exhaustive state/menu claim is made.
+
+The promoted latest ZIP SHA is 026cd35e5d61fc996300e61c48a15e615d08ac7723f855c252cf5dfaa6604273; current JAR is 12d3494064f969dead59e1c471cf2f7aef81ac626d6eff2b4435476b6f9c10a9. The true prior tested ZIP is retained with SHA 00abcf04ef1f840077c0b32e0ed9fb84c9d9315108f1d9ca8f78fd68559c05a6. Upgrade/restart the paired mod/helper. Historical candidate reports retain their earlier source/JAR scopes; legacy detached runners now refuse current production to avoid shadowing the packaged reader and require original checkout 8da6798. No normal profile/save, credentials, mute/display preferences or private untracked player log is changed.
+
+A local tool-free Opus 5.5/high focused critique attempt returned no final text within our 180-second window; the task-owned process is terminated and its PID confirmed absent. CLAUDE_UX_COLLABORATION.json records this incomplete outcome, not a completed review or provider credit/model gate. No credits purchased, limit bypass or retry. Independent acceptance above remains the evidence. No competing collaborator diff was discarded.
+
+The complete API/lifecycle/reference objective remains active. Next: multi-room/removal/reuse, real scan/row/byte and registry/cell faults, representative larger settlements, additional public variable routes and current-version reference coverage. Selected room/tab hierarchy, full tooltip/menu identity and immediate main-menu unload remain unestablished; preserve the 30-second freshness limitation. Native chips/drag/resize/unread and gameplay execution remain unshipped; provider/account expansion stays deferred.
+
+## Prior per-warehouse candidate — finite native getter and protocol follow-up
 
 STOCKPILE_LIVE_NATIVE_VALIDATION.json pins thirteen copied-city cases: 72 candidate requests, 8,170 public resource-overload counter comparisons, exact projection/identity and AND predicates, observed zero capacity, fourteen small pages plus nine empty filtered pages, explicit IDs/refusals, expired/cross-session requests, immediate inactive bookkeeping/restoration and actual world-view access to underlying city counters. Two controlled public scope-flag refusals are not actual battle/setup transitions. All work executes in the public after-update callback; there is no new player/MCP endpoint. The candidate remains outside production and the tested download stays source matched.
 
@@ -10,7 +22,7 @@ The combined frame/parse/collect/encode interval has 31 warm samples, median 0.4
 
 Next: strict Python selection/response validation, fixed mailboxes with 64 KiB all-or-error encoding, actual MCP parity/corruption and multi-room/cap/fault/lifecycle cases, then reviewed production integration and source-matched release gates. No remote collaborator diff is discarded; preserve the private untracked player log. The full API/lifecycle/reference coverage objective remains active.
 
-## Per-warehouse live query — detached candidate checkpoint
+## Prior per-warehouse live query — detached candidate checkpoint
 
 STOCKPILE_LIVE_CANDIDATE.md / STOCKPILE_LIVE_CANDIDATE_VALIDATION.json record a new unregistered Java candidate outside production. It sketches explicit-room or current warehouse-slot discovery, resource projection, fixed signed-int predicates, active filtering and bounded matrix paging independent of cached prefixes. Compilation against the paired 0.71.44 game JAR succeeds; seven accepted/41 rejected wire frames and 150 comparison checks run without GAME/SETT initialization. Public RoomsMap max/getByIndex source/bytecode readers are pinned; IDs are reusable slots, not permanent identities. No new player/MCP endpoint or runtime counter/cursor/scene/cost acceptance is claimed. The existing stockpile native evidence keeps its older source scope.
 

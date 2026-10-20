@@ -6,7 +6,7 @@ ROOT=Path(__file__).parent
 
 def test_game_source_stays_in_mod_namespace_without_bypass():
     sources=list((ROOT/'mod/src/main/java').rglob('*.java'))
-    assert {p.name for p in sources}=={'AssistantScript.java','StateCollector.java','JsonWriter.java','UiContextCollector.java','EntityReadRequest.java','UiContentCollector.java','TileReadRequest.java','ChatPanel.java','RegionalReadRequest.java'}
+    assert {p.name for p in sources}=={'AssistantScript.java','StateCollector.java','JsonWriter.java','UiContextCollector.java','EntityReadRequest.java','UiContentCollector.java','TileReadRequest.java','ChatPanel.java','RegionalReadRequest.java','StockpileReadRequest.java'}
     forbidden=['java.lang.reflect','setAccessible(','trySetAccessible(', 'org.lwjgl',
                '.click(','.hover(','.kill(','.speedSet(','.attackMelee(',
                '.setIndustry(','.updateRoom(','.incDay(','.productionData(',

@@ -24,7 +24,8 @@ from game_fixture_lock import exclusive_fixture
 from native_game_completion import require_clean_game_log
 from run_player_chat_check import native_environment
 
-CASES={'chat-visibility':('chatVisibility','verify_chat_visibility.py','chat-visibility-validation.json'),
+CASES={'stockpile-live':('stockpileLive','verify_live_stockpiles.py','stockpile-live-validation.json'),
+       'chat-visibility':('chatVisibility','verify_chat_visibility.py','chat-visibility-validation.json'),
        'chat-background':('chatBackground','verify_chat_background.py','chat-background-validation.json'),
        'viewport':('viewport','verify_viewport.py','viewport-validation.json'),
        'ground-moisture':('groundMoisture','verify_ground_moisture.py','ground-moisture-validation.json'),
