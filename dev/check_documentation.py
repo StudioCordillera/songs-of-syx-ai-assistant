@@ -48,6 +48,7 @@ def scope(path):
     if name=='CHAT_TARGET_DISPATCH.md':return 'Developer dispatch seam, cancellation/restart/unknown-delivery contract and remaining integration gates'
     if name=='CHAT_HISTORY_CANDIDATE_VALIDATION.json':return 'Developer-only SQLite receipt/filter/migration and actual bundled-store compatibility tests; not production badge/world-routing acceptance'
     if name=='HOUSING_BOUNDARY_REVIEW.json':return 'Unregistered housing selected source/public-reader/budget review; mutating routes excluded, no native/player acceptance'
+    if name=='HOUSING_CHAMBER_VALIDATION.json':return 'Developer-only constructed empty/occupied chamber, restored assignment/removal and actual scan/row bounds; unchanged player'
     if name=='HOUSING_CANDIDATE_VALIDATION.json':return 'Unregistered housing: 32 ordinary-home/roster/ledger samples; native noble, budget/fault/lifecycle and MCP integration remain open'
     if name=='WEATHER_VALIDATION.json':return 'Production weather getter/DTO/MCP and eight actual live scene checks; exact source/JAR and bounded scope'
     if name=='WEATHER_CONTRACT_REVIEW.json':return 'Production weather public attribution/selected source-bytecode and detached checks; not stable documented contracts'

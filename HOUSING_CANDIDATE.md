@@ -32,6 +32,16 @@ There are **zero noble chambers in the fixture**. That branch has source/compile
 
 The locked disposable host requires exact game/source pairing, candidate/static-review source hashes, explicit clean completion, zero exit, known crash-marker checks, copied-mod restoration and supplied copied-save integrity. No provider request or normal-profile/save change occurs. The existing public `hCoo` scratch coordinate is immediately compared/copied inside the fixture; no engine object crosses to a DTO. Raw resident IDs, coordinates and other game rows stay in private runtime state, not this public report.
 
+## Constructed chamber and actual bounds follow-up
+
+[HOUSING_CHAMBER_VALIDATION.json](HOUSING_CHAMBER_VALIDATION.json) adds a separate finite native check of the unchanged candidate. A public furnishing/temporary-area/constructor path creates one real empty six-by-seven chamber in the isolated copied city. Empty count/capacity/roster, service coordinates, isolation and type provenance agree with direct getters; ordinary cohort ledgers stay unchanged. One actual row-limit case and three scan prefixes (including immediately before/after the chamber slot) match the full candidate rows and completeness diagnostics.
+
+The copied city has no existing noble; an initial attempt requiring one failed and is excluded from acceptance. The final fixture deliberately constructs one new subject and promotes it using public `Humanoid.nobleSet`. It checks actual registered entity/type/noble/occupancy eligibility, assigns that test noble through the public `STATS.HOME().GETTER.set` route, verifies the occupied count/resident ID and recorded service-coordinate relationship, and restores its prior null assignment in `finally`. After chamber removal, the 36 original home rows and ordinary cohort ledgers match their baseline. No existing person is promoted or reassigned. This is controlled assignment evidence, not natural housing behavior, employment/staffing validation or proof that every noble configuration works.
+
+Source review also found that `Noble.subject()` can clear a stale stored ID. It is excluded from the candidate reader; public visibility alone does not establish observation safety. The fixture's construction, promotion and assignment are deliberate test-only mutations, separate from the reader. The new test noble remains in memory until process exit; population/AI/nobility/statistics/cache/tile/path/maintenance state is not claimed fully rolled back. No save is written. Explicit clean completion, zero exit, known crash-marker checks, copied-mod restoration and copied-save integrity pass.
+
+The original 32-sample report above remains unchanged and still has zero native chamber examples. This separate report closes one empty and one controlled occupied chamber case plus removal and small actual budget cases. Missing-resident/invalid-isolation/getter failures, roster truncation, maximum registry/row/byte budgets, live time and battle/setup/reload remain unvalidated. Production/MCP/player payloads remain unchanged.
+
 ## Reproduce and next gates
 
 Use the licensed game/source, copied `runtime/smoke.save`, isolated `runtime/smoke-home`, full JDK and compatible game Java described in CONTRIBUTING.md:
@@ -45,4 +55,14 @@ xvfb-run -a -s '-screen 0 1280x960x24' .venv/bin/python dev/run_housing_candidat
   --java '/path/to/game-compatible/java' --save runtime/smoke.save
 ```
 
-The wrapper uses the shared device fixture lock and explicit legacy scenario/ready-file override; it does not shadow a production housing reader. Before mapping through MCP: validate a real chamber, budget/fault/truncation and lifecycle cases; establish precise field definitions/diagnostics and consistent relationship/selection semantics; then integrate and run source-matched player release gates. Effective per-person eligibility, full furnishing/quality, permanent identities, UI-selected homes and complete game-variable/menu/reference coverage remain unestablished.
+The wrapper uses the shared device fixture lock and explicit legacy scenario/ready-file override; it does not shadow a production housing reader. Before mapping through MCP: extend chamber configurations, budget/fault/truncation and lifecycle cases; establish precise field definitions/diagnostics and consistent relationship/selection semantics; then integrate and run source-matched player release gates. Effective per-person eligibility, full furnishing/quality, permanent identities, UI-selected homes and complete game-variable/menu/reference coverage remain unestablished.
+
+Run the separate chamber follow-up with the same licensed/copy/JDK/Java arguments:
+
+```sh
+xvfb-run -a -s '-screen 0 1280x960x24' .venv/bin/python dev/run_housing_chamber.py \
+  --game-dir '/path/to/Songs of Syx' --jdk-home '/path/to/full-jdk' \
+  --java '/path/to/game-compatible/java' --save runtime/smoke.save
+```
+
+This explicit developer runner creates/promotes/assigns only in the disposable process and does not expose those operations through MCP.

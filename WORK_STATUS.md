@@ -2,6 +2,14 @@
 
 Use `python3 dev/collaboration_status.py` for actual remote/local state at every run; this file is a handoff, not a live branch/working-tree assertion. Read AGENTS.md and reconcile newer collaborator work before editing.
 
+## Housing chamber / real bounds follow-up — player unchanged
+
+HOUSING_CHAMBER_VALIDATION.json / HOUSING_CANDIDATE.md add actual empty and controlled occupied chamber acceptance for the unchanged unregistered candidate. The locked copied-city fixture creates one real chamber through public furnishing/constructor APIs; a freshly constructed subject is promoted through public nobleSet, assigned with the StatsHome setter, checked for resolved count/roster/recorded coordinates, and restored to its prior null home in finally. No existing person is promoted or reassigned. Chamber removal restores the original 36 home rows and ordinary cohort ledgers. One actual row cap and three exact scan prefixes match full rows/completeness. No player/MCP/action integration occurs.
+
+The initial attempt requiring an existing noble failed because this fixture has none and is excluded from acceptance. Noble.subject() was found to normalize stale IDs and is excluded from observer use. Test-only setup changes population/AI/nobility/statistics/tile/cache state; the fresh noble remains until process exit, and no full in-memory rollback is claimed. Explicit clean completion, zero exit, known crash-marker checks, copied-mod restoration and supplied copied-save integrity pass. No inference/key use or normal-profile change. The current player and true predecessor remain unchanged. ROADMAP's stale production-reference count is corrected to 413; old evidence keeps its original scope.
+
+Next: remaining native roster/fault/cap/lifecycle cases, schema/diagnostic/query semantics and reviewed production integration, alongside wider variable/context/reference work. Real chamber construction/assignment is only a disposable test route, never a gameplay tool. The earlier zero-chamber report below is retained as historical evidence; no competing collaborator work was discarded.
+
 ## Housing source/native candidate — player unchanged
 
 HOUSING_CANDIDATE.md / HOUSING_BOUNDARY_REVIEW.json / HOUSING_CANDIDATE_VALIDATION.json establish an unregistered fixed home/ordinary-cohort-ledger reader outside the player. It scans bounded room slots for known ordinary/noble types, copies scalar/provenance data and capped assigned/resolved rosters, and keeps room/roster failures and truncation explicit. Ordinary group-null totals sum eligibility-weighted ledgers, not unique physical beds. Resource/use/search/policy-bit routes with cache, light, queue or normalization effects are excluded; no eligibility or gameplay action is exposed.

@@ -26,6 +26,8 @@ Only these production classes are packaged. `mod/tests/` contains non-shipped bo
 
 The historical pre-production per-warehouse request draft lives under `dev/candidates/stockpiles/`; [candidate scope and next gates](STOCKPILE_LIVE_CANDIDATE.md) distinguish it from the eleven packaged classes. `dev/verify_stockpile_candidate.py` compiles it and checks detached parsing plus paired public room-lookup bodies without starting the game. `dev/run_stockpile_candidate.py` separately executes bounded direct-getter/page/filter/refusal checks in the isolated copied city through an explicit test-only scenario override; it does not dispatch candidate requests through the player or MCP. The new production path is documented in STOCKPILE_LIVE_READS.md and tested with `dev/run_read_fixture.py --case stockpile-live`. Reproducing an older candidate requires its original source/payload checkout.
 
+The unchanged housing candidate also has a separate real-chamber/bounds runner: `dev/run_housing_chamber.py` and `dev/candidates/housing-chamber/StockpileScenario.java`. [HOUSING_CHAMBER_VALIDATION.json](HOUSING_CHAMBER_VALIDATION.json) records one created empty chamber, one controlled occupied assignment using a new test-only promoted noble, restored null home/removal, and actual scan/row limits. Its public mutations belong only in the disposable fixture; there is no production action or new MCP field.
+
 ## Python runtime modules
 
 | Module | Responsibility |
