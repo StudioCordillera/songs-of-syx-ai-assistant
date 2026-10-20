@@ -132,5 +132,54 @@
     "credits_purchased": false,
     "edited_decisions": "CHAT_TARGET_CANDIDATE.md",
     "final_source_evidence": "CHAT_TARGET_CANDIDATE_VALIDATION.json"
-  }
+  },
+  "target_transport_reviews": [
+    {
+      "requested_alias": "opus",
+      "effort": "high",
+      "observed_models": [
+        "claude-opus-5-5"
+      ],
+      "tools": [],
+      "exit_code": 1,
+      "subtype": "success",
+      "is_error": true,
+      "duration_ms": 171547,
+      "num_turns": 4,
+      "input_prompt_sha256": "878f81d59a7f23f3fbf9d2abce2f55f05de4d1d381a28ec41cc5dc3fcf984d5c",
+      "final_public_text_sha256": "26383c41d7ea27486fd50af401c4768f7bc527e75ef8dc7fdcb0a4746059d956",
+      "isolated_checkout_base": "36b3d91e58c684ad267cd6554e87b920df1c9c07",
+      "input_working_tree_base": "7a20520acc50714a8da456af109308e74c8a95f1",
+      "credits_purchased": false,
+      "account_limits_bypassed": false,
+      "outcome": "Own configured 4096-output-token response budget exceeded; no usable critique returned. Not a quota/model gate.",
+      "configured_output_tokens": 4096
+    },
+    {
+      "requested_alias": "opus",
+      "effort": "high",
+      "observed_models": [
+        "claude-opus-5-5"
+      ],
+      "tools": [],
+      "exit_code": 0,
+      "subtype": "success",
+      "is_error": false,
+      "duration_ms": 31540,
+      "num_turns": 1,
+      "input_prompt_sha256": "1923a434482811faddd53a3215a93e554519f4cde3da814144d9cf7dd1fb49cb",
+      "final_public_text_sha256": "9e9e5cd378023aa21a6e4504508d6cd3d860ba8a2e048f8f2d79b28c39a0ec93",
+      "isolated_checkout_base": "36b3d91e58c684ad267cd6554e87b920df1c9c07",
+      "input_working_tree_base": "7a20520acc50714a8da456af109308e74c8a95f1",
+      "credits_purchased": false,
+      "account_limits_bypassed": false,
+      "outcome": "Completed focused cancellation/draft/byte-boundary peer critique; follow-up changes independently tested.",
+      "configured_output_tokens": 8192,
+      "edited_decisions": "CHAT_TARGET_TRANSPORT.md",
+      "final_followup_source_reviewed_by_claude": false,
+      "reviewed_source_sha256": {
+        "dev/chat_target_transport.py": "6b480f4142fb1efdfb3a8374d87dee160fb5ab1fc7f4e19ef4f6a681bc6343b7"
+      }
+    }
+  ]
 }

@@ -79,3 +79,5 @@ Official references consulted for invocation: [model configuration](https://code
 ## Typed target evidence follow-up
 
 [CHAT_TARGET_CANDIDATE.md](CHAT_TARGET_CANDIDATE.md) begins UX-06 with per-chat immutable capture-page previews and all-or-nothing runtime/version/scene/hash validation before preparing evidence. It reuses the production retained-read semantics without new game APIs. This developer-only same-process adapter does not yet connect native chips, coordinator/MCP transport or durable sends. Reference passages and broader target kinds remain explicit future work.
+
+The later [target transport candidate](CHAT_TARGET_TRANSPORT.md) now stages/revalidates the same bounded evidence through an actual caller-owned MCP session using existing fixed readers. Real stdio tests use synthetic game rows; native target selection, durable accepted-turn data and queue acknowledgement remain next.

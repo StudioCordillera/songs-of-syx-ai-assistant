@@ -49,5 +49,6 @@
     "Drafts survive failed preparation; shared capture pools may independently expire/evict/invalidate backing tokens.",
     "Retention hint is measured at staging, not current liveness; no automatic recapture.",
     "No picker/native chip/send dispatch/durable turn integration/reference passage/action authority."
-  ]
+  ],
+  "subsequent_transport_validation": "CHAT_TARGET_TRANSPORT_VALIDATION.json"
 }

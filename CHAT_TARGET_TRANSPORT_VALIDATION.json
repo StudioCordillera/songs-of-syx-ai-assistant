@@ -1,0 +1,119 @@
+{
+  "passed": true,
+  "validated_at": "2026-10-20T09:14:11.202115+00:00",
+  "stage": "Developer-only existing-MCP target transport; finite copied-city tile follow-up, no native picker or send integration",
+  "full_offline_tests": 451,
+  "added_offline_cases": 24,
+  "targeted_cases": 57,
+  "stdio_transport_cases": 23,
+  "source_sha256": {
+    "dev/chat_target_candidate.py": "8555b746c50be906c72499a1e9c8d60cb5f04e26800d98317c930abea0c0fd27",
+    "dev/chat_target_transport.py": "5b41b395ac26ca994f5727759b10e1871c79db4340a663abc7b1be6f32234c4b",
+    "dev/target_transport_fixture.py": "1c8be942466fd95660b0df6d06d78c8f287ec6081c20711a2060255a92834bde",
+    "test_chat_target_candidate.py": "5b1f55dab645aa907a0b8cb8d9674d3d551c58db9c155a8359f93f221c87a43a",
+    "test_chat_target_transport.py": "e0c6999dea14462d7eb7256eeb3d6591a3e7cc02977d0fb75b24dfe42e289d1a",
+    "dev/verify_tiles.py": "c29764792c90d0f0405bf9723e00d1a411e0e225a88b93abc636890454eee1b0",
+    "dev/run_read_fixture.py": "92d22b5b7f4ae6aff768a4dcafdbacb2e3ea94432c83475d7bf66ee3a4268349",
+    "syx_mcp.py": "6e57581936147e8f17f3716c4e71acd24fda4bb63ab6f594e9342587f3b998d5",
+    "syx_capture.py": "32778d9f5f217119ba45b114ba2a710bdd0ce4333efa672c31c690dcc3f3c3ec",
+    "syx_tiles.py": "c5ceea79fc5d4d80307ecf7fe429ca1f1f6ae64d17e95569d54625bf02c4d664",
+    "syx_regions.py": "96dd3355f50279c7c748d866019f889bd9889ef00c7cf97bf4fa582fede7ffb5"
+  },
+  "offline_log_sha256": "a19617b477588b420230d3dd0d530d621c66a4648fe3064fbe5df9f31b74a11c",
+  "native": {
+    "passed": true,
+    "game_version": "0.71.44",
+    "game_jar_sha256": "fe0137c05408e5ee9e31f06fc44fe37a5d4372d9c985b280f0852d1347c0224b",
+    "source_archive_sha256": "a3fc2aa9f4be31aec0616a5030a656ac49a6011343b7e91395c7bac0b9dfb0a5",
+    "mod_jar_sha256": "73b44c555a0f9e5e9d2497fee2ce6e6276052b8926117c776ebe1276a4a8cc22",
+    "executed_read_report_sha256": "b49e8ecd46aa29e1df599b8f77c02803b99b6a1deea0e0d9374dd8c2f9c0d4cf",
+    "scene_report_sha256": "ed0c4cb9b713379d4378722d278b37155a5b562d95917810274c238ac2213662",
+    "target_checks": {
+      "passed": true,
+      "scope": "Developer adapter over actual stdio MCP and copied-city retained tile reads",
+      "direct_public_getter_rows_matched": 2,
+      "changed_scene_refused": true,
+      "return_to_original_scene_recovers": true,
+      "evicted_original_token_refused": true,
+      "explicit_new_capture_selection_passed": true,
+      "failed_draft_preserved": true,
+      "stage_and_prepare_did_not_write_tile_request": true,
+      "native_player_picker_or_send_integration": false,
+      "inference_calls": 0,
+      "source_sha256": {
+        "dev/chat_target_candidate.py": "8555b746c50be906c72499a1e9c8d60cb5f04e26800d98317c930abea0c0fd27",
+        "dev/chat_target_transport.py": "5b41b395ac26ca994f5727759b10e1871c79db4340a663abc7b1be6f32234c4b",
+        "dev/verify_tiles.py": "c29764792c90d0f0405bf9723e00d1a411e0e225a88b93abc636890454eee1b0"
+      }
+    },
+    "game_exit_code": 0,
+    "copied_profile_mod_restored": true,
+    "copied_save_unchanged": true,
+    "known_engine_crash_markers_absent": true,
+    "actual_session_rotation_invalidates_token": true,
+    "existing_tile_and_scene_verifiers_completed": true,
+    "inference_calls": 0
+  },
+  "local_claude_reviews": [
+    {
+      "requested_alias": "opus",
+      "effort": "high",
+      "observed_models": [
+        "claude-opus-5-5"
+      ],
+      "tools": [],
+      "exit_code": 1,
+      "subtype": "success",
+      "is_error": true,
+      "duration_ms": 171547,
+      "num_turns": 4,
+      "input_prompt_sha256": "878f81d59a7f23f3fbf9d2abce2f55f05de4d1d381a28ec41cc5dc3fcf984d5c",
+      "final_public_text_sha256": "26383c41d7ea27486fd50af401c4768f7bc527e75ef8dc7fdcb0a4746059d956",
+      "isolated_checkout_base": "36b3d91e58c684ad267cd6554e87b920df1c9c07",
+      "input_working_tree_base": "7a20520acc50714a8da456af109308e74c8a95f1",
+      "credits_purchased": false,
+      "account_limits_bypassed": false,
+      "outcome": "Own configured 4096-output-token response budget exceeded; no usable critique returned. Not a quota/model gate.",
+      "configured_output_tokens": 4096
+    },
+    {
+      "requested_alias": "opus",
+      "effort": "high",
+      "observed_models": [
+        "claude-opus-5-5"
+      ],
+      "tools": [],
+      "exit_code": 0,
+      "subtype": "success",
+      "is_error": false,
+      "duration_ms": 31540,
+      "num_turns": 1,
+      "input_prompt_sha256": "1923a434482811faddd53a3215a93e554519f4cde3da814144d9cf7dd1fb49cb",
+      "final_public_text_sha256": "9e9e5cd378023aa21a6e4504508d6cd3d860ba8a2e048f8f2d79b28c39a0ec93",
+      "isolated_checkout_base": "36b3d91e58c684ad267cd6554e87b920df1c9c07",
+      "input_working_tree_base": "7a20520acc50714a8da456af109308e74c8a95f1",
+      "credits_purchased": false,
+      "account_limits_bypassed": false,
+      "outcome": "Completed focused cancellation/draft/byte-boundary peer critique; follow-up changes independently tested.",
+      "configured_output_tokens": 8192,
+      "edited_decisions": "CHAT_TARGET_TRANSPORT.md",
+      "final_followup_source_reviewed_by_claude": false,
+      "reviewed_source_sha256": {
+        "dev/chat_target_transport.py": "6b480f4142fb1efdfb3a8374d87dee160fb5ab1fc7f4e19ef4f6a681bc6343b7"
+      }
+    }
+  ],
+  "production_source_changed": false,
+  "player_bundles_changed": false,
+  "latest_zip_sha256": "309ee82d47af3e562706a661adcd9deb21a20906b023aca62da1de03767fe558",
+  "previous_zip_sha256": "832f3ad1a49e0c3f5933af7a0c530edaf471a8b6f03b9d4373cec80e1cd6df40",
+  "limits": [
+    "Actual stdio test server uses synthetic capture rows; only the separate copied-city tile adapter path has new native evidence.",
+    "No native picker/chips, durable enqueue/turn evidence, queue acknowledgement, provider inference or gameplay execution.",
+    "Response cap covers selected structured/text evidence after SDK parsing, not raw MCP frame memory or framing metadata.",
+    "No universal fixed JSON nesting depth limit; remote response parsing and canonical encoding convert RecursionErrors when raised.",
+    "Single caller-owned server/session; foreign/expired/evicted captures refuse, with no reconnect or recapture.",
+    "Original captures stay historical; recent status cannot detect every between-observation transition or freeze the game.",
+    "Copied-city two-row getter parity and finite scene/eviction recovery, not native entity/regional/all-menu/performance acceptance."
+  ]
+}

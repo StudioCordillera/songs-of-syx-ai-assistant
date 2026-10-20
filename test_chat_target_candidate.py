@@ -36,11 +36,18 @@ def save_state(advisor, state):
     advisor.snapshot_path.write_text(json.dumps(state))
 
 
-def test_typed_pages_keep_separate_original_provenance_and_unknowns(targets):
+def test_typed_pages_keep_separate_original_provenance_and_unknowns(targets, monkeypatch):
     drafts, tokens, advisor, state, payload, calls = targets
     chat = str(uuid4())
     for kind, token in tokens.items():
         drafts.stage(chat, kind, token)
+    original_metadata = drafts.pools['entity']._metadata
+    def aged(*args, **kwargs):
+        result = original_metadata(*args, **kwargs)
+        result['captured_age_seconds'] += 10
+        result['retention_remaining_seconds'] -= 5
+        return result
+    monkeypatch.setattr(drafts.pools['entity'], '_metadata', aged)
     state['tick'] = 99
     payload['data']['rows'][0]['tile_x'] = 999
     save_state(advisor, state)
@@ -270,3 +277,16 @@ def test_nonfinite_field_refuses_actionably_without_changing_evidence(targets):
     with pytest.raises(ValueError, match='non-finite.*narrow'):
         drafts.stage(str(uuid4()), 'entity', tokens['entity'])
     assert drafts._drafts == {} and tokens['entity'] in pool._captures
+
+
+def test_deep_encoding_handles_python_version_without_leaking_recursion_errors():
+    value = []
+    for _ in range(2000): value = [value]
+    # Python 3.14's encoder may handle this iteratively; older encoders can
+    # refuse. Both are valid, but raw RecursionError must never escape.
+    try:
+        raw = canonical(value)
+    except ValueError as error:
+        assert 'excessively nested' in str(error)
+    else:
+        assert raw == b'[' * 2001 + b']' * 2001

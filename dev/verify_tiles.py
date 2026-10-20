@@ -11,6 +11,8 @@ from mcp import ClientSession, StdioServerParameters
 from mcp.client.stdio import stdio_client
 from syx_mcp import Advisor
 from verify_scenes import verify as verify_scenes
+from dev.chat_target_transport import McpTargetDrafts
+from uuid import uuid4
 
 
 async def verify(directory):
@@ -125,6 +127,14 @@ async def verify(directory):
             first=await tool('read_tile_capture',{'capture_id':token,'limit':11,'include_ui_context':True})
             assert first['rows']==retained_rows[:11]
             assert first['captured_ui_context']['active_view']=='settlement'
+            target_wire=(directory/'tile-request.txt').read_bytes()
+            target_adapter=McpTargetDrafts(session);target_chat=str(uuid4())
+            target_item=await target_adapter.stage(target_chat,'tile',token,limit=2)
+            target_initial=await target_adapter.prepare(target_chat)
+            assert target_initial['attachments'][0]['rows']==retained_rows[:2]
+            assert target_item['capture']['request_id']==cap['request_id']
+            assert target_item['capture']['tick']==cap['tick']
+            assert (directory/'tile-request.txt').read_bytes()==target_wire
             (directory/'tile-capture-advance.request').write_text('test-only public view/speed change\n')
             began=time.monotonic()
             while time.monotonic()-began<30:
@@ -132,6 +142,10 @@ async def verify(directory):
                 if current.tick>cap['tick'] and current.scene['active_view']=='world':break
                 await asyncio.sleep(.2)
             else:raise AssertionError('Copied tile scene did not advance/change view')
+            try:await target_adapter.prepare(target_chat)
+            except ValueError as error:assert 'scene changed' in str(error),str(error)
+            else:raise AssertionError('Target preparation accepted changed native scene')
+            assert target_adapter.preview(target_chat)==[target_item]
             wire=(directory/'tile-request.txt').read_bytes();captured=[];offset=0;retained_pages=0
             while True:
                 page=await tool('read_tile_capture',{'capture_id':token,'offset':offset,'limit':11,'include_ui_context':True})
@@ -154,8 +168,22 @@ async def verify(directory):
                 if advisor.snapshot().scene['active_view']=='settlement':break
                 await asyncio.sleep(.2)
             else:raise AssertionError('Copied tile city was not restored')
+            assert (await target_adapter.prepare(target_chat))['attachments'][0]['rows']==retained_rows[:2]
             fresh=await tool('capture_live_tiles',{'spec':{'tile_bounds':[x,y,x+1,y+1],'fields':['ground_moisture']}})
-            tile_capture_report={'passed':True,'game_version':snapshot.game_version,'retained_rows':len(captured),
+            try:await target_adapter.prepare(target_chat)
+            except ValueError as error:assert 'unavailable' in str(error),str(error)
+            else:raise AssertionError('Target preparation accepted evicted native token')
+            assert target_adapter.preview(target_chat)==[target_item]
+            await target_adapter.remove(target_chat,target_item['attachment_id'])
+            replacement=await target_adapter.stage(target_chat,'tile',fresh['capture']['capture_id'])
+            assert (await target_adapter.prepare(target_chat))['attachments']==[replacement]
+            target_transport_report={'passed':True,'scope':'Developer adapter over actual stdio MCP and copied-city retained tile reads',
+                'direct_public_getter_rows_matched':2,'changed_scene_refused':True,'return_to_original_scene_recovers':True,
+                'evicted_original_token_refused':True,'explicit_new_capture_selection_passed':True,'failed_draft_preserved':True,'stage_and_prepare_did_not_write_tile_request':True,
+                'native_player_picker_or_send_integration':False,'inference_calls':0,
+                'source_sha256':{name:hashlib.sha256((root/name).read_bytes()).hexdigest() for name in
+                    ['dev/chat_target_candidate.py','dev/chat_target_transport.py','dev/verify_tiles.py']}}
+            tile_capture_report={'passed':True,'developer_target_transport':target_transport_report,'game_version':snapshot.game_version,'retained_rows':len(captured),
                 'retained_pages':retained_pages,'direct_public_getter_row_parity':True,'ground_moisture_live_and_retained_parity':True,'ground_moisture_retained_rows':100,'ground_moisture_retained_pages':10,'wide_100_row_tool_text_budget_refusal':True,'original_request_tick_time_scene_and_ui_preserved':True,
                 'active_simulation_and_view_change':True,'paging_did_not_write_game_request_mailbox':True,
                 'complete_empty_selection_scanned_tiles':4096,'incomplete_row_cap_rejected':True,'concurrent_pages':True,
