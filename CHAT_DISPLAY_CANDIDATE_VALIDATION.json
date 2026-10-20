@@ -22,5 +22,6 @@
     "Coverage VISIBLE is caller-established policy input, not a proven native occlusion/focus reader.",
     "One-paint complete-segment policy leaves partially visible/oversized replies unread.",
     "Finite external-writer cache and disposable SQLite tests, not general concurrency/performance acceptance."
-  ]
+  ],
+  "subsequent_encoding_cache_recheck": "CHAT_DISPLAY_REFRESH_VALIDATION.json"
 }

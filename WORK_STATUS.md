@@ -14,6 +14,8 @@ REFERENCE_FEED_RECHECK.json separately rechecks the existing V71 service-fetch/t
 
 BLUEPRINT_PLANNER_REVIEW.json pins selected author source at an immutable commit: README data is v70, MIT software terms do not establish game/layout rights, and selected conversions can omit metadata/unknown furniture or infer orientation. No upstream code/data/assets were imported, no example verified and no native importer/action shipped. These findings constrain future structured blueprint advice.
 
+CHAT_DISPLAY_REFRESH_VALIDATION.json adds a near-byte-cap synthetic follow-up and encoded-row cache optimization. Twelve 170000-byte answers produce unchanged-refresh median/max 0.157/0.245 ms after caching versus 3.111/5.065 ms before. The full 394-test suite passes again; production/bundles remain unchanged and older source/metric reports retain their scope. This is detached helper cost, not game/native/FPS acceptance.
+
 394 offline tests pass (38 new Python/Java cases, with pure Java segment policy exercised inside the cross-language case). The original 356-test player evidence and older receipt reports retain their original scopes. No remote overlapping work was found. Next: focused Claude follow-up after its advertised reset, native visibility/explicit-read policy and transport/layout integration; independent core/target/reference work continues. Preserve the user's private untracked test log.
 
 ## Automatic connection — current release checkpoint

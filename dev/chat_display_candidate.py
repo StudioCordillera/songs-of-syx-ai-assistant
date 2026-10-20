@@ -35,6 +35,7 @@ class DisplayBroker:
         self.store=store;self.history=HistoryCandidate(store);self.clock=clock
         self.epoch=identity(epoch or str(uuid4()));self.frames=OrderedDict();self.last=None
         self._cache_key=None;self._cache_value=None
+        self._encoded_rows=None;self._encoded_value=()
 
     def _prune(self):
         at=self.clock()
@@ -101,7 +102,10 @@ class DisplayBroker:
             header.append('chat_counts_complete='+str(len(chosen)<=self.ROW_CAP).lower())
             header.append('unread_chat_count='+str(len(counts)))
             for cid,count in chosen[:self.ROW_CAP]:header.append('chat_unread='+identity(cid)+'|'+str(count))
-        encoded=[('line='+base64.b64encode(text.encode()).decode('ascii'),item) for text,item in rows]
+        if rows is not self._encoded_rows:
+            self._encoded_value=tuple(('line='+base64.b64encode(text.encode()).decode('ascii'),item) for text,item in rows)
+            self._encoded_rows=rows
+        encoded=list(self._encoded_value)
         omitted=False
         while True:
             lines=list(header);events={}

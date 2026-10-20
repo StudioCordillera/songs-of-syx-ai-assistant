@@ -131,3 +131,5 @@ At handoff, update WORK_STATUS and the relevant current feature guides. Keep pre
 [REFERENCE_FEED_RECHECK.json](REFERENCE_FEED_RECHECK.json) records the independent official Steam API recheck of existing service guidance, including author/date/body-hash provenance and cached-archive/canonical-mapping limits. It does not add or refresh production summaries automatically.
 
 [BLUEPRINT_PLANNER_REVIEW.json](BLUEPRINT_PLANNER_REVIEW.json) pins selected upstream author software/license/version and lossy-conversion caveats. It extends [blueprint discovery](BLUEPRINT_REFERENCE_CANDIDATES.md) without importing code/assets or claiming a verified current-game schematic.
+
+[CHAT_DISPLAY_REFRESH_VALIDATION.json](CHAT_DISPLAY_REFRESH_VALIDATION.json) preserves synthetic before/after encoded-row cache timings and the subsequent 394-test exact-source recheck; original row-cost reports retain their prior source hashes.

@@ -1,0 +1,147 @@
+{
+  "passed": true,
+  "validated_at": "2026-10-20T07:16:22.672388+00:00",
+  "stage": "Developer-only detached unchanged-refresh encoding cache, not production UI performance",
+  "offline_tests": 394,
+  "near_byte_cap_before_encoding_cache": {
+    "passed": true,
+    "validated_at": "2026-10-20T07:15:15.406583+00:00",
+    "cases": [
+      {
+        "completed_turns": 12,
+        "reply_text_bytes": 170000,
+        "synthetic_event_rows": 24,
+        "wire_bytes": 227236,
+        "first_publish_ms": 12.655099,
+        "forced_changed_history_scan": {
+          "samples": 31,
+          "median_ms": 10.214748,
+          "max_ms": 11.446785
+        },
+        "unchanged_refresh": {
+          "samples": 31,
+          "median_ms": 3.111027,
+          "max_ms": 5.064866
+        },
+        "stable_issued_frame": true
+      }
+    ],
+    "source_sha256": {
+      "dev/measure_chat_display_candidate.py": "8b48290584fa9648e9eb36a0b3fecf106108f827b0eb4014b9ae1b16e6ba7f9e",
+      "dev/chat_display_candidate.py": "22d1d10174c6a48c99308d7357026ed627277c942c5682a3d36830c0a9e835f1",
+      "dev/chat_history_candidate.py": "9f2b6090854a507499a33ccc1c45f171d5822e58980c11048ecb6b42b9d8fc73",
+      "syx_chat_store.py": "a2f2ffa53097cb60eab72c015c3d516693aa1c89c8aa54d74f4dfc96d222e634"
+    },
+    "game_calls": 0,
+    "inference_calls": 0,
+    "limits": [
+      "Synthetic one-chat fixed texts in disposable SQLite, not representative real history/game or end-to-end latency.",
+      "First publish is not cold-OS-cache/JVM evidence; scan and unchanged timings describe only this host workload.",
+      "History mutation is simulated by forcing cache invalidation; real external-writer behavior has separate offline tests.",
+      "No production performance, UI repaint, worst-case arbitrary payload, concurrent-writer or FPS acceptance."
+    ]
+  },
+  "near_byte_cap_with_encoding_cache": {
+    "passed": true,
+    "validated_at": "2026-10-20T07:15:56.309294+00:00",
+    "cases": [
+      {
+        "completed_turns": 12,
+        "reply_text_bytes": 170000,
+        "synthetic_event_rows": 24,
+        "wire_bytes": 227236,
+        "first_publish_ms": 12.073149,
+        "forced_changed_history_scan": {
+          "samples": 31,
+          "median_ms": 9.651249,
+          "max_ms": 12.953739
+        },
+        "unchanged_refresh": {
+          "samples": 31,
+          "median_ms": 0.157293,
+          "max_ms": 0.244794
+        },
+        "stable_issued_frame": true
+      }
+    ],
+    "source_sha256": {
+      "dev/measure_chat_display_candidate.py": "8b48290584fa9648e9eb36a0b3fecf106108f827b0eb4014b9ae1b16e6ba7f9e",
+      "dev/chat_display_candidate.py": "06420a925971fdce74f62a5d9ad3bee156531033590bc1fabf4570339d8112d9",
+      "dev/chat_history_candidate.py": "9f2b6090854a507499a33ccc1c45f171d5822e58980c11048ecb6b42b9d8fc73",
+      "syx_chat_store.py": "a2f2ffa53097cb60eab72c015c3d516693aa1c89c8aa54d74f4dfc96d222e634"
+    },
+    "game_calls": 0,
+    "inference_calls": 0,
+    "limits": [
+      "Synthetic one-chat fixed texts in disposable SQLite, not representative real history/game or end-to-end latency.",
+      "First publish is not cold-OS-cache/JVM evidence; scan and unchanged timings describe only this host workload.",
+      "History mutation is simulated by forcing cache invalidation; real external-writer behavior has separate offline tests.",
+      "No production performance, UI repaint, worst-case arbitrary payload, concurrent-writer or FPS acceptance."
+    ]
+  },
+  "row_cap_with_encoding_cache": {
+    "passed": true,
+    "validated_at": "2026-10-20T07:15:59.953753+00:00",
+    "cases": [
+      {
+        "completed_turns": 100,
+        "reply_text_bytes": 23,
+        "synthetic_event_rows": 200,
+        "wire_bytes": 14246,
+        "first_publish_ms": 2.478495,
+        "forced_changed_history_scan": {
+          "samples": 31,
+          "median_ms": 1.50849,
+          "max_ms": 2.905419
+        },
+        "unchanged_refresh": {
+          "samples": 31,
+          "median_ms": 0.053213,
+          "max_ms": 0.129863
+        },
+        "stable_issued_frame": true
+      },
+      {
+        "completed_turns": 10000,
+        "reply_text_bytes": 23,
+        "synthetic_event_rows": 20000,
+        "wire_bytes": 14250,
+        "first_publish_ms": 69.760572,
+        "forced_changed_history_scan": {
+          "samples": 31,
+          "median_ms": 64.499634,
+          "max_ms": 71.101243
+        },
+        "unchanged_refresh": {
+          "samples": 31,
+          "median_ms": 0.066199,
+          "max_ms": 0.109784
+        },
+        "stable_issued_frame": true
+      }
+    ],
+    "source_sha256": {
+      "dev/measure_chat_display_candidate.py": "8b48290584fa9648e9eb36a0b3fecf106108f827b0eb4014b9ae1b16e6ba7f9e",
+      "dev/chat_display_candidate.py": "06420a925971fdce74f62a5d9ad3bee156531033590bc1fabf4570339d8112d9",
+      "dev/chat_history_candidate.py": "9f2b6090854a507499a33ccc1c45f171d5822e58980c11048ecb6b42b9d8fc73",
+      "syx_chat_store.py": "a2f2ffa53097cb60eab72c015c3d516693aa1c89c8aa54d74f4dfc96d222e634"
+    },
+    "game_calls": 0,
+    "inference_calls": 0,
+    "limits": [
+      "Synthetic one-chat fixed texts in disposable SQLite, not representative real history/game or end-to-end latency.",
+      "First publish is not cold-OS-cache/JVM evidence; scan and unchanged timings describe only this host workload.",
+      "History mutation is simulated by forcing cache invalidation; real external-writer behavior has separate offline tests.",
+      "No production performance, UI repaint, worst-case arbitrary payload, concurrent-writer or FPS acceptance."
+    ]
+  },
+  "implementation": "Reuse canonical encoded rows only for the same immutable cached row tuple; history changes rebuild it. Wire/session/frame trimming and TTL remain independent.",
+  "production_source_changed": false,
+  "player_bundles_changed": false,
+  "limits": [
+    "Separate sequential host workloads, not controlled hardware isolation or universal speedup.",
+    "Near-byte case has twelve 170000-byte ASCII answer texts (2040000 text bytes), not arbitrary worst-case payload or maximum simultaneous row-and-byte limits.",
+    "The same immutable display body/frame is preserved during each sampled unchanged interval. Existing cross-language/malformed/transaction/cache tests pass again.",
+    "No native rendering, physical input, gameplay, provider inference, normal history or concurrency acceptance."
+  ]
+}
