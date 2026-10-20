@@ -18,21 +18,27 @@ public final class SceneScenario {
     static Path output,save;
     static long began;
     static int phase;
+    static Runnable observer;
     static void announce(String name) {
         began=System.currentTimeMillis();
         try {Files.writeString(output.resolve("phase.json"),JsonWriter.encode(Map.of("phase",name,"index",phase,"started_at",Instant.now().toString())));}
         catch(Exception e){throw new IllegalStateException(e);}
         System.err.println("SCENE TEST "+phase+": "+name);
     }
-    public static void install(Path directory,Path copiedSave) {
-        output=directory;save=copiedSave;
+    public static void install(Path directory,Path copiedSave) {install(directory,copiedSave,null);}
+    /** Test-only callback retained across the fixture's real game reload/setup transitions. */
+    public static void install(Path directory,Path copiedSave,Runnable afterUpdateObserver) {
+        observer=afterUpdateObserver;output=directory;save=copiedSave;
         try {Files.createDirectories(output);}catch(Exception e){throw new IllegalStateException(e);}
         VIEW.s().activate();GAME.SPEED.speedSet(0);phase=0;announce("city");register();
     }
     static void register() {
         GAME.addAfterUpdate(()->{
-            if(System.currentTimeMillis()-began<8000)return;
-            try {next();}catch(Exception e){System.err.println("SCENE TEST FAILURE: "+e);CORE.annihilate(e);}
+            try {
+                if(observer!=null)observer.run();
+                if(System.currentTimeMillis()-began<8000)return;
+                next();
+            }catch(Exception e){System.err.println("SCENE TEST FAILURE: "+e);CORE.annihilate(e);}
         });
     }
     static DivGeneration division(String name) {
@@ -77,7 +83,7 @@ public final class SceneScenario {
                 WORLD.MINIMAP().repaint();WORLD.GEN().hasGeneratedTerrain=true;
                 init.sprite.SPRITES.loader().minify(false,"");
                 announce("terrain_generated");return;
-            case 10: announce("complete");CORE.annihilate();return;
+            case 10: announce("complete");if(observer!=null)observer.run();CORE.annihilate();return;
             default:throw new IllegalStateException("Unexpected scene fixture phase "+phase);
         }
     }

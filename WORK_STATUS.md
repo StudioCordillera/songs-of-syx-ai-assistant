@@ -2,6 +2,16 @@
 
 Use `python3 dev/collaboration_status.py` for actual remote/local state at every run; this file is a handoff, not a live branch/working-tree assertion. Read AGENTS.md and reconcile newer collaborator work before editing.
 
+## Weather lifecycle/normalization follow-up — candidate and player unchanged
+
+WEATHER_SCENE_VALIDATION.json checks the unchanged candidate across eight actual existing scene phases: city/tactical/city return, generated battle deployment/menu, copied-city reload and initial/terrain setup. Four city phases match 56 direct getter values with same-callback tick metadata; battle/setup refuse with null data. The existing actual production MCP scene suite checks context/session rotation and other read-only tables separately; weather is still not a player/MCP field.
+
+Seven fixed inherited wind-setter controls normalize NaN/infinities/out-of-range/zero/one inputs into valid zero/one, with unrelated factors/flags unchanged and prior wind restored bit-exactly inside each callback/finally. This rules out that attempted public NaN injection route; it does not prove native nonfinite-reader refusal. An initial incorrect fault assumption was rejected, then a source-filename reporting error interrupted a second run after scene checks. Both are excluded from acceptance. Preflight now validates all pinned source paths. No private injection or game action endpoint is added.
+
+The shared SceneScenario has an optional own-test observer retained across reload/setup, preserving its original null-observer entry point. The host passes the validated copied-save path through one fixed property, and the candidate validates it again. Explicit clean completion, zero exit, known crash-marker checks, copied-mod restoration and supplied copied-save integrity are required; battle generation can write its own disposable fixture saves. All 580 offline tests and current doc/release checks pass after this follow-up; normal saves, credentials, audio/display settings, the private user log and latest/previous tested payloads stay preserved.
+
+Next: integrate the reviewed weather DTO/field definitions/discovery and same-observation selective MCP reads, then complete source-matched provider/core/helper/distribution release gates. Broader variables/references, native malformed readers, standalone menu/unload and full UI/selection remain open. No competing collaborator diff was discarded; the overall objective remains active.
+
 ## Stored weather candidate — public scalar/flag coverage, player unchanged
 
 WEATHER_CANDIDATE.md / WEATHER_CANDIDATE_REVIEW.json / WEATHER_CANDIDATE_NATIVE_VALIDATION.json establish an unregistered fourteen-value detached reader: ten stored game-scale factors plus four stored/sign flags. Public final component types inherit the stored double getter; selected bytecode readers contain no calls/writes/allocations/backward branches. The fixed collector refuses nonfinite/out-of-range values and unavailable city scope, catches guard/read failures, and exposes no mutable engine handle. Temperature/precipitation/growth units and cached ripeness flag ordering are explicit; do not invent physical units, tile moisture, crop yields or forecasts.

@@ -174,3 +174,6 @@ At handoff, update WORK_STATUS and the relevant current feature guides. Keep pre
 ## Stored weather reader candidate
 
 [Weather candidate scope](WEATHER_CANDIDATE.md) maps `dev/candidates/weather/syx/assistant/candidate/WeatherObservation.java`, detached `WeatherPureCheck.java`, the explicit host `StockpileScenario.java` override, `dev/review_weather_candidate.py` and `dev/run_weather_candidate.py`. [Source/codec review](WEATHER_CANDIDATE_REVIEW.json) is separate from [48 native samples/672 getter comparisons](WEATHER_CANDIDATE_NATIVE_VALIDATION.json). Ten game-scale factors/four flags are unregistered: no player or MCP field yet. The shared disposable host supports optional review/completion hooks; its stockpile defaults remain unchanged. Latest/previous tested payloads are preserved.
+
+
+[Weather scene follow-up](WEATHER_SCENE_VALIDATION.json) maps `dev/run_weather_scenes.py`, `dev/candidates/weather/scenes/StockpileScenario.java`, the optional own-fixture observer in `mod/tests/SceneScenario.java` and the validated copied-save property in the shared native host. Eight real scene phases and seven restored public-setter normalization cases are separate from earlier 48-sample weather evidence. Public normalization blocks this attempted native NaN injection route; no native malformed stored weather or new MCP/player field is claimed.

@@ -161,7 +161,7 @@ def run(args, *, scenario_override=None, extra_sources=(), verifier=verify, repo
     save_before=sha(save)
     cp=os.pathsep.join(map(str,[game/'SongsOfSyx.jar',game/'base/script/000_Tutorial.jar',game/'base/script/001_Tutorial.jar',jar,classes]))
     command=[str(java),'-Xmx4g','-Duser.home='+str(home),'-Dsyx.assistant.stateDir='+str(state),
-        '-Dsyx.smoke.stockpile=true','-cp',cp,'LiveSmoke',str(save)]
+        '-Dsyx.smoke.stockpile=true','-Dsyx.smoke.copiedSave='+str(save),'-cp',cp,'LiveSmoke',str(save)]
     process=None
     try:
         shutil.copy2(jar,target)

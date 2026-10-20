@@ -47,6 +47,7 @@ def scope(path):
     if name=='CHAT_TARGET_DISPATCH_VALIDATION.json':return 'Developer-only accepted-turn claim tests and copied-city fake-provider handoff; not native player or paid Pro acceptance'
     if name=='CHAT_TARGET_DISPATCH.md':return 'Developer dispatch seam, cancellation/restart/unknown-delivery contract and remaining integration gates'
     if name=='CHAT_HISTORY_CANDIDATE_VALIDATION.json':return 'Developer-only SQLite receipt/filter/migration and actual bundled-store compatibility tests; not production badge/world-routing acceptance'
+    if name=='WEATHER_SCENE_VALIDATION.json':return 'Unregistered weather: eight actual scene phases and seven restored public normalization controls; native invalid stored readers remain unproven'
     if name=='WEATHER_CANDIDATE_REVIEW.json':return 'Unregistered weather public-reader/source/bytecode and detached numeric-shape checks; no native or player acceptance'
     if name=='WEATHER_CANDIDATE_NATIVE_VALIDATION.json':return 'Unregistered weather candidate: 48 native samples/672 getter comparisons; no weather MCP/player integration'
     if name=='STOCKPILE_MATRIX_VALIDATION.json':return 'Actual 101/100-room MCP scan/row bounds and ordered removal; fixed public fixture setup, not large-city cost or native byte/fault coverage'

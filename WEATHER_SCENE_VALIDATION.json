@@ -1,0 +1,318 @@
+{
+  "passed": true,
+  "evaluated_at": "2026-10-20T18:11:34.294840+00:00",
+  "scope": "Unregistered unchanged weather collector through eight actual existing scene phases; production MCP context/regressions are separately checked.",
+  "weather_phases": [
+    {
+      "phase": 0,
+      "active_view": "settlement",
+      "available": true,
+      "direct_getter_comparisons": 14
+    },
+    {
+      "phase": 1,
+      "active_view": "settlement_battle",
+      "available": true,
+      "direct_getter_comparisons": 14
+    },
+    {
+      "phase": 2,
+      "active_view": "settlement",
+      "available": true,
+      "direct_getter_comparisons": 14
+    },
+    {
+      "phase": 3,
+      "active_view": "battle",
+      "available": false,
+      "direct_getter_comparisons": 0
+    },
+    {
+      "phase": 4,
+      "active_view": "battle",
+      "available": false,
+      "direct_getter_comparisons": 0
+    },
+    {
+      "phase": 6,
+      "active_view": "settlement",
+      "available": true,
+      "direct_getter_comparisons": 14
+    },
+    {
+      "phase": 8,
+      "active_view": "world_generation",
+      "available": false,
+      "direct_getter_comparisons": 0
+    },
+    {
+      "phase": 9,
+      "active_view": "world_generation",
+      "available": false,
+      "direct_getter_comparisons": 0
+    }
+  ],
+  "direct_getter_comparisons": 56,
+  "public_wind_setter_normalization_cases": 7,
+  "normalized_zero_and_one_remain_available": true,
+  "native_nonfinite_stored_factor_refusal_proven": false,
+  "controlled_wind_value_restored_bit_exactly": true,
+  "post_restoration_available": true,
+  "existing_production_mcp_scene_checks": {
+    "passed": true,
+    "checks": {
+      "city": {
+        "passed": true,
+        "world_list_panel_coverage": "unavailable",
+        "view": "settlement",
+        "scene_kind": "city",
+        "on_demand_read_available": true,
+        "tile_read_available": true,
+        "ground_moisture_read_available": true,
+        "regional_live_read_available": true,
+        "stockpile_live_read_available": true,
+        "city_trade_pipeline_coverage": "partial",
+        "world_population_coverage": "partial",
+        "regional_output_coverage": "partial",
+        "service_room_coverage": "partial",
+        "service_policy_coverage": "partial",
+        "production_coverage": "partial",
+        "production_room_coverage": "partial",
+        "stockpile_bookkeeping_coverage": "partial"
+      },
+      "settlement_battle": {
+        "passed": true,
+        "world_list_panel_coverage": "unavailable",
+        "view": "settlement_battle",
+        "scene_kind": "city",
+        "on_demand_read_available": true,
+        "tile_read_available": true,
+        "ground_moisture_read_available": true,
+        "regional_live_read_available": true,
+        "stockpile_live_read_available": true,
+        "city_trade_pipeline_coverage": "partial",
+        "world_population_coverage": "partial",
+        "regional_output_coverage": "partial",
+        "service_room_coverage": "partial",
+        "service_policy_coverage": "partial",
+        "production_coverage": "partial",
+        "production_room_coverage": "partial",
+        "stockpile_bookkeeping_coverage": "partial"
+      },
+      "city_restored": {
+        "passed": true,
+        "world_list_panel_coverage": "unavailable",
+        "view": "settlement",
+        "scene_kind": "city",
+        "on_demand_read_available": true,
+        "tile_read_available": true,
+        "ground_moisture_read_available": true,
+        "regional_live_read_available": true,
+        "stockpile_live_read_available": true,
+        "city_trade_pipeline_coverage": "partial",
+        "world_population_coverage": "partial",
+        "regional_output_coverage": "partial",
+        "service_room_coverage": "partial",
+        "service_policy_coverage": "partial",
+        "production_coverage": "partial",
+        "production_room_coverage": "partial",
+        "stockpile_bookkeeping_coverage": "partial"
+      },
+      "battle_deployment": {
+        "passed": true,
+        "world_list_panel_coverage": "unavailable",
+        "view": "battle",
+        "scene_kind": "battlefield",
+        "on_demand_read_available": true,
+        "tile_read_available": true,
+        "ground_moisture_read_available": true,
+        "regional_live_read_available": true,
+        "stockpile_live_read_available": false,
+        "city_trade_pipeline_coverage": "unavailable",
+        "world_population_coverage": "partial",
+        "regional_output_coverage": "partial",
+        "service_room_coverage": "partial",
+        "service_policy_coverage": "unavailable",
+        "production_coverage": "partial",
+        "production_room_coverage": "partial",
+        "stockpile_bookkeeping_coverage": "unavailable"
+      },
+      "battle_menu": {
+        "passed": true,
+        "world_list_panel_coverage": "unavailable",
+        "view": "battle",
+        "scene_kind": "battlefield",
+        "on_demand_read_available": true,
+        "tile_read_available": true,
+        "ground_moisture_read_available": true,
+        "regional_live_read_available": true,
+        "stockpile_live_read_available": false,
+        "city_trade_pipeline_coverage": "unavailable",
+        "world_population_coverage": "partial",
+        "regional_output_coverage": "partial",
+        "service_room_coverage": "partial",
+        "service_policy_coverage": "unavailable",
+        "production_coverage": "partial",
+        "production_room_coverage": "partial",
+        "stockpile_bookkeeping_coverage": "unavailable"
+      },
+      "city_reloaded": {
+        "passed": true,
+        "world_list_panel_coverage": "unavailable",
+        "view": "settlement",
+        "scene_kind": "city",
+        "on_demand_read_available": true,
+        "tile_read_available": true,
+        "ground_moisture_read_available": true,
+        "regional_live_read_available": true,
+        "stockpile_live_read_available": true,
+        "city_trade_pipeline_coverage": "partial",
+        "world_population_coverage": "partial",
+        "regional_output_coverage": "partial",
+        "service_room_coverage": "partial",
+        "service_policy_coverage": "partial",
+        "production_coverage": "partial",
+        "production_room_coverage": "partial",
+        "stockpile_bookkeeping_coverage": "partial"
+      },
+      "world_generation": {
+        "passed": true,
+        "world_list_panel_coverage": "unavailable",
+        "view": "world_generation",
+        "scene_kind": "unavailable",
+        "on_demand_read_available": false,
+        "tile_read_available": false,
+        "ground_moisture_read_available": false,
+        "regional_live_read_available": false,
+        "stockpile_live_read_available": false,
+        "city_trade_pipeline_coverage": "unavailable",
+        "world_population_coverage": "unavailable",
+        "regional_output_coverage": "unavailable",
+        "service_room_coverage": "unavailable",
+        "service_policy_coverage": "unavailable",
+        "production_coverage": "unavailable",
+        "production_room_coverage": "unavailable",
+        "stockpile_bookkeeping_coverage": "unavailable"
+      },
+      "terrain_generated": {
+        "passed": true,
+        "world_list_panel_coverage": "unavailable",
+        "view": "world_generation",
+        "scene_kind": "unavailable",
+        "on_demand_read_available": false,
+        "tile_read_available": false,
+        "ground_moisture_read_available": false,
+        "regional_live_read_available": false,
+        "stockpile_live_read_available": false,
+        "city_trade_pipeline_coverage": "unavailable",
+        "world_population_coverage": "unavailable",
+        "regional_output_coverage": "unavailable",
+        "service_room_coverage": "unavailable",
+        "service_policy_coverage": "unavailable",
+        "production_coverage": "unavailable",
+        "production_room_coverage": "unavailable",
+        "stockpile_bookkeeping_coverage": "unavailable"
+      }
+    },
+    "missing": [],
+    "limits": [
+      "Battle is a generated deployment scene, not active fighting or a battle conclusion.",
+      "Generation checks initial setup and public terrain generation; exact private wizard step and full political-world completion remain unvalidated."
+    ]
+  },
+  "weather_mcp_calls": 0,
+  "provider_calls": 0,
+  "mod_jar_sha256": "12d3494064f969dead59e1c471cf2f7aef81ac626d6eff2b4435476b6f9c10a9",
+  "production_source_sha256": {
+    "syx/assistant/AssistantScript.java": "c2b8ed68350d4a274315b16dc9ff1c6828a51516777c1ef4a45b84acc6d8b092",
+    "syx/assistant/ChatPanel.java": "06db6b7715f9187a40a0b4b987ab7f64e09df5f9dc07193e261249302d1ac12f",
+    "syx/assistant/EntityReadRequest.java": "e2d13aee21f399e8718382d5b43d5a6c85e5d78d2708d8105b9f1ecfe730edf8",
+    "syx/assistant/JsonWriter.java": "c525eb60d3224cab83ed3fd6b8594ec8652211f00bd947e873e1482f919e81dc",
+    "syx/assistant/RegionalReadRequest.java": "4d1da800e6f2ecf6b036f188693ac1095329321bc569c82f34be9918768ef2b3",
+    "syx/assistant/StateCollector.java": "58b6f25bb21493da7ce6a9770d2068ee86f9419e1d3aff5cf83e56a0a532dcdf",
+    "syx/assistant/StockpileReadRequest.java": "589ab0087808dbc973aa7726829c3260c609e043baac080824538c44ed5df360",
+    "syx/assistant/TileReadRequest.java": "5daf3cc3abc0cb849f654e09efadb3d0263b73d4e5e220e97671ea1c4a40bde6",
+    "syx/assistant/UiContentCollector.java": "c0d20c7f9f2734a0bb625427875f06bfcd07edb20611248b39b6e8f480ef5a48",
+    "syx/assistant/UiContextCollector.java": "0f67200fdcf2740f4d3d4b1751ea0bf143613b20a44afb77af0ebb0ae8078937"
+  },
+  "weather_static_review_sha256": "523d9834b3e881e03e6675e30936ef98eed9fbce04de7e58105737a9c1345a55",
+  "source_sha256": {
+    "mod/tests/SceneScenario.java": "f507e11e9c2c6c45a936549914c3e5607d7496f7dd7f66a33564a92cf7d2b237",
+    "mod/tests/LiveSmoke.java": "96107ac90ea1493d5cf240421c146d21cda83c45be45e8577ccd141446c21e8f",
+    "dev/candidates/weather/scenes/StockpileScenario.java": "dee10b238baabd036978b7fb0006ea87f4aaa9259b868efa32aa2384fd7214b2",
+    "dev/candidates/weather/syx/assistant/candidate/WeatherObservation.java": "e5d61851121269e9588aaf6f4492f3b9bd81cbd17c8a5d7dd0218e45016b24cf",
+    "dev/run_weather_scenes.py": "785218cec8f8b7b73cc01a637909f00b8ad1583cd6a0785726c8fe737e72b3a7",
+    "dev/run_stockpile_probe.py": "2ec255855a2d92a3435543a814ec4388de0184d3fd78dd6a2be0652704d182e5",
+    "dev/verify_scenes.py": "1d1e21591da97cf71eba6ba358de22e7782a6e86a6a260f84804829a048d2812",
+    "dev/native_game_completion.py": "8d29009ecb6b1c54e65ce4d94bc1c175d189c68aad59251381ec4cf5a063773f"
+  },
+  "limits": [
+    "Seven fixed inherited wind.setD controls normalize NaN/infinities/out-of-range/endpoint inputs to valid zero/one. These are not nonfinite stored getters. Each value is restored in a same-callback finally; no setter is part of the observer or production.",
+    "This is not an invalid save, actual getter exception, null component, all-factor/climate/season or corrupted flag fixture.",
+    "Actual generated battle deployment/menu, copied-city reload and initial/terrain setup are covered. Natural battle conclusion, standalone main-menu/unload and every menu remain unestablished.",
+    "The existing MCP scene suite verifies current production context/session rotation and other read-only tables; it does not expose candidate weather data through MCP or join candidate rows to an older cached snapshot.",
+    "Test-only speed/view/generation/reload actions use only public in-process APIs in a validated disposable profile. Battle generation can write its own disposable fixture saves; the supplied copied save is unchanged and normal saves are untouched.",
+    "The unchanged weather candidate remains unregistered and absent from the latest playable bundle. Existing earlier native/static weather reports retain their own source scopes."
+  ],
+  "explicit_fixture_clean_completion": true,
+  "game_exit_code": 0,
+  "native_failure_markers_absent": true,
+  "game_jar_sha256": "fe0137c05408e5ee9e31f06fc44fe37a5d4372d9c985b280f0852d1347c0224b",
+  "source_archive_sha256": "a3fc2aa9f4be31aec0616a5030a656ac49a6011343b7e91395c7bac0b9dfb0a5",
+  "static_boundary_review_sha256": "523d9834b3e881e03e6675e30936ef98eed9fbce04de7e58105737a9c1345a55",
+  "copied_profile_mod_restored": true,
+  "copied_save_unchanged": true,
+  "public_input_normalization_source_review": {
+    "scope": "Manual selected shipped-source review of the fixed fixture-only inherited wind setter and normalization function, plus public catalog declarations; not a production mutation route or stable documented API contract.",
+    "members": [
+      {
+        "id": "settlement.weather.WeatherThing#setD(double)",
+        "source_anchor": [
+          {
+            "source_file": "settlement/weather/WeatherThing.java",
+            "line": 28,
+            "source_sha256": "73ae0e01605565995b8f28834f6ab0dd9527d5fbe4419cd48fb73a18624425e4",
+            "has_javadoc": false
+          }
+        ]
+      },
+      {
+        "id": "snake2d.util.misc.CLAMP#d(double,double,double)",
+        "source_anchor": [
+          {
+            "source_file": "snake2d/util/misc/CLAMP.java",
+            "line": 25,
+            "source_sha256": "53e801eee278d13f478c5b393aa88eafe3cfb5ad8d849da34f37863004fe23d3",
+            "has_javadoc": false
+          }
+        ]
+      }
+    ],
+    "selected_source_sha256": {
+      "settlement/weather/WeatherThing.java": "73ae0e01605565995b8f28834f6ab0dd9527d5fbe4419cd48fb73a18624425e4",
+      "settlement/weather/WeatherWind.java": "74e617bf212b26277c08bf48add9215386f7a86491c77e5c2d896c8c347219b5",
+      "snake2d/util/misc/CLAMP.java": "53e801eee278d13f478c5b393aa88eafe3cfb5ad8d849da34f37863004fe23d3"
+    },
+    "findings": [
+      "The final WeatherWind class inherits the simple WeatherThing setter. Moisture overrides its setter and can send a message; the fixture does not call it.",
+      "WeatherThing.setD stores CLAMP.d(value,0,1). CLAMP.d explicitly returns zero for NaN, the lower bound for negative infinity and the upper bound for positive infinity, then clamps finite values.",
+      "This public route cannot inject the attempted nonfinite stored getter. Native normalization/zero-one/restoration proof and detached invalid-double refusal are distinct. Save loading remains a different source path, not exercised as a corruption fixture."
+    ]
+  },
+  "offline_regression": {
+    "passed": true,
+    "tests_passed": 580,
+    "seconds": 62.3,
+    "scope": "Full existing offline suite; actual candidate weather scene/control acceptance is separately recorded."
+  },
+  "rejected_attempts": [
+    {
+      "accepted": false,
+      "reason": "Initial fixture incorrectly expected public wind.setD(NaN) to retain NaN. The observed public normalization rejected that assumption; prior value was restored in finally."
+    },
+    {
+      "accepted": false,
+      "reason": "Second attempt completed scene observations but failed while hashing a nonexistent PathCheck.java; the class is declared in LiveSmoke.java. Final preflight validates all report source paths before launching the game."
+    }
+  ]
+}
