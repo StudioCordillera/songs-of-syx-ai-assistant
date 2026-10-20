@@ -1,0 +1,26 @@
+{
+  "passed": true,
+  "validated_at": "2026-10-20T07:01:32.621235+00:00",
+  "stage": "Developer-only detached protocol and coverage policy; not player badge acceptance",
+  "offline_tests": 394,
+  "new_python_java_test_cases": 38,
+  "source_sha256": {
+    "dev/chat_display_candidate.py": "22d1d10174c6a48c99308d7357026ed627277c942c5682a3d36830c0a9e835f1",
+    "dev/chat_history_candidate.py": "9f2b6090854a507499a33ccc1c45f171d5822e58980c11048ecb6b42b9d8fc73",
+    "test_chat_display_candidate.py": "82783a3eb290270d71d00480779ca15f441cc2297456822eee694e76b852dcce",
+    "test_chat_display_java.py": "1bda53939c8fb96dfffb9b01e372f8a3e52401122761a7e9ef1e8a5a74d1beb2",
+    "dev/java/syx/assistant/candidate/DisplayCoverage.java": "558787b886dcbb546e8f55614be1e947464e614b0ed020f5b6fbb30ea91a066c",
+    "dev/java/syx/assistant/candidate/DisplayCoverageTest.java": "eb8a02dcbad765c4cf4b480ffd8a462caf1418066c8fb038faccf4bff240fe8a",
+    "dev/java/syx/assistant/candidate/DisplayFrame.java": "53a5656f34daaed9d8ea7503a84153df57083b3c4aa6868143d74684a48a24a1",
+    "dev/java/syx/assistant/candidate/DisplayFrameTest.java": "ebf8d4ce5a943ee1caad2523ce3ee0a4e044f7becdb607b8874513f18877945f"
+  },
+  "production_source_changed": false,
+  "player_bundles_changed": false,
+  "native_visibility_evidence": "CHAT_VISIBILITY_VALIDATION.json",
+  "limits": [
+    "No native renderer/receipt transport integration, provider inference or automatic normal-history migration.",
+    "Coverage VISIBLE is caller-established policy input, not a proven native occlusion/focus reader.",
+    "One-paint complete-segment policy leaves partially visible/oversized replies unread.",
+    "Finite external-writer cache and disposable SQLite tests, not general concurrency/performance acceptance."
+  ]
+}

@@ -22,7 +22,8 @@ from game_fixture_lock import exclusive_fixture
 from native_game_completion import require_clean_game_log
 from run_player_chat_check import native_environment
 
-CASES={'chat-background':('chatBackground','verify_chat_background.py','chat-background-validation.json'),
+CASES={'chat-visibility':('chatVisibility','verify_chat_visibility.py','chat-visibility-validation.json'),
+       'chat-background':('chatBackground','verify_chat_background.py','chat-background-validation.json'),
        'viewport':('viewport','verify_viewport.py','viewport-validation.json'),
        'ground-moisture':('groundMoisture','verify_ground_moisture.py','ground-moisture-validation.json'),
        'tiles':('tiles','verify_tiles.py','tile-capture-validation.json'),
@@ -114,12 +115,17 @@ def run(args):
             if completion!={'passed':True,'verified_phases':3} or (state/'chat-background-fixture-failure.json').exists():
                 raise RuntimeError('Background chat fixture did not confirm clean completion')
             report['explicit_fixture_clean_completion']=True
+        if args.case=='chat-visibility':
+            completion=json.loads((state/'chat-visibility-clean-exit.json').read_text())
+            if completion!={'passed':True,'verified_phases':3} or (state/'chat-visibility-fixture-failure.json').exists():
+                raise RuntimeError('Chat visibility probe did not confirm clean completion')
+            report['explicit_fixture_clean_completion']=True
         report.update(validated_at=datetime.now(timezone.utc).isoformat(),game_exit_code=process.returncode,
             mod_jar_sha256=sha(jar),game_jar_sha256=audit['game_jar_sha256'],
             production_source_sha256=manifest['validation']['production_source_sha256'],
             python_source_sha256=manifest['validation']['python_source_sha256'],inference_calls=0)
         report['fixture_source_sha256']={n:sha(ROOT/n) for n in ['mod/tests/LiveSmoke.java','mod/tests/TileScenario.java',
-            'mod/tests/EntityScenario.java','mod/tests/SceneScenario.java','mod/tests/FactionUiScenario.java','mod/tests/RegionalOutputScenario.java','mod/tests/RegionalOutputExportScenario.java','mod/tests/RegionalLiveScenario.java','mod/tests/RegionalCostScenario.java','mod/tests/RegionalCaptureScenario.java','mod/tests/WorldListScenario.java','mod/tests/GroundMoistureScenario.java','mod/tests/ViewportScenario.java','mod/tests/ChatBackgroundScenario.java','dev/'+verifier,'dev/run_read_fixture.py','dev/native_game_completion.py']}
+            'mod/tests/EntityScenario.java','mod/tests/SceneScenario.java','mod/tests/FactionUiScenario.java','mod/tests/RegionalOutputScenario.java','mod/tests/RegionalOutputExportScenario.java','mod/tests/RegionalLiveScenario.java','mod/tests/RegionalCostScenario.java','mod/tests/RegionalCaptureScenario.java','mod/tests/WorldListScenario.java','mod/tests/GroundMoistureScenario.java','mod/tests/ViewportScenario.java','mod/tests/ChatBackgroundScenario.java','mod/tests/ChatVisibilityScenario.java','dev/'+verifier,'dev/run_read_fixture.py','dev/native_game_completion.py']}
     finally:
         if process is not None and process.poll() is None:
             process.terminate()

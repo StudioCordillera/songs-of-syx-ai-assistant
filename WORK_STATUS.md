@@ -2,6 +2,14 @@
 
 Use `python3 dev/collaboration_status.py` for actual remote/local state at every run; this file is a handoff, not a live branch/working-tree assertion. Read AGENTS.md and reconcile newer collaborator work before editing.
 
+## Detached unread display and native visibility — developer follow-up
+
+CHAT_DISPLAY_CANDIDATE.md documents an unshipped IPC 3 Python/Java frame/receipt broker and conservative wrapped-segment coverage policy. It keeps global Pro counts complete before chat metadata caps, explicit unknown/omission, exact event/original-session/payload provenance, fresh actual MCP admission, bounded issued-frame lifetime and atomic idempotent receipts. Unchanged heartbeats avoid repeated event scans; own/external writes invalidate the tested cache. The pure coverage model requires all segments in one explicitly visible paint and never infers native visibility. No production transport, badge, automatic migration or read clearing is added. Latest/previous player ZIPs and production source remain unchanged.
+
+CHAT_VISIBILITY_BOUNDARY.md / its static and native reports establish three concrete limitations: a public tooltip box can be empty after its draw callback; overlapping popup/reply callbacks both run; and a hidden panel remains activated without reply draws. Existing MCP popup/hidden flags agree in held phases. The copied-city fixture cleanly exits, restores its copied mod, preserves its copied save and makes zero inference calls. This is negative boundary evidence, not all-scene/pixel/physical-input or native display acknowledgement acceptance. Public API/source semantics are distinguished from documented contracts.
+
+394 offline tests pass (38 new Python/Java cases, with pure Java segment policy exercised inside the cross-language case). The original 356-test player evidence and older receipt reports retain their original scopes. No remote overlapping work was found. Next: focused Claude follow-up after its advertised reset, native visibility/explicit-read policy and transport/layout integration; independent core/target/reference work continues. Preserve the user's private untracked test log.
+
 ## Automatic connection — current release checkpoint
 
 AUTO_CONNECTION.md documents the paired simple Pro IPC 2 revision: opening creates/selects a current-runtime chat, fresh matching MCP status gates opening/sending, and sending in an older selected chat reconnects automatically with immutable historical events and reset provider memory. This load / All chats use independent SQL/runtime/Pro filters before the 100-chat cap. The panel removes routine manual attachment, refuses an older/unavailable helper without clearing an unqueued question, and preserves up to 100 per-chat drafts in memory. Advanced manual attachment remains. This is not durable world identity, a presence registry, managed helper startup or an immediate unload hook; up-to-30-second export freshness remains.

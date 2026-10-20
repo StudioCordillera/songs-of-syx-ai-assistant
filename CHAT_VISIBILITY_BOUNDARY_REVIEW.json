@@ -1,0 +1,148 @@
+{
+  "passed": true,
+  "reviewed_at": "2026-10-20T04:00:43.252237+00:00",
+  "game_jar_sha256": "fe0137c05408e5ee9e31f06fc44fe37a5d4372d9c985b280f0852d1347c0224b",
+  "source_archive_sha256": "a3fc2aa9f4be31aec0616a5030a656ac49a6011343b7e91395c7bac0b9dfb0a5",
+  "stage": "Selected public/engine source boundary only; no production visibility reader or badge",
+  "methods": [
+    {
+      "owner": "view.main.IMouseMessage",
+      "signature": "public util.gui.misc.GBox get();",
+      "source_path": "view/main/IMouseMessage.java",
+      "source_sha256": "cfd45e3ad198999dcc78bded56b404ee15c4eee3112e385137742a61397dc208",
+      "normalized_disassembly_sha256": "d0b2b471823f9197cb9c3f8aa0478fe72cf6839f763e359b59c60d3b2207522c",
+      "direct_reader_check": true,
+      "engine_pipeline_review_only": false
+    },
+    {
+      "owner": "util.gui.misc.GBox",
+      "signature": "public boolean emptyIs();",
+      "source_path": "util/gui/misc/GBox.java",
+      "source_sha256": "a623c7f7cf5f364becb657d5a4f0ff97c28244fc232ccf363efca2098e65ebac",
+      "normalized_disassembly_sha256": "a9dc4f7de160d3ebab8e6fd4931091ce90b1dde3bbe45dcb1b62865071756de3",
+      "direct_reader_check": true,
+      "engine_pipeline_review_only": false
+    },
+    {
+      "owner": "view.main.VIEW",
+      "signature": "public static boolean hideUI();",
+      "source_path": "view/main/VIEW.java",
+      "source_sha256": "b62a822c5349f63a07f5adb5c62624c2eac99347d97ff1700592b4f6353d6036",
+      "normalized_disassembly_sha256": "928d4b3cec0b6a604a37f9c8d1f41662609a46232f30b0c1c02d8a804cdab4e8",
+      "direct_reader_check": true,
+      "engine_pipeline_review_only": false
+    },
+    {
+      "owner": "view.interrupter.Interrupter",
+      "signature": "public final boolean isActivated();",
+      "source_path": "view/interrupter/Interrupter.java",
+      "source_sha256": "3abe0d9e7da942c8a1a16925f3d8ec30e6bd86f96e99a072ae4407f9b1491bd6",
+      "normalized_disassembly_sha256": "4bf50b9af946737293f7519de91eb2864d7f8006287eb0c303248f813942edef",
+      "direct_reader_check": true,
+      "engine_pipeline_review_only": false
+    },
+    {
+      "owner": "view.main.IMouseMessage",
+      "signature": "public void render(snake2d.Renderer, float);",
+      "source_path": "view/main/IMouseMessage.java",
+      "source_sha256": "cfd45e3ad198999dcc78bded56b404ee15c4eee3112e385137742a61397dc208",
+      "normalized_disassembly_sha256": "d6a5c555f5d402a3994c5346add8dfc95ca9ab9d2bc57780552e4bc33f141055",
+      "direct_reader_check": false,
+      "engine_pipeline_review_only": true
+    },
+    {
+      "owner": "view.main.VIEW",
+      "signature": "protected void render(snake2d.Renderer, float);",
+      "source_path": "view/main/VIEW.java",
+      "source_sha256": "b62a822c5349f63a07f5adb5c62624c2eac99347d97ff1700592b4f6353d6036",
+      "normalized_disassembly_sha256": "d4bafc2716bc26b25ed869f0cb5e22ba92ce0f6b5420da9248e1e78b1d575502",
+      "direct_reader_check": false,
+      "engine_pipeline_review_only": true
+    },
+    {
+      "owner": "view.interrupter.InterManager",
+      "signature": "public boolean render(snake2d.Renderer, float);",
+      "source_path": "view/interrupter/InterManager.java",
+      "source_sha256": "93bf95d5346e39dff8fdcf424a2b21587260340b4964e5d21fa7477591746da8",
+      "normalized_disassembly_sha256": "af1e868b34b2de5a3c4598f4e91dc4d9b6a70319dfc5eb7253480cd6b62f7655",
+      "direct_reader_check": false,
+      "engine_pipeline_review_only": true
+    }
+  ],
+  "selected_source_reviews": [
+    {
+      "path": "view/main/IMouseMessage.java",
+      "source_sha256": "cfd45e3ad198999dcc78bded56b404ee15c4eee3112e385137742a61397dc208",
+      "anchor_lines": [
+        63,
+        82,
+        94
+      ],
+      "conclusion": "The normal tooltip buffer is cleared by rendering; public get returns mutable timer-selected buffer. A post-render empty buffer cannot establish that no tooltip was drawn. isOn is not externally public."
+    },
+    {
+      "path": "view/main/VIEW.java",
+      "source_sha256": "b62a822c5349f63a07f5adb5c62624c2eac99347d97ff1700592b4f6353d6036",
+      "anchor_lines": [
+        208,
+        285,
+        287,
+        290
+      ],
+      "conclusion": "Selected root skips UI when hidden, otherwise tooltip/script render stages precede the global manager. Manager callbacks alone do not describe earlier layers or other scripts."
+    },
+    {
+      "path": "view/interrupter/InterManager.java",
+      "source_sha256": "93bf95d5346e39dff8fdcf424a2b21587260340b4964e5d21fa7477591746da8",
+      "anchor_lines": [
+        86,
+        87,
+        17
+      ],
+      "conclusion": "Multiple active interrupters can render in successive layers. The inspected collection is private; this is not a complete global occlusion reader or an exhaustive absence-of-API proof."
+    }
+  ],
+  "compiler_probes": [
+    {
+      "id": "ChatTooltipRead",
+      "expected_compilation": "success",
+      "matched": true,
+      "diagnostic_category": null,
+      "probe_source_sha256": "32eb3623fae2000c0ede8420149dd607f340d9a8b6ffe3d62a6e7ba7ffc9796b",
+      "compiler_output_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "id": "ChatKnownHiddenRead",
+      "expected_compilation": "success",
+      "matched": true,
+      "diagnostic_category": null,
+      "probe_source_sha256": "7f85f18df08876fc34c27e76daa6eeaa4931ce67de4f7d5dc56a588a26fb5769",
+      "compiler_output_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "id": "ChatOwnRenderHooks",
+      "expected_compilation": "success",
+      "matched": true,
+      "diagnostic_category": null,
+      "probe_source_sha256": "6a90abdb69dd2c40a83c3848f32075a39cbdd042e8aea294d4cececf0bea4e1f",
+      "compiler_output_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "id": "ChatPrivateTooltipExcluded",
+      "expected_compilation": "rejected",
+      "matched": true,
+      "diagnostic_category": "compiler.err.not.def.public.cant.access",
+      "probe_source_sha256": "fad1ebe6a98a3a0e81cd3aa467c5adc8acce5c4405ee88c36eed4a3295451bfc",
+      "compiler_output_sha256": "472dd134de285adc3da56a15af621c965911a65b58c19a9e19e31417947c6cea"
+    }
+  ],
+  "reviewer_source_sha256": "afdd95af1373c26c9a8e873ba055af62e9c7153876cb22025f5b28ca8f22a300",
+  "game_initializations": 0,
+  "inference_calls": 0,
+  "limits": [
+    "Source/binary/compiler verification, not a stable documented SCRIPT contract or complete global UI inventory.",
+    "Engine pipeline methods are inspected, not promoted to observer calls. Production live game data remains update-thread only.",
+    "No private tooltip/manager/focus fallback. Actual native callback probe is separate finite evidence.",
+    "Receipt transport/segment coverage cannot establish actual unobscured display until a reviewed native gate or explicit player acknowledgement policy is supplied."
+  ]
+}

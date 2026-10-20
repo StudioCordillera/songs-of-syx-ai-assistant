@@ -121,3 +121,7 @@ At handoff, update WORK_STATUS and the relevant current feature guides. Keep pre
 [CHAT_INPUT_BOUNDARY.md](CHAT_INPUT_BOUNDARY.md) and `dev/review_chat_input_boundary.py` map future public own-widget gesture inputs, cached-pointer/mutable-handle limits, rejected private focus access and layered-render visibility limits. CHAT_INPUT_BOUNDARY_REVIEW.json is static candidate evidence with zero game initializations, not native drag/badge acceptance.
 
 [CHAT_GESTURE_CANDIDATE.md](CHAT_GESTURE_CANDIDATE.md) maps the unshipped game-independent `dev/chat_gesture_candidate.py` model and 25 offline cases in `test_chat_gesture_candidate.py`. It supplies no native polling/hit-testing/focus or actual player movement.
+
+## Detached unread/display development
+
+[CHAT_DISPLAY_CANDIDATE.md](CHAT_DISPLAY_CANDIDATE.md) maps `dev/chat_display_candidate.py`, the unshipped Java protocol/coverage models under `dev/java/syx/assistant/candidate/`, and `test_chat_display_candidate.py` / `test_chat_display_java.py`. [Offline evidence](CHAT_DISPLAY_CANDIDATE_VALIDATION.json) is separate from player acceptance. [CHAT_VISIBILITY_BOUNDARY.md](CHAT_VISIBILITY_BOUNDARY.md), [static review](CHAT_VISIBILITY_BOUNDARY_REVIEW.json) and [native probe](CHAT_VISIBILITY_VALIDATION.json) map `dev/review_chat_visibility_boundary.py`, `dev/verify_chat_visibility.py`, `mod/tests/ChatVisibilityScenario.java` and the `chat-visibility` read-fixture case. They establish finite callback/tooltip/activation limitations, not an automatic read gate.

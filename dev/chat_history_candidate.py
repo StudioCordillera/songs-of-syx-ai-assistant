@@ -5,6 +5,7 @@ UI/display assertion, automatic attachment or permanent world identity is suppli
 Read receipts identify individual displayed final events, never a global high-water
 sequence that could clear another chat or a reply completed out of order.
 """
+import hashlib
 import json
 
 from syx_chat_store import identity
@@ -34,11 +35,15 @@ class HistoryCandidate:
             raise ValueError('Unknown candidate receipt extension version')
         return row[0]
 
-    def _completed(self, chat_id=None):
+    def _completed(self, chat_id=None, *, simple=False):
         """Bounded metadata scan; refusal is not a partial/zero unread result."""
+        if type(simple) is not bool:raise ValueError('Explicit simple-mode filter required')
         sql = '''SELECT e.sequence,e.event_id,e.chat_id,e.turn_id,e.game_session,e.payload
           FROM events e JOIN turns t ON t.turn_id=e.turn_id AND t.chat_id=e.chat_id
+          JOIN chats c ON c.chat_id=e.chat_id
           WHERE e.kind='assistant' AND t.status='completed' AND e.game_session=t.game_session'''
+        if simple:
+            sql += " AND c.provider='deepseek' AND c.route='api' AND c.model='deepseek-v4-pro'"
         if chat_id is not None:
             sql += ' AND e.chat_id=?'
         sql += ' ORDER BY e.sequence LIMIT ?'
@@ -56,7 +61,8 @@ class HistoryCandidate:
             if payload.get('completed') is True and isinstance(text, str) and text.strip():
                 latest[(row[2], row[3])] = {
                     'sequence': row[0], 'event_id': row[1], 'chat_id': row[2],
-                    'turn_id': row[3], 'game_session': row[4]}
+                    'turn_id': row[3], 'game_session': row[4],
+                    'payload_sha256': hashlib.sha256(row[5].encode('utf-8')).hexdigest()}
         return latest
 
     def initialize(self):
@@ -112,7 +118,7 @@ class HistoryCandidate:
             self.db.rollback()
             raise
 
-    def acknowledge(self, chat_id, observed_session, event_ids):
+    def acknowledge(self, chat_id, observed_session, event_ids, *, expected_payloads=None):
         """Caller must supply ONLY actually displayed event IDs from one session.
 
         This candidate validates provenance/completion, not physical visibility.
@@ -126,6 +132,9 @@ class HistoryCandidate:
         for eid in event_ids:
             identity(eid)
         requested = set(event_ids)
+        if expected_payloads is not None:
+            if not isinstance(expected_payloads,dict) or set(expected_payloads)!=requested or any(not isinstance(v,str) or len(v)!=64 or any(c not in '0123456789abcdef' for c in v) for v in expected_payloads.values()):
+                raise ValueError('Exact issued payload hashes required')
         self._begin()
         try:
             self._ready()
@@ -133,8 +142,10 @@ class HistoryCandidate:
             rows = {r['event_id']: r for r in self._completed(chat_id).values()}
             if any(eid not in rows or rows[eid]['game_session'] != observed_session for eid in requested):
                 raise ValueError('Read acknowledgement is not a completed visible reply in this chat/session')
+            if expected_payloads is not None and any(rows[eid]['payload_sha256']!=expected_payloads[eid] for eid in requested):
+                raise ValueError('Displayed reply payload changed; no acknowledgement recorded')
             inserted = 0
-            for eid in requested:
+            for eid in sorted(requested):
                 r = rows[eid]
                 inserted += self.db.execute('''INSERT INTO syx_ux_reads VALUES(?,?,?)
                     ON CONFLICT(chat_id,turn_id) DO NOTHING''',
