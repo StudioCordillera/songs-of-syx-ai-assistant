@@ -1,0 +1,32 @@
+{
+  "reviewed_at": "2026-10-20T07:07:25.054929+00:00",
+  "stage": "Independent official API-feed recheck of already summarized V71 service topic; no new production corpus entry",
+  "feed_request_url": "https://api.steampowered.com/ISteamNews/GetNewsForApp/v2/?appid=1162750&count=100&maxlength=0&feeds=steam_community_announcements",
+  "record_metadata": {
+    "gid": "1835236783570947",
+    "title": "V71 - Reign of Terror - Available Now",
+    "author": "SterlingLW",
+    "url": "https://steamstore-a.akamaihd.net/news/externalpost/steam_community_announcements/1835236783570947",
+    "date": 1781539224,
+    "feedlabel": "Community Announcements",
+    "feedname": "steam_community_announcements"
+  },
+  "published_at_utc_from_api_unix_seconds": "2026-06-15T16:00:24+00:00",
+  "contents_sha256": "53ed4a5ec67a8f66db0ab386d8ff940fecb554eb26574c8eb2780e54564a05e1",
+  "confirmed_topics": [
+    "Announcement describes service collection without directly adjacent warehouses.",
+    "Announcement puts hospital fabric/opiate treatments behind technology."
+  ],
+  "existing_summary_id": "official-v71-service-fetch-treatment",
+  "old_review_preserved": "REFERENCE_SOURCE_REVIEW.json",
+  "production_corpus_entries_added": 0,
+  "limits": [
+    "Confirms selected announcement statements, not exact 0.71.44 behavior, pathfinding, geometry, optimality or patient outcomes.",
+    "API feed author metadata SterlingLW is kept distinct from older summary attribution to the game/developer.",
+    "A separately opened localized web archive returned older cached March 2026 content; search snippets/archive pages are not assumed to be synchronized.",
+    "Full feed bodies stay private under runtime; no guide or proprietary game content mirrored.",
+    "Externalpost HTTP redirect resolves to the existing canonical citation; full announcement text was reviewed through the official API record."
+  ],
+  "externalpost_resolved_url": "https://steamcommunity.com/games/1162750/announcements/detail/529882384083977659",
+  "canonical_redirect_matches_existing_citation": true
+}
