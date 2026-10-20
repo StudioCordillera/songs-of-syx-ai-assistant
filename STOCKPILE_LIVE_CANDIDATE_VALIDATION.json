@@ -1,0 +1,90 @@
+{
+  "passed": true,
+  "checked_at": "2026-10-20T15:36:51.809976+00:00",
+  "scope": "Developer-only candidate compilation, strict wire parsing, integer comparisons and two public room lookup reader bodies. No collector execution, game fixture or MCP transport.",
+  "game_jar_sha256": "fe0137c05408e5ee9e31f06fc44fe37a5d4372d9c985b280f0852d1347c0224b",
+  "source_archive_sha256": "a3fc2aa9f4be31aec0616a5030a656ac49a6011343b7e91395c7bac0b9dfb0a5",
+  "catalog_sha256": "5b4b13770eb3251ce066e4f9cf57b5e6b1956687136b5be33a680b707a73b065",
+  "candidate_source_sha256": {
+    "dev/candidates/stockpiles/syx/assistant/StockpileProtocolCheck.java": "060be8ce62b691fdd067a67b68d0a01bd2c381bf2ad31269acbf2ba81fd69877",
+    "dev/candidates/stockpiles/syx/assistant/StockpileReadRequest.java": "f9dfdeed8b8de9484070637cdf175cff9b889c9a4d89d49ed9c6e619d6b0aba3"
+  },
+  "production_compilation_source_sha256": {
+    "mod/src/main/java/syx/assistant/AssistantScript.java": "82fa2395aa96e7ae9cee612b32171fb495ca289dc7f99269c1ad7a2d417cca55",
+    "mod/src/main/java/syx/assistant/ChatPanel.java": "06db6b7715f9187a40a0b4b987ab7f64e09df5f9dc07193e261249302d1ac12f",
+    "mod/src/main/java/syx/assistant/EntityReadRequest.java": "e2d13aee21f399e8718382d5b43d5a6c85e5d78d2708d8105b9f1ecfe730edf8",
+    "mod/src/main/java/syx/assistant/JsonWriter.java": "c525eb60d3224cab83ed3fd6b8594ec8652211f00bd947e873e1482f919e81dc",
+    "mod/src/main/java/syx/assistant/RegionalReadRequest.java": "4d1da800e6f2ecf6b036f188693ac1095329321bc569c82f34be9918768ef2b3",
+    "mod/src/main/java/syx/assistant/StateCollector.java": "58b6f25bb21493da7ce6a9770d2068ee86f9419e1d3aff5cf83e56a0a532dcdf",
+    "mod/src/main/java/syx/assistant/TileReadRequest.java": "5daf3cc3abc0cb849f654e09efadb3d0263b73d4e5e220e97671ea1c4a40bde6",
+    "mod/src/main/java/syx/assistant/UiContentCollector.java": "c0d20c7f9f2734a0bb625427875f06bfcd07edb20611248b39b6e8f480ef5a48",
+    "mod/src/main/java/syx/assistant/UiContextCollector.java": "0f67200fdcf2740f4d3d4b1751ea0bf143613b20a44afb77af0ebb0ae8078937"
+  },
+  "verifier_source_sha256": "f949121d98ee6c14433c3827c3a3ff2cb4929bec4a40c827468709dfe7681dd3",
+  "codec": {
+    "accepted_frames": 7,
+    "rejected_frames": 41,
+    "predicate_checks": 150,
+    "engine_initialized": false
+  },
+  "initialization_log_checked": [
+    "game/GAME",
+    "settlement/main/SETT"
+  ],
+  "management_route_review": {
+    "sources": [
+      {
+        "source_file": "view/ui/manage/IManager.java",
+        "source_sha256": "f1e3f068fe96a28efde4a4b941113270eb0666f15a046d19f0874e414873d4b3"
+      },
+      {
+        "source_file": "view/ui/manage/IFullView.java",
+        "source_sha256": "b4aaaf25a838752f4355d26e7cf21cc2dedc3d7d837665cd1b6f7a496cadf6b8"
+      }
+    ],
+    "declared_public_full_view_methods": [
+      "view.ui.manage.IFullView#activate()",
+      "view.ui.manage.IFullView#back()",
+      "view.ui.manage.IFullView#hoverInfoGet(snake2d.util.gui.GUI_BOX)",
+      "view.ui.manage.IFullView#init()"
+    ],
+    "finding": "The inspected manager current-view field is private; this concrete full-view class declares no public current-selection reader. No safe selected-tab mapping is established by this route.",
+    "limit": "Finite source/catalog inspection, not proof that every possible public route is unavailable."
+  },
+  "room_lookup_members": [
+    {
+      "id": "settlement.room.main.RoomsMap#getByIndex(int)",
+      "public": true,
+      "source_anchor": {
+        "source_file": "settlement/room/main/RoomsMap.java",
+        "line": 129,
+        "source_sha256": "42262ac80e338eec40b159e4b9adb2148763af22f698654b1cc201dc2e0209fa",
+        "has_javadoc": false
+      },
+      "normalized_disassembly_sha256": "003e16ac00c9f3d5a32784cbfb2cb182fae6dddd858fe2c66e1e825e48b3edb6",
+      "bounded_accessor_body": true,
+      "documented_stable_contract": false
+    },
+    {
+      "id": "settlement.room.main.RoomsMap#max()",
+      "public": true,
+      "source_anchor": {
+        "source_file": "settlement/room/main/RoomsMap.java",
+        "line": 133,
+        "source_sha256": "42262ac80e338eec40b159e4b9adb2148763af22f698654b1cc201dc2e0209fa",
+        "has_javadoc": false
+      },
+      "normalized_disassembly_sha256": "4ab526343024c3a6f3d78bdd74f56ac39e2d1b9368a99949956e8aa2ab35efb5",
+      "bounded_accessor_body": true,
+      "documented_stable_contract": false
+    }
+  ],
+  "limits": [
+    "No player dispatch, mailbox, MCP schema/tool, response validation or retained capture is implemented.",
+    "No runtime counter/identity/cursor/getter parity, removal/reuse, fault, scene or cost acceptance for this candidate.",
+    "Room IDs are current array slots and may be reused; blueprint and anchor observations are not durable world identities.",
+    "The earlier stockpile boundary/native reports keep their original source and finite fixture scopes.",
+    "The candidate response currently lacks a serialized byte budget; production integration must enforce the paired 64 KiB all-or-error bound.",
+    "Selected reader bodies are checked for direct writes, allocation, backward branches and expected reads, not whole-program equivalence."
+  ]
+}

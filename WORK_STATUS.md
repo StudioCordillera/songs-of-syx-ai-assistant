@@ -2,6 +2,12 @@
 
 Use `python3 dev/collaboration_status.py` for actual remote/local state at every run; this file is a handoff, not a live branch/working-tree assertion. Read AGENTS.md and reconcile newer collaborator work before editing.
 
+## Per-warehouse live query — detached candidate checkpoint
+
+STOCKPILE_LIVE_CANDIDATE.md / STOCKPILE_LIVE_CANDIDATE_VALIDATION.json record a new unregistered Java candidate outside production. It sketches explicit-room or current warehouse-slot discovery, resource projection, fixed signed-int predicates, active filtering and bounded matrix paging independent of cached prefixes. Compilation against the paired 0.71.44 game JAR succeeds; seven accepted/41 rejected wire frames and 150 comparison checks run without GAME/SETT initialization. Public RoomsMap max/getByIndex source/bytecode readers are pinned; IDs are reusable slots, not permanent identities. No new player/MCP endpoint or runtime counter/cursor/scene/cost acceptance is claimed. The existing stockpile native evidence keeps its older source scope.
+
+The attempted management-current-tab route remains unestablished: IManager stores its current IFullView privately; no reviewed public selection getter replaces it. Do not infer selected tabs from GUI construction/render state. Next: copied-city candidate getter/cursor/filter/refusal parity, strict Python response/byte bounds and fixed mailboxes, then production/source-matched release gates. The unchanged player bundle passes source freshness; all 529 offline tests pass. The latest/previous playable bundles and production source remain unchanged. No remote overlap was found or collaborator work discarded; preserve the private untracked player log.
+
 ## Cached viewport observations — promoted source-matched core checkpoint
 
 CACHED_VIEWPORT.md / VIEWPORT_VALIDATION.json establish the new production cached_viewport primitive DTO for city, separate tactical HUD, generated battle and completed-world camera routes. Public readers copy tile/map-pixel/internal-UI rectangles, zoom and matching map bounds after game update. Management/loading/unsupported views are null/unavailable; hidden UI retains cached underlying values with unknown age/visibility. No refresh, mouse/input consumer, live engine handle, hover/selection inference or gameplay command is added. The compiler audit has 393 public/zero non-public references; 392 source-declaration matches plus the existing generated enum member.
