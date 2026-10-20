@@ -1,0 +1,54 @@
+{
+  "passed": true,
+  "validated_at": "2026-10-20T07:02:58.881936+00:00",
+  "cases": [
+    {
+      "completed_turns": 100,
+      "synthetic_event_rows": 200,
+      "wire_bytes": 14246,
+      "first_publish_ms": 2.117624,
+      "forced_changed_history_scan": {
+        "samples": 31,
+        "median_ms": 1.517038,
+        "max_ms": 2.422492
+      },
+      "unchanged_refresh": {
+        "samples": 31,
+        "median_ms": 0.078661,
+        "max_ms": 0.154481
+      },
+      "stable_issued_frame": true
+    },
+    {
+      "completed_turns": 10000,
+      "synthetic_event_rows": 20000,
+      "wire_bytes": 14250,
+      "first_publish_ms": 66.656467,
+      "forced_changed_history_scan": {
+        "samples": 31,
+        "median_ms": 61.133066,
+        "max_ms": 65.989953
+      },
+      "unchanged_refresh": {
+        "samples": 31,
+        "median_ms": 0.090635,
+        "max_ms": 0.112364
+      },
+      "stable_issued_frame": true
+    }
+  ],
+  "source_sha256": {
+    "dev/measure_chat_display_candidate.py": "70dfea509dfbe859fb6f8ff1d67b143c673d57f1cb75be24d82339f65dc03302",
+    "dev/chat_display_candidate.py": "22d1d10174c6a48c99308d7357026ed627277c942c5682a3d36830c0a9e835f1",
+    "dev/chat_history_candidate.py": "9f2b6090854a507499a33ccc1c45f171d5822e58980c11048ecb6b42b9d8fc73",
+    "syx_chat_store.py": "a2f2ffa53097cb60eab72c015c3d516693aa1c89c8aa54d74f4dfc96d222e634"
+  },
+  "game_calls": 0,
+  "inference_calls": 0,
+  "limits": [
+    "Synthetic one-chat fixed short texts in disposable SQLite, not representative real history/game or end-to-end latency.",
+    "First publish is not cold-OS-cache/JVM evidence; scan and unchanged timings describe only this host workload.",
+    "History mutation is simulated by forcing cache invalidation; real external-writer behavior has separate offline tests.",
+    "No production performance, UI repaint, worst-case byte-limit, concurrent-writer or FPS acceptance."
+  ]
+}

@@ -8,6 +8,8 @@ CHAT_DISPLAY_CANDIDATE.md documents an unshipped IPC 3 Python/Java frame/receipt
 
 CHAT_VISIBILITY_BOUNDARY.md / its static and native reports establish three concrete limitations: a public tooltip box can be empty after its draw callback; overlapping popup/reply callbacks both run; and a hidden panel remains activated without reply draws. Existing MCP popup/hidden flags agree in held phases. The copied-city fixture cleanly exits, restores its copied mod, preserves its copied save and makes zero inference calls. This is negative boundary evidence, not all-scene/pixel/physical-input or native display acknowledgement acceptance. Public API/source semantics are distinguished from documented contracts.
 
+CHAT_DISPLAY_COST_VALIDATION.json adds 31-sample synthetic one-chat workloads at 100/10,000 completed short-text turns. At the row cap, forced-scan median/max is 61.133/65.990 ms versus unchanged-refresh 0.091/0.112 ms. This is detached helper cost only, not game-thread/native UI/concurrent-writer/worst-case byte-limit acceptance. Public CI 39383915391 passed the prior developer checkpoint; it checks docs/release freshness, not licensed-game behavior.
+
 394 offline tests pass (38 new Python/Java cases, with pure Java segment policy exercised inside the cross-language case). The original 356-test player evidence and older receipt reports retain their original scopes. No remote overlapping work was found. Next: focused Claude follow-up after its advertised reset, native visibility/explicit-read policy and transport/layout integration; independent core/target/reference work continues. Preserve the user's private untracked test log.
 
 ## Automatic connection — current release checkpoint
