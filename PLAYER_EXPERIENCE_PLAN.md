@@ -93,3 +93,7 @@ The later [detached Java gesture reducer](CHAT_GESTURE_CANDIDATE.md) reconciles 
 ## Native own-surface gesture adapter
 
 The [developer-only adapter](NATIVE_GESTURE_SURFACE.md) connects the detached Java reducer to public launcher/header/resize widgets. Its separate native fixture checks supplied gesture primitives against actual section geometry/rebuild/cancellation and open-panel/closed-launcher render-callback counts. This is a port dependency, not shipped dragging, physical routed-input/focus/visibility proof or an integrated chat redesign. Real chat controls, theme/layout persistence, content/scroll/focus/scale and the unread/target protocols remain gates. Existing local CLI sessions prevented a new non-overlapping source critique; no new Claude approval is claimed.
+
+## Original blueprint-example foundation
+
+The [developer candidate](BLUEPRINT_EXAMPLES_CANDIDATE.md) now has one original warehouse teaching sketch, a strict bounded registry with summary search/explicit geometry fetch, author/source/rights/version/checksum metadata, and one separate current public native furniture-footprint/access probe. Geometry is authored, not copied from user saves or community media. Detached overlap/orthogonal-aisle checks are distinct from game placement/pathfinding; no capacity, cost, throughput or optimality is inferred. This begins UX-07 without silently importing third-party plans or adding construction authority. Production tool/client integration, external-example rights/geometry review and complete construction acceptance remain open.

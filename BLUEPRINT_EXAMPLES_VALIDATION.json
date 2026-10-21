@@ -1,0 +1,63 @@
+{
+  "passed": true,
+  "evaluated_at": "2026-10-21T20:33:45.822213+00:00",
+  "scope": "Developer-only original teaching-schematic search/get and detached geometry checks, linked to separate fixed public native catalog evidence. No new MCP tool, external layout importer, construction/execution or player release.",
+  "source_sha256": {
+    "dev/blueprint_examples.py": "55fe15fc1668424cd266f2823097d9a1de0cc7f4d0cf565c43769f9f22ef76af",
+    "test_blueprint_examples_candidate.py": "0621ac9769385b9563e8963717cd81f9c89f53fd511b06dd1e7fcb3d919cfa2d",
+    "blueprint-examples-candidate.json": "a4147938348fc8890afc9bd1b254801f50858a6a17bc3936db32820d2abed4a8",
+    "BLUEPRINT_CATALOG_VALIDATION.json": "d763365268f3d9f36212da9e9bab938ebdb90562f35d6a10315afbeaaff11021"
+  },
+  "original_examples": 1,
+  "synthetic_registry_tests_passed": 27,
+  "full_offline_tests_passed": 657,
+  "commands": [
+    ".venv/bin/python -m pytest -q test_blueprint_examples_candidate.py",
+    "SYX_JAVA_HOME=<full-jdk> .venv/bin/python -m pytest -q"
+  ],
+  "native_catalog_report_sha256": "d763365268f3d9f36212da9e9bab938ebdb90562f35d6a10315afbeaaff11021",
+  "authored_geometry": {
+    "width": 5,
+    "height": 5,
+    "grid": [
+      ".....",
+      ".RF..",
+      "E....",
+      ".RF..",
+      "....."
+    ],
+    "item_instances": 2,
+    "furniture_footprint_cells": 4,
+    "geometrically_connected_nonblocked_cells": 21,
+    "legend": {
+      "E": "Hypothetical entry; no actual door or exterior map checked",
+      "R": "Catalog furniture tile marked mustBeReachable",
+      "F": "Other reserved furniture footprint cell",
+      ".": "Authored empty aisle cell"
+    },
+    "check_scope": "Detached rectangle/overlap/orthogonal connectivity and adjacent access only; not game construction or pathfinding."
+  },
+  "nominal_compatibility_scope": "Exact catalog version only; other numeric versions unknown, and matching version text does not attest player mods/catalog.",
+  "evidence": {
+    "catalog_report_sha256": "d763365268f3d9f36212da9e9bab938ebdb90562f35d6a10315afbeaaff11021",
+    "game_jar_sha256": "fe0137c05408e5ee9e31f06fc44fe37a5d4372d9c985b280f0852d1347c0224b",
+    "source_archive_sha256": "a3fc2aa9f4be31aec0616a5030a656ac49a6011343b7e91395c7bac0b9dfb0a5",
+    "reviewed_at": "2026-10-21T20:28:14.294471+00:00"
+  },
+  "provider_calls": 0,
+  "production_integrated": false,
+  "construction_validated": false,
+  "execution_supported": false,
+  "selected_checks": [
+    "Search summaries omit geometry; fetch requests one original example with source/author/rights/evidence and caveats.",
+    "Checksum mismatch, duplicate identity/JSON keys, nonfinite constants, coerced Boolean dimensions/schema/catalog numbers, unknown execution/origin fields and unsupported catalog facts refuse.",
+    "Bounds, overlap, boundary entry, disconnected authored orthogonal aisles and missing adjacent access refuse; result dictionaries/lists own their copies.",
+    "Native report pins one public 2x1 warehouse catalog item; no room/item placed, game pathfinder or resource/throughput formula invoked."
+  ],
+  "limits": [
+    "The 5x5 teaching grid is original authored data. Elementary grid connectivity plus catalog flags does not prove construction legality, usable real door/roof/materials, storage capacity, staffing, throughput, optimum or a tested live-world blueprint.",
+    "No third-party blueprint, screenshot/video/source assets, code or user-save layout is copied. Existing external candidates remain unreviewed geometry/rights leads.",
+    "Checksums bind reviewed repository artifacts, not signatures or authentication that an arbitrary supplied report was produced by the game.",
+    "Only developer Python search/get is implemented; no production MCP schema/client/tool/library integration or paid/new player acceptance is claimed. The fifteen-record production guidance corpus and tested latest/previous bundles remain unchanged."
+  ]
+}

@@ -1,0 +1,41 @@
+{
+  "schema_version": 1,
+  "catalog_report_sha256": "d763365268f3d9f36212da9e9bab938ebdb90562f35d6a10315afbeaaff11021",
+  "examples": [
+    {
+      "id": "warehouse-two-items-teaching-grid",
+      "title": "Small warehouse furniture and aisle teaching grid",
+      "summary": "Original five-by-five warehouse interior sketch with two small furniture footprints and a connected orthogonal aisle. Illustrates access metadata, not an efficient or optimal storage design.",
+      "author": "Songs of Syx AI Assistant project (Codex-authored original teaching example)",
+      "origin": "original_project_schematic",
+      "source_url": "https://github.com/StudioCordillera/songs-of-syx-ai-assistant/blob/main/BLUEPRINT_EXAMPLES_CANDIDATE.md",
+      "rights": "original_geometry_no_external_assets_no_license_grant",
+      "game_version": "0.71.44",
+      "blueprint_id": "_STOCKPILE",
+      "catalog_item_index": 1,
+      "width": 5,
+      "height": 5,
+      "entry": {
+        "x": 0,
+        "y": 2
+      },
+      "placements": [
+        {
+          "x": 1,
+          "y": 1
+        },
+        {
+          "x": 1,
+          "y": 3
+        }
+      ],
+      "materials_note": "No bill of materials is calculated. Building, roofing, doors, item costs, upgrades and resource allocations require separate current-game checks.",
+      "caveats": [
+        "Native review establishes the selected item footprint and public access flags only; no room is built.",
+        "The entry is hypothetical and walls, roof and exterior map are not modeled. All coordinates are relative to the authored interior rectangle.",
+        "Two furniture instances do not establish two crates, storage capacity, throughput, staffing or efficiency.",
+        "This is an original instructional example, not a copied community blueprint, Workshop export or video reconstruction. No redistribution license is granted by this record."
+      ]
+    }
+  ]
+}
