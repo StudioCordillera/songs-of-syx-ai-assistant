@@ -1,0 +1,125 @@
+{
+  "passed": true,
+  "evaluated_at": "2026-10-21T19:33:03.390999+00:00",
+  "scope": "Developer-only native own-widget adapter and supplied-primitives fixture. Not physical mouse/keyboard input, focus proof or chat/player acceptance.",
+  "native_checks": {
+    "passed": true,
+    "native_width": 1536,
+    "native_height": 768,
+    "resized_panel_handle_callbacks": 6,
+    "render_callbacks": 264,
+    "post_rebuild_callbacks": 3,
+    "own_section_generations": 7,
+    "checks": [
+      "short_launcher_toggle",
+      "immediate_header_drag",
+      "resize_rebuild",
+      "reject_wrong_surface_and_content",
+      "hidden_ui_cancel",
+      "deactivation_cancel",
+      "scene_change_cancel",
+      "reset_layout",
+      "close_cancels_and_reopens_launcher",
+      "native_body_bounds",
+      "held_launcher_drag_clamps_without_opening",
+      "stationary_launcher_hold_suppresses_open"
+    ]
+  },
+  "source_sha256": {
+    "dev/run_native_gesture_surface.py": "466d5c49da7dd0256738b08752ece9ee8a2c15db5790bb36301ba42d343bc619",
+    "dev/candidates/chat-gesture/StockpileScenario.java": "93beaff25de12c700eafb11aea0e4b69b31196416f87cbe2ca6a3b914fa585f4",
+    "dev/candidates/chat-gesture/NativeGestureSurface.java": "50c9cdac1e4959733cce2ad7f77fca3dcc54e80c2c78f018e4ecb8b731c33fa2",
+    "dev/java/syx/assistant/candidate/GestureReducer.java": "baad18d901b6a2bc7916df3a916d2da069879e1a2579837fd68839c31c67bbf0",
+    "dev/run_stockpile_probe.py": "2ec255855a2d92a3435543a814ec4388de0184d3fd78dd6a2be0652704d182e5",
+    "dev/native_game_completion.py": "8d29009ecb6b1c54e65ce4d94bc1c175d189c68aad59251381ec4cf5a063773f",
+    "mod/tests/LiveSmoke.java": "bd6d755d51ed03881ed4074b99a9be489acb8fd46ddb0d0c3a9f8a9a0d8aa211"
+  },
+  "selected_game_source_sha256": {
+    "snake2d/Mouse.java": "4455715b0c26234ae78a7cea788c31bf8e4c0c7e9c66980f4a25a21884d68ee4",
+    "snake2d/MButt.java": "c24877f3852759f8e8adc6e80cd815385066189e7544a388ddcc0747856476dd",
+    "snake2d/util/gui/clickable/CLICKABLE.java": "a8753945cce36e0f63b0dba80d089e11b0810670f1569e2393e7ea1321e95c2c",
+    "view/interrupter/InterGuisection.java": "727f7ddd3932cc7ddb460821e54d248b0cc41984649eff2c3770f4fc33065025",
+    "view/interrupter/Interrupter.java": "3abe0d9e7da942c8a1a16925f3d8ec30e6bd86f96e99a072ae4407f9b1491bd6",
+    "view/interrupter/InterManager.java": "93bf95d5346e39dff8fdcf424a2b21587260340b4964e5d21fa7477591746da8",
+    "view/main/VIEW.java": "b62a822c5349f63a07f5adb5c62624c2eac99347d97ff1700592b4f6353d6036"
+  },
+  "mod_jar_sha256": "3db26c48f532f8db23086a1613a09c2a70cede6c44d8b2c82c6e4fa4d36178c3",
+  "production_source_sha256": {
+    "syx/assistant/AssistantScript.java": "c2b8ed68350d4a274315b16dc9ff1c6828a51516777c1ef4a45b84acc6d8b092",
+    "syx/assistant/ChatPanel.java": "06db6b7715f9187a40a0b4b987ab7f64e09df5f9dc07193e261249302d1ac12f",
+    "syx/assistant/EntityReadRequest.java": "e2d13aee21f399e8718382d5b43d5a6c85e5d78d2708d8105b9f1ecfe730edf8",
+    "syx/assistant/HousingObservation.java": "a6963d87c64e1a0c7bb3ebb9d4b33121c918e54190564259236425be9ef5902c",
+    "syx/assistant/JsonWriter.java": "c525eb60d3224cab83ed3fd6b8594ec8652211f00bd947e873e1482f919e81dc",
+    "syx/assistant/RegionalReadRequest.java": "4d1da800e6f2ecf6b036f188693ac1095329321bc569c82f34be9918768ef2b3",
+    "syx/assistant/StateCollector.java": "83cb3a4498437e53cf9dac0b7cf1fcff3c4f4572a0cd196fda525ebfcdd64ade",
+    "syx/assistant/StockpileReadRequest.java": "589ab0087808dbc973aa7726829c3260c609e043baac080824538c44ed5df360",
+    "syx/assistant/TileReadRequest.java": "5daf3cc3abc0cb849f654e09efadb3d0263b73d4e5e220e97671ea1c4a40bde6",
+    "syx/assistant/UiContentCollector.java": "c0d20c7f9f2734a0bb625427875f06bfcd07edb20611248b39b6e8f480ef5a48",
+    "syx/assistant/UiContextCollector.java": "0f67200fdcf2740f4d3d4b1751ea0bf143613b20a44afb77af0ebb0ae8078937",
+    "syx/assistant/WeatherObservation.java": "ddda0d16df5581ee9e032e98cebc843f2bbb0b2d20b02dcfc14dedf2cec7fe25"
+  },
+  "python_source_sha256": {
+    "syx_housing.py": "f81fe8b32b5b669b565d7c548ab62564e69bddf9c903da4e6166c322dd503057",
+    "syx_mcp.py": "1dae7a26190667238c8f448f9b18d2ef67b056caa99750306bd3c1a2ff4dd866",
+    "syx_knowledge.py": "d1dbc29ce755fcb3601fbda8b027227995992dfaba5b6c956ed82fdf6d302142",
+    "syx_query.py": "61e40b2c7d26eb0f136461f1d06e575bc12586b80fc132a512268aea56e0fd1f",
+    "syx_api_support.py": "cca62a13fbd39b0de15af284ca592c66cf527837b96b8bf4c4a54259d5cfdc1d",
+    "syx_api_manifest.py": "9bd36ac8a819db076b5bb5b5a526b86269aa4b69f6644fcd0b797fdc22c64c79",
+    "syx_live.py": "fdcb9366a3aab0d40a6c4bf597f80e5b15349ae09e9e91acf51c573455c3f69b",
+    "syx_capture.py": "32778d9f5f217119ba45b114ba2a710bdd0ce4333efa672c31c690dcc3f3c3ec",
+    "syx_tiles.py": "c5ceea79fc5d4d80307ecf7fe429ca1f1f6ae64d17e95569d54625bf02c4d664",
+    "syx_regions.py": "96dd3355f50279c7c748d866019f889bd9889ef00c7cf97bf4fa582fede7ffb5",
+    "syx_stockpiles.py": "bbad8de495428c4b44d4f860273bd9d39cea05c90c2ae8d102507b750e4f16db",
+    "syx_chat_store.py": "a2f2ffa53097cb60eab72c015c3d516693aa1c89c8aa54d74f4dfc96d222e634",
+    "syx_deepseek.py": "d58e21dbcfdeb1ef0f411dfbb4c0267234bdc5cc185e00d300821725ca1885e3",
+    "syx_chat.py": "98ceecfc8b042e45b0ea461f73fed74cc3fde00833a6fce22372649b9f844d6c",
+    "syx_chat_service.py": "1afc8252f8562a6c0ff5f6755f7b0479c401bf6e2f079503313da9e67713d73e",
+    "syx_claude.py": "3a850a645907f27b1a9cb15c3c5244b96b2da97d5d0dc37f5cd7d6f708cf92a8",
+    "syx_claude_worker.py": "ab6638b2c4ef3a4a1548fde1c0739a48f4d47e468494dd7444019f3f330dea38"
+  },
+  "provider_calls": 0,
+  "native_input_injections": 0,
+  "production_integration": false,
+  "explicit_fixture_save_requests": 0,
+  "public_adapter_boundary": [
+    "Own ClickableAbs.clickA initiates capture only on the currently built launcher/header/resize handle; unrelated content/surface labels refuse.",
+    "Own update copies CORE.getInput().getMouse().getCoo x/y and MButt.LEFT.isDown; no pointer setters or shared click counters.",
+    "Own native geometry is bounded to public nativeWidth/nativeHeight; changed sizes rebuild own GuiSection, positions move own body.",
+    "Own deactivation cancels; hidden UI/scene identity and reducer timeout/viewport guards cancel on sampling. No public focus guarantee is inferred."
+  ],
+  "limits": [
+    "One native resolution and disposable paused city; supplied gesture primitives, not physical routed clicks/held movement, OS input, out-of-window focus recovery or all scaling/scene acceptance.",
+    "Fixture calls own begin/sample seam. The actual widget clickAction and update polling path compile and are source-inspected but no physical/native input is generated to drive them. A callback is not human-visible/unobscured display proof.",
+    "At least six resized open-panel handle callbacks and three rebuilt launcher callbacks are counted. No pixels, clipping/accessibility/read receipts, real chat composer/transcript/citations, themes/persistence, typed attachments or unread badge are validated.",
+    "Scene switch and UI hidden cancellation are driven through public test-only presentation actions in the copied profile. Return-to-menu/unload and reliable focus-loss detection remain separate gaps.",
+    "Current production player JAR/helper/latest/previous ZIP remain unchanged; no new provider call, game action, game variable getter or shipped UI is implied."
+  ],
+  "explicit_fixture_clean_completion": true,
+  "game_exit_code": 0,
+  "native_failure_markers_absent": true,
+  "game_jar_sha256": "fe0137c05408e5ee9e31f06fc44fe37a5d4372d9c985b280f0852d1347c0224b",
+  "source_archive_sha256": "a3fc2aa9f4be31aec0616a5030a656ac49a6011343b7e91395c7bac0b9dfb0a5",
+  "static_boundary_review_sha256": "eced96de2ea4bd93eb1c023b43e368a2f8a7e27ddb7645f3f74aa12c46f6780c",
+  "copied_profile_mod_restored": true,
+  "copied_save_unchanged": true,
+  "offline_verification": {
+    "passed": true,
+    "tests_passed": 33,
+    "command": "SYX_JAVA_HOME=<full-jdk> .venv/bin/python -m pytest -q test_chat_gesture_candidate.py test_gesture_reducer_java.py",
+    "scope": "Existing synthetic reducer and Java/Python trace checks; no new full-suite or player-release evidence."
+  },
+  "source_qualification": "Public installed source/binary and external compilation, not an official documented stable mod contract.",
+  "reviewed_source_anchors": [
+    "Mouse callback/poll and getCoo",
+    "MButt.isDown",
+    "ClickableAbs.click/clickA",
+    "InterGuisection.activate/deactivateAction",
+    "Interrupter.show/hide",
+    "InterManager.remove/update",
+    "VIEW.current/hide/hideUI"
+  ],
+  "development_notes": [
+    "An early fixture incorrectly treated VIEW.hide as a toggle; that run failed and is excluded. Source inspection established its one-way public behavior; hidden cancellation is now tested last without private restore/input injection.",
+    "Earlier successful development runs did not hold the resized open panel across render phases or use the final atomic callback counter. Only the final source-matched clean run establishes the scope reported here."
+  ]
+}

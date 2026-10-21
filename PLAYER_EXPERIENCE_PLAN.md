@@ -89,3 +89,7 @@ The later [explicit dispatch seam](CHAT_TARGET_DISPATCH.md) now claims an accept
 [Owned helper tasks and Stop](CHAT_TARGET_TASKS.md) now provide an unshipped explicit accepted-request task lifetime, bounded concurrency and exact cancellation without replaying claimed work. Pending acceptance remains caller-task cancellation; a future native protocol must join that with accepted-task Stop. No native control or read acknowledgement is added.
 
 The later [detached Java gesture reducer](CHAT_GESTURE_CANDIDATE.md) reconciles the accepted immediate-header/engaged-hold/early-motion policies with bounded geometry/cancellation. Python/Java traces are synthetic; native ownership/focus/scene/scaling, integration and release gates remain. The new Java source awaits focused peer review when existing local CLI sessions are no longer occupying the no-overlap lane.
+
+## Native own-surface gesture adapter
+
+The [developer-only adapter](NATIVE_GESTURE_SURFACE.md) connects the detached Java reducer to public launcher/header/resize widgets. Its separate native fixture checks supplied gesture primitives against actual section geometry/rebuild/cancellation and open-panel/closed-launcher render-callback counts. This is a port dependency, not shipped dragging, physical routed-input/focus/visibility proof or an integrated chat redesign. Real chat controls, theme/layout persistence, content/scroll/focus/scale and the unread/target protocols remain gates. Existing local CLI sessions prevented a new non-overlapping source critique; no new Claude approval is claimed.

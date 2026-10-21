@@ -1,0 +1,29 @@
+# Native own-surface adapter — developer candidate
+
+`dev/candidates/chat-gesture/NativeGestureSurface.java` connects the [detached Java gesture policy](CHAT_GESTURE_CANDIDATE.md) to real public game widgets. It is compiled beside the unchanged tested player in an isolated copied-city fixture. It is not packaged in either player download and has no real chat, provider, gameplay command, read receipt or unread badge.
+
+The candidate owns a launcher and a simple review panel with a header and resize handle. Its own clickable callback starts capture; composer/content labels are not gesture handles. While capturing, its update method copies public pointer coordinates and the held-left-button Boolean without changing engine input. Position changes move its own section. Size changes rebuild that section from the current rectangle. Cancellation retains the last applied bounded rectangle; it does not roll back a partially applied drag. Closing the panel cancels capture and returns the launcher; Reset restores the candidate defaults. An actual manager removal invokes its deactivation callback and cancels capture.
+
+## Public API and ownership
+
+The [earlier input review](CHAT_INPUT_BOUNDARY.md) pins the installed game/source pair and public pointer/button/dimension routes. This adapter additionally uses public `ClickableAbs`, `GuiSection`, `InterGuisection`, `VIEW.current` and own body/render methods. External Java 16 compilation establishes accessibility of the actual candidate. Selected source hashes and our interpretations are recorded in the [native report](NATIVE_GESTURE_SURFACE_VALIDATION.json); proprietary source text stays private.
+
+The inspected engine queues mouse presses, then routes them through the current UI hover/click path. The adapter starts only from its own handle's clickable callback; its additional primitive seam checks that the supplied target belongs to the currently built surface and coordinates fall inside that target. The seam exists for developer fixture checks and is not an MCP tool, gameplay action or global input injector. It never invokes the game-state query API or identifies a game target.
+
+The inspected `InterGuisection.activate` replaces its own section while an already activated interrupter remains registered. Rebuilding on resize therefore preserves the reducer's capture. `InterManager.remove` invokes `deactivateAction`; cancellation is placed there so inherited close/removal paths cannot leave capture active. All decisions use source-verified installed public members, not a stable documented mod API contract.
+
+## Finite native evidence
+
+The fixture in `dev/candidates/chat-gesture/StockpileScenario.java` drives **supplied primitives** through the adapter's own seam. It checks a short launcher toggle, held launcher dragging/clamping without opening, stationary engaged-hold suppression, immediate header drag, resize with a rebuilt section, rejected wrong-surface/content labels, cancellation after hidden UI/manager removal/scene change, reset, closing to the launcher, and agreement between native widget bodies and detached bounds. At least six open resized-panel handle callbacks and three rebuilt-launcher callbacks are counted across separate update/render phases, using an atomic counter. These checks establish real widget geometry/lifecycle integration at the reported resolution, not that a physical player drag was performed.
+
+The actual clickable callback/public input-polling route is compiled and source-inspected. The fixture does not manipulate the shared pointer, button state or click counters to make it run. No OS/native input, screenshot, pixels, human-read or unobscured display proof is obtained. Three render callbacks do not establish display/read receipts. This panel deliberately contains no composer, scroll transcript, citation buttons or target chips; their input and layout acceptance remains open.
+
+The public `VIEW.hide()` route sets hidden state; it does not toggle it back. The fixture tests hidden cancellation last, without inventing an inverse API or changing a private field. Scene changes and manager removal use public presentation actions only inside the disposable copied profile. They are distinct from natural unpaused play, actual game-menu unload, physical focus changes and full scene coverage.
+
+## Remaining gates and reproduction
+
+A stale native pointer/held state cannot prove focus. The reducer's five-second bound is recovery, not focus-loss detection. The candidate needs further physical routed-input evidence, idle resolution-change behavior, clipping/font/scale/accessibility checks, cancellation during obstructing UI, and integration with the actual chat controls before release. Only launcher/header/resize are enabled; empty-chrome dragging, themes and saved layout/reset preferences remain follow-ups. The standalone browser prototype and prior completed Claude critique remain design references, not native acceptance.
+
+No new Claude invocation was started: existing local CLI sessions were present and not established idle, so the explicit no-overlap rule was honored. There is no new model result, quota/credit diagnosis or peer approval of this adapter. Reuse the completed earlier review and obtain a bounded focused critique when the lane is available.
+
+Run `dev/run_native_gesture_surface.py` with the licensed game, copied save, Java and JDK arguments in [CONTRIBUTING.md](CONTRIBUTING.md) under an isolated display. It honors the shared native fixture lock, checks game/source/player provenance, requires explicit clean completion and restores the copied mod with save-integrity checks. Production files, credentials, normal saves, user logs and current/previous bundles remain unchanged. The separate reducer tests exercise its detached synthetic policy; they are not a new full player release or native physical-input test.

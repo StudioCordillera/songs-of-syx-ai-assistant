@@ -47,6 +47,7 @@ def scope(path):
     if name=='CHAT_TARGET_DISPATCH_VALIDATION.json':return 'Developer-only accepted-turn claim tests and copied-city fake-provider handoff; not native player or paid Pro acceptance'
     if name=='CHAT_TARGET_DISPATCH.md':return 'Developer dispatch seam, cancellation/restart/unknown-delivery contract and remaining integration gates'
     if name=='CHAT_HISTORY_CANDIDATE_VALIDATION.json':return 'Developer-only SQLite receipt/filter/migration and actual bundled-store compatibility tests; not production badge/world-routing acceptance'
+    if name=='NATIVE_GESTURE_SURFACE_VALIDATION.json':return 'Developer native own-widget geometry/lifecycle with supplied gesture primitives and render-callback counts; not physical input, focus, chat/player or visibility acceptance'
     if name=='SELECTED_RESIDENT_ABSENCE_VALIDATION.json':return 'Finite native public subject-panel clear/select/clear and retained-original MCP refusal/pin transitions; unchanged player, no physical UI/unload acceptance'
     if name=='SELECTED_RESIDENT_QUERY_VALIDATION.json':return 'Existing production three-join/four-source query: two same-callback subject selections, eight actual MCP calls and synthetic absence/precondition cases; no new player mapping'
     if name=='CHAT_GESTURE_JAVA_VALIDATION.json':return 'Unshipped detached Java/Python gesture policy traces and independent outcomes; no native input/focus/widget/player or new peer-review acceptance'
