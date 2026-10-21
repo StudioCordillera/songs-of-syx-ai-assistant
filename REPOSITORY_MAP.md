@@ -34,6 +34,8 @@ The unchanged housing candidate also has a separate real-chamber/bounds runner: 
 
 [Collection diagnostics](COLLECTION_DIAGNOSTICS.md) describes the fixed scalar-only ancestor metadata contract in `syx_query.py`, including the seven housing-specific keys. `dev/run_housing_query_diagnostics.py` retains the earlier native/MCP experiment with corrected expectations and exact capped diagnostics; [positive evidence](HOUSING_QUERY_DIAGNOSTICS_VALIDATION.json) is separate from the historical negative report. The housing reader itself remains unregistered.
 
+[Recorded housing relationships](HOUSING_RELATIONSHIPS.md) defines the unshipped `dev/housing_query_view.py` adapter and its fixed field descriptions/atomic per-home relationship batches. `test_housing_query_view.py` supplies synthetic failure/bound/ownership tests. `dev/run_housing_relations.py` reuses the unchanged native DTO fixture and exercises discovery plus joins/aggregation/caps through actual MCP; [native evidence](HOUSING_RELATIONS_VALIDATION.json) and `housing-relations-candidate-example.json` remain developer-only. Neither the adapter nor richer housing paths are packaged in the player.
+
 ## Python runtime modules
 
 | Module | Responsibility |

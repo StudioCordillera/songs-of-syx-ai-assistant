@@ -42,3 +42,7 @@ xvfb-run -a -s '-screen 0 1280x960x24' .venv/bin/python dev/run_housing_query_ca
 ```
 
 The runner uses the shared device lock and requires source/binary pairing, exact candidate/reviewer hashes, explicit clean completion, zero exit, known crash-marker checks, copied-mod restoration and supplied copied-save integrity. No housing mutation, inference or normal-profile change occurs. One paused 36-home/204-assignment city does not validate chamber-specific queries, fault-query metadata, broad lifecycle/cap/load cases or provider advice. Those remain separate gates.
+
+## Detached relationship/meaning follow-up
+
+[HOUSING_RELATIONSHIPS.md](HOUSING_RELATIONSHIPS.md) now supplies unshipped field meanings and a bounded recorded-assignment table. Five actual MCP calls check its authored room/assignment joins, grouping/projection/order, field discovery, snapshot context and whole-home relation cap. Twenty-two synthetic cases check unavailable/error/bound/ownership behavior. This advances the envelope/relationship design gates; choosing/integrating the production collector/adapter, source-support registration and full feature/release acceptance remain open.

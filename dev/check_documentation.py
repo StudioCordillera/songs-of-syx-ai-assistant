@@ -48,6 +48,7 @@ def scope(path):
     if name=='CHAT_TARGET_DISPATCH.md':return 'Developer dispatch seam, cancellation/restart/unknown-delivery contract and remaining integration gates'
     if name=='CHAT_HISTORY_CANDIDATE_VALIDATION.json':return 'Developer-only SQLite receipt/filter/migration and actual bundled-store compatibility tests; not production badge/world-routing acceptance'
     if name=='HOUSING_BOUNDARY_REVIEW.json':return 'Unregistered housing selected source/public-reader/budget review; mutating routes excluded, no native/player acceptance'
+    if name=='HOUSING_RELATIONS_VALIDATION.json':return 'Developer-only detached source-described home relations; native/MCP joins/discovery and atomic relation cap, production mapping unshipped'
     if name=='QUERY_DIAGNOSTICS_RELEASE_VALIDATION.json':return 'Current fixed scalar query metadata repair; fresh paid/core/distribution/native query checks, unchanged Java class contents; housing mapping unshipped'
     if name=='HOUSING_QUERY_DIAGNOSTICS_VALIDATION.json':return 'Positive native/MCP fixed housing diagnostic propagation; developer-augmented rows, no production housing mapping'
     if name=='HOUSING_QUERY_CANDIDATE_VALIDATION.json':return 'Developer-augmented native snapshot through real MCP; selective query parity and demonstrated missing diagnostics; production readiness false'
