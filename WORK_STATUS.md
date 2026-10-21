@@ -2,6 +2,14 @@
 
 Use `python3 dev/collaboration_status.py` for actual remote/local state at every run; this file is a handoff, not a live branch/working-tree assertion. Read AGENTS.md and reconcile newer collaborator work before editing.
 
+## Developer blueprint MCP tools — player unchanged
+
+The [developer wrapper](BLUEPRINT_EXAMPLES_CANDIDATE.md) / [protocol evidence](BLUEPRINT_MCP_CANDIDATE_VALIDATION.json) now register `search_blueprint_examples` and `get_blueprint_example` beside the unchanged production factory. Actual stdio listing has 21 tools, with every original nineteen tool definition equal to the baseline. Eight actual reference calls cover selective summary/get, exact/unknown version, no match, unknown ID and invalid nested execution/Boolean-limit/path shapes. No snapshot is supplied, so the returned catalog scope explicitly carries no live game/UI/session claim.
+
+Eleven schema/UTF-8/isolation/actual-stdio cases and all 668 offline tests pass. New results are literal JSON text capped at 65,536 actual UTF-8 bytes. Nested request schemas forbid unknown fields/coercion; CLI requires an explicit existing disposable runtime subdirectory and rejects default/home/outside/root/symlink paths. These are finite checks, not a general MCP/adversarial-filesystem audit. Get preserves original geometry/source/author/rights/catalog hashes and no-construction/no-execution qualifiers. Unknown versions remain unknown; matching version text does not attest a player's mods/catalog.
+
+Production MCP/coordinator/tool admission remains nineteen and does not use this wrapper. The paired player, latest/previous ZIPs, credentials/normal saves/private log and muted/dim settings stay untouched. No game/native fixture, paid provider, external blueprint import or fresh player release is claimed. Prior native catalog and registry reports retain their earlier exact source/date scope. Initial fetch was aligned; reconcile again before publishing. Next: review and integrate the two reference tools with actual coordinator/player release gates when ready, expand reviewed examples/references, and continue actual chat/UI/state/lifecycle work. Objectives remain active.
+
 ## Original blueprint teaching registry — player unchanged
 
 [BLUEPRINT_EXAMPLES_CANDIDATE.md](BLUEPRINT_EXAMPLES_CANDIDATE.md) establishes developer-only `dev/blueprint_examples.py`: bounded summary search and explicit original-geometry retrieval with author/source/rights/version/caveats and a checksum-pinned native catalog report. One authored 5×5 warehouse interior sketch has two 2×1 furniture instances, four footprint cells and 21 connected nonblocked cells under an elementary orthogonal grid check. Entry/walls/roof/exterior map are hypothetical or unmodeled. This is not two crates, storage capacity, cost, efficiency, optimum, actual pathfinding or construction legality.

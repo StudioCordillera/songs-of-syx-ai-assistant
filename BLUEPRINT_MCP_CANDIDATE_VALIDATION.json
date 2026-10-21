@@ -1,0 +1,51 @@
+{
+  "passed": true,
+  "evaluated_at": "2026-10-21T21:35:37.147749+00:00",
+  "scope": "Developer-only stdio blueprint reference wrapper around unchanged production server factory; no snapshot, game/provider call, construction or player integration.",
+  "source_sha256": {
+    "dev/blueprint_mcp_candidate.py": "e81cf443014471ab9899887b768567902bfc42d3f83c62b0ea738b788f828519",
+    "test_blueprint_mcp_candidate.py": "b0918776c424e1d709ce79bda44c9e3477d9154969540804a69fa31af97404a9",
+    "dev/blueprint_examples.py": "55fe15fc1668424cd266f2823097d9a1de0cc7f4d0cf565c43769f9f22ef76af",
+    "blueprint-examples-candidate.json": "a4147938348fc8890afc9bd1b254801f50858a6a17bc3936db32820d2abed4a8",
+    "BLUEPRINT_CATALOG_VALIDATION.json": "d763365268f3d9f36212da9e9bab938ebdb90562f35d6a10315afbeaaff11021",
+    "syx_mcp.py": "1dae7a26190667238c8f448f9b18d2ef67b056caa99750306bd3c1a2ff4dd866"
+  },
+  "new_tools": [
+    "search_blueprint_examples",
+    "get_blueprint_example"
+  ],
+  "candidate_tool_count": 21,
+  "unchanged_production_tool_definitions": 19,
+  "actual_new_tool_calls": 8,
+  "expected_tool_error_calls": 4,
+  "new_tools_read_only_annotations": true,
+  "synthetic_and_stdio_tests_passed": 11,
+  "full_offline_tests_passed": 668,
+  "commands": [
+    ".venv/bin/python -m pytest -q test_blueprint_mcp_candidate.py",
+    "SYX_JAVA_HOME=<full-jdk> .venv/bin/python -m pytest -q"
+  ],
+  "wire_text_utf8_limit": 65536,
+  "snapshot_supplied": false,
+  "new_native_game_calls": 0,
+  "provider_calls": 0,
+  "production_integration": false,
+  "checks": [
+    "Actual stdio initialize/list_tools exposes exactly two additional read-only tools; every original tool definition equals a separately instantiated production server definition.",
+    "Summary search omits geometry and reports requested/reviewed versions and catalog checksum. Explicit get returns the original grid with source/author/rights/catalog evidence and caveats.",
+    "Other version stays unknown, no match is empty, unknown ID and nested execution/Boolean-limit/path arguments return expected tool errors.",
+    "Actual returned content is one JSON text block within 64-KiB UTF-8 bounds. Independent Unicode near-bound/overflow and NaN checks verify serialization refusal.",
+    "CLI requires an existing explicit disposable subdirectory strictly under repository runtime and refuses missing/default/outside/root/symlink paths.",
+    "No snapshot is supplied for reference retrieval; no live-state/UI/session evidence is invented. Registry/client results preserve no-construction/no-execution qualifiers."
+  ],
+  "release_sha256": {
+    "releases/latest-user-test.zip": "c259a161a0856867f25bca8851453641ecca342e405af3a2eec979b823c343b9",
+    "releases/previous-user-test.zip": "9480d25ac77bead3550466910d4b205623d1410a1cd452768cecd0f40f7a4d0c"
+  },
+  "limits": [
+    "Developer entry point only. The published production server/coordinator/player tool admission remains nineteen, and provider access to these two tools is not integrated or tested.",
+    "Nested tool request schemas are strict; this is not a general MCP transport/adversarial-server or every possible malformed-envelope audit.",
+    "State-directory checks are explicit developer isolation, not a race-resistant OS security boundary against another process changing the filesystem.",
+    "Original teaching geometry/catalog evidence retains its earlier native scope/date. No new native, paid inference, community/video geometry/rights, construction, physical UI or paired player release acceptance is claimed."
+  ]
+}
