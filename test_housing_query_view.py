@@ -1,7 +1,7 @@
-"""Detached schema/relationship candidate tests; synthetic state is not native game evidence."""
+"""Detached housing schema/relationship tests; synthetic state is not native game evidence."""
 from copy import deepcopy
 import pytest
-from dev.housing_query_view import build_view,SCOPE
+from syx_housing import build_view,SCOPE
 
 
 def candidate(counts=(2,1)):

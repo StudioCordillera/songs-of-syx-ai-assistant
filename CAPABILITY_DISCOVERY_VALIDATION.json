@@ -1,7 +1,20 @@
 {
   "passed": true,
-  "evaluated_at": "2026-10-20T18:24:56.983005+00:00",
+  "evaluated_at": "2026-10-21T01:52:18.731931+00:00",
   "checks": [
+    {
+      "id": "city_home_records",
+      "support": "public_source_verified",
+      "references": [
+        "HOUSING.md",
+        "HOUSING_BOUNDARY_REVIEW.json",
+        "HOUSING_CONTRACT_REVIEW.json",
+        "HOUSING_VALIDATION.json",
+        "settlement/room/home/house/HomeInstance.java",
+        "settlement/room/home/chamber/ChamberInstance.java"
+      ],
+      "passed": true
+    },
     {
       "id": "stored_city_weather",
       "support": "public_source_verified",
@@ -220,6 +233,7 @@
       "passed": true
     }
   ],
+  "home_member_anchors_checked": 6,
   "weather_member_anchors_checked": 6,
   "stockpile_member_anchors_checked": 4,
   "viewport_member_anchors_checked": 8,
@@ -229,16 +243,16 @@
   "faction_context_member_anchors_checked": 3,
   "no_game_snapshot_required": true,
   "inference_calls": 0,
-  "public_inventory_size": 413,
+  "public_inventory_size": 427,
   "source_sha256": {
-    "syx_mcp.py": "98b3c236062230c022bd4a1b3d2b8d383e9415647b4338fff250e6106b3272a2",
-    "syx_api_support.py": "878e3691eaff288e1c833ec447742714c90181d2652b79b0e94e2951b7eaeb7d",
-    "syx_api_manifest.py": "38226c36397bd92f1343f5fad04d6653f3929e6574ec359f0431aa473f5d13f5",
-    "dev/verify_capability_discovery.py": "c1a64700430e013cf827d06db349d1ce85dbdaa1dded09c4b187385eb96c9cac"
+    "syx_mcp.py": "1dae7a26190667238c8f448f9b18d2ef67b056caa99750306bd3c1a2ff4dd866",
+    "syx_api_support.py": "cca62a13fbd39b0de15af284ca592c66cf527837b96b8bf4c4a54259d5cfdc1d",
+    "syx_api_manifest.py": "9bd36ac8a819db076b5bb5b5a526b86269aa4b69f6644fcd0b797fdc22c64c79",
+    "dev/verify_capability_discovery.py": "a56c577f176fad73929e46a8f5e629784fe0942e0cf3dc9b7a47d42463be0689"
   },
   "limits": [
     "Capability records summarize existing evidence; no new game getter/scene or official stable contract is established.",
     "Offline discovery is not an attestation of a separately installed game mod; pair source-matching builds.",
-    "Seventeen supported capabilities and two explicit gaps sampled, not exhaustive metadata acceptance."
+    "Eighteen supported capabilities and two explicit gaps sampled, not exhaustive metadata acceptance."
   ]
 }

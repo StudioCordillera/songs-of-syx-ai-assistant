@@ -1,5 +1,8 @@
 # Collection and selection cost baselines
 
+The current production housing build is measured in [CURRENT_COLLECTION_COST_VALIDATION.json](CURRENT_COLLECTION_COST_VALIDATION.json): 31 samples after the first, warm collection median/p95/max 5.604/7.920/9.696 ms, separate JSON/UTF-8 encoding 10.117/11.423/12.739 ms, snapshot 1,821,120 bytes. Production encoding runs in the export worker; summed fixture intervals are not measured production game-thread stalls. The detached housing relationship pass runs outside the game thread and is not comprehensively benchmarked by these timings. No speedup, larger-city, worst-case or FPS claim. Earlier measurements below remain historical and keep their recorded source/JAR scope.
+
+
 ## Current published collector — small copied city
 
 [CURRENT_COLLECTION_COST_VALIDATION.json](CURRENT_COLLECTION_COST_VALIDATION.json) measures the live-regional player JAR (`61f88110b48d65add52e94bef3becccac18dde7e52cbd56b4678f3b9521f2ff0`), including the current producer-degradation and stockpile-bookkeeping collector. The game/source hashes match the public API audit. The paused copied city has 295 entity-prefix rows, 36 scanned rooms, eight service rooms, 544 configured service-policy rows, 35 production flows, 203 regions, 42 stockpile resource rows and 834 installed references. Stockpile reads scan all 42 resources without failures/truncation. The regional-output table contains 8,526 cells and 42 schedules, with no resource/cell failures or truncation; all 18 domains remain partial. The snapshot stays below the MCP input bound of 16 MiB in this finite fixture.

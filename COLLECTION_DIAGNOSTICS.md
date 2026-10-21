@@ -1,5 +1,7 @@
 # Collection diagnostics in selective results
 
+The metadata-only housing-diagnostics release described below is a historical checkpoint. Current production housing adds a Java reader and detached relationship adapter; see [HOUSING.md](HOUSING.md) and its exact-build reports. The fixed scalar diagnostic contract remains in use.
+
 Filtering, projection, grouping or joining game rows must preserve the observations' scan/failure/truncation limits. Each selective result's `sources` includes `collection_diagnostics`, scoped to that source and its requested node/ancestors. It contains only reviewed named Boolean/integer metadata; row values, exception strings, arbitrary nested objects and descendants are not copied into this metadata.
 
 The housing integration experiment previously demonstrated seven omitted keys. The query engine now preserves `room_slots_scanned`, `room_map_size`, `scan_limit`, `room_scan_complete`, `failed_room_reads`, `failed_rosters` and `truncated_rosters`, alongside existing keys such as `row_limit`. Zero error counts and false completeness remain explicit. These names retain their source meaning; a complete slot scan does not establish that every room/roster read succeeded, and a row limit does not identify whether it was reached.

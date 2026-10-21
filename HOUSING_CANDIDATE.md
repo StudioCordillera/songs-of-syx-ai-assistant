@@ -1,5 +1,7 @@
 # Physical home records and eligibility-weighted ledgers — candidate
 
+This page preserves the earlier unregistered reader and its original evidence scope. The production mapping is documented in [HOUSING.md](HOUSING.md); consult its exact-source release evidence for current behavior. Historical unshipped statements below describe their checkpoints.
+
 This is an **unregistered developer candidate**, outside the player JAR and MCP tools. The tested weather-enabled player remains unchanged. Current housing data still exposes aggregate HOME statistics and recorded per-person home coordinates. No new player housing feature is claimed here.
 
 `dev/candidates/housing/syx/assistant/candidate/HousingObservation.java` reads two fixed concrete types on `GAME.addAfterUpdate`: ordinary `HomeInstance` and noble `ChamberInstance`. It scans up to 10,000 current room slots and returns up to 1,000 supported home rows. IDs are reusable room slots. Service/door coordinates identify the home record's service point, not UI selection or a permanent identity. Arbitrary HOME implementations are outside this candidate's scope.

@@ -1,13 +1,14 @@
 {
   "passed": true,
-  "mod_jar_sha256": "079c12d78f8306cc5351a6b82c274f02e682f83d88785fd2c6ef6ec5327b7e9e",
+  "mod_jar_sha256": "462c867c3887f1301662652eca96c5bcfadccd48abf6c137128ee2be3d15d58a",
   "production_source_sha256": {
     "syx/assistant/AssistantScript.java": "c2b8ed68350d4a274315b16dc9ff1c6828a51516777c1ef4a45b84acc6d8b092",
     "syx/assistant/ChatPanel.java": "06db6b7715f9187a40a0b4b987ab7f64e09df5f9dc07193e261249302d1ac12f",
     "syx/assistant/EntityReadRequest.java": "e2d13aee21f399e8718382d5b43d5a6c85e5d78d2708d8105b9f1ecfe730edf8",
+    "syx/assistant/HousingObservation.java": "a6963d87c64e1a0c7bb3ebb9d4b33121c918e54190564259236425be9ef5902c",
     "syx/assistant/JsonWriter.java": "c525eb60d3224cab83ed3fd6b8594ec8652211f00bd947e873e1482f919e81dc",
     "syx/assistant/RegionalReadRequest.java": "4d1da800e6f2ecf6b036f188693ac1095329321bc569c82f34be9918768ef2b3",
-    "syx/assistant/StateCollector.java": "09f96ee681945456e041194003ec070daa3f0a7319a0ce297af2e864aedade37",
+    "syx/assistant/StateCollector.java": "83cb3a4498437e53cf9dac0b7cf1fcff3c4f4572a0cd196fda525ebfcdd64ade",
     "syx/assistant/StockpileReadRequest.java": "589ab0087808dbc973aa7726829c3260c609e043baac080824538c44ed5df360",
     "syx/assistant/TileReadRequest.java": "5daf3cc3abc0cb849f654e09efadb3d0263b73d4e5e220e97671ea1c4a40bde6",
     "syx/assistant/UiContentCollector.java": "c0d20c7f9f2734a0bb625427875f06bfcd07edb20611248b39b6e8f480ef5a48",
@@ -15,11 +16,12 @@
     "syx/assistant/WeatherObservation.java": "ddda0d16df5581ee9e032e98cebc843f2bbb0b2d20b02dcfc14dedf2cec7fe25"
   },
   "python_source_sha256": {
-    "syx_mcp.py": "98b3c236062230c022bd4a1b3d2b8d383e9415647b4338fff250e6106b3272a2",
+    "syx_housing.py": "f81fe8b32b5b669b565d7c548ab62564e69bddf9c903da4e6166c322dd503057",
+    "syx_mcp.py": "1dae7a26190667238c8f448f9b18d2ef67b056caa99750306bd3c1a2ff4dd866",
     "syx_knowledge.py": "f5d7dd6d387ad0fb8f2b024a3bd599ad1cec28f2906dfae27d9d2fdf56e4de7e",
     "syx_query.py": "61e40b2c7d26eb0f136461f1d06e575bc12586b80fc132a512268aea56e0fd1f",
-    "syx_api_support.py": "878e3691eaff288e1c833ec447742714c90181d2652b79b0e94e2951b7eaeb7d",
-    "syx_api_manifest.py": "38226c36397bd92f1343f5fad04d6653f3929e6574ec359f0431aa473f5d13f5",
+    "syx_api_support.py": "cca62a13fbd39b0de15af284ca592c66cf527837b96b8bf4c4a54259d5cfdc1d",
+    "syx_api_manifest.py": "9bd36ac8a819db076b5bb5b5a526b86269aa4b69f6644fcd0b797fdc22c64c79",
     "syx_live.py": "fdcb9366a3aab0d40a6c4bf597f80e5b15349ae09e9e91acf51c573455c3f69b",
     "syx_capture.py": "32778d9f5f217119ba45b114ba2a710bdd0ce4333efa672c31c690dcc3f3c3ec",
     "syx_tiles.py": "c5ceea79fc5d4d80307ecf7fe429ca1f1f6ae64d17e95569d54625bf02c4d664",
@@ -130,12 +132,12 @@
         "field_meanings_discoverable": true,
         "inference_calls": 0,
         "source_sha256": {
-          "mod/src/main/java/syx/assistant/StateCollector.java": "09f96ee681945456e041194003ec070daa3f0a7319a0ce297af2e864aedade37",
+          "mod/src/main/java/syx/assistant/StateCollector.java": "83cb3a4498437e53cf9dac0b7cf1fcff3c4f4572a0cd196fda525ebfcdd64ade",
           "mod/tests/ProductionScenario.java": "d5a305c0ca3c3a23deb25947b124ca5bb8e8b3e196d6992609d633cd7a508af3",
           "dev/verify_production.py": "c5f709e8ced215dfde81e6aeb55e60415babf65b9843775a456b9b1fd936fb79",
           "degradation-query-example.json": "35af3cb42d9ed6761d184ae2b03f51385ce1305d720de233e6754955de1c3cba",
           "syx_query.py": "61e40b2c7d26eb0f136461f1d06e575bc12586b80fc132a512268aea56e0fd1f",
-          "syx_mcp.py": "98b3c236062230c022bd4a1b3d2b8d383e9415647b4338fff250e6106b3272a2"
+          "syx_mcp.py": "1dae7a26190667238c8f448f9b18d2ef67b056caa99750306bd3c1a2ff4dd866"
         },
         "limits": [
           "Paused copied city: observed room-value counts are reported, and a zero-only city does not establish nonzero room integration. Five synthetic public-decoder inputs exercise threshold/positive branches without writing room wear.",
@@ -161,12 +163,12 @@
         "field_meanings_discoverable": true,
         "inference_calls": 0,
         "source_sha256": {
-          "mod/src/main/java/syx/assistant/StateCollector.java": "09f96ee681945456e041194003ec070daa3f0a7319a0ce297af2e864aedade37",
+          "mod/src/main/java/syx/assistant/StateCollector.java": "83cb3a4498437e53cf9dac0b7cf1fcff3c4f4572a0cd196fda525ebfcdd64ade",
           "mod/tests/ProductionScenario.java": "d5a305c0ca3c3a23deb25947b124ca5bb8e8b3e196d6992609d633cd7a508af3",
           "dev/verify_production.py": "c5f709e8ced215dfde81e6aeb55e60415babf65b9843775a456b9b1fd936fb79",
           "workforce-query-example.json": "a3a5f019cbc0f28343eb7e6448aba801b3f7c1bd3d3a053d8456c55111298fff",
           "syx_query.py": "61e40b2c7d26eb0f136461f1d06e575bc12586b80fc132a512268aea56e0fd1f",
-          "syx_mcp.py": "98b3c236062230c022bd4a1b3d2b8d383e9415647b4338fff250e6106b3272a2"
+          "syx_mcp.py": "1dae7a26190667238c8f448f9b18d2ef67b056caa99750306bd3c1a2ff4dd866"
         },
         "limits": [
           "Paused copied city with both countInput branches, not all room types or larger-city/cap/fault execution.",
@@ -187,6 +189,7 @@
       "checks": {
         "city": {
           "passed": true,
+          "housing_available": null,
           "weather_available": null,
           "world_list_panel_coverage": "unavailable",
           "view": "settlement",
@@ -207,6 +210,7 @@
         },
         "settlement_battle": {
           "passed": true,
+          "housing_available": null,
           "weather_available": null,
           "world_list_panel_coverage": "unavailable",
           "view": "settlement_battle",
@@ -227,6 +231,7 @@
         },
         "city_restored": {
           "passed": true,
+          "housing_available": null,
           "weather_available": null,
           "world_list_panel_coverage": "unavailable",
           "view": "settlement",
@@ -247,6 +252,7 @@
         },
         "battle_deployment": {
           "passed": true,
+          "housing_available": null,
           "weather_available": null,
           "world_list_panel_coverage": "unavailable",
           "view": "battle",
@@ -267,6 +273,7 @@
         },
         "battle_menu": {
           "passed": true,
+          "housing_available": null,
           "weather_available": null,
           "world_list_panel_coverage": "unavailable",
           "view": "battle",
@@ -287,6 +294,7 @@
         },
         "city_reloaded": {
           "passed": true,
+          "housing_available": null,
           "weather_available": null,
           "world_list_panel_coverage": "unavailable",
           "view": "settlement",
@@ -307,6 +315,7 @@
         },
         "world_generation": {
           "passed": true,
+          "housing_available": null,
           "weather_available": null,
           "world_list_panel_coverage": "unavailable",
           "view": "world_generation",
@@ -327,6 +336,7 @@
         },
         "terrain_generated": {
           "passed": true,
+          "housing_available": null,
           "weather_available": null,
           "world_list_panel_coverage": "unavailable",
           "view": "world_generation",
@@ -565,7 +575,7 @@
     "dev/verify_trade.py": "fb3706253767d6a66e3ba0742c865e489e041a630df77976ebddf583fb76a3d6",
     "dev/verify_world.py": "764215f1af2e8e6f8505d25ab31426da9b964d52fc176e44239f0f09ebb281af",
     "dev/verify_production.py": "c5f709e8ced215dfde81e6aeb55e60415babf65b9843775a456b9b1fd936fb79",
-    "dev/verify_scenes.py": "16162cc0ac1306fa6d3972706af65827d4bd03795212c974146c403b1a84eddd",
+    "dev/verify_scenes.py": "ec6f4b2fd209e7feba00ed297043a469b8b78f1f8eee1059164d41f06c377255",
     "dev/verify_installed_help.py": "531efe504e65bebadad112c305094a97b1c055993291056fa2b14fbaaf728c1c",
     "dev/verify_extended_context.py": "76832dda77c10fcdb03f9092ba02397b864449284af793450f8e895735c5622c",
     "dev/native_game_completion.py": "8d29009ecb6b1c54e65ce4d94bc1c175d189c68aad59251381ec4cf5a063773f",

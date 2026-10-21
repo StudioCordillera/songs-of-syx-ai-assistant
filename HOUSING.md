@@ -1,0 +1,39 @@
+# Source-backed home records and recorded resident relationships
+
+The housing domain retains its aggregate `statistics` and adds `/home_records`: bounded fixed public ordinary-home/noble-chamber observations from the completed instantiated campaign city. The MCP cache derives `/home_assignments` and field descriptions from those detached roster IDs once per newly decoded snapshot, outside the game thread. It does not perform another game read. Both tables share the parent snapshot's identity, tick, time, scene and UI context.
+
+Use `describe_game_fields` for housing meanings and `get_game_api_support` with `city_home_records` for provenance/limits. [housing-query-example.json](housing-query-example.json) joins `/home_assignments/data/rows` to `/home_records/data/rooms`, groups roster links by home, and selects first-roster entries of occupied ordinary homes. It never combines independently observed live pages. Records/relationships are read-only and identify no selected room or permanent entity.
+
+## Meanings and bounds
+
+`home_records` scans at most 10,000 current room slots and emits at most 1,000 supported ordinary/noble home rows. Room IDs are reusable registry slots. `service_tile_x/y` are home service/door coordinates, not resident physical positions. Ordinary `occupants_reported` is a stored assignment count; chamber occupancy resolves its recorded entity ID to zero/one. A chamber zero does not establish that its private raw ID slot is zero. `occupant_count_kind` keeps these meanings distinct.
+
+`capacity_configured` is the public per-home configuration. It is not effective vacant/reachable housing. Ordinary stored odd-occupant bookkeeping can permit replacement in a physically full recorded roster; it is not a fresh unemployment census. Ordinary isolation is an unsigned eight-bit fraction; chamber isolation is the conditional parent-room value. Neither represents full housing quality or a fresh environmental computation.
+
+Each roster copies at most 64 recorded/resolved IDs; unavailable IDs are null, not an empty roster. Failed rooms are omitted with `failed_room_reads`; roster failures remain unavailable on surviving rows. `room_slots_scanned` counts inspected registry slots, and `room_map_size` is the current logical registry extent, not a home/bed count. `room_scan_complete` describes enumeration only: failures still qualify absent rows. Exact counter age is unknown.
+
+`ordinary_home_cohort_ledger` contains citizen/slave race/class keys and raw stored capacity/used bookkeeping. The same empty home can contribute to several eligible groups. Null-group sums are eligibility-weighted ledgers, not unique physical beds, effective vacancy, or a particular person's eligibility. Noble chambers are separate. Never force these sums to equal the distinct-home sums.
+
+`home_assignments` contains `room_id`, `resident_id` and zero-based `roster_index`. Room/entity IDs can be reused; roster order is observation-local. Multiplicity is preserved rather than silently deduplicated. Links mean recorded/resolved home relationships, not physical presence, sleeping, reachability or eligibility. A cached entity prefix need not contain every linked resident.
+
+The derived table admits at most 10,000 rows, with a 2 MiB detached-view budget. Each observed home roster is appended as an entire batch or omitted on the relation cap; a source roster may itself already be truncated at 64, which remains explicit. Its `scanned_rooms` counts relation-batch attempts, including a batch omitted at the bound, not the source registry scan or structural-validation pass. An exact relation bound can complete if remaining batches are empty. `truncated=true` can coexist with `room_scan_complete=true`: source enumeration completed, but the derived table reached its own bound. Source failures and both caps remain distinct in selective `sources[].collection_diagnostics`, even after joins/aggregates/projection.
+
+The adapter validates selected detached shape/extent/count/ID/truncation invariants. It does not repair malformed counts or stale bookkeeping. Invalid detached contracts or a snapshot version other than the reviewed 0.71.44 make the housing observations unavailable/null, preserving unrelated aggregate statistics. Older exporters lacking `home_records` retain their existing behavior; missing tables are not synthesized.
+
+## Public process boundary and evidence
+
+[HOUSING_CONTRACT_REVIEW.json](HOUSING_CONTRACT_REVIEW.json) pairs the shipped binary/source, attributes the production calls, checks eight pre-game bad budgets and verifies that the reader body matches the reviewed fixed candidate apart from package/comment. This is source/binary-verified public access, not separately documented stable official housing contracts or formal whole-call-graph equivalence.
+
+The reader accepts only the two fixed public concrete home types and copies detached values. Resource getters that refresh use/cache/lighting, policy-bit normalization, queue searches and mutable engine handles stay excluded. `Noble.subject()` can normalize stale IDs and is not an observation route. Test-only construction/promotion/assignment/furnishing changes are confined to disposable fixtures; no gameplay tool is added.
+
+[HOUSING_VALIDATION.json](HOUSING_VALIDATION.json) pins actual production getter/DTO/MCP relationships, controlled chamber/fault behavior and eight real scene phases. [USER_TEST_VALIDATION.json](USER_TEST_VALIDATION.json) pins exact-source player/core/provider/distribution/cost and regression evidence. Earlier candidate reports retain their actual source/JAR/date scope; [candidate history](HOUSING_CANDIDATE.md), [relationship prototype](HOUSING_RELATIONSHIPS.md) and [query integration history](HOUSING_QUERY_INTEGRATION.md) are not relabeled as fresh production tests.
+
+Coverage remains partial. Native roster-error/invalid-isolation and maximum registry/row/byte branches, all noble configurations, natural live reassignment, larger-city/FPS performance, every menu and immediate standalone unload remain unestablished. Existing freshness limits apply. No new external guide review or provider housing-advice semantic benchmark is claimed. Normal saves and credentials stay outside the fixtures and public bundle.
+
+## Reproduce the production checks
+
+Use the licensed copied-game setup and shared fixture lock from [CONTRIBUTING.md](CONTRIBUTING.md). Build a candidate under ignored `runtime/`, with its matching provider validation report; pass its extracted directory with `--candidate-dir` and that report with `--validation`. All production native runners also require `--game-dir`, `--save`, `--java` and `--jdk-home` using your own isolated paths.
+
+Run `dev/review_housing_production.py --help` for the static source/compiler/reader-equivalence check. The four separate production runners are `dev/run_housing_production.py`, `dev/run_housing_production_scenes.py`, `dev/run_housing_production_fault.py` and `dev/run_housing_production_chamber.py`. Run them one at a time: each acquires the shared native lock and refuses mismatched source/build evidence. The fault and chamber runners perform only their described public test mutations in the disposable profile. They never save the original world.
+
+`test_housing_query_view.py` and `test_syx_housing.py` exercise the packaged detached adapter without game/provider access. The older `dev/run_housing_relations.py` and developer-augmented query runners require their historical pre-production checkout; they must not be treated as current production acceptance commands. Promoting a changed player still requires the full source-matched release workflow, not these housing tests alone.

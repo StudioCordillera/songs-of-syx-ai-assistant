@@ -1,5 +1,7 @@
 # Housing selective-query integration — developer candidate
 
+This page preserves the earlier query-integration experiments and its original evidence scope. The production mapping is documented in [HOUSING.md](HOUSING.md); consult its exact-source release evidence for current behavior. Historical unshipped statements below describe their checkpoints.
+
 The housing reader is still unregistered. No new player field/tool or gameplay action is shipped. [HOUSING_CANDIDATE.md](HOUSING_CANDIDATE.md) describes its source, units, room/roster/ledger scope and separate native chamber/scene/fault evidence.
 
 [HOUSING_QUERY_CANDIDATE_VALIDATION.json](HOUSING_QUERY_CANDIDATE_VALIDATION.json) adds actual stdio MCP checks over a developer-augmented native observation. The fixture calls the current production collector and unchanged housing reader synchronously in one public after-update callback, appends only detached candidate DTOs to its own detached snapshot, and writes that private observation. A separate retained directory serves it through the unchanged MCP/query implementation with the original snapshot/session/UI context. No candidate data is spliced into an older observation or the live player's mailbox. This is a test seam, not existing production housing support.

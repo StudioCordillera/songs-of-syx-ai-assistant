@@ -1,5 +1,7 @@
 # Recorded home relationships and field meanings — developer candidate
 
+This page preserves the earlier detached relationship prototype and its original evidence scope. The production mapping is documented in [HOUSING.md](HOUSING.md); consult its exact-source release evidence for current behavior. Historical unshipped statements below describe their checkpoints.
+
 `dev/housing_query_view.py` is an unshipped adapter over the detached [housing candidate](HOUSING_CANDIDATE.md), not a game API reader or player module. It defines home/assignment/cohort field meanings and a bounded assignment table that the existing selective query engine can join. It performs no game calls, file access, provider calls or mutation. The current player continues to expose its existing aggregate housing statistics; these richer paths are provisional.
 
 `build_view` keeps the original `home_records` observation and derives `home_assignments` from its recorded/resolved roster IDs. Each relationship contains `room_id`, `resident_id` and `roster_index`. Room IDs join only to the same observation's home rows. Both room/entity IDs can be reused, and roster order is observation-local. Multiplicity is retained, not silently deduplicated into a population census. Links do not establish physical presence, sleeping, reachability, effective eligibility, current UI selection or permanent world/person identity. A cached entity prefix need not contain every linked resident; no automatic entity-prefix join/completeness claim is added.

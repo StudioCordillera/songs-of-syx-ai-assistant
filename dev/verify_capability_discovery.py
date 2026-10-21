@@ -31,18 +31,21 @@ async def verify(directory):
                 assert result['game_version']=='0.71.44' and result['inventory_size']==len(json.loads((ROOT/'api-audit.json').read_text())['members'])
                 assert 'not an attestation' in result['warning']
                 return result
-            for identifier in ['stored_city_weather','live_warehouse_bookkeeping','cached_viewport_geometry','tile_ground_moisture','world_list_panel_context','retained_regional_output_selections','live_regional_output_selections','regional_output_bookkeeping','retained_tile_selections','city_stockpile_bookkeeping','room_producer_degradation','entity_workplace_filter','room_workforce_factors','room_service_counters','service_cohort_permissions','city_trade_pipeline','regional_population_counters']:
+            for identifier in ['city_home_records','stored_city_weather','live_warehouse_bookkeeping','cached_viewport_geometry','tile_ground_moisture','world_list_panel_context','retained_regional_output_selections','live_regional_output_selections','regional_output_bookkeeping','retained_tile_selections','city_stockpile_bookkeeping','room_producer_degradation','entity_workplace_filter','room_workforce_factors','room_service_counters','service_cohort_permissions','city_trade_pipeline','regional_population_counters']:
                 result=await call(identifier)
                 assert len(result['capabilities'])==1
                 record=result['capabilities'][0]
                 assert record['id']==identifier and record['support']=='public_source_verified'
                 assert record['validation'] and record['references'] and record['limits']
-                assert 'documented stable contracts' in record['limits']
+                assert any(s in record['limits'] for s in ['documented stable contracts','not stable documented contracts'])
                 checked.append({'id':identifier,'support':record['support'],'references':record['references'],'passed':True})
             for identifier in ['all_game_variables','all_states_and_menus']:
                 result=await call(identifier)
                 assert len(result['capabilities'])==1 and result['capabilities'][0]['support']=='unavailable'
                 checked.append({'id':identifier,'support':'unavailable','passed':True})
+            home=await call('settlement.room.home.HOME')
+            assert {m['name'] for m in home['members']}=={'occupant','occupants','occupantsMax','isolation','serviceX','serviceY'}
+            assert all(m['public'] and len(m['source_candidates'])==1 for m in home['members'])
             result=await call('RoomServiceInstance')
             assert {m['name'] for m in result['members']}=={'total','available','reserved'}
             for member in result['members']:
@@ -92,15 +95,15 @@ async def verify(directory):
                 assert len(anchors['members'])==1 and anchors['members'][0]['id']==identifier
                 assert anchors['members'][0]['public'] and len(anchors['members'][0]['source_candidates'])==1
             report={'passed':True,'evaluated_at':datetime.now(timezone.utc).isoformat(),'checks':checked,
-                'weather_member_anchors_checked':len(weather_ids),'stockpile_member_anchors_checked':len(stockpile_ids),'viewport_member_anchors_checked':len(viewport_ids),'ground_moisture_member_anchors_checked':len(moisture_ids),'world_list_member_anchors_checked':len(world_ids),'service_counter_member_anchors_checked':service_anchors,'faction_context_member_anchors_checked':len(factions['members']),'no_game_snapshot_required':not (directory/'snapshot.json').exists(),
+                'home_member_anchors_checked':len(home['members']),'weather_member_anchors_checked':len(weather_ids),'stockpile_member_anchors_checked':len(stockpile_ids),'viewport_member_anchors_checked':len(viewport_ids),'ground_moisture_member_anchors_checked':len(moisture_ids),'world_list_member_anchors_checked':len(world_ids),'service_counter_member_anchors_checked':service_anchors,'faction_context_member_anchors_checked':len(factions['members']),'no_game_snapshot_required':not (directory/'snapshot.json').exists(),
                 'inference_calls':0,'public_inventory_size':result['inventory_size'],
                 'source_sha256':{n:hashlib.sha256((ROOT/n).read_bytes()).hexdigest() for n in
                     ['syx_mcp.py','syx_api_support.py','syx_api_manifest.py','dev/verify_capability_discovery.py']},
                 'limits':['Capability records summarize existing evidence; no new game getter/scene or official stable contract is established.',
                     'Offline discovery is not an attestation of a separately installed game mod; pair source-matching builds.',
-                    'Seventeen supported capabilities and two explicit gaps sampled, not exhaustive metadata acceptance.']}
+                    'Eighteen supported capabilities and two explicit gaps sampled, not exhaustive metadata acceptance.']}
             (directory/'capability-discovery-validation.json').write_text(json.dumps(report,indent=2)+'\n')
-            print('Seventeen data capabilities, two coverage gaps and 34 selected public member anchors verified through MCP.')
+            print('Eighteen data capabilities, two coverage gaps and 40 selected public member anchors verified through MCP.')
             return report
 
 

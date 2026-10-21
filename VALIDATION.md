@@ -1,6 +1,15 @@
 # Validation evidence
 
-## Current stored-weather player checkpoint
+## Current housing player checkpoint
+
+[HOUSING_VALIDATION.json](HOUSING_VALIDATION.json) records 38 actual housing MCP calls over production observations, eight held scene phases, controlled fault/restoration and empty/occupied noble chamber/removal. [HOUSING_CONTRACT_REVIEW.json](HOUSING_CONTRACT_REVIEW.json) pins public compiler/source/selected-bytecode semantics and eight pre-game budget rejections. Recorded relationships are bounded observation-local assignments, not physical presence or permanent identity; weighted cohort accounting is not unique beds. See [HOUSING.md](HOUSING.md) for fields, diagnostics and unexecuted branches.
+
+[USER_TEST_VALIDATION.json](USER_TEST_VALIDATION.json) pins 613 offline tests, two real Pro turns, seven fresh core groups, current connection/focus/background, viewport/tile/entity/regional/stockpile regressions, extracted-client distribution, 18 capability/two-gap/40-anchor discovery and 37 unchanged thirteen-source guidance cases. The audit has 427 public/zero non-public members, 426 source anchors plus one generated enum; twelve Java source classes and seventeen Python modules are packaged. [Current cost](CURRENT_COLLECTION_COST_VALIDATION.json): collection median/p95/max 5.604/7.920/9.696 ms, separate encoding 10.117/11.423/12.739 ms, snapshot 1,821,120 bytes. These finite copied-city samples establish no FPS/large-city/worst-case guarantee.
+
+Earlier evidence below keeps its original build/date scope. Missing native roster/invalid-isolation/max-cap/scale branches, natural reassignment, all menus/unload and current-version reference breadth remain open. No gameplay action or new native chat redesign/unread badge is shipped.
+
+
+## Prior stored-weather player checkpoint
 
 WEATHER_VALIDATION.json pins four actual production observations: 56 direct getter values agree with DTOs and retained-original same-snapshot MCP projections, including controlled wind zero/one, exact context and stale-snapshot refusal. Eight subsequent actual live MCP scene queries check city/tactical/reload availability and generated battle/setup refusal. WEATHER_CONTRACT_REVIEW.json distinguishes sixteen source/binary/compiler-verified public weather members from stable documented contracts; production detached checks accept three valid cases/reject 58 bad shape/numeric cases. Native malformed stored values/getter exceptions remain unproven.
 

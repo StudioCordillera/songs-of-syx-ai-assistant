@@ -21,6 +21,7 @@
     "checks": {
       "city": {
         "passed": true,
+        "housing_available": null,
         "weather_available": null,
         "world_list_panel_coverage": "unavailable",
         "view": "settlement",
@@ -41,6 +42,7 @@
       },
       "settlement_battle": {
         "passed": true,
+        "housing_available": null,
         "weather_available": null,
         "world_list_panel_coverage": "unavailable",
         "view": "settlement_battle",
@@ -61,6 +63,7 @@
       },
       "city_restored": {
         "passed": true,
+        "housing_available": null,
         "weather_available": null,
         "world_list_panel_coverage": "unavailable",
         "view": "settlement",
@@ -81,6 +84,7 @@
       },
       "battle_deployment": {
         "passed": true,
+        "housing_available": null,
         "weather_available": null,
         "world_list_panel_coverage": "unavailable",
         "view": "battle",
@@ -101,6 +105,7 @@
       },
       "battle_menu": {
         "passed": true,
+        "housing_available": null,
         "weather_available": null,
         "world_list_panel_coverage": "unavailable",
         "view": "battle",
@@ -121,6 +126,7 @@
       },
       "city_reloaded": {
         "passed": true,
+        "housing_available": null,
         "weather_available": null,
         "world_list_panel_coverage": "unavailable",
         "view": "settlement",
@@ -141,6 +147,7 @@
       },
       "world_generation": {
         "passed": true,
+        "housing_available": null,
         "weather_available": null,
         "world_list_panel_coverage": "unavailable",
         "view": "world_generation",
@@ -161,6 +168,7 @@
       },
       "terrain_generated": {
         "passed": true,
+        "housing_available": null,
         "weather_available": null,
         "world_list_panel_coverage": "unavailable",
         "view": "world_generation",
@@ -188,632 +196,632 @@
   },
   "native_samples": [
     {
-      "case": "filtered_matrix",
+      "collector_ns": 2881333,
       "response_bytes": 31117,
-      "collector_ns": 2572527,
-      "encoding_utf8_ns": 179978,
+      "case": "filtered_matrix",
+      "rows": 166,
+      "scanned_cells": 4200,
       "sample": 0,
-      "scanned_cells": 4200,
-      "rows": 166
+      "encoding_utf8_ns": 211376
     },
     {
-      "case": "near_row_bound",
+      "collector_ns": 3509469,
       "response_bytes": 299242,
-      "collector_ns": 3250465,
-      "encoding_utf8_ns": 1369837,
+      "case": "near_row_bound",
+      "rows": 1974,
+      "scanned_cells": 1974,
       "sample": 0,
-      "scanned_cells": 1974,
-      "rows": 1974
+      "encoding_utf8_ns": 1673789
     },
     {
-      "case": "filtered_matrix",
+      "collector_ns": 2427156,
       "response_bytes": 31117,
-      "collector_ns": 2145439,
-      "encoding_utf8_ns": 152621,
+      "case": "filtered_matrix",
+      "rows": 166,
+      "scanned_cells": 4200,
       "sample": 1,
-      "scanned_cells": 4200,
-      "rows": 166
+      "encoding_utf8_ns": 178936
     },
     {
-      "case": "near_row_bound",
+      "collector_ns": 3681068,
       "response_bytes": 299242,
-      "collector_ns": 3048229,
-      "encoding_utf8_ns": 1356066,
+      "case": "near_row_bound",
+      "rows": 1974,
+      "scanned_cells": 1974,
       "sample": 1,
-      "scanned_cells": 1974,
-      "rows": 1974
+      "encoding_utf8_ns": 1625407
     },
     {
-      "case": "filtered_matrix",
+      "collector_ns": 2720610,
       "response_bytes": 31117,
-      "collector_ns": 2639693,
-      "encoding_utf8_ns": 159828,
+      "case": "filtered_matrix",
+      "rows": 166,
+      "scanned_cells": 4200,
       "sample": 2,
-      "scanned_cells": 4200,
-      "rows": 166
+      "encoding_utf8_ns": 171761
     },
     {
-      "case": "near_row_bound",
+      "collector_ns": 3275368,
       "response_bytes": 299242,
-      "collector_ns": 2969411,
-      "encoding_utf8_ns": 1479334,
+      "case": "near_row_bound",
+      "rows": 1974,
+      "scanned_cells": 1974,
       "sample": 2,
-      "scanned_cells": 1974,
-      "rows": 1974
+      "encoding_utf8_ns": 1530140
     },
     {
-      "case": "filtered_matrix",
+      "collector_ns": 1047053,
       "response_bytes": 31117,
-      "collector_ns": 968349,
-      "encoding_utf8_ns": 197291,
+      "case": "filtered_matrix",
+      "rows": 166,
+      "scanned_cells": 4200,
       "sample": 3,
-      "scanned_cells": 4200,
-      "rows": 166
+      "encoding_utf8_ns": 176980
     },
     {
-      "case": "near_row_bound",
+      "collector_ns": 900470,
       "response_bytes": 299242,
-      "collector_ns": 882078,
-      "encoding_utf8_ns": 1391592,
+      "case": "near_row_bound",
+      "rows": 1974,
+      "scanned_cells": 1974,
       "sample": 3,
-      "scanned_cells": 1974,
-      "rows": 1974
+      "encoding_utf8_ns": 1505286
     },
     {
-      "case": "filtered_matrix",
+      "collector_ns": 894530,
       "response_bytes": 31117,
-      "collector_ns": 838028,
-      "encoding_utf8_ns": 172159,
+      "case": "filtered_matrix",
+      "rows": 166,
+      "scanned_cells": 4200,
       "sample": 4,
-      "scanned_cells": 4200,
-      "rows": 166
+      "encoding_utf8_ns": 190875
     },
     {
-      "case": "near_row_bound",
+      "collector_ns": 829737,
       "response_bytes": 299242,
-      "collector_ns": 737240,
-      "encoding_utf8_ns": 1400357,
+      "case": "near_row_bound",
+      "rows": 1974,
+      "scanned_cells": 1974,
       "sample": 4,
-      "scanned_cells": 1974,
-      "rows": 1974
+      "encoding_utf8_ns": 1625760
     },
     {
-      "case": "filtered_matrix",
+      "collector_ns": 403577,
       "response_bytes": 31117,
-      "collector_ns": 338307,
-      "encoding_utf8_ns": 162676,
+      "case": "filtered_matrix",
+      "rows": 166,
+      "scanned_cells": 4200,
       "sample": 5,
-      "scanned_cells": 4200,
-      "rows": 166
+      "encoding_utf8_ns": 185152
     },
     {
-      "case": "near_row_bound",
+      "collector_ns": 565284,
       "response_bytes": 299242,
-      "collector_ns": 562285,
-      "encoding_utf8_ns": 1454255,
+      "case": "near_row_bound",
+      "rows": 1974,
+      "scanned_cells": 1974,
       "sample": 5,
-      "scanned_cells": 1974,
-      "rows": 1974
+      "encoding_utf8_ns": 1451821
     },
     {
-      "case": "filtered_matrix",
+      "collector_ns": 522618,
       "response_bytes": 31117,
-      "collector_ns": 348919,
-      "encoding_utf8_ns": 156524,
+      "case": "filtered_matrix",
+      "rows": 166,
+      "scanned_cells": 4200,
       "sample": 6,
-      "scanned_cells": 4200,
-      "rows": 166
+      "encoding_utf8_ns": 168131
     },
     {
-      "case": "near_row_bound",
+      "collector_ns": 632099,
       "response_bytes": 299242,
-      "collector_ns": 532475,
-      "encoding_utf8_ns": 1314977,
+      "case": "near_row_bound",
+      "rows": 1974,
+      "scanned_cells": 1974,
       "sample": 6,
-      "scanned_cells": 1974,
-      "rows": 1974
+      "encoding_utf8_ns": 2370722
     },
     {
-      "case": "filtered_matrix",
+      "collector_ns": 395275,
       "response_bytes": 31117,
-      "collector_ns": 355667,
-      "encoding_utf8_ns": 149681,
+      "case": "filtered_matrix",
+      "rows": 166,
+      "scanned_cells": 4200,
       "sample": 7,
-      "scanned_cells": 4200,
-      "rows": 166
+      "encoding_utf8_ns": 178655
     },
     {
-      "case": "near_row_bound",
+      "collector_ns": 708599,
       "response_bytes": 299242,
-      "collector_ns": 628543,
-      "encoding_utf8_ns": 1490057,
+      "case": "near_row_bound",
+      "rows": 1974,
+      "scanned_cells": 1974,
       "sample": 7,
-      "scanned_cells": 1974,
-      "rows": 1974
+      "encoding_utf8_ns": 1651181
     },
     {
-      "case": "filtered_matrix",
+      "collector_ns": 614044,
       "response_bytes": 31117,
-      "collector_ns": 318688,
-      "encoding_utf8_ns": 152479,
+      "case": "filtered_matrix",
+      "rows": 166,
+      "scanned_cells": 4200,
       "sample": 8,
-      "scanned_cells": 4200,
-      "rows": 166
+      "encoding_utf8_ns": 222870
     },
     {
-      "case": "near_row_bound",
+      "collector_ns": 630272,
       "response_bytes": 299242,
-      "collector_ns": 514876,
-      "encoding_utf8_ns": 1385906,
+      "case": "near_row_bound",
+      "rows": 1974,
+      "scanned_cells": 1974,
       "sample": 8,
-      "scanned_cells": 1974,
-      "rows": 1974
+      "encoding_utf8_ns": 1644891
     },
     {
-      "case": "filtered_matrix",
+      "collector_ns": 442472,
       "response_bytes": 31117,
-      "collector_ns": 375589,
-      "encoding_utf8_ns": 186412,
+      "case": "filtered_matrix",
+      "rows": 166,
+      "scanned_cells": 4200,
       "sample": 9,
-      "scanned_cells": 4200,
-      "rows": 166
+      "encoding_utf8_ns": 231800
     },
     {
-      "case": "near_row_bound",
+      "collector_ns": 657541,
       "response_bytes": 299242,
-      "collector_ns": 519625,
-      "encoding_utf8_ns": 1317155,
+      "case": "near_row_bound",
+      "rows": 1974,
+      "scanned_cells": 1974,
       "sample": 9,
-      "scanned_cells": 1974,
-      "rows": 1974
+      "encoding_utf8_ns": 1593056
     },
     {
-      "case": "filtered_matrix",
+      "collector_ns": 408396,
       "response_bytes": 31117,
-      "collector_ns": 308178,
-      "encoding_utf8_ns": 146854,
+      "case": "filtered_matrix",
+      "rows": 166,
+      "scanned_cells": 4200,
       "sample": 10,
-      "scanned_cells": 4200,
-      "rows": 166
+      "encoding_utf8_ns": 173058
     },
     {
-      "case": "near_row_bound",
+      "collector_ns": 674890,
       "response_bytes": 299242,
-      "collector_ns": 545782,
-      "encoding_utf8_ns": 1467950,
+      "case": "near_row_bound",
+      "rows": 1974,
+      "scanned_cells": 1974,
       "sample": 10,
-      "scanned_cells": 1974,
-      "rows": 1974
+      "encoding_utf8_ns": 1587020
     },
     {
-      "case": "filtered_matrix",
+      "collector_ns": 373881,
       "response_bytes": 31117,
-      "collector_ns": 409629,
-      "encoding_utf8_ns": 216283,
+      "case": "filtered_matrix",
+      "rows": 166,
+      "scanned_cells": 4200,
       "sample": 11,
-      "scanned_cells": 4200,
-      "rows": 166
+      "encoding_utf8_ns": 152950
     },
     {
-      "case": "near_row_bound",
+      "collector_ns": 709281,
       "response_bytes": 299242,
-      "collector_ns": 771253,
-      "encoding_utf8_ns": 1482677,
+      "case": "near_row_bound",
+      "rows": 1974,
+      "scanned_cells": 1974,
       "sample": 11,
-      "scanned_cells": 1974,
-      "rows": 1974
+      "encoding_utf8_ns": 1469074
     },
     {
-      "case": "filtered_matrix",
+      "collector_ns": 395597,
       "response_bytes": 31117,
-      "collector_ns": 341585,
-      "encoding_utf8_ns": 167579,
+      "case": "filtered_matrix",
+      "rows": 166,
+      "scanned_cells": 4200,
       "sample": 12,
-      "scanned_cells": 4200,
-      "rows": 166
+      "encoding_utf8_ns": 159443
     },
     {
-      "case": "near_row_bound",
+      "collector_ns": 756618,
       "response_bytes": 299242,
-      "collector_ns": 652574,
-      "encoding_utf8_ns": 1477076,
+      "case": "near_row_bound",
+      "rows": 1974,
+      "scanned_cells": 1974,
       "sample": 12,
-      "scanned_cells": 1974,
-      "rows": 1974
+      "encoding_utf8_ns": 1581303
     },
     {
-      "case": "filtered_matrix",
+      "collector_ns": 411711,
       "response_bytes": 31117,
-      "collector_ns": 383818,
-      "encoding_utf8_ns": 153566,
+      "case": "filtered_matrix",
+      "rows": 166,
+      "scanned_cells": 4200,
       "sample": 13,
-      "scanned_cells": 4200,
-      "rows": 166
+      "encoding_utf8_ns": 192002
     },
     {
-      "case": "near_row_bound",
+      "collector_ns": 585272,
       "response_bytes": 299242,
-      "collector_ns": 536922,
-      "encoding_utf8_ns": 1422417,
+      "case": "near_row_bound",
+      "rows": 1974,
+      "scanned_cells": 1974,
       "sample": 13,
-      "scanned_cells": 1974,
-      "rows": 1974
+      "encoding_utf8_ns": 1541984
     },
     {
-      "case": "filtered_matrix",
+      "collector_ns": 349701,
       "response_bytes": 31117,
-      "collector_ns": 317482,
-      "encoding_utf8_ns": 157088,
+      "case": "filtered_matrix",
+      "rows": 166,
+      "scanned_cells": 4200,
       "sample": 14,
-      "scanned_cells": 4200,
-      "rows": 166
+      "encoding_utf8_ns": 158216
     },
     {
-      "case": "near_row_bound",
+      "collector_ns": 590337,
       "response_bytes": 299242,
-      "collector_ns": 530002,
-      "encoding_utf8_ns": 3198428,
+      "case": "near_row_bound",
+      "rows": 1974,
+      "scanned_cells": 1974,
       "sample": 14,
-      "scanned_cells": 1974,
-      "rows": 1974
+      "encoding_utf8_ns": 1358844
     },
     {
-      "case": "filtered_matrix",
+      "collector_ns": 357860,
       "response_bytes": 31117,
-      "collector_ns": 338363,
-      "encoding_utf8_ns": 153671,
+      "case": "filtered_matrix",
+      "rows": 166,
+      "scanned_cells": 4200,
       "sample": 15,
-      "scanned_cells": 4200,
-      "rows": 166
+      "encoding_utf8_ns": 164705
     },
     {
-      "case": "near_row_bound",
+      "collector_ns": 987633,
       "response_bytes": 299242,
-      "collector_ns": 546080,
-      "encoding_utf8_ns": 1579021,
+      "case": "near_row_bound",
+      "rows": 1974,
+      "scanned_cells": 1974,
       "sample": 15,
-      "scanned_cells": 1974,
-      "rows": 1974
+      "encoding_utf8_ns": 1462011
     },
     {
-      "case": "filtered_matrix",
+      "collector_ns": 413444,
       "response_bytes": 31117,
-      "collector_ns": 315479,
-      "encoding_utf8_ns": 158585,
+      "case": "filtered_matrix",
+      "rows": 166,
+      "scanned_cells": 4200,
       "sample": 16,
-      "scanned_cells": 4200,
-      "rows": 166
+      "encoding_utf8_ns": 166270
     },
     {
-      "case": "near_row_bound",
+      "collector_ns": 626301,
       "response_bytes": 299242,
-      "collector_ns": 608404,
-      "encoding_utf8_ns": 1482910,
+      "case": "near_row_bound",
+      "rows": 1974,
+      "scanned_cells": 1974,
       "sample": 16,
-      "scanned_cells": 1974,
-      "rows": 1974
+      "encoding_utf8_ns": 1448569
     },
     {
-      "case": "filtered_matrix",
+      "collector_ns": 380948,
       "response_bytes": 31117,
-      "collector_ns": 481517,
-      "encoding_utf8_ns": 243599,
+      "case": "filtered_matrix",
+      "rows": 166,
+      "scanned_cells": 4200,
       "sample": 17,
-      "scanned_cells": 4200,
-      "rows": 166
+      "encoding_utf8_ns": 196609
     },
     {
-      "case": "near_row_bound",
+      "collector_ns": 595615,
       "response_bytes": 299242,
-      "collector_ns": 509765,
-      "encoding_utf8_ns": 1386261,
+      "case": "near_row_bound",
+      "rows": 1974,
+      "scanned_cells": 1974,
       "sample": 17,
-      "scanned_cells": 1974,
-      "rows": 1974
+      "encoding_utf8_ns": 1620590
     },
     {
-      "case": "filtered_matrix",
+      "collector_ns": 478267,
       "response_bytes": 31117,
-      "collector_ns": 368227,
-      "encoding_utf8_ns": 161179,
+      "case": "filtered_matrix",
+      "rows": 166,
+      "scanned_cells": 4200,
       "sample": 18,
-      "scanned_cells": 4200,
-      "rows": 166
+      "encoding_utf8_ns": 160018
     },
     {
-      "case": "near_row_bound",
+      "collector_ns": 547895,
       "response_bytes": 299242,
-      "collector_ns": 553158,
-      "encoding_utf8_ns": 1392328,
+      "case": "near_row_bound",
+      "rows": 1974,
+      "scanned_cells": 1974,
       "sample": 18,
-      "scanned_cells": 1974,
-      "rows": 1974
+      "encoding_utf8_ns": 1397428
     },
     {
-      "case": "filtered_matrix",
+      "collector_ns": 418149,
       "response_bytes": 31117,
-      "collector_ns": 339269,
-      "encoding_utf8_ns": 161809,
+      "case": "filtered_matrix",
+      "rows": 166,
+      "scanned_cells": 4200,
       "sample": 19,
-      "scanned_cells": 4200,
-      "rows": 166
+      "encoding_utf8_ns": 204215
     },
     {
-      "case": "near_row_bound",
+      "collector_ns": 749407,
       "response_bytes": 299242,
-      "collector_ns": 533936,
-      "encoding_utf8_ns": 1379374,
+      "case": "near_row_bound",
+      "rows": 1974,
+      "scanned_cells": 1974,
       "sample": 19,
-      "scanned_cells": 1974,
-      "rows": 1974
+      "encoding_utf8_ns": 3056549
     },
     {
-      "case": "filtered_matrix",
+      "collector_ns": 344117,
       "response_bytes": 31117,
-      "collector_ns": 315786,
-      "encoding_utf8_ns": 148266,
+      "case": "filtered_matrix",
+      "rows": 166,
+      "scanned_cells": 4200,
       "sample": 20,
-      "scanned_cells": 4200,
-      "rows": 166
+      "encoding_utf8_ns": 155933
     },
     {
-      "case": "near_row_bound",
+      "collector_ns": 667439,
       "response_bytes": 299242,
-      "collector_ns": 518491,
-      "encoding_utf8_ns": 1368379,
+      "case": "near_row_bound",
+      "rows": 1974,
+      "scanned_cells": 1974,
       "sample": 20,
-      "scanned_cells": 1974,
-      "rows": 1974
+      "encoding_utf8_ns": 1368608
     },
     {
-      "case": "filtered_matrix",
+      "collector_ns": 368121,
       "response_bytes": 31117,
-      "collector_ns": 345507,
-      "encoding_utf8_ns": 168586,
+      "case": "filtered_matrix",
+      "rows": 166,
+      "scanned_cells": 4200,
       "sample": 21,
-      "scanned_cells": 4200,
-      "rows": 166
+      "encoding_utf8_ns": 195136
     },
     {
-      "case": "near_row_bound",
+      "collector_ns": 602864,
       "response_bytes": 299242,
-      "collector_ns": 516854,
-      "encoding_utf8_ns": 1379389,
+      "case": "near_row_bound",
+      "rows": 1974,
+      "scanned_cells": 1974,
       "sample": 21,
-      "scanned_cells": 1974,
-      "rows": 1974
+      "encoding_utf8_ns": 1512275
     },
     {
-      "case": "filtered_matrix",
+      "collector_ns": 343102,
       "response_bytes": 31117,
-      "collector_ns": 308444,
-      "encoding_utf8_ns": 143119,
+      "case": "filtered_matrix",
+      "rows": 166,
+      "scanned_cells": 4200,
       "sample": 22,
-      "scanned_cells": 4200,
-      "rows": 166
+      "encoding_utf8_ns": 170466
     },
     {
-      "case": "near_row_bound",
+      "collector_ns": 557102,
       "response_bytes": 299242,
-      "collector_ns": 552971,
-      "encoding_utf8_ns": 1336052,
+      "case": "near_row_bound",
+      "rows": 1974,
+      "scanned_cells": 1974,
       "sample": 22,
-      "scanned_cells": 1974,
-      "rows": 1974
+      "encoding_utf8_ns": 1503587
     },
     {
-      "case": "filtered_matrix",
+      "collector_ns": 372574,
       "response_bytes": 31117,
-      "collector_ns": 331324,
-      "encoding_utf8_ns": 147197,
+      "case": "filtered_matrix",
+      "rows": 166,
+      "scanned_cells": 4200,
       "sample": 23,
-      "scanned_cells": 4200,
-      "rows": 166
+      "encoding_utf8_ns": 169306
     },
     {
-      "case": "near_row_bound",
+      "collector_ns": 606481,
       "response_bytes": 299242,
-      "collector_ns": 504662,
-      "encoding_utf8_ns": 1293638,
+      "case": "near_row_bound",
+      "rows": 1974,
+      "scanned_cells": 1974,
       "sample": 23,
-      "scanned_cells": 1974,
-      "rows": 1974
+      "encoding_utf8_ns": 1412776
     },
     {
-      "case": "filtered_matrix",
+      "collector_ns": 336129,
       "response_bytes": 31117,
-      "collector_ns": 319894,
-      "encoding_utf8_ns": 173815,
+      "case": "filtered_matrix",
+      "rows": 166,
+      "scanned_cells": 4200,
       "sample": 24,
-      "scanned_cells": 4200,
-      "rows": 166
+      "encoding_utf8_ns": 216128
     },
     {
-      "case": "near_row_bound",
+      "collector_ns": 634345,
       "response_bytes": 299242,
-      "collector_ns": 523220,
-      "encoding_utf8_ns": 1319562,
+      "case": "near_row_bound",
+      "rows": 1974,
+      "scanned_cells": 1974,
       "sample": 24,
-      "scanned_cells": 1974,
-      "rows": 1974
+      "encoding_utf8_ns": 1551953
     },
     {
-      "case": "filtered_matrix",
+      "collector_ns": 399578,
       "response_bytes": 31117,
-      "collector_ns": 308519,
-      "encoding_utf8_ns": 147276,
+      "case": "filtered_matrix",
+      "rows": 166,
+      "scanned_cells": 4200,
       "sample": 25,
-      "scanned_cells": 4200,
-      "rows": 166
+      "encoding_utf8_ns": 177452
     },
     {
-      "case": "near_row_bound",
+      "collector_ns": 628236,
       "response_bytes": 299242,
-      "collector_ns": 539099,
-      "encoding_utf8_ns": 1545112,
+      "case": "near_row_bound",
+      "rows": 1974,
+      "scanned_cells": 1974,
       "sample": 25,
-      "scanned_cells": 1974,
-      "rows": 1974
+      "encoding_utf8_ns": 1520258
     },
     {
-      "case": "filtered_matrix",
+      "collector_ns": 401627,
       "response_bytes": 31117,
-      "collector_ns": 404316,
-      "encoding_utf8_ns": 163043,
+      "case": "filtered_matrix",
+      "rows": 166,
+      "scanned_cells": 4200,
       "sample": 26,
-      "scanned_cells": 4200,
-      "rows": 166
+      "encoding_utf8_ns": 157718
     },
     {
-      "case": "near_row_bound",
+      "collector_ns": 720500,
       "response_bytes": 299242,
-      "collector_ns": 937266,
-      "encoding_utf8_ns": 2032316,
+      "case": "near_row_bound",
+      "rows": 1974,
+      "scanned_cells": 1974,
       "sample": 26,
-      "scanned_cells": 1974,
-      "rows": 1974
+      "encoding_utf8_ns": 1631409
     },
     {
-      "case": "filtered_matrix",
+      "collector_ns": 351159,
       "response_bytes": 31117,
-      "collector_ns": 311257,
-      "encoding_utf8_ns": 146881,
+      "case": "filtered_matrix",
+      "rows": 166,
+      "scanned_cells": 4200,
       "sample": 27,
-      "scanned_cells": 4200,
-      "rows": 166
+      "encoding_utf8_ns": 161998
     },
     {
-      "case": "near_row_bound",
+      "collector_ns": 584881,
       "response_bytes": 299242,
-      "collector_ns": 503709,
-      "encoding_utf8_ns": 1329350,
+      "case": "near_row_bound",
+      "rows": 1974,
+      "scanned_cells": 1974,
       "sample": 27,
-      "scanned_cells": 1974,
-      "rows": 1974
+      "encoding_utf8_ns": 1525550
     },
     {
-      "case": "filtered_matrix",
+      "collector_ns": 388014,
       "response_bytes": 31117,
-      "collector_ns": 386773,
-      "encoding_utf8_ns": 145236,
+      "case": "filtered_matrix",
+      "rows": 166,
+      "scanned_cells": 4200,
       "sample": 28,
-      "scanned_cells": 4200,
-      "rows": 166
+      "encoding_utf8_ns": 146707
     },
     {
-      "case": "near_row_bound",
+      "collector_ns": 560278,
       "response_bytes": 299242,
-      "collector_ns": 533923,
-      "encoding_utf8_ns": 1338564,
+      "case": "near_row_bound",
+      "rows": 1974,
+      "scanned_cells": 1974,
       "sample": 28,
-      "scanned_cells": 1974,
-      "rows": 1974
+      "encoding_utf8_ns": 1384934
     },
     {
-      "case": "filtered_matrix",
+      "collector_ns": 374101,
       "response_bytes": 31117,
-      "collector_ns": 422536,
-      "encoding_utf8_ns": 206123,
+      "case": "filtered_matrix",
+      "rows": 166,
+      "scanned_cells": 4200,
       "sample": 29,
-      "scanned_cells": 4200,
-      "rows": 166
+      "encoding_utf8_ns": 153542
     },
     {
-      "case": "near_row_bound",
+      "collector_ns": 663210,
       "response_bytes": 299242,
-      "collector_ns": 549356,
-      "encoding_utf8_ns": 1451964,
+      "case": "near_row_bound",
+      "rows": 1974,
+      "scanned_cells": 1974,
       "sample": 29,
-      "scanned_cells": 1974,
-      "rows": 1974
+      "encoding_utf8_ns": 1346102
     },
     {
-      "case": "filtered_matrix",
+      "collector_ns": 368956,
       "response_bytes": 31117,
-      "collector_ns": 306935,
-      "encoding_utf8_ns": 146950,
-      "sample": 30,
-      "scanned_cells": 4200,
-      "rows": 166
-    },
-    {
-      "case": "near_row_bound",
-      "response_bytes": 299242,
-      "collector_ns": 513967,
-      "encoding_utf8_ns": 1287266,
-      "sample": 30,
-      "scanned_cells": 1974,
-      "rows": 1974
-    },
-    {
       "case": "filtered_matrix",
-      "response_bytes": 31117,
-      "collector_ns": 310051,
-      "encoding_utf8_ns": 143642,
-      "sample": 31,
+      "rows": 166,
       "scanned_cells": 4200,
-      "rows": 166
+      "sample": 30,
+      "encoding_utf8_ns": 146372
     },
     {
-      "case": "near_row_bound",
+      "collector_ns": 545569,
       "response_bytes": 299242,
-      "collector_ns": 627310,
-      "encoding_utf8_ns": 1456808,
-      "sample": 31,
+      "case": "near_row_bound",
+      "rows": 1974,
       "scanned_cells": 1974,
-      "rows": 1974
+      "sample": 30,
+      "encoding_utf8_ns": 1379724
+    },
+    {
+      "collector_ns": 365486,
+      "response_bytes": 31117,
+      "case": "filtered_matrix",
+      "rows": 166,
+      "scanned_cells": 4200,
+      "sample": 31,
+      "encoding_utf8_ns": 165637
+    },
+    {
+      "collector_ns": 688791,
+      "response_bytes": 299242,
+      "case": "near_row_bound",
+      "rows": 1974,
+      "scanned_cells": 1974,
+      "sample": 31,
+      "encoding_utf8_ns": 1551247
     }
   ],
   "native_cost_summary": {
     "filtered_matrix": {
       "first_sample": {
-        "case": "filtered_matrix",
+        "collector_ns": 2881333,
         "response_bytes": 31117,
-        "collector_ns": 2572527,
-        "encoding_utf8_ns": 179978,
-        "sample": 0,
+        "case": "filtered_matrix",
+        "rows": 166,
         "scanned_cells": 4200,
-        "rows": 166
+        "sample": 0,
+        "encoding_utf8_ns": 211376
       },
       "warm_collector_ms": {
         "count": 31,
-        "min": 0.306935,
-        "median": 0.341585,
-        "p95": 2.145439,
-        "max": 2.639693
+        "min": 0.336129,
+        "median": 0.395597,
+        "p95": 2.427156,
+        "max": 2.72061
       },
       "warm_encoding_utf8_ms": {
         "count": 31,
-        "min": 0.143119,
-        "median": 0.157088,
-        "p95": 0.216283,
-        "max": 0.243599
+        "min": 0.146372,
+        "median": 0.170466,
+        "p95": 0.22287,
+        "max": 0.2318
       },
       "max_response_bytes": 31117
     },
     "near_row_bound": {
       "first_sample": {
-        "case": "near_row_bound",
+        "collector_ns": 3509469,
         "response_bytes": 299242,
-        "collector_ns": 3250465,
-        "encoding_utf8_ns": 1369837,
-        "sample": 0,
+        "case": "near_row_bound",
+        "rows": 1974,
         "scanned_cells": 1974,
-        "rows": 1974
+        "sample": 0,
+        "encoding_utf8_ns": 1673789
       },
       "warm_collector_ms": {
         "count": 31,
-        "min": 0.503709,
-        "median": 0.545782,
-        "p95": 2.969411,
-        "max": 3.048229
+        "min": 0.545569,
+        "median": 0.634345,
+        "p95": 3.275368,
+        "max": 3.681068
       },
       "warm_encoding_utf8_ms": {
         "count": 31,
-        "min": 1.287266,
-        "median": 1.392328,
-        "p95": 2.032316,
-        "max": 3.198428
+        "min": 1.346102,
+        "median": 1.52555,
+        "p95": 2.370722,
+        "max": 3.056549
       },
       "max_response_bytes": 299242
     }
@@ -826,18 +834,19 @@
     "A single callback does not freeze worker threads or establish a global game transaction. Stored accrual/schedule/owner meanings and exact-age limits remain unchanged."
   ],
   "known_engine_crash_markers_absent": true,
-  "validated_at": "2026-10-20T18:36:14.622882+00:00",
+  "validated_at": "2026-10-21T02:05:15.161805+00:00",
   "game_exit_code": 0,
-  "mod_jar_sha256": "64e637eadddecc9609d1715573fd1287ece80a4a3304aac20f2e50fd1b8ae979",
+  "mod_jar_sha256": "462c867c3887f1301662652eca96c5bcfadccd48abf6c137128ee2be3d15d58a",
   "game_jar_sha256": "fe0137c05408e5ee9e31f06fc44fe37a5d4372d9c985b280f0852d1347c0224b",
   "source_archive_sha256": "a3fc2aa9f4be31aec0616a5030a656ac49a6011343b7e91395c7bac0b9dfb0a5",
   "production_source_sha256": {
     "syx/assistant/AssistantScript.java": "c2b8ed68350d4a274315b16dc9ff1c6828a51516777c1ef4a45b84acc6d8b092",
     "syx/assistant/ChatPanel.java": "06db6b7715f9187a40a0b4b987ab7f64e09df5f9dc07193e261249302d1ac12f",
     "syx/assistant/EntityReadRequest.java": "e2d13aee21f399e8718382d5b43d5a6c85e5d78d2708d8105b9f1ecfe730edf8",
+    "syx/assistant/HousingObservation.java": "a6963d87c64e1a0c7bb3ebb9d4b33121c918e54190564259236425be9ef5902c",
     "syx/assistant/JsonWriter.java": "c525eb60d3224cab83ed3fd6b8594ec8652211f00bd947e873e1482f919e81dc",
     "syx/assistant/RegionalReadRequest.java": "4d1da800e6f2ecf6b036f188693ac1095329321bc569c82f34be9918768ef2b3",
-    "syx/assistant/StateCollector.java": "09f96ee681945456e041194003ec070daa3f0a7319a0ce297af2e864aedade37",
+    "syx/assistant/StateCollector.java": "83cb3a4498437e53cf9dac0b7cf1fcff3c4f4572a0cd196fda525ebfcdd64ade",
     "syx/assistant/StockpileReadRequest.java": "589ab0087808dbc973aa7726829c3260c609e043baac080824538c44ed5df360",
     "syx/assistant/TileReadRequest.java": "5daf3cc3abc0cb849f654e09efadb3d0263b73d4e5e220e97671ea1c4a40bde6",
     "syx/assistant/UiContentCollector.java": "c0d20c7f9f2734a0bb625427875f06bfcd07edb20611248b39b6e8f480ef5a48",
@@ -845,11 +854,12 @@
     "syx/assistant/WeatherObservation.java": "ddda0d16df5581ee9e032e98cebc843f2bbb0b2d20b02dcfc14dedf2cec7fe25"
   },
   "python_source_sha256": {
-    "syx_mcp.py": "98b3c236062230c022bd4a1b3d2b8d383e9415647b4338fff250e6106b3272a2",
+    "syx_housing.py": "f81fe8b32b5b669b565d7c548ab62564e69bddf9c903da4e6166c322dd503057",
+    "syx_mcp.py": "1dae7a26190667238c8f448f9b18d2ef67b056caa99750306bd3c1a2ff4dd866",
     "syx_knowledge.py": "f5d7dd6d387ad0fb8f2b024a3bd599ad1cec28f2906dfae27d9d2fdf56e4de7e",
-    "syx_query.py": "ae9c4537093952510e6536810c065b6e07f7bfc2d78d3bc02ccd0d21f4d12c07",
-    "syx_api_support.py": "878e3691eaff288e1c833ec447742714c90181d2652b79b0e94e2951b7eaeb7d",
-    "syx_api_manifest.py": "38226c36397bd92f1343f5fad04d6653f3929e6574ec359f0431aa473f5d13f5",
+    "syx_query.py": "61e40b2c7d26eb0f136461f1d06e575bc12586b80fc132a512268aea56e0fd1f",
+    "syx_api_support.py": "cca62a13fbd39b0de15af284ca592c66cf527837b96b8bf4c4a54259d5cfdc1d",
+    "syx_api_manifest.py": "9bd36ac8a819db076b5bb5b5a526b86269aa4b69f6644fcd0b797fdc22c64c79",
     "syx_live.py": "fdcb9366a3aab0d40a6c4bf597f80e5b15349ae09e9e91acf51c573455c3f69b",
     "syx_capture.py": "32778d9f5f217119ba45b114ba2a710bdd0ce4333efa672c31c690dcc3f3c3ec",
     "syx_tiles.py": "c5ceea79fc5d4d80307ecf7fe429ca1f1f6ae64d17e95569d54625bf02c4d664",
@@ -886,7 +896,7 @@
     "dev/run_read_fixture.py": "ed405dddef177871bd19c0458a340416e8066c7a694f64669fc2292838383855",
     "dev/native_game_completion.py": "8d29009ecb6b1c54e65ce4d94bc1c175d189c68aad59251381ec4cf5a063773f",
     "dev/regional_partial_cache_server.py": "e7dfff0c9f9c8fba7f21fb25bdd642a61155bc58a03434d4915adfa14da1f1da",
-    "dev/verify_scenes.py": "16162cc0ac1306fa6d3972706af65827d4bd03795212c974146c403b1a84eddd"
+    "dev/verify_scenes.py": "ec6f4b2fd209e7feba00ed297043a469b8b78f1f8eee1059164d41f06c377255"
   },
   "copied_profile_mod_restored": true,
   "copied_save_unchanged": true

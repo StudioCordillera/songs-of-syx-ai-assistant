@@ -12,7 +12,7 @@ import shutil
 import zipfile
 
 ROOT=Path(__file__).resolve().parent
-MODULES=['syx_mcp','syx_knowledge','syx_query','syx_api_support','syx_api_manifest','syx_live',
+MODULES=['syx_housing','syx_mcp','syx_knowledge','syx_query','syx_api_support','syx_api_manifest','syx_live',
     'syx_capture','syx_tiles','syx_regions','syx_stockpiles','syx_chat_store','syx_deepseek','syx_chat','syx_chat_service','syx_claude','syx_claude_worker']
 
 

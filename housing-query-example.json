@@ -1,0 +1,23 @@
+{
+  "queries": [
+    {
+      "name": "recorded_residents_per_observed_home",
+      "source": {"domain": "housing", "path": "/home_assignments/data/rows"},
+      "joins": [{"source": {"domain": "housing", "path": "/home_records/data/rooms"}, "left_key": "/room_id", "right_key": "/room_id", "as": "home"}],
+      "group_by": {"room_id": {"field": "/room_id"}, "kind": {"field": "/home/kind"}, "reported_occupants": {"field": "/home/occupants_reported"}},
+      "aggregates": {"observed_roster_links": {"op": "count"}},
+      "sort": [{"field": "/room_id", "direction": "asc"}],
+      "limit": 100
+    },
+    {
+      "name": "first_recorded_resident_of_ordinary_homes",
+      "source": {"domain": "housing", "path": "/home_assignments/data/rows"},
+      "joins": [{"source": {"domain": "housing", "path": "/home_records/data/rooms"}, "left_key": "/room_id", "right_key": "/room_id", "as": "home"}],
+      "where": {"and": [{"eq": [{"field": "/home/kind"}, "ordinary_home"]}, {"eq": [{"field": "/roster_index"}, 0]}]},
+      "select": {"room_id": {"field": "/room_id"}, "resident_id": {"field": "/resident_id"}, "roster_index": {"field": "/roster_index"}, "configured_capacity": {"field": "/home/capacity_configured"}},
+      "sort": [{"field": "/room_id", "direction": "asc"}],
+      "limit": 5
+    }
+  ],
+  "include_ui_context": true
+}
