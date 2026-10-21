@@ -1,0 +1,26 @@
+{
+  "queries": [
+    {
+      "name": "selected_housed_worker_with_observed_staffing",
+      "source": {"domain": "entities", "path": "/selected_subject"},
+      "joins": [
+        {"source": {"domain": "housing", "path": "/home_assignments/data/rows"}, "left_key": "/entity_id", "right_key": "/resident_id", "as": "recorded_home"},
+        {"source": {"domain": "housing", "path": "/home_records/data/rooms"}, "left_key": "/recorded_home/room_id", "right_key": "/room_id", "as": "home"},
+        {"source": {"domain": "employment", "path": "/rooms"}, "left_key": "/relationships/workplace/data/room_id", "right_key": "/room_id", "as": "observed_workplace", "kind": "left"}
+      ],
+      "select": {
+        "entity_id": {"field": "/entity_id"},
+        "recorded_home_room_id": {"field": "/home/room_id"},
+        "home_kind": {"field": "/home/kind"},
+        "home_service_tile_x": {"field": "/home/service_tile_x"},
+        "home_service_tile_y": {"field": "/home/service_tile_y"},
+        "configured_home_capacity": {"field": "/home/capacity_configured"},
+        "person_recorded_home_tile": {"field": "/relationships/home_assignment/data"},
+        "recorded_workplace_room_id": {"field": "/relationships/workplace/data/room_id"},
+        "observed_workplace": {"field": "/observed_workplace"}
+      },
+      "limit": 10
+    }
+  ],
+  "include_ui_context": true
+}

@@ -9,7 +9,7 @@ This is a routing inventory of the current adapter, not a complete game schema. 
 | production | `/resources`, `/room_data/flows` | Campaign ledger plus bounded current scene recipe inputs/outputs, stored quantities and producer-room degradation | Production modifiers, bucket alignment, retained observations and forecasts |
 | employment | `/rooms`, `/field_definitions` | Bounded room identity, workforce counts/targets and stored work/travel/fetch/combined factors; shared room-instance key | Jobs/history, exact factor age and complete production modifiers |
 | services | `/statistics`, `/room_data/rooms`, `/access_policy`, `/field_definitions` | Aggregate stats, per-room raw service points and configured race/class permission flags, linked to staffing/population/help | Daily capacity, demand, effective individual access/reachability, full provider types and explanations |
-| housing | `/statistics` | HOME aggregate stats | Home availability, quality and occupancy relationships |
+| housing | `/statistics`, `/home_records/data/rooms`, `/home_assignments/data/rows`, `/home_records/data/ordinary_home_cohort_ledger` | HOME aggregates plus bounded ordinary/noble records, recorded resident links and eligibility-weighted cohort accounting | Effective vacancy/eligibility, full quality/policy mechanics, natural identity/history and native error/cap/scale cases |
 | health | `/statistics` | Disease/environment/food aggregate stats | Causes, disease progression and complete treatment coverage |
 | law | `/statistics` | LAW aggregate stats | Individual cases and complete enforcement/punishment factors |
 | happiness | `/statistics` | Public collection aggregates | Expectations and causal contribution schemas; individual stats remain separate |
@@ -17,9 +17,9 @@ This is a routing inventory of the current adapter, not a complete game schema. 
 | trade | `/resources`, `/settlement_pipeline/policies`, `/settlement_pipeline/flows` | Campaign current-day ledger; bounded city resource stages by trade reason and raw configured limits | Full order records, non-resource tradables, executable quotes/tariffs, routes/ETA and large-city cost |
 | diplomacy | `/factions` | Active faction identities and stance | Treaties and relationship factors |
 | military | `/statistics`, `/scene_armies` | BATTLE aggregates and instantiated scene divisions | Full world-army/order schemas and combat history |
-| world | `/regions`, `/population_by_race`, `/regional_output_bookkeeping/rows`, `/regional_output_bookkeeping/schedules`, `/field_definitions` | Region identity/ownership/population plus bounded resource-backed stored accruals and cyclic configured offsets | Retained regional selections, other economy/army relationships, actual shipping/arrival, exact counter age, non-resource output and large-world/cap/fault validation |
+| world | `/regions`, `/population_by_race`, `/regional_output_bookkeeping/rows`, `/regional_output_bookkeeping/schedules`, `/field_definitions` | Region identity/ownership/population plus bounded resource-backed stored accruals and cyclic configured offsets | Other economy/army relationships, actual shipping/arrival, exact counter age, non-resource output and large-world/cap/fault validation |
 | map | dimensions, `/weather`, on-demand tool description | Scene dimensions, ten stored weather factors/four flags, finite tile reads and bounded retained tile selections | Broader spatial fields, larger retained batches and all-field/scene/fault costs |
-| entities | `/items`, `/selected_subject` | Prefix IDs/positions and dedicated selected-person public stats | More typed attributes and relationship filters beyond recorded workplace |
+| entities | `/items`, `/selected_subject` | Prefix IDs/positions and dedicated selected-person public stats/recorded assignments | More typed attributes and relationship filters beyond recorded workplace |
 | events | `/registered_event_types`, current event ID/elapsed fields | Registered event types and current scripted event | Complete incidents/history and future-event claims |
 | settings | pause/speed/time fields | Current public clock and requested speed | Full settings schema |
 
@@ -85,3 +85,5 @@ Cached viewport geometry is additionally available in same-observation UI contex
 
 
 [Weather](WEATHER.md) is completed instantiated-city bookkeeping under map /weather, including underlying city data in other views. Weather data/definitions share the snapshot/context; battle/setup or failures are unavailable/null. Legitimate zero remains zero. Game factors are not physical units, tile moisture, regional weather, crop yields or forecasts; cached ripeness flags may use the previous factor during engine update.
+
+[Selected housed-worker example](selected-resident-query-example.json) joins the underlying selected subject to recorded home links/records and a nullable cached employment record in the same observation. [Scope and native checks](SELECTED_RESIDENT_QUERY.md) distinguish its required selection/workplace preconditions and partial-source zero/null outcomes from a homeless census or current physical commute. It adds no game getter or variable mapping.
