@@ -328,5 +328,19 @@
       "Supplied collector and paraphrased reviewed source facts only; no independent game execution, full repository, UI/UX or release approval.",
       "No raw CLI stream/thinking, credentials or proprietary game source text is published."
     ]
+  },
+  "gesture_reducer_review_deferred": {
+    "checked_at": "2026-10-21T16:25:39.931875+00:00",
+    "existing_local_cli_processes": 4,
+    "invocation_started": false,
+    "scope": "Process presence only; no auth/session files read, unrelated sessions interrupted or game automation.",
+    "planned_alias": "opus",
+    "planned_effort": "high",
+    "reason": "Existing local CLI sessions are present and were not established idle. Under the explicit no-overlap rule, no new invocation was launched and no unrelated session was interrupted. Presence alone is not a quota, entitlement or billing diagnosis.",
+    "actual_model": null,
+    "final_result_received": false,
+    "credits_purchased": false,
+    "account_limits_bypassed": false,
+    "independent_work": "Reconcile accepted prior prototype interaction policies and implement/test detached Java reducer; new Java source not peer-reviewed or integrated into native player."
   }
 }

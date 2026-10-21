@@ -23,7 +23,7 @@ def test_launcher_click_toggles_once_on_release():
 
 def test_hold_then_drag_drops_without_toggle_and_clamps():
     g=start()
-    assert sample(g,70,70,200)[0]=='holding'
+    assert sample(g,50,50,200)[0]=='holding'
     kind,rect=sample(g,1200,900,400)
     assert kind=='dragging' and rect==Rect(1190,890,44,44)
     kind,rect=sample(g,1280,960,500,False)
@@ -92,4 +92,43 @@ def test_resize_at_edge_keeps_origin_and_remains_reachable():
 def test_malformed_viewport_leaves_last_valid_capture_unchanged(bounds):
     g=start();before=dict(g.capture)
     with pytest.raises(ValueError):sample(g,50,50,100,bounds=bounds)
+    assert g.capture==before
+
+
+@pytest.mark.parametrize('target',['header','chrome','resize'])
+def test_panel_movement_has_no_launcher_slop(target):
+    g=start(target,Rect(40,40,600,500))
+    kind,rect=sample(g,51,51,20)
+    assert kind=='dragging'
+    assert (rect.width,rect.height)==(601,501) if target=='resize' else (rect.x,rect.y)==(41,41)
+
+
+def test_stationary_engaged_hold_never_becomes_click():
+    g=start()
+    assert sample(g,50,50,350)[0]=='armed'
+    assert sample(g,50,50,400,False)[0]=='released'
+    g=start()
+    assert sample(g,50,50,400,False)[0]=='released'
+
+
+def test_early_move_cannot_become_late_drag_or_click():
+    g=start()
+    assert sample(g,70,70,100)[0]=='blocked'
+    assert sample(g,50,50,400)[0]=='blocked'
+    assert sample(g,80,80,450)[0]=='blocked'
+    assert sample(g,80,80,500,False)[0]=='released'
+
+
+def test_diagonal_slop_and_exact_threshold():
+    g=start()
+    assert sample(g,54,54,100)[0]=='holding'
+    assert sample(g,55,55,200)[0]=='blocked'
+    g=start()
+    assert sample(g,56,50,100)[0]=='holding'
+    assert sample(g,56,50,200,False)[0]=='toggle'
+
+
+def test_oversized_integer_input_is_rejected_without_changing_capture():
+    g=start();before=dict(g.capture)
+    with pytest.raises(ValueError):sample(g,10**10000,50,100)
     assert g.capture==before

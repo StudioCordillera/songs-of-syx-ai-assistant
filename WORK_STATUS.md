@@ -2,6 +2,16 @@
 
 Use `python3 dev/collaboration_status.py` for actual remote/local state at every run; this file is a handoff, not a live branch/working-tree assertion. Read AGENTS.md and reconcile newer collaborator work before editing.
 
+## Detached Java gesture policy — player unchanged
+
+[CHAT_GESTURE_CANDIDATE.md](CHAT_GESTURE_CANDIDATE.md) / [Java trace evidence](CHAT_GESTURE_JAVA_VALIDATION.json) port the reducer policy to game-independent Java and reconcile the older Python choices with accepted findings from the completed Claude prototype review: immediate nonzero own header/chrome/resize movement, stationary engaged-hold suppression, Euclidean slop and permanent early-motion lockout for that launcher gesture. Bounded geometry, five-second recovery and validation preserving capture remain. The original candidate report retains its exact earlier source/scope.
+
+The 33 targeted cases and full 623-test offline suite pass. Java 16 compilation with no game classpath and 2,039 cross-language trace steps cover 200 seeded scenarios plus 26 independent expected outcomes. No native input, game/provider request, key, normal history/save or production source/payload change. These are detached supplied primitives and finite geometry samples, not native focus/capture/hit-testing/scene/scaling, a complete browser equivalence, themes/persistence, receipt/badge or player acceptance.
+
+New focused Claude review was deferred: existing local CLI sessions were present and not established idle, so the explicit no-overlap rule was honored. No new invocation, model result, quota/credit diagnosis, unrelated-session interruption or credit purchase is claimed. CLAUDE_UX_COLLABORATION.json records this; the retained prior review informed policy but did not review the new Java source. Continue independent work and use a bounded focused review when the lane is available, without repeating full generation.
+
+Latest/previous tested ZIPs and their separately scoped 615-test/two-Pro reference release below remain unchanged. Initial fetch was aligned; preserve the private user log, credentials and muted/dim settings, and fetch/reconcile before publishing. Next: focused port review and a source-reviewed own-widget adapter with real native ownership/cancel/scene/scale evidence, alongside remaining selective-state/lifecycle/current-reference goals. No completion or broad coverage claim.
+
 ## Housing-reference corpus — promoted tested player checkpoint
 
 [HOUSING_REFERENCE_RELEASE_VALIDATION.json](HOUSING_REFERENCE_RELEASE_VALIDATION.json) promotes the two exact historical developer summaries from the prior candidate. The starter corpus now contains fifteen records; all thirteen earlier seed dictionaries/review dates and installer/CLI function ASTs are unchanged. The two additions retain unknown exact/family/future compatibility. No current search radius, effective vacancy/eligibility, geometry, optimal blueprint or later-fix delivery follows from these old replies. Original canonical comment/author/body provenance remains in HOUSING_REFERENCE_REVIEW.json; no source date is refreshed by this promotion.

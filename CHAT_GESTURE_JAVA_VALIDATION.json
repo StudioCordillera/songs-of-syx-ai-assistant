@@ -1,0 +1,37 @@
+{
+  "passed": true,
+  "evaluated_at": "2026-10-21T16:25:09.163283+00:00",
+  "scope": "Unshipped game-independent Java gesture reducer, reconciled with accepted browser interaction policies; finite Python/Java trace parity, not native adapter acceptance.",
+  "trace_steps": 2039,
+  "independently_authored_expected_steps": 26,
+  "seeded_gesture_scenarios": 200,
+  "java_release_target": 16,
+  "trace_sha256": "d2253ca88d98f072eb3122f28c6af8d73fd255bf23412d96dc3568b28b4d1389",
+  "java_response_sha256": "ddab19fdbc0d78374e516f4432c5c9345fefc7b59c7c2cabc8c3e8b22ca36c9b",
+  "source_sha256": {
+    "dev/chat_gesture_candidate.py": "6e126e785a820c41156832d1447c9e6e7bc6a8ba7e128aa9dbdea509a85eada4",
+    "dev/verify_gesture_reducer.py": "b4dd2d8547b56c945aa31c59635cfad193d7b8fb363c0ddccf31447366fb2f5a",
+    "test_chat_gesture_candidate.py": "53d88c3bf229b4e16cbdbcb4734e2ed04241a87455815359e01c39b8c436ae4c",
+    "test_gesture_reducer_java.py": "f3bb99d57f5373d0cdd34717d446114b1d9f7476c47aead5941f852876d6858d",
+    "dev/java/syx/assistant/candidate/GestureReducer.java": "baad18d901b6a2bc7916df3a916d2da069879e1a2579837fd68839c31c67bbf0",
+    "dev/java/syx/assistant/candidate/GestureTrace.java": "62f1e83ad09310f3b5b619707adbc2b48badc74216603f7bd299714a17a5c4d4"
+  },
+  "game_calls": 0,
+  "native_input_calls": 0,
+  "provider_calls": 0,
+  "production_integration": false,
+  "limits": [
+    "Detached primitives and own-surface labels are supplied by the test; native hit testing, pointer ownership, window focus/capture/loss, coordinate scaling and scene integration are not established.",
+    "Launcher hold threshold uses supplied monotonic samples, not browser timer ordering. Immediate nonzero own header/chrome/resize movement, early-move lockout and stationary engaged-hold suppression are policy choices; not full browser/native equivalence.",
+    "Five-second cancellation is a recovery policy, not focus proof. Minimum layout size remains480x320 shrinking at viewport edges; native font, clipping, themes, persistence and accessibility are separate gates.",
+    "Only controlled trace input and finite desktop/small geometry ranges are evaluated; test framing is not a production IPC or general adversarial-stream parser.",
+    "No native drag/resize, target chip, badge, receipt or gameplay action is shipped. Existing player JAR/helper/download validation remains separate."
+  ],
+  "full_offline_tests_passed": 623,
+  "targeted_tests_passed": 33,
+  "prior_python_reducer_sha256": "343f142d17be33142938f3d3a5f1f1343aab9438118d990161e524dae632a067",
+  "reference_prototype_sha256": "35f310efdc494810f53bc92ebb0061070df9c70cb02b13887f33371f4a2015ae",
+  "accepted_peer_review_findings": "CLAUDE_PROTOTYPE_REVIEW.md",
+  "new_java_peer_review_completed": false,
+  "player_bundles_unchanged": true
+}
