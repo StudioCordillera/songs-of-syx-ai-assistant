@@ -1,0 +1,81 @@
+{
+  "passed": true,
+  "evaluated_at": "2026-10-21T23:31:06.511388+00:00",
+  "scope": "Two explicit paid Pro turns over developer blueprint conversation/MCP with an explicitly synthetic demo heartbeat; no game/native UI or production coordinator integration.",
+  "requested_model": "deepseek-v4-pro",
+  "adapter_model": "deepseek-v4-pro",
+  "remote_model_identity_independently_attested": false,
+  "completed_turns": 2,
+  "started_requests": 5,
+  "completed_round_trips": 5,
+  "schema_counts": [
+    21,
+    21,
+    21,
+    21,
+    21
+  ],
+  "actual_reference_tool_calls": 3,
+  "get_results_checked": 2,
+  "first_turn_search_and_get": true,
+  "other_version_unknown_evidence": true,
+  "source_url_and_original_version_in_both_final_replies": true,
+  "catalog_report_sha256": "d763365268f3d9f36212da9e9bab938ebdb90562f35d6a10315afbeaaff11021",
+  "source_sha256": {
+    "dev/run_blueprint_pro_check.py": "79d12ca03afd7de9389064de68dfca46698d37274df4dd2bb03e32506f79bc50",
+    "dev/blueprint_chat_candidate.py": "0b907e8362f279b23c02598b7a70344402de53ff83ca542baa631ed9f5c70f34",
+    "dev/blueprint_mcp_candidate.py": "e81cf443014471ab9899887b768567902bfc42d3f83c62b0ea738b788f828519",
+    "dev/blueprint_examples.py": "55fe15fc1668424cd266f2823097d9a1de0cc7f4d0cf565c43769f9f22ef76af",
+    "syx_chat.py": "98ceecfc8b042e45b0ea461f73fed74cc3fde00833a6fce22372649b9f844d6c",
+    "syx_chat_store.py": "a2f2ffa53097cb60eab72c015c3d516693aa1c89c8aa54d74f4dfc96d222e634",
+    "syx_deepseek.py": "d58e21dbcfdeb1ef0f411dfbb4c0267234bdc5cc185e00d300821725ca1885e3",
+    "syx_mcp.py": "1dae7a26190667238c8f448f9b18d2ef67b056caa99750306bd3c1a2ff4dd866",
+    "blueprint-examples-candidate.json": "a4147938348fc8890afc9bd1b254801f50858a6a17bc3936db32820d2abed4a8",
+    "BLUEPRINT_CATALOG_VALIDATION.json": "d763365268f3d9f36212da9e9bab938ebdb90562f35d6a10315afbeaaff11021",
+    "snapshot.example.json": "6ad782d4825b3a2d38ae5dfbf189baa141322e19978d109351abeec3d8f1c8c4"
+  },
+  "prompt_sha256": [
+    "5c9244cb2bb6a2d044b31d0dc831312d9a3192016b94f1b65a2fa4d830108a97",
+    "559fcf9ffdf5d130b553fdd18c95696f111dba4e3349a78b7b7a888dda4f7e95"
+  ],
+  "visible_reply_sha256": [
+    "fef7a856009dc0a387713110a1730c30894fd297e1e536f1412859514c547e43",
+    "62f8948a0cce1afdcd8ab82f17a78de663bf3b6cfeb656f4acbf148707dc872a"
+  ],
+  "fixture": {
+    "demo": true,
+    "game_version": "DEMO-unverified",
+    "clock": "Synthetic fixture timestamp republished once per second to exercise existing freshness admission; no real game observations refreshed."
+  },
+  "native_game_calls": 0,
+  "production_integration": false,
+  "limits": [
+    "Controlled prompts explicitly request tools/version/citation/caveats. Successful model/schema transport, durable evidence and literal reply fragments do not establish general semantic entailment, unscripted retrieval quality or advice correctness.",
+    "Original geometry/catalog evidence retains its earlier native scope. No actual room construction, map/path/door/roof/capacity/cost/efficiency/optimality or third-party layout/rights validation.",
+    "This uses the developer subclass/server and private disposable history, not the production coordinator/native chat/player. Synthetic demo clock/session freshness is not live-world acceptance.",
+    "No provider/account expansion, fallback model, runner retry or credit purchase. The explicit requested API model is recorded; remote model identity is not independently attested."
+  ],
+  "explicit_paid_check": true,
+  "finite_visible_reply_review": {
+    "completed": true,
+    "scope": "Manual comparison of these two private visible replies to the original registry/get evidence only; no broad advice-quality acceptance.",
+    "observations": [
+      "First reply keeps the authored 5x5 rectangle, two 2x1 furniture footprints at the authored coordinates, hypothetical entry and 21 geometric aisle cells.",
+      "First reply identifies required-access furniture versus the other footprint cell, cites the original source/reviewed version and denies construction/material/capacity/efficiency/demo-world validation.",
+      "Second reply preserves original 0.71.44 evidence, unknown 0.72.0 compatibility and false construction/execution flags; it does not claim the demo is a real world."
+    ]
+  },
+  "offline_runner_verification": {
+    "passed": true,
+    "tests_passed": 3,
+    "inference": "Fake only; no key loaded or API request in pytest",
+    "source_sha256": {
+      "test_blueprint_pro_runner.py": "a119df3b8bf3e26b597b6c08ee8fa2b13761075f507071955fd8c1458c237dee"
+    }
+  },
+  "full_offline_tests_passed": 681,
+  "offline_commands": [
+    ".venv/bin/python -m pytest -q test_blueprint_pro_runner.py",
+    "SYX_JAVA_HOME=<full-jdk> .venv/bin/python -m pytest -q"
+  ]
+}

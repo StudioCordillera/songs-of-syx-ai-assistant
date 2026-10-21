@@ -47,6 +47,7 @@ def scope(path):
     if name=='CHAT_TARGET_DISPATCH_VALIDATION.json':return 'Developer-only accepted-turn claim tests and copied-city fake-provider handoff; not native player or paid Pro acceptance'
     if name=='CHAT_TARGET_DISPATCH.md':return 'Developer dispatch seam, cancellation/restart/unknown-delivery contract and remaining integration gates'
     if name=='CHAT_HISTORY_CANDIDATE_VALIDATION.json':return 'Developer-only SQLite receipt/filter/migration and actual bundled-store compatibility tests; not production badge/world-routing acceptance'
+    if name=='BLUEPRINT_PRO_CANDIDATE_VALIDATION.json':return 'Explicit paid Pro developer reference-tool/schema/citation check under synthetic demo-clock context; no native world/UI, construction or player promotion'
     if name=='BLUEPRINT_CHAT_CANDIDATE_VALIDATION.json':return 'Developer reference-tool conversation admission/lifecycle with fake providers and actual stdio synthetic demo context; no real model, native coordinator/UI or player acceptance'
     if name=='BLUEPRINT_MCP_CANDIDATE_VALIDATION.json':return 'Developer stdio original-example tools, unchanged nineteen production tool definitions, strict schemas and wire/isolation checks; no snapshot, provider, construction or player integration'
     if name=='BLUEPRINT_CATALOG_VALIDATION.json':return 'Fixed public native warehouse furniture footprint/access catalog probe; no layout construction, capacity or placement acceptance'
