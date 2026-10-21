@@ -1,0 +1,26 @@
+[
+  {
+    "id": "developer-housing-workplace-proximity-2022",
+    "title": "Homeless housing and workplace proximity — historical developer reply",
+    "url": "https://steamcommunity.com/app/1162750/discussions/0/3387294407407782274/",
+    "kind": "forum",
+    "authority": "developer",
+    "author": "Gamatron",
+    "retrieved_at": "2026-10-21T03:36:41Z",
+    "game_versions": [],
+    "version_notes": "Original developer reply #5 dated 22 December 2022. Exact build and applicability to 0.71.44 are unknown. The announced future fix is historical intent, not verified delivery or a current bug diagnosis.",
+    "text": "The developer links housing assignment to nearby workplaces and suggests the housing overlay for investigating problems. They describe a large-room distance issue tied to one room tile and announce a forthcoming correction. This historical reply supplies no current search radius, path-distance formula or proof that nominal empty beds are usable. Check present observations and installed help before recommending changes."
+  },
+  {
+    "id": "developer-housing-privacy-density-2023",
+    "title": "Housing privacy and density in EA64 — historical developer answer",
+    "url": "https://steamcommunity.com/app/1162750/discussions/0/3800523859689753142/",
+    "kind": "forum",
+    "authority": "developer",
+    "author": "Gamatron",
+    "retrieved_at": "2026-10-21T03:36:41Z",
+    "game_versions": [],
+    "version_notes": "Original developer reply #1 dated 30 June 2023 in an EA64 discussion. The topic names EA64 but does not establish the exact tested build. Applicability to 0.71.44 is unknown.",
+    "text": "In an EA64 housing discussion, the developer says the privacy mechanic was removed and describes equal population density for fully upgraded housing. This historical answer does not establish current capacity, eligibility, geometry, upgrade costs or an optimal blueprint. Verify current room configuration and installed help rather than extrapolating the old density statement."
+  }
+]

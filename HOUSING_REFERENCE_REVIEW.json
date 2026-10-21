@@ -1,0 +1,45 @@
+{
+  "reviewed_at": "2026-10-21T03:36:41Z",
+  "scope": "Developer-only housing guidance candidates; not installed in production starter corpus or player. Original short summaries, no copied forum bodies/media.",
+  "review_method": "Canonical rendered text plus anonymous HTTPS HTML; original comment IDs, author developer class/profile and Steam epoch checked separately from quoted copies. HTML/body checksums retained; raw pages stay private. No future source refresh implied.",
+  "sources": [
+    {
+      "id": "developer-housing-workplace-proximity-2022",
+      "canonical_url": "https://steamcommunity.com/app/1162750/discussions/0/3387294407407782274/",
+      "comment_id": "3730700942535085693",
+      "comment_number": 5,
+      "authority": "developer",
+      "author": "Gamatron",
+      "original_author_badge_and_profile_verified": true,
+      "published_at_from_steam_epoch": "2022-12-22T10:43:08+00:00",
+      "origin_html_sha256": "3e376481dbb4c638bcce4d4b40f27c999c48dd2a9e255d5489fa1cbf9a7e4326",
+      "original_reply_body_without_quoted_op_sha256": "eec4c34094739b61a10e2e624b189306b036a94b04c250dff669b519c48201c7",
+      "summary_body_sha256": "28c06aa0b6cfdc96037eb144580434eae1d21f8ff499e095c3b49604a0f3f620",
+      "version_notes_sha256": "12b521c67e1fe44a15e0f7969e356ba656599db6e48081f51eca578d2c8f95b9",
+      "game_versions": []
+    },
+    {
+      "id": "developer-housing-privacy-density-2023",
+      "canonical_url": "https://steamcommunity.com/app/1162750/discussions/0/3800523859689753142/",
+      "comment_id": "3800523859690268840",
+      "comment_number": 1,
+      "authority": "developer",
+      "author": "Gamatron",
+      "original_author_badge_and_profile_verified": true,
+      "published_at_from_steam_epoch": "2023-06-30T10:13:23+00:00",
+      "origin_html_sha256": "5e77db5172a36b01fd4605341bb2baf76bed4bf1b90ca4ba163bd43e71a2899a",
+      "original_reply_body_without_quoted_op_sha256": "d9727c223f4c3dc4e45c5aaf06cb2799ec0c8905b7329894061b7f83f34b70e2",
+      "summary_body_sha256": "969307959b569cebbc7b87deff799db885e9cd9d12c65f409b7fef7482142a73",
+      "version_notes_sha256": "b19515c01b1a600483b143caa702c2f50ea54314b224c8261d6e29ab9981d770",
+      "game_versions": []
+    }
+  ],
+  "candidate_file_sha256": "640c7baf82d28235fd1b52ee49f5a0e8853f6632139d6470f41ca2e1fe3c911d",
+  "limits": [
+    "Historical developer statements, not current-patch mechanics, source API contracts, exact geometry, optimal blueprint examples or execution authorization.",
+    "Topic EA64 is contextual evidence, not a verified exact game build; both records intentionally retain unknown version compatibility.",
+    "Community comments about caves, timing or capacity are not attributed to the developer. The 2022 future-fix statement does not prove delivery in any later release.",
+    "Published timestamps derive from Steam epoch attributes; visible localized timezone labels are not independently attested.",
+    "Production promotion still requires source integration, baseline-preserving migration, retrieval and exact-source provider/core/distribution/player gates."
+  ]
+}

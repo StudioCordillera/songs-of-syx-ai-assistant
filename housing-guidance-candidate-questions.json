@@ -1,0 +1,136 @@
+[
+  {
+    "case_id": "developer-housing-workplace-proximity-2022-0.71.44",
+    "query": "homeless housing workplace proximity",
+    "game_version": "0.71.44",
+    "authority": "developer",
+    "expected_id": "developer-housing-workplace-proximity-2022",
+    "expected_url": "https://steamcommunity.com/app/1162750/discussions/0/3387294407407782274/",
+    "expected_authority": "developer",
+    "expected_author": "Gamatron",
+    "expected_compatibility": "unknown",
+    "reviewed_advice": "Treat proximity as a historical diagnostic lead; establish current constraints separately.",
+    "required_passages": [
+      "nearby workplaces",
+      "no current search radius"
+    ],
+    "required_caveats": [
+      "0.71.44",
+      "unknown"
+    ]
+  },
+  {
+    "case_id": "developer-housing-workplace-proximity-2022-0.71",
+    "query": "homeless housing workplace proximity",
+    "game_version": "0.71",
+    "authority": "developer",
+    "expected_id": "developer-housing-workplace-proximity-2022",
+    "expected_url": "https://steamcommunity.com/app/1162750/discussions/0/3387294407407782274/",
+    "expected_authority": "developer",
+    "expected_author": "Gamatron",
+    "expected_compatibility": "unknown",
+    "reviewed_advice": "Treat proximity as a historical diagnostic lead; establish current constraints separately.",
+    "required_passages": [
+      "nearby workplaces",
+      "no current search radius"
+    ],
+    "required_caveats": [
+      "0.71.44",
+      "unknown"
+    ]
+  },
+  {
+    "case_id": "developer-housing-workplace-proximity-2022-0.72.1",
+    "query": "homeless housing workplace proximity",
+    "game_version": "0.72.1",
+    "authority": "developer",
+    "expected_id": "developer-housing-workplace-proximity-2022",
+    "expected_url": "https://steamcommunity.com/app/1162750/discussions/0/3387294407407782274/",
+    "expected_authority": "developer",
+    "expected_author": "Gamatron",
+    "expected_compatibility": "unknown",
+    "reviewed_advice": "Treat proximity as a historical diagnostic lead; establish current constraints separately.",
+    "required_passages": [
+      "nearby workplaces",
+      "no current search radius"
+    ],
+    "required_caveats": [
+      "0.71.44",
+      "unknown"
+    ]
+  },
+  {
+    "case_id": "developer-housing-privacy-density-2023-0.71.44",
+    "query": "housing privacy density",
+    "game_version": "0.71.44",
+    "authority": "developer",
+    "expected_id": "developer-housing-privacy-density-2023",
+    "expected_url": "https://steamcommunity.com/app/1162750/discussions/0/3800523859689753142/",
+    "expected_authority": "developer",
+    "expected_author": "Gamatron",
+    "expected_compatibility": "unknown",
+    "reviewed_advice": "Do not apply historical privacy or upgraded-density claims as current geometry or optimality.",
+    "required_passages": [
+      "privacy mechanic was removed",
+      "fully upgraded housing"
+    ],
+    "required_caveats": [
+      "0.71.44",
+      "unknown"
+    ]
+  },
+  {
+    "case_id": "developer-housing-privacy-density-2023-0.71",
+    "query": "housing privacy density",
+    "game_version": "0.71",
+    "authority": "developer",
+    "expected_id": "developer-housing-privacy-density-2023",
+    "expected_url": "https://steamcommunity.com/app/1162750/discussions/0/3800523859689753142/",
+    "expected_authority": "developer",
+    "expected_author": "Gamatron",
+    "expected_compatibility": "unknown",
+    "reviewed_advice": "Do not apply historical privacy or upgraded-density claims as current geometry or optimality.",
+    "required_passages": [
+      "privacy mechanic was removed",
+      "fully upgraded housing"
+    ],
+    "required_caveats": [
+      "0.71.44",
+      "unknown"
+    ]
+  },
+  {
+    "case_id": "developer-housing-privacy-density-2023-0.72.1",
+    "query": "housing privacy density",
+    "game_version": "0.72.1",
+    "authority": "developer",
+    "expected_id": "developer-housing-privacy-density-2023",
+    "expected_url": "https://steamcommunity.com/app/1162750/discussions/0/3800523859689753142/",
+    "expected_authority": "developer",
+    "expected_author": "Gamatron",
+    "expected_compatibility": "unknown",
+    "reviewed_advice": "Do not apply historical privacy or upgraded-density claims as current geometry or optimality.",
+    "required_passages": [
+      "privacy mechanic was removed",
+      "fully upgraded housing"
+    ],
+    "required_caveats": [
+      "0.71.44",
+      "unknown"
+    ]
+  },
+  {
+    "case_id": "official-only-refuses-historical-proximity",
+    "query": "proximity",
+    "game_version": "0.71.44",
+    "authority": "official",
+    "expected_id": null
+  },
+  {
+    "case_id": "official-only-refuses-historical-privacy",
+    "query": "privacy",
+    "game_version": "0.71.44",
+    "authority": "official",
+    "expected_id": null
+  }
+]
