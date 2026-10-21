@@ -1,0 +1,120 @@
+{
+  "passed": true,
+  "evaluated_at": "2026-10-21T02:38:30.505134+00:00",
+  "scope": "Six unchanged production home/roster/cohort observations during finite speed-one copied-city progression; public direct-getter parity, retained-original MCP relationships and cache/pin transitions.",
+  "samples": 6,
+  "simulation_ticks_advanced": 153,
+  "simulation_seconds_advanced": 2.529296875,
+  "home_row_counts": [
+    36,
+    36,
+    36,
+    36,
+    36,
+    36
+  ],
+  "relationship_row_counts": [
+    204,
+    204,
+    204,
+    204,
+    204,
+    204
+  ],
+  "observed_roster_sequence_transitions": 1,
+  "observed_recorded_pair_multiset_transitions": 1,
+  "same_callback_direct_getter_parity": true,
+  "retained_original_relationship_parity": true,
+  "snapshot_cache_replacement_and_old_pin_refusal": true,
+  "revisited_original_not_recomputed_from_latest_game": true,
+  "actual_mcp_calls": 19,
+  "provider_calls": 0,
+  "explicit_fixture_save_requests": 0,
+  "production_payload_unchanged": true,
+  "mod_jar_sha256": "462c867c3887f1301662652eca96c5bcfadccd48abf6c137128ee2be3d15d58a",
+  "production_source_sha256": {
+    "syx/assistant/AssistantScript.java": "c2b8ed68350d4a274315b16dc9ff1c6828a51516777c1ef4a45b84acc6d8b092",
+    "syx/assistant/ChatPanel.java": "06db6b7715f9187a40a0b4b987ab7f64e09df5f9dc07193e261249302d1ac12f",
+    "syx/assistant/EntityReadRequest.java": "e2d13aee21f399e8718382d5b43d5a6c85e5d78d2708d8105b9f1ecfe730edf8",
+    "syx/assistant/HousingObservation.java": "a6963d87c64e1a0c7bb3ebb9d4b33121c918e54190564259236425be9ef5902c",
+    "syx/assistant/JsonWriter.java": "c525eb60d3224cab83ed3fd6b8594ec8652211f00bd947e873e1482f919e81dc",
+    "syx/assistant/RegionalReadRequest.java": "4d1da800e6f2ecf6b036f188693ac1095329321bc569c82f34be9918768ef2b3",
+    "syx/assistant/StateCollector.java": "83cb3a4498437e53cf9dac0b7cf1fcff3c4f4572a0cd196fda525ebfcdd64ade",
+    "syx/assistant/StockpileReadRequest.java": "589ab0087808dbc973aa7726829c3260c609e043baac080824538c44ed5df360",
+    "syx/assistant/TileReadRequest.java": "5daf3cc3abc0cb849f654e09efadb3d0263b73d4e5e220e97671ea1c4a40bde6",
+    "syx/assistant/UiContentCollector.java": "c0d20c7f9f2734a0bb625427875f06bfcd07edb20611248b39b6e8f480ef5a48",
+    "syx/assistant/UiContextCollector.java": "0f67200fdcf2740f4d3d4b1751ea0bf143613b20a44afb77af0ebb0ae8078937",
+    "syx/assistant/WeatherObservation.java": "ddda0d16df5581ee9e032e98cebc843f2bbb0b2d20b02dcfc14dedf2cec7fe25"
+  },
+  "python_source_sha256": {
+    "syx_housing.py": "f81fe8b32b5b669b565d7c548ab62564e69bddf9c903da4e6166c322dd503057",
+    "syx_mcp.py": "1dae7a26190667238c8f448f9b18d2ef67b056caa99750306bd3c1a2ff4dd866",
+    "syx_knowledge.py": "f5d7dd6d387ad0fb8f2b024a3bd599ad1cec28f2906dfae27d9d2fdf56e4de7e",
+    "syx_query.py": "61e40b2c7d26eb0f136461f1d06e575bc12586b80fc132a512268aea56e0fd1f",
+    "syx_api_support.py": "cca62a13fbd39b0de15af284ca592c66cf527837b96b8bf4c4a54259d5cfdc1d",
+    "syx_api_manifest.py": "9bd36ac8a819db076b5bb5b5a526b86269aa4b69f6644fcd0b797fdc22c64c79",
+    "syx_live.py": "fdcb9366a3aab0d40a6c4bf597f80e5b15349ae09e9e91acf51c573455c3f69b",
+    "syx_capture.py": "32778d9f5f217119ba45b114ba2a710bdd0ce4333efa672c31c690dcc3f3c3ec",
+    "syx_tiles.py": "c5ceea79fc5d4d80307ecf7fe429ca1f1f6ae64d17e95569d54625bf02c4d664",
+    "syx_regions.py": "96dd3355f50279c7c748d866019f889bd9889ef00c7cf97bf4fa582fede7ffb5",
+    "syx_stockpiles.py": "bbad8de495428c4b44d4f860273bd9d39cea05c90c2ae8d102507b750e4f16db",
+    "syx_chat_store.py": "a2f2ffa53097cb60eab72c015c3d516693aa1c89c8aa54d74f4dfc96d222e634",
+    "syx_deepseek.py": "d58e21dbcfdeb1ef0f411dfbb4c0267234bdc5cc185e00d300821725ca1885e3",
+    "syx_chat.py": "98ceecfc8b042e45b0ea461f73fed74cc3fde00833a6fce22372649b9f844d6c",
+    "syx_chat_service.py": "1afc8252f8562a6c0ff5f6755f7b0479c401bf6e2f079503313da9e67713d73e",
+    "syx_claude.py": "3a850a645907f27b1a9cb15c3c5244b96b2da97d5d0dc37f5cd7d6f708cf92a8",
+    "syx_claude_worker.py": "ab6638b2c4ef3a4a1548fde1c0739a48f4d47e468494dd7444019f3f330dea38"
+  },
+  "source_sha256": {
+    "dev/run_housing_running.py": "c0bc01e09348ec70eb5a0f5d997dc8fac2986a54db2c5179eae962854e4da684",
+    "dev/candidates/housing/running/StockpileScenario.java": "6b20a2d8c69056f602c7084e6d502c6359a5fc9f9e651fa7b7b645bde102dbb3",
+    "mod/src/main/java/syx/assistant/HousingObservation.java": "a6963d87c64e1a0c7bb3ebb9d4b33121c918e54190564259236425be9ef5902c",
+    "dev/run_stockpile_probe.py": "2ec255855a2d92a3435543a814ec4388de0184d3fd78dd6a2be0652704d182e5",
+    "mod/tests/LiveSmoke.java": "bd6d755d51ed03881ed4074b99a9be489acb8fd46ddb0d0c3a9f8a9a0d8aa211",
+    "dev/native_game_completion.py": "8d29009ecb6b1c54e65ce4d94bc1c175d189c68aad59251381ec4cf5a063773f",
+    "syx_housing.py": "f81fe8b32b5b669b565d7c548ab62564e69bddf9c903da4e6166c322dd503057",
+    "syx_mcp.py": "1dae7a26190667238c8f448f9b18d2ef67b056caa99750306bd3c1a2ff4dd866",
+    "syx_query.py": "61e40b2c7d26eb0f136461f1d06e575bc12586b80fc132a512268aea56e0fd1f"
+  },
+  "selected_game_source_sha256": {
+    "game/GAME.java": "8077b7f01b7a0d4505b2e40c331754c1c4823142fc93b7d7d2493fda83d6aa81",
+    "game/GameSpeed.java": "a76f2c02c0d3cca347dc9b2152aef2b8041b583700fbeb38040f7a6a479a0f25",
+    "game/time/TIME.java": "991fcbf2d283189ceda23527d69553de53ea4d0f54f54dfc021bbcc4383516f4",
+    "settlement/room/home/HOME.java": "576f3d5b6191aaae14652d3b092c9e411a1225bff22e8e0cb8b2b6a7bece016e",
+    "settlement/room/home/house/HomeInstance.java": "59a55d54a99b829a51afcfa3d6b1d10cbf8ee043f997b83fec15cd142a1b7d08",
+    "settlement/room/home/chamber/ChamberInstance.java": "f381246099489fb47dd231c9d823208948237224c542737335d385d385392b49"
+  },
+  "private_observation_sha256": [
+    "27d24191d911be3fa9f7468bb6d83dc8abfd0dc010cf6863b3961b09dbfb0f09",
+    "02c3340fa6815ff8291182b7d526df393415287447a026bdff7c0bc01734187a",
+    "fda119d26a48b0448e661b2b73adaf7be172a82498b6caf1b930615010f1ff2f",
+    "1e9a946e8d0595305914af252a5a79c6e727ab62a067a3d3b0bcb1788f90c6fa",
+    "699ee62fd340e8acf1cb7b4e774c67787fe0222cb5dfb5c18cc8ebe4229212a0",
+    "a096b4f39838f906233c606c5698774bc6218bc5843884e73a9c2f8e0c32c0ee"
+  ],
+  "manual_source_review": [
+    "GAME.updateI also advances when the simulation speed is zero, so tick changes alone cannot establish unpaused simulation. TIME.currentSecond returns the stored simulation clock; six strictly increasing values are required separately.",
+    "GameSpeed.speedSet changes requested/actual speed. These controls and view activation are test-only in the isolated profile, not production commands.",
+    "GAME update invokes automatic saving as normal simulation progresses. The fixture makes no explicit save request; any engine autosave belongs only to the isolated copied profile, and no zero-engine-save assertion is made."
+  ],
+  "public_test_only_actions": [
+    "VIEW.s.activate",
+    "GAME.SPEED.speedSet(1), speedSet(0) after six samples",
+    "GAME.addAfterUpdate, CORE.annihilate for isolated fixture"
+  ],
+  "limits": [
+    "Finite naturally progressing copied city. Roster-sequence changes can reflect index/order changes; pair-multiset transitions are reported separately. No forced reassignment or permanent identity claim; unchanged samples establish no reassignment case. Direct getter agreement does not independently audit private storage.",
+    "Each observation is copied on one callback. MCP checks use original retained snapshots after the six samples, not concurrent live query servicing or one transaction across different ticks.",
+    "Private mailbox replacement exercises real production cache invalidation and wrong-pin refusal. Original timestamps are preserved; no substitution into the live game mailbox.",
+    "No housing assignment, furnishing, policy or resource-use mutation is performed by this fixture. Normal simulation can change disposable in-memory state; no all-engine rollback claim. The supplied copied save stays unchanged. Normal simulation may write its own disposable automatic saves; no zero-engine-save claim.",
+    "Not maximum scan/row/roster/relation/byte, native roster errors, invalid isolation, large-city/FPS, all menus or immediate unload acceptance. No new production capability or player release is implied."
+  ],
+  "explicit_fixture_clean_completion": true,
+  "game_exit_code": 0,
+  "native_failure_markers_absent": true,
+  "game_jar_sha256": "fe0137c05408e5ee9e31f06fc44fe37a5d4372d9c985b280f0852d1347c0224b",
+  "source_archive_sha256": "a3fc2aa9f4be31aec0616a5030a656ac49a6011343b7e91395c7bac0b9dfb0a5",
+  "static_boundary_review_sha256": "527286cc40c5b6bd4c99f90555c0d1dacf5a3d69d7a7bc185482aac76c8b5772",
+  "copied_profile_mod_restored": true,
+  "copied_save_unchanged": true
+}

@@ -47,6 +47,7 @@ def scope(path):
     if name=='CHAT_TARGET_DISPATCH_VALIDATION.json':return 'Developer-only accepted-turn claim tests and copied-city fake-provider handoff; not native player or paid Pro acceptance'
     if name=='CHAT_TARGET_DISPATCH.md':return 'Developer dispatch seam, cancellation/restart/unknown-delivery contract and remaining integration gates'
     if name=='CHAT_HISTORY_CANDIDATE_VALIDATION.json':return 'Developer-only SQLite receipt/filter/migration and actual bundled-store compatibility tests; not production badge/world-routing acceptance'
+    if name=='HOUSING_RUNNING_VALIDATION.json':return 'Unchanged production housing: six finite unpaused copied-city observations, direct getter parity and retained-original MCP cache/pin transitions; no all-scene/reassignment guarantee'
     if name=='HOUSING_VALIDATION.json':return 'Production housing: exact-build native DTO/MCP, eight phases, controlled fault/chamber; bounded recorded assignments, not full mechanics'
     if name=='HOUSING_CONTRACT_REVIEW.json':return 'Production housing public source/compiler/selected-bytecode and bad-budget review; not stable documented contracts'
     if name=='HOUSING_BOUNDARY_REVIEW.json':return 'Unregistered housing selected source/public-reader/budget review; mutating routes excluded, no native/player acceptance'
