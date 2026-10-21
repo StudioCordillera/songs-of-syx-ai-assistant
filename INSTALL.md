@@ -28,7 +28,7 @@ The game and MCP must share `SYX_STATE_DIR` (default `~/.local/share/syx-assista
 
 Merge [Codex](codex.example.toml) or [Claude](claude.mcp.example.json) stdio configuration into your existing client using your own executable/state paths. These are development bridges, not in-game account setup. MCP reads no provider credentials and makes no inference calls. Ask for `game_status`, `game_query_help`, `get_game_api_support` and `describe_game_fields` before a narrow query.
 
-`syx-knowledge --state-dir <directory>` merges 13 reviewed starter summaries without replacing edited records or refreshing old retrieval dates. The native coordinator does this automatically. Installed-game descriptions require no seed setup. Matching current mod/MCP builds are required; old mods may omit fields or reject new wire keys. [Query limits](QUERY_GUIDE.md), [data coverage](DATA_COVERAGE.md) and [API boundary](API_BOUNDARY.md) explain provenance and partial scope.
+`syx-knowledge --state-dir <directory>` merges 15 reviewed starter summaries without replacing edited records or refreshing old retrieval dates. The native coordinator does this automatically. Installed-game descriptions require no seed setup. Matching current mod/MCP builds are required; old mods may omit fields or reject new wire keys. [Query limits](QUERY_GUIDE.md), [data coverage](DATA_COVERAGE.md) and [API boundary](API_BOUNDARY.md) explain provenance and partial scope.
 
 ## Chat development routes
 

@@ -1,0 +1,61 @@
+{
+  "passed": true,
+  "evaluated_at": "2026-10-21T15:39:05.577507+00:00",
+  "scope": "Promote two exact reviewed historical housing summaries and eight retrieval cases while retaining earlier seed values/dates and unchanged Java/class contents.",
+  "mod_jar_sha256": "3db26c48f532f8db23086a1613a09c2a70cede6c44d8b2c82c6e4fa4d36178c3",
+  "previous_mod_jar_sha256": "462c867c3887f1301662652eca96c5bcfadccd48abf6c137128ee2be3d15d58a",
+  "production_java_source_unchanged": true,
+  "all_java_class_contents_identical_to_previous_release": true,
+  "java_class_sha256": {
+    "syx/assistant/AssistantScript$1.class": "3a098c2216966ee77b4bf612d8fa8eabbfadcc42d1123eef13703b4518a541eb",
+    "syx/assistant/AssistantScript$Instance.class": "76a5c6409c9d25c19746147ae1ca43a43532235156416f249cc5bc8039f48f1b",
+    "syx/assistant/AssistantScript.class": "3ddb97d50cf7bee1cd54c8cb23b0797c29ccda275d2e9c8a51628e66b60a71ce",
+    "syx/assistant/ChatPanel$1.class": "d07fef93ae28d6dfbf8717803d663e48e2d1cb3a27d51cb26ecb9bd5799fc4c0",
+    "syx/assistant/ChatPanel$2.class": "0f7f9ea6576a74d326fe1023d2707fcfe195a5e595f2acd2a953afb36df4aa7a",
+    "syx/assistant/ChatPanel.class": "929cc4f75b41d95ba4d29bcfd50994921fca89e5f30ecc57b5a1dc2a208689c6",
+    "syx/assistant/EntityReadRequest$Filter.class": "6d94e22dc8a38fabe9d100e9b262ea68eae73a97cd708f7aa950fe698a7746cd",
+    "syx/assistant/EntityReadRequest.class": "fb29150d93279f1d4a8c924450c5c8b3e1356254422e8d20e2fdaf984de3e437",
+    "syx/assistant/HousingObservation.class": "bd9ecb2dfb87b2c7712eb765343b42dd1416a9c21601a4e83e0922ea10e957dc",
+    "syx/assistant/JsonWriter.class": "7c0592feafbd1732910f63fbcacaf3775e1679f934e1d6aa24ca407c11e226c7",
+    "syx/assistant/RegionalReadRequest.class": "ab2b1a663562d3d0fcdced7f3b293d537fe0f1b83d032341d25395eaf8058738",
+    "syx/assistant/StateCollector$Reader.class": "c296383fcbbb14c50a24a381442dfe085c9497361817c7d6c37fde62875daaf4",
+    "syx/assistant/StateCollector.class": "b6bf164f5dfb393b2ed0fe2732a96b2acc07c9b9a1406afd90346a88429e85e2",
+    "syx/assistant/StockpileReadRequest$Filter.class": "8ad5eba045937250c02024530278c8b9e118cb765c3e927ea0f8614a41c3a582",
+    "syx/assistant/StockpileReadRequest.class": "2cc1208a8c23e29767b60c72c46bf0a837252f23df77b2f4e27fdc87af78bb5f",
+    "syx/assistant/TileReadRequest.class": "44c4d9f360b28b13f84d429c76bf742d450b719da559ec74a60e17ede38b34cd",
+    "syx/assistant/UiContentCollector$Budget.class": "8dd0206fe66ae5cf5e5ad57d183e554f46dfa863289d91ce92c717735ca7cef3",
+    "syx/assistant/UiContentCollector.class": "1b8da8cf49254747f409c3093f5a9ca1f40acfa7251a2bb4808a989c41bdb5ba",
+    "syx/assistant/UiContextCollector.class": "5f155a44df879ffe1bab89a132eff8a87c165540be91bfec3dab2053625bd843",
+    "syx/assistant/WeatherObservation.class": "f44a9c52fbf421cb0b4128c0f4484904b614873c1da52f37e1bf122e8635b892"
+  },
+  "changed_packaged_python_modules": [
+    "syx_knowledge.py"
+  ],
+  "prior_seed_records_preserved_exactly": 13,
+  "seed_count": 15,
+  "installer_and_cli_ast_unchanged": true,
+  "source_review_sha256": "63a2cb4393d5a7cce23b6c8b5b5568c25813858e4873ee11c3a0c4e58892197d",
+  "reviewed_candidate_records_promoted_exactly": 2,
+  "actual_guidance_mcp_calls": 45,
+  "new_guidance_cases": 8,
+  "support_checks": 64,
+  "caveat_checks": 51,
+  "python_tests_passed": 615,
+  "fresh_core_groups": 7,
+  "actual_deepseek_pro_turns": 2,
+  "source_sha256": {
+    "syx_knowledge.py": "d1dbc29ce755fcb3601fbda8b027227995992dfaba5b6c956ed82fdf6d302142",
+    "test_syx_knowledge.py": "6a2ecb96f86996ec705e584cd5d203ffc6cb2564a148bb1a4d3bbd91628fbe73",
+    "guidance-questions.json": "cd3d0b8e1153cb86e8afc1d66b98e7577e5487842b0780c884d165a9f4e925b0",
+    "dev/verify_guidance.py": "fb1030fe3efdbdbe3edb5893e353e7fdc5484b72ec59c7076ca5e264d47bccb6",
+    "housing-guidance-candidate.json": "640c7baf82d28235fd1b52ee49f5a0e8853f6632139d6470f41ca2e1fe3c911d",
+    "housing-guidance-candidate-questions.json": "eed96bad166e8fe12eb38c5a020d57fcd748bc5f19042c7c6c46cd5c6d423682"
+  },
+  "limits": [
+    "Two original historical housing summaries keep unknown current/family/future patch compatibility. No current search radius, effective vacancy/eligibility, exact geometry, optimal blueprint, delivered future fix or complete housing mechanic is established.",
+    "All thirteen earlier seed dictionaries and installer/CLI function ASTs are unchanged. Unit migrations preserve local edits and original dates while adding the two summaries; lexical passage checks do not establish semantic entailment or provider answer correctness.",
+    "The 45 local MCP cases are freshly evaluated, but external retrieval dates remain the original review dates. No new web refresh or comprehensive current-version guide collection is claimed.",
+    "Current paid/core/distribution/discovery/guidance are source matched. Earlier housing/weather/UI/viewport/tile/entity/regional/cost and prototype reports retain their recorded JAR/Python/date scopes; unchanged Java class contents are not fresh exhaustive runtime acceptance.",
+    "No new game getter/tool/action, variable/menu/FPS/large-city coverage, native chat redesign/unread badge or provider/account expansion is shipped. The actual provider fixture is a general two-turn smoke test, not a housing-advice semantic benchmark."
+  ]
+}

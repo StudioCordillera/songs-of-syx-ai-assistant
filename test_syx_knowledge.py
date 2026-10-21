@@ -2,8 +2,8 @@ from syx_knowledge import install_seed
 from syx_mcp import Advisor
 
 def test_seed_authority_and_versions(tmp_path):
-    assert install_seed(tmp_path)==13
-    assert install_seed(tmp_path)==13
+    assert install_seed(tmp_path)==15
+    assert install_seed(tmp_path)==15
     advisor=Advisor(tmp_path/'snapshot.json',tmp_path/'corpus.json')
     hit=advisor.search('trade','0.71.44')['results'][0]
     assert hit['authority']=='official' and hit['version_compatibility']=='family_match'
@@ -62,7 +62,7 @@ def test_upgrade_adds_reviewed_sources_without_replacing_local_evidence(tmp_path
     local={**prior[0],'id':'local-reviewed-guide'}
     prior.append(local)
     path.write_text(json.dumps(prior))
-    assert install_seed(tmp_path)==14
+    assert install_seed(tmp_path)==16
     upgraded={s['id']:s for s in json.loads(path.read_text())}
     assert added<=upgraded.keys()
     for original in prior:assert upgraded[original['id']]==original
@@ -74,7 +74,8 @@ def test_upgrade_adds_reviewed_sources_without_replacing_local_evidence(tmp_path
 def test_upgrade_from_eleven_preserves_historical_dates_and_local_edits(tmp_path):
     import json
     from syx_knowledge import SEEDS
-    added={'developer-warehouse-fetch-routing-2023','developer-service-fulfilment-display-2022'}
+    added={'developer-warehouse-fetch-routing-2023','developer-service-fulfilment-display-2022',
+        'developer-housing-workplace-proximity-2022','developer-housing-privacy-density-2023'}
     install_seed(tmp_path)
     path=tmp_path/'corpus.json'
     prior=[s for s in json.loads(path.read_text()) if s['id'] not in added]
@@ -82,7 +83,7 @@ def test_upgrade_from_eleven_preserves_historical_dates_and_local_edits(tmp_path
     prior[0]['text']='Keep this independently reviewed local edit.'
     prior[0]['retrieved_at']='2024-01-01T00:00:00Z'
     path.write_text(json.dumps(prior))
-    assert install_seed(tmp_path)==13
+    assert install_seed(tmp_path)==15
     actual={s['id']:s for s in json.loads(path.read_text())}
     for record in prior:assert actual[record['id']]==record
     expected={s['id']:s for s in SEEDS}
@@ -94,3 +95,32 @@ def test_upgrade_from_eleven_preserves_historical_dates_and_local_edits(tmp_path
         found=advisor.search('fulfilment access quality proximity',version,authority='developer')['results'][0]
         assert found['id']=='developer-service-fulfilment-display-2022'
         assert found['version_compatibility']=='unknown'
+
+
+def test_upgrade_from_thirteen_keeps_local_evidence_and_housing_review_dates(tmp_path):
+    import json
+    from syx_knowledge import SEEDS
+    added={'developer-housing-workplace-proximity-2022','developer-housing-privacy-density-2023'}
+    install_seed(tmp_path)
+    path=tmp_path/'corpus.json'
+    prior=[s for s in json.loads(path.read_text()) if s['id'] not in added]
+    assert len(prior)==13
+    prior[0]['text']='Preserve independently reviewed text during housing-reference upgrade.'
+    prior[0]['retrieved_at']='2024-04-04T00:00:00Z'
+    path.write_text(json.dumps(prior))
+    assert install_seed(tmp_path)==15
+    actual={s['id']:s for s in json.loads(path.read_text())}
+    for original in prior:assert actual[original['id']]==original
+    expected={s['id']:s for s in SEEDS}
+    for identity in added:
+        assert actual[identity]['game_versions']==[]
+        assert actual[identity]['retrieved_at']==expected[identity]['retrieved_at']=='2026-10-21T03:36:41Z'
+
+
+def test_promoted_housing_summaries_match_original_reviewed_candidate():
+    import json
+    from pathlib import Path
+    from syx_knowledge import SEEDS
+    expected=json.loads((Path(__file__).parent/'housing-guidance-candidate.json').read_text())
+    actual={s['id']:s for s in SEEDS}
+    assert all(actual[s['id']]==s for s in expected)

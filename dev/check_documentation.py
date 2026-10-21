@@ -47,6 +47,7 @@ def scope(path):
     if name=='CHAT_TARGET_DISPATCH_VALIDATION.json':return 'Developer-only accepted-turn claim tests and copied-city fake-provider handoff; not native player or paid Pro acceptance'
     if name=='CHAT_TARGET_DISPATCH.md':return 'Developer dispatch seam, cancellation/restart/unknown-delivery contract and remaining integration gates'
     if name=='CHAT_HISTORY_CANDIDATE_VALIDATION.json':return 'Developer-only SQLite receipt/filter/migration and actual bundled-store compatibility tests; not production badge/world-routing acceptance'
+    if name=='HOUSING_REFERENCE_RELEASE_VALIDATION.json':return 'Promoted exact historical housing summaries; 15 records/45 MCP cases, prior seeds/installer AST preserved, fresh player/core/provider/distribution; unchanged Java class contents'
     if name=='HOUSING_GUIDANCE_CANDIDATE_VALIDATION.json':return 'Developer-only two historical housing summaries plus unchanged baseline: 45 actual MCP retrieval cases; no production corpus/player update'
     if name=='HOUSING_REFERENCE_REVIEW.json':return 'Original canonical historical developer comment review, body/author/version caveats and hashes; no current mechanic or corpus promotion'
     if name=='HOUSING_RUNNING_VALIDATION.json':return 'Unchanged production housing: six finite unpaused copied-city observations, direct getter parity and retained-original MCP cache/pin transitions; no all-scene/reassignment guarantee'

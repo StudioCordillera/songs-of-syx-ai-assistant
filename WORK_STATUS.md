@@ -2,6 +2,20 @@
 
 Use `python3 dev/collaboration_status.py` for actual remote/local state at every run; this file is a handoff, not a live branch/working-tree assertion. Read AGENTS.md and reconcile newer collaborator work before editing.
 
+## Housing-reference corpus — promoted tested player checkpoint
+
+[HOUSING_REFERENCE_RELEASE_VALIDATION.json](HOUSING_REFERENCE_RELEASE_VALIDATION.json) promotes the two exact historical developer summaries from the prior candidate. The starter corpus now contains fifteen records; all thirteen earlier seed dictionaries/review dates and installer/CLI function ASTs are unchanged. The two additions retain unknown exact/family/future compatibility. No current search radius, effective vacancy/eligibility, geometry, optimal blueprint or later-fix delivery follows from these old replies. Original canonical comment/author/body provenance remains in HOUSING_REFERENCE_REVIEW.json; no source date is refreshed by this promotion.
+
+All 615 offline tests pass, including a thirteen-record store upgrade preserving edited evidence and historical dates. Forty-five actual MCP retrieval cases check 64 supporting fragments and 51 caveats, including all prior 37 cases plus eight housing cases. Two real DeepSeek Pro turns, seven fresh native core groups, eighteen-capability/two-gap/40-anchor discovery and fresh extracted dependency/helper/install/key-exclusion checks pass against the exact source/JAR pair. The final player payload hashes equal the independently tested extracted candidate. The Pro fixture is a general smoke test, not a housing-advice semantic benchmark.
+
+Only `syx_knowledge.py` changes among the seventeen packaged Python modules. Java source and every packaged Java class content match the preceding tested release; the JAR container has a new checksum. No new game member, tool, variable mapping, menu/scale/FPS coverage, native chat redesign/unread badge or gameplay action is shipped. Earlier housing/running-city/weather/UI/spatial/cost/prototype reports retain their actual source/JAR/date scope rather than being relabeled as fresh exhaustive acceptance. Overall audit remains 427 public/zero non-public references with twelve Java source classes.
+
+Promoted once after all gates: latest ZIP SHA `c259a161a0856867f25bca8851453641ecca342e405af3a2eec979b823c343b9`; JAR `3db26c48f532f8db23086a1613a09c2a70cede6c44d8b2c82c6e4fa4d36178c3`. The immediate prior tested latest is retained as previous ZIP `9480d25ac77bead3550466910d4b205623d1410a1cd452768cecd0f40f7a4d0c`. Install/restart the paired helper/mod to use the updated reviewed corpus. Credentials, normal saves, private user log and muted/dim device settings are preserved. Initial remote comparison was aligned; fetch/reconcile again immediately before publishing and every new run. Next: broader current-version primary references/tested blueprint examples, remaining source-backed data/lifecycle/cap/scale gaps and the separately reviewed player-experience revision. Objectives remain active.
+
+## Prior checkpoints — exact historical scopes retained
+
+The candidate and earlier release sections below describe their recorded builds, not the current fifteen-record production corpus above. Candidate-only reproductions require their stated historical checkout.
+
 ## Housing cited-guidance candidates — player unchanged
 
 [HOUSING_GUIDANCE_CANDIDATE.md](HOUSING_GUIDANCE_CANDIDATE.md) / [source review](HOUSING_REFERENCE_REVIEW.json) add two original short summaries from canonical historical developer replies. Original author badges/profile, comment IDs and Steam publication epochs were checked separately from quoted community text; source/body checksums are retained without publishing raw pages. Both records intentionally preserve unknown current/family/future compatibility. Workplace proximity is a historical diagnostic lead, and EA64 privacy/density statements are not current numeric geometry, eligibility or optimality evidence.

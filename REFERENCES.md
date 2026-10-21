@@ -25,7 +25,7 @@ See API_BOUNDARY.md for shipped primary references. The screenshot/input and ref
 
 ## Gameplay evidence and review history
 
-The current seed contains 13 reviewed original summaries; GUIDANCE_VALIDATION.json records 37 authored cases. The paragraphs below preserve earlier expansion scopes/dates. See HISTORICAL_REFERENCE_REVIEW.json and HISTORICAL_REFERENCE_VALIDATION.json for the latest additions. Installed help and external guidance remain separate.
+The current seed contains 15 reviewed original summaries; GUIDANCE_VALIDATION.json records 45 authored cases. The paragraphs below preserve earlier expansion scopes/dates. See HOUSING_REFERENCE_REVIEW.json and HOUSING_REFERENCE_RELEASE_VALIDATION.json for the latest additions. Installed help and external guidance remain separate.
 
 Installed resource, technology and stat help text is indexed at runtime, with current version/mods and original class/key identifiers. It is not bundled from proprietary game files.
 
@@ -43,7 +43,7 @@ At this historical expansion checkpoint, the starter corpus contained nine origi
 
 These records retain unknown version compatibility rather than being labeled V71-compatible by assumption. Wiki.gg pages encountered during discovery returned access errors and were not added as newly reviewed evidence. Existing source timestamps are preserved when the corpus is reinstalled.
 
-Search uses whole-word relevance before version compatibility and authority tie-breakers. Matching terms and a retrieval score are returned for inspection; the score is not factual confidence. The response stays within 64 KiB and reports truncation. See GUIDANCE_VALIDATION.json for the current 37 authored local-MCP cases. This is a lexical starter retrieval check, not a comprehensive evaluation of model advice.
+Search uses whole-word relevance before version compatibility and authority tie-breakers. Matching terms and a retrieval score are returned for inspection; the score is not factual confidence. The response stays within 64 KiB and reports truncation. See GUIDANCE_VALIDATION.json for the current 45 authored local-MCP cases. This is a lexical starter retrieval check, not a comprehensive evaluation of model advice.
 
 ## API establishment audit (0.4.0)
 
@@ -69,8 +69,10 @@ Added [Nerond's V71 logistics guide](https://steamcommunity.com/sharedfiles/file
 
 ## Historical developer-reference expansion (2026-10-18 UTC)
 
-The corpus now contains thirteen original summaries. Two further canonical threads were reviewed with original developer badges, reply numbers and surrounding discussion: [warehouse shipping replies #1/#9](https://steamcommunity.com/app/1162750/discussions/2/3759977302534570731/) and [service-display answer #1](https://steamcommunity.com/app/1162750/discussions/0/3196993316890360111/). HISTORICAL_REFERENCE_REVIEW.json records review time, visible dates, author, text hashes and evidence limits. Both keep an empty established-version list and unknown compatibility. Review through web text extraction can use cached content; it does not establish continuing live availability. Older source-review records and retrieval dates remain unchanged.
+That historical checkpoint contained thirteen original summaries. Two further canonical threads were reviewed with original developer badges, reply numbers and surrounding discussion: [warehouse shipping replies #1/#9](https://steamcommunity.com/app/1162750/discussions/2/3759977302534570731/) and [service-display answer #1](https://steamcommunity.com/app/1162750/discussions/0/3196993316890360111/). HISTORICAL_REFERENCE_REVIEW.json records review time, visible dates, author, text hashes and evidence limits. Both keep an empty established-version list and unknown compatibility. Review through web text extraction can use cached content; it does not establish continuing live availability. Older source-review records and retrieval dates remain unchanged.
 
 ## Official feed recheck (2026-10-20 UTC)
 
 [REFERENCE_FEED_RECHECK.json](REFERENCE_FEED_RECHECK.json) records a separate official Steam news API retrieval of the V71 release announcement. It confirms the already summarized service-fetch/treatment topics and preserves the API record's author/date/body hash separately from older review attribution. No duplicate summary is added, no earlier review date is replaced, and exact-patch behavior remains unverified. A localized web archive returned older cached content during this check; treat search snippets/archive freshness separately from the retrieved API record. The API externalpost HTTP redirect resolves to the existing canonical event citation; this establishes URL mapping separately from the API text retrieval.
+
+The housing-reference release promotes two exact original summaries reviewed in HOUSING_REFERENCE_REVIEW.json. Their canonical developer comment IDs, author badges, publication epochs and body hashes remain separate from quoted community replies. Unknown exact/family/future compatibility remains explicit; no current numeric distance, eligibility, geometry, optimal blueprint or later-fix delivery is established. The fifteen-record corpus passes 45 actual MCP cases; local evaluation does not refresh source-review dates. See HOUSING_REFERENCE_RELEASE_VALIDATION.json for seed preservation and exact player evidence.

@@ -1,4 +1,6 @@
-# Housing reference candidates — not shipped guidance
+# Housing reference candidate history
+
+Production integration of these exact summaries is recorded in HOUSING_REFERENCE_RELEASE_VALIDATION.json and WORK_STATUS.md. The candidate checks below retain their earlier fifteen-record/private-corpus scope. To reproduce the candidate-only evaluator, use its pre-promotion checkout `c79ccdff69f37643eadeed18d7307538d2004173`; current production has already integrated the two IDs and their eight cases.
 
 Two original historical summaries were reviewed on 2026-10-21. [Source provenance](HOUSING_REFERENCE_REVIEW.json) records original developer comment IDs, speaker/profile badges, Steam publication epochs and anonymous canonical-page/body checksums. Quoted community posts were separated from the developer's own words; raw HTML remains private. This review does not establish present game mechanics or an ongoing web refresh.
 
@@ -11,4 +13,4 @@ Two original historical summaries were reviewed on 2026-10-21. [Source provenanc
 
 Reproduce from the checkout with `.venv/bin/python dev/verify_housing_guidance_candidate.py --state-dir runtime/housing-guidance-new-check`. The script requires a new directory beneath this checkout's ignored `runtime/`, refuses existing state/corpus directories and validates candidate/review hashes before adding the two records to that private copy. It never installs them in normal player histories or changes production `SEEDS`.
 
-The thirteen-record production corpus, packaged helper/mod and latest/previous player ZIPs stay unchanged. Promotion still requires reviewed seed/migration integration and exact-source retrieval/provider/core/distribution/player gates. Broader current-version guide coverage, tested blueprint examples and current housing-advice correctness remain open.
+At this historical candidate checkpoint the thirteen-record production corpus and player ZIPs stayed unchanged. The later production release above completes separate seed/migration and exact-source retrieval/provider/core/distribution/player gates. Broader current-version guide coverage, tested blueprint examples and current housing-advice correctness remain open.

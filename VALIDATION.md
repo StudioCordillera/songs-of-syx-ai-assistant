@@ -1,6 +1,15 @@
 # Validation evidence
 
-## Current housing player checkpoint
+## Current housing-reference player checkpoint
+
+[HOUSING_REFERENCE_RELEASE_VALIDATION.json](HOUSING_REFERENCE_RELEASE_VALIDATION.json) pins two exact reviewed historical developer summaries promoted into a fifteen-record starter corpus. All thirteen prior seed dictionaries and installer/CLI function ASTs are unchanged. Tests cover upgrading a thirteen-record store while preserving local evidence and original dates. Eight new cases preserve unknown exact/family/future applicability and refuse unrelated official-only substitution.
+
+[GUIDANCE_VALIDATION.json](GUIDANCE_VALIDATION.json) records 45 actual MCP cases, 64 supporting fragments and 51 caveats. The current player passes 615 offline tests, two real DeepSeek Pro turns, seven fresh copied-save core groups, fresh capability discovery and extracted dependency/helper/install/key-exclusion checks. [USER_TEST_VALIDATION.json](USER_TEST_VALIDATION.json) pins exact source/JAR and current parent reports. Only `syx_knowledge.py` changes among packaged Python modules; Java source and every packaged Java class content match the preceding tested release.
+
+Earlier housing, running-city, weather, UI, spatial and cost reports retain their actual hashes/dates/scopes. No current numeric search radius, effective eligibility/vacancy, exact geometry, optimal blueprint or delivered later fix follows from these historical replies. Local retrieval checks do not refresh external dates or establish provider housing-advice correctness, complete game state/menus, new native UX or gameplay actions.
+
+
+## Prior housing integration player checkpoint
 
 [HOUSING_VALIDATION.json](HOUSING_VALIDATION.json) records 38 actual housing MCP calls over production observations, eight held scene phases, controlled fault/restoration and empty/occupied noble chamber/removal. [HOUSING_CONTRACT_REVIEW.json](HOUSING_CONTRACT_REVIEW.json) pins public compiler/source/selected-bytecode semantics and eight pre-game budget rejections. Recorded relationships are bounded observation-local assignments, not physical presence or permanent identity; weighted cohort accounting is not unique beds. See [HOUSING.md](HOUSING.md) for fields, diagnostics and unexecuted branches.
 
