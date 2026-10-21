@@ -1,0 +1,56 @@
+{
+  "passed": true,
+  "evaluated_at": "2026-10-21T22:38:55.899696+00:00",
+  "scope": "Developer fixed reference-tool admission seam in the unchanged base conversation/history lifecycle; fake providers plus actual stdio retrieval under explicitly synthetic demo context.",
+  "source_sha256": {
+    "dev/blueprint_chat_candidate.py": "0b907e8362f279b23c02598b7a70344402de53ff83ca542baa631ed9f5c70f34",
+    "test_blueprint_chat_candidate.py": "3e2d7454bed7bc137c47b533dbf451c7dbcd21bee199cea33bfa43a7e9c5b009",
+    "dev/blueprint_mcp_candidate.py": "e81cf443014471ab9899887b768567902bfc42d3f83c62b0ea738b788f828519",
+    "dev/blueprint_examples.py": "55fe15fc1668424cd266f2823097d9a1de0cc7f4d0cf565c43769f9f22ef76af",
+    "syx_chat.py": "98ceecfc8b042e45b0ea461f73fed74cc3fde00833a6fce22372649b9f844d6c",
+    "syx_chat_store.py": "a2f2ffa53097cb60eab72c015c3d516693aa1c89c8aa54d74f4dfc96d222e634",
+    "syx_mcp.py": "1dae7a26190667238c8f448f9b18d2ef67b056caa99750306bd3c1a2ff4dd866",
+    "blueprint-examples-candidate.json": "a4147938348fc8890afc9bd1b254801f50858a6a17bc3936db32820d2abed4a8",
+    "BLUEPRINT_CATALOG_VALIDATION.json": "d763365268f3d9f36212da9e9bab938ebdb90562f35d6a10315afbeaaff11021"
+  },
+  "feature_tests_passed": 10,
+  "full_offline_tests_passed": 678,
+  "commands": [
+    ".venv/bin/python -m pytest -q test_blueprint_chat_candidate.py",
+    "SYX_JAVA_HOME=<full-jdk> .venv/bin/python -m pytest -q"
+  ],
+  "unchanged_base_tool_allowlist_count": 19,
+  "developer_provider_tool_schema_count": 21,
+  "actual_stdio_reference_calls_in_conversation": 2,
+  "fake_provider_rounds_in_stdio_case": 3,
+  "external_inference_requests": 0,
+  "native_game_calls": 0,
+  "production_coordinator_or_player_integration": false,
+  "checks": [
+    "Missing/duplicate/writable reference-tool admission refuses before provider construction or durable turn creation.",
+    "Only the two fixed reference names are added per turn. Strict local request validation, current definition/annotation rechecks and existing serialized 64-KiB chat-evidence limits apply.",
+    "Completion uses the existing durable history lifecycle/provider close; cancellation retains the original cancellation path and revokes the task-local grant.",
+    "Inherited child contexts are revoked after completion; a deliberately late child cannot issue a new reference read. Two concurrent chats keep separate grants/providers/histories.",
+    "Actual stdio search/get returns original grid and no-construction/no-execution qualifiers through durable tool evidence, with no production global allowlist mutation."
+  ],
+  "fixture_context": {
+    "kind": "synthetic_demo_snapshot",
+    "source": "snapshot.example.json",
+    "session_id": "New fixture UUID generated at test time",
+    "captured_at": "Current fixture timestamp, not a native observation",
+    "game_version": "DEMO-unverified",
+    "demo": true,
+    "normal_history_or_save_used": false
+  },
+  "release_sha256": {
+    "releases/latest-user-test.zip": "c259a161a0856867f25bca8851453641ecca342e405af3a2eec979b823c343b9",
+    "releases/previous-user-test.zip": "9480d25ac77bead3550466910d4b205623d1410a1cd452768cecd0f40f7a4d0c"
+  },
+  "limits": [
+    "Fake providers drive chosen tool requests and final text. No DeepSeek/other model schema compatibility, real reasoning/advice quality, inference, native game/UI or paired player release is established.",
+    "The synthetic demo context remains explicitly unverified; a generated UUID/current test timestamp do not establish a live world. Existing parent session/freshness rules are not bypassed.",
+    "Task grants and definition rechecks are finite cooperative async checks, not general malicious-provider/remote-server or arbitrary task security acceptance. Revocation does not undo an already dispatched external request.",
+    "The production coordinator/CLI does not instantiate this subclass. Published nineteen-tool admission, normal histories, production Java/Python payload and tested bundles remain unchanged.",
+    "Native catalog and original geometry retain their earlier exact scopes. No construction legality, actual pathfinding, optimality, cost/capacity, gameplay action or third-party layout/rights validation follows."
+  ]
+}
