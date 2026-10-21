@@ -2,6 +2,14 @@
 
 Use `python3 dev/collaboration_status.py` for actual remote/local state at every run; this file is a handoff, not a live branch/working-tree assertion. Read AGENTS.md and reconcile newer collaborator work before editing.
 
+## Selected-subject absence transitions — player unchanged
+
+[Native absence follow-up](SELECTED_RESIDENT_ABSENCE.md) / [exact-build report](SELECTED_RESIDENT_ABSENCE_VALIDATION.json) exercise public subject-panel clear/select/select/clear in one paused copied-city callback. Four original production observations preserve session/tick and distinct snapshot IDs. Both absence observations keep cached entity items but export null selected-subject data/context; the authored three-join example refuses rather than substituting a cached/previous person. Nineteen actual MCP calls cover the eight positive checks plus eleven transition checks, including all three old-pin refusals after replacement publication. The missing-selection error is currently generic join-object wording; no player wording improvement is claimed.
+
+Seven existing synthetic query regressions pass; this is not a fresh full-suite/player release. The first verifier's overly specific error-text expectation failed and was corrected; only the subsequent clean zero-exit native run is accepted. Copied-mod restoration/save integrity pass. Public panel clearing is test-only disposable UI manipulation, not physical close-button, render/visibility, unpaused selection, unload/menu, missing workplace/housing faults or all subjects/caps/scale acceptance. CONTRIBUTING.md now correctly allows automatic saves inside the disposable profile rather than promising no engine saves.
+
+Production source, current/previous tested ZIPs, credentials, normal saves, private log and muted/dim settings remain untouched. Initial fetch was aligned; reconcile again before publishing. Next: improve the separately reviewed native interface and remaining state/lifecycle/reference gaps; do not repeat unchanged positive/absence fixtures without a new concern. Objectives remain active.
+
 ## Selected housed-worker query — player unchanged
 
 [SELECTED_RESIDENT_QUERY.md](SELECTED_RESIDENT_QUERY.md) / [native evidence](SELECTED_RESIDENT_QUERY_VALIDATION.json) add an authored three-join selection over existing selected-subject, recorded-home, home-record and cached employment exports. Two naturally housed employed subjects are selected through public test-only subject UI in one paused copied-city callback. Direct public home/assignment/staffing values agree, eight query field paths are discovered and eight actual MCP calls preserve the original four-source metadata/UI/snapshot and reject the old pin after publishing the new selected-subject observation. Selection alone does not immediately invalidate an unrefreshed snapshot pin. No new game getter, source mapping or tool.
