@@ -2,6 +2,14 @@
 
 Use `python3 dev/collaboration_status.py` for actual remote/local state at every run; this file is a handoff, not a live branch/working-tree assertion. Read AGENTS.md and reconcile newer collaborator work before editing.
 
+## Abrupt helper-process boundaries — developer-only
+
+[CHAT_PROCESS_RECOVERY.md](CHAT_PROCESS_RECOVERY.md) / [current evidence](CHAT_PROCESS_RECOVERY_VALIDATION.json) add three owned-process SIGKILL checkpoints against the actual production Coordinator/SQLite/conversation with synthetic MCP and fake inference. Separate restart processes verify admission-before-turn deduplication, interrupted running status with volatile partial loss, and one retained completed answer before UI acknowledgement. Original Send replay creates no new task/turn/provider; automatic sync selects the existing chat; a new explicit ID completes once with fresh bounded historical context. Production source/bundles are unchanged, and earlier native recovery evidence stays historical.
+
+The admission-only action has no turn and its acknowledgement does not prove delivery. Abrupt streaming termination produces no fabricated cancellation event or retained volatile fragment. The current simple UI lacks a dedicated notice for these recovery outcomes; this is a remaining product gap. The fixed harness does not test native game/MCP transport, the production entry point/history lock, paid billing, every crash timing or power loss. One local Claude process was not established idle; no overlapping invocation/review or quota diagnosis was made.
+
+Next: explicit truthful recovery/unknown-action presentation and actual helper/transport lifecycle, stable player preference configuration, focus/scale/scroll/accessibility and target/display integration, then paired actual-Pro/player release gates. Unknown/oversized display remains unread; no redesign or gameplay action is shipped.
+
 ## Same-history coordinator/SQLite recovery — developer-only
 
 [NATIVE_CHAT_RECOVERY.md](NATIVE_CHAT_RECOVERY.md) / [current evidence](NATIVE_CHAT_RECOVERY_VALIDATION.json) now keep the copied game/own overlay open while gracefully stopping the coordinator task, reopening the same SQLite history and constructing a new production Coordinator. Native automatic sync selects the persisted chat again, preserving composer/draft, completed answer, style and geometry. Only after native acknowledgement does the verifier parse/dispatch the original completed Send with its old ID; the persistent journal deduplicates it without a new task/turn/provider. The two providers/four fake rounds, one completed and one cancelled turn, plain IPC and immutable reference evidence remain unchanged.

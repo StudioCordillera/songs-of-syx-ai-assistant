@@ -1,0 +1,79 @@
+{
+  "passed": true,
+  "cases": [
+    {
+      "stage": "admitted_before_turn",
+      "recovered_original_statuses": [],
+      "old_action_acknowledged_without_new_turn_or_provider": true,
+      "automatic_sync_selected_original_chat": true,
+      "new_explicit_turn_completed_with_fresh_context": true,
+      "new_fake_provider_calls": 1,
+      "volatile_partial_not_recovered": true,
+      "completed_answer_retained": false,
+      "admission_gap_has_no_turn": true,
+      "owned_child_sigkill_verified": true,
+      "separate_resume_process": true
+    },
+    {
+      "stage": "streaming_partial",
+      "recovered_original_statuses": [
+        "interrupted"
+      ],
+      "old_action_acknowledged_without_new_turn_or_provider": true,
+      "automatic_sync_selected_original_chat": true,
+      "new_explicit_turn_completed_with_fresh_context": true,
+      "new_fake_provider_calls": 1,
+      "volatile_partial_not_recovered": true,
+      "completed_answer_retained": false,
+      "admission_gap_has_no_turn": false,
+      "owned_child_sigkill_verified": true,
+      "separate_resume_process": true
+    },
+    {
+      "stage": "completed_before_ui",
+      "recovered_original_statuses": [
+        "completed"
+      ],
+      "old_action_acknowledged_without_new_turn_or_provider": true,
+      "automatic_sync_selected_original_chat": true,
+      "new_explicit_turn_completed_with_fresh_context": true,
+      "new_fake_provider_calls": 1,
+      "volatile_partial_not_recovered": true,
+      "completed_answer_retained": true,
+      "admission_gap_has_no_turn": false,
+      "owned_child_sigkill_verified": true,
+      "separate_resume_process": true
+    }
+  ],
+  "source_sha256": {
+    "dev/check_chat_process_recovery.py": "03da964b4fceb47f3bc561cd1bcffaac0b01ce81d5a6b3612a4ad79f42d3ed4a",
+    "syx_chat_service.py": "7c6ac3b6aae4f2bbed67840ec99bea32d62e409a3745582e20a8e5a19157244f",
+    "syx_chat_store.py": "a2f2ffa53097cb60eab72c015c3d516693aa1c89c8aa54d74f4dfc96d222e634",
+    "syx_chat.py": "98ceecfc8b042e45b0ea461f73fed74cc3fde00833a6fce22372649b9f844d6c",
+    "syx_blueprint_chat.py": "ea270d20bd0ba9158e425c8d2b72b2632e0c6e1dfc60ea8b3f6978f615d631fc"
+  },
+  "external_inference_calls": 0,
+  "production_changed": false,
+  "limits": [
+    "Owned helper-process SIGKILL on this Linux host, not power loss or filesystem durability proof.",
+    "Synthetic 21-tool MCP schema/status and fake inference; no native game, stdio transport or paid provider.",
+    "Admission-before-turn gap is durably acknowledged without a turn; volatile streaming fragments are lost.",
+    "Interrupted database status is verified; existing simple UI has no dedicated crash-recovery notice.",
+    "A new explicit request has a new ID. No automatic resubmission, billing guarantee, badge or display proof."
+  ],
+  "checked_at": "2026-10-22T11:39:41.627370+00:00",
+  "base_commit": "fd827d202ebf848e3d7c5206ff26cf156a3659cb",
+  "test_sha256": {
+    "test_chat_process_recovery.py": "e390f027516662e54526302a5eb430c1e190854a71aab1a1b8a65643e9bb3d52"
+  },
+  "offline": {
+    "passed": 707,
+    "log_sha256": "45580910649946dab1ae3355c739129ca3b502744971115ef8eacf510cd16cfd"
+  },
+  "unchanged_player": {
+    "latest_zip_sha256": "dae445737746821bd54aa24ef32f2c90562b1156f5707f74c0cb0f80fc5dfc16",
+    "previous_zip_sha256": "c259a161a0856867f25bca8851453641ecca342e405af3a2eec979b823c343b9"
+  },
+  "claude_invocation_started": false,
+  "existing_cli_processes_not_established_idle": 1
+}
