@@ -28,6 +28,7 @@ public final class ChatBackgroundScenario {
     public static void install(Path directory){
         VIEW.s().activate();GAME.SPEED.speedSet(1);
         int[] phase={0};long[] wait={0};long start=System.nanoTime();double[] seconds={0};String[] chat={null};
+        Map<String,Object> initial=new LinkedHashMap<>();double[] grown={0,0};
         GInput[] composer={null};List<Map<String,Object>> checks=new ArrayList<>();String draft="Keep next question draft while first answer arrives";
         GAME.addAfterUpdate(()->{
             try{
@@ -38,6 +39,11 @@ public final class ChatBackgroundScenario {
                 case 0:
                     require(Boolean.TRUE.equals(c.get("candidate_layout")),"Expected own candidate overlay");
                     if(!Files.exists(directory.resolve("chat-ui.txt")))return;
+                    var panel=p.candidatePanelLayout();var launcher=p.candidateLayout();
+                    initial.put("panel",StateCollector.object("x",panel.x,"y",panel.y,"width",panel.width,"height",panel.height));
+                    initial.put("launcher",StateCollector.object("x",launcher.x,"y",launcher.y,"width",launcher.width,"height",launcher.height));
+                    initial.put("preset",p.candidateTheme().name);initial.put("accent",p.candidateTheme().accentHex());
+                    initial.put("preferences_configured",p.candidatePreferencesConfigured());
                     open(p,0);phase[0]=1;break;
                 case 1:
                     require(opened,"Panel failed to open");
@@ -51,15 +57,16 @@ public final class ChatBackgroundScenario {
                     composer[0].text().clear().add(draft);
                     press(p.candidateButton("Style"));press(p.candidateButton("Parchment"));press(p.candidateButton("Style"));
                     require(p.candidateTheme().name.equals("Parchment")&&!p.candidateAppearanceOpen()&&composer[0].text().toString().equals(draft),"Pending style change lost composer/state");
+                    grown[0]=p.candidateLayout().width+40;grown[1]=p.candidateLayout().height+20;
                     var h=p.candidateHandle(GestureReducer.Target.resize);double x=h.body().cX(),y=h.body().cY();
                     require(p.beginGesture(GestureReducer.Target.resize,x,y,100),"Begin pending own resize");
                     p.sampleGesture(x+40,y+20,101,true);p.sampleGesture(x+40,y+20,102,false);
-                    require(p.candidateLayout().width==880&&p.candidateLayout().height==660,"Pending resize failed");
+                    require(p.candidateLayout().width==grown[0]&&p.candidateLayout().height==grown[1],"Pending resize failed");
                     Files.writeString(directory.resolve("release-layout-partial"),"release\n");phase[0]=3;break;}
                 case 3:
                     if(p.candidateTranscript().stream().noneMatch(t->t.contains("SIMULATED partial")))return;
                     require(opened&&running&&p.candidateComposer()==composer[0]&&composer[0].text().toString().equals(draft),"Real partial frame lost controls/draft");
-                    require(p.candidateLayout().width==880&&p.candidateLayout().height==660,"Real partial frame reset geometry");
+                    require(p.candidateLayout().width==grown[0]&&p.candidateLayout().height==grown[1],"Real partial frame reset geometry");
                     checks.add(StateCollector.object("phase","responsive_pending_draft_partial","passed",true));
                     seconds[0]=TIME.currentSecond();wait[0]=System.nanoTime();phase[0]=4;break;
                 case 4:
@@ -90,7 +97,7 @@ public final class ChatBackgroundScenario {
                 case 9:
                     if(running||Boolean.TRUE.equals(c.get("action_pending"))||!Files.exists(directory.resolve("second-provider-closed")))return;
                     checks.add(StateCollector.object("phase","stop_second_turn","passed",true));
-                    Files.writeString(directory.resolve("layout-background-native.json"),JsonWriter.encode(StateCollector.object("passed",true,"checks",checks,"reopened_same_chat",true,"native_width",CORE.getGraphics().nativeWidth,"native_height",CORE.getGraphics().nativeHeight,"handle_render_callbacks",p.candidateDraws(),"supplied_gesture_primitives",true)));
+                    Files.writeString(directory.resolve("layout-background-native.json"),JsonWriter.encode(StateCollector.object("passed",true,"checks",checks,"reopened_same_chat",true,"native_width",CORE.getGraphics().nativeWidth,"native_height",CORE.getGraphics().nativeHeight,"handle_render_callbacks",p.candidateDraws(),"supplied_gesture_primitives",true,"initial_layout",initial)));
                     phase[0]=10;break;
                 case 10:
                     if(!Files.exists(directory.resolve("verifier.done")))return;

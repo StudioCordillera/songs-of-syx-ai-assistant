@@ -12,6 +12,7 @@ import json
 import os
 from pathlib import Path
 import shutil
+import stat
 import subprocess
 import sys
 import tempfile
@@ -48,6 +49,23 @@ CASES={'weather':('weather','verify_weather.py','weather-validation.json'),
 def sha(path):return hashlib.sha256(path.read_bytes()).hexdigest()
 
 
+def layout_preferences_directory(case, directory, runtime):
+    """Fixed restart-fixture seam; never accept a normal profile/configuration root."""
+    if directory is None:
+        return None
+    if case != 'layout-background':
+        raise ValueError('Explicit preferences are only supported by the fixed layout background fixture')
+    root = Path(runtime).resolve(strict=True)
+    requested = Path(directory).absolute()
+    real = requested.resolve(strict=True)
+    if real != requested or real == root or not real.is_relative_to(root) or not real.is_dir():
+        raise ValueError('Preferences require a regular private directory below runtime')
+    info = real.stat()
+    if stat.S_IMODE(info.st_mode) != 0o700 or info.st_uid != os.getuid():
+        raise ValueError('Preferences directory must be caller-owned and mode 0700')
+    return real
+
+
 def run(args):
     env_file=getattr(args,'env_file',None)
     if env_file is not None and args.case!='tiles':
@@ -56,6 +74,7 @@ def run(args):
     runtime=(ROOT/'runtime').resolve();home=runtime/'smoke-home';save=args.save.resolve()
     if home.is_symlink() or not home.is_dir() or not save.is_file() or not save.is_relative_to(runtime):
         raise ValueError('Use isolated smoke-home and a copied save under runtime/')
+    preferences=layout_preferences_directory(args.case,getattr(args,'layout_preferences_dir',None),runtime)
     game=args.game_dir.resolve();jdk=args.jdk_home.resolve();java=args.java.resolve()
     audit=json.loads((ROOT/'api-audit.json').read_text())
     for key,path in [('game_jar_sha256',game/'SongsOfSyx.jar'),('source_archive_sha256',game/'info/SongsOfSyx-sources.jar')]:
@@ -105,6 +124,7 @@ def run(args):
     cp=os.pathsep.join(map(str,[game/'SongsOfSyx.jar',game/'base/script/000_Tutorial.jar',game/'base/script/001_Tutorial.jar',*own_classes]))
     command=[str(java),'-Xmx4g','-Duser.home='+str(home),'-Dsyx.assistant.stateDir='+str(state),
         '-Dsyx.smoke.'+flag+'=true','-cp',cp,'LiveSmoke',str(save)]
+    if preferences is not None:command.insert(1,'-Dsyx.assistant.candidate.preferencesDirectory='+str(preferences))
     if env_file is not None:command.insert(1,'-Dsyx.smoke.targetDispatchPro=true')
     process=None
     try:
@@ -196,6 +216,7 @@ def run(args):
     report.update(copied_profile_mod_restored=True,copied_save_unchanged=True)
     output=state/'read-validation.json';output.write_text(json.dumps(report,indent=2)+'\n')
     print('Read fixture passed:',output)
+    return output
 
 
 if __name__=='__main__':

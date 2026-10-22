@@ -90,6 +90,9 @@ final class ChatPanel extends InterGuisection {
         if(!advanced)((snake2d.util.datatypes.Rec)composer.body()).setWidth(792);
         layoutWidth=CORE.getGraphics().nativeWidth;layoutHeight=CORE.getGraphics().nativeHeight;
         pin();persistantSet();rebuild();
+        // Developer-only startup seam; the fixed runner supplies a private runtime directory.
+        String candidateDirectory=System.getProperty("syx.assistant.candidate.preferencesDirectory");
+        if(candidateDirectory!=null)configureCandidatePreferences(Path.of(candidateDirectory));
     }
     @Override protected boolean update(float ds) {
         reconcileViewport(CORE.getGraphics().nativeWidth,CORE.getGraphics().nativeHeight);
@@ -181,6 +184,8 @@ final class ChatPanel extends InterGuisection {
     PanelTheme candidateTheme(){return theme;}
     GInput candidateAccentInput(){return accentInput;}
     boolean candidateAppearanceOpen(){return appearanceOpen;}
+    boolean candidatePreferencesConfigured(){return preferencesDirectory!=null;}
+    GestureReducer.Rect candidatePanelLayout(){return panelRect;}
     boolean candidateCapturing(){return gesture.isCapturing();}
     GestureReducer.Rect candidateLayout(){return opened?panelRect:launcherRect;}
     CLICKABLE candidateHandle(GestureReducer.Target target){return handles.get(target);}
