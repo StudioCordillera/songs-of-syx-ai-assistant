@@ -2,6 +2,14 @@
 
 Use `python3 dev/collaboration_status.py` for actual remote/local state at every run; this file is a handoff, not a live branch/working-tree assertion. Read AGENTS.md and reconcile newer collaborator work before editing.
 
+## Automatic same-root two-game restart — developer-only
+
+[NATIVE_CHAT_AUTO_RESTART.md](NATIVE_CHAT_AUTO_RESTART.md) / [current evidence](NATIVE_CHAT_AUTO_RESTART_VALIDATION.json) validate two actual copied-game JVMs automatically selecting the same assistant state directory without a preference override. The preference file stays in place with unchanged device/inode/hash/mtime/permissions between launches. First own edits save Parchment/#745137/880×660; second startup restores it before interaction. All other first-run fixture artifacts/history are archived recoverably, so each helper/history workflow is fresh.
+
+Fourteen native phases, shared lock across both launches, exact source/class hashes, clean exits/restoration/copied-save integrity, private file metadata and full offline/unchanged bundle checks are recorded. Seven offline admission/archive cases supplement the prior private-root guards. The initial nested state placement was rejected before game startup by the unchanged Java path boundary; the wrapper now keeps state directly under runtime. This is not same-history recovery, physical/display/receipt, concurrent-game/crash/power-loss or actual-Pro/player acceptance. One existing Claude process was not established idle; no overlapping invocation/review or quota diagnosis was made.
+
+Next: bounded peer critique, durable outcomes/native transport-failure presentation, typed target/display integration and paired actual-Pro/core/distribution gates. Current player source/bundles remain unchanged; unknown/oversized display stays unread.
+
 ## Automatic candidate preference selection — developer-only
 
 [NATIVE_CHAT_AUTO_PREFERENCES.md](NATIVE_CHAT_AUTO_PREFERENCES.md) / [current evidence](NATIVE_CHAT_AUTO_PREFERENCES_VALIDATION.json) default the unshipped panel to the existing assistant state root through own `AssistantScript.stateDirectory()`. No manual preference property/configuration is required; an explicit developer override still wins. Missing-file startup does not write; a fresh own panel restores saved geometry/style without rewriting bytes or restoring drafts. Existing malformed/legacy/private atomic-save behavior stays intact. Settings belong to an assistant state root, not a world identity.

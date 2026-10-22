@@ -68,6 +68,21 @@ def layout_preferences_directory(case, directory, runtime):
     return real
 
 
+def layout_shared_state_directory(case, directory, runtime):
+    """Internal automatic-restart seam: only an empty/prefs-only owned fixture root."""
+    root = layout_preferences_directory(case, directory, runtime)
+    if root is None:
+        return None
+    with os.scandir(root) as entries:
+        for entry in entries:
+            if entry.name != 'chat-layout.preferences' or entry.is_symlink() or not entry.is_file(follow_symlinks=False):
+                raise ValueError('Shared fixture state must be empty or contain only regular preferences')
+            info = entry.stat(follow_symlinks=False)
+            if stat.S_IMODE(info.st_mode) != 0o600 or info.st_uid != os.getuid():
+                raise ValueError('Shared preferences must be caller-owned and mode 0600')
+    return root
+
+
 def run(args):
     env_file=getattr(args,'env_file',None)
     if env_file is not None and args.case!='tiles':
@@ -97,7 +112,10 @@ def run(args):
         review=json.loads((ROOT/'VIEWPORT_BOUNDARY_REVIEW.json').read_text())
         if not review['passed'] or any(review[k]!=audit[k] for k in ('game_jar_sha256','source_archive_sha256')) or review['verifier_source_sha256']!=sha(ROOT/'dev/review_viewport_boundary.py'):
             raise ValueError('Viewport candidate requires passing paired current source review')
-    state=Path(tempfile.mkdtemp(prefix='read-'+args.case+'-',dir=runtime));os.chmod(state,0o700)
+    shared_state=layout_shared_state_directory(args.case,getattr(args,'layout_shared_state_dir',None),runtime)
+    if shared_state is not None and preferences is not None:
+        raise ValueError('Automatic shared-state fixture cannot override the preference directory')
+    state=shared_state or Path(tempfile.mkdtemp(prefix='read-'+args.case+'-',dir=runtime));os.chmod(state,0o700)
     jar=state/'syx-ai-assistant.jar'
     with zipfile.ZipFile((args.candidate_dir or ROOT/'releases')/'latest-user-test.zip') as z:
         jar.write_bytes(z.read('mod/syx-ai-assistant/V71/script/syx-ai-assistant.jar'))

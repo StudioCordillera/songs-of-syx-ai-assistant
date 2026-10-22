@@ -496,5 +496,16 @@
     "reason": "Existing local CLI process present and not established idle; no-overlap lane honored. No quota/model/credit diagnosis inferred.",
     "credits_purchased": false,
     "account_limits_bypassed": false
+  },
+  "native_chat_auto_restart_review_deferred": {
+    "checked_at": "2026-10-22T17:48:15.830488+00:00",
+    "existing_local_cli_processes": 1,
+    "invocation_started": false,
+    "actual_model": null,
+    "final_result_received": false,
+    "scope": "Developer same-root automatic preference restoration across two actual copied-game JVMs, retaining the preference inode and archiving other own fixture artifacts; no new peer review.",
+    "reason": "Existing local CLI process present and not established idle; no-overlap lane honored. No quota/model/credit diagnosis inferred.",
+    "credits_purchased": false,
+    "account_limits_bypassed": false
   }
 }
