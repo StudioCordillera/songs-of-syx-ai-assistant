@@ -52,6 +52,10 @@ Run `dev/run_read_fixture.py --case layout-background` with the normal licensed-
 
 The [restart follow-up](NATIVE_CHAT_PREFERENCES.md#controlled-native-restart-follow-up) / [current evidence](NATIVE_CHAT_RESTART_VALIDATION.json) now restore configured geometry/style across two actual copied-game JVMs, with distinct helper states/histories and a shared private developer preference directory. Fourteen real-helper/fake-inference phases pass. Automatic normal-player configuration, same-history reconnect, physical input/focus, pixel/display and release acceptance remain separate.
 
+## Same-history coordinator recovery
+
+[NATIVE_CHAT_RECOVERY.md](NATIVE_CHAT_RECOVERY.md) / [current evidence](NATIVE_CHAT_RECOVERY_VALIDATION.json) add a graceful production coordinator-task/SQLite reopen while the same native city/MCP session stay running. Nine checks include automatic reselection/draft/transcript/style retention and persistent Send-ID deduplication; a fresh recovery-disabled seven-phase run is separate. This does not restart the helper process/transport, interrupt paid inference or establish general crash/recovery acceptance.
+
 ## Remaining acceptance
 
 This actual-control port still needs a bounded focused peer critique, broader coordinator/frame races and actual-provider tests; reliable physical focus/routed input; actual display-change/minimization and all supported fonts/scales/resolutions; exact scroll anchors, clipping/readability/accessibility; automatic production preference path/lifecycle, same-history recovery and broader restart acceptance; and the separate target/receipt policies. Idle geometry reconciliation and undersized fallback now have supplied-dimension native checks; actual window transitions and physical focus handoff remain unverified. Unknown/oversized reply visibility remains unread under the separate conservative policy. This is not the finished redesign.

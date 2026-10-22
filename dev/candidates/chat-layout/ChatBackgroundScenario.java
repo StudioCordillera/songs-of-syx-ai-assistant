@@ -27,6 +27,7 @@ public final class ChatBackgroundScenario {
     }
     public static void install(Path directory){
         VIEW.s().activate();GAME.SPEED.speedSet(1);
+        boolean recovery=Boolean.getBoolean("syx.smoke.chatRecovery");
         int[] phase={0};long[] wait={0};long start=System.nanoTime();double[] seconds={0};String[] chat={null};
         Map<String,Object> initial=new LinkedHashMap<>();double[] grown={0,0};
         GInput[] composer={null};List<Map<String,Object>> checks=new ArrayList<>();String draft="Keep next question draft while first answer arrives";
@@ -97,11 +98,26 @@ public final class ChatBackgroundScenario {
                 case 9:
                     if(running||Boolean.TRUE.equals(c.get("action_pending"))||!Files.exists(directory.resolve("second-provider-closed")))return;
                     checks.add(StateCollector.object("phase","stop_second_turn","passed",true));
+                    if(recovery){composer[0].text().clear().add(draft);Files.writeString(directory.resolve("restart-helper-request"),"restart\n");phase[0]=11;}
+                    else phase[0]=13;
+                    break;
+                case 11:
+                    if(!Files.exists(directory.resolve("helper-restarted"))||!opened||running||Boolean.TRUE.equals(c.get("action_pending"))||!chat[0].equals(c.get("chat_id")))return;
+                    require(composer[0]==p.candidateComposer()&&composer[0].text().toString().equals(draft),"Helper restart lost next draft");
+                    require(p.candidateTheme().name.equals("Parchment")&&p.candidateLayout().width==grown[0]&&p.candidateLayout().height==grown[1],"Helper restart changed style/geometry");
+                    require(p.candidateTranscript().stream().anyMatch(t->t.contains("SIMULATED FIXTURE ANSWER")),"Helper restart lost durable answer");
+                    checks.add(StateCollector.object("phase","helper_restart_restores_chat_draft","passed",true));
+                    Files.writeString(directory.resolve("native-recovery-acknowledged"),"acknowledged\n");phase[0]=12;break;
+                case 12:
+                    if(!Files.exists(directory.resolve("duplicate-admission-checked")))return;
+                    require(opened&&!running&&chat[0].equals(c.get("chat_id"))&&composer[0].text().toString().equals(draft),"Replay changed native pending/chat/draft state");
+                    checks.add(StateCollector.object("phase","replayed_send_does_not_start_reply","passed",true));phase[0]=13;break;
+                case 13:
                     Files.writeString(directory.resolve("layout-background-native.json"),JsonWriter.encode(StateCollector.object("passed",true,"checks",checks,"reopened_same_chat",true,"native_width",CORE.getGraphics().nativeWidth,"native_height",CORE.getGraphics().nativeHeight,"handle_render_callbacks",p.candidateDraws(),"supplied_gesture_primitives",true,"initial_layout",initial)));
                     phase[0]=10;break;
                 case 10:
                     if(!Files.exists(directory.resolve("verifier.done")))return;
-                    Files.writeString(directory.resolve("layout-background-clean-exit.json"),"{\"passed\":true,\"verified_phases\":7}");CORE.annihilate();phase[0]=11;break;
+                    Files.writeString(directory.resolve("layout-background-clean-exit.json"),"{\"passed\":true,\"verified_phases\":"+(recovery?9:7)+"}");CORE.annihilate();phase[0]=14;break;
                 }
             }catch(Exception error){
                 System.err.println("SMOKE_FIXTURE_FAILURE: "+error);

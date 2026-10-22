@@ -30,6 +30,7 @@ def test_restart_refuses_nonprivate_or_external_preferences(tmp_path, kind):
     elif kind == 'public':
         candidate = runtime / 'public'
         candidate.mkdir(mode=0o755)
+        candidate.chmod(0o755)  # Keep the negative shape independent of the caller's umask.
     elif kind == 'missing':
         candidate = runtime / 'missing'
     else:

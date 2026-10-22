@@ -16,7 +16,7 @@ ROOT = Path(__file__).resolve().parent.parent
 sys.path.insert(0, str(ROOT))
 from mcp import ClientSession, StdioServerParameters
 from mcp.client.stdio import stdio_client
-from syx_chat_service import Coordinator
+from syx_chat_service import Coordinator, action
 from syx_chat_store import ChatStore
 from syx_blueprint_chat import BlueprintConversation, EXTRA
 from syx_blueprints import load_registry
@@ -30,7 +30,7 @@ CHECKS = {'automatic_native_session', 'responsive_pending_draft_partial', 'open_
           'closed_pending', 'closed_completed', 'reopened_same_chat_reply', 'stop_second_turn'}
 SOURCES = ['dev/verify_native_chat_background.py', 'syx_chat_service.py', 'syx_chat.py',
     'syx_chat_store.py', 'syx_mcp.py', 'syx_blueprint_chat.py', 'syx_blueprint_tools.py',
-    'syx_blueprints.py', 'syx_blueprint_data.py', 'dev/blueprint_mcp_candidate.py']
+    'syx_blueprints.py', 'syx_blueprint_data.py', 'dev/blueprint_mcp_candidate.py', 'dev/verify_native_chat_recovery.py']
 
 
 class FixtureProvider:
@@ -80,13 +80,13 @@ class FixtureProvider:
             (self.directory / 'second-provider-closed').write_text('closed\n')
 
 
-async def verify(directory):
+async def verify(directory, *, recovery=False):
     directory = isolated_state_dir(str(directory))
     hashes = {n: hashlib.sha256((ROOT / n).read_bytes()).hexdigest() for n in SOURCES}
     store = ChatStore(directory / 'layout-fixture-history')
     providers = []
     def factory(chat):
-        assert chat['model'] == 'deepseek-v4-pro'
+        assert chat['model'] == 'deepseek-v4-pro' and len(providers) < 2, 'No inference may be replayed after restart'
         provider = FixtureProvider(directory, len(providers) + 1)
         providers.append(provider)
         return provider
@@ -96,13 +96,16 @@ async def verify(directory):
         async with stdio_client(params) as streams:
             async with ClientSession(*streams) as mcp:
                 await mcp.initialize()
-                coordinator = Coordinator(store, mcp, directory, 'fixture-not-a-credential', simple=True)
-                # Keep the production admission wrapper and exact simple instructions;
-                # replace only the external provider factory, never production globals.
-                original = coordinator.loop
-                coordinator.loop = BlueprintConversation(store, mcp, factory)
-                coordinator.loop.instructions = original.instructions
+                def new_coordinator():
+                    result = Coordinator(store, mcp, directory, 'fixture-not-a-credential', simple=True)
+                    original = result.loop
+                    result.loop = BlueprintConversation(store, mcp, factory)
+                    result.loop.instructions = original.instructions
+                    return result
+                coordinator = new_coordinator()
                 server = asyncio.create_task(coordinator.serve())
+                restarted = replayed = False
+                original_chat = None
                 try:
                     async with asyncio.timeout(150):
                         while not (directory / 'layout-background-native.json').exists():
@@ -114,12 +117,38 @@ async def verify(directory):
                                 assert not any(t['status'] == 'failed' for t in turns)
                                 if turns and turns[0]['status'] == 'completed':
                                     (directory / 'simulated-reply-completed').write_text('completed\n')
+                            if recovery and not restarted and (directory / 'restart-helper-request').exists():
+                                original_chat = coordinator.selected
+                                assert [t['status'] for t in store.turns(original_chat)] == ['completed', 'cancelled']
+                                assert all(p.closed for p in providers)
+                                server.cancel()
+                                with contextlib.suppress(asyncio.CancelledError):
+                                    await server
+                                store.close()
+                                store = ChatStore(directory / 'layout-fixture-history')
+                                coordinator = new_coordinator()
+                                server = asyncio.create_task(coordinator.serve())
+                                restarted = True
+                            if restarted and coordinator.selected == original_chat:
+                                (directory / 'helper-restarted').write_text('selected through real native auto-sync\n')
+                            if restarted and not replayed and (directory / 'native-recovery-acknowledged').exists():
+                                before = store.turns(original_chat)
+                                user = next(e for e in store.events(original_chat) if e['kind'] == 'user')
+                                replay = ('protocol=2\nrequest_id=' + before[0]['turn_id'] + '\naction=send\nsession_id=' + before[0]['game_session'] +
+                                          '\nchat_id=' + original_chat + '\ntext=' + base64.b64encode(user['payload']['text'].encode()).decode() + '\n')
+                                await coordinator.dispatch(action(replay.encode('ascii')))
+                                assert store.turns(original_chat) == before and not coordinator.tasks
+                                assert len(providers) == 2
+                                replayed = True
+                                (directory / 'duplicate-admission-checked').write_text('deduplicated\n')
                             await asyncio.sleep(.05)
                     assert len(providers) == 2 and [p.calls for p in providers] == [3, 1]
                     assert all(p.closed for p in providers)
                     native = json.loads((directory / 'layout-background-native.json').read_text())
                     assert native['passed'] and native['reopened_same_chat']
-                    assert {x['phase'] for x in native['checks']} == CHECKS and len(native['checks']) == 7
+                    expected = CHECKS | ({'helper_restart_restores_chat_draft', 'replayed_send_does_not_start_reply'} if recovery else set())
+                    assert {x['phase'] for x in native['checks']} == expected and len(native['checks']) == len(expected)
+                    assert not recovery or (restarted and replayed)
                     assert all(x['passed'] for x in native['checks'])
                     assert all(x['game_seconds_advanced'] > 0 for x in native['checks'] if x['phase'] in {'open_pending', 'closed_pending'})
                     assert [t['status'] for t in store.turns(coordinator.selected)] == ['completed', 'cancelled']
@@ -140,12 +169,16 @@ async def verify(directory):
                         'simulated_provider_round_trips': 4, 'external_inference_calls': 0,
                         'completed_turns': 1, 'cancelled_turns': 1, 'actual_reference_tool_calls': 2,
                         'plain_completed_reply_in_native_panel_model': True, 'production_integrated': False,
+                        'coordinator_and_sqlite_reopened': restarted, 'original_send_deduplicated_after_restart': replayed,
+                        'helper_process_restarted': False, 'mcp_transport_restarted': False,
                         'limits': ['Developer own-class overlay only, not a changed released JAR. One copied city at speed 1.',
                             'Supplied own launcher/resize gesture primitives and public own Send/Close/Stop routing; no OS input, engine pointer/button mutation or screenshots.',
                             'Real default production coordinator, stdio MCP and disposable SQLite history with a deterministic injected fake provider; no real model, paid network or advice-quality acceptance.',
                             'Panel transcript/model and own-handle render callbacks do not prove unobscured display, physical focus, human reading or receipts. No badge, production preference path or typed chips; this-run palette controls do not establish native pixel contrast.',
                             'Public test-only speed/view operations and engine autosaves stay in the disposable profile; no explicit game save requested. Permanent world identity and gameplay execution are absent.']}
-                    (directory / 'native-chat-background-validation.json').write_text(json.dumps(report, indent=2) + '\n')
+                    if recovery:
+                        report['limits'].append('Graceful coordinator-task stop and a new Coordinator/SQLite connection in the same verifier process; native game and stdio MCP stay running. No abrupt crash, pending-turn recovery, helper-process/network restart, billing or native display/read proof.')
+                    (directory / ('native-chat-recovery-validation.json' if recovery else 'native-chat-background-validation.json')).write_text(json.dumps(report, indent=2) + '\n')
                     (directory / 'verifier.done').write_text('passed\n')
                 finally:
                     server.cancel()

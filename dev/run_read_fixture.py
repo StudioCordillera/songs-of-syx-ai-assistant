@@ -31,6 +31,7 @@ CASES={'weather':('weather','verify_weather.py','weather-validation.json'),
        'stockpile-live':('stockpileLive','verify_live_stockpiles.py','stockpile-live-validation.json'),
        'chat-visibility':('chatVisibility','verify_chat_visibility.py','chat-visibility-validation.json'),
        'chat-background':('chatBackground','verify_chat_background.py','chat-background-validation.json'),
+       'layout-recovery':('chatBackground','verify_native_chat_recovery.py','native-chat-recovery-validation.json'),
        'layout-background':('chatBackground','verify_native_chat_background.py','native-chat-background-validation.json'),
        'blueprint-chat':('chatBackground','verify_blueprint_coordinator.py','blueprint-coordinator-validation.json'),
        'viewport':('viewport','verify_viewport.py','viewport-validation.json'),
@@ -104,7 +105,7 @@ def run(args):
     env=native_environment(os.environ);env['PYTHONPATH']=str(ROOT)
     sources=sorted((ROOT/'mod/tests').glob('*.java'))
     overlay_sources=[]
-    if args.case=='layout-background':
+    if args.case in {'layout-background','layout-recovery'}:
         candidate=ROOT/'dev/candidates/chat-layout'
         overlay_sources=[candidate/'ChatPanel.java',candidate/'ChatBackgroundScenario.java',
             ROOT/'dev/java/syx/assistant/candidate/GestureReducer.java',ROOT/'dev/java/syx/assistant/candidate/PanelPreferences.java',ROOT/'dev/java/syx/assistant/candidate/PanelTheme.java']
@@ -124,6 +125,7 @@ def run(args):
     cp=os.pathsep.join(map(str,[game/'SongsOfSyx.jar',game/'base/script/000_Tutorial.jar',game/'base/script/001_Tutorial.jar',*own_classes]))
     command=[str(java),'-Xmx4g','-Duser.home='+str(home),'-Dsyx.assistant.stateDir='+str(state),
         '-Dsyx.smoke.'+flag+'=true','-cp',cp,'LiveSmoke',str(save)]
+    if args.case=='layout-recovery':command.insert(1,'-Dsyx.smoke.chatRecovery=true')
     if preferences is not None:command.insert(1,'-Dsyx.assistant.candidate.preferencesDirectory='+str(preferences))
     if env_file is not None:command.insert(1,'-Dsyx.smoke.targetDispatchPro=true')
     process=None
@@ -165,9 +167,9 @@ def run(args):
             if completion!={'passed':True,'verified_phases':11} or (state/'viewport-fixture-failure.json').exists():
                 raise RuntimeError('Viewport candidate fixture did not confirm clean completion')
             report['explicit_fixture_clean_completion']=True
-        if args.case=='layout-background':
+        if args.case in {'layout-background','layout-recovery'}:
             completion=json.loads((state/'layout-background-clean-exit.json').read_text())
-            if completion!={'passed':True,'verified_phases':7} or (state/'layout-background-fixture-failure.json').exists():
+            if completion!={'passed':True,'verified_phases':9 if args.case=='layout-recovery' else 7} or (state/'layout-background-fixture-failure.json').exists():
                 raise RuntimeError('Native layout background fixture did not confirm clean completion')
             if frozen_sources!={n:sha(ROOT/n) for n in frozen_sources}:
                 raise RuntimeError('Native layout overlay source changed during fixture')
