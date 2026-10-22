@@ -42,12 +42,27 @@ def run(args):
     stamp=datetime.now(timezone.utc).strftime('%Y%m%d-%H%M%S-%f');state=runtime/('player-chat-'+stamp)
     state.mkdir(mode=0o700);history=state/'history';history.mkdir(mode=0o700)
     env=native_environment(os.environ);env['PYTHONPATH']=str(ROOT);env['SYX_JAVA_HOME']=str(jdk)
-    # Build and audit this checkout, rather than labeling an arbitrary old JAR as current source.
-    for script,extra in [('audit_api.py',[]),('build_mod.py',['--output',str(state/'candidate')])]:
-        with (state/(script+'.log')).open('w') as log:
-            subprocess.run([sys.executable,str(ROOT/script),'--game-dir',str(game),*extra],cwd=ROOT,env=env,
-                           stdout=log,stderr=subprocess.STDOUT,check=True)
-    jar=state/'candidate/syx-ai-assistant/V71/script/syx-ai-assistant.jar'
+    # An explicitly reused JAR must already have a real passing Java/source proof.
+    # Python-only metadata changes still receive fresh paid turns and module hashes.
+    reused=getattr(args,'mod_jar',None)
+    if reused is not None:
+        prior_path=getattr(args,'prior_validation',None)
+        if prior_path is None:raise ValueError('Reused JAR requires its prior passing validation')
+        prior=json.loads(prior_path.read_text());jar=reused.resolve()
+        sources={str(p.relative_to(ROOT/'mod/src/main/java')):hashlib.sha256(p.read_bytes()).hexdigest() for p in (ROOT/'mod/src/main/java').rglob('*.java')}
+        audit=json.loads((ROOT/'api-audit.json').read_text())
+        if (not prior.get('passed') or not prior.get('real_provider_round_trip') or prior.get('requested_model')!='deepseek-v4-pro' or
+                prior.get('mod_jar_sha256')!=hashlib.sha256(jar.read_bytes()).hexdigest() or prior.get('production_source_sha256')!=sources or audit.get('mod_source_sha256')!=sources or
+                audit.get('game_jar_sha256')!=hashlib.sha256((game/'SongsOfSyx.jar').read_bytes()).hexdigest() or
+                audit.get('source_archive_sha256')!=hashlib.sha256((game/'info/SongsOfSyx-sources.jar').read_bytes()).hexdigest()):
+            raise ValueError('Prior Java/source/JAR validation does not match the current pinned build')
+    else:
+        # Build and audit this checkout, rather than labeling an arbitrary old JAR as current source.
+        for script,extra in [('audit_api.py',[]),('build_mod.py',['--output',str(state/'candidate')])]:
+            with (state/(script+'.log')).open('w') as log:
+                subprocess.run([sys.executable,str(ROOT/script),'--game-dir',str(game),*extra],cwd=ROOT,env=env,
+                               stdout=log,stderr=subprocess.STDOUT,check=True)
+        jar=state/'candidate/syx-ai-assistant/V71/script/syx-ai-assistant.jar'
     classes=state/'classes';classes.mkdir()
     subprocess.run(['java','-Djava.home='+str(jdk),'-m','jdk.compiler/com.sun.tools.javac.Main','--release','16',
         '-encoding','UTF-8','-cp',str(game/'SongsOfSyx.jar')+os.pathsep+str(jar),'-d',str(classes),
@@ -65,6 +80,7 @@ def run(args):
         cp=os.pathsep.join(map(str,[game/'SongsOfSyx.jar',game/'base/script/000_Tutorial.jar',game/'base/script/001_Tutorial.jar',jar,classes]))
         command=[str(java),'-Xmx4g','-Duser.home='+str(home),'-Dsyx.assistant.stateDir='+str(state),
             '-Dsyx.smoke.chatLive=true','-Dsyx.smoke.chatSelect=true','-cp',cp,'LiveSmoke',str(save)]
+        if getattr(args,'settings_pro',False):command.insert(1,'-Dsyx.smoke.chatSettings=true')
         subprocess.run([*command[:-2],'-Dsyx.smoke.validateOnly=true',*command[-2:]],cwd=game,env=env,check=True)
         coordinator_env={**env,'DEEPSEEK_API_KEY':key}
         with (state/'coordinator.log').open('w') as clog,(state/'game.log').open('w') as glog:
@@ -84,6 +100,9 @@ def run(args):
                     if native.poll() is None:native.terminate();native.wait(timeout=20)
                 require_clean_game_log(state/'game.log')
                 report=verify(ROOT,state,history,jar);report['known_engine_crash_markers_absent']=True;report['game_exit_code']=native.returncode
+                if getattr(args,'settings_pro',False):
+                    from dev.verify_settings_pro import verify_settings
+                    report['settings_pro']=verify_settings(state,history)
                 report['dev_runner_source_sha256']=hashlib.sha256(Path(__file__).read_bytes()).hexdigest()
             finally:
                 coordinator.terminate()

@@ -1,0 +1,24 @@
+{
+  "queries": [
+    {
+      "source": {"domain": "settings", "path": "/configured_options/data/rows"},
+      "select": {
+        "id": {"field": "/setting_id"},
+        "value": {"field": "/configured_steps"},
+        "minimum": {"field": "/minimum_steps"},
+        "maximum": {"field": "/maximum_steps"}
+      },
+      "limit": 20
+    },
+    {
+      "source": {"domain": "settings", "path": "/configured_options/data"},
+      "select": {
+        "requested": {"field": "/requested_settings"},
+        "complete": {"field": "/complete_fixed_selection"},
+        "failures": {"field": "/failed_settings"}
+      },
+      "limit": 1
+    }
+  ],
+  "include_ui_context": true
+}

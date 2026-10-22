@@ -1,6 +1,6 @@
 {
   "passed": true,
-  "evaluated_at": "2026-10-22T02:42:41.520186+00:00",
+  "evaluated_at": "2026-10-22T21:36:39.366322+00:00",
   "scope": "Two explicit paid Pro turns over production reference conversation/MCP entry points with synthetic demo context; no native coordinator/UI or player promotion.",
   "requested_model": "deepseek-v4-pro",
   "adapter_model": "deepseek-v4-pro",
@@ -29,7 +29,7 @@
     "syx_chat.py": "98ceecfc8b042e45b0ea461f73fed74cc3fde00833a6fce22372649b9f844d6c",
     "syx_chat_store.py": "a2f2ffa53097cb60eab72c015c3d516693aa1c89c8aa54d74f4dfc96d222e634",
     "syx_deepseek.py": "d58e21dbcfdeb1ef0f411dfbb4c0267234bdc5cc185e00d300821725ca1885e3",
-    "syx_mcp.py": "e00dd01a196bebf14247e8249b752501454f7e630a57f72d777f4125eb557ccc",
+    "syx_mcp.py": "fc5e39b6605c8e56e607c16c2bde55863dc111ea99a0bab66d84cdefef81fa0e",
     "blueprint-examples-candidate.json": "a4147938348fc8890afc9bd1b254801f50858a6a17bc3936db32820d2abed4a8",
     "BLUEPRINT_CATALOG_VALIDATION.json": "d763365268f3d9f36212da9e9bab938ebdb90562f35d6a10315afbeaaff11021",
     "snapshot.example.json": "6ad782d4825b3a2d38ae5dfbf189baa141322e19978d109351abeec3d8f1c8c4",
@@ -43,8 +43,8 @@
     "cdc7d0865724213124f55463a7250d8aa5f642e73dc1bd2cb6d312014b06d29a"
   ],
   "visible_reply_sha256": [
-    "49fc6f3ce8728d08ccaf7ce42c43c57132a81d868ad6f14f9705edc7f030b24d",
-    "21a30c6d4ca29578c36b10903df71ae4e88b98b89fc218d3f93d85507a3c2125"
+    "dfa5eb84804e26a85d4d478789e97b535e3e999128a86d27ad143888b8bb93cb",
+    "a5116cd5d38a8d34953b1742855d4fb52e6159e0973ce6c4a0ad632e246eb90b"
   ],
   "fixture": {
     "demo": true,

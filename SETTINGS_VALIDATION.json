@@ -1,0 +1,137 @@
+{
+  "passed": true,
+  "evaluated_at": "2026-10-22T22:51:07.541029+00:00",
+  "scope": "Exact paid production JAR: fixed configured UI settings in city/world/return and selective real MCP against a retained unmodified production observation.",
+  "native_checks": {
+    "passed": true,
+    "checks": [
+      {
+        "phase": "city",
+        "active_view": "settlement",
+        "getter_comparisons": 48,
+        "passed": true
+      },
+      {
+        "phase": "world",
+        "active_view": "world",
+        "getter_comparisons": 48,
+        "passed": true
+      },
+      {
+        "phase": "city_return",
+        "active_view": "settlement",
+        "getter_comparisons": 48,
+        "passed": true
+      }
+    ],
+    "fixed_settings": 16,
+    "explicit_settings_mutations": 0,
+    "lazy_initialization_by_reader": false
+  },
+  "production_settings_class_in_tested_jar": true,
+  "mcp_calls": 2,
+  "selected_rows": 16,
+  "same_observation_context": true,
+  "external_inference_calls": 0,
+  "source_sha256": {
+    "dev/run_settings_integration.py": "8b680fed6d20b0b3ff135e796b7fda69efb7126beefba9bca9a77dd006779bcd",
+    "dev/review_settings_boundary.py": "b7a1d02f320711391b2cbb595c94658734f5a02f2733d957f3df3bb05abdad50",
+    "dev/candidates/settings-production/StockpileScenario.java": "87bc438ade98fa4d833296c563082145da55d7080e2e00d5c82268087ecfa9f6",
+    "mod/src/main/java/syx/assistant/SettingsObservation.java": "47c5abd37ea861d6085e7c6635fb3f67a1b600640242b7f1c3612e74ae1ee1a8",
+    "dev/run_stockpile_probe.py": "cbf1f941b4ce2f2240e4d4a321bb79c1faf5985adb4b3828d42cd5157508d0fa",
+    "mod/tests/LiveSmoke.java": "bd6d755d51ed03881ed4074b99a9be489acb8fd46ddb0d0c3a9f8a9a0d8aa211",
+    "mod/src/main/java/syx/assistant/StateCollector.java": "339d9e13057599bcb0b628ee8151d9752ff59963df3895ac7617e1302f28ab4f",
+    "settings-query-example.json": "32f04a914ee88b194fcfc705ed155535fe371d1b8d43b6087c440b3901dcb6b6"
+  },
+  "static_review_sha256": "bbf06fa170c3517fe0414a1805a45f75a7b3aff0cbf6dbe61a8bf3ee467a6dab",
+  "private_snapshot_sha256": "cb77afcd7891eefd4a2fc32eced2b86f2ddbd089730158f9d0fdcc1ede454732",
+  "mod_jar_sha256": "e6470e1ac25ca5d1524c85d69569f2278f5bb909af41647f9a270621b41ec73c",
+  "production_source_sha256": {
+    "syx/assistant/AssistantScript.java": "c2b8ed68350d4a274315b16dc9ff1c6828a51516777c1ef4a45b84acc6d8b092",
+    "syx/assistant/ChatPanel.java": "06db6b7715f9187a40a0b4b987ab7f64e09df5f9dc07193e261249302d1ac12f",
+    "syx/assistant/EntityReadRequest.java": "e2d13aee21f399e8718382d5b43d5a6c85e5d78d2708d8105b9f1ecfe730edf8",
+    "syx/assistant/HousingObservation.java": "a6963d87c64e1a0c7bb3ebb9d4b33121c918e54190564259236425be9ef5902c",
+    "syx/assistant/JsonWriter.java": "c525eb60d3224cab83ed3fd6b8594ec8652211f00bd947e873e1482f919e81dc",
+    "syx/assistant/RegionalReadRequest.java": "4d1da800e6f2ecf6b036f188693ac1095329321bc569c82f34be9918768ef2b3",
+    "syx/assistant/SettingsObservation.java": "47c5abd37ea861d6085e7c6635fb3f67a1b600640242b7f1c3612e74ae1ee1a8",
+    "syx/assistant/StateCollector.java": "339d9e13057599bcb0b628ee8151d9752ff59963df3895ac7617e1302f28ab4f",
+    "syx/assistant/StockpileReadRequest.java": "589ab0087808dbc973aa7726829c3260c609e043baac080824538c44ed5df360",
+    "syx/assistant/TileReadRequest.java": "5daf3cc3abc0cb849f654e09efadb3d0263b73d4e5e220e97671ea1c4a40bde6",
+    "syx/assistant/UiContentCollector.java": "c0d20c7f9f2734a0bb625427875f06bfcd07edb20611248b39b6e8f480ef5a48",
+    "syx/assistant/UiContextCollector.java": "0f67200fdcf2740f4d3d4b1751ea0bf143613b20a44afb77af0ebb0ae8078937",
+    "syx/assistant/WeatherObservation.java": "ddda0d16df5581ee9e032e98cebc843f2bbb0b2d20b02dcfc14dedf2cec7fe25"
+  },
+  "limits": [
+    "Settings came from the production collector with no fixture data insertion. MCP uses a retained observation, not a new game-thread getter; no new tool or setter.",
+    "S was initialized by LiveSmoke before CORE creation. This does not establish a safe public first-initialization route for an observer or main-menu lifecycle.",
+    "Reported values are configured UI steps. Quantized audio zero does not prove zero underlying gain, physical silence or OS mute.",
+    "Three fixed own view phases, not all menus/scenes, focus state, actual audio/rendering, autosave ETA, native faults or worst-case performance.",
+    "Test-only speed/view changes and engine background writes stay in the disposable copied profile; no explicit save requested.",
+    "Paired distribution report checks payload before final BUILD metadata enrichment; promotion must preserve identical payload bytes. Older feature/prototype reports retain their recorded source/JAR/date scopes.",
+    "The earlier Opus 5.5/high candidate source critique is reused; no new Claude invocation or model-output claim for production integration."
+  ],
+  "explicit_fixture_clean_completion": true,
+  "game_exit_code": 0,
+  "native_failure_markers_absent": true,
+  "game_jar_sha256": "fe0137c05408e5ee9e31f06fc44fe37a5d4372d9c985b280f0852d1347c0224b",
+  "source_archive_sha256": "a3fc2aa9f4be31aec0616a5030a656ac49a6011343b7e91395c7bac0b9dfb0a5",
+  "static_boundary_review_sha256": "bbf06fa170c3517fe0414a1805a45f75a7b3aff0cbf6dbe61a8bf3ee467a6dab",
+  "copied_profile_mod_restored": true,
+  "copied_save_unchanged": true,
+  "python_source_sha256": {
+    "syx_blueprints.py": "99f8a81e4f7577911c7bb3be032e0d66c7ddf96c172089df04cc93ed2d5c88a9",
+    "syx_blueprint_data.py": "7892c123de8c494246543c7e2874972324bcdb0e192e3373833c9aa5e163660f",
+    "syx_blueprint_tools.py": "e1593a724e2fdb5c81957eef188e80e7f2c3666cce4200d6492ce3560d4cee02",
+    "syx_blueprint_chat.py": "ea270d20bd0ba9158e425c8d2b72b2632e0c6e1dfc60ea8b3f6978f615d631fc",
+    "syx_housing.py": "f81fe8b32b5b669b565d7c548ab62564e69bddf9c903da4e6166c322dd503057",
+    "syx_mcp.py": "fc5e39b6605c8e56e607c16c2bde55863dc111ea99a0bab66d84cdefef81fa0e",
+    "syx_knowledge.py": "d1dbc29ce755fcb3601fbda8b027227995992dfaba5b6c956ed82fdf6d302142",
+    "syx_query.py": "61e40b2c7d26eb0f136461f1d06e575bc12586b80fc132a512268aea56e0fd1f",
+    "syx_api_support.py": "374f106e7f01ce782ac310ffeb59d2d572812066be76c35a34c50cce3f2f0711",
+    "syx_api_manifest.py": "dfba9ee6150fd4a0d623d1be5fa340ebefe30a5df7f73e764bda465acba9690d",
+    "syx_live.py": "fdcb9366a3aab0d40a6c4bf597f80e5b15349ae09e9e91acf51c573455c3f69b",
+    "syx_capture.py": "32778d9f5f217119ba45b114ba2a710bdd0ce4333efa672c31c690dcc3f3c3ec",
+    "syx_tiles.py": "c5ceea79fc5d4d80307ecf7fe429ca1f1f6ae64d17e95569d54625bf02c4d664",
+    "syx_regions.py": "96dd3355f50279c7c748d866019f889bd9889ef00c7cf97bf4fa582fede7ffb5",
+    "syx_stockpiles.py": "bbad8de495428c4b44d4f860273bd9d39cea05c90c2ae8d102507b750e4f16db",
+    "syx_chat_store.py": "a2f2ffa53097cb60eab72c015c3d516693aa1c89c8aa54d74f4dfc96d222e634",
+    "syx_deepseek.py": "d58e21dbcfdeb1ef0f411dfbb4c0267234bdc5cc185e00d300821725ca1885e3",
+    "syx_chat.py": "98ceecfc8b042e45b0ea461f73fed74cc3fde00833a6fce22372649b9f844d6c",
+    "syx_chat_service.py": "7c6ac3b6aae4f2bbed67840ec99bea32d62e409a3745582e20a8e5a19157244f",
+    "syx_claude.py": "3a850a645907f27b1a9cb15c3c5244b96b2da97d5d0dc37f5cd7d6f708cf92a8",
+    "syx_claude_worker.py": "ab6638b2c4ef3a4a1548fde1c0739a48f4d47e468494dd7444019f3f330dea38"
+  },
+  "python_tests_passed": 762,
+  "offline_result_log_sha256": "acec8899179442e3d5908c7554d9bc92934a089fa65eb5a5331f3287d4f7711a",
+  "public_production_members": 446,
+  "non_public_production_members": 0,
+  "production_source_anchors": 445,
+  "all_production_ids_in_public_catalog": true,
+  "settings_pro": {
+    "native_session_settings_selection": true,
+    "steps_match_retained_fixture": true,
+    "zero_step_caveat_text_present": true,
+    "actual_provider_settings_question": true,
+    "limits": [
+      "Settings source/session and configured UI value compared with the retained first-answer observation; not a cross-tick transaction or actual audio test.",
+      "Text checks establish caveat terms, not comprehensive semantic correctness or all advice quality."
+    ]
+  },
+  "native_player_pro_turns": 2,
+  "separate_synthetic_reference_pro_turns": 2,
+  "paired_evidence_sha256": {
+    "PLAYER_CORE_VALIDATION.json": "b4235316ff7b860ade193426c7e16793ae26d1c752a7dcfc9bf09d080acb4128",
+    "GUIDANCE_VALIDATION.json": "9a2c68b1eac3bae432d6def5c282499b53cdfbf329d57a3a85e76fbff8e11f0c",
+    "CAPABILITY_DISCOVERY_VALIDATION.json": "285e0d4f7f1653a30070416b98a965d450a5bb51b9cab9004b54b55854149e53",
+    "AUTO_CONNECTION_VALIDATION.json": "c1429cfc9b1009bc7ecf0694a78f252fa5230379d359b6eb8f96d5652b57cbb3",
+    "CHAT_FOCUS_VALIDATION.json": "39aac967e931c4a9af19e14069ddeb88d5efacd442d058c29b5baaa04f1099d8",
+    "BLUEPRINT_REFERENCE_PRO_VALIDATION.json": "ebc75a0c14918d0a8f6e5535e6dcbe12ba225646a7517416af8bf96042c4fca4",
+    "CURRENT_COLLECTION_COST_VALIDATION.json": "9725d1fdafa3ba9b0c3890d904fb77150d6a6d462651cc08c585625f2877cf1f",
+    "PLAYER_DISTRIBUTION_VALIDATION.json": "fafd6464cdd9a4137ec1a214039b10cd045cc515ffb083c841ce090fbbe48085",
+    "api-audit.json": "1c5ed575b80741eaedb820f7810e5afb6a4d5b8621f28057210263ccf7389d74",
+    "API_DISCOVERY.json": "1c198d10f34e6ffbea7b8801268581823d1207cc8e36f61c8082144c705bcc41"
+  },
+  "settings_pro_verifier_sha256": "5862298fc0eef579ee83202aecd533beef55739878e50b53404c3a1310f97357",
+  "settings_pro_offline_tests_sha256": "5c7885a315e271918c2d1840e00d7530f95369ed22b03ac473696397db33c19b",
+  "paid_settings_recheck": "Existing real native Pro event trace rechecked with required exact audio_master predicate; missing/wrong-setting predicates rejected offline. No additional inference."
+}

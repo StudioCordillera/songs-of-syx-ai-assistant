@@ -2,11 +2,13 @@
 import os
 from pathlib import Path
 import subprocess
+import pytest
 
 ROOT=Path(__file__).resolve().parent
 
 
-def test_configured_settings_bounds_failure_isolation_and_no_lazy_accessor(tmp_path):
+@pytest.mark.parametrize("production", [False,True])
+def test_configured_settings_bounds_failure_isolation_and_no_lazy_accessor(tmp_path,production):
     settings=tmp_path/'init/settings/S.java';settings.parent.mkdir(parents=True)
     members=('volumeMaster','volumeSound','volumeMusic','volumeAmbience','muteUnfocused','shadows','particles','graphics','gore','brightness','autoSaveInterval','autoSaveFiles','scroll','lightCycle','uilightCycle','downpour')
     minima=[0]*16;minima[11]=1
@@ -36,7 +38,8 @@ public class Probe {
   System.out.println("PASS 16 bounds, partial failures, unavailable and no lazy accessor");
  }
 }''')
-    candidate=ROOT/'dev/candidates/settings/syx/assistant/candidate/SettingsObservation.java'
+    candidate=ROOT/('mod/src/main/java/syx/assistant/SettingsObservation.java' if production else 'dev/candidates/settings/syx/assistant/candidate/SettingsObservation.java')
+    if production:probe.write_text(probe.read_text().replace('syx.assistant.candidate.SettingsObservation','syx.assistant.SettingsObservation'))
     compiler=['java']
     if os.environ.get('SYX_JAVA_HOME'):compiler+=['-Djava.home='+os.environ['SYX_JAVA_HOME']]
     subprocess.run([*compiler,'-m','jdk.compiler/com.sun.tools.javac.Main','--release','16','-d',str(tmp_path),str(settings),str(collector),str(candidate),str(probe)],check=True,capture_output=True,timeout=30)

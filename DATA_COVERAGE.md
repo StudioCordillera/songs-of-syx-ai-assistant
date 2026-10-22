@@ -21,7 +21,7 @@ This is a routing inventory of the current adapter, not a complete game schema. 
 | map | dimensions, `/weather`, on-demand tool description | Scene dimensions, ten stored weather factors/four flags, finite tile reads and bounded retained tile selections | Broader spatial fields, larger retained batches and all-field/scene/fault costs |
 | entities | `/items`, `/selected_subject` | Prefix IDs/positions and dedicated selected-person public stats/recorded assignments | More typed attributes and relationship filters beyond recorded workplace |
 | events | `/registered_event_types`, current event ID/elapsed fields | Registered event types and current scripted event | Complete incidents/history and future-event claims |
-| settings | pause/speed/time fields | Current public clock and requested speed | Full settings schema |
+| settings | pause/speed/time, `/configured_options` | Public clock/requested speed and sixteen fixed configured UI-setting steps with failure/range metadata | Full launcher/engine settings, physical/effective state and current settings-tab identity |
 
 Aggregate stat collections are intentionally left in game-defined units until their meaning is established. Counts and normalized values are not automatically satisfaction percentages or causal effects. Population aggregates do not substitute for a selected person's attributes.
 
@@ -90,4 +90,4 @@ Cached viewport geometry is additionally available in same-observation UI contex
 
 ## Developer configured-settings candidate
 
-[SETTINGS_OBSERVATION_CANDIDATE.md](SETTINGS_OBSERVATION_CANDIDATE.md) establishes sixteen source-pinned public UI preferences through a separate reader and retained native/MCP fixture. These are configured UI steps, with audio quantization and unavailable/failure limits, not OS mute or physical/effective state. The production settings row above remains clock/speed only until paired promotion.
+[SETTINGS_OBSERVATION_CANDIDATE.md](SETTINGS_OBSERVATION_CANDIDATE.md) establishes sixteen source-pinned public UI preferences through a separate reader and retained native/MCP fixture. These are configured UI steps, with audio quantization and unavailable/failure limits, not OS mute or physical/effective state. That historical candidate is superseded by the [production mapping](SETTINGS.md); its earlier source/JAR scope remains unchanged.

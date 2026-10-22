@@ -30,6 +30,9 @@ def scope(path):
                 'CAPABILITY_DISCOVERY_VALIDATION.json','AUTO_CONNECTION_VALIDATION.json','CHAT_FOCUS_VALIDATION.json',
                 'PLAYER_DISTRIBUTION_VALIDATION.json'}:
         return 'Current linked player/feature evidence; inspect exact source/JAR hashes and case scope'
+    if name=='SETTINGS_FINAL_DISTRIBUTION_VALIDATION.json':return 'Fresh extracted distribution check of the published settings archive; exact container/payload hashes, no inference'
+    if name=='SETTINGS_VALIDATION.json':return 'Production configured-settings getter/MCP/Pro and paired release checks; configured UI steps, not actual audio/rendering or complete menus'
+    if name=='HOUSING_COLLECTION_COST_VALIDATION.json':return 'Historical housing small-city timings; prior source/JAR and dates preserved'
     if name in {'TILE_CAPTURE_VALIDATION.json','ENTITY_CAPTURE_REGRESSION_VALIDATION.json'}:return 'Current retained-read native evidence; inspect bounded selection and source/JAR scope'
     if name=='REGIONAL_REQUEST_COST_VALIDATION.json':return 'Earlier live-page build regional collector/encoding and sequential MCP timings; finite paused campaign, not worst-case acceptance'
     if name=='REGIONAL_CAPTURE_VALIDATION.json':return 'Native regional capture/paging/restoration/reload and finite cost samples; inspect exact source/JAR and limits'

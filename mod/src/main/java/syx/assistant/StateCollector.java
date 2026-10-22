@@ -583,8 +583,11 @@ public final class StateCollector {
             return object("registered_event_types",definitions,"current_scripted_event_id",current==null?null:current.key,
                 "current_scripted_event_elapsed_seconds",GAME.EVENT().timeElapsed());
         }, "Registered event types and current scripted-event ID only; no prediction or complete incident history.");
+        // Shipped 0.71.44 Menu.start initializes S before CORE creation; this callback runs later.
+        // Source-verified bootstrap ordering, not a documented settings or main-menu SCRIPT contract.
         run(domains, "settings", () -> object("paused", GAME.SPEED.isPaused(), "speed_target", GAME.SPEED.speedTarget(),
-            "game_seconds", TIME.currentSecond(), "seconds_per_day", TIME.secondsPerDay()), "Clock/speed only; not all game settings.");
+            "game_seconds", TIME.currentSecond(), "seconds_per_day", TIME.secondsPerDay(),
+            "configured_options",SettingsObservation.collect(init.settings.S.get())), "Clock/speed and fixed configured UI-setting steps. Normal boot initializes S before CORE creation; settings are not physical audio/focus/rendering or autosave ETA.");
         run(domains, "map", () -> object("width", SETT.TWIDTH, "height", SETT.THEIGHT, "coordinate_unit", "settlement tiles",
             "weather",WeatherObservation.collect(),"on_demand_tool","query_live_tiles","tile_fields",Arrays.asList("terrain","floor","room","minerals","path","ground_moisture")),
             "Scene dimensions, completed instantiated-city stored weather and supported on-demand tiles. Weather is not regional weather, physical units, crop yield or forecast; tile rows require bounded queries.");

@@ -1,7 +1,20 @@
 {
   "passed": true,
-  "evaluated_at": "2026-10-22T02:42:43.959037+00:00",
+  "evaluated_at": "2026-10-22T21:36:24.531150+00:00",
   "checks": [
+    {
+      "id": "configured_game_ui_settings",
+      "support": "public_source_verified",
+      "references": [
+        "SETTINGS.md",
+        "SETTINGS_BOUNDARY_REVIEW.json",
+        "SETTINGS_VALIDATION.json",
+        "init/settings/S.java",
+        "launcher/LSettings.java",
+        "menu/Menu.java"
+      ],
+      "passed": true
+    },
     {
       "id": "city_home_records",
       "support": "public_source_verified",
@@ -233,6 +246,7 @@
       "passed": true
     }
   ],
+  "configured_settings_member_anchors_checked": 19,
   "home_member_anchors_checked": 6,
   "weather_member_anchors_checked": 6,
   "stockpile_member_anchors_checked": 4,
@@ -243,16 +257,16 @@
   "faction_context_member_anchors_checked": 3,
   "no_game_snapshot_required": true,
   "inference_calls": 0,
-  "public_inventory_size": 427,
+  "public_inventory_size": 446,
   "source_sha256": {
-    "syx_mcp.py": "e00dd01a196bebf14247e8249b752501454f7e630a57f72d777f4125eb557ccc",
-    "syx_api_support.py": "cca62a13fbd39b0de15af284ca592c66cf527837b96b8bf4c4a54259d5cfdc1d",
-    "syx_api_manifest.py": "9bd36ac8a819db076b5bb5b5a526b86269aa4b69f6644fcd0b797fdc22c64c79",
-    "dev/verify_capability_discovery.py": "a56c577f176fad73929e46a8f5e629784fe0942e0cf3dc9b7a47d42463be0689"
+    "syx_mcp.py": "fc5e39b6605c8e56e607c16c2bde55863dc111ea99a0bab66d84cdefef81fa0e",
+    "syx_api_support.py": "374f106e7f01ce782ac310ffeb59d2d572812066be76c35a34c50cce3f2f0711",
+    "syx_api_manifest.py": "dfba9ee6150fd4a0d623d1be5fa340ebefe30a5df7f73e764bda465acba9690d",
+    "dev/verify_capability_discovery.py": "6eae3c67c9990e350ea6f61e9c2eb0cb49822beec8598fb3ae41beab9016bb3e"
   },
   "limits": [
     "Capability records summarize existing evidence; no new game getter/scene or official stable contract is established.",
     "Offline discovery is not an attestation of a separately installed game mod; pair source-matching builds.",
-    "Eighteen supported capabilities and two explicit gaps sampled, not exhaustive metadata acceptance."
+    "Nineteen supported capabilities and two explicit gaps sampled, not exhaustive metadata acceptance."
   ]
 }

@@ -31,7 +31,7 @@ def build(game_dir: Path, output: Path):
     with zipfile.ZipFile(jar, 'w', zipfile.ZIP_DEFLATED) as z:
         for f in sorted(classes.rglob('*.class')):
             z.write(f, f.relative_to(classes))
-    (mod / '_Info.txt').write_text('VERSION: "0.12.0",\nNAME: "Syx AI Assistant",\n'
+    (mod / '_Info.txt').write_text('VERSION: "0.14.0",\nNAME: "Syx AI Assistant",\n'
         'DESC: "Local game-state bridge. Experimental. Targets 0.71.44.",\n'
         'AUTHOR: "StudioCordillera",\nINFO: "https://github.com/StudioCordillera/songs-of-syx-ai-assistant",\n')
     print(jar)

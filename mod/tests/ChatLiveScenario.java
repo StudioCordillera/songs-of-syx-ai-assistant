@@ -47,7 +47,7 @@ public final class ChatLiveScenario {
                             }
                             for(RENDEROBJ control:panel.section().elements())require(control.body().x1()!=650,"Developer/provider control is visible");
                         }
-                        chat=id.toString();send(panel,directory,Boolean.getBoolean("syx.smoke.chatSelect")?"Use select_game_state: 3 least positive owned.":Boolean.getBoolean("syx.smoke.chatGuidance")?"Use search_guidance: food. Cite a URL briefly.":"Use tools: population total; cite session and tick.");phase=3;break;
+                        chat=id.toString();send(panel,directory,Boolean.getBoolean("syx.smoke.chatSettings")?"Select 3 least positive owned resources. Also select audio_master configured_steps as steps from settings /configured_options/data/rows. Explain why 0 steps cannot prove actual mute.":Boolean.getBoolean("syx.smoke.chatSelect")?"Use select_game_state: 3 least positive owned.":Boolean.getBoolean("syx.smoke.chatGuidance")?"Use search_guidance: food. Cite a URL briefly.":"Use tools: population total; cite session and tick.");phase=3;break;
                     case 3:
                         if(!complete(directory)||Boolean.TRUE.equals(panel.context().get("generating")))return;
                         require(chat.equals(panel.context().get("chat_id")),"Chat changed");

@@ -147,3 +147,11 @@ For isolated plain recovery notices, add `--candidate` to `dev/check_chat_proces
 The current native panel candidate automatically selects the existing assistant state root for its own geometry/style record. Fixed layout/notice runners already provide isolated roots; no candidate preference property is needed. See [automatic selection and restoration scope](NATIVE_CHAT_AUTO_PREFERENCES.md); released player configuration is unchanged.
 
 `dev/run_native_chat_auto_restart.py` tests automatic same-root preference restoration across two actual copied-game JVMs, holding the native lock throughout. It retains the preference inode/bytes in place and archives other own fixture outputs before the second run. `test_native_chat_auto_restart.py` covers admission/preservation bounds; see [scope](NATIVE_CHAT_AUTO_RESTART.md). No paid option, preference override or public arbitrary state path is accepted.
+
+## Configured-settings production acceptance
+
+`dev/run_settings_integration.py` accepts the normal copied-game arguments plus `--candidate-dir` and matching paid `--validation`. It compares the fixed production settings DTO against public getters across city/world/return and runs the public settings query example through real MCP on a retained observation. It inserts no settings data. See [configured settings](SETTINGS.md) for initialization and quantization limits.
+
+`dev/run_settings_pro_check.py --env-file .env` with the same game/save/Java/JDK arguments explicitly performs two paid native Pro turns including a selective settings read. Optional `--mod-jar` and `--prior-validation` reuse an already passing exact Java/source/JAR proof while fresh paid turns validate current Python modules. A changed Java source, JAR, game/source archive or audit refuses reuse; a previous Python hash is never relabeled current. This is useful for Python-only metadata changes and does not waive feature/core/distribution checks.
+
+Keep isolated runtime directories canonical and private. Symlinking runtime to another checkout is rejected by copied-fixture path guards; copy the disposable fixture save/profile instead. Do not weaken those guards or share live fixture outputs across checkouts.

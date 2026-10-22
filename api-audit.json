@@ -10,7 +10,8 @@
     "syx/assistant/HousingObservation.java": "a6963d87c64e1a0c7bb3ebb9d4b33121c918e54190564259236425be9ef5902c",
     "syx/assistant/JsonWriter.java": "c525eb60d3224cab83ed3fd6b8594ec8652211f00bd947e873e1482f919e81dc",
     "syx/assistant/RegionalReadRequest.java": "4d1da800e6f2ecf6b036f188693ac1095329321bc569c82f34be9918768ef2b3",
-    "syx/assistant/StateCollector.java": "83cb3a4498437e53cf9dac0b7cf1fcff3c4f4572a0cd196fda525ebfcdd64ade",
+    "syx/assistant/SettingsObservation.java": "47c5abd37ea861d6085e7c6635fb3f67a1b600640242b7f1c3612e74ae1ee1a8",
+    "syx/assistant/StateCollector.java": "339d9e13057599bcb0b628ee8151d9752ff59963df3895ac7617e1302f28ab4f",
     "syx/assistant/StockpileReadRequest.java": "589ab0087808dbc973aa7726829c3260c609e043baac080824538c44ed5df360",
     "syx/assistant/TileReadRequest.java": "5daf3cc3abc0cb849f654e09efadb3d0263b73d4e5e220e97671ea1c4a40bde6",
     "syx/assistant/UiContentCollector.java": "c0d20c7f9f2734a0bb625427875f06bfcd07edb20611248b39b6e8f480ef5a48",
@@ -27,7 +28,7 @@
       "public": true,
       "source_file": "game/GAME.java",
       "uses": [
-        "StateCollector.java:634",
+        "StateCollector.java:637",
         "UiContextCollector.java:144"
       ],
       "parameter_types": [],
@@ -79,7 +80,7 @@
       "public": true,
       "source_file": "game/GAME.java",
       "uses": [
-        "StateCollector.java:586"
+        "StateCollector.java:588"
       ],
       "parameter_types": [],
       "compiler_generated_enum": false,
@@ -246,7 +247,7 @@
       "public": true,
       "source_file": "game/GameSpeed.java",
       "uses": [
-        "StateCollector.java:586"
+        "StateCollector.java:588"
       ],
       "parameter_types": [],
       "compiler_generated_enum": false,
@@ -271,7 +272,7 @@
       "public": true,
       "source_file": "game/GameSpeed.java",
       "uses": [
-        "StateCollector.java:586"
+        "StateCollector.java:588"
       ],
       "parameter_types": [],
       "compiler_generated_enum": false,
@@ -333,7 +334,7 @@
       "public": true,
       "source_file": "game/battle/Armies.java",
       "uses": [
-        "StateCollector.java:634",
+        "StateCollector.java:637",
         "UiContextCollector.java:144"
       ],
       "parameter_types": [],
@@ -359,7 +360,7 @@
       "public": true,
       "source_file": "game/battle/Armies.java",
       "uses": [
-        "StateCollector.java:634",
+        "StateCollector.java:637",
         "UiContextCollector.java:144"
       ],
       "parameter_types": [],
@@ -1633,7 +1634,7 @@
       "public": true,
       "source_file": "game/time/TIME.java",
       "uses": [
-        "StateCollector.java:587"
+        "StateCollector.java:589"
       ],
       "parameter_types": [],
       "compiler_generated_enum": false,
@@ -1658,7 +1659,7 @@
       "public": true,
       "source_file": "game/time/TIME.java",
       "uses": [
-        "StateCollector.java:587"
+        "StateCollector.java:589"
       ],
       "parameter_types": [],
       "compiler_generated_enum": false,
@@ -1996,6 +1997,481 @@
         {
           "line": 177,
           "source_sha256": "95f41b46dd29c259df4fee151e73336b73a490069d4f80d2238857fbe06d3b1e",
+          "parameter_types": [],
+          "has_javadoc": false
+        }
+      ],
+      "source_match": "name_arity_and_simple_parameter_types",
+      "documentation_status": "human_review_required; Javadoc presence alone does not establish a stable mod contract"
+    },
+    {
+      "id": "init.settings.S#autoSaveFiles",
+      "owner": "init.settings.S",
+      "name": "autoSaveFiles",
+      "kind": "FIELD",
+      "signature": "autoSaveFiles",
+      "public": true,
+      "source_file": "init/settings/S.java",
+      "uses": [
+        "SettingsObservation.java:29"
+      ],
+      "parameter_types": [],
+      "compiler_generated_enum": false,
+      "arity": -1,
+      "source_candidates": [
+        {
+          "line": 56,
+          "source_sha256": "c24e2c50586d8d33ff34f4d6fdff329449cc57382cecadd5f9c776bc14333a96",
+          "parameter_types": [],
+          "has_javadoc": false
+        }
+      ],
+      "source_match": "name_arity_and_simple_parameter_types",
+      "documentation_status": "human_review_required; Javadoc presence alone does not establish a stable mod contract"
+    },
+    {
+      "id": "init.settings.S#autoSaveInterval",
+      "owner": "init.settings.S",
+      "name": "autoSaveInterval",
+      "kind": "FIELD",
+      "signature": "autoSaveInterval",
+      "public": true,
+      "source_file": "init/settings/S.java",
+      "uses": [
+        "SettingsObservation.java:29"
+      ],
+      "parameter_types": [],
+      "compiler_generated_enum": false,
+      "arity": -1,
+      "source_candidates": [
+        {
+          "line": 55,
+          "source_sha256": "c24e2c50586d8d33ff34f4d6fdff329449cc57382cecadd5f9c776bc14333a96",
+          "parameter_types": [],
+          "has_javadoc": false
+        }
+      ],
+      "source_match": "name_arity_and_simple_parameter_types",
+      "documentation_status": "human_review_required; Javadoc presence alone does not establish a stable mod contract"
+    },
+    {
+      "id": "init.settings.S#brightness",
+      "owner": "init.settings.S",
+      "name": "brightness",
+      "kind": "FIELD",
+      "signature": "brightness",
+      "public": true,
+      "source_file": "init/settings/S.java",
+      "uses": [
+        "SettingsObservation.java:28"
+      ],
+      "parameter_types": [],
+      "compiler_generated_enum": false,
+      "arity": -1,
+      "source_candidates": [
+        {
+          "line": 54,
+          "source_sha256": "c24e2c50586d8d33ff34f4d6fdff329449cc57382cecadd5f9c776bc14333a96",
+          "parameter_types": [],
+          "has_javadoc": false
+        }
+      ],
+      "source_match": "name_arity_and_simple_parameter_types",
+      "documentation_status": "human_review_required; Javadoc presence alone does not establish a stable mod contract"
+    },
+    {
+      "id": "init.settings.S#downpour",
+      "owner": "init.settings.S",
+      "name": "downpour",
+      "kind": "FIELD",
+      "signature": "downpour",
+      "public": true,
+      "source_file": "init/settings/S.java",
+      "uses": [
+        "SettingsObservation.java:29"
+      ],
+      "parameter_types": [],
+      "compiler_generated_enum": false,
+      "arity": -1,
+      "source_candidates": [
+        {
+          "line": 60,
+          "source_sha256": "c24e2c50586d8d33ff34f4d6fdff329449cc57382cecadd5f9c776bc14333a96",
+          "parameter_types": [],
+          "has_javadoc": false
+        }
+      ],
+      "source_match": "name_arity_and_simple_parameter_types",
+      "documentation_status": "human_review_required; Javadoc presence alone does not establish a stable mod contract"
+    },
+    {
+      "id": "init.settings.S#get()",
+      "owner": "init.settings.S",
+      "name": "get",
+      "kind": "METHOD",
+      "signature": "get()",
+      "public": true,
+      "source_file": "init/settings/S.java",
+      "uses": [
+        "StateCollector.java:590"
+      ],
+      "parameter_types": [],
+      "compiler_generated_enum": false,
+      "arity": 0,
+      "source_candidates": [
+        {
+          "line": 32,
+          "source_sha256": "c24e2c50586d8d33ff34f4d6fdff329449cc57382cecadd5f9c776bc14333a96",
+          "parameter_types": [],
+          "has_javadoc": false
+        }
+      ],
+      "source_match": "name_arity_and_simple_parameter_types",
+      "documentation_status": "human_review_required; Javadoc presence alone does not establish a stable mod contract"
+    },
+    {
+      "id": "init.settings.S#gore",
+      "owner": "init.settings.S",
+      "name": "gore",
+      "kind": "FIELD",
+      "signature": "gore",
+      "public": true,
+      "source_file": "init/settings/S.java",
+      "uses": [
+        "SettingsObservation.java:28"
+      ],
+      "parameter_types": [],
+      "compiler_generated_enum": false,
+      "arity": -1,
+      "source_candidates": [
+        {
+          "line": 47,
+          "source_sha256": "c24e2c50586d8d33ff34f4d6fdff329449cc57382cecadd5f9c776bc14333a96",
+          "parameter_types": [],
+          "has_javadoc": false
+        }
+      ],
+      "source_match": "name_arity_and_simple_parameter_types",
+      "documentation_status": "human_review_required; Javadoc presence alone does not establish a stable mod contract"
+    },
+    {
+      "id": "init.settings.S#graphics",
+      "owner": "init.settings.S",
+      "name": "graphics",
+      "kind": "FIELD",
+      "signature": "graphics",
+      "public": true,
+      "source_file": "init/settings/S.java",
+      "uses": [
+        "SettingsObservation.java:28"
+      ],
+      "parameter_types": [],
+      "compiler_generated_enum": false,
+      "arity": -1,
+      "source_candidates": [
+        {
+          "line": 46,
+          "source_sha256": "c24e2c50586d8d33ff34f4d6fdff329449cc57382cecadd5f9c776bc14333a96",
+          "parameter_types": [],
+          "has_javadoc": false
+        }
+      ],
+      "source_match": "name_arity_and_simple_parameter_types",
+      "documentation_status": "human_review_required; Javadoc presence alone does not establish a stable mod contract"
+    },
+    {
+      "id": "init.settings.S#lightCycle",
+      "owner": "init.settings.S",
+      "name": "lightCycle",
+      "kind": "FIELD",
+      "signature": "lightCycle",
+      "public": true,
+      "source_file": "init/settings/S.java",
+      "uses": [
+        "SettingsObservation.java:29"
+      ],
+      "parameter_types": [],
+      "compiler_generated_enum": false,
+      "arity": -1,
+      "source_candidates": [
+        {
+          "line": 58,
+          "source_sha256": "c24e2c50586d8d33ff34f4d6fdff329449cc57382cecadd5f9c776bc14333a96",
+          "parameter_types": [],
+          "has_javadoc": false
+        }
+      ],
+      "source_match": "name_arity_and_simple_parameter_types",
+      "documentation_status": "human_review_required; Javadoc presence alone does not establish a stable mod contract"
+    },
+    {
+      "id": "init.settings.S#muteUnfocused",
+      "owner": "init.settings.S",
+      "name": "muteUnfocused",
+      "kind": "FIELD",
+      "signature": "muteUnfocused",
+      "public": true,
+      "source_file": "init/settings/S.java",
+      "uses": [
+        "SettingsObservation.java:28"
+      ],
+      "parameter_types": [],
+      "compiler_generated_enum": false,
+      "arity": -1,
+      "source_candidates": [
+        {
+          "line": 53,
+          "source_sha256": "c24e2c50586d8d33ff34f4d6fdff329449cc57382cecadd5f9c776bc14333a96",
+          "parameter_types": [],
+          "has_javadoc": false
+        }
+      ],
+      "source_match": "name_arity_and_simple_parameter_types",
+      "documentation_status": "human_review_required; Javadoc presence alone does not establish a stable mod contract"
+    },
+    {
+      "id": "init.settings.S#particles",
+      "owner": "init.settings.S",
+      "name": "particles",
+      "kind": "FIELD",
+      "signature": "particles",
+      "public": true,
+      "source_file": "init/settings/S.java",
+      "uses": [
+        "SettingsObservation.java:28"
+      ],
+      "parameter_types": [],
+      "compiler_generated_enum": false,
+      "arity": -1,
+      "source_candidates": [
+        {
+          "line": 45,
+          "source_sha256": "c24e2c50586d8d33ff34f4d6fdff329449cc57382cecadd5f9c776bc14333a96",
+          "parameter_types": [],
+          "has_javadoc": false
+        }
+      ],
+      "source_match": "name_arity_and_simple_parameter_types",
+      "documentation_status": "human_review_required; Javadoc presence alone does not establish a stable mod contract"
+    },
+    {
+      "id": "init.settings.S#scroll",
+      "owner": "init.settings.S",
+      "name": "scroll",
+      "kind": "FIELD",
+      "signature": "scroll",
+      "public": true,
+      "source_file": "init/settings/S.java",
+      "uses": [
+        "SettingsObservation.java:29"
+      ],
+      "parameter_types": [],
+      "compiler_generated_enum": false,
+      "arity": -1,
+      "source_candidates": [
+        {
+          "line": 57,
+          "source_sha256": "c24e2c50586d8d33ff34f4d6fdff329449cc57382cecadd5f9c776bc14333a96",
+          "parameter_types": [],
+          "has_javadoc": false
+        }
+      ],
+      "source_match": "name_arity_and_simple_parameter_types",
+      "documentation_status": "human_review_required; Javadoc presence alone does not establish a stable mod contract"
+    },
+    {
+      "id": "init.settings.S#shadows",
+      "owner": "init.settings.S",
+      "name": "shadows",
+      "kind": "FIELD",
+      "signature": "shadows",
+      "public": true,
+      "source_file": "init/settings/S.java",
+      "uses": [
+        "SettingsObservation.java:28"
+      ],
+      "parameter_types": [],
+      "compiler_generated_enum": false,
+      "arity": -1,
+      "source_candidates": [
+        {
+          "line": 44,
+          "source_sha256": "c24e2c50586d8d33ff34f4d6fdff329449cc57382cecadd5f9c776bc14333a96",
+          "parameter_types": [],
+          "has_javadoc": false
+        }
+      ],
+      "source_match": "name_arity_and_simple_parameter_types",
+      "documentation_status": "human_review_required; Javadoc presence alone does not establish a stable mod contract"
+    },
+    {
+      "id": "init.settings.S#uilightCycle",
+      "owner": "init.settings.S",
+      "name": "uilightCycle",
+      "kind": "FIELD",
+      "signature": "uilightCycle",
+      "public": true,
+      "source_file": "init/settings/S.java",
+      "uses": [
+        "SettingsObservation.java:29"
+      ],
+      "parameter_types": [],
+      "compiler_generated_enum": false,
+      "arity": -1,
+      "source_candidates": [
+        {
+          "line": 59,
+          "source_sha256": "c24e2c50586d8d33ff34f4d6fdff329449cc57382cecadd5f9c776bc14333a96",
+          "parameter_types": [],
+          "has_javadoc": false
+        }
+      ],
+      "source_match": "name_arity_and_simple_parameter_types",
+      "documentation_status": "human_review_required; Javadoc presence alone does not establish a stable mod contract"
+    },
+    {
+      "id": "init.settings.S#volumeAmbience",
+      "owner": "init.settings.S",
+      "name": "volumeAmbience",
+      "kind": "FIELD",
+      "signature": "volumeAmbience",
+      "public": true,
+      "source_file": "init/settings/S.java",
+      "uses": [
+        "SettingsObservation.java:27"
+      ],
+      "parameter_types": [],
+      "compiler_generated_enum": false,
+      "arity": -1,
+      "source_candidates": [
+        {
+          "line": 51,
+          "source_sha256": "c24e2c50586d8d33ff34f4d6fdff329449cc57382cecadd5f9c776bc14333a96",
+          "parameter_types": [],
+          "has_javadoc": false
+        }
+      ],
+      "source_match": "name_arity_and_simple_parameter_types",
+      "documentation_status": "human_review_required; Javadoc presence alone does not establish a stable mod contract"
+    },
+    {
+      "id": "init.settings.S#volumeMaster",
+      "owner": "init.settings.S",
+      "name": "volumeMaster",
+      "kind": "FIELD",
+      "signature": "volumeMaster",
+      "public": true,
+      "source_file": "init/settings/S.java",
+      "uses": [
+        "SettingsObservation.java:27"
+      ],
+      "parameter_types": [],
+      "compiler_generated_enum": false,
+      "arity": -1,
+      "source_candidates": [
+        {
+          "line": 48,
+          "source_sha256": "c24e2c50586d8d33ff34f4d6fdff329449cc57382cecadd5f9c776bc14333a96",
+          "parameter_types": [],
+          "has_javadoc": false
+        }
+      ],
+      "source_match": "name_arity_and_simple_parameter_types",
+      "documentation_status": "human_review_required; Javadoc presence alone does not establish a stable mod contract"
+    },
+    {
+      "id": "init.settings.S#volumeMusic",
+      "owner": "init.settings.S",
+      "name": "volumeMusic",
+      "kind": "FIELD",
+      "signature": "volumeMusic",
+      "public": true,
+      "source_file": "init/settings/S.java",
+      "uses": [
+        "SettingsObservation.java:27"
+      ],
+      "parameter_types": [],
+      "compiler_generated_enum": false,
+      "arity": -1,
+      "source_candidates": [
+        {
+          "line": 50,
+          "source_sha256": "c24e2c50586d8d33ff34f4d6fdff329449cc57382cecadd5f9c776bc14333a96",
+          "parameter_types": [],
+          "has_javadoc": false
+        }
+      ],
+      "source_match": "name_arity_and_simple_parameter_types",
+      "documentation_status": "human_review_required; Javadoc presence alone does not establish a stable mod contract"
+    },
+    {
+      "id": "init.settings.S#volumeSound",
+      "owner": "init.settings.S",
+      "name": "volumeSound",
+      "kind": "FIELD",
+      "signature": "volumeSound",
+      "public": true,
+      "source_file": "init/settings/S.java",
+      "uses": [
+        "SettingsObservation.java:27"
+      ],
+      "parameter_types": [],
+      "compiler_generated_enum": false,
+      "arity": -1,
+      "source_candidates": [
+        {
+          "line": 49,
+          "source_sha256": "c24e2c50586d8d33ff34f4d6fdff329449cc57382cecadd5f9c776bc14333a96",
+          "parameter_types": [],
+          "has_javadoc": false
+        }
+      ],
+      "source_match": "name_arity_and_simple_parameter_types",
+      "documentation_status": "human_review_required; Javadoc presence alone does not establish a stable mod contract"
+    },
+    {
+      "id": "init.settings.S.Setting#get()",
+      "owner": "init.settings.S.Setting",
+      "name": "get",
+      "kind": "METHOD",
+      "signature": "get()",
+      "public": true,
+      "source_file": "init/settings/S.java",
+      "uses": [
+        "SettingsObservation.java:32"
+      ],
+      "parameter_types": [],
+      "compiler_generated_enum": false,
+      "arity": 0,
+      "source_candidates": [
+        {
+          "line": 239,
+          "source_sha256": "c24e2c50586d8d33ff34f4d6fdff329449cc57382cecadd5f9c776bc14333a96",
+          "parameter_types": [],
+          "has_javadoc": false
+        }
+      ],
+      "source_match": "name_arity_and_simple_parameter_types",
+      "documentation_status": "human_review_required; Javadoc presence alone does not establish a stable mod contract"
+    },
+    {
+      "id": "init.settings.S.Setting#min()",
+      "owner": "init.settings.S.Setting",
+      "name": "min",
+      "kind": "METHOD",
+      "signature": "min()",
+      "public": true,
+      "source_file": "init/settings/S.java",
+      "uses": [
+        "SettingsObservation.java:32"
+      ],
+      "parameter_types": [],
+      "compiler_generated_enum": false,
+      "arity": 0,
+      "source_candidates": [
+        {
+          "line": 244,
+          "source_sha256": "c24e2c50586d8d33ff34f4d6fdff329449cc57382cecadd5f9c776bc14333a96",
           "parameter_types": [],
           "has_javadoc": false
         }
@@ -2537,8 +3013,8 @@
         "StateCollector.java:102",
         "StateCollector.java:280",
         "StateCollector.java:457",
-        "StateCollector.java:607",
-        "StateCollector.java:609"
+        "StateCollector.java:610",
+        "StateCollector.java:612"
       ],
       "parameter_types": [],
       "compiler_generated_enum": false,
@@ -2565,7 +3041,7 @@
       "uses": [
         "StateCollector.java:269",
         "StateCollector.java:456",
-        "StateCollector.java:604"
+        "StateCollector.java:607"
       ],
       "parameter_types": [],
       "compiler_generated_enum": false,
@@ -3258,7 +3734,7 @@
       "public": true,
       "source_file": "settlement/main/SETT.java",
       "uses": [
-        "StateCollector.java:588",
+        "StateCollector.java:591",
         "TileReadRequest.java:68",
         "UiContextCollector.java:98"
       ],
@@ -3285,7 +3761,7 @@
       "public": true,
       "source_file": "settlement/main/SETT.java",
       "uses": [
-        "StateCollector.java:588",
+        "StateCollector.java:591",
         "TileReadRequest.java:68",
         "UiContextCollector.java:98"
       ],
@@ -3376,7 +3852,7 @@
         "StateCollector.java:240",
         "StateCollector.java:265",
         "StateCollector.java:394",
-        "StateCollector.java:646",
+        "StateCollector.java:649",
         "StockpileReadRequest.java:82",
         "TileReadRequest.java:67",
         "UiContextCollector.java:33",
@@ -5534,7 +6010,7 @@
       "public": true,
       "source_file": "settlement/stats/STATS.java",
       "uses": [
-        "StateCollector.java:599"
+        "StateCollector.java:602"
       ],
       "parameter_types": [],
       "compiler_generated_enum": false,
@@ -5846,8 +6322,8 @@
       "source_file": "settlement/stats/stat/SETT_STATISTICS.java",
       "uses": [
         "StateCollector.java:457",
-        "StateCollector.java:606",
-        "StateCollector.java:607"
+        "StateCollector.java:609",
+        "StateCollector.java:610"
       ],
       "parameter_types": [
         "init.type.HCLASS"
@@ -5876,7 +6352,7 @@
       "public": true,
       "source_file": "settlement/stats/stat/SETT_STATISTICS.java",
       "uses": [
-        "StateCollector.java:612"
+        "StateCollector.java:615"
       ],
       "parameter_types": [],
       "compiler_generated_enum": false,
@@ -5987,7 +6463,7 @@
       "source_file": "settlement/stats/stat/STAT.java",
       "uses": [
         "StateCollector.java:42",
-        "StateCollector.java:611"
+        "StateCollector.java:614"
       ],
       "parameter_types": [],
       "compiler_generated_enum": false,
@@ -6014,7 +6490,7 @@
       "uses": [
         "StateCollector.java:42",
         "StateCollector.java:55",
-        "StateCollector.java:611"
+        "StateCollector.java:614"
       ],
       "parameter_types": [],
       "compiler_generated_enum": false,
@@ -6039,7 +6515,7 @@
       "public": true,
       "source_file": "settlement/stats/stat/StatCollection.java",
       "uses": [
-        "StateCollector.java:602"
+        "StateCollector.java:605"
       ],
       "parameter_types": [],
       "compiler_generated_enum": false,
@@ -6064,8 +6540,8 @@
       "public": true,
       "source_file": "settlement/stats/stat/StatCollection.java",
       "uses": [
-        "StateCollector.java:600",
-        "StateCollector.java:611"
+        "StateCollector.java:603",
+        "StateCollector.java:614"
       ],
       "parameter_types": [],
       "compiler_generated_enum": false,
@@ -8493,7 +8969,8 @@
       "public": true,
       "source_file": "util/data/INT.java",
       "uses": [
-        "ChatPanel.java:222"
+        "ChatPanel.java:222",
+        "SettingsObservation.java:32"
       ],
       "parameter_types": [],
       "compiler_generated_enum": false,
@@ -8973,7 +9450,7 @@
         "StateCollector.java:462",
         "StateCollector.java:50",
         "StateCollector.java:523",
-        "StateCollector.java:611"
+        "StateCollector.java:614"
       ],
       "parameter_types": [],
       "compiler_generated_enum": false,
@@ -9000,7 +9477,7 @@
       "uses": [
         "StateCollector.java:457",
         "StateCollector.java:458",
-        "StateCollector.java:607"
+        "StateCollector.java:610"
       ],
       "parameter_types": [
         "T"
@@ -9029,7 +9506,7 @@
       "public": true,
       "source_file": "util/statistics/HISTORY_INT.java",
       "uses": [
-        "StateCollector.java:606"
+        "StateCollector.java:609"
       ],
       "parameter_types": [
         "T"
@@ -10805,7 +11282,7 @@
         "StateCollector.java:171",
         "StateCollector.java:265",
         "StateCollector.java:296",
-        "StateCollector.java:649",
+        "StateCollector.java:652",
         "StockpileReadRequest.java:82",
         "UiContextCollector.java:32",
         "UiContextCollector.java:42",
@@ -10945,7 +11422,7 @@
         "StateCollector.java:171",
         "StateCollector.java:265",
         "StateCollector.java:296",
-        "StateCollector.java:649",
+        "StateCollector.java:652",
         "StockpileReadRequest.java:82",
         "UiContextCollector.java:35",
         "UiContextCollector.java:42",

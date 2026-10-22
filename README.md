@@ -28,6 +28,7 @@ It fetches remote branches/tags and reports remote changes, overlapping unpublis
 
 ## What is implemented
 
+- [Configured game settings](SETTINGS.md): sixteen fixed UI-setting steps with explicit quantization/range/failure limits; these do not establish physical audio/focus/rendering or autosave timing.
 - Eighteen partial domains spanning population, resources, production, employment, services, housing, health, law, happiness, research, trade, diplomacy, military, world, map, entities, events and settings. [Home records](HOUSING.md) expose fixed ordinary/noble room records, recorded rosters and weighted cohort ledgers, with same-snapshot resident/home joins; these are not physical presence or effective vacancy.
 - Discoverable fields/provenance and bounded filters, projections, joins, grouping, arithmetic, aggregates, sorting and pagination. Query batches share one cached observation. [Collection diagnostics](COLLECTION_DIAGNOSTICS.md) preserve reviewed scan/error/truncation limits in selective source metadata; [housing records and recorded relationships](HOUSING.md) retain separate room/roster/relation bounds.
 - On-demand person/stat/relationship reads beyond the exported prefix, recorded-workplace filtering and retained entity captures for consistent bounded paging. Separate live cursor pages remain different observations.

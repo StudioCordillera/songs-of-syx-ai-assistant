@@ -2,6 +2,8 @@
 
 Current reference milestone: [BLUEPRINTS.md](BLUEPRINTS.md) / [paired release evidence](BLUEPRINT_RELEASE_VALIDATION.json) promote the two fixed original-reference tools, self-contained authored data and immutable citations. Earlier developer-only blueprint checkpoints below retain historical scopes. Richer reviewed references and actual UI/state/lifecycle/copilot gaps remain open.
 
+The configured-settings production checkpoint adds sixteen source-verified read-only UI preferences, discoverable ranges/failure metadata and paired native/Pro release evidence; see [SETTINGS.md](SETTINGS.md). Quantized audio steps are not actual mute or device gain. The separate panel redesign remains unshipped.
+
 ## Current focus
 
 Every new/resumed run first fetches and compares collaborator changes using dev/collaboration_status.py and AGENTS.md. Reconcile overlapping unpublished work by comparing correctness/evidence and retaining or combining the stronger implementation. CONTRIBUTING.md documents the workflow; WORK_STATUS.md is the concise handoff.
@@ -24,7 +26,7 @@ The new copilot track targets typed public in-process gameplay commands across s
 
 Goal: let an assistant discover available variables and request a complex, bounded selection quickly, without receiving the entire state on each question.
 
-Implemented: 18 partial typed domains; snapshot filters, projections, joins, arithmetic and aggregates; on-demand per-warehouse raw bookkeeping with explicit room/resource selections and warehouse-slot discovery; on-demand person/stat reads with recorded-workplace filtering; retained entity captures for stable paging; finite terrain/floor/room/mineral/path/stored-moisture reads plus small retained tile selections; stored producer-room degradation; bounded regional resource accruals/configured schedules and direct active-region/resource matrix reads independent of the cached prefix, plus complete bounded retained regional selections from one callback (10,000 cells/2,000 matches/2 MiB). Results identify their observation, session, coverage and scope. The compiler audit currently inventories 427 public production member references. The offline public-member catalog is a discovery backlog, not a count of supported variables.
+Implemented: 18 partial typed domains; snapshot filters, projections, joins, arithmetic and aggregates; on-demand per-warehouse raw bookkeeping with explicit room/resource selections and warehouse-slot discovery; on-demand person/stat reads with recorded-workplace filtering; retained entity captures for stable paging; finite terrain/floor/room/mineral/path/stored-moisture reads plus small retained tile selections; stored producer-room degradation; bounded regional resource accruals/configured schedules and direct active-region/resource matrix reads independent of the cached prefix, plus complete bounded retained regional selections from one callback (10,000 cells/2,000 matches/2 MiB). Results identify their observation, session, coverage and scope. The compiler audit currently inventories 446 public production member references. The offline public-member catalog is a discovery backlog, not a count of supported variables.
 
 Next work:
 
