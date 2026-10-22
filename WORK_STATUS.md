@@ -2,6 +2,14 @@
 
 Use `python3 dev/collaboration_status.py` for actual remote/local state at every run; this file is a handoff, not a live branch/working-tree assertion. Read AGENTS.md and reconcile newer collaborator work before editing.
 
+## Durable observed uncertainty — developer-only
+
+[CHAT_DURABLE_RECOVERY_CANDIDATE.md](CHAT_DURABLE_RECOVERY_CANDIDATE.md) / [evidence](CHAT_DURABLE_RECOVERY_VALIDATION.json) add an isolated subclass that transactionally persists at most 100 already-observed unknown-Send notices. A fresh coordinator restores the warning without replay or a fabricated acknowledgement; eviction/order/deletion/later-turn clearing survive restart. Invalid records refuse and failed replacement restores the old database/memory map. No question/provider payload/credential or delivery/billing truth is stored.
+
+The shared parent now compares turn identity: completing an older turn no longer resolves a different unknown Send. Fourteen new offline cases include three owned processes and one post-commit SIGKILL; a new process restores IPC2 uncertainty, authored later state clears it, and a third verifies clearing. A fresh eleven-phase native run regresses the shared parent only; the durable subclass is not native-integrated. Exact sources, 748 passing offline tests and unchanged bundles are recorded. This is not paid/entrypoint/transport/all-crash/power-loss/display or player acceptance. The prior index commit's CI succeeded. One existing Claude process remains not established idle; no overlapping invocation or quota/model claim.
+
+Next: bounded peer critique, durable native/helper transport-failure presentation, startup index/migration bounds, target/display integration and paired actual-Pro/core/distribution gates. Current production and tested downloads remain unchanged; unknown/oversized replies remain unread.
+
 ## Indexed recovery notice lookup — developer-only
 
 [CHAT_RECOVERY_NOTICE_CANDIDATE.md](CHAT_RECOVERY_NOTICE_CANDIDATE.md#indexed-latest-turn-follow-up--developer-only) / [new evidence](CHAT_RECOVERY_INDEX_VALIDATION.json) remove repeated unrelated-history scans from the candidate latest-turn lookup with an explicit chat-first index. Startup validates the complete expected index shape and refuses conflicting definitions without replacing them. Fields/events/status semantics/history version and production source remain unchanged. Index construction still scans existing turns and needs startup-cost review before promotion.

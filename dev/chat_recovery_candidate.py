@@ -67,7 +67,11 @@ class RecoveryCoordinator(Coordinator):
             return ''
         latest = self.latest_turn(cid)
         if cid in self.unknown_sends:
-            if latest == self.unknown_sends[cid]:
+            previous = self.unknown_sends[cid]
+            # Finishing an older turn does not resolve a different admitted Send.
+            # Compare identity, rather than clearing uncertainty on a status edit.
+            if ((latest is None and previous is None) or
+                    (latest is not None and previous is not None and latest[0] == previous[0])):
                 return UNKNOWN
             del self.unknown_sends[cid]  # A later durable turn supersedes this warning.
         return INTERRUPTED if latest is not None and latest[1] == 'interrupted' else ''
