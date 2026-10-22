@@ -2,6 +2,14 @@
 
 Use `python3 dev/collaboration_status.py` for actual remote/local state at every run; this file is a handoff, not a live branch/working-tree assertion. Read AGENTS.md and reconcile newer collaborator work before editing.
 
+## Public configured-settings API candidate — developer-only
+
+[SETTINGS_OBSERVATION_CANDIDATE.md](SETTINGS_OBSERVATION_CANDIDATE.md) / [boundary review](SETTINGS_BOUNDARY_REVIEW.json) / [evidence](SETTINGS_CANDIDATE_VALIDATION.json) add sixteen fixed public UI settings readers on an already initialized S object. Ordinary/quantized getter bodies, declarations, public external compiler probes and rejected protected backing access are pinned. Normal Menu.start and the copied-game bootstrap initialize S before CORE creation; this is source-verified bootstrap ordering, not an official script contract or live menu callback.
+
+Three copied-game city/world/return phases compare 144 scalar getters. A separate retained candidate snapshot passes real selective MCP rows plus completeness/failure metadata and field discovery with original session/UI context. Null/range/individual/all-failed logic has detached Java checks; quantized zero audio steps explicitly do not prove zero gain or OS mute. Local Opus 5.5/high completed a bounded source critique; typed failure and all-failed-unavailable refinements are accepted. The initial fixture-package compile failure occurred before game startup and is excluded. Exact sources, 752 passing offline tests, active-view assertions, restoration and unchanged-bundle checks are recorded.
+
+No production getter/tool or player bundle changes. Actual audio/focus/rendering, native getter fault injection, complete settings/menu/lifecycle coverage and production/Pro gates remain open. Next: review initialized-state integration, extend useful state/UI mappings and retain the separate lifecycle/target/display backlog. Prior native durable-notice CI passed. Goal remains active; this is concrete core API progress, not completion.
+
 ## Native durable uncertainty and completed Claude critique — developer-only
 
 [NATIVE_CHAT_DURABLE_NOTICES.md](NATIVE_CHAT_DURABLE_NOTICES.md) / [evidence](NATIVE_CHAT_DURABLE_NOTICES_VALIDATION.json) integrate the durable subclass into the fixed own-panel workflow. Thirteen phases include a new-frame restored warning after graceful coordinator/SQLite reopen without uncertain-Send replay, then an explicitly authored later turn clears it. Native chat/composer/draft/style/geometry and the two-provider/four-round limit remain. The later completed row is authored, not another inferred answer. A fresh plain eleven-phase case separately regresses shared code.

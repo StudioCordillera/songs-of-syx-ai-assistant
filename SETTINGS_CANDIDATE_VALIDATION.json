@@ -1,0 +1,127 @@
+{
+  "passed": true,
+  "checked_at": "2026-10-22T21:13:38.699805+00:00",
+  "base_commit": "1c7d4cf9971a01304e9c9e15c3c4f3be82ed10bf",
+  "scope": "Developer fixed configured UI settings observation; source/binary/compiler review, three copied-game getter-parity phases and selective MCP against a retained candidate-augmented native snapshot. Not production integration or full settings/menu/lifecycle coverage.",
+  "native_candidate": {
+    "passed": true,
+    "evaluated_at": "2026-10-22T21:13:00.096836+00:00",
+    "scope": "Developer fixed configured UI setting steps in a copied game: direct getter parity in city/world/return, then selective real MCP against a retained candidate-augmented native observation.",
+    "native_checks": {
+      "passed": true,
+      "checks": [
+        {
+          "phase": "city",
+          "active_view": "settlement",
+          "getter_comparisons": 48,
+          "passed": true
+        },
+        {
+          "phase": "world",
+          "active_view": "world",
+          "getter_comparisons": 48,
+          "passed": true
+        },
+        {
+          "phase": "city_return",
+          "active_view": "settlement",
+          "getter_comparisons": 48,
+          "passed": true
+        }
+      ],
+      "fixed_settings": 16,
+      "explicit_settings_mutations": 0,
+      "lazy_initialization_by_reader": false
+    },
+    "candidate_packaged_in_player": false,
+    "mcp_calls": 2,
+    "selected_rows": 16,
+    "same_observation_context": true,
+    "external_inference_calls": 0,
+    "source_sha256": {
+      "dev/run_settings_candidate.py": "c1d6580fc88b5c98ecd25854d6f490cfb710c091b247f2d75817d910512d7d8c",
+      "dev/review_settings_boundary.py": "b7a1d02f320711391b2cbb595c94658734f5a02f2733d957f3df3bb05abdad50",
+      "dev/candidates/settings/StockpileScenario.java": "efdf11dd89e392be04fb74acc5f835c77e2620b02a03af8f51a00b54755505fd",
+      "dev/candidates/settings/syx/assistant/candidate/SettingsObservation.java": "b31b12ec6e96592a0ebb5b334c59600f61f64e74421465431d485c9e7fa81a64",
+      "dev/run_stockpile_probe.py": "cbf1f941b4ce2f2240e4d4a321bb79c1faf5985adb4b3828d42cd5157508d0fa",
+      "mod/tests/LiveSmoke.java": "bd6d755d51ed03881ed4074b99a9be489acb8fd46ddb0d0c3a9f8a9a0d8aa211"
+    },
+    "static_review_sha256": "bbf06fa170c3517fe0414a1805a45f75a7b3aff0cbf6dbe61a8bf3ee467a6dab",
+    "private_snapshot_sha256": "2d0e78a8f3ade4a10fcc2a1918afeec0a6dfc0080145d10754cc3505b2c1dd38",
+    "mod_jar_sha256": "f72b512d990d8ebfc8b31bbf7470262528e35416dbfa4d9ad1b68d29854fc561",
+    "compiled_candidate_sha256_collected_before_native_exit": {
+      "syx/assistant/candidate/SettingsObservation$UnexpectedRange.class": "13f10cd2f41ac878009efc0db5ac0dea76e525f72cebffc77eafb0a216cd97cb",
+      "syx/assistant/candidate/SettingsObservation.class": "a041c906c1d333c0928280193fdea12bc92fa6893288c0f811dab1e61d728aad"
+    },
+    "limits": [
+      "The production snapshot/MCP/player are unchanged. Candidate settings are added only to a separate retained fixture snapshot; no new tool or game setter.",
+      "S was initialized by LiveSmoke before CORE creation. This does not establish a safe public first-initialization route for an observer or main-menu lifecycle.",
+      "Reported values are configured UI steps. Quantized audio zero does not prove zero underlying gain, physical silence or OS mute.",
+      "Three fixed own view phases, not all menus/scenes, focus state, actual audio/rendering, autosave ETA, native faults or worst-case performance.",
+      "Test-only speed/view changes and engine background writes stay in the disposable copied profile; no explicit save requested."
+    ],
+    "explicit_fixture_clean_completion": true,
+    "game_exit_code": 0,
+    "native_failure_markers_absent": true,
+    "game_jar_sha256": "fe0137c05408e5ee9e31f06fc44fe37a5d4372d9c985b280f0852d1347c0224b",
+    "source_archive_sha256": "a3fc2aa9f4be31aec0616a5030a656ac49a6011343b7e91395c7bac0b9dfb0a5",
+    "static_boundary_review_sha256": "bbf06fa170c3517fe0414a1805a45f75a7b3aff0cbf6dbe61a8bf3ee467a6dab",
+    "copied_profile_mod_restored": true,
+    "copied_save_unchanged": true
+  },
+  "private_native_report_sha256": "5100430fb1b35fe78bb460b52141d25d68e5569911d159532ead72b71079200e",
+  "boundary_review_sha256": "bbf06fa170c3517fe0414a1805a45f75a7b3aff0cbf6dbe61a8bf3ee467a6dab",
+  "source_sha256": {
+    "dev/run_settings_candidate.py": "c1d6580fc88b5c98ecd25854d6f490cfb710c091b247f2d75817d910512d7d8c",
+    "dev/review_settings_boundary.py": "b7a1d02f320711391b2cbb595c94658734f5a02f2733d957f3df3bb05abdad50",
+    "dev/candidates/settings/StockpileScenario.java": "efdf11dd89e392be04fb74acc5f835c77e2620b02a03af8f51a00b54755505fd",
+    "dev/candidates/settings/syx/assistant/candidate/SettingsObservation.java": "b31b12ec6e96592a0ebb5b334c59600f61f64e74421465431d485c9e7fa81a64",
+    "dev/run_stockpile_probe.py": "cbf1f941b4ce2f2240e4d4a321bb79c1faf5985adb4b3828d42cd5157508d0fa",
+    "mod/tests/LiveSmoke.java": "bd6d755d51ed03881ed4074b99a9be489acb8fd46ddb0d0c3a9f8a9a0d8aa211",
+    "test_settings_candidate_java.py": "808fcab81c57832a4cd8fea9cbf70a338e2adc916ad0fb5f99603bee1b248305"
+  },
+  "offline": {
+    "passed": true,
+    "tests_passed": 752,
+    "detached_java_probe_tests": 1,
+    "log_sha256": "de655b16a22b9965230b374b5f25699bc7351b4ca9d0685d0090522be2506189",
+    "scope": "Detached fixed bounds/failure/null/all-failed logic with own stubs lacking a lazy accessor; licensed/native behavior is separate."
+  },
+  "public_field_routes": 16,
+  "native_scalar_comparisons": 144,
+  "normal_menu_bootstrap_source_verified": true,
+  "live_main_menu_callback_established": false,
+  "documented_script_settings_contract": false,
+  "candidate_packaged_in_player": false,
+  "production_public_reference_count_unchanged": 427,
+  "external_inference_calls": 0,
+  "peer_review": {
+    "model": "claude-opus-5-5",
+    "effort": "high",
+    "tools": [],
+    "completed": true,
+    "scope": "One-file source critique before accepted diagnostic/all-failed refinements; source hashes/outcome in CLAUDE_UX_COLLABORATION.json."
+  },
+  "unchanged_player": {
+    "releases/latest-user-test.zip": "dae445737746821bd54aa24ef32f2c90562b1156f5707f74c0cb0f80fc5dfc16",
+    "releases/previous-user-test.zip": "c259a161a0856867f25bca8851453641ecca342e405af3a2eec979b823c343b9"
+  },
+  "limits": [
+    "Configured UI steps are not underlying raw percentages, physical audio/OS mute/focus/effective rendering or autosave ETA.",
+    "No settings setters, protected raw reads or lazy initialization in the reader.",
+    "Fixed 16 source-pinned preferences, not full launcher/game settings; production remains clock/speed only.",
+    "No native getter fault injection, uninitialized-object/native startup experiment, general call-graph/cost or cross-version acceptance.",
+    "Full variables/menu/lifecycle scope, initialized production integration and paired Pro/core/distribution promotion remain open."
+  ],
+  "native_active_views_verified": [
+    "settlement",
+    "world",
+    "settlement"
+  ],
+  "documentation_check": {
+    "passed": true,
+    "markdown_files": 96,
+    "indexed_artifacts": 256
+  },
+  "player_release_check_passed": true
+}

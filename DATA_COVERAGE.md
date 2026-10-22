@@ -87,3 +87,7 @@ Cached viewport geometry is additionally available in same-observation UI contex
 [Weather](WEATHER.md) is completed instantiated-city bookkeeping under map /weather, including underlying city data in other views. Weather data/definitions share the snapshot/context; battle/setup or failures are unavailable/null. Legitimate zero remains zero. Game factors are not physical units, tile moisture, regional weather, crop yields or forecasts; cached ripeness flags may use the previous factor during engine update.
 
 [Selected housed-worker example](selected-resident-query-example.json) joins the underlying selected subject to recorded home links/records and a nullable cached employment record in the same observation. [Scope and native checks](SELECTED_RESIDENT_QUERY.md) distinguish its required selection/workplace preconditions and partial-source zero/null outcomes from a homeless census or current physical commute. It adds no game getter or variable mapping.
+
+## Developer configured-settings candidate
+
+[SETTINGS_OBSERVATION_CANDIDATE.md](SETTINGS_OBSERVATION_CANDIDATE.md) establishes sixteen source-pinned public UI preferences through a separate reader and retained native/MCP fixture. These are configured UI steps, with audio quantization and unavailable/failure limits, not OS mute or physical/effective state. The production settings row above remains clock/speed only until paired promotion.

@@ -1,0 +1,128 @@
+{
+  "passed": true,
+  "reviewed_at": "2026-10-22T21:09:32.441604+00:00",
+  "scope": "Fixed public settings UI getters on an already initialized S object; no game class initialization or engine execution in this review.",
+  "game_jar_sha256": "fe0137c05408e5ee9e31f06fc44fe37a5d4372d9c985b280f0852d1347c0224b",
+  "source_archive_sha256": "a3fc2aa9f4be31aec0616a5030a656ac49a6011343b7e91395c7bac0b9dfb0a5",
+  "documented_script_contract": false,
+  "source_verified_public_fields": [
+    "volumeMaster",
+    "volumeSound",
+    "volumeMusic",
+    "volumeAmbience",
+    "muteUnfocused",
+    "shadows",
+    "particles",
+    "graphics",
+    "gore",
+    "brightness",
+    "autoSaveInterval",
+    "autoSaveFiles",
+    "scroll",
+    "lightCycle",
+    "uilightCycle",
+    "downpour"
+  ],
+  "declaration_lines": {
+    "volumeMaster": 48,
+    "volumeSound": 49,
+    "volumeMusic": 50,
+    "volumeAmbience": 51,
+    "muteUnfocused": 53,
+    "shadows": 44,
+    "particles": 45,
+    "graphics": 46,
+    "gore": 47,
+    "brightness": 54,
+    "autoSaveInterval": 55,
+    "autoSaveFiles": 56,
+    "scroll": 57,
+    "lightCycle": 58,
+    "uilightCycle": 59,
+    "downpour": 60
+  },
+  "selected_source_sha256": {
+    "init/settings/S.java": "c24e2c50586d8d33ff34f4d6fdff329449cc57382cecadd5f9c776bc14333a96",
+    "launcher/LSettings.java": "28142807f0617c3707d158ed83740485662634f1d10f39fd5df4108d8b953476",
+    "util/data/INT.java": "3c4a8bb733a73cd279d17fc15b942a4a7c5d53093d0c921e0e4b493c9f55c4dd",
+    "menu/Menu.java": "70ace2785de8cf11f20e7da87da7d27c4847ec37843c057349a6529a2238ffc2"
+  },
+  "selected_methods": [
+    {
+      "owner": "init.settings.S$Setting",
+      "signature": "public int get();",
+      "normalized_disassembly_sha256": "fb4e43b617fcf9664eb66a399b025d440f6a5d72c7523e117a48b4be79cb5285",
+      "direct_reader_check": true
+    },
+    {
+      "owner": "init.settings.S$Setting",
+      "signature": "public int min();",
+      "normalized_disassembly_sha256": "8fa7c34130dc401aac9f056598969ae4f929e15d7dbe6decb0d17ab1713d9556",
+      "direct_reader_check": true
+    },
+    {
+      "owner": "init.settings.S$SettingPerc",
+      "signature": "public int get();",
+      "normalized_disassembly_sha256": "dc12f31ed51fb6eff839b6fd6c121773bfd6a0fc0f68d47b4e43855eca8dd5b0",
+      "direct_reader_check": true
+    },
+    {
+      "owner": "init.settings.S$SettingPerc",
+      "signature": "public int min();",
+      "normalized_disassembly_sha256": "8fa7c34130dc401aac9f056598969ae4f929e15d7dbe6decb0d17ab1713d9556",
+      "direct_reader_check": true
+    },
+    {
+      "owner": "init.settings.S$SettingPerc",
+      "signature": "public int max();",
+      "normalized_disassembly_sha256": "d98e6df62358282b3e779c9e8f2349613c40c73e65140a87f27012390e8bf944",
+      "direct_reader_check": true
+    },
+    {
+      "owner": "launcher.LSettings$LSettingInt",
+      "signature": "public int get();",
+      "normalized_disassembly_sha256": "7a96504bfb9f00ae43e1c1cc8d377a073f3d91b584f6f38d9e02c28e5a4ca7ed",
+      "direct_reader_check": true
+    },
+    {
+      "owner": "launcher.LSettings$LSettingInt",
+      "signature": "public int max();",
+      "normalized_disassembly_sha256": "2bf8b8ea5b5f50ac01aa8bab9a1646a284b5c2d7f62333be6c463f77ad735041",
+      "direct_reader_check": true
+    }
+  ],
+  "compiler_probes": [
+    {
+      "id": "ConfiguredSettingsRead",
+      "expected_compilation": "success",
+      "matched": true,
+      "diagnostic_category": null,
+      "probe_source_sha256": "8f0264791f853a49c8c4cdc866783d1f1a94509bd681a2463a160d3b31604fc2",
+      "compiler_output_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "id": "ProtectedRawSetting",
+      "expected_compilation": "rejected",
+      "matched": true,
+      "diagnostic_category": "compiler.err.report.access",
+      "probe_source_sha256": "5ff4aeb63611976e4f66e4d6fd6cd85ad24e4be69e3d20555cdbc92e0e8a1db7",
+      "compiler_output_sha256": "d49f9ee4f69478be05936d8e9ee30f88c522401a02f586c84029416daf157faa"
+    }
+  ],
+  "normal_menu_bootstrap_sha256": "e189a4d7611474ba0f0e26f3e3742b8ae99c4810dd928937a99c5aeb3ebce012",
+  "normal_menu_initializes_settings_before_core": true,
+  "lazy_accessor_sha256": "46dec183430117fccca34d5c1fdb8dbfb956c8316c690a10331e54fa6ef32a0b",
+  "lazy_accessor_invoked_by_candidate": false,
+  "conclusions": [
+    "S.get can allocate/initialize/load settings; reader accepts an already initialized S and does not call that accessor.",
+    "Setting.get returns a clamped launcher-backed value; SettingPerc overrides it with a truncated normalized 0..20 UI step. Audio and brightness use this adapter.",
+    "Zero quantized audio steps can conceal a positive underlying launcher percentage; not proof of zero gain or OS/device mute.",
+    "Setters, save, applyRuntimeConfigs, getValue and make are not observer calls. Protected raw backing setting access is rejected by external compilation.",
+    "The copied-game bootstrap calls S.get().make before CORE creation, so its later update callback supplies an existing object. The shipped normal Menu.start also initializes S before CORE creation; this establishes bootstrap ordering, not a live main-menu observation callback."
+  ],
+  "limits": [
+    "Selected methods/source/ranges only, not a complete transitive call graph or full game/launcher settings schema.",
+    "No physical audio, UI visibility, focus state, effective rendering, autosave ETA or native behavior proven by static review."
+  ],
+  "reviewer_source_sha256": "b7a1d02f320711391b2cbb595c94658734f5a02f2733d957f3df3bb05abdad50"
+}
