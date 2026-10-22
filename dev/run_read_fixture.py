@@ -30,6 +30,7 @@ CASES={'weather':('weather','verify_weather.py','weather-validation.json'),
        'stockpile-live':('stockpileLive','verify_live_stockpiles.py','stockpile-live-validation.json'),
        'chat-visibility':('chatVisibility','verify_chat_visibility.py','chat-visibility-validation.json'),
        'chat-background':('chatBackground','verify_chat_background.py','chat-background-validation.json'),
+       'blueprint-chat':('chatBackground','verify_blueprint_coordinator.py','blueprint-coordinator-validation.json'),
        'viewport':('viewport','verify_viewport.py','viewport-validation.json'),
        'ground-moisture':('groundMoisture','verify_ground_moisture.py','ground-moisture-validation.json'),
        'tiles':('tiles','verify_tiles.py','tile-capture-validation.json'),
@@ -132,7 +133,7 @@ def run(args):
             if completion!={'passed':True,'verified_phases':11} or (state/'viewport-fixture-failure.json').exists():
                 raise RuntimeError('Viewport candidate fixture did not confirm clean completion')
             report['explicit_fixture_clean_completion']=True
-        if args.case=='chat-background':
+        if args.case in {'chat-background','blueprint-chat'}:
             completion=json.loads((state/'chat-background-clean-exit.json').read_text())
             if completion!={'passed':True,'verified_phases':3} or (state/'chat-background-fixture-failure.json').exists():
                 raise RuntimeError('Background chat fixture did not confirm clean completion')

@@ -116,3 +116,8 @@ Run `python3 dev/check_documentation.py` before publishing. Update REPOSITORY_MA
 ## Explicit developer target-dispatch Pro check
 
 `dev/run_read_fixture.py --case tiles --env-file .env` with the normal licensed-game fixture arguments explicitly enables two paid Pro target-backed backend workflows. Without `--env-file`, the tiles fixture remains zero-inference; other cases reject this option. The verifier alone reads the ignored private key file; it is never given to game/MCP environments. This developer handoff check does not replace the full paired player/native/release gates. See [scope and bounded timeouts](CHAT_TARGET_DISPATCH.md#explicit-paid-copied-game-follow-up).
+
+
+## Explicit developer blueprint coordinator check
+
+Use `dev/run_read_fixture.py --case blueprint-chat` with the licensed-game `--game-dir`, copied `--save`, compatible `--java` and full `--jdk-home` arguments above. This uses the current source-matched published player JAR and unchanged copied-city background scenario, but substitutes the explicit developer `BlueprintCoordinator`/reference MCP wrapper in the helper. No key or inference is involved. It exercises own-widget file IPC, three fake-provider rounds, original search/get citations, unpaused open/closed progression and reply text on reopening. The runner takes the shared lock, checks clean completion/exit, restores the copied-profile mod and checks the copied save. Private state/history/logs stay under runtime. This is not shipped reference integration or native input/display/paid-provider acceptance. See BLUEPRINT_EXAMPLES_CANDIDATE.md and BLUEPRINT_COORDINATOR_VALIDATION.json.
