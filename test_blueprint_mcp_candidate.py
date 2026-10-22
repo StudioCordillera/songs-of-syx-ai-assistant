@@ -73,9 +73,12 @@ async def check_stdio():
             assert item['example']['source_url'].endswith('/BLUEPRINT_EXAMPLES_CANDIDATE.md')
             assert item['construction_validated'] is item['execution_supported'] is False
             assert item['evidence']['catalog_report_sha256']==load_registry().report_hash
+            assert hits['results'][0]['citation']==item['citation']==load_registry().citation()
+            assert item['citation']['status']=='exact_reviewed_artifacts'
             assert 'state' not in item and 'ui_context' not in item
             other=await call('get_blueprint_example',{'example_id':hits['results'][0]['id'],'game_version':'0.72.0'})
             assert other['compatibility']=='unknown' and other['example']['game_version']==version
+            assert other['citation']==item['citation']
             assert (await call('search_blueprint_examples',{'query':'astronomy','game_version':version}))['results']==[]
             assert 'Unknown original schematic' in await call('get_blueprint_example',{'example_id':'missing','game_version':version},True)
             await call('search_blueprint_examples',{'query':'warehouse','game_version':version,'execute':True},True)

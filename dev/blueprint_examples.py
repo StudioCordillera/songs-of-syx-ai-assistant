@@ -9,6 +9,13 @@ from typing import Annotated, Literal
 from pydantic import BaseModel,ConfigDict,Field
 
 ROOT=Path(__file__).resolve().parent.parent
+# Published original artifacts; the moving main-branch URL is navigation only.
+SOURCE_COMMIT='a2fdebb4a86884502656f4eef684b7ba57f9b67f'
+SOURCE_FILES={
+    'BLUEPRINT_EXAMPLES_CANDIDATE.md':'28ea6dffc79fdfe1fa53b25929d4d3aaac146ad1e31b2837c7fb06a394e83c03',
+    'blueprint-examples-candidate.json':'a4147938348fc8890afc9bd1b254801f50858a6a17bc3936db32820d2abed4a8',
+    'BLUEPRINT_CATALOG_VALIDATION.json':'d763365268f3d9f36212da9e9bab938ebdb90562f35d6a10315afbeaaff11021',
+}
 SmallInt=Annotated[int,Field(ge=0,le=63)]
 Text=Annotated[str,Field(min_length=1,max_length=1000)]
 
@@ -136,6 +143,18 @@ class BlueprintRegistry:
         self.evidence={'catalog_report_sha256':self.report_hash,'game_jar_sha256':report['game_jar_sha256'],
           'source_archive_sha256':report['source_archive_sha256'],'reviewed_at':report['evaluated_at']}
 
+    def citation(self):
+        # Never attach the original immutable citation to changed local artifacts.
+        if (self.corpus_hash!=SOURCE_FILES['blueprint-examples-candidate.json'] or
+                self.report_hash!=SOURCE_FILES['BLUEPRINT_CATALOG_VALIDATION.json']):
+            return {'status':'unverified_modified_artifacts','artifacts':[],
+                    'limit':'Local corpus or catalog report differs from the published reviewed bytes; no immutable citation is asserted.'}
+        return {'status':'exact_reviewed_artifacts','source_commit':SOURCE_COMMIT,
+                'artifacts':[{'path':name,'sha256':digest,
+                    'url':f'https://github.com/StudioCordillera/songs-of-syx-ai-assistant/blob/{SOURCE_COMMIT}/{name}'}
+                    for name,digest in SOURCE_FILES.items()],
+                'limit':'Pinned original explanation/corpus/catalog evidence only; not current installation, construction acceptance, authenticity signature or license grant. The main-branch source_url is navigation only.'}
+
     def search(self,query,game_version,limit=5):
         _version(game_version)
         if not isinstance(query,str) or not 1<=len(query)<=300 or type(limit) is not int or not 1<=limit<=10:raise ValueError('Bounded nonempty search and limit required')
@@ -146,6 +165,7 @@ class BlueprintRegistry:
             if score:ranked.append((score,e))
         ranked.sort(key=lambda p:(-p[0],p[1]['id']))
         return [deepcopy({'id':e['id'],'title':e['title'],'summary':e['summary'],'origin':e['origin'],'source_url':e['source_url'],
+                         'citation':self.citation(),
                          'compatibility':'exact_catalog_version_only' if game_version==e['game_version'] else 'unknown',
                          'geometry_included':False,'construction_validated':False}) for _,e in ranked[:limit]]
 
@@ -154,6 +174,7 @@ class BlueprintRegistry:
         if not isinstance(example_id,str) or example_id not in self.records:raise ValueError('Unknown original schematic')
         e=self.records[example_id]
         return deepcopy({'example':e,'geometry':self.geometry[example_id],'catalog_item':self.item,'evidence':self.evidence,
+          'citation':self.citation(),
           'corpus_sha256':self.corpus_hash,'compatibility':'exact_catalog_version_only' if game_version==e['game_version'] else 'unknown',
           'construction_validated':False,'execution_supported':False,
           'limits':['Original teaching geometry; no optimum, storage capacity, bill of materials, staffing, throughput, actual map/door/roof/pathing or full construction acceptance.',

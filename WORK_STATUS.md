@@ -2,6 +2,12 @@
 
 Use `python3 dev/collaboration_status.py` for actual remote/local state at every run; this file is a handoff, not a live branch/working-tree assertion. Read AGENTS.md and reconcile newer collaborator work before editing.
 
+## Immutable original-example citations — player unchanged
+
+Developer search/get now return immutable published explanation/corpus/catalog artifact URLs and SHA-256 values, alongside a separate moving navigation URL. A local corpus or report change, including whitespace or a rehashed date, loses the original pinned-citation assertion rather than inheriting evidence for different bytes. Unknown game versions retain original source provenance without upgrading compatibility. [Fresh evidence](BLUEPRINT_CITATION_VALIDATION.json) records six new cases, 57 blueprint-pipeline offline cases, all 687 offline tests and actual stdio citation preservation. Three public artifact responses match the original published Git objects and expected hashes.
+
+No paid inference/native run or player promotion was repeated. Earlier registry/protocol/conversation/Pro reports remain exact historical scopes for their earlier registry. Production source and current/previous runnable bundles are unchanged and the release freshness checker passes. No keys, private histories/logs or normal saves are published or altered. Initial remote fetch was aligned; reconcile again before publishing. Next substantive milestone: integrate reviewed reference tools into the actual coordinator/player with packaging, admission, provenance and source-matched release gates, alongside native chat/UI and remaining state/lifecycle gaps. Do not label this developer citation repair a shipped example library or completion.
+
 ## Explicit developer blueprint Pro follow-up — player unchanged
 
 [Pro evidence](BLUEPRINT_PRO_CANDIDATE_VALIDATION.json) now records two completed explicit paid turns through the developer conversation/MCP seam: five successful requested `deepseek-v4-pro` API round trips with 21 tool schemas, three actual reference calls (search/exact get/other-version get), preserved original catalog/grid/no-construction/no-execution evidence, and source URL/original version in both replies. A finite manual review checks these two visible replies against the authored coordinates/geometry and version/uncertainty. Controlled prompts, literal checks and two reviewed replies are not general semantic advice or unscripted retrieval acceptance. Remote model identity is not independently attested by the streaming adapter.

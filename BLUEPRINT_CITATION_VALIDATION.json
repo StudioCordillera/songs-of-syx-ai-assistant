@@ -1,0 +1,81 @@
+{
+  "passed": true,
+  "evaluated_at": "2026-10-22T00:42:17.725481+00:00",
+  "scope": "Developer original-reference immutable citation follow-up. Offline and actual stdio checks only; historical paid/native reports are not refreshed.",
+  "source_sha256": {
+    "dev/blueprint_examples.py": "4b39f5491b3cfb62ef2e6928914e3b69557781908c849c2207aa4bd71325d05f",
+    "test_blueprint_citations.py": "b598f8fd352929e063fbee49a1be3ccb75efe3abb7cef7a222cdb4385024e6fe",
+    "test_blueprint_mcp_candidate.py": "01d43ed8fb500820cfaa8250d7013d3c8f94c539a0aff0dc737d60b68e3f4b0f",
+    "blueprint-examples-candidate.json": "a4147938348fc8890afc9bd1b254801f50858a6a17bc3936db32820d2abed4a8",
+    "BLUEPRINT_CATALOG_VALIDATION.json": "d763365268f3d9f36212da9e9bab938ebdb90562f35d6a10315afbeaaff11021",
+    "dev/blueprint_mcp_candidate.py": "e81cf443014471ab9899887b768567902bfc42d3f83c62b0ea738b788f828519",
+    "dev/blueprint_chat_candidate.py": "0b907e8362f279b23c02598b7a70344402de53ff83ca542baa631ed9f5c70f34"
+  },
+  "citation": {
+    "status": "exact_reviewed_artifacts",
+    "source_commit": "a2fdebb4a86884502656f4eef684b7ba57f9b67f",
+    "artifacts": [
+      {
+        "path": "BLUEPRINT_EXAMPLES_CANDIDATE.md",
+        "sha256": "28ea6dffc79fdfe1fa53b25929d4d3aaac146ad1e31b2837c7fb06a394e83c03",
+        "url": "https://github.com/StudioCordillera/songs-of-syx-ai-assistant/blob/a2fdebb4a86884502656f4eef684b7ba57f9b67f/BLUEPRINT_EXAMPLES_CANDIDATE.md"
+      },
+      {
+        "path": "blueprint-examples-candidate.json",
+        "sha256": "a4147938348fc8890afc9bd1b254801f50858a6a17bc3936db32820d2abed4a8",
+        "url": "https://github.com/StudioCordillera/songs-of-syx-ai-assistant/blob/a2fdebb4a86884502656f4eef684b7ba57f9b67f/blueprint-examples-candidate.json"
+      },
+      {
+        "path": "BLUEPRINT_CATALOG_VALIDATION.json",
+        "sha256": "d763365268f3d9f36212da9e9bab938ebdb90562f35d6a10315afbeaaff11021",
+        "url": "https://github.com/StudioCordillera/songs-of-syx-ai-assistant/blob/a2fdebb4a86884502656f4eef684b7ba57f9b67f/BLUEPRINT_CATALOG_VALIDATION.json"
+      }
+    ],
+    "limit": "Pinned original explanation/corpus/catalog evidence only; not current installation, construction acceptance, authenticity signature or license grant. The main-branch source_url is navigation only."
+  },
+  "public_artifact_check": {
+    "evaluated_at": "2026-10-22T00:41:11.492529+00:00",
+    "commit": "a2fdebb4a86884502656f4eef684b7ba57f9b67f",
+    "checks": [
+      {
+        "path": "BLUEPRINT_EXAMPLES_CANDIDATE.md",
+        "sha256": "28ea6dffc79fdfe1fa53b25929d4d3aaac146ad1e31b2837c7fb06a394e83c03",
+        "remote_bytes_match_published_git_object": true
+      },
+      {
+        "path": "blueprint-examples-candidate.json",
+        "sha256": "a4147938348fc8890afc9bd1b254801f50858a6a17bc3936db32820d2abed4a8",
+        "remote_bytes_match_published_git_object": true
+      },
+      {
+        "path": "BLUEPRINT_CATALOG_VALIDATION.json",
+        "sha256": "d763365268f3d9f36212da9e9bab938ebdb90562f35d6a10315afbeaaff11021",
+        "remote_bytes_match_published_git_object": true
+      }
+    ]
+  },
+  "new_offline_citation_cases": 6,
+  "blueprint_pipeline_offline_cases_passed": 57,
+  "full_offline_tests_passed": 687,
+  "actual_stdio_scope": "Original nineteen production definitions unchanged beside two developer tools; summary/get and other-version get preserve exact citations, strict shapes and UTF-8 bounds. Existing eight reference calls include four expected errors; no snapshot supplied.",
+  "checks": [
+    "Changed corpus text or whitespace and changed/rehashed catalog report retain no pinned citation assertion.",
+    "Unknown requested version preserves original evidence but remains unknown compatibility.",
+    "Citations own returned nested copies; summary discovery still omits geometry.",
+    "Three immutable public responses match published local Git-object bytes and expected SHA-256.",
+    "Current production source-matched player release checker passes; current and previous tested ZIPs unchanged."
+  ],
+  "provider_api_calls": 0,
+  "native_runs": 0,
+  "production_integrated": false,
+  "player_release_promoted": false,
+  "player_zip_sha256": "c259a161a0856867f25bca8851453641ecca342e405af3a2eec979b823c343b9",
+  "previous_zip_sha256": "9480d25ac77bead3550466910d4b205623d1410a1cd452768cecd0f40f7a4d0c",
+  "limits": [
+    "Pinned source files are original project explanation, authored geometry and a finite catalog report, not official game documentation or external community layouts.",
+    "Byte identity is not a signature, current installation/mod attestation, rights grant, tested construction, capacity or optimality proof.",
+    "The moving main-branch source_url remains navigation only; use citation artifact URLs for fixed evidence.",
+    "Historical registry/MCP/chat/Pro reports retain their original source hashes and dates. No paid inference or native/player acceptance is claimed for the changed registry.",
+    "Player/coordinator integration, richer reviewed examples and native UI/action tracks remain open."
+  ]
+}
