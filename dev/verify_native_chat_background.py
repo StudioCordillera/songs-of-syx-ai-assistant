@@ -143,7 +143,7 @@ async def verify(directory):
                         'limits': ['Developer own-class overlay only, not a changed released JAR. One copied city at speed 1.',
                             'Supplied own launcher/resize gesture primitives and public own Send/Close/Stop routing; no OS input, engine pointer/button mutation or screenshots.',
                             'Real default production coordinator, stdio MCP and disposable SQLite history with a deterministic injected fake provider; no real model, paid network or advice-quality acceptance.',
-                            'Panel transcript/model and own-handle render callbacks do not prove unobscured display, physical focus, human reading or receipts. No badge, theme, persisted geometry or typed chips.',
+                            'Panel transcript/model and own-handle render callbacks do not prove unobscured display, physical focus, human reading or receipts. No badge, persisted style/player geometry path or typed chips; this-run palette controls do not establish native pixel contrast.',
                             'Public test-only speed/view operations and engine autosaves stay in the disposable profile; no explicit game save requested. Permanent world identity and gameplay execution are absent.']}
                     (directory / 'native-chat-background-validation.json').write_text(json.dumps(report, indent=2) + '\n')
                     (directory / 'verifier.done').write_text('passed\n')

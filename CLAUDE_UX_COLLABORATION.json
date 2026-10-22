@@ -397,5 +397,16 @@
     "reason": "Existing local CLI process present and not established idle; no-overlap lane honored. No quota/model/credit diagnosis inferred.",
     "credits_purchased": false,
     "account_limits_bypassed": false
+  },
+  "native_chat_appearance_review_deferred": {
+    "checked_at": "2026-10-22T07:53:46.906114+00:00",
+    "existing_local_cli_processes": 1,
+    "invocation_started": false,
+    "actual_model": null,
+    "final_result_received": false,
+    "scope": "Developer this-run native Style/preset/custom-accent form and detached palette; earlier completed findings inform design, no new source review.",
+    "reason": "Existing local CLI process present and not established idle; no-overlap lane honored. No quota/model/credit diagnosis inferred.",
+    "credits_purchased": false,
+    "account_limits_bypassed": false
   }
 }

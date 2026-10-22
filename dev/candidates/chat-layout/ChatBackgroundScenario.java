@@ -49,6 +49,8 @@ public final class ChatBackgroundScenario {
                 case 2:{
                     if(!running)return;
                     composer[0].text().clear().add(draft);
+                    press(p.candidateButton("Style"));press(p.candidateButton("Parchment"));press(p.candidateButton("Style"));
+                    require(p.candidateTheme().name.equals("Parchment")&&!p.candidateAppearanceOpen()&&composer[0].text().toString().equals(draft),"Pending style change lost composer/state");
                     var h=p.candidateHandle(GestureReducer.Target.resize);double x=h.body().cX(),y=h.body().cY();
                     require(p.beginGesture(GestureReducer.Target.resize,x,y,100),"Begin pending own resize");
                     p.sampleGesture(x+40,y+20,101,true);p.sampleGesture(x+40,y+20,102,false);

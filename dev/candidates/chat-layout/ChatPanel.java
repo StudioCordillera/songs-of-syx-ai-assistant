@@ -12,9 +12,11 @@ import snake2d.util.datatypes.COORDINATE;
 import snake2d.util.gui.clickable.CLICKABLE;
 import syx.assistant.candidate.GestureReducer;
 import syx.assistant.candidate.PanelPreferences;
+import syx.assistant.candidate.PanelTheme;
 import snake2d.Mouse;
 import snake2d.SPRITE_RENDERER;
 import snake2d.util.color.COLOR;
+import snake2d.util.color.ColorImp;
 import snake2d.util.gui.GuiSection;
 import snake2d.util.gui.renderable.RENDEROBJ;
 import snake2d.util.misc.ACTION;
@@ -36,6 +38,11 @@ final class ChatPanel extends InterGuisection {
     private int layoutWidth,layoutHeight;
     private Path preferencesDirectory;
     private String layoutNotice="";
+    private PanelTheme theme=PanelTheme.preset("Forest");
+    private final ColorImp panelColor=new ColorImp(),accentColor=new ColorImp(),bodyInk=new ColorImp(),accentInk=new ColorImp();
+    private final GInput accentInput;
+    private boolean appearanceOpen;
+    private String appearanceNotice="";
     private String lastSubmitted="";
     private final AtomicLong candidateDraws=new AtomicLong();
     private final EnumMap<GestureReducer.Target,CLICKABLE> handles=new EnumMap<>(GestureReducer.Target.class);
@@ -78,6 +85,8 @@ final class ChatPanel extends InterGuisection {
             }
         };
         composer=new GInput(input);
+        accentInput=new GInput(new StringInputSprite(8,UI.FONT().S));accentInput.text().add(theme.accentHex());
+        refreshColors();
         if(!advanced)((snake2d.util.datatypes.Rec)composer.body()).setWidth(792);
         layoutWidth=CORE.getGraphics().nativeWidth;layoutHeight=CORE.getGraphics().nativeHeight;
         pin();persistantSet();rebuild();
@@ -90,7 +99,7 @@ final class ChatPanel extends InterGuisection {
         }
         return true;
     }
-    private void releaseOwnComposer(){if(Mouse.currentClicked==composer)Mouse.currentClicked=null;}
+    private void releaseOwnComposer(){if(Mouse.currentClicked==composer||Mouse.currentClicked==accentInput)Mouse.currentClicked=null;}
     @Override protected void deactivateAction(){gesture.cancel();releaseOwnComposer();super.deactivateAction();}
     private int vw(){return layoutWidth;}
     private int vh(){return layoutHeight;}
@@ -115,7 +124,7 @@ final class ChatPanel extends InterGuisection {
             beginGesture(target,p.x(),p.y(),System.nanoTime()/1_000_000.0);
         }
         @Override protected void render(SPRITE_RENDERER r,float ds,boolean active,boolean selected,boolean hovered){
-            candidateDraws.incrementAndGet();label.body().moveX1Y1(body);label.render(r,ds);
+            candidateDraws.incrementAndGet();accentColor.render(r,body);label.text().color(accentInk);label.body().moveX1Y1(body);label.render(r,ds);
         }
     }
     // Own supplied-primitives seam for fixed copied-game fixtures, never an MCP/game action.
@@ -154,6 +163,18 @@ final class ChatPanel extends InterGuisection {
         try{new PanelPreferences(panelRect,launcherRect).save(preferencesDirectory);layoutNotice="";}
         catch(Exception error){layoutNotice="Layout changed for this run; preferences could not be saved";}
     }
+    private static void color(ColorImp out,int rgb){out.set(PanelTheme.engineChannel((rgb>>16)&255),PanelTheme.engineChannel((rgb>>8)&255),PanelTheme.engineChannel(rgb&255));}
+    private void refreshColors(){color(panelColor,theme.background);color(accentColor,theme.accent);color(bodyInk,theme.bodyText);color(accentInk,theme.accentText);}
+    private GTextR label(String text){GTextR result=new GTextR(UI.FONT().S,text);result.text().color(bodyInk);return result;}
+    private void chooseTheme(String name){theme=PanelTheme.preset(name);accentInput.text().clear().add(theme.accentHex());refreshColors();appearanceNotice="Style changed for this run";rebuild();}
+    private void applyAccent(){
+        try{theme=theme.withAccent(accentInput.text().toString());refreshColors();appearanceNotice="Style changed for this run";}
+        catch(IllegalArgumentException error){appearanceNotice="Accent needs six hex digits, such as #87A68D";}
+        rebuild();
+    }
+    PanelTheme candidateTheme(){return theme;}
+    GInput candidateAccentInput(){return accentInput;}
+    boolean candidateAppearanceOpen(){return appearanceOpen;}
     boolean candidateCapturing(){return gesture.isCapturing();}
     GestureReducer.Rect candidateLayout(){return opened?panelRect:launcherRect;}
     CLICKABLE candidateHandle(GestureReducer.Target target){return handles.get(target);}
@@ -295,7 +316,7 @@ final class ChatPanel extends InterGuisection {
         int composerY=h-48-(UI.FONT().S.height()+8)-composer.body().height();
         GuiSection panel=new GuiSection() {
             @Override public void render(SPRITE_RENDERER renderer,float ds) {
-                COLOR.BLACK.render(renderer,body());super.render(renderer,ds);
+                panelColor.render(renderer,body());super.render(renderer,ds);
             }
         };
         panel.add(new Handle(GestureReducer.Target.header,"AI chat — drag header",w,28),0,0);
@@ -305,21 +326,29 @@ final class ChatPanel extends InterGuisection {
         if(advanced)panel.add(button("Use with this game",()->action("attach",null)),340,86);
         if(!advanced)panel.add(button(currentOnly?"This load":"All chats",()->{currentOnly=!currentOnly;rebuild();}),280,40);
         if(advanced)panel.add(button("Evidence",()->action("evidence",null)),650,86);
-        panel.add(new GTextR(UI.FONT().S,advanced?connection+" | "+model:"DeepSeek Pro"+(running?" — Thinking…":"")),12,84);
+        panel.add(button("Style",()->{appearanceOpen=!appearanceOpen;if(!appearanceOpen&&Mouse.currentClicked==accentInput)Mouse.currentClicked=null;rebuild();}),12,80);
+        panel.add(label(advanced?connection+" | "+model:"DeepSeek Pro"+(running?" — Thinking…":"")),140,84);
         boolean reconnectHint=notice.equals("Connected to this game; ask a question")||notice.equals("History loaded; your next question uses the loaded game");
         String hint=!advanced&&protocol==2&&reconnectHint&&!chat.isEmpty()&&!attachedSession.equals(session)?"Your next question connects this chat to the loaded game. Earlier messages stay historical.":notice;
+        if(appearanceOpen&&!appearanceNotice.isEmpty())hint=appearanceNotice;
         if(!layoutNotice.isEmpty())hint=layoutNotice;
         int hintChars=Math.max(1,textWidth/UI.FONT().S.maxCWidth);
         String message=hint.length()>hintChars?hint.substring(0,hintChars):hint;
-        panel.add(new GTextR(UI.FONT().S,message),12,108);
+        panel.add(label(message),12,112);
         List<RENDEROBJ> choices=new ArrayList<>();
         for(String[] entry:!advanced&&currentOnly?(session.equals(currentListSession)?currentChats:Collections.<String[]>emptyList()):chats) {
             String id=entry[0],title=entry[1];
             if(title.length()>35)title=title.substring(0,35);
             choices.add(button(title,()->action("select",null,null,null,null,id)));
         }
-        if(choices.isEmpty())choices.add(new GTextR(UI.FONT().S,"No chats yet"));
-        panel.add(new GScrollRows(choices,70).view(),12,138);
+        if(choices.isEmpty())choices.add(label("No chats yet"));
+        if(appearanceOpen){
+            panel.add(button("Forest",()->chooseTheme("Forest")),12,142);
+            panel.add(button("Parchment",()->chooseTheme("Parchment")),150,142);
+            panel.add(button("Night",()->chooseTheme("Night")),320,142);
+            panel.add(accentInput,12,180);panel.add(button("Apply accent",this::applyAccent),160,180);
+            panel.add(label("#RRGGBB · this run"),350,184);
+        }else panel.add(new GScrollRows(choices,70).view(),12,142);
         List<RENDEROBJ> rows=new ArrayList<>();
         int width=Math.max(20,textWidth/UI.FONT().S.maxCWidth);
         for(String text:transcript) {
@@ -327,14 +356,14 @@ final class ChatPanel extends InterGuisection {
             for(String line:safe.split("\n",-1)) {
                 for(int start=0;start<Math.max(1,line.length());start+=width) {
                     if(rows.size()>=1200)break;
-                    rows.add(new GTextR(UI.FONT().S,line.substring(Math.min(start,line.length()),Math.min(start+width,line.length()))));
+                    rows.add(label(line.substring(Math.min(start,line.length()),Math.min(start+width,line.length()))));
                 }
                 if(rows.size()>=1200)break;
             }
             if(rows.size()>=1200)break;
         }
-        if(rows.size()>=1200)rows.add(new GTextR(UI.FONT().S,"[Panel row limit reached; full bounded evidence is retained locally.]"));
-        if(rows.isEmpty())rows.add(new GTextR(UI.FONT().S,advanced?"Create/select a chat. Add text in short segments, then Send.":"Ask a question about your game. The connection is handled automatically."));
+        if(rows.size()>=1200)rows.add(label("[Panel row limit reached; full bounded evidence is retained locally.]"));
+        if(rows.isEmpty())rows.add(label(advanced?"Create/select a chat. Add text in short segments, then Send.":"Ask a question about your game. The connection is handled automatically."));
         boolean follow=history==null || history.target.get()>=history.target.max();
         int scroll=follow?Integer.MAX_VALUE:history.target.get();
         history=new GScrollRows(rows,Math.max(20,composerY-12-220));history.target.set(scroll);
@@ -355,7 +384,7 @@ final class ChatPanel extends InterGuisection {
             if(draft.length()+text.length()+1>8000){notice="Draft exceeds 8000 characters";rebuild();return;}
             if(draft.length()>0)draft.append(' ');draft.append(text);composer.text().clear();rebuild();
         }),16,594);
-        } else panel.add(new GTextR(UI.FONT().S,"240 characters · Send / Stop"),12,composerY+composer.body().height()+4);
+        } else panel.add(label("240 characters · Send / Stop"),12,composerY+composer.body().height()+4);
         panel.add(button("Send",()->{
             if(advanced&&!attachedSession.equals(session)){notice="Use with this game before sending in the advanced interface.";rebuild();return;}
             if(running){notice="Stop or wait for the current reply before sending another message";rebuild();return;}

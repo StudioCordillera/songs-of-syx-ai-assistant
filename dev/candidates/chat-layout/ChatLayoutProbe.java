@@ -85,6 +85,25 @@ public final class ChatLayoutProbe {
                     require(p.candidateLayout().width==640&&p.candidateLayout().height==560,"Measured simple-control minimum");
                     require(input[0]==p.candidateComposer()&&input[0].text().toString().equals(draft),"Resize lost composer/draft");checks.add("responsive_minimum_controls_and_draft");
                     require(!p.beginGesture(GestureReducer.Target.chrome,120,200,400),"Content must not start a drag");checks.add("content_refuses_capture");
+                    String savedGeometry=Files.readString(directory.resolve("chat-layout.preferences"));
+                    press(p.candidateButton("Style"));require(p.candidateAppearanceOpen(),"Style form did not open");
+                    for(String preset:List.of("Forest","Parchment","Night")){
+                        press(p.candidateButton(preset));bounds(p);require(p.candidateTheme().name.equals(preset),"Preset not applied");
+                        List<CLICKABLE> form=List.of(p.candidateButton("Forest"),p.candidateButton("Parchment"),p.candidateButton("Night"),p.candidateAccentInput(),p.candidateButton("Apply accent"));
+                        for(int i=0;i<form.size();i++){
+                            var a=form.get(i).body();require(a.y2()<=p.section().body().y1()+220,"Style control overlaps transcript");
+                            for(int j=i+1;j<form.size();j++){var b=form.get(j).body();require(a.x2()<=b.x1()||b.x2()<=a.x1()||a.y2()<=b.y1()||b.y2()<=a.y1(),"Style controls overlap");}
+                        }
+                        require(input[0]==p.candidateComposer()&&input[0].text().toString().equals(draft),"Style lost question draft");
+                    }
+                    checks.add("appearance_presets_minimum_bounds_and_draft");
+                    var accent=p.candidateAccentInput();int previousAccent=p.candidateTheme().accent;
+                    accent.text().clear().add("ZZZZZZ");press(p.candidateButton("Apply accent"));require(p.candidateTheme().accent==previousAccent,"Invalid accent changed palette");
+                    accent.text().clear().add("#abcdef");press(p.candidateButton("Apply accent"));bounds(p);
+                    require(p.candidateTheme().accentHex().equals("#ABCDEF"),"Custom accent not applied");
+                    require(Files.readString(directory.resolve("chat-layout.preferences")).equals(savedGeometry),"This-run style changed geometry preferences");
+                    accent.listen();press(p.candidateButton("Style"));require(!p.candidateAppearanceOpen()&&Mouse.currentClicked!=accent,"Closing Style retained own color focus");
+                    require(input[0].text().toString().equals(draft),"Color input consumed question draft");checks.add("custom_accent_validation_and_focus_ownership");
                     draws[0]=p.candidateDraws();press(p.candidateButton("Send"));String request=p.candidateLastSubmitted();
                     require(field(request,"action").equals("send")&&new String(Base64.getDecoder().decode(field(request,"text")),StandardCharsets.UTF_8).equals(draft),"Normal Send framing/draft");
                     require(field(request,"chat_id").equals(chat[0])&&input[0].text().length()==0,"Send chat/draft acknowledgement policy");ack[0]=field(request,"request_id");checks.add("normal_send_protocol");
