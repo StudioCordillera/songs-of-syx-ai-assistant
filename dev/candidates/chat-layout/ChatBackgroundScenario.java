@@ -28,6 +28,7 @@ public final class ChatBackgroundScenario {
     public static void install(Path directory){
         VIEW.s().activate();GAME.SPEED.speedSet(1);
         boolean recovery=Boolean.getBoolean("syx.smoke.chatRecovery");
+        boolean notices=Boolean.getBoolean("syx.smoke.chatNotices");
         int[] phase={0};long[] wait={0};long start=System.nanoTime();double[] seconds={0};String[] chat={null};
         Map<String,Object> initial=new LinkedHashMap<>();double[] grown={0,0};
         GInput[] composer={null};List<Map<String,Object>> checks=new ArrayList<>();String draft="Keep next question draft while first answer arrives";
@@ -111,13 +112,28 @@ public final class ChatBackgroundScenario {
                 case 12:
                     if(!Files.exists(directory.resolve("duplicate-admission-checked")))return;
                     require(opened&&!running&&chat[0].equals(c.get("chat_id"))&&composer[0].text().toString().equals(draft),"Replay changed native pending/chat/draft state");
-                    checks.add(StateCollector.object("phase","replayed_send_does_not_start_reply","passed",true));phase[0]=13;break;
+                    checks.add(StateCollector.object("phase","replayed_send_does_not_start_reply","passed",true));
+                    if(notices){Files.writeString(directory.resolve("notice-fixture-request"),"authored local-history notice setup\n");phase[0]=15;}
+                    else phase[0]=13;
+                    break;
+                case 15:
+                    if(!Files.exists(directory.resolve("interrupted-notice-ready"))||Boolean.TRUE.equals(c.get("action_pending")))return;
+                    if(!String.join("",p.candidateStatusRows()).contains("Earlier reply interrupted; no automatic retry."))return;
+                    require(opened&&!running&&chat[0].equals(c.get("chat_id"))&&composer[0]==p.candidateComposer()&&composer[0].text().toString().equals(draft),"Interrupted notice changed native chat/draft");
+                    require(p.candidateLayout().width==grown[0]&&p.candidateTheme().name.equals("Parchment"),"Interrupted notice changed native geometry/style");
+                    checks.add(StateCollector.object("phase","native_interrupted_notice_preserves_draft","passed",true));
+                    Files.writeString(directory.resolve("native-interrupted-notice-acknowledged"),"acknowledged\n");phase[0]=16;break;
+                case 16:
+                    if(!Files.exists(directory.resolve("unknown-notice-ready")))return;
+                    if(!String.join("",p.candidateStatusRows()).contains("Earlier Send outcome unknown; no automatic retry."))return;
+                    require(opened&&!running&&!Boolean.TRUE.equals(c.get("action_pending"))&&chat[0].equals(c.get("chat_id"))&&composer[0].text().toString().equals(draft),"Unknown notice changed native chat/draft");
+                    checks.add(StateCollector.object("phase","native_unknown_send_notice_no_inference","passed",true));phase[0]=13;break;
                 case 13:
                     Files.writeString(directory.resolve("layout-background-native.json"),JsonWriter.encode(StateCollector.object("passed",true,"checks",checks,"reopened_same_chat",true,"native_width",CORE.getGraphics().nativeWidth,"native_height",CORE.getGraphics().nativeHeight,"handle_render_callbacks",p.candidateDraws(),"supplied_gesture_primitives",true,"initial_layout",initial)));
                     phase[0]=10;break;
                 case 10:
                     if(!Files.exists(directory.resolve("verifier.done")))return;
-                    Files.writeString(directory.resolve("layout-background-clean-exit.json"),"{\"passed\":true,\"verified_phases\":"+(recovery?9:7)+"}");CORE.annihilate();phase[0]=14;break;
+                    Files.writeString(directory.resolve("layout-background-clean-exit.json"),"{\"passed\":true,\"verified_phases\":"+(notices?11:recovery?9:7)+"}");CORE.annihilate();phase[0]=14;break;
                 }
             }catch(Exception error){
                 System.err.println("SMOKE_FIXTURE_FAILURE: "+error);

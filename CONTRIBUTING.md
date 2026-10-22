@@ -139,3 +139,5 @@ Run `dev/run_read_fixture.py --case layout-background` with the normal licensed-
 For isolated plain recovery notices, add `--candidate` to `dev/check_chat_process_recovery.py`. Three crash/reopen cases exercise IPC2 text alongside the unchanged base path; `test_chat_recovery_candidate.py` covers policy/isolation bounds. See [candidate scope](CHAT_RECOVERY_NOTICE_CANDIDATE.md); no native or paid acceptance follows from these offline checks.
 
 `NATIVE_CHAT_STATUS.md` records the current scrollable-notice overlay checked by `dev/run_native_chat_layout.py` and the separate `layout-recovery` case. `test_status_lines_java.py` checks detached Unicode/row/omission bounds without native or provider calls. Historical layout/recovery reports keep their original hashes.
+
+`dev/run_read_fixture.py --case layout-notices` integrates the recovery-notice candidate with native own status rows through real IPC2/MCP/history, using explicit authored recovery/admission setups and fake inference only. It requires eleven clean-completion phases and the shared fixture lock. See [exact scope](NATIVE_CHAT_NOTICES.md); no paid environment option or preference override is accepted.

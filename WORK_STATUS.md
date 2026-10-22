@@ -2,6 +2,14 @@
 
 Use `python3 dev/collaboration_status.py` for actual remote/local state at every run; this file is a handoff, not a live branch/working-tree assertion. Read AGENTS.md and reconcile newer collaborator work before editing.
 
+## Native helper recovery notices — developer-only
+
+[NATIVE_CHAT_NOTICES.md](NATIVE_CHAT_NOTICES.md) / [current evidence](NATIVE_CHAT_NOTICES_VALIDATION.json) connect the actual RecoveryCoordinator candidate to the scrollable native overlay through real IPC2/default MCP/history. Eleven checks include the prior nine lifecycle phases plus interrupted/unknown-Send notice text in native wrapped model rows, preserving chat/composer/draft/style/geometry. Recovery statuses are explicitly authored in disposable history: one running turn without inference, and one callback-refused admission after durable journaling. These are not crashes or paid requests; verifier/game/MCP stay live through graceful task/SQLite reopens.
+
+One completed and one cancelled inferred turn plus one authored interrupted turn remain; exactly two fake providers/four rounds and two cited reference calls. The factory refuses more inference. A fresh nine-phase base recovery case separately validates the shared notice-disabled path. Exact source/class hashes, clean completion/restoration/copied-save integrity, full offline and unchanged player bundles are recorded. Native rows are not pixel/unobscured/human-read/physical-input/accessibility or receipt acceptance. One existing Claude process was not established idle; no overlapping invocation/review or quota diagnosis was made.
+
+Next: peer critique when available, durable action outcomes and actual helper/transport lifecycle, wider native scene/race/readability checks, stable preferences and target/display integration, then paired actual-Pro/core/distribution gates. Current production remains read-only and the redesign unshipped; unknown/oversized display stays unread.
+
 ## Wrapped native status area — developer-only
 
 [NATIVE_CHAT_STATUS.md](NATIVE_CHAT_STATUS.md) / [current evidence](NATIVE_CHAT_STATUS_VALIDATION.json) replace silently cut first-line notices with a fixed scrollable status area in the unshipped panel. Chat/Style/transcript rows move down 30 internal units; 640×560 minimum controls/draft semantics remain. Detached wrapping bounds 4,096 code points/64 rows, preserves pairs, spaces controls and reserves a complete explicit omission marker. The own public scroll widget is initialized before range checks; the first uninitialized-range fixture was rejected and retained privately.

@@ -30,7 +30,7 @@ CHECKS = {'automatic_native_session', 'responsive_pending_draft_partial', 'open_
           'closed_pending', 'closed_completed', 'reopened_same_chat_reply', 'stop_second_turn'}
 SOURCES = ['dev/verify_native_chat_background.py', 'syx_chat_service.py', 'syx_chat.py',
     'syx_chat_store.py', 'syx_mcp.py', 'syx_blueprint_chat.py', 'syx_blueprint_tools.py',
-    'syx_blueprints.py', 'syx_blueprint_data.py', 'dev/blueprint_mcp_candidate.py', 'dev/verify_native_chat_recovery.py']
+    'syx_blueprints.py', 'syx_blueprint_data.py', 'dev/blueprint_mcp_candidate.py', 'dev/verify_native_chat_recovery.py', 'dev/verify_native_chat_notices.py', 'dev/chat_recovery_candidate.py']
 
 
 class FixtureProvider:
@@ -80,7 +80,9 @@ class FixtureProvider:
             (self.directory / 'second-provider-closed').write_text('closed\n')
 
 
-async def verify(directory, *, recovery=False):
+async def verify(directory, *, recovery=False, notices=False):
+    if notices and not recovery:
+        raise ValueError("Notice fixture requires the recovery lifecycle")
     directory = isolated_state_dir(str(directory))
     hashes = {n: hashlib.sha256((ROOT / n).read_bytes()).hexdigest() for n in SOURCES}
     store = ChatStore(directory / 'layout-fixture-history')
@@ -97,7 +99,11 @@ async def verify(directory, *, recovery=False):
             async with ClientSession(*streams) as mcp:
                 await mcp.initialize()
                 def new_coordinator():
-                    result = Coordinator(store, mcp, directory, 'fixture-not-a-credential', simple=True)
+                    if notices:
+                        from dev.chat_recovery_candidate import RecoveryCoordinator
+                        result = RecoveryCoordinator(store, mcp, directory, 'fixture-not-a-credential')
+                    else:
+                        result = Coordinator(store, mcp, directory, 'fixture-not-a-credential', simple=True)
                     original = result.loop
                     result.loop = BlueprintConversation(store, mcp, factory)
                     result.loop.instructions = original.instructions
@@ -105,6 +111,7 @@ async def verify(directory, *, recovery=False):
                 coordinator = new_coordinator()
                 server = asyncio.create_task(coordinator.serve())
                 restarted = replayed = False
+                notice_reopened = unknown_checked = False
                 original_chat = None
                 try:
                     async with asyncio.timeout(150):
@@ -141,17 +148,64 @@ async def verify(directory, *, recovery=False):
                                 assert len(providers) == 2
                                 replayed = True
                                 (directory / 'duplicate-admission-checked').write_text('deduplicated\n')
+                            if notices and replayed and not notice_reopened and (directory / 'notice-fixture-request').exists():
+                                assert not coordinator.tasks or all(t.done() for t in coordinator.tasks.values())
+                                # Authored local-history setup, not an inference request or a process crash.
+                                store.begin(original_chat, str(uuid4()), store.chat(original_chat)['attached_session'],
+                                    'AUTHORED fixture running turn; no inference was requested')
+                                server.cancel()
+                                with contextlib.suppress(asyncio.CancelledError):
+                                    await server
+                                store.close()
+                                store = ChatStore(directory / 'layout-fixture-history', recover=True)
+                                coordinator = new_coordinator()
+                                server = asyncio.create_task(coordinator.serve())
+                                notice_reopened = True
+                            if notice_reopened and coordinator.selected == original_chat:
+                                from dev.chat_recovery_candidate import INTERRUPTED, UNKNOWN
+                                if not unknown_checked:
+                                    assert coordinator.recovery_notice() == INTERRUPTED
+                                    (directory / 'interrupted-notice-ready').write_text('authored stored status, new helper frame required\n')
+                                if not unknown_checked and (directory / 'native-interrupted-notice-acknowledged').exists():
+                                    gap = ('protocol=2\nrequest_id=' + str(uuid4()) + '\naction=send\nsession_id=' +
+                                        store.chat(original_chat)['attached_session'] + '\nchat_id=' + original_chat +
+                                        '\ntext=' + base64.b64encode(b'AUTHORED admission-gap fixture').decode() + '\n')
+                                    request = action(gap.encode('ascii'))
+                                    original_current_game = coordinator.current_game
+                                    async def refused_admission(session):
+                                        raise ValueError('Authored fixture admission interruption')
+                                    coordinator.current_game = refused_admission
+                                    before = store.turns(original_chat), store.events(original_chat)
+                                    try:
+                                        try:
+                                            await coordinator.dispatch(request)
+                                        except ValueError as error:
+                                            assert str(error) == 'Authored fixture admission interruption'
+                                        else:
+                                            raise AssertionError('Fixed admission gap was not exercised')
+                                    finally:
+                                        coordinator.current_game = original_current_game
+                                    await coordinator.dispatch(request)
+                                    assert (store.turns(original_chat), store.events(original_chat)) == before
+                                    assert len(providers) == 2 and not coordinator.tasks
+                                    assert coordinator.recovery_notice() == UNKNOWN
+                                    coordinator.notice = 'Authored admission-gap fixture. No new inference.'
+                                    unknown_checked = True
+                                    (directory / 'unknown-notice-ready').write_text('authored duplicate with no turn\n')
                             await asyncio.sleep(.05)
                     assert len(providers) == 2 and [p.calls for p in providers] == [3, 1]
                     assert all(p.closed for p in providers)
                     native = json.loads((directory / 'layout-background-native.json').read_text())
                     assert native['passed'] and native['reopened_same_chat']
                     expected = CHECKS | ({'helper_restart_restores_chat_draft', 'replayed_send_does_not_start_reply'} if recovery else set())
+                    if notices:
+                        expected |= {'native_interrupted_notice_preserves_draft', 'native_unknown_send_notice_no_inference'}
+                        assert notice_reopened and unknown_checked
                     assert {x['phase'] for x in native['checks']} == expected and len(native['checks']) == len(expected)
                     assert not recovery or (restarted and replayed)
                     assert all(x['passed'] for x in native['checks'])
                     assert all(x['game_seconds_advanced'] > 0 for x in native['checks'] if x['phase'] in {'open_pending', 'closed_pending'})
-                    assert [t['status'] for t in store.turns(coordinator.selected)] == ['completed', 'cancelled']
+                    assert [t['status'] for t in store.turns(coordinator.selected)] == (['completed', 'cancelled', 'interrupted'] if notices else ['completed', 'cancelled'])
                     events = store.events(coordinator.selected)
                     final = [e for e in events if e['kind'] == 'assistant' and e['payload'].get('completed')]
                     assert len(final) == 1 and final[0]['payload']['text'] == ANSWER
@@ -171,6 +225,8 @@ async def verify(directory, *, recovery=False):
                         'plain_completed_reply_in_native_panel_model': True, 'production_integrated': False,
                         'coordinator_and_sqlite_reopened': restarted, 'original_send_deduplicated_after_restart': replayed,
                         'helper_process_restarted': False, 'mcp_transport_restarted': False,
+                        'developer_recovery_notice_coordinator': notices, 'authored_running_turn_recovered': notice_reopened,
+                        'authored_admission_gap_replayed_without_inference': unknown_checked,
                         'limits': ['Developer own-class overlay only, not a changed released JAR. One copied city at speed 1.',
                             'Supplied own launcher/resize gesture primitives and public own Send/Close/Stop routing; no OS input, engine pointer/button mutation or screenshots.',
                             'Real default production coordinator, stdio MCP and disposable SQLite history with a deterministic injected fake provider; no real model, paid network or advice-quality acceptance.',
@@ -178,7 +234,9 @@ async def verify(directory, *, recovery=False):
                             'Public test-only speed/view operations and engine autosaves stay in the disposable profile; no explicit game save requested. Permanent world identity and gameplay execution are absent.']}
                     if recovery:
                         report['limits'].append('Graceful coordinator-task stop and a new Coordinator/SQLite connection in the same verifier process; native game and stdio MCP stay running. No abrupt crash, pending-turn recovery, helper-process/network restart, billing or native display/read proof.')
-                    (directory / ('native-chat-recovery-validation.json' if recovery else 'native-chat-background-validation.json')).write_text(json.dumps(report, indent=2) + '\n')
+                    if notices:
+                        report['limits'].append('Two native notice phases use explicitly authored disposable running-turn/admission-gap setup. Recovery is a graceful task/SQLite reopen, not an actual crash or pending paid call. Candidate notice rows/model checks do not prove human readability or unobscured display.')
+                    (directory / ('native-chat-notices-validation.json' if notices else 'native-chat-recovery-validation.json' if recovery else 'native-chat-background-validation.json')).write_text(json.dumps(report, indent=2) + '\n')
                     (directory / 'verifier.done').write_text('passed\n')
                 finally:
                     server.cancel()
