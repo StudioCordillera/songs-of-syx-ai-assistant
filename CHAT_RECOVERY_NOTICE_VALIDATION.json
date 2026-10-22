@@ -1,0 +1,179 @@
+{
+  "passed": true,
+  "checked_at": "2026-10-22T12:45:29.531657+00:00",
+  "base_commit": "c135b2e16f86c96c252bb67d2c73adbfbd7578aa",
+  "scope": "Developer plain recovery notices; three candidate and three unchanged-base owned helper-process crash/reopen cases, synthetic MCP and fake inference. No native display or player release acceptance.",
+  "candidate": {
+    "passed": true,
+    "candidate_notices": true,
+    "cases": [
+      {
+        "stage": "admitted_before_turn",
+        "candidate_notice_round_trip_verified": true,
+        "recovery_message": "Earlier Send outcome unknown; no automatic retry.",
+        "recovered_original_statuses": [],
+        "old_action_acknowledged_without_new_turn_or_provider": true,
+        "automatic_sync_selected_original_chat": true,
+        "new_explicit_turn_completed_with_fresh_context": true,
+        "new_fake_provider_calls": 1,
+        "volatile_partial_not_recovered": true,
+        "completed_answer_retained": false,
+        "admission_gap_has_no_turn": true,
+        "owned_child_sigkill_verified": true,
+        "separate_resume_process": true
+      },
+      {
+        "stage": "streaming_partial",
+        "candidate_notice_round_trip_verified": true,
+        "recovery_message": "Earlier reply interrupted; no automatic retry.",
+        "recovered_original_statuses": [
+          "interrupted"
+        ],
+        "old_action_acknowledged_without_new_turn_or_provider": true,
+        "automatic_sync_selected_original_chat": true,
+        "new_explicit_turn_completed_with_fresh_context": true,
+        "new_fake_provider_calls": 1,
+        "volatile_partial_not_recovered": true,
+        "completed_answer_retained": false,
+        "admission_gap_has_no_turn": false,
+        "owned_child_sigkill_verified": true,
+        "separate_resume_process": true
+      },
+      {
+        "stage": "completed_before_ui",
+        "candidate_notice_round_trip_verified": true,
+        "recovery_message": "",
+        "recovered_original_statuses": [
+          "completed"
+        ],
+        "old_action_acknowledged_without_new_turn_or_provider": true,
+        "automatic_sync_selected_original_chat": true,
+        "new_explicit_turn_completed_with_fresh_context": true,
+        "new_fake_provider_calls": 1,
+        "volatile_partial_not_recovered": true,
+        "completed_answer_retained": true,
+        "admission_gap_has_no_turn": false,
+        "owned_child_sigkill_verified": true,
+        "separate_resume_process": true
+      }
+    ],
+    "source_sha256": {
+      "dev/check_chat_process_recovery.py": "990c45f0cbd158e9a6a7dd8697b56e9be661ca28921443c8c8154b8558557407",
+      "syx_chat_service.py": "7c6ac3b6aae4f2bbed67840ec99bea32d62e409a3745582e20a8e5a19157244f",
+      "syx_chat_store.py": "a2f2ffa53097cb60eab72c015c3d516693aa1c89c8aa54d74f4dfc96d222e634",
+      "syx_chat.py": "98ceecfc8b042e45b0ea461f73fed74cc3fde00833a6fce22372649b9f844d6c",
+      "syx_blueprint_chat.py": "ea270d20bd0ba9158e425c8d2b72b2632e0c6e1dfc60ea8b3f6978f615d631fc",
+      "dev/chat_recovery_candidate.py": "eee6efece2b57cf6583d050ccd4a641dddb3dd56371af405b318f5a5ef4fa654"
+    },
+    "external_inference_calls": 0,
+    "production_changed": false,
+    "limits": [
+      "Owned helper-process SIGKILL on this Linux host, not power loss or filesystem durability proof.",
+      "Synthetic 21-tool MCP schema/status and fake inference; no native game, stdio transport or paid provider.",
+      "Admission-before-turn gap is durably acknowledged without a turn; volatile streaming fragments are lost.",
+      "Interrupted database status is verified; existing simple UI has no dedicated crash-recovery notice.",
+      "A new explicit request has a new ID. No automatic resubmission, billing guarantee, badge or display proof.",
+      "Candidate IPC2 plain notice verified in a separate helper process; no native readability, peer review or player release acceptance."
+    ]
+  },
+  "unchanged_base_recheck": {
+    "passed": true,
+    "candidate_notices": false,
+    "cases": [
+      {
+        "stage": "admitted_before_turn",
+        "candidate_notice_round_trip_verified": false,
+        "recovery_message": "",
+        "recovered_original_statuses": [],
+        "old_action_acknowledged_without_new_turn_or_provider": true,
+        "automatic_sync_selected_original_chat": true,
+        "new_explicit_turn_completed_with_fresh_context": true,
+        "new_fake_provider_calls": 1,
+        "volatile_partial_not_recovered": true,
+        "completed_answer_retained": false,
+        "admission_gap_has_no_turn": true,
+        "owned_child_sigkill_verified": true,
+        "separate_resume_process": true
+      },
+      {
+        "stage": "streaming_partial",
+        "candidate_notice_round_trip_verified": false,
+        "recovery_message": "",
+        "recovered_original_statuses": [
+          "interrupted"
+        ],
+        "old_action_acknowledged_without_new_turn_or_provider": true,
+        "automatic_sync_selected_original_chat": true,
+        "new_explicit_turn_completed_with_fresh_context": true,
+        "new_fake_provider_calls": 1,
+        "volatile_partial_not_recovered": true,
+        "completed_answer_retained": false,
+        "admission_gap_has_no_turn": false,
+        "owned_child_sigkill_verified": true,
+        "separate_resume_process": true
+      },
+      {
+        "stage": "completed_before_ui",
+        "candidate_notice_round_trip_verified": false,
+        "recovery_message": "",
+        "recovered_original_statuses": [
+          "completed"
+        ],
+        "old_action_acknowledged_without_new_turn_or_provider": true,
+        "automatic_sync_selected_original_chat": true,
+        "new_explicit_turn_completed_with_fresh_context": true,
+        "new_fake_provider_calls": 1,
+        "volatile_partial_not_recovered": true,
+        "completed_answer_retained": true,
+        "admission_gap_has_no_turn": false,
+        "owned_child_sigkill_verified": true,
+        "separate_resume_process": true
+      }
+    ],
+    "source_sha256": {
+      "dev/check_chat_process_recovery.py": "990c45f0cbd158e9a6a7dd8697b56e9be661ca28921443c8c8154b8558557407",
+      "syx_chat_service.py": "7c6ac3b6aae4f2bbed67840ec99bea32d62e409a3745582e20a8e5a19157244f",
+      "syx_chat_store.py": "a2f2ffa53097cb60eab72c015c3d516693aa1c89c8aa54d74f4dfc96d222e634",
+      "syx_chat.py": "98ceecfc8b042e45b0ea461f73fed74cc3fde00833a6fce22372649b9f844d6c",
+      "syx_blueprint_chat.py": "ea270d20bd0ba9158e425c8d2b72b2632e0c6e1dfc60ea8b3f6978f615d631fc",
+      "dev/chat_recovery_candidate.py": "eee6efece2b57cf6583d050ccd4a641dddb3dd56371af405b318f5a5ef4fa654"
+    },
+    "external_inference_calls": 0,
+    "production_changed": false,
+    "limits": [
+      "Owned helper-process SIGKILL on this Linux host, not power loss or filesystem durability proof.",
+      "Synthetic 21-tool MCP schema/status and fake inference; no native game, stdio transport or paid provider.",
+      "Admission-before-turn gap is durably acknowledged without a turn; volatile streaming fragments are lost.",
+      "Interrupted database status is verified; existing simple UI has no dedicated crash-recovery notice.",
+      "A new explicit request has a new ID. No automatic resubmission, billing guarantee, badge or display proof."
+    ]
+  },
+  "additional_source_sha256": {
+    "dev/blueprint_mcp_candidate.py": "e81cf443014471ab9899887b768567902bfc42d3f83c62b0ea738b788f828519",
+    "test_chat_recovery_candidate.py": "2b4ce5af92730743ab1ab1c7608e95ab6d7caf0d4bec8825102dd37d955b0386",
+    "test_chat_process_recovery.py": "cdcb3ff576c0fce2181cd51de4a86396f2028f9a6002bb9e80606dfbf02578ed"
+  },
+  "offline": {
+    "passed": 718,
+    "log_sha256": "22590cedf1b1820999d92c9191eb3607c38f5047f2c5ef1e73f5edf24fb5bad1"
+  },
+  "unchanged_player": {
+    "latest_zip_sha256": "dae445737746821bd54aa24ef32f2c90562b1156f5707f74c0cb0f80fc5dfc16",
+    "previous_zip_sha256": "c259a161a0856867f25bca8851453641ecca342e405af3a2eec979b823c343b9",
+    "release_freshness_check_passed": true
+  },
+  "claude": {
+    "existing_local_cli_processes": 1,
+    "invocation_started": false,
+    "actual_model": null,
+    "new_peer_review": false,
+    "credits_purchased": false
+  },
+  "acceptance_limits": [
+    "Only helper-side IPC2 plain text, not native rendering/wrapping/visibility or physical focus/read receipts.",
+    "No process entry-point lock, actual stdio/network transport, paid inference/billing or every-crash/power-loss acceptance.",
+    "Unknown-action observation is in memory and bounded to 100 chats; restart without a replay cannot reconstruct missing action payloads.",
+    "Latest-turn queries return one row but may scan history; large-history/concurrency cost is unvalidated.",
+    "No production source/schema/protocol/player bundle changes. Unknown/oversized display remains unread."
+  ]
+}

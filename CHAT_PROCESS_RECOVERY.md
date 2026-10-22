@@ -24,3 +24,5 @@ Reproduce without credentials or the licensed game:
 ```
 
 This SIGKILL regression targets Linux/POSIX. Its three cases also run in the ordinary offline suite. The tested player ZIP and historical native reports retain their own source/date and acceptance scopes.
+
+A later [plain notice candidate](CHAT_RECOVERY_NOTICE_CANDIDATE.md) uses the shared harness with `--candidate`; its separate current report rechecks both candidate and base modes. The original report above retains its original source hashes and 707-test checkpoint.

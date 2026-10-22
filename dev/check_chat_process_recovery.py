@@ -24,7 +24,7 @@ from syx_chat_store import ChatStore
 
 STAGES = ('admitted_before_turn', 'streaming_partial', 'completed_before_ui')
 SOURCES = ('dev/check_chat_process_recovery.py', 'syx_chat_service.py', 'syx_chat_store.py',
-           'syx_chat.py', 'syx_blueprint_chat.py')
+           'syx_chat.py', 'syx_blueprint_chat.py', 'dev/chat_recovery_candidate.py')
 PARTIAL = 'SIMULATED volatile partial'
 FINAL = 'SIMULATED completed answer'
 QUESTION = 'Synthetic original question'
@@ -54,10 +54,10 @@ def wire(kind, session, request_id, chat=None, text=None):
     return action(('\n'.join(rows) + '\n').encode('ascii'))
 
 
-async def worker(directory, stage, resume):
+async def worker(directory, stage, resume, candidate=False):
     # Refuse normal state/history paths even if the private worker flag is supplied manually.
     if (stage not in STAGES or directory.resolve() != directory or
-            directory.parent != Path(tempfile.gettempdir()).resolve() or
+            directory.parent != ((ROOT / 'runtime').resolve() if candidate else Path(tempfile.gettempdir()).resolve()) or
             not directory.name.startswith('syx-chat-process-') or
             not directory.is_dir() or directory.stat().st_uid != os.getuid() or
             directory.stat().st_mode & 0o777 != 0o700):
@@ -74,7 +74,11 @@ async def worker(directory, stage, resume):
             (directory / 'scenario.json').write_text(json.dumps(data))
         cid, session, rid = data['chat'], data['session'], data['request']
         mcp = SyntheticMCP(session)
-        coordinator = Coordinator(store, mcp, directory, 'synthetic-noncredential', simple=True)
+        if candidate:
+            from dev.chat_recovery_candidate import RecoveryCoordinator
+            coordinator = RecoveryCoordinator(store, mcp, directory, 'synthetic-noncredential')
+        else:
+            coordinator = Coordinator(store, mcp, directory, 'synthetic-noncredential', simple=True)
         original = wire('send', session, rid, cid, QUESTION)
         calls = []
 
@@ -143,6 +147,14 @@ async def worker(directory, stage, resume):
             preview = '\n'.join(base64.b64decode(r[5:]).decode() for r in rows if r.startswith('line='))
             assert 'running=false' in rows and PARTIAL not in preview
             assert (FINAL in preview) == (stage == 'completed_before_ui')
+            recovery_message = ''
+            if candidate:
+                from dev.chat_recovery_candidate import INTERRUPTED, UNKNOWN
+                recovery_message = {'admitted_before_turn': UNKNOWN, 'streaming_partial': INTERRUPTED,
+                                    'completed_before_ui': ''}[stage]
+                assert coordinator.recovery_notice() == recovery_message
+                notice = next(base64.b64decode(r[7:]).decode() for r in rows if r.startswith('notice='))
+                assert notice == coordinator.notice + (' ' + recovery_message if recovery_message else '')
             # A genuinely new explicit request can proceed with fresh provider context.
             resume_allowed = True
             new_id = str(uuid4())
@@ -156,7 +168,14 @@ async def worker(directory, stage, resume):
             assert (QUESTION in history_text) == (stage != 'admitted_before_turn')
             assert (FINAL in history_text) == (stage == 'completed_before_ui')
             assert PARTIAL not in history_text
-            return {'stage': stage, 'recovered_original_statuses': expected,
+            if candidate:
+                assert coordinator.recovery_notice() == ''
+                coordinator.write_ui()
+                new_notice = next(base64.b64decode(r[7:]).decode() for r in
+                    (directory / 'chat-ui.txt').read_text().splitlines() if r.startswith('notice='))
+                assert INTERRUPTED not in new_notice and UNKNOWN not in new_notice
+            return {'stage': stage, 'candidate_notice_round_trip_verified': candidate,
+                'recovery_message': recovery_message, 'recovered_original_statuses': expected,
                 'old_action_acknowledged_without_new_turn_or_provider': True,
                 'automatic_sync_selected_original_chat': True,
                 'new_explicit_turn_completed_with_fresh_context': True,
@@ -167,14 +186,16 @@ async def worker(directory, stage, resume):
         store.close()
 
 
-def run_case(stage):
+def run_case(stage, *, candidate=False):
     if stage not in STAGES:
         raise ValueError('Unknown fixed crash stage')
     # Explicit environment avoids passing provider/auth variables into either child.
     env = {k: os.environ[k] for k in ('PATH', 'LANG', 'LC_ALL', 'SYSTEMROOT') if k in os.environ}
-    with tempfile.TemporaryDirectory(prefix='syx-chat-process-') as name:
+    with tempfile.TemporaryDirectory(prefix='syx-chat-process-', dir=ROOT / 'runtime' if candidate else None) as name:
         directory = Path(name)
         args = [sys.executable, str(Path(__file__).resolve()), '--worker', str(directory), '--stage', stage]
+        if candidate:
+            args.append('--candidate')
         child = subprocess.Popen(args, cwd=ROOT, env=env, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
         try:
             deadline = time.monotonic() + 20
@@ -208,13 +229,14 @@ if __name__ == '__main__':
     parser.add_argument('--stage', choices=STAGES, help=argparse.SUPPRESS)
     parser.add_argument('--resume', action='store_true', help=argparse.SUPPRESS)
     parser.add_argument('--output', type=Path)
+    parser.add_argument('--candidate', action='store_true', help='Use the developer recovery-notice coordinator')
     args = parser.parse_args()
     if args.worker:
-        result = asyncio.run(worker(args.worker, args.stage, args.resume))
+        result = asyncio.run(worker(args.worker, args.stage, args.resume, args.candidate))
         if args.resume:
             print(json.dumps(result))
     else:
-        report = {'passed': True, 'cases': [run_case(stage) for stage in STAGES],
+        report = {'passed': True, 'candidate_notices': args.candidate, 'cases': [run_case(stage, candidate=args.candidate) for stage in STAGES],
             'source_sha256': {n: hashlib.sha256((ROOT / n).read_bytes()).hexdigest() for n in SOURCES},
             'external_inference_calls': 0, 'production_changed': False,
             'limits': ['Owned helper-process SIGKILL on this Linux host, not power loss or filesystem durability proof.',
@@ -222,6 +244,8 @@ if __name__ == '__main__':
                 'Admission-before-turn gap is durably acknowledged without a turn; volatile streaming fragments are lost.',
                 'Interrupted database status is verified; existing simple UI has no dedicated crash-recovery notice.',
                 'A new explicit request has a new ID. No automatic resubmission, billing guarantee, badge or display proof.']}
+        if args.candidate:
+            report['limits'].append('Candidate IPC2 plain notice verified in a separate helper process; no native readability, peer review or player release acceptance.')
         raw = json.dumps(report, indent=2) + '\n'
         if args.output:
             args.output.write_text(raw)

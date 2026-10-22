@@ -452,5 +452,16 @@
     "reason": "Existing local CLI process present and not established idle; no-overlap lane honored. No quota/model/credit diagnosis inferred.",
     "credits_purchased": false,
     "account_limits_bypassed": false
+  },
+  "chat_recovery_notice_review_deferred": {
+    "checked_at": "2026-10-22T12:43:51.918055+00:00",
+    "existing_local_cli_processes": 1,
+    "invocation_started": false,
+    "actual_model": null,
+    "final_result_received": false,
+    "scope": "Developer IPC2 interrupted/unknown-Send notice subclass, isolated process checks; no new peer review.",
+    "reason": "Existing local CLI process present and not established idle; no-overlap lane honored. No quota/model/credit diagnosis inferred.",
+    "credits_purchased": false,
+    "account_limits_bypassed": false
   }
 }

@@ -2,6 +2,14 @@
 
 Use `python3 dev/collaboration_status.py` for actual remote/local state at every run; this file is a handoff, not a live branch/working-tree assertion. Read AGENTS.md and reconcile newer collaborator work before editing.
 
+## Plain recovery notices — developer-only
+
+[CHAT_RECOVERY_NOTICE_CANDIDATE.md](CHAT_RECOVERY_NOTICE_CANDIDATE.md) / [current evidence](CHAT_RECOVERY_NOTICE_VALIDATION.json) add an isolated simple Coordinator subclass with short interrupted/unknown-Send notices alongside existing connection/error text. Latest stored interrupted status is distinct from a duplicate journal ID without a saved turn; neither implies external provider/billing truth. No retry, schema, event/history mutation or production import is added. Unknown observations are chat-local, capped at 100 and in memory; a later durable turn supersedes them. A restart without replay cannot reconstruct the old action payload.
+
+Three owned-process crash/reopen cases now verify candidate IPC2 notice round trips and clearing after a new explicit request; three fresh base cases retain unchanged semantics. Eight additional offline cases cover isolation, guards, bounds, active tasks and restoration. This is synthetic MCP/fake inference without native notice/readability or entry-point/transport/paid acceptance. Earlier process/native reports retain historical hashes. One local Claude process was not established idle; no overlapping invocation/review or quota diagnosis was made.
+
+Next: peer critique when available, durable action-outcome and actual helper/transport lifecycle design, native notice layout/readability and wider scene/race checks, stable player preferences and target/display integration, then paired actual-Pro/player-release gates. Current player source/bundles remain unchanged, with no badge/chips/redesign or gameplay commands shipped.
+
 ## Abrupt helper-process boundaries — developer-only
 
 [CHAT_PROCESS_RECOVERY.md](CHAT_PROCESS_RECOVERY.md) / [current evidence](CHAT_PROCESS_RECOVERY_VALIDATION.json) add three owned-process SIGKILL checkpoints against the actual production Coordinator/SQLite/conversation with synthetic MCP and fake inference. Separate restart processes verify admission-before-turn deduplication, interrupted running status with volatile partial loss, and one retained completed answer before UI acknowledgement. Original Send replay creates no new task/turn/provider; automatic sync selects the existing chat; a new explicit ID completes once with fresh bounded historical context. Production source/bundles are unchanged, and earlier native recovery evidence stays historical.
