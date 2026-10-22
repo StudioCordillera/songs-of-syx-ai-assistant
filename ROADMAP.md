@@ -1,5 +1,7 @@
 # Roadmap
 
+Current reference milestone: [BLUEPRINTS.md](BLUEPRINTS.md) / [paired release evidence](BLUEPRINT_RELEASE_VALIDATION.json) promote the two fixed original-reference tools, self-contained authored data and immutable citations. Earlier developer-only blueprint checkpoints below retain historical scopes. Richer reviewed references and actual UI/state/lifecycle/copilot gaps remain open.
+
 ## Current focus
 
 Every new/resumed run first fetches and compares collaborator changes using dev/collaboration_status.py and AGENTS.md. Reconcile overlapping unpublished work by comparing correctness/evidence and retaining or combining the stronger implementation. CONTRIBUTING.md documents the workflow; WORK_STATUS.md is the concise handoff.

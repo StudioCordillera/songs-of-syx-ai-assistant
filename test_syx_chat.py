@@ -197,7 +197,7 @@ def test_real_stdio_mcp_chat_tool_discovery(tmp_path):
         async with stdio_client(params) as streams:
             async with ClientSession(*streams) as mcp:
                 await mcp.initialize();listed=await mcp.list_tools()
-                assert {t.name for t in listed.tools}==TOOLS
+                assert {t.name for t in listed.tools}==TOOLS|{'search_blueprint_examples','get_blueprint_example'}
                 assert all(t.annotations.read_only_hint is True for t in listed.tools)
                 store=ChatStore(tmp_path/'history');session=uid();chat=store.new(session)
                 provider=Provider([answer('Must not be sent')]);loop=Conversation(store,mcp,lambda _:provider)

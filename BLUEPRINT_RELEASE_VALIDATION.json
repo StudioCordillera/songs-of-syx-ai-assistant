@@ -1,0 +1,80 @@
+{
+  "passed": true,
+  "evaluated_at": "2026-10-22T02:52:28.627686+00:00",
+  "scope": "Promote fixed original blueprint reference tools and per-turn conversation admission with self-contained original data and immutable citations; unchanged Java classes.",
+  "mod_jar_sha256": "f72b512d990d8ebfc8b31bbf7470262528e35416dbfa4d9ad1b68d29854fc561",
+  "previous_mod_jar_sha256": "3db26c48f532f8db23086a1613a09c2a70cede6c44d8b2c82c6e4fa4d36178c3",
+  "production_java_source_unchanged": true,
+  "all_java_class_contents_identical_to_previous_release": true,
+  "java_class_sha256": {
+    "syx/assistant/AssistantScript$1.class": "3a098c2216966ee77b4bf612d8fa8eabbfadcc42d1123eef13703b4518a541eb",
+    "syx/assistant/AssistantScript$Instance.class": "76a5c6409c9d25c19746147ae1ca43a43532235156416f249cc5bc8039f48f1b",
+    "syx/assistant/AssistantScript.class": "3ddb97d50cf7bee1cd54c8cb23b0797c29ccda275d2e9c8a51628e66b60a71ce",
+    "syx/assistant/ChatPanel$1.class": "d07fef93ae28d6dfbf8717803d663e48e2d1cb3a27d51cb26ecb9bd5799fc4c0",
+    "syx/assistant/ChatPanel$2.class": "0f7f9ea6576a74d326fe1023d2707fcfe195a5e595f2acd2a953afb36df4aa7a",
+    "syx/assistant/ChatPanel.class": "929cc4f75b41d95ba4d29bcfd50994921fca89e5f30ecc57b5a1dc2a208689c6",
+    "syx/assistant/EntityReadRequest$Filter.class": "6d94e22dc8a38fabe9d100e9b262ea68eae73a97cd708f7aa950fe698a7746cd",
+    "syx/assistant/EntityReadRequest.class": "fb29150d93279f1d4a8c924450c5c8b3e1356254422e8d20e2fdaf984de3e437",
+    "syx/assistant/HousingObservation.class": "bd9ecb2dfb87b2c7712eb765343b42dd1416a9c21601a4e83e0922ea10e957dc",
+    "syx/assistant/JsonWriter.class": "7c0592feafbd1732910f63fbcacaf3775e1679f934e1d6aa24ca407c11e226c7",
+    "syx/assistant/RegionalReadRequest.class": "ab2b1a663562d3d0fcdced7f3b293d537fe0f1b83d032341d25395eaf8058738",
+    "syx/assistant/StateCollector$Reader.class": "c296383fcbbb14c50a24a381442dfe085c9497361817c7d6c37fde62875daaf4",
+    "syx/assistant/StateCollector.class": "b6bf164f5dfb393b2ed0fe2732a96b2acc07c9b9a1406afd90346a88429e85e2",
+    "syx/assistant/StockpileReadRequest$Filter.class": "8ad5eba045937250c02024530278c8b9e118cb765c3e927ea0f8614a41c3a582",
+    "syx/assistant/StockpileReadRequest.class": "2cc1208a8c23e29767b60c72c46bf0a837252f23df77b2f4e27fdc87af78bb5f",
+    "syx/assistant/TileReadRequest.class": "44c4d9f360b28b13f84d429c76bf742d450b719da559ec74a60e17ede38b34cd",
+    "syx/assistant/UiContentCollector$Budget.class": "8dd0206fe66ae5cf5e5ad57d183e554f46dfa863289d91ce92c717735ca7cef3",
+    "syx/assistant/UiContentCollector.class": "1b8da8cf49254747f409c3093f5a9ca1f40acfa7251a2bb4808a989c41bdb5ba",
+    "syx/assistant/UiContextCollector.class": "5f155a44df879ffe1bab89a132eff8a87c165540be91bfec3dab2053625bd843",
+    "syx/assistant/WeatherObservation.class": "f44a9c52fbf421cb0b4128c0f4484904b614873c1da52f37e1bf122e8635b892"
+  },
+  "changed_existing_packaged_python_modules": [
+    "syx_mcp.py",
+    "syx_chat_service.py"
+  ],
+  "new_packaged_python_modules": [
+    "syx_blueprint_chat.py",
+    "syx_blueprint_data.py",
+    "syx_blueprint_tools.py",
+    "syx_blueprints.py"
+  ],
+  "embedded_original_artifacts_byte_identical": true,
+  "registry_definitions_ast_identical_to_developer_candidate": true,
+  "python_tests_passed": 694,
+  "production_read_only_tools": 21,
+  "fresh_core_groups": 7,
+  "native_player_pro_turns": 2,
+  "production_reference_pro_turns": 2,
+  "reference_pro_successful_round_trips": 5,
+  "actual_reference_tool_calls": 3,
+  "reference_manual_review": "Both controlled visible replies preserve authored dimensions/item count/entry/aisles, exact immutable explanation URL and 0.71.44; the other-version answer retains unknown compatibility and no construction/execution. No raw transcript is published.",
+  "claude_review": {
+    "invocation_started": false,
+    "existing_local_cli_processes": 1,
+    "reason": "Existing local CLI process not established idle; no-overlap lane honored. No new Claude approval/quota/model result claimed."
+  },
+  "source_sha256": {
+    "syx_blueprints.py": "99f8a81e4f7577911c7bb3be032e0d66c7ddf96c172089df04cc93ed2d5c88a9",
+    "syx_blueprint_data.py": "7892c123de8c494246543c7e2874972324bcdb0e192e3373833c9aa5e163660f",
+    "syx_blueprint_tools.py": "e1593a724e2fdb5c81957eef188e80e7f2c3666cce4200d6492ce3560d4cee02",
+    "syx_blueprint_chat.py": "ea270d20bd0ba9158e425c8d2b72b2632e0c6e1dfc60ea8b3f6978f615d631fc",
+    "syx_mcp.py": "e00dd01a196bebf14247e8249b752501454f7e630a57f72d777f4125eb557ccc",
+    "syx_chat_service.py": "7c6ac3b6aae4f2bbed67840ec99bea32d62e409a3745582e20a8e5a19157244f",
+    "make_user_test.py": "b7f8c11ef789da9aa0d6351ddb96e38c6159c3e712bf5b643f92e850a218333a",
+    "pyproject.toml": "184114e1cd217d298bdcc57040d9a3331d766bb43efe114d8648909dabb17797",
+    "test_blueprint_production.py": "5ab2ef76baad4f1c20fde75c0a245d9ba936d47354b717ae7bc308da931f2b68",
+    "test_blueprint_pro_runner.py": "865abf1e9d6d6e94171df1b3ea7ec4606e71d291306b8a8d2c12fc4f0111b2d6",
+    "test_auto_connection.py": "94084a8ed527ccd23b21414cbb67e6825322708d1f59243c3a56251b7ce7745d",
+    "test_syx_chat.py": "46d0c40e087eb61418db4ff1873e267601b820ff31d2b523db613d71cd526c3d",
+    "test_syx_mcp.py": "82f23982a5ac694da5a4fa84ee3e7490e96a793a5b3049df67fecefbf84989c5",
+    "dev/run_blueprint_pro_check.py": "a5a433597d0fb91db4b6084c19a64311de0e92fc7af857aeb91a171649aa6964"
+  },
+  "limits": [
+    "One original teaching grid plus finite catalog/access evidence; no legal building, door/roof/map/pathfinder, materials/capacity/staffing/efficiency/optimum or construction/gameplay control acceptance.",
+    "Two native-player Pro turns check state/guidance and plain IPC. Two additional production-reference Pro turns use synthetic demo context, not a native world or native reference advice acceptance. Literal checks and a finite manual review are not general unscripted semantic evaluation.",
+    "All fifteen guidance summaries and original retrieval dates remain unchanged. Immutable original artifact citations and embedded report bytes retain the original catalog review date; promotion does not refresh it or attest a player installation/modded catalog.",
+    "Current core/distribution/connection/focus/guidance/discovery/provider reports are fresh. Older feature-specific/native-cost/UI/prototype reports retain recorded scopes. Identical Java class bytes are not fresh exhaustive all-menu/large-city/FPS acceptance.",
+    "No native redesign, badge, typed target chips, gameplay action, third-party blueprint/image/video importer or provider/account expansion is shipped.",
+    "The extracted-distribution report checks candidate payload before final BUILD metadata enrichment. Promotion verifies every payload file byte remains identical; final metadata records the assembled acceptance evidence."
+  ]
+}

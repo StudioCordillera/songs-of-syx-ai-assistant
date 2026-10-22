@@ -43,7 +43,7 @@ The historical `dev/run_housing_scenes.py` with `dev/candidates/housing/scenes/S
 
 | Module | Responsibility |
 | --- | --- |
-| syx_mcp.py | Snapshot/domain models, freshness/cache, Advisor and nineteen tool registrations; stdio entry point. |
+| syx_mcp.py | Snapshot/domain models, freshness/cache, Advisor and nineteen base registrations; default stdio entry point adds two fixed original-reference tools. |
 | syx_query.py | Fixed snapshot selection language, joins/arithmetic/grouping/sort, shared work/row/source budgets and collection diagnostics. |
 | syx_live.py | Strict entity selections, live/capture wire transport and agent-facing schema/help. |
 | syx_capture.py | Immutable encoded retained entity/tile/regional observations in separate bounded pools, server-local tokens, shared paging/freshness guards and original provenance. |
@@ -54,6 +54,9 @@ The historical `dev/run_housing_scenes.py` with `dev/candidates/housing/scenes/S
 | syx_api_support.py | Curated capability routing, source/evidence/limit descriptions and explicit gaps; not arbitrary invocation. |
 | syx_api_manifest.py | Generated compiler audit metadata. Regenerate with audit_api.py; never hand-merge it. |
 | syx_chat_service.py | Local IPC coordinator, fresh MCP automatic player attachment / explicit advanced attachment, simple/advanced routes, key boundaries and lifecycle. |
+| syx_blueprints.py / syx_blueprint_data.py | Bounded original teaching registry and exact embedded public corpus/catalog bytes, immutable citation identity and unknown-version caveats; no game execution. |
+| syx_blueprint_tools.py | Two fixed typed read-only summary/get tools, no live-state claims, actual UTF-8 response cap; explicit registration over the base factory. |
+| syx_blueprint_chat.py | Per-turn reference declaration admission/recheck, task-local grants, local argument validation and schema extension over the existing nineteen-tool loop. Used by the coordinator. |
 | syx_chat.py | Bounded native DeepSeek conversation/tool loop and citation/evidence integration. |
 | syx_deepseek.py | Streaming native API protocol and explicit model/endpoint errors; simple chat selects Pro explicitly. |
 | syx_chat_store.py | Private SQLite chat/session/event persistence, recovery, secret redaction, local export/delete. |
@@ -227,3 +230,5 @@ The [original blueprint-example candidate](BLUEPRINT_EXAMPLES_CANDIDATE.md) uses
 `test_blueprint_citations.py` and [citation evidence](BLUEPRINT_CITATION_VALIDATION.json) add immutable original explanation/corpus/catalog locators to developer summary/get results. Modified local bytes do not inherit pinned citations; compatibility and construction caveats remain separate. The previous paid developer report predates this registry change; no refreshed inference/player acceptance is implied.
 
 `dev/blueprint_coordinator_candidate.py` explicitly installs the developer reference conversation in the unchanged simple coordinator without a production entry point/global mutation. `test_blueprint_coordinator_candidate.py` covers file IPC/duplicate/Stop/root bounds and demo refusal. `dev/verify_blueprint_coordinator.py` / `dev/run_read_fixture.py --case blueprint-chat` reuse the unchanged native background scenario with fake inference and real MCP search/get. [Native/coordinator evidence](BLUEPRINT_COORDINATOR_VALIDATION.json) is separate from paid model/player release acceptance.
+
+[Production original-reference integration](BLUEPRINTS.md) and [release evidence](BLUEPRINT_RELEASE_VALIDATION.json) supersede the earlier developer-only integration gates. The default player/MCP entry point now has 21 read-only tools; direct low-level factory callers still receive the nineteen-tool base unless explicitly extended. BLUEPRINT_REFERENCE_PRO_VALIDATION.json records the separate synthetic-context production backend Pro check. Neither new tool provides construction authority.

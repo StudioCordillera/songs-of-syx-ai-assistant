@@ -1,6 +1,6 @@
 {
   "passed": true,
-  "evaluated_at": "2026-10-21T15:30:48.543459+00:00",
+  "evaluated_at": "2026-10-22T02:42:43.959037+00:00",
   "checks": [
     {
       "id": "city_home_records",
@@ -245,7 +245,7 @@
   "inference_calls": 0,
   "public_inventory_size": 427,
   "source_sha256": {
-    "syx_mcp.py": "1dae7a26190667238c8f448f9b18d2ef67b056caa99750306bd3c1a2ff4dd866",
+    "syx_mcp.py": "e00dd01a196bebf14247e8249b752501454f7e630a57f72d777f4125eb557ccc",
     "syx_api_support.py": "cca62a13fbd39b0de15af284ca592c66cf527837b96b8bf4c4a54259d5cfdc1d",
     "syx_api_manifest.py": "9bd36ac8a819db076b5bb5b5a526b86269aa4b69f6644fcd0b797fdc22c64c79",
     "dev/verify_capability_discovery.py": "a56c577f176fad73929e46a8f5e629784fe0942e0cf3dc9b7a47d42463be0689"

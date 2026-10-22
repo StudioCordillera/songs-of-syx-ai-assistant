@@ -4,7 +4,7 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "songs-of-syx-ai-assistant"
-version = "0.12.0"
+version = "0.13.0"
 description = "Read-only game-state and citation MCP foundation for Songs of Syx"
 requires-python = ">=3.11"
 dependencies = ["mcp==2.3.0", "httpx>=0.28,<1"]
@@ -21,7 +21,7 @@ syx-chat = "syx_chat_service:main"
 syx-chatgpt-login = "syx_openai_auth:main"
 
 [tool.setuptools]
-py-modules = ["syx_housing", "syx_mcp", "syx_knowledge", "syx_query", "syx_api_support", "syx_api_manifest", "syx_live", "syx_capture", "syx_tiles", "syx_regions", "syx_stockpiles", "syx_chat_store", "syx_deepseek", "syx_chat", "syx_chat_service", "syx_claude", "syx_claude_worker", "syx_openai_auth", "syx_openai_plan"]
+py-modules = ["syx_blueprints", "syx_blueprint_data", "syx_blueprint_tools", "syx_blueprint_chat", "syx_housing", "syx_mcp", "syx_knowledge", "syx_query", "syx_api_support", "syx_api_manifest", "syx_live", "syx_capture", "syx_tiles", "syx_regions", "syx_stockpiles", "syx_chat_store", "syx_deepseek", "syx_chat", "syx_chat_service", "syx_claude", "syx_claude_worker", "syx_openai_auth", "syx_openai_plan"]
 
 [tool.pytest.ini_options]
 testpaths = ["."]

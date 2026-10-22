@@ -25,9 +25,19 @@ PROMPTS=[
 
 def sha(path):return hashlib.sha256(path.read_bytes()).hexdigest()
 
-async def run(state,key):
+async def run(state,key,production=False):
     from mcp import ClientSession,StdioServerParameters
     from mcp.client.stdio import stdio_client
+    prompts=PROMPTS
+    conversation_class=BlueprintConversation
+    module='dev.blueprint_mcp_candidate'
+    source_url=URL
+    if production:
+        from syx_blueprint_chat import BlueprintConversation as ProductionConversation
+        conversation_class=ProductionConversation
+        module='syx_mcp'
+        source_url=load_registry().citation()['artifacts'][0]['url']
+        prompts=[p.replace('its source URL','the immutable explanation artifact URL').replace('the original source URL','the immutable explanation artifact URL') for p in PROMPTS]
     registry=load_registry();snapshot=json.loads((ROOT/'snapshot.example.json').read_text());assert snapshot['demo'] is True
     session_id=str(uuid4());snapshot['session_id']=session_id
     async def heartbeat():
@@ -44,13 +54,13 @@ async def run(state,key):
             counts['started_requests']+=1;counts['schema_counts'].append(len(tools))
             value=await super().complete(messages,tools,on_text);counts['completed_round_trips']+=1;return value
     store=ChatStore(state/'history',secrets=[key]);chat=store.new(session_id,'Developer blueprint Pro check',model='deepseek-v4-pro')
-    params=StdioServerParameters(command=sys.executable,args=['-m','dev.blueprint_mcp_candidate'],cwd=str(ROOT),env={'SYX_STATE_DIR':str(state)})
+    params=StdioServerParameters(command=sys.executable,args=['-m',module],cwd=str(ROOT),env={'SYX_STATE_DIR':str(state)})
     answers=[]
     try:
       async with stdio_client(params) as streams:
         async with ClientSession(*streams) as mcp:
-            await mcp.initialize();conversation=BlueprintConversation(store,mcp,lambda _:CountedPro(key,model='deepseek-v4-pro'))
-            for prompt in PROMPTS:
+            await mcp.initialize();conversation=conversation_class(store,mcp,lambda _:CountedPro(key,model='deepseek-v4-pro'))
+            for prompt in prompts:
                 answers.append(await conversation.run(chat['chat_id'],str(uuid4()),session_id,prompt))
       turns=store.turns(chat['chat_id']);assert len(turns)==2 and all(t['status']=='completed' for t in turns)
       events=store.events(chat['chat_id'],limit=100);calls=[e['payload'] for e in events if e['kind']=='tool' and e['payload']['name'] in EXTRA]
@@ -67,22 +77,23 @@ async def run(state,key):
               assert value['evidence']['catalog_report_sha256']==registry.report_hash;retrieved.append(value)
       assert any(v['requested_game_version']=='0.71.44' and v['compatibility']=='exact_catalog_version_only' for v in retrieved)
       assert any(v['requested_game_version']=='0.72.0' and v['compatibility']=='unknown' for v in retrieved)
-      assert all(URL in a and '0.71.44' in a for a in answers)
+      assert all(source_url in a and '0.71.44' in a for a in answers)
       assert any(word in answers[1].lower() for word in ['unknown','unverified','not establish','not verified','cannot establish'])
       for n,h in SOURCE_HASHES.items():assert sha(ROOT/n)==h,'Source changed during paid check: '+n
       return {'passed':True,'evaluated_at':datetime.now(timezone.utc).isoformat(),
-       'scope':'Two explicit paid Pro turns over developer blueprint conversation/MCP with an explicitly synthetic demo heartbeat; no game/native UI or production coordinator integration.',
+       'scope':('Two explicit paid Pro turns over production reference conversation/MCP entry points with synthetic demo context; no native coordinator/UI or player promotion.' if production else 'Two explicit paid Pro turns over developer blueprint conversation/MCP with an explicitly synthetic demo heartbeat; no game/native UI or production coordinator integration.'),
        'requested_model':'deepseek-v4-pro','adapter_model':'deepseek-v4-pro','remote_model_identity_independently_attested':False,
        'completed_turns':2,**counts,'actual_reference_tool_calls':len(calls),'get_results_checked':len(retrieved),
        'first_turn_search_and_get':True,'other_version_unknown_evidence':True,'source_url_and_original_version_in_both_final_replies':True,
        'catalog_report_sha256':registry.report_hash,'source_sha256':SOURCE_HASHES,
-       'prompt_sha256':[hashlib.sha256(p.encode()).hexdigest() for p in PROMPTS],
+       'prompt_sha256':[hashlib.sha256(p.encode()).hexdigest() for p in prompts],
        'visible_reply_sha256':[hashlib.sha256(a.encode()).hexdigest() for a in answers],
        'fixture':{'demo':True,'game_version':snapshot['game_version'],'clock':'Synthetic fixture timestamp republished once per second to exercise existing freshness admission; no real game observations refreshed.'},
-       'native_game_calls':0,'production_integration':False,
+       'native_game_calls':0,'production_integration':production,
+       'production_backend_only':production, 'immutable_explanation_url_required':production,
        'limits':['Controlled prompts explicitly request tools/version/citation/caveats. Successful model/schema transport, durable evidence and literal reply fragments do not establish general semantic entailment, unscripted retrieval quality or advice correctness.',
         'Original geometry/catalog evidence retains its earlier native scope. No actual room construction, map/path/door/roof/capacity/cost/efficiency/optimality or third-party layout/rights validation.',
-        'This uses the developer subclass/server and private disposable history, not the production coordinator/native chat/player. Synthetic demo clock/session freshness is not live-world acceptance.',
+        'This uses explicit reference conversation/MCP entry points and private disposable history, not native coordinator/chat/player. Inspect production_backend_only for the selected route; synthetic demo clock/session freshness is not live-world acceptance.',
         'No provider/account expansion, fallback model, runner retry or credit purchase. The explicit requested API model is recorded; remote model identity is not independently attested.']}
     finally:
       task.cancel()
@@ -92,10 +103,12 @@ async def run(state,key):
 
 if __name__=='__main__':
     parser=argparse.ArgumentParser(description=__doc__);parser.add_argument('--env-file',type=Path,required=True)
+    parser.add_argument('--production',action='store_true',help='Explicitly test the production conversation and default MCP entry point; still synthetic demo context')
     args=parser.parse_args();key=read_key_file(args.env_file)
     state=Path(tempfile.mkdtemp(prefix='blueprint-pro-',dir=ROOT/'runtime'));os.chmod(state,0o700)
-    SOURCE_HASHES={n:sha(ROOT/n) for n in SOURCES}
-    try:report=asyncio.run(run(state,key))
+    sources=SOURCES+(['syx_blueprints.py','syx_blueprint_data.py','syx_blueprint_tools.py','syx_blueprint_chat.py'] if args.production else [])
+    SOURCE_HASHES={n:sha(ROOT/n) for n in sources}
+    try:report=asyncio.run(run(state,key,production=args.production))
     except BaseException as error:
         report={'passed':False,'evaluated_at':datetime.now(timezone.utc).isoformat(),'error_type':type(error).__name__,
          'scope':'Developer explicit paid Pro check failed; inspect private history/log. No passing provider evidence or player promotion.',

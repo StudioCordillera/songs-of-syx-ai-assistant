@@ -446,7 +446,8 @@ def create_server(advisor: Advisor) -> MCPServer:
 def main():
     state_dir = Path(os.environ.get("SYX_STATE_DIR", Path.home() / ".local/share/syx-assistant"))
     advisor = Advisor(state_dir / "snapshot.json", state_dir / "corpus.json")
-    create_server(advisor).run(transport="stdio")
+    from syx_blueprint_tools import register_blueprint_tools
+    register_blueprint_tools(create_server(advisor)).run(transport="stdio")
 
 if __name__ == "__main__":
     main()

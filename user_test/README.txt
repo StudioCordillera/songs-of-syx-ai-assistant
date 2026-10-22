@@ -24,6 +24,10 @@ Install and restart the paired mod and helper together when updating.
 The question box supports up to 240 characters with wrapping. Use follow-up
 messages for longer questions. Send/Stop control the reply. The assistant uses
 read-only game queries internally and cites retrieved guidance in its answers.
+You can also ask: "Show the original warehouse teaching layout and cite its source."
+This is an authored example with versioned furniture-footprint evidence, not a
+validated building, storage-capacity estimate or automatic construction command.
+Community/Workshop/video layout import and gameplay control are not included.
 API requests use your DeepSeek balance; no request is sent until you Send.
 
 Local chat history: ~/.local/share/syx-assistant-chat

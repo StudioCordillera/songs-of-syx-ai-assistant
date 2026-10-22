@@ -6,7 +6,17 @@ import pytest
 
 from syx_chat_service import Coordinator, action, unb64
 from syx_chat_store import ChatStore
-from test_syx_chat import MCP, Provider, answer, uid
+from test_syx_chat import MCP as BaseMCP, Provider, answer, uid
+from mcp.types import Tool, ToolAnnotations
+
+
+class MCP(BaseMCP):
+    async def list_tools(self):
+        listing = await super().list_tools()
+        listing.tools.extend(Tool(name=name,input_schema={'type':'object'},annotations=ToolAnnotations(
+            read_only_hint=True,idempotent_hint=True,destructive_hint=False,open_world_hint=False))
+            for name in ['search_blueprint_examples','get_blueprint_example'])
+        return listing
 
 
 def test_sync_opens_one_pro_chat_and_reuses_current_load_history(tmp_path):

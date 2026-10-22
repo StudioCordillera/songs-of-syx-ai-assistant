@@ -19,7 +19,7 @@ from uuid import UUID
 
 from mcp import ClientSession, StdioServerParameters
 from mcp.client.stdio import stdio_client
-from syx_chat import Conversation
+from syx_blueprint_chat import BlueprintConversation as Conversation
 from syx_chat_store import ChatStore, identity
 from syx_deepseek import DeepSeek
 

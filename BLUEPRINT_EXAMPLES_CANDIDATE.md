@@ -1,6 +1,6 @@
 # Original blueprint teaching example — developer candidate
 
-This candidate begins a structured example registry for the requested [blueprint/reference feature](PLAYER_EXPERIENCE_PLAN.md). It contains one original five-by-five warehouse interior sketch, with explicit catalog evidence and uncertainty. It is separate from the production fifteen-summary guidance corpus, installed help and MCP tools. A later developer-only MCP wrapper is described below. No player example browser, Workshop importer, video reconstruction or construction command is shipped.
+This historical candidate began a structured example registry for the requested [blueprint/reference feature](PLAYER_EXPERIENCE_PLAN.md). It contains one original five-by-five warehouse interior sketch, with explicit catalog evidence and uncertainty. Its checkpoint was separate from production guidance/help/MCP. The later paired promotion is documented in [BLUEPRINTS.md](BLUEPRINTS.md); developer reports below retain their original source/date scopes. No Workshop importer, video reconstruction or construction command is shipped.
 
 The example is authored for this project. It copies no user save layout, third-party blueprint, game sprite, screenshot, video or guide. The repository has no selected redistribution license; the record makes no additional license grant. [Earlier third-party discovery](BLUEPRINT_REFERENCE_CANDIDATES.md) remains leads, not reviewed layouts or rights evidence.
 
