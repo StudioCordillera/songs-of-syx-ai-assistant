@@ -2,6 +2,14 @@
 
 Use `python3 dev/collaboration_status.py` for actual remote/local state at every run; this file is a handoff, not a live branch/working-tree assertion. Read AGENTS.md and reconcile newer collaborator work before editing.
 
+## Production helper entry-point lifecycle — developer regression
+
+[HELPER_LIFECYCLE.md](HELPER_LIFECYCLE.md) / [current evidence](HELPER_LIFECYCLE_VALIDATION.json) exercise the actual production CLI, history lock/startup recovery, file IPC and real stdio MCP restart against authored state with no key/provider injection. Three invocations include two successful helper/MCP startups and one competing-history refusal before recovery; two authored running rows recover only at the appropriate startup. A retained sync acknowledgement does not restore in-memory selection; a new sync selects the persisted chat through real MCP. Keyless Send is acknowledged but creates no turn/event/inference.
+
+The installed SDK gives MCP its own session. The fixture therefore signals only the directly observed task-owned child for abrupt transport loss, then interrupts the helper if needed for production async cleanup/reaping before restart. This is not abrupt helper death, a paid stream, native game truth, power loss or native UI/display acceptance. PID metadata is scoped to the fixture parent; no process memory, unrelated process or normal history/key/save is accessed. Exact source/test/SDK hashes, full offline and unchanged bundles are recorded. The prior native-notice commit's queued CI completed successfully.
+
+Next: durable action outcomes and native transport-failure presentation, stable player preferences and target/display integration, broader scene/race/readability checks and paired actual-Pro/core/distribution gates. Current production source/player bundles stay unchanged; unknown/oversized display remains unread.
+
 ## Native helper recovery notices — developer-only
 
 [NATIVE_CHAT_NOTICES.md](NATIVE_CHAT_NOTICES.md) / [current evidence](NATIVE_CHAT_NOTICES_VALIDATION.json) connect the actual RecoveryCoordinator candidate to the scrollable native overlay through real IPC2/default MCP/history. Eleven checks include the prior nine lifecycle phases plus interrupted/unknown-Send notice text in native wrapped model rows, preserving chat/composer/draft/style/geometry. Recovery statuses are explicitly authored in disposable history: one running turn without inference, and one callback-refused admission after durable journaling. These are not crashes or paid requests; verifier/game/MCP stay live through graceful task/SQLite reopens.

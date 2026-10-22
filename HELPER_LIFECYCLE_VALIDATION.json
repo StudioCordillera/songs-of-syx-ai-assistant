@@ -1,0 +1,58 @@
+{
+  "passed": true,
+  "production_entrypoint_invocations": 3,
+  "successful_helper_and_stdio_mcp_startups": 2,
+  "history_lock_contender_refused_before_recovery": true,
+  "live_authored_turn_preserved_on_lock_refusal": true,
+  "owned_stdio_mcp_abruptly_terminated": true,
+  "helper_stopped_with_interrupt_if_needed": true,
+  "owned_mcp_child_reaped_before_restart": true,
+  "restarted_helper_pid_changed": true,
+  "old_sync_acknowledgement_did_not_select_chat": true,
+  "new_sync_selected_persisted_chat_through_actual_mcp": true,
+  "startup_recovered_authored_running_rows": 2,
+  "missing_key_send_rejected_without_turn_or_event": true,
+  "provider_key_configured": false,
+  "external_inference_calls": 0,
+  "native_game_used": false,
+  "production_changed": false,
+  "mcp_distribution_version": "2.3.0",
+  "installed_stdio_module_sha256": "c4a9de7119f35366037dbf8d51ab5cb6438e15e120730f65f32cdacdeea9328a",
+  "source_sha256": {
+    "dev/check_helper_lifecycle.py": "640b99c1e983e0aaa34fd3ffa5d35bb7d9425748fc1368ea690683eda7ff4d81",
+    "syx_chat_service.py": "7c6ac3b6aae4f2bbed67840ec99bea32d62e409a3745582e20a8e5a19157244f",
+    "syx_chat_store.py": "a2f2ffa53097cb60eab72c015c3d516693aa1c89c8aa54d74f4dfc96d222e634",
+    "syx_mcp.py": "e00dd01a196bebf14247e8249b752501454f7e630a57f72d777f4125eb557ccc",
+    "syx_chat.py": "98ceecfc8b042e45b0ea461f73fed74cc3fde00833a6fce22372649b9f844d6c",
+    "syx_blueprint_chat.py": "ea270d20bd0ba9158e425c8d2b72b2632e0c6e1dfc60ea8b3f6978f615d631fc",
+    "syx_knowledge.py": "d1dbc29ce755fcb3601fbda8b027227995992dfaba5b6c956ed82fdf6d302142",
+    "snapshot.example.json": "6ad782d4825b3a2d38ae5dfbf189baa141322e19978d109351abeec3d8f1c8c4"
+  },
+  "limits": [
+    "Authored snapshot with demo admission flag cleared, original DEMO-unverified version/qualifiers retained; no native game truth.",
+    "Two authored running history rows without provider tasks, not interrupted paid streams or billing evidence.",
+    "SIGKILL of the directly observed task-owned MCP child, then SIGINT to the helper if needed for production async cleanup/reaping. Not abrupt helper death, every crash timing or power loss.",
+    "Actual production helper entry point, file IPC, lock, SQLite startup recovery and stdio MCP restart; no native UI/draft/visibility/readability proof.",
+    "No credential environment or env-file option supplied. The production missing-key guard rejects Send before inference."
+  ],
+  "checked_at": "2026-10-22T15:50:13.005930+00:00",
+  "base_commit": "7ad760ba796c228bca7bc61dcd7217f03c887284",
+  "test_source_sha256": {
+    "test_helper_lifecycle.py": "7ba4520ac036873f037a5e7bbd875ac1e46c19df3110e5f967ff6a22750d0331"
+  },
+  "offline": {
+    "passed": 720,
+    "log_sha256": "24a4bf5acd5d115dfcd0485fba4543ccb990b725375d1ecf5ec73fa428e1e97b"
+  },
+  "unchanged_player": {
+    "latest_zip_sha256": "dae445737746821bd54aa24ef32f2c90562b1156f5707f74c0cb0f80fc5dfc16",
+    "previous_zip_sha256": "c259a161a0856867f25bca8851453641ecca342e405af3a2eec979b823c343b9",
+    "freshness_check_passed": true
+  },
+  "prior_ci": {
+    "id": 39798149973,
+    "status": "completed",
+    "conclusion": "success"
+  },
+  "claude_invocation_started": false
+}

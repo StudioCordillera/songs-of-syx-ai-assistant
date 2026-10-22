@@ -141,3 +141,5 @@ For isolated plain recovery notices, add `--candidate` to `dev/check_chat_proces
 `NATIVE_CHAT_STATUS.md` records the current scrollable-notice overlay checked by `dev/run_native_chat_layout.py` and the separate `layout-recovery` case. `test_status_lines_java.py` checks detached Unicode/row/omission bounds without native or provider calls. Historical layout/recovery reports keep their original hashes.
 
 `dev/run_read_fixture.py --case layout-notices` integrates the recovery-notice candidate with native own status rows through real IPC2/MCP/history, using explicit authored recovery/admission setups and fake inference only. It requires eleven clean-completion phases and the shared fixture lock. See [exact scope](NATIVE_CHAT_NOTICES.md); no paid environment option or preference override is accepted.
+
+`dev/check_helper_lifecycle.py --output runtime/helper-lifecycle.json` tests the actual production helper entry point, history-lock ordering, owned stdio transport termination/restart and keyless Send without a game or credential. `test_helper_lifecycle.py` runs the same finite Linux/POSIX scenario offline. See [scope and process cleanup](HELPER_LIFECYCLE.md).
