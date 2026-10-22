@@ -31,6 +31,7 @@ final class ChatPanel extends InterGuisection {
     private GestureReducer.Rect launcherRect=new GestureReducer.Rect(8,80,112,36);
     private Object gestureScene;
     private int textWidth=804;
+    private int layoutWidth,layoutHeight;
     private String lastSubmitted="";
     private final AtomicLong candidateDraws=new AtomicLong();
     private final EnumMap<GestureReducer.Target,CLICKABLE> handles=new EnumMap<>(GestureReducer.Target.class);
@@ -74,18 +75,28 @@ final class ChatPanel extends InterGuisection {
         };
         composer=new GInput(input);
         if(!advanced)((snake2d.util.datatypes.Rec)composer.body()).setWidth(792);
+        layoutWidth=CORE.getGraphics().nativeWidth;layoutHeight=CORE.getGraphics().nativeHeight;
         pin();persistantSet();rebuild();
     }
     @Override protected boolean update(float ds) {
+        reconcileViewport(CORE.getGraphics().nativeWidth,CORE.getGraphics().nativeHeight);
         if(gesture.isCapturing()) {
             COORDINATE p=CORE.getInput().getMouse().getCoo();
             sampleGesture(p.x(),p.y(),System.nanoTime()/1_000_000.0,MButt.LEFT.isDown());
         }
         return true;
     }
-    @Override protected void deactivateAction(){gesture.cancel();super.deactivateAction();}
-    private int vw(){return CORE.getGraphics().nativeWidth;}
-    private int vh(){return CORE.getGraphics().nativeHeight;}
+    private void releaseOwnComposer(){if(Mouse.currentClicked==composer)Mouse.currentClicked=null;}
+    @Override protected void deactivateAction(){gesture.cancel();releaseOwnComposer();super.deactivateAction();}
+    private int vw(){return layoutWidth;}
+    private int vh(){return layoutHeight;}
+    // Owned layout transition; update supplies public internal dimensions. Fixtures may supply dimensions,
+    // without changing engine graphics/window state. Invalid/minimized geometry is not accepted.
+    boolean reconcileViewport(int width,int height){
+        if(width<=0||height<=0){gesture.cancel();return false;}
+        if(width==layoutWidth&&height==layoutHeight)return false;
+        gesture.cancel();layoutWidth=width;layoutHeight=height;rebuild();return true;
+    }
     private GestureReducer.Rect fitPanel(GestureReducer.Rect r){
         return new GestureReducer.Rect(r.x,r.y,Math.max(640,r.width),Math.max(560,r.height)).fit(vw(),vh());
     }
@@ -245,7 +256,7 @@ final class ChatPanel extends InterGuisection {
     private void sync(){lastSync=System.nanoTime();action("sync",null);}
     private void toggle() {
         gesture.cancel();opened=!opened;
-        if(!opened && Mouse.currentClicked==composer)Mouse.currentClicked=null;
+        if(!opened)releaseOwnComposer();
         rebuild();
         if(opened&&!advanced&&waiting.isEmpty())sync();
     }
@@ -254,7 +265,7 @@ final class ChatPanel extends InterGuisection {
         if(!preserveCapture)gesture.cancel();
         candidateButtons.clear();handles.clear();launcherRect=launcherRect.fit(vw(),vh());panelRect=fitPanel(panelRect);
         if(!opened||vw()<640||vh()<560) {
-            opened=false;
+            opened=false;releaseOwnComposer();
             GuiSection launcher=new GuiSection();
             launcher.add(new Handle(GestureReducer.Target.launcher,"AI chat",(int)launcherRect.width,(int)launcherRect.height),0,0);
             launcher.body().setWidth((int)launcherRect.width).setHeight((int)launcherRect.height).moveX1Y1((int)launcherRect.x,(int)launcherRect.y);

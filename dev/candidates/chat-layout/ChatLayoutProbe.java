@@ -6,6 +6,9 @@ import java.util.*;
 import game.GAME;
 import snake2d.CORE;
 import snake2d.MButt;
+import snake2d.Mouse;
+import snake2d.util.sprite.text.StringInputSprite;
+import init.sprite.UI.UI;
 import snake2d.util.datatypes.Coo;
 import snake2d.util.gui.clickable.CLICKABLE;
 import snake2d.util.gui.renderable.RENDEROBJ;
@@ -24,10 +27,11 @@ public final class ChatLayoutProbe {
         require(!VIEW.inters().manager.hover(new Coo(widget.body().cX(),widget.body().cY()),true),"Own hover escaped");
         require(!VIEW.inters().manager.click(MButt.LEFT),"Own button click escaped");
     }
-    private static void bounds(ChatPanel p){
+    private static void bounds(ChatPanel p){bounds(p,CORE.getGraphics().nativeWidth,CORE.getGraphics().nativeHeight);}
+    private static void bounds(ChatPanel p,int width,int height){
         var r=p.candidateLayout();var b=p.section().body();
         require(b.x1()==r.x&&b.y1()==r.y&&b.width()==r.width&&b.height()==r.height,"Own rectangle/body mismatch");
-        require(b.x1()>=0&&b.y1()>=0&&b.x2()<=CORE.getGraphics().nativeWidth&&b.y2()<=CORE.getGraphics().nativeHeight,"Own surface outside viewport");
+        require(b.x1()>=0&&b.y1()>=0&&b.x2()<=width&&b.y2()<=height,"Own surface outside viewport");
         for(RENDEROBJ child:p.section().elements())require(child.body().x1()>=b.x1()&&child.body().y1()>=b.y1()&&child.body().x2()<=b.x2()&&child.body().y2()<=b.y2(),"Own control outside panel: "+child.getClass().getSimpleName());
         if(Boolean.TRUE.equals(p.context().get("panel_open")))require(p.candidateComposer().body().width()==r.width-24,"Composer width not responsive");
     }
@@ -98,11 +102,35 @@ public final class ChatLayoutProbe {
                     stamp[0]=System.nanoTime();phase[0]=5;return;
                 case 5:{
                     if(System.nanoTime()-stamp[0]<1_100_000_000L)return;
-                    p.refresh(frame(session[0],chat[0],ack[0],false,true));var h=p.candidateHandle(GestureReducer.Target.header);double x=h.body().cX(),y=h.body().cY();
-                    require(p.beginGesture(GestureReducer.Target.header,x,y,600),"Begin manager-close capture");p.close();require(!p.candidateCapturing(),"Manager removal failed to cancel");p.resetCandidateLayout();checks.add("manager_deactivation_cancel");
+                    p.refresh(frame(session[0],chat[0],ack[0],false,true));
+                    // Supplied layout dimensions only: never resize the engine/window or inject input.
+                    int nativeW=CORE.getGraphics().nativeWidth,nativeH=CORE.getGraphics().nativeHeight;
+                    input[0].text().clear().add(draft);
+                    require(p.reconcileViewport(700,600),"Idle viewport change not reconciled");bounds(p,700,600);
+                    require(p.candidateLayout().width==700&&p.candidateLayout().height==600,"Idle panel did not shrink to bounds");
+                    var same=p.section();require(!p.reconcileViewport(700,600)&&p.section()==same,"Unchanged viewport rebuilt controls");
+                    require(!p.reconcileViewport(0,600)&&p.section()==same,"Invalid viewport changed accepted layout");
+                    require(input[0]==p.candidateComposer()&&input[0].text().toString().equals(draft),"Idle viewport lost draft");checks.add("idle_viewport_reflow_and_draft");
+                    var h=p.candidateHandle(GestureReducer.Target.header);double x=h.body().cX(),y=h.body().cY();
+                    require(p.beginGesture(GestureReducer.Target.header,x,y,550),"Begin viewport-change capture");
+                    require(p.reconcileViewport(680,580)&&!p.candidateCapturing(),"Viewport transition did not cancel capture");bounds(p,680,580);checks.add("viewport_change_cancels_capture");
+                    input[0].listen();require(Mouse.currentClicked==input[0],"Own composer focus setup");
+                    require(p.reconcileViewport(600,500),"Undersized transition ignored");bounds(p,600,500);
+                    require(Boolean.FALSE.equals(p.context().get("panel_open"))&&Mouse.currentClicked!=input[0],"Undersized panel retained own composer focus");
+                    require(input[0].text().toString().equals(draft),"Undersized fallback lost draft");checks.add("undersized_viewport_closes_and_releases_own_focus");
+                    require(p.reconcileViewport(100,60),"Closed launcher shrink ignored");bounds(p,100,60);
+                    require(p.reconcileViewport(nativeW,nativeH),"Native dimensions recovery failed");bounds(p);
+                    require(Boolean.FALSE.equals(p.context().get("panel_open")),"Recovery unexpectedly reopened panel");
+                    shortOpen(p,560);require(input[0].text().toString().equals(draft),"Recovery lost draft");
+                    GInput other=new GInput(new StringInputSprite(16,UI.FONT().S));other.listen();
+                    p.reconcileViewport(600,500);require(Mouse.currentClicked==other,"Fallback cleared unrelated own-widget focus");
+                    p.reconcileViewport(nativeW,nativeH);shortOpen(p,570);Mouse.currentClicked=null;
+                    checks.add("viewport_recovery_and_closed_launcher_bounds");
+                    h=p.candidateHandle(GestureReducer.Target.header);x=h.body().cX();y=h.body().cY();
+                    require(p.beginGesture(GestureReducer.Target.header,x,y,600),"Begin manager-close capture");input[0].listen();p.close();require(!p.candidateCapturing()&&Mouse.currentClicked!=input[0],"Manager removal failed to release own capture/focus");p.resetCandidateLayout();checks.add("manager_deactivation_cancel");
                     h=p.candidateHandle(GestureReducer.Target.header);x=h.body().cX();y=h.body().cY();require(p.beginGesture(GestureReducer.Target.header,x,y,700),"Begin scene capture");VIEW.world().activate();require(p.sampleGesture(x,y,701,true).equals("cancelled"),"Scene changed without cancel");VIEW.s().activate();checks.add("scene_change_cancel");
                     p.resetCandidateLayout();h=p.candidateHandle(GestureReducer.Target.header);x=h.body().cX();y=h.body().cY();require(p.beginGesture(GestureReducer.Target.header,x,y,800),"Begin hidden capture");VIEW.hide();require(p.sampleGesture(x,y,801,true).equals("cancelled"),"Hidden UI failed to cancel");checks.add("hidden_ui_cancel");
-                    Files.writeString(directory.resolve("stockpile-fixture.json"),JsonWriter.encode(object("passed",true,"checks",checks,"native_width",CORE.getGraphics().nativeWidth,"native_height",CORE.getGraphics().nativeHeight,"composer_capacity",input[0].text().length()+input[0].text().spaceLeft(),"handle_render_callbacks",p.candidateDraws(),"synthetic_protocol_frames",true,"provider_calls",0)));
+                    Files.writeString(directory.resolve("stockpile-fixture.json"),JsonWriter.encode(object("passed",true,"checks",checks,"native_width",CORE.getGraphics().nativeWidth,"native_height",CORE.getGraphics().nativeHeight,"composer_capacity",input[0].text().length()+input[0].text().spaceLeft(),"handle_render_callbacks",p.candidateDraws(),"synthetic_protocol_frames",true,"supplied_layout_viewports",List.of(List.of(700,600),List.of(680,580),List.of(600,500),List.of(100,60)),"engine_viewport_changed",false,"provider_calls",0)));
                     Files.writeString(directory.resolve("chat-layout-clean-exit.json"),"{\"passed\":true}");CORE.annihilate();phase[0]=6;return;}
                 }
             }catch(Exception error){System.err.println("SMOKE_FIXTURE_FAILURE: "+error);CORE.annihilate(error);}

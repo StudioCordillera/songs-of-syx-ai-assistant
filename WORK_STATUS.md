@@ -2,7 +2,15 @@
 
 Use `python3 dev/collaboration_status.py` for actual remote/local state at every run; this file is a handoff, not a live branch/working-tree assertion. Read AGENTS.md and reconcile newer collaborator work before editing.
 
-## Native real-chat layout port — developer-only overlay
+## Idle layout bounds and own focus follow-up — developer-only
+
+[NATIVE_CHAT_LAYOUT.md](NATIVE_CHAT_LAYOUT.md) / [viewport evidence](NATIVE_CHAT_VIEWPORT_VALIDATION.json) add per-update public-dimension reconciliation before gestures, even when idle. Changed valid dimensions cancel capture and reflow controls; unchanged sizes preserve them. Nonpositive sizes refuse a new layout and cancel capture. Below the proposed minimum, the panel closes to its fitted launcher, preserves the draft and releases only its own composer's public focus marker; manager deactivation also releases that marker. Recovery stays closed and preserves another own input's marker. This improves the previous source's idle-geometry gap without changing production.
+
+Fourteen native checks pass: all earlier ten controls/protocol/lifecycle checks plus four viewport/focus-ownership cases. Layout dimensions are supplied to our owned transition (700x600, 680x580, 600x500, 100x60); engine/window dimensions stay 1536x768. This is not actual window resize/minimize, physical keyboard/focus, scale/font, visibility/receipt, real-helper/model or unpaused port acceptance. Historical ten-check evidence is retained with its original date/hashes. No new Claude invocation: one existing process was not established idle. Full offline/release checks are recorded in the new evidence; the tested latest/previous bundles remain unchanged.
+
+Next: real coordinator/frame/background integration and focused peer critique when the CLI lane is available, then actual focus/font/scale/scroll/clipping/accessibility, appearance/persisted layout and target/display protocols. Unknown/oversized replies stay unread. The redesign is still unshipped and incomplete.
+
+## Earlier native real-chat layout port — developer-only overlay
 
 [NATIVE_CHAT_LAYOUT.md](NATIVE_CHAT_LAYOUT.md) / [native evidence](NATIVE_CHAT_LAYOUT_VALIDATION.json) now port the real simple panel into an own-class developer overlay, rather than empty chrome. It contains the current automatic session/filter/transcript/composer/Send/Stop logic with responsive own bounds, immediate header drag, held launcher policy and resize. Composer object/text/capacity survive reflow; heartbeat-only frames preserve controls/capture and semantic content changes cancel before rebuilding. Reset, content refusal, deactivation, view and hidden-UI cancellation are explicit. Advanced mode is refused by this candidate.
 
@@ -10,7 +18,7 @@ Ten named checks pass in a copied paused city: 840x640 defaults, 900x680 growth,
 
 The guarded runner places only this fixed own-panel candidate before our released classes, with licensed engine/tutorial JAR precedence. The original base JAR remains unchanged and source hashes distinguish overlaid code from the player. One existing local Claude CLI process was not established idle, so no overlapping invocation/model/quota/approval claim was made; earlier completed findings inform policy. Source and current docs/maps are updated. Initial fetch was aligned; reconcile before publishing. Private histories/keys/normal saves/user log and muted/dim settings remain untouched. The current/previous tested reference-release bundles stay byte-identical.
 
-Next: focused peer review when the lane is available; actual coordinator/frame/background/focus integration, idle viewport and undersized/focus handoff, font/scale/scroll/clipping/accessibility, then appearance/persisted layout and separate target/display-receipt protocols. Keep unknown display unread. This is not a shipped redesign or overall completion; the paired original-reference player below remains the runnable release.
+At this earlier checkpoint, idle viewport reconciliation and undersized focus ownership were still gaps; the follow-up above covers supplied-dimension transitions. Actual coordinator/frame/background/focus integration, font/scale/scroll/clipping/accessibility, appearance/persisted layout and separate target/display-receipt protocols remain. Keep unknown display unread. This is not a shipped redesign or overall completion; the paired original-reference player below remains the runnable release.
 
 ## Paired original-reference release — promoted and source matched
 

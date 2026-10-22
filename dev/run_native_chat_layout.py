@@ -26,7 +26,9 @@ GAME_PATHS = ['snake2d/Mouse.java', 'snake2d/MButt.java', 'snake2d/util/gui/clic
 CHECKS = {'header_drag_and_heartbeat_stability', 'responsive_minimum_controls_and_draft',
     'content_refuses_capture', 'normal_send_protocol', 'normal_stop_protocol',
     'reopen_retains_transcript_and_chat', 'explicit_layout_reset', 'manager_deactivation_cancel',
-    'scene_change_cancel', 'hidden_ui_cancel'}
+    'scene_change_cancel', 'hidden_ui_cancel', 'idle_viewport_reflow_and_draft',
+    'viewport_change_cancels_capture', 'undersized_viewport_closes_and_releases_own_focus',
+    'viewport_recovery_and_closed_launcher_bounds'}
 
 
 async def verify(state, manifest):
@@ -35,6 +37,8 @@ async def verify(state, manifest):
     raw = json.loads((state / 'stockpile-fixture.json').read_text())
     assert raw['passed'] and set(raw['checks']) == CHECKS and len(raw['checks']) == len(CHECKS)
     assert raw['composer_capacity'] == 240 and raw['handle_render_callbacks'] > 0
+    assert raw['engine_viewport_changed'] is False
+    assert raw['supplied_layout_viewports'] == [[700, 600], [680, 580], [600, 500], [100, 60]]
     assert raw['provider_calls'] == 0 and raw['synthetic_protocol_frames'] is True
     return {'passed': True, 'evaluated_at': datetime.now(timezone.utc).isoformat(),
         'scope': 'Developer-only own ChatPanel class overlay with real controls/layout and synthetic helper frames; supplied gesture primitives, not physical input or a player release.',
@@ -49,6 +53,7 @@ async def verify(state, manifest):
             'Launcher/header/resize capture is driven by supplied owned primitives. Normal Close/filter/Send/Stop/Reset route through public own widgets; no engine pointer/button state or native OS input is changed.',
             'Synthetic protocol-2 frames exercise draft/chat/transcript/ack presentation and outgoing normal Send/Stop payloads. No real coordinator, durable SQLite history, provider transport or live model advice is attested.',
             'Own handle render callbacks and bounds establish neither unobscured transcript visibility nor read receipts. No badge, target chips, theme/custom colors or saved layout is implemented.',
+            'Supplied layout viewports exercise idle reflow, capture cancellation, undersized fallback and own-widget focus ownership without changing engine dimensions. No actual window resize/minimize acceptance.',
             'Composer object/text survives reflow; no physical keyboard focus/capture, cursor positioning, exact scroll anchor, font/accessibility or human readability claim. Header-only dragging and minimum 640x560 remain candidate policies.',
             'Source/binary/compilation verification of public installed game APIs is distinct from official stable documented mod contracts.']}
 
