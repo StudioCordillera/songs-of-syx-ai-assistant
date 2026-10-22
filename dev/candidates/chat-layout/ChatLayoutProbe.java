@@ -13,6 +13,7 @@ import snake2d.util.datatypes.Coo;
 import snake2d.util.gui.clickable.CLICKABLE;
 import snake2d.util.gui.renderable.RENDEROBJ;
 import syx.assistant.candidate.GestureReducer;
+import syx.assistant.candidate.PanelPreferences;
 import util.gui.misc.GInput;
 import view.main.VIEW;
 import static syx.assistant.StateCollector.object;
@@ -58,6 +59,7 @@ public final class ChatLayoutProbe {
                 switch(phase[0]){
                 case 0:
                     require(Boolean.TRUE.equals(p.context().get("candidate_layout")),"Production class loaded instead of candidate overlay");
+                    require(p.configureCandidatePreferences(directory),"Configure own preference directory");
                     session[0]=p.context().get("runtime_session_id").toString();p.refresh(frame(session[0],chat[0],ack[0],false,false));
                     shortOpen(p,0);ack[0]=field(p.candidateLastSubmitted(),"request_id");require(field(p.candidateLastSubmitted(),"action").equals("sync"),"Normal automatic connection request");
                     stamp[0]=System.nanoTime();phase[0]=1;return;
@@ -103,6 +105,17 @@ public final class ChatLayoutProbe {
                 case 5:{
                     if(System.nanoTime()-stamp[0]<1_100_000_000L)return;
                     p.refresh(frame(session[0],chat[0],ack[0],false,true));
+                    input[0].text().clear().add(draft);
+                    var saved=PanelPreferences.load(directory);require(saved!=null&&saved.panel.width==840&&saved.panel.height==640,"Explicit reset did not persist");
+                    String bytes=Files.readString(directory.resolve("chat-layout.preferences"));
+                    p.reconcileViewport(700,600);require(Files.readString(directory.resolve("chat-layout.preferences")).equals(bytes),"Automatic viewport clamp wrote preferences");
+                    p.reconcileViewport(CORE.getGraphics().nativeWidth,CORE.getGraphics().nativeHeight);
+                    require(p.configureCandidatePreferences(directory)&&p.candidateLayout().width==840&&p.candidateLayout().height==640,"Preference reload lost saved size");
+                    require(input[0]==p.candidateComposer()&&input[0].text().toString().equals(draft),"Preference reload lost composer/draft");checks.add("explicit_preferences_save_reload");checks.add("automatic_clamp_does_not_write_preferences");
+                    var before=p.candidateLayout();Files.writeString(directory.resolve("chat-layout.preferences"),"version=999\n");
+                    require(!p.configureCandidatePreferences(directory)&&p.candidateLayout().width==before.width&&p.candidateLayout().height==before.height&&input[0].text().toString().equals(draft),"Malformed preferences changed layout/draft");
+                    require(Files.readString(directory.resolve("chat-layout.preferences")).equals("version=999\n"),"Malformed input silently rewritten");
+                    p.resetCandidateLayout();require(PanelPreferences.load(directory).panel.width==840,"Explicit reset failed to replace malformed own preferences");checks.add("malformed_preferences_preserve_layout_and_explicit_reset");
                     // Supplied layout dimensions only: never resize the engine/window or inject input.
                     int nativeW=CORE.getGraphics().nativeWidth,nativeH=CORE.getGraphics().nativeHeight;
                     input[0].text().clear().add(draft);

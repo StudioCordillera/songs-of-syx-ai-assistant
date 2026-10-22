@@ -1,6 +1,7 @@
 package syx.assistant;
 
 import java.nio.charset.StandardCharsets;
+import java.nio.file.Path;
 import java.util.*;
 import java.util.function.Consumer;
 import java.util.concurrent.atomic.AtomicLong;
@@ -10,6 +11,7 @@ import snake2d.CORE;
 import snake2d.util.datatypes.COORDINATE;
 import snake2d.util.gui.clickable.CLICKABLE;
 import syx.assistant.candidate.GestureReducer;
+import syx.assistant.candidate.PanelPreferences;
 import snake2d.Mouse;
 import snake2d.SPRITE_RENDERER;
 import snake2d.util.color.COLOR;
@@ -32,6 +34,8 @@ final class ChatPanel extends InterGuisection {
     private Object gestureScene;
     private int textWidth=804;
     private int layoutWidth,layoutHeight;
+    private Path preferencesDirectory;
+    private String layoutNotice="";
     private String lastSubmitted="";
     private final AtomicLong candidateDraws=new AtomicLong();
     private final EnumMap<GestureReducer.Target,CLICKABLE> handles=new EnumMap<>(GestureReducer.Target.class);
@@ -131,10 +135,25 @@ final class ChatPanel extends InterGuisection {
                 else current().body().moveX1Y1((int)panelRect.x,(int)panelRect.y);
             }else{launcherRect=r.rect;current().body().moveX1Y1((int)r.rect.x,(int)r.rect.y);}
         }
+        if(r.status.equals("dropped")&&preferencesDirectory!=null){saveCandidatePreferences();rebuild();}
         if(r.status.equals("toggle"))toggle();
         return r.status;
     }
-    void resetCandidateLayout(){gesture.cancel();panelRect=fitPanel(new GestureReducer.Rect(24,40,840,640));launcherRect=new GestureReducer.Rect(8,80,112,36).fit(vw(),vh());rebuild();}
+    void resetCandidateLayout(){gesture.cancel();panelRect=fitPanel(new GestureReducer.Rect(24,40,840,640));launcherRect=new GestureReducer.Rect(8,80,112,36).fit(vw(),vh());saveCandidatePreferences();rebuild();}
+    // Explicit caller-owned candidate directory; no default player path or history migration.
+    boolean configureCandidatePreferences(Path directory){
+        try{
+            PanelPreferences saved=PanelPreferences.load(directory);
+            preferencesDirectory=directory;
+            if(saved!=null){gesture.cancel();panelRect=fitPanel(saved.panel);launcherRect=saved.launcher.fit(vw(),vh());}
+            layoutNotice="";rebuild();return true;
+        }catch(Exception error){layoutNotice="Layout preferences unavailable; current layout retained";rebuild();return false;}
+    }
+    private void saveCandidatePreferences(){
+        if(preferencesDirectory==null)return;
+        try{new PanelPreferences(panelRect,launcherRect).save(preferencesDirectory);layoutNotice="";}
+        catch(Exception error){layoutNotice="Layout changed for this run; preferences could not be saved";}
+    }
     boolean candidateCapturing(){return gesture.isCapturing();}
     GestureReducer.Rect candidateLayout(){return opened?panelRect:launcherRect;}
     CLICKABLE candidateHandle(GestureReducer.Target target){return handles.get(target);}
@@ -289,6 +308,7 @@ final class ChatPanel extends InterGuisection {
         panel.add(new GTextR(UI.FONT().S,advanced?connection+" | "+model:"DeepSeek Pro"+(running?" — Thinking…":"")),12,84);
         boolean reconnectHint=notice.equals("Connected to this game; ask a question")||notice.equals("History loaded; your next question uses the loaded game");
         String hint=!advanced&&protocol==2&&reconnectHint&&!chat.isEmpty()&&!attachedSession.equals(session)?"Your next question connects this chat to the loaded game. Earlier messages stay historical.":notice;
+        if(!layoutNotice.isEmpty())hint=layoutNotice;
         int hintChars=Math.max(1,textWidth/UI.FONT().S.maxCWidth);
         String message=hint.length()>hintChars?hint.substring(0,hintChars):hint;
         panel.add(new GTextR(UI.FONT().S,message),12,108);

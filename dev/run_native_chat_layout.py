@@ -17,7 +17,7 @@ from run_stockpile_probe import run, sha
 
 SOURCES = ['dev/run_native_chat_layout.py', 'dev/run_stockpile_probe.py',
     'dev/candidates/chat-layout/ChatPanel.java', 'dev/candidates/chat-layout/ChatLayoutProbe.java',
-    'dev/candidates/chat-layout/StockpileScenario.java', 'dev/java/syx/assistant/candidate/GestureReducer.java',
+    'dev/candidates/chat-layout/StockpileScenario.java', 'dev/java/syx/assistant/candidate/GestureReducer.java', 'dev/java/syx/assistant/candidate/PanelPreferences.java',
     'mod/src/main/java/syx/assistant/ChatPanel.java', 'mod/tests/LiveSmoke.java', 'dev/native_game_completion.py']
 GAME_PATHS = ['snake2d/Mouse.java', 'snake2d/MButt.java', 'snake2d/util/gui/clickable/CLICKABLE.java',
     'snake2d/util/gui/GuiSection.java', 'util/gui/misc/GInput.java', 'util/gui/table/GScrollRows.java',
@@ -28,7 +28,8 @@ CHECKS = {'header_drag_and_heartbeat_stability', 'responsive_minimum_controls_an
     'reopen_retains_transcript_and_chat', 'explicit_layout_reset', 'manager_deactivation_cancel',
     'scene_change_cancel', 'hidden_ui_cancel', 'idle_viewport_reflow_and_draft',
     'viewport_change_cancels_capture', 'undersized_viewport_closes_and_releases_own_focus',
-    'viewport_recovery_and_closed_launcher_bounds'}
+    'viewport_recovery_and_closed_launcher_bounds', 'explicit_preferences_save_reload',
+    'automatic_clamp_does_not_write_preferences', 'malformed_preferences_preserve_layout_and_explicit_reset'}
 
 
 async def verify(state, manifest):
@@ -52,7 +53,7 @@ async def verify(state, manifest):
             'Our own candidate ChatPanel substitutes the base class only in this fixture classpath. Engine/tutorial JARs precede the fixture classes. The tested player JAR/ZIP and normal profile remain unchanged.',
             'Launcher/header/resize capture is driven by supplied owned primitives. Normal Close/filter/Send/Stop/Reset route through public own widgets; no engine pointer/button state or native OS input is changed.',
             'Synthetic protocol-2 frames exercise draft/chat/transcript/ack presentation and outgoing normal Send/Stop payloads. No real coordinator, durable SQLite history, provider transport or live model advice is attested.',
-            'Own handle render callbacks and bounds establish neither unobscured transcript visibility nor read receipts. No badge, target chips, theme/custom colors or saved layout is implemented.',
+            'Own handle render callbacks and bounds establish neither unobscured transcript visibility nor read receipts. No badge, target chips or theme/custom colors is implemented. Geometry persistence is explicitly configured in this disposable fixture only.',
             'Supplied layout viewports exercise idle reflow, capture cancellation, undersized fallback and own-widget focus ownership without changing engine dimensions. No actual window resize/minimize acceptance.',
             'Composer object/text survives reflow; no physical keyboard focus/capture, cursor positioning, exact scroll anchor, font/accessibility or human readability claim. Header-only dragging and minimum 640x560 remain candidate policies.',
             'Source/binary/compilation verification of public installed game APIs is distinct from official stable documented mod contracts.']}
@@ -76,7 +77,8 @@ if __name__ == '__main__':
     with exclusive_fixture():
         run(args, scenario_override=candidate / 'StockpileScenario.java',
             extra_sources=[candidate / 'ChatPanel.java', candidate / 'ChatLayoutProbe.java',
-                ROOT / 'dev/java/syx/assistant/candidate/GestureReducer.java'],
+                ROOT / 'dev/java/syx/assistant/candidate/GestureReducer.java',
+                ROOT / 'dev/java/syx/assistant/candidate/PanelPreferences.java'],
             candidate_chat_overlay=True, verifier=verify, report_name='native-chat-layout-validation.json',
             boundary_review_path=ROOT / 'CHAT_INPUT_BOUNDARY_REVIEW.json',
             completion_marker=('chat-layout-clean-exit.json', {'passed': True}))

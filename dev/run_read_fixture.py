@@ -88,7 +88,7 @@ def run(args):
     if args.case=='layout-background':
         candidate=ROOT/'dev/candidates/chat-layout'
         overlay_sources=[candidate/'ChatPanel.java',candidate/'ChatBackgroundScenario.java',
-            ROOT/'dev/java/syx/assistant/candidate/GestureReducer.java']
+            ROOT/'dev/java/syx/assistant/candidate/GestureReducer.java',ROOT/'dev/java/syx/assistant/candidate/PanelPreferences.java']
         sources=[p for p in sources if p.name!='ChatBackgroundScenario.java']+overlay_sources
     frozen_sources={str(p.relative_to(ROOT)):sha(p) for p in sources+[ROOT/'dev/run_read_fixture.py',ROOT/'dev/verify_native_chat_background.py']} if overlay_sources else {}
     subprocess.run(['java','-Djava.home='+str(jdk),'-m','jdk.compiler/com.sun.tools.javac.Main',
@@ -154,7 +154,7 @@ def run(args):
             report.update(explicit_fixture_clean_completion=True,our_chat_class_overlaid_from_fixture_classes=True,
                 engine_classes_overridden=False,compiled_fixture_source_sha256=frozen_sources,
                 compiled_overlay_class_sha256_collected_after_native_exit={str(p.relative_to(classes)):sha(p) for p in sorted(classes.rglob('*.class'))
-                    if str(p.relative_to(classes)).startswith(('syx/assistant/ChatPanel','syx/assistant/ChatBackgroundScenario','syx/assistant/candidate/GestureReducer'))})
+                    if str(p.relative_to(classes)).startswith(('syx/assistant/ChatPanel','syx/assistant/ChatBackgroundScenario','syx/assistant/candidate/GestureReducer','syx/assistant/candidate/PanelPreferences'))})
         if args.case in {'chat-background','blueprint-chat'}:
             completion=json.loads((state/'chat-background-clean-exit.json').read_text())
             if completion!={'passed':True,'verified_phases':3} or (state/'chat-background-fixture-failure.json').exists():
