@@ -46,6 +46,7 @@ public final class ChatBackgroundScenario {
                     initial.put("launcher",StateCollector.object("x",launcher.x,"y",launcher.y,"width",launcher.width,"height",launcher.height));
                     initial.put("preset",p.candidateTheme().name);initial.put("accent",p.candidateTheme().accentHex());
                     initial.put("preferences_configured",p.candidatePreferencesConfigured());
+                    initial.put("automatic_preferences_selected",p.candidateAutomaticPreferencesSelected());
                     open(p,0);phase[0]=1;break;
                 case 1:
                     require(opened,"Panel failed to open");

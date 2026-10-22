@@ -38,6 +38,7 @@ final class ChatPanel extends InterGuisection {
     private int textWidth=804;
     private int layoutWidth,layoutHeight;
     private Path preferencesDirectory;
+    private boolean automaticPreferencesSelected;
     private String layoutNotice="";
     private PanelTheme theme=PanelTheme.preset("Forest");
     private final ColorImp panelColor=new ColorImp(),accentColor=new ColorImp(),bodyInk=new ColorImp(),accentInk=new ColorImp();
@@ -95,9 +96,10 @@ final class ChatPanel extends InterGuisection {
         if(!advanced)((snake2d.util.datatypes.Rec)composer.body()).setWidth(792);
         layoutWidth=CORE.getGraphics().nativeWidth;layoutHeight=CORE.getGraphics().nativeHeight;
         pin();persistantSet();rebuild();
-        // Developer-only startup seam; the fixed runner supplies a private runtime directory.
+        // Candidate defaults to the assistant's existing state root; fixtures may explicitly override it.
         String candidateDirectory=System.getProperty("syx.assistant.candidate.preferencesDirectory");
-        if(candidateDirectory!=null)configureCandidatePreferences(Path.of(candidateDirectory));
+        automaticPreferencesSelected=candidateDirectory==null;
+        configureCandidatePreferences(automaticPreferencesSelected?AssistantScript.stateDirectory():Path.of(candidateDirectory));
     }
     @Override protected boolean update(float ds) {
         reconcileViewport(CORE.getGraphics().nativeWidth,CORE.getGraphics().nativeHeight);
@@ -157,7 +159,7 @@ final class ChatPanel extends InterGuisection {
         return r.status;
     }
     void resetCandidateLayout(){gesture.cancel();panelRect=fitPanel(new GestureReducer.Rect(24,40,840,640));launcherRect=new GestureReducer.Rect(8,80,112,36).fit(vw(),vh());saveCandidatePreferences();rebuild();}
-    // Explicit caller-owned candidate directory; no default player path or history migration.
+    // Candidate-owned assistant state or explicit caller directory; no history migration.
     boolean configureCandidatePreferences(Path directory){
         try{
             PanelPreferences saved=PanelPreferences.load(directory);
@@ -189,6 +191,7 @@ final class ChatPanel extends InterGuisection {
     PanelTheme candidateTheme(){return theme;}
     GInput candidateAccentInput(){return accentInput;}
     boolean candidateAppearanceOpen(){return appearanceOpen;}
+    boolean candidateAutomaticPreferencesSelected(){return automaticPreferencesSelected;}
     boolean candidatePreferencesConfigured(){return preferencesDirectory!=null;}
     GestureReducer.Rect candidatePanelLayout(){return panelRect;}
     boolean candidateCapturing(){return gesture.isCapturing();}

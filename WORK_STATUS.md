@@ -2,6 +2,14 @@
 
 Use `python3 dev/collaboration_status.py` for actual remote/local state at every run; this file is a handoff, not a live branch/working-tree assertion. Read AGENTS.md and reconcile newer collaborator work before editing.
 
+## Automatic candidate preference selection — developer-only
+
+[NATIVE_CHAT_AUTO_PREFERENCES.md](NATIVE_CHAT_AUTO_PREFERENCES.md) / [current evidence](NATIVE_CHAT_AUTO_PREFERENCES_VALIDATION.json) default the unshipped panel to the existing assistant state root through own `AssistantScript.stateDirectory()`. No manual preference property/configuration is required; an explicit developer override still wins. Missing-file startup does not write; a fresh own panel restores saved geometry/style without rewriting bytes or restoring drafts. Existing malformed/legacy/private atomic-save behavior stays intact. Settings belong to an assistant state root, not a world identity.
+
+Twenty-three native layout checks and a separate eleven-phase actual helper/MCP/history notice run pass with fake inference. The latter records automatic selection/configuration and saves its edits in the private fixture state root. Exact source/class hashes, private file shape/permissions, clean completion/restoration/copied-save integrity, full offline and unchanged bundles are recorded. This is fresh-own-panel automatic restoration, not two game JVMs sharing an automatic root; the old explicit-override two-launch report remains historical. One existing Claude process was not established idle; no overlapping invocation/review or quota diagnosis was made.
+
+Next: shared-root automatic two-game restart acceptance, bounded peer critique, durable outcomes/native transport-failure presentation, target/display integration and paired actual-Pro/core/distribution gates. Current player source/bundles remain unchanged; unknown/oversized display stays unread.
+
 ## Production helper entry-point lifecycle — developer regression
 
 [HELPER_LIFECYCLE.md](HELPER_LIFECYCLE.md) / [current evidence](HELPER_LIFECYCLE_VALIDATION.json) exercise the actual production CLI, history lock/startup recovery, file IPC and real stdio MCP restart against authored state with no key/provider injection. Three invocations include two successful helper/MCP startups and one competing-history refusal before recovery; two authored running rows recover only at the appropriate startup. A retained sync acknowledgement does not restore in-memory selection; a new sync selects the persisted chat through real MCP. Keyless Send is acknowledged but creates no turn/event/inference.

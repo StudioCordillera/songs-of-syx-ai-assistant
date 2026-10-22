@@ -60,7 +60,9 @@ public final class ChatLayoutProbe {
                 switch(phase[0]){
                 case 0:
                     require(Boolean.TRUE.equals(p.context().get("candidate_layout")),"Production class loaded instead of candidate overlay");
-                    require(p.configureCandidatePreferences(directory),"Configure own preference directory");
+                    require(p.candidateAutomaticPreferencesSelected()&&p.candidatePreferencesConfigured(),"Automatic assistant-state preferences not configured");
+                    require(!Files.exists(directory.resolve("chat-layout.preferences")),"Missing automatic preferences were written without an explicit edit");
+                    checks.add("automatic_state_directory_preferences");
                     session[0]=p.context().get("runtime_session_id").toString();p.refresh(frame(session[0],chat[0],ack[0],false,false));
                     shortOpen(p,0);ack[0]=field(p.candidateLastSubmitted(),"request_id");require(field(p.candidateLastSubmitted(),"action").equals("sync"),"Normal automatic connection request");
                     stamp[0]=System.nanoTime();phase[0]=1;return;
@@ -112,10 +114,11 @@ public final class ChatLayoutProbe {
                     require(styled.theme!=null&&styled.theme.name.equals("Night")&&styled.theme.accentHex().equals("#ABCDEF"),"Style did not persist");
                     accent.listen();press(p.candidateButton("Style"));require(!p.candidateAppearanceOpen()&&Mouse.currentClicked!=accent,"Closing Style retained own color focus");
                     require(input[0].text().toString().equals(draft),"Color input consumed question draft");checks.add("custom_accent_validation_and_focus_ownership");
+                    String beforeAutomaticLoad=Files.readString(directory.resolve("chat-layout.preferences"));
                     ChatPanel restored=new ChatPanel(session[0],ignored->{});
                     try{
-                        require(restored.candidateTheme().name.equals("Forest"),"Fresh panel default changed");
-                        require(restored.configureCandidatePreferences(directory),"Fresh panel preference load failed");shortOpen(restored,450);
+                        require(restored.candidateAutomaticPreferencesSelected()&&restored.candidatePreferencesConfigured(),"Fresh panel did not automatically select assistant state");
+                        require(Files.readString(directory.resolve("chat-layout.preferences")).equals(beforeAutomaticLoad),"Automatic load rewrote preferences");shortOpen(restored,450);
                         require(restored.candidateTheme().name.equals("Night")&&restored.candidateTheme().accentHex().equals("#ABCDEF"),"Fresh panel lost saved style");
                         require(restored.candidateLayout().width==640&&restored.candidateLayout().height==560&&restored.candidateComposer().text().length()==0,"Fresh panel geometry or nonpersisted draft policy");
                     }finally{restored.close();}
