@@ -154,21 +154,27 @@ final class ChatPanel extends InterGuisection {
         try{
             PanelPreferences saved=PanelPreferences.load(directory);
             preferencesDirectory=directory;
-            if(saved!=null){gesture.cancel();panelRect=fitPanel(saved.panel);launcherRect=saved.launcher.fit(vw(),vh());}
-            layoutNotice="";rebuild();return true;
+            if(saved!=null){
+                gesture.cancel();panelRect=fitPanel(saved.panel);launcherRect=saved.launcher.fit(vw(),vh());
+                if(saved.theme!=null){theme=saved.theme;accentInput.text().clear().add(theme.accentHex());refreshColors();}
+            }
+            layoutNotice="";appearanceNotice="";rebuild();return true;
         }catch(Exception error){layoutNotice="Layout preferences unavailable; current layout retained";rebuild();return false;}
     }
-    private void saveCandidatePreferences(){
-        if(preferencesDirectory==null)return;
-        try{new PanelPreferences(panelRect,launcherRect).save(preferencesDirectory);layoutNotice="";}
-        catch(Exception error){layoutNotice="Layout changed for this run; preferences could not be saved";}
+    private boolean saveCandidatePreferences(){
+        if(preferencesDirectory==null)return false;
+        try{new PanelPreferences(panelRect,launcherRect,theme).save(preferencesDirectory);layoutNotice="";return true;}
+        catch(Exception error){layoutNotice="Layout or style changed for this run; preferences could not be saved";return false;}
     }
     private static void color(ColorImp out,int rgb){out.set(PanelTheme.engineChannel((rgb>>16)&255),PanelTheme.engineChannel((rgb>>8)&255),PanelTheme.engineChannel(rgb&255));}
     private void refreshColors(){color(panelColor,theme.background);color(accentColor,theme.accent);color(bodyInk,theme.bodyText);color(accentInk,theme.accentText);}
     private GTextR label(String text){GTextR result=new GTextR(UI.FONT().S,text);result.text().color(bodyInk);return result;}
-    private void chooseTheme(String name){theme=PanelTheme.preset(name);accentInput.text().clear().add(theme.accentHex());refreshColors();appearanceNotice="Style changed for this run";rebuild();}
+    private void addWrappedLabels(List<RENDEROBJ> rows,String text,int chars){
+        for(int start=0;start<text.length();start+=chars)rows.add(label(text.substring(start,Math.min(start+chars,text.length()))));
+    }
+    private void chooseTheme(String name){theme=PanelTheme.preset(name);accentInput.text().clear().add(theme.accentHex());refreshColors();appearanceNotice=saveCandidatePreferences()?"Style saved":"Style changed for this run";rebuild();}
     private void applyAccent(){
-        try{theme=theme.withAccent(accentInput.text().toString());refreshColors();appearanceNotice="Style changed for this run";}
+        try{theme=theme.withAccent(accentInput.text().toString());refreshColors();appearanceNotice=saveCandidatePreferences()?"Style saved":"Style changed for this run";}
         catch(IllegalArgumentException error){appearanceNotice="Accent needs six hex digits, such as #87A68D";}
         rebuild();
     }
@@ -347,7 +353,7 @@ final class ChatPanel extends InterGuisection {
             panel.add(button("Parchment",()->chooseTheme("Parchment")),150,142);
             panel.add(button("Night",()->chooseTheme("Night")),320,142);
             panel.add(accentInput,12,180);panel.add(button("Apply accent",this::applyAccent),160,180);
-            panel.add(label("#RRGGBB · this run"),350,184);
+            panel.add(label(preferencesDirectory==null?"#RRGGBB · this run":"#RRGGBB · local"),350,184);
         }else panel.add(new GScrollRows(choices,70).view(),12,142);
         List<RENDEROBJ> rows=new ArrayList<>();
         int width=Math.max(20,textWidth/UI.FONT().S.maxCWidth);
@@ -362,8 +368,8 @@ final class ChatPanel extends InterGuisection {
             }
             if(rows.size()>=1200)break;
         }
-        if(rows.size()>=1200)rows.add(label("[Panel row limit reached; full bounded evidence is retained locally.]"));
-        if(rows.isEmpty())rows.add(label(advanced?"Create/select a chat. Add text in short segments, then Send.":"Ask a question about your game. The connection is handled automatically."));
+        if(rows.size()>=1200)addWrappedLabels(rows,"[Panel row limit reached; full bounded evidence is retained locally.]",width);
+        if(rows.isEmpty())addWrappedLabels(rows,advanced?"Create/select a chat. Add text in short segments, then Send.":"Ask a question about your game. The connection is handled automatically.",width);
         boolean follow=history==null || history.target.get()>=history.target.max();
         int scroll=follow?Integer.MAX_VALUE:history.target.get();
         history=new GScrollRows(rows,Math.max(20,composerY-12-220));history.target.set(scroll);

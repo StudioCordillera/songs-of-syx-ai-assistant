@@ -97,13 +97,24 @@ public final class ChatLayoutProbe {
                         require(input[0]==p.candidateComposer()&&input[0].text().toString().equals(draft),"Style lost question draft");
                     }
                     checks.add("appearance_presets_minimum_bounds_and_draft");
-                    var accent=p.candidateAccentInput();int previousAccent=p.candidateTheme().accent;
-                    accent.text().clear().add("ZZZZZZ");press(p.candidateButton("Apply accent"));require(p.candidateTheme().accent==previousAccent,"Invalid accent changed palette");
+                    var accent=p.candidateAccentInput();int previousAccent=p.candidateTheme().accent;String beforeInvalid=Files.readString(directory.resolve("chat-layout.preferences"));
+                    accent.text().clear().add("ZZZZZZ");press(p.candidateButton("Apply accent"));require(p.candidateTheme().accent==previousAccent&&Files.readString(directory.resolve("chat-layout.preferences")).equals(beforeInvalid),"Invalid accent changed palette/file");
                     accent.text().clear().add("#abcdef");press(p.candidateButton("Apply accent"));bounds(p);
                     require(p.candidateTheme().accentHex().equals("#ABCDEF"),"Custom accent not applied");
-                    require(Files.readString(directory.resolve("chat-layout.preferences")).equals(savedGeometry),"This-run style changed geometry preferences");
+                    var styled=PanelPreferences.load(directory);var previous=PanelPreferences.decode(savedGeometry.getBytes(StandardCharsets.US_ASCII));
+                    require(new PanelPreferences(styled.panel,styled.launcher).encode().equals(new PanelPreferences(previous.panel,previous.launcher).encode()),"Style changed saved geometry");
+                    require(styled.theme!=null&&styled.theme.name.equals("Night")&&styled.theme.accentHex().equals("#ABCDEF"),"Style did not persist");
                     accent.listen();press(p.candidateButton("Style"));require(!p.candidateAppearanceOpen()&&Mouse.currentClicked!=accent,"Closing Style retained own color focus");
                     require(input[0].text().toString().equals(draft),"Color input consumed question draft");checks.add("custom_accent_validation_and_focus_ownership");
+                    ChatPanel restored=new ChatPanel(session[0],ignored->{});
+                    try{
+                        require(restored.candidateTheme().name.equals("Forest"),"Fresh panel default changed");
+                        require(restored.configureCandidatePreferences(directory),"Fresh panel preference load failed");shortOpen(restored,450);
+                        require(restored.candidateTheme().name.equals("Night")&&restored.candidateTheme().accentHex().equals("#ABCDEF"),"Fresh panel lost saved style");
+                        require(restored.candidateLayout().width==640&&restored.candidateLayout().height==560&&restored.candidateComposer().text().length()==0,"Fresh panel geometry or nonpersisted draft policy");
+                    }finally{restored.close();}
+                    require(p.configureCandidatePreferences(directory)&&input[0].text().toString().equals(draft),"Restoring original panel lost draft");
+                    checks.add("explicit_style_persistence_and_fresh_panel_reload");
                     draws[0]=p.candidateDraws();press(p.candidateButton("Send"));String request=p.candidateLastSubmitted();
                     require(field(request,"action").equals("send")&&new String(Base64.getDecoder().decode(field(request,"text")),StandardCharsets.UTF_8).equals(draft),"Normal Send framing/draft");
                     require(field(request,"chat_id").equals(chat[0])&&input[0].text().length()==0,"Send chat/draft acknowledgement policy");ack[0]=field(request,"request_id");checks.add("normal_send_protocol");
@@ -135,6 +146,14 @@ public final class ChatLayoutProbe {
                     require(!p.configureCandidatePreferences(directory)&&p.candidateLayout().width==before.width&&p.candidateLayout().height==before.height&&input[0].text().toString().equals(draft),"Malformed preferences changed layout/draft");
                     require(Files.readString(directory.resolve("chat-layout.preferences")).equals("version=999\n"),"Malformed input silently rewritten");
                     p.resetCandidateLayout();require(PanelPreferences.load(directory).panel.width==840,"Explicit reset failed to replace malformed own preferences");checks.add("malformed_preferences_preserve_layout_and_explicit_reset");
+                    var currentPreferences=PanelPreferences.load(directory);
+                    String legacy=new PanelPreferences(currentPreferences.panel,currentPreferences.launcher).encode();
+                    Files.writeString(directory.resolve("chat-layout.preferences"),legacy);int retainedAccent=p.candidateTheme().accent;
+                    require(p.configureCandidatePreferences(directory)&&p.candidateTheme().accent==retainedAccent,"Legacy geometry load changed this-run style");
+                    require(Files.readString(directory.resolve("chat-layout.preferences")).equals(legacy),"Legacy load rewrote file");
+                    press(p.candidateButton("Style"));press(p.candidateButton("Forest"));press(p.candidateButton("Style"));
+                    require(PanelPreferences.load(directory).theme.name.equals("Forest")&&input[0].text().toString().equals(draft),"Explicit style did not upgrade legacy preferences safely");
+                    checks.add("legacy_geometry_no_rewrite_until_explicit_style");
                     // Supplied layout dimensions only: never resize the engine/window or inject input.
                     int nativeW=CORE.getGraphics().nativeWidth,nativeH=CORE.getGraphics().nativeHeight;
                     input[0].text().clear().add(draft);

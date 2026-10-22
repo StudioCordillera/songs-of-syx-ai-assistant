@@ -31,7 +31,8 @@ CHECKS = {'header_drag_and_heartbeat_stability', 'responsive_minimum_controls_an
     'viewport_change_cancels_capture', 'undersized_viewport_closes_and_releases_own_focus',
     'viewport_recovery_and_closed_launcher_bounds', 'explicit_preferences_save_reload',
     'automatic_clamp_does_not_write_preferences', 'malformed_preferences_preserve_layout_and_explicit_reset',
-    'appearance_presets_minimum_bounds_and_draft', 'custom_accent_validation_and_focus_ownership'}
+    'appearance_presets_minimum_bounds_and_draft', 'custom_accent_validation_and_focus_ownership', 'explicit_style_persistence_and_fresh_panel_reload',
+    'legacy_geometry_no_rewrite_until_explicit_style'}
 
 
 async def verify(state, manifest):
@@ -55,7 +56,7 @@ async def verify(state, manifest):
             'Our own candidate ChatPanel substitutes the base class only in this fixture classpath. Engine/tutorial JARs precede the fixture classes. The tested player JAR/ZIP and normal profile remain unchanged.',
             'Launcher/header/resize capture is driven by supplied owned primitives. Normal Close/filter/Send/Stop/Reset route through public own widgets; no engine pointer/button state or native OS input is changed.',
             'Synthetic protocol-2 frames exercise draft/chat/transcript/ack presentation and outgoing normal Send/Stop payloads. No real coordinator, durable SQLite history, provider transport or live model advice is attested.',
-            'Own handle render callbacks and bounds establish neither unobscured transcript visibility nor read receipts. No badge or target chips are implemented. Candidate presets/custom accent are this-run-only; geometry persistence is explicitly configured in this disposable fixture only.',
+            'Own handle render callbacks and bounds establish neither unobscured transcript visibility nor read receipts. No badge or target chips are implemented. Version-2 geometry/style persistence is explicitly configured in this disposable fixture only; legacy geometry loads do not rewrite files. No production preference path is added.',
             'Supplied layout viewports exercise idle reflow, capture cancellation, undersized fallback and own-widget focus ownership without changing engine dimensions. No actual window resize/minimize acceptance.',
             'Composer object/text survives reflow; no physical keyboard focus/capture, cursor positioning, exact scroll anchor, font/accessibility or human readability claim. Header-only dragging and minimum 640x560 remain candidate policies.',
             'Abstract sRGB contrast and 0..127 normal-brightness channel conversion are detached policies; no native pixel/gamma/texture contrast, accessibility or all-control theme claim.',
