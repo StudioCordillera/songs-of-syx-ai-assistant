@@ -8,7 +8,7 @@ from syx_chat_service import Coordinator
 from dev.blueprint_mcp_candidate import isolated_state_dir
 
 INTERRUPTED = 'Earlier reply interrupted; no automatic retry.'
-UNKNOWN = 'Earlier Send outcome unknown; no automatic retry.'
+UNKNOWN = 'Repeated request ID; original outcome unknown. No automatic retry.'
 
 
 class RecoveryCoordinator(Coordinator):
@@ -83,7 +83,7 @@ class RecoveryCoordinator(Coordinator):
         recovery = self.recovery_notice()
         try:
             if recovery:
-                self.notice = previous + ' ' + recovery
+                self.notice = previous + (' ' if previous else '') + recovery
             super().write_ui()
         finally:
             self.notice = previous

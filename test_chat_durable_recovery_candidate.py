@@ -200,3 +200,36 @@ def test_active_reply_suppresses_but_does_not_forget_durable_unknown(candidate):
                 await task
         assert c.recovery_notice() == UNKNOWN
     asyncio.run(scenario())
+
+
+def test_disabled_foreign_keys_refuse_without_silent_repair(candidate):
+    c, store, directory, session, chat = candidate
+    observe(c, store, session, chat)
+    store.db.execute('PRAGMA foreign_keys=OFF')
+    with pytest.raises(ValueError, match='requires enabled history foreign keys'):
+        DurableRecoveryCoordinator(store, None, directory, '')
+    assert store.db.execute('PRAGMA foreign_keys').fetchone() == (0,)
+    assert store.db.execute('SELECT count(*) FROM candidate_unknown_sends').fetchone() == (1,)
+
+
+def test_replayed_non_send_id_has_neutral_visible_wording(candidate):
+    c, store, directory, session, chat = candidate
+    original = wire('select', session, uid(), chat)
+    asyncio.run(c.dispatch(original))
+    other = store.new(session, model='deepseek-v4-pro')['chat_id']
+    asyncio.run(c.dispatch(wire('send', session, original['request_id'], other, 'Different replay payload')))
+    c.selected = other
+    assert c.recovery_notice() == UNKNOWN
+    assert 'Send' not in UNKNOWN and 'original outcome unknown' in UNKNOWN
+    assert not c.tasks and store.turns(other) == []
+
+
+def test_empty_base_notice_has_no_added_leading_space(candidate):
+    import base64
+    c, store, directory, session, chat = candidate
+    observe(c, store, session, chat)
+    c.notice = ''
+    c.write_ui()
+    encoded = next(row[7:] for row in (directory / 'chat-ui.txt').read_text().splitlines() if row.startswith('notice='))
+    assert base64.b64decode(encoded, validate=True).decode() == UNKNOWN
+    assert c.notice == ''

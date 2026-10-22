@@ -2,6 +2,14 @@
 
 Use `python3 dev/collaboration_status.py` for actual remote/local state at every run; this file is a handoff, not a live branch/working-tree assertion. Read AGENTS.md and reconcile newer collaborator work before editing.
 
+## Native durable uncertainty and completed Claude critique — developer-only
+
+[NATIVE_CHAT_DURABLE_NOTICES.md](NATIVE_CHAT_DURABLE_NOTICES.md) / [evidence](NATIVE_CHAT_DURABLE_NOTICES_VALIDATION.json) integrate the durable subclass into the fixed own-panel workflow. Thirteen phases include a new-frame restored warning after graceful coordinator/SQLite reopen without uncertain-Send replay, then an explicitly authored later turn clears it. Native chat/composer/draft/style/geometry and the two-provider/four-round limit remain. The later completed row is authored, not another inferred answer. A fresh plain eleven-phase case separately regresses shared code.
+
+Local Claude Code Opus 5.5/high completed one bounded tool-free critique. [Review decisions](CLAUDE_RECOVERY_REVIEW.md) accept neutral repeated-request wording, an explicit foreign-key guard and empty-notice spacing. Invalid-record repair remains refused; reentrant/concurrent writers and storage-failure UX are open. Three new focused cases supplement the fourteen durable cases; 751 passing offline tests, current native/process/source and unchanged-bundle gates are recorded. Prior durable-candidate CI succeeded.
+
+This is graceful native coordinator/store recovery with live game/MCP/verifier, plus a separate owned-process post-commit SIGKILL check. No abrupt native helper/transport loss, pending paid work, visibility/readability/receipt or player release is established. Next: actual helper/transport failure presentation, startup migration bounds, target/display integration and paired actual-Pro/core/distribution gates. Production remains unchanged; unknown/oversized replies stay unread.
+
 ## Durable observed uncertainty — developer-only
 
 [CHAT_DURABLE_RECOVERY_CANDIDATE.md](CHAT_DURABLE_RECOVERY_CANDIDATE.md) / [evidence](CHAT_DURABLE_RECOVERY_VALIDATION.json) add an isolated subclass that transactionally persists at most 100 already-observed unknown-Send notices. A fresh coordinator restores the warning without replay or a fabricated acknowledgement; eviction/order/deletion/later-turn clearing survive restart. Invalid records refuse and failed replacement restores the old database/memory map. No question/provider payload/credential or delivery/billing truth is stored.

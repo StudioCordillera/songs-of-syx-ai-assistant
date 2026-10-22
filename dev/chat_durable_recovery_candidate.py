@@ -14,6 +14,8 @@ class DurableRecoveryCoordinator(RecoveryCoordinator):
     def __init__(self, store, mcp, state_dir, api_key):
         # Parent validates both disposable roots before touching history.
         super().__init__(store, mcp, state_dir, api_key)
+        if store.db.execute('PRAGMA foreign_keys').fetchone() != (1,):
+            raise ValueError('Candidate recovery requires enabled history foreign keys')
         with store.db:
             store.db.execute('''CREATE TABLE IF NOT EXISTS candidate_unknown_sends(
                 position INTEGER PRIMARY KEY CHECK(position BETWEEN 0 AND 99),

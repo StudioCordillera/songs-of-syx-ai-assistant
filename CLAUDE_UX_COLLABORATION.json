@@ -529,5 +529,41 @@
     "reason": "Existing local CLI process present and not established idle; no-overlap lane honored. No quota/model/credit diagnosis inferred.",
     "credits_purchased": false,
     "account_limits_bypassed": false
+  },
+  "completed_durable_recovery_review": {
+    "checked_at": "2026-10-22T20:53:20.319247+00:00",
+    "requested_alias": "opus",
+    "observed_models": [
+      "claude-opus-5-5"
+    ],
+    "effort": "high",
+    "tools": [],
+    "exit_code": 0,
+    "result_subtype": "success",
+    "is_error": false,
+    "duration_ms": 62614,
+    "reported_turns": 1,
+    "input_prompt_sha256": "cebb6fe6afa868541eb9e5bea67305a2173f726e9d647f95d00b2f5bb7594bfe",
+    "reviewed_source_sha256": {
+      "dev/chat_recovery_candidate.py": "b11a30d4410c473346fcfb69ea1800d695ef4c83bce0e5cd1142913def88c17c",
+      "dev/chat_durable_recovery_candidate.py": "887a5beb6e6b02432da0c2c7287bdbbc4b69d9f1f298a3c7b0385ed58592bcc1"
+    },
+    "final_text_sha256": "ec890913564ea11933d364fe6fe15f3cd0f085edfd1aa625b8b972934db0db86",
+    "edited_review": "CLAUDE_RECOVERY_REVIEW.md",
+    "review_base_commit": "368c0c8a57131f2453b4dddcf323d5bce01fa63b",
+    "working_directory": "Private empty runtime directory; sources supplied in prompt, tools disabled, no checkout edits.",
+    "accepted_followups": [
+      "Neutral duplicate-request wording",
+      "Explicit foreign-key guard",
+      "No leading space with empty base notice"
+    ],
+    "remaining_limits": [
+      "Invalid-record repair intentionally refused",
+      "Reentrant/concurrent writers unsupported",
+      "Storage failure UX and startup/index bounds",
+      "Actual helper/transport, visibility and paid/player acceptance"
+    ],
+    "credits_purchased": false,
+    "account_limits_bypassed": false
   }
 }

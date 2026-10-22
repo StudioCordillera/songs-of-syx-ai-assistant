@@ -28,3 +28,7 @@ Reproduce the new helper/process checks without credentials:
 ```
 
 The source-pinned report records the full offline suite and unchanged current/previous player bundles. The previous index checkpoint's CI completed successfully. One existing Claude CLI process was not established idle; no overlapping invocation, new peer critique or model/quota/credit diagnosis is claimed. Next: bounded peer critique, native integration with actual helper/transport failures, startup migration bounds, typed targets/display and exact-source Pro/core/distribution gates before promotion.
+
+## Native and peer-review follow-up
+
+[Native durable integration](NATIVE_CHAT_DURABLE_NOTICES.md) now exercises the subclass in a fixed thirteen-phase own-panel case, separately from the original non-integrated evidence above. [Completed Claude critique](CLAUDE_RECOVERY_REVIEW.md) led to neutral repeated-request wording, a foreign-key guard and spacing fixes. The current warning is **Repeated request ID; original outcome unknown. No automatic retry.** This does not identify the original action type/chat from a changed duplicate payload. The original fourteen-case/process report remains historical; current evidence adds three focused cases and source-matched native/process regressions.

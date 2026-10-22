@@ -29,6 +29,7 @@ public final class ChatBackgroundScenario {
         VIEW.s().activate();GAME.SPEED.speedSet(1);
         boolean recovery=Boolean.getBoolean("syx.smoke.chatRecovery");
         boolean notices=Boolean.getBoolean("syx.smoke.chatNotices");
+        boolean durable=Boolean.getBoolean("syx.smoke.chatDurableNotices");
         int[] phase={0};long[] wait={0};long start=System.nanoTime();double[] seconds={0};String[] chat={null};
         Map<String,Object> initial=new LinkedHashMap<>();double[] grown={0,0};
         GInput[] composer={null};List<Map<String,Object>> checks=new ArrayList<>();String draft="Keep next question draft while first answer arrives";
@@ -126,15 +127,34 @@ public final class ChatBackgroundScenario {
                     Files.writeString(directory.resolve("native-interrupted-notice-acknowledged"),"acknowledged\n");phase[0]=16;break;
                 case 16:
                     if(!Files.exists(directory.resolve("unknown-notice-ready")))return;
-                    if(!String.join("",p.candidateStatusRows()).contains("Earlier Send outcome unknown; no automatic retry."))return;
+                    if(!String.join("",p.candidateStatusRows()).contains("Repeated request ID; original outcome unknown. No automatic retry."))return;
                     require(opened&&!running&&!Boolean.TRUE.equals(c.get("action_pending"))&&chat[0].equals(c.get("chat_id"))&&composer[0].text().toString().equals(draft),"Unknown notice changed native chat/draft");
-                    checks.add(StateCollector.object("phase","native_unknown_send_notice_no_inference","passed",true));phase[0]=13;break;
+                    checks.add(StateCollector.object("phase","native_unknown_send_notice_no_inference","passed",true));
+                    if(durable){Files.writeString(directory.resolve("durable-restart-request"),"reopen after committed unknown observation\n");phase[0]=17;}
+                    else phase[0]=13;
+                    break;
+                case 17:
+                    if(!Files.exists(directory.resolve("durable-notice-ready")))return;
+                    if(!String.join("",p.candidateStatusRows()).contains("Restored observed uncertainty after helper reopen."))return;
+                    require(String.join("",p.candidateStatusRows()).contains("Repeated request ID; original outcome unknown. No automatic retry."),"Restored native uncertainty missing");
+                    require(opened&&!running&&!Boolean.TRUE.equals(c.get("action_pending"))&&chat[0].equals(c.get("chat_id")),"Durable reopen changed native chat/task");
+                    require(composer[0]==p.candidateComposer()&&composer[0].text().toString().equals(draft),"Durable reopen lost composer/draft");
+                    require(p.candidateTheme().name.equals("Parchment")&&p.candidateLayout().width==grown[0]&&p.candidateLayout().height==grown[1],"Durable reopen changed style/geometry");
+                    checks.add(StateCollector.object("phase","native_unknown_notice_restored_after_reopen","passed",true));
+                    Files.writeString(directory.resolve("native-durable-notice-acknowledged"),"new notice frame observed in model\n");phase[0]=18;break;
+                case 18:
+                    if(!Files.exists(directory.resolve("durable-notice-cleared")))return;
+                    String status=String.join("",p.candidateStatusRows());
+                    if(!status.contains("Later authored turn supersedes earlier uncertainty."))return;
+                    require(!status.contains("Repeated request ID;")&&!status.contains("Earlier reply interrupted;"),"Superseded uncertainty persisted in native model");
+                    require(opened&&!running&&!Boolean.TRUE.equals(c.get("action_pending"))&&chat[0].equals(c.get("chat_id"))&&composer[0]==p.candidateComposer()&&composer[0].text().toString().equals(draft),"Later authored state changed native chat/draft");
+                    checks.add(StateCollector.object("phase","native_unknown_notice_cleared_by_later_turn","passed",true));phase[0]=13;break;
                 case 13:
                     Files.writeString(directory.resolve("layout-background-native.json"),JsonWriter.encode(StateCollector.object("passed",true,"checks",checks,"reopened_same_chat",true,"native_width",CORE.getGraphics().nativeWidth,"native_height",CORE.getGraphics().nativeHeight,"handle_render_callbacks",p.candidateDraws(),"supplied_gesture_primitives",true,"initial_layout",initial)));
                     phase[0]=10;break;
                 case 10:
                     if(!Files.exists(directory.resolve("verifier.done")))return;
-                    Files.writeString(directory.resolve("layout-background-clean-exit.json"),"{\"passed\":true,\"verified_phases\":"+(notices?11:recovery?9:7)+"}");CORE.annihilate();phase[0]=14;break;
+                    Files.writeString(directory.resolve("layout-background-clean-exit.json"),"{\"passed\":true,\"verified_phases\":"+(durable?13:notices?11:recovery?9:7)+"}");CORE.annihilate();phase[0]=14;break;
                 }
             }catch(Exception error){
                 System.err.println("SMOKE_FIXTURE_FAILURE: "+error);

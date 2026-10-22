@@ -80,11 +80,16 @@ class FixtureProvider:
             (self.directory / 'second-provider-closed').write_text('closed\n')
 
 
-async def verify(directory, *, recovery=False, notices=False):
+async def verify(directory, *, recovery=False, notices=False, durable=False):
+    if durable and not notices:
+        raise ValueError("Durable notice fixture requires the notice lifecycle")
     if notices and not recovery:
         raise ValueError("Notice fixture requires the recovery lifecycle")
     directory = isolated_state_dir(str(directory))
     hashes = {n: hashlib.sha256((ROOT / n).read_bytes()).hexdigest() for n in SOURCES}
+    if durable:
+        for name in ('dev/chat_durable_recovery_candidate.py', 'dev/verify_native_chat_durable_notices.py'):
+            hashes[name] = hashlib.sha256((ROOT / name).read_bytes()).hexdigest()
     store = ChatStore(directory / 'layout-fixture-history')
     providers = []
     def factory(chat):
@@ -99,7 +104,10 @@ async def verify(directory, *, recovery=False, notices=False):
             async with ClientSession(*streams) as mcp:
                 await mcp.initialize()
                 def new_coordinator():
-                    if notices:
+                    if durable:
+                        from dev.chat_durable_recovery_candidate import DurableRecoveryCoordinator
+                        result = DurableRecoveryCoordinator(store, mcp, directory, 'fixture-not-a-credential')
+                    elif notices:
                         from dev.chat_recovery_candidate import RecoveryCoordinator
                         result = RecoveryCoordinator(store, mcp, directory, 'fixture-not-a-credential')
                     else:
@@ -112,6 +120,7 @@ async def verify(directory, *, recovery=False, notices=False):
                 server = asyncio.create_task(coordinator.serve())
                 restarted = replayed = False
                 notice_reopened = unknown_checked = False
+                durable_reopened = durable_ready = durable_cleared = False
                 original_chat = None
                 try:
                     async with asyncio.timeout(150):
@@ -192,6 +201,40 @@ async def verify(directory, *, recovery=False, notices=False):
                                     coordinator.notice = 'Authored admission-gap fixture. No new inference.'
                                     unknown_checked = True
                                     (directory / 'unknown-notice-ready').write_text('authored duplicate with no turn\n')
+                            if durable and unknown_checked and not durable_reopened and (directory / 'durable-restart-request').exists():
+                                before = store.turns(original_chat), store.events(original_chat)
+                                assert len(coordinator.unknown_sends) == 1
+                                server.cancel()
+                                with contextlib.suppress(asyncio.CancelledError):
+                                    await server
+                                store.close()
+                                store = ChatStore(directory / 'layout-fixture-history')
+                                coordinator = new_coordinator()
+                                assert coordinator.ack == '' and not coordinator.tasks
+                                assert len(coordinator.unknown_sends) == 1
+                                assert (store.turns(original_chat), store.events(original_chat)) == before
+                                server = asyncio.create_task(coordinator.serve())
+                                durable_reopened = True
+                            if durable_reopened and not durable_ready and coordinator.selected == original_chat:
+                                assert coordinator.recovery_notice() == UNKNOWN
+                                assert len(providers) == 2 and not coordinator.tasks
+                                coordinator.notice = 'Restored observed uncertainty after helper reopen.'
+                                coordinator.write_ui()
+                                (directory / 'durable-notice-ready').write_text('new coordinator frame; no unknown-Send replay\n')
+                                durable_ready = True
+                            if durable_ready and not durable_cleared and (directory / 'native-durable-notice-acknowledged').exists():
+                                # Authored later state tests clearing, not inferred/provider completion.
+                                later = str(uuid4())
+                                store.begin(original_chat, later, store.chat(original_chat)['attached_session'],
+                                    'AUTHORED later fixture turn; no inference was requested')
+                                store.finish(original_chat, later, 'completed')
+                                assert coordinator.recovery_notice() == '' and not coordinator.unknown_sends
+                                assert store.db.execute('SELECT count(*) FROM candidate_unknown_sends').fetchone() == (0,)
+                                assert len(providers) == 2 and not coordinator.tasks
+                                coordinator.notice = 'Later authored turn supersedes earlier uncertainty.'
+                                coordinator.write_ui()
+                                (directory / 'durable-notice-cleared').write_text('authored later turn, no inference\n')
+                                durable_cleared = True
                             await asyncio.sleep(.05)
                     assert len(providers) == 2 and [p.calls for p in providers] == [3, 1]
                     assert all(p.closed for p in providers)
@@ -201,11 +244,14 @@ async def verify(directory, *, recovery=False, notices=False):
                     if notices:
                         expected |= {'native_interrupted_notice_preserves_draft', 'native_unknown_send_notice_no_inference'}
                         assert notice_reopened and unknown_checked
+                    if durable:
+                        expected |= {'native_unknown_notice_restored_after_reopen', 'native_unknown_notice_cleared_by_later_turn'}
+                        assert durable_reopened and durable_ready and durable_cleared
                     assert {x['phase'] for x in native['checks']} == expected and len(native['checks']) == len(expected)
                     assert not recovery or (restarted and replayed)
                     assert all(x['passed'] for x in native['checks'])
                     assert all(x['game_seconds_advanced'] > 0 for x in native['checks'] if x['phase'] in {'open_pending', 'closed_pending'})
-                    assert [t['status'] for t in store.turns(coordinator.selected)] == (['completed', 'cancelled', 'interrupted'] if notices else ['completed', 'cancelled'])
+                    assert [t['status'] for t in store.turns(coordinator.selected)] == (['completed', 'cancelled', 'interrupted', 'completed'] if durable else ['completed', 'cancelled', 'interrupted'] if notices else ['completed', 'cancelled'])
                     events = store.events(coordinator.selected)
                     final = [e for e in events if e['kind'] == 'assistant' and e['payload'].get('completed')]
                     assert len(final) == 1 and final[0]['payload']['text'] == ANSWER
@@ -217,16 +263,20 @@ async def verify(directory, *, recovery=False, notices=False):
                     rows = [base64.b64decode(r[5:]).decode() for r in (directory / 'chat-ui.txt').read_text().splitlines() if r.startswith('line=')]
                     assert any(ANSWER in row for row in rows)
                     assert not any('"geometry"' in row or '"tool_calls"' in row for row in rows)
-                    assert hashes == {n: hashlib.sha256((ROOT / n).read_bytes()).hexdigest() for n in SOURCES}
+                    assert hashes == {n: hashlib.sha256((ROOT / n).read_bytes()).hexdigest() for n in hashes}
                     report = {'passed': True, 'native_checks': native, 'source_sha256': hashes,
                         'real_production_coordinator_mcp_history': True, 'fake_provider_factory_injected': True,
                         'simulated_provider_round_trips': 4, 'external_inference_calls': 0,
-                        'completed_turns': 1, 'cancelled_turns': 1, 'actual_reference_tool_calls': 2,
+                        'completed_turns': 2 if durable else 1, 'inferred_completed_turns': 1,
+                        'authored_completed_turns': 1 if durable else 0, 'cancelled_turns': 1, 'actual_reference_tool_calls': 2,
                         'plain_completed_reply_in_native_panel_model': True, 'production_integrated': False,
                         'coordinator_and_sqlite_reopened': restarted, 'original_send_deduplicated_after_restart': replayed,
                         'helper_process_restarted': False, 'mcp_transport_restarted': False,
                         'developer_recovery_notice_coordinator': notices, 'authored_running_turn_recovered': notice_reopened,
                         'authored_admission_gap_replayed_without_inference': unknown_checked,
+                        'developer_durable_notice_coordinator': durable,
+                        'unknown_observation_restored_without_send_replay': durable_ready,
+                        'unknown_observation_cleared_by_authored_later_turn': durable_cleared,
                         'limits': ['Developer own-class overlay only, not a changed released JAR. One copied city at speed 1.',
                             'Supplied own launcher/resize gesture primitives and public own Send/Close/Stop routing; no OS input, engine pointer/button mutation or screenshots.',
                             'Real default production coordinator, stdio MCP and disposable SQLite history with a deterministic injected fake provider; no real model, paid network or advice-quality acceptance.',
@@ -236,7 +286,9 @@ async def verify(directory, *, recovery=False, notices=False):
                         report['limits'].append('Graceful coordinator-task stop and a new Coordinator/SQLite connection in the same verifier process; native game and stdio MCP stay running. No abrupt crash, pending-turn recovery, helper-process/network restart, billing or native display/read proof.')
                     if notices:
                         report['limits'].append('Two native notice phases use explicitly authored disposable running-turn/admission-gap setup. Recovery is a graceful task/SQLite reopen, not an actual crash or pending paid call. Candidate notice rows/model checks do not prove human readability or unobscured display.')
-                    (directory / ('native-chat-notices-validation.json' if notices else 'native-chat-recovery-validation.json' if recovery else 'native-chat-background-validation.json')).write_text(json.dumps(report, indent=2) + '\n')
+                    if durable:
+                        report['limits'].append('Durable uncertainty is restored by a new candidate Coordinator/SQLite connection in the same verifier process without replaying the unknown Send. The later completed row is explicitly authored, not a second inferred answer. No helper/MCP process restart or power-loss acceptance.')
+                    (directory / ('native-chat-durable-notices-validation.json' if durable else 'native-chat-notices-validation.json' if notices else 'native-chat-recovery-validation.json' if recovery else 'native-chat-background-validation.json')).write_text(json.dumps(report, indent=2) + '\n')
                     (directory / 'verifier.done').write_text('passed\n')
                 finally:
                     server.cancel()
