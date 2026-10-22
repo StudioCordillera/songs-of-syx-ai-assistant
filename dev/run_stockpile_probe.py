@@ -132,7 +132,7 @@ async def verify(state,manifest):
             'No screenshot, native input or normal game/profile manipulation. Use a separate virtual display with software rendering to isolate presentation while a normal player is running.']}
 
 
-def run(args, *, scenario_override=None, extra_sources=(), verifier=verify, report_name="stockpile-probe-validation.json", boundary_review_path=None, completion_marker=None):
+def run(args, *, scenario_override=None, extra_sources=(), verifier=verify, report_name="stockpile-probe-validation.json", boundary_review_path=None, completion_marker=None, candidate_chat_overlay=False):
     manifest=check(ROOT,args.candidate_dir,args.validation);runtime=(ROOT/'runtime').resolve();home=runtime/'smoke-home';save=args.save.resolve()
     if home.is_symlink() or not home.is_dir() or not save.is_file() or not save.is_relative_to(runtime):
         raise ValueError('Use the isolated smoke-home and a copied save under runtime/')
@@ -159,7 +159,15 @@ def run(args, *, scenario_override=None, extra_sources=(), verifier=verify, repo
         raise ValueError('Copied-profile mod JAR must be regular and stay inside smoke-home')
     backup=state/'prior-mod.jar';shutil.copy2(target,backup)
     save_before=sha(save)
-    cp=os.pathsep.join(map(str,[game/'SongsOfSyx.jar',game/'base/script/000_Tutorial.jar',game/'base/script/001_Tutorial.jar',jar,classes]))
+    own_classes=[jar,classes]
+    if candidate_chat_overlay:
+        expected=ROOT/'dev/candidates/chat-layout'
+        if scenario_override!=expected/'StockpileScenario.java' or expected/'ChatPanel.java' not in extra_sources:
+            raise ValueError('Only the fixed developer chat-layout overlay may precede our player classes')
+        own_classes=[classes,jar]
+    # Licensed engine/tutorial classes always precede our own overlay. This lane
+    # substitutes our ChatPanel only; it is not an engine-class override mechanism.
+    cp=os.pathsep.join(map(str,[game/'SongsOfSyx.jar',game/'base/script/000_Tutorial.jar',game/'base/script/001_Tutorial.jar',*own_classes]))
     command=[str(java),'-Xmx4g','-Duser.home='+str(home),'-Dsyx.assistant.stateDir='+str(state),
         '-Dsyx.smoke.stockpile=true','-Dsyx.smoke.copiedSave='+str(save),'-cp',cp,'LiveSmoke',str(save)]
     process=None

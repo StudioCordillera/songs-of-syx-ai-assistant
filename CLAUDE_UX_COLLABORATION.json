@@ -353,5 +353,16 @@
     "reason": "Existing local CLI sessions are present and not established idle; no-overlap rule honored. Process presence alone does not establish a quota/model/credit gate.",
     "credits_purchased": false,
     "account_limits_bypassed": false
+  },
+  "native_chat_layout_review_deferred": {
+    "checked_at": "2026-10-22T03:53:52.685394+00:00",
+    "existing_local_cli_processes": 1,
+    "invocation_started": false,
+    "actual_model": null,
+    "final_result_received": false,
+    "scope": "Developer own ChatPanel overlay with real simple controls, responsive layout, gesture adapter and synthetic helper frames. Prior completed critique informs policy; no new review of this source.",
+    "reason": "Existing local CLI process present and not established idle; no-overlap lane honored. No quota/model/credit diagnosis is inferred.",
+    "credits_purchased": false,
+    "account_limits_bypassed": false
   }
 }
