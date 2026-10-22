@@ -30,6 +30,7 @@ CASES={'weather':('weather','verify_weather.py','weather-validation.json'),
        'stockpile-live':('stockpileLive','verify_live_stockpiles.py','stockpile-live-validation.json'),
        'chat-visibility':('chatVisibility','verify_chat_visibility.py','chat-visibility-validation.json'),
        'chat-background':('chatBackground','verify_chat_background.py','chat-background-validation.json'),
+       'layout-background':('chatBackground','verify_native_chat_background.py','native-chat-background-validation.json'),
        'blueprint-chat':('chatBackground','verify_blueprint_coordinator.py','blueprint-coordinator-validation.json'),
        'viewport':('viewport','verify_viewport.py','viewport-validation.json'),
        'ground-moisture':('groundMoisture','verify_ground_moisture.py','ground-moisture-validation.json'),
@@ -82,15 +83,26 @@ def run(args):
     assert sha(jar)==manifest['mod_jar_sha256']
     classes=state/'classes';classes.mkdir()
     env=native_environment(os.environ);env['PYTHONPATH']=str(ROOT)
+    sources=sorted((ROOT/'mod/tests').glob('*.java'))
+    overlay_sources=[]
+    if args.case=='layout-background':
+        candidate=ROOT/'dev/candidates/chat-layout'
+        overlay_sources=[candidate/'ChatPanel.java',candidate/'ChatBackgroundScenario.java',
+            ROOT/'dev/java/syx/assistant/candidate/GestureReducer.java']
+        sources=[p for p in sources if p.name!='ChatBackgroundScenario.java']+overlay_sources
+    frozen_sources={str(p.relative_to(ROOT)):sha(p) for p in sources+[ROOT/'dev/run_read_fixture.py',ROOT/'dev/verify_native_chat_background.py']} if overlay_sources else {}
     subprocess.run(['java','-Djava.home='+str(jdk),'-m','jdk.compiler/com.sun.tools.javac.Main',
         '--release','16','-encoding','UTF-8','-cp',str(game/'SongsOfSyx.jar')+os.pathsep+str(jar),'-d',str(classes),
-        *map(str,(ROOT/'mod/tests').glob('*.java'))],env=env,check=True)
+        *map(str,sources)],env=env,check=True)
     target=home/'.local/share/songsofsyx/mods/syx-ai-assistant/V71/script/syx-ai-assistant.jar'
     if target.is_symlink() or not target.is_file() or not target.resolve().is_relative_to(home.resolve()):
         raise ValueError('Copied-profile mod JAR must be regular and stay inside smoke-home')
     backup=state/'prior-mod.jar';shutil.copy2(target,backup);save_before=sha(save)
     flag,verifier,report_name=CASES[args.case]
-    cp=os.pathsep.join(map(str,[game/'SongsOfSyx.jar',game/'base/script/000_Tutorial.jar',game/'base/script/001_Tutorial.jar',jar,classes]))
+    # Fixed own-class overlay only for the explicit developer case. Licensed
+    # engine/tutorial classes retain precedence; no caller-supplied class paths.
+    own_classes=[classes,jar] if overlay_sources else [jar,classes]
+    cp=os.pathsep.join(map(str,[game/'SongsOfSyx.jar',game/'base/script/000_Tutorial.jar',game/'base/script/001_Tutorial.jar',*own_classes]))
     command=[str(java),'-Xmx4g','-Duser.home='+str(home),'-Dsyx.assistant.stateDir='+str(state),
         '-Dsyx.smoke.'+flag+'=true','-cp',cp,'LiveSmoke',str(save)]
     if env_file is not None:command.insert(1,'-Dsyx.smoke.targetDispatchPro=true')
@@ -133,6 +145,16 @@ def run(args):
             if completion!={'passed':True,'verified_phases':11} or (state/'viewport-fixture-failure.json').exists():
                 raise RuntimeError('Viewport candidate fixture did not confirm clean completion')
             report['explicit_fixture_clean_completion']=True
+        if args.case=='layout-background':
+            completion=json.loads((state/'layout-background-clean-exit.json').read_text())
+            if completion!={'passed':True,'verified_phases':7} or (state/'layout-background-fixture-failure.json').exists():
+                raise RuntimeError('Native layout background fixture did not confirm clean completion')
+            if frozen_sources!={n:sha(ROOT/n) for n in frozen_sources}:
+                raise RuntimeError('Native layout overlay source changed during fixture')
+            report.update(explicit_fixture_clean_completion=True,our_chat_class_overlaid_from_fixture_classes=True,
+                engine_classes_overridden=False,compiled_fixture_source_sha256=frozen_sources,
+                compiled_overlay_class_sha256_collected_after_native_exit={str(p.relative_to(classes)):sha(p) for p in sorted(classes.rglob('*.class'))
+                    if str(p.relative_to(classes)).startswith(('syx/assistant/ChatPanel','syx/assistant/ChatBackgroundScenario','syx/assistant/candidate/GestureReducer'))})
         if args.case in {'chat-background','blueprint-chat'}:
             completion=json.loads((state/'chat-background-clean-exit.json').read_text())
             if completion!={'passed':True,'verified_phases':3} or (state/'chat-background-fixture-failure.json').exists():
