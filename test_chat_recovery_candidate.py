@@ -3,6 +3,7 @@ import asyncio
 import base64
 from pathlib import Path
 import tempfile
+import sqlite3
 from uuid import uuid4
 import pytest
 from syx_chat_store import ChatStore
@@ -160,3 +161,104 @@ def test_disposable_state_with_external_history_is_refused_before_journal(tmp_pa
         assert store.db.execute("SELECT name FROM sqlite_master WHERE name='actions'").fetchone() is None
     finally:
         store.close()
+
+
+def counted_lookup(db, sql, chat):
+    """Count SQLite VM operations, not machine-dependent elapsed time."""
+    steps = 0
+    def step():
+        nonlocal steps
+        steps += 1
+        return 0
+    db.set_progress_handler(step, 1)
+    try:
+        row = db.execute(sql, (chat,)).fetchone()
+    finally:
+        db.set_progress_handler(None, 0)
+    return row, steps
+
+
+def test_lookup_seeks_selected_chat_with_large_unrelated_history(candidate):
+    c, store, directory, session, chat = candidate
+    original = uid()
+    store.begin(chat, original, session, 'Old selected turn')
+    other = store.new(session, model='deepseek-v4-pro')['chat_id']
+    with store.db:
+        store.db.executemany('INSERT INTO turns VALUES(?,?,?,?)',
+            ((uid(), other, session, 'completed') for _ in range(20000)))
+    # Simulate a pre-candidate history: build the index only after it has data.
+    store.db.execute('DROP INDEX ' + c.TURN_INDEX)
+    before = store.events(chat), store.turns(chat)
+    c = RecoveryCoordinator(store, None, directory, '')
+    assert (store.events(chat), store.turns(chat)) == before
+    assert store.db.execute('SELECT count(*) FROM turns').fetchone() == (20001,)
+    baseline = 'SELECT turn_id,status FROM turns NOT INDEXED WHERE chat_id=? ORDER BY rowid DESC LIMIT 1'
+    for cid, expected in ((chat, (original, 'running')), (uid(), None)):
+        row, indexed_steps = counted_lookup(store.db, c.LATEST_TURN_SQL, cid)
+        old_row, scan_steps = counted_lookup(store.db, baseline, cid)
+        assert row == old_row == expected
+        assert indexed_steps < 100 and scan_steps > 60000
+        plan = store.db.execute('EXPLAIN QUERY PLAN ' + c.LATEST_TURN_SQL, (cid,)).fetchall()
+        assert any('SEARCH turns USING INDEX ' + c.TURN_INDEX in part[3] for part in plan)
+        assert not any('TEMP B-TREE' in part[3] for part in plan)
+
+
+def test_lookup_observes_external_commits_and_preserves_insertion_order(candidate):
+    c, store, directory, session, chat = candidate
+    first, second = uid(), uid()
+    store.begin(chat, first, session, 'First')
+    store.begin(chat, second, session, 'Second')
+    assert c.latest_turn(chat) == (second, 'running')
+    external = sqlite3.connect(store.directory / 'history.sqlite3')
+    try:
+        with external:
+            external.execute("UPDATE turns SET status='interrupted' WHERE turn_id=?", (second,))
+            external.execute("UPDATE turns SET status='completed' WHERE turn_id=?", (first,))
+        assert c.latest_turn(chat) == (second, 'interrupted')
+        assert c.recovery_notice() == INTERRUPTED
+        third = uid()
+        with external:
+            external.execute('INSERT INTO turns VALUES(?,?,?,?)', (third, chat, session, 'completed'))
+        assert c.latest_turn(chat) == (third, 'completed')
+        assert c.recovery_notice() == ''
+        external.execute('BEGIN')
+        external.execute("UPDATE turns SET status='interrupted' WHERE turn_id=?", (third,))
+        assert c.latest_turn(chat) == (third, 'completed')
+        external.rollback()
+        assert c.latest_turn(chat) == (third, 'completed')
+    finally:
+        external.close()
+
+
+def test_index_reopen_preserves_history_and_base_store_compatibility(candidate):
+    c, store, directory, session, chat = candidate
+    rid = uid()
+    store.begin(chat, rid, session, 'Retained')
+    store.finish(chat, rid, 'completed')
+    before = store.events(chat), store.turns(chat)
+    schema = store.db.execute('PRAGMA user_version').fetchone()
+    other = ChatStore(store.directory)
+    try:
+        again = RecoveryCoordinator(other, None, directory, '')
+        assert again.latest_turn(chat) == (rid, 'completed')
+        assert (other.events(chat), other.turns(chat)) == before
+        assert other.db.execute('PRAGMA user_version').fetchone() == schema == (1,)
+    finally:
+        other.close()
+
+
+@pytest.mark.parametrize('definition', [
+    'ON turns(chat_id) WHERE status="running"',
+    'ON turns(chat_id,status)',
+    'ON turns(chat_id COLLATE NOCASE)',
+    'ON chats(chat_id)',
+])
+def test_existing_conflicting_index_refuses_without_replacing_it(candidate, definition):
+    c, store, directory, session, chat = candidate
+    store.db.execute('DROP INDEX ' + c.TURN_INDEX)
+    store.db.execute('CREATE INDEX ' + c.TURN_INDEX + ' ' + definition)
+    before = store.db.execute('SELECT sql FROM sqlite_master WHERE name=?', (c.TURN_INDEX,)).fetchone()
+    with pytest.raises(ValueError, match='Unexpected candidate recovery turn index'):
+        RecoveryCoordinator(store, None, directory, '')
+    assert store.db.execute('SELECT sql FROM sqlite_master WHERE name=?', (c.TURN_INDEX,)).fetchone() == before
+    assert store.chat(chat)['chat_id'] == chat

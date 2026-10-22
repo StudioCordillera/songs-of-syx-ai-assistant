@@ -2,6 +2,14 @@
 
 Use `python3 dev/collaboration_status.py` for actual remote/local state at every run; this file is a handoff, not a live branch/working-tree assertion. Read AGENTS.md and reconcile newer collaborator work before editing.
 
+## Indexed recovery notice lookup — developer-only
+
+[CHAT_RECOVERY_NOTICE_CANDIDATE.md](CHAT_RECOVERY_NOTICE_CANDIDATE.md#indexed-latest-turn-follow-up--developer-only) / [new evidence](CHAT_RECOVERY_INDEX_VALIDATION.json) remove repeated unrelated-history scans from the candidate latest-turn lookup with an explicit chat-first index. Startup validates the complete expected index shape and refuses conflicting definitions without replacing them. Fields/events/status semantics/history version and production source remain unchanged. Index construction still scans existing turns and needs startup-cost review before promotion.
+
+A 20,001-turn synthetic history returns the same old/missing results with index seeks and 18/12 SQLite VM operations versus 60,016/60,012 scanning. Seven new offline cases cover populated-history index creation, committed external writes/rollback, base-store reopen and conflicting indexes. Fresh eleven-phase native notice and owned-process recovery checks preserve prior notice/draft/style/history behavior with fake inference. Exact-source checks, full offline and unchanged player bundles are recorded. This is finite SELECT/model-text evidence, not universal latency, native visibility/readability, physical input, all crash/concurrency or paid/player acceptance. An existing Claude process is not established idle; no overlapping invocation/model/quota claim.
+
+Next: bounded peer critique, durable outcomes/native transport-failure presentation, startup index cost/limits, typed target/display integration and paired actual-Pro/core/distribution gates. The redesigned player interface remains unshipped; unknown/oversized display stays unread.
+
 ## Automatic same-root two-game restart — developer-only
 
 [NATIVE_CHAT_AUTO_RESTART.md](NATIVE_CHAT_AUTO_RESTART.md) / [current evidence](NATIVE_CHAT_AUTO_RESTART_VALIDATION.json) validate two actual copied-game JVMs automatically selecting the same assistant state directory without a preference override. The preference file stays in place with unchanged device/inode/hash/mtime/permissions between launches. First own edits save Parchment/#745137/880×660; second startup restores it before interaction. All other first-run fixture artifacts/history are archived recoverably, so each helper/history workflow is fresh.

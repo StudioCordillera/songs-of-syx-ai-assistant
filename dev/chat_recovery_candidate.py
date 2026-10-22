@@ -1,6 +1,6 @@
 """Developer-only, plain recovery notices beside the unchanged simple coordinator.
 
-No action resubmission, new history schema, inference, receipt or game API is added.
+No action resubmission, new history fields, inference, receipt or game API is added.
 Construction requires caller-owned disposable state/history under runtime/.
 """
 from collections import OrderedDict
@@ -13,18 +13,31 @@ UNKNOWN = 'Earlier Send outcome unknown; no automatic retry.'
 
 class RecoveryCoordinator(Coordinator):
     MAX_UNKNOWN_CHATS = 100
+    TURN_INDEX = 'recovery_candidate_turns_chat'
+    LATEST_TURN_SQL = ('SELECT turn_id,status FROM turns '
+                       'INDEXED BY recovery_candidate_turns_chat '
+                       'WHERE chat_id=? ORDER BY rowid DESC LIMIT 1')
 
     def __init__(self, store, mcp, state_dir, api_key):
         directory = isolated_state_dir(str(state_dir))
         isolated_state_dir(str(store.directory))
+        # One-time candidate-only history index construction can scan existing turns.
+        # Thereafter SQLite seeks this chat and walks its implicit rowid backwards;
+        # unrelated chats do not get scanned on each UI refresh. No result cache.
+        with store.db:
+            store.db.execute('CREATE INDEX IF NOT EXISTS recovery_candidate_turns_chat ON turns(chat_id)')
+            shape = store.db.execute('PRAGMA index_xinfo(recovery_candidate_turns_chat)').fetchall()
+            definitions = store.db.execute('PRAGMA index_list(turns)').fetchall()
+            if (shape != [(0, 1, 'chat_id', 0, 'BINARY', 1), (1, -1, None, 0, 'BINARY', 0)] or
+                    not any(row[1] == self.TURN_INDEX and row[2] == 0 and row[4] == 0
+                            for row in definitions)):
+                raise ValueError('Unexpected candidate recovery turn index; history left intact')
         super().__init__(store, mcp, directory, api_key, simple=True)
         # Reconstructed only from an observed duplicate Send, never guessed from an ack.
         self.unknown_sends = OrderedDict()
 
     def latest_turn(self, chat):
-        return self.store.db.execute(
-            'SELECT turn_id,status FROM turns WHERE chat_id=? ORDER BY rowid DESC LIMIT 1',
-            (chat,)).fetchone()
+        return self.store.db.execute(self.LATEST_TURN_SQL, (chat,)).fetchone()
 
     async def dispatch(self, request):
         rid, cid = request['request_id'], request.get('chat_id')
