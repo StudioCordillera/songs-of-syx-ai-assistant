@@ -137,3 +137,5 @@ Run `dev/run_read_fixture.py --case layout-background` with the normal licensed-
 `dev/check_chat_process_recovery.py` separately tests three owned-process SIGKILL boundaries with disposable history, synthetic MCP and fake inference. It needs no game or key; `test_chat_process_recovery.py` includes these cases in the offline suite. See [helper-process recovery limits](CHAT_PROCESS_RECOVERY.md), including admission-only acknowledgement and volatile partial loss.
 
 For isolated plain recovery notices, add `--candidate` to `dev/check_chat_process_recovery.py`. Three crash/reopen cases exercise IPC2 text alongside the unchanged base path; `test_chat_recovery_candidate.py` covers policy/isolation bounds. See [candidate scope](CHAT_RECOVERY_NOTICE_CANDIDATE.md); no native or paid acceptance follows from these offline checks.
+
+`NATIVE_CHAT_STATUS.md` records the current scrollable-notice overlay checked by `dev/run_native_chat_layout.py` and the separate `layout-recovery` case. `test_status_lines_java.py` checks detached Unicode/row/omission bounds without native or provider calls. Historical layout/recovery reports keep their original hashes.

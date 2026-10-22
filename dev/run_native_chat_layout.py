@@ -17,7 +17,7 @@ from run_stockpile_probe import run, sha
 
 SOURCES = ['dev/run_native_chat_layout.py', 'dev/run_stockpile_probe.py',
     'dev/candidates/chat-layout/ChatPanel.java', 'dev/candidates/chat-layout/ChatLayoutProbe.java',
-    'dev/candidates/chat-layout/StockpileScenario.java', 'dev/java/syx/assistant/candidate/GestureReducer.java', 'dev/java/syx/assistant/candidate/PanelPreferences.java', 'dev/java/syx/assistant/candidate/PanelTheme.java',
+    'dev/candidates/chat-layout/StockpileScenario.java', 'dev/java/syx/assistant/candidate/GestureReducer.java', 'dev/java/syx/assistant/candidate/PanelPreferences.java', 'dev/java/syx/assistant/candidate/PanelTheme.java', 'dev/java/syx/assistant/candidate/StatusLines.java',
     'mod/src/main/java/syx/assistant/ChatPanel.java', 'mod/tests/LiveSmoke.java', 'dev/native_game_completion.py']
 GAME_PATHS = ['snake2d/Mouse.java', 'snake2d/MButt.java', 'snake2d/util/gui/clickable/CLICKABLE.java',
     'snake2d/util/gui/GuiSection.java', 'util/gui/misc/GInput.java', 'util/gui/table/GScrollRows.java',
@@ -32,7 +32,7 @@ CHECKS = {'header_drag_and_heartbeat_stability', 'responsive_minimum_controls_an
     'viewport_recovery_and_closed_launcher_bounds', 'explicit_preferences_save_reload',
     'automatic_clamp_does_not_write_preferences', 'malformed_preferences_preserve_layout_and_explicit_reset',
     'appearance_presets_minimum_bounds_and_draft', 'custom_accent_validation_and_focus_ownership', 'explicit_style_persistence_and_fresh_panel_reload',
-    'legacy_geometry_no_rewrite_until_explicit_style'}
+    'legacy_geometry_no_rewrite_until_explicit_style','wrapped_status_minimum_bounds_and_scroll'}
 
 
 async def verify(state, manifest):
@@ -83,7 +83,8 @@ if __name__ == '__main__':
             extra_sources=[candidate / 'ChatPanel.java', candidate / 'ChatLayoutProbe.java',
                 ROOT / 'dev/java/syx/assistant/candidate/GestureReducer.java',
                 ROOT / 'dev/java/syx/assistant/candidate/PanelPreferences.java',
-                ROOT / 'dev/java/syx/assistant/candidate/PanelTheme.java'],
+                ROOT / 'dev/java/syx/assistant/candidate/PanelTheme.java',
+                ROOT / 'dev/java/syx/assistant/candidate/StatusLines.java'],
             candidate_chat_overlay=True, verifier=verify, report_name='native-chat-layout-validation.json',
             boundary_review_path=ROOT / 'CHAT_INPUT_BOUNDARY_REVIEW.json',
             completion_marker=('chat-layout-clean-exit.json', {'passed': True}))

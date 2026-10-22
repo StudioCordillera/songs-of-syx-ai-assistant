@@ -13,6 +13,7 @@ import snake2d.util.gui.clickable.CLICKABLE;
 import syx.assistant.candidate.GestureReducer;
 import syx.assistant.candidate.PanelPreferences;
 import syx.assistant.candidate.PanelTheme;
+import syx.assistant.candidate.StatusLines;
 import snake2d.Mouse;
 import snake2d.SPRITE_RENDERER;
 import snake2d.util.color.COLOR;
@@ -52,6 +53,10 @@ final class ChatPanel extends InterGuisection {
     private final GInput composer;
     private final StringBuilder draft=new StringBuilder();
     private String attachedSession="";
+    private List<String> statusRows=List.of();
+    private GScrollRows statusHistory;
+    List<String> candidateStatusRows(){return statusRows;}
+    GScrollRows candidateStatusHistory(){return statusHistory;}
     private String chat="", notice="Start the local chat coordinator to connect.";
     private String acknowledged="", waiting="", lastState="";
     private boolean opened,running,deleteArmed;
@@ -344,8 +349,10 @@ final class ChatPanel extends InterGuisection {
         if(appearanceOpen&&!appearanceNotice.isEmpty())hint=appearanceNotice;
         if(!layoutNotice.isEmpty())hint=layoutNotice;
         int hintChars=Math.max(1,textWidth/UI.FONT().S.maxCWidth);
-        String message=hint.length()>hintChars?hint.substring(0,hintChars):hint;
-        panel.add(label(message),12,112);
+        statusRows=StatusLines.wrap(hint,hintChars);
+        List<RENDEROBJ> statusLabels=new ArrayList<>();
+        for(String row:statusRows)statusLabels.add(label(row));
+        statusHistory=new GScrollRows(statusLabels,48);statusHistory.init();panel.add(statusHistory.view(),12,112);
         List<RENDEROBJ> choices=new ArrayList<>();
         for(String[] entry:!advanced&&currentOnly?(session.equals(currentListSession)?currentChats:Collections.<String[]>emptyList()):chats) {
             String id=entry[0],title=entry[1];
@@ -354,12 +361,12 @@ final class ChatPanel extends InterGuisection {
         }
         if(choices.isEmpty())choices.add(label("No chats yet"));
         if(appearanceOpen){
-            panel.add(button("Forest",()->chooseTheme("Forest")),12,142);
-            panel.add(button("Parchment",()->chooseTheme("Parchment")),150,142);
-            panel.add(button("Night",()->chooseTheme("Night")),320,142);
-            panel.add(accentInput,12,180);panel.add(button("Apply accent",this::applyAccent),160,180);
-            panel.add(label(preferencesDirectory==null?"#RRGGBB · this run":"#RRGGBB · local"),350,184);
-        }else panel.add(new GScrollRows(choices,70).view(),12,142);
+            panel.add(button("Forest",()->chooseTheme("Forest")),12,172);
+            panel.add(button("Parchment",()->chooseTheme("Parchment")),150,172);
+            panel.add(button("Night",()->chooseTheme("Night")),320,172);
+            panel.add(accentInput,12,210);panel.add(button("Apply accent",this::applyAccent),160,210);
+            panel.add(label(preferencesDirectory==null?"#RRGGBB · this run":"#RRGGBB · local"),350,214);
+        }else panel.add(new GScrollRows(choices,70).view(),12,172);
         List<RENDEROBJ> rows=new ArrayList<>();
         int width=Math.max(20,textWidth/UI.FONT().S.maxCWidth);
         for(String text:transcript) {
@@ -377,8 +384,8 @@ final class ChatPanel extends InterGuisection {
         if(rows.isEmpty())addWrappedLabels(rows,advanced?"Create/select a chat. Add text in short segments, then Send.":"Ask a question about your game. The connection is handled automatically.",width);
         boolean follow=history==null || history.target.get()>=history.target.max();
         int scroll=follow?Integer.MAX_VALUE:history.target.get();
-        history=new GScrollRows(rows,Math.max(20,composerY-12-220));history.target.set(scroll);
-        panel.add(history.view(),12,220);
+        history=new GScrollRows(rows,Math.max(20,composerY-12-250));history.target.set(scroll);
+        panel.add(history.view(),12,250);
         panel.add(composer,12,composerY);
         if(advanced) {
         panel.add(new GTextR(UI.FONT().S,"Draft: "+draft.length()+" chars. Add text appends a segment (maximum 8000)."),16,568);

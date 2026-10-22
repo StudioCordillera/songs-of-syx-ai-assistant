@@ -2,6 +2,14 @@
 
 Use `python3 dev/collaboration_status.py` for actual remote/local state at every run; this file is a handoff, not a live branch/working-tree assertion. Read AGENTS.md and reconcile newer collaborator work before editing.
 
+## Wrapped native status area — developer-only
+
+[NATIVE_CHAT_STATUS.md](NATIVE_CHAT_STATUS.md) / [current evidence](NATIVE_CHAT_STATUS_VALIDATION.json) replace silently cut first-line notices with a fixed scrollable status area in the unshipped panel. Chat/Style/transcript rows move down 30 internal units; 640×560 minimum controls/draft semantics remain. Detached wrapping bounds 4,096 code points/64 rows, preserves pairs, spaces controls and reserves a complete explicit omission marker. The own public scroll widget is initialized before range checks; the first uninitialized-range fixture was rejected and retained privately.
+
+Twenty-two native layout checks pass, including complete finite recovery-like status rows, positive scroll range and preserved draft at minimum bounds. A separate fresh nine-phase real-helper/MCP/SQLite recovery path passes with fake inference and the changed panel. The helper is the base Coordinator; this does not natively integrate the separate recovery-notice subclass. Exact source/class hashes, copied-mod restoration/save integrity, full offline and unchanged bundles are recorded. No physical input, pixel/readability/occlusion/accessibility/receipt or new paid/player acceptance is claimed. One existing Claude process was not established idle; no overlapping invocation/review or quota diagnosis was made.
+
+Next: bounded peer critique when available, actual recovery-notice/native-helper integration and wider lifecycle/scene/race checks, stable player preference configuration, target/display integration and paired real-Pro/core/distribution gates. Current player source/bundles remain unchanged; unknown/oversized display stays unread.
+
 ## Plain recovery notices — developer-only
 
 [CHAT_RECOVERY_NOTICE_CANDIDATE.md](CHAT_RECOVERY_NOTICE_CANDIDATE.md) / [current evidence](CHAT_RECOVERY_NOTICE_VALIDATION.json) add an isolated simple Coordinator subclass with short interrupted/unknown-Send notices alongside existing connection/error text. Latest stored interrupted status is distinct from a duplicate journal ID without a saved turn; neither implies external provider/billing truth. No retry, schema, event/history mutation or production import is added. Unknown observations are chat-local, capped at 100 and in memory; a later durable turn supersedes them. A restart without replay cannot reconstruct the old action payload.

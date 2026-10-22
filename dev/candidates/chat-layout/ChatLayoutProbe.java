@@ -20,6 +20,7 @@ import static syx.assistant.StateCollector.object;
 
 /** TEST ONLY: overlay our actual ChatPanel; synthetic protocol data and owned gesture primitives. */
 public final class ChatLayoutProbe {
+    private static final String STATUS="Connection remains unavailable. ".repeat(4)+"Earlier Send outcome unknown; no automatic retry. Earlier reply interrupted; no automatic retry.";
     private static void require(boolean yes,String why){if(!yes)throw new IllegalStateException(why);}
     private static String b64(String value){return Base64.getEncoder().encodeToString(value.getBytes(StandardCharsets.UTF_8));}
     private static String field(String request,String key){for(String row:request.split("\n"))if(row.startsWith(key+"="))return row.substring(key.length()+1);throw new IllegalStateException("Missing own request field");}
@@ -45,7 +46,7 @@ public final class ChatLayoutProbe {
     private static String frame(String session,String chat,String ack,boolean running,boolean answer){
         return "protocol=2\nupdated_at="+(System.currentTimeMillis()/1000.0)+"\nrequest_id="+ack+"\nchat_id="+chat+"\nsession_id="+session+"\ncurrent_chat_session="+session
             +"\nchat="+chat+"|"+b64("Fixture chat")+"\ncurrent_chat="+chat+"|"+b64("Fixture chat")+"\nprovider=deepseek\nroute=api\nmodel=deepseek-v4-pro\nrunning="+running
-            +"\nnotice="+b64("Fixture ready")+"\nconnection_status="+b64("SIMULATED fixture helper")+"\nline="+b64("User: fixture layout question")
+            +"\nnotice="+b64(STATUS)+"\nconnection_status="+b64("SIMULATED fixture helper")+"\nline="+b64("User: fixture layout question")
             +"\nline="+b64(answer?"Assistant: SIMULATED fixture answer; no real provider called.":"Assistant: original layout reference is synthetic fixture text, not a game observation.")+"\n";
     }
     public static void install(Path directory){
@@ -85,13 +86,18 @@ public final class ChatLayoutProbe {
                     require(p.candidateLayout().width==640&&p.candidateLayout().height==560,"Measured simple-control minimum");
                     require(input[0]==p.candidateComposer()&&input[0].text().toString().equals(draft),"Resize lost composer/draft");checks.add("responsive_minimum_controls_and_draft");
                     require(!p.beginGesture(GestureReducer.Target.chrome,120,200,400),"Content must not start a drag");checks.add("content_refuses_capture");
+                    require(String.join("",p.candidateStatusRows()).equals(STATUS),"Status silently shortened at minimum");
+                    require(p.candidateStatusRows().size()>1&&p.candidateStatusHistory().target.max()>0,"Long status must wrap and scroll");
+                    p.candidateStatusHistory().target.set(p.candidateStatusHistory().target.max());bounds(p);
+                    require(input[0]==p.candidateComposer()&&input[0].text().toString().equals(draft),"Status scrolling lost draft");
+                    checks.add("wrapped_status_minimum_bounds_and_scroll");
                     String savedGeometry=Files.readString(directory.resolve("chat-layout.preferences"));
                     press(p.candidateButton("Style"));require(p.candidateAppearanceOpen(),"Style form did not open");
                     for(String preset:List.of("Forest","Parchment","Night")){
                         press(p.candidateButton(preset));bounds(p);require(p.candidateTheme().name.equals(preset),"Preset not applied");
                         List<CLICKABLE> form=List.of(p.candidateButton("Forest"),p.candidateButton("Parchment"),p.candidateButton("Night"),p.candidateAccentInput(),p.candidateButton("Apply accent"));
                         for(int i=0;i<form.size();i++){
-                            var a=form.get(i).body();require(a.y2()<=p.section().body().y1()+220,"Style control overlaps transcript");
+                            var a=form.get(i).body();require(a.y2()<=p.section().body().y1()+250,"Style control overlaps transcript");
                             for(int j=i+1;j<form.size();j++){var b=form.get(j).body();require(a.x2()<=b.x1()||b.x2()<=a.x1()||a.y2()<=b.y1()||b.y2()<=a.y1(),"Style controls overlap");}
                         }
                         require(input[0]==p.candidateComposer()&&input[0].text().toString().equals(draft),"Style lost question draft");

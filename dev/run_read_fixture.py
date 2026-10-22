@@ -108,7 +108,7 @@ def run(args):
     if args.case in {'layout-background','layout-recovery'}:
         candidate=ROOT/'dev/candidates/chat-layout'
         overlay_sources=[candidate/'ChatPanel.java',candidate/'ChatBackgroundScenario.java',
-            ROOT/'dev/java/syx/assistant/candidate/GestureReducer.java',ROOT/'dev/java/syx/assistant/candidate/PanelPreferences.java',ROOT/'dev/java/syx/assistant/candidate/PanelTheme.java']
+            ROOT/'dev/java/syx/assistant/candidate/GestureReducer.java',ROOT/'dev/java/syx/assistant/candidate/PanelPreferences.java',ROOT/'dev/java/syx/assistant/candidate/PanelTheme.java',ROOT/'dev/java/syx/assistant/candidate/StatusLines.java']
         sources=[p for p in sources if p.name!='ChatBackgroundScenario.java']+overlay_sources
     frozen_sources={str(p.relative_to(ROOT)):sha(p) for p in sources+[ROOT/'dev/run_read_fixture.py',ROOT/'dev/verify_native_chat_background.py']} if overlay_sources else {}
     subprocess.run(['java','-Djava.home='+str(jdk),'-m','jdk.compiler/com.sun.tools.javac.Main',
